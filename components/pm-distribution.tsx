@@ -1,6 +1,7 @@
 "use client";
 
 import { useTranslations } from "next-intl";
+import VrboLogo from "@/components/logos/vrbo-logo";
 
 const PILLARS = ["reach", "paid", "convert"] as const;
 
@@ -104,16 +105,9 @@ export default function PmDistribution() {
               </span>
             </span>
 
-            {/* Vrbo — serif-italic wordmark */}
-            <span
-              className="text-[24px] italic leading-none tracking-tight text-white/80 transition-colors duration-300 hover:text-white"
-              style={{
-                fontFamily:
-                  "'Didot', 'Bodoni MT', 'Playfair Display', Georgia, serif",
-                fontWeight: 600,
-              }}
-            >
-              Vrbo
+            {/* Vrbo — official striped wordmark */}
+            <span className="text-white/80 transition-colors duration-300 hover:text-white">
+              <VrboLogo className="h-[30px] w-auto" />
             </span>
 
             {/* Trip.com — bold wordmark with round dot */}
