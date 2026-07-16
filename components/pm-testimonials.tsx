@@ -22,11 +22,24 @@ export default function PmTestimonials() {
     if (!track) return;
     const card = track.querySelector<HTMLElement>("[data-card]");
     const gap = 20;
+    const step = (card?.offsetWidth ?? 340) + gap;
+    const maxScroll = track.scrollWidth - track.clientWidth;
+    const x = track.scrollLeft;
+    const eps = 8;
+    // Loop around at either end so the carousel feels circular.
+    const target =
+      dir === 1
+        ? x >= maxScroll - eps
+          ? 0
+          : Math.min(x + step, maxScroll)
+        : x <= eps
+          ? maxScroll
+          : Math.max(x - step, 0);
     const reduceMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)",
     ).matches;
-    track.scrollBy({
-      left: dir * ((card?.offsetWidth ?? 340) + gap),
+    track.scrollTo({
+      left: target,
       behavior: reduceMotion ? "auto" : "smooth",
     });
   };
@@ -64,24 +77,22 @@ export default function PmTestimonials() {
             </button>
           </div>
         </div>
-      </div>
-
-      {/* Track — bleeds to the viewport edge on the right */}
-      <div
-        ref={trackRef}
-        className="flex gap-5 overflow-x-auto snap-x snap-mandatory px-4 sm:px-6 lg:px-[max(2rem,calc((100vw-80rem)/2+2rem))] [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
-      >
-        {OWNERS.map((o) => (
-          <figure
-            key={o.key}
-            data-card
-            className="relative w-[300px] sm:w-[340px] lg:w-[370px] shrink-0 snap-start aspect-[4/5] rounded-2xl overflow-hidden ring-1 ring-line"
-          >
+        {/* Track — three cards per view on desktop, looping via the arrows */}
+        <div
+          ref={trackRef}
+          className="flex gap-5 overflow-x-auto snap-x snap-mandatory [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+        >
+          {OWNERS.map((o) => (
+            <figure
+              key={o.key}
+              data-card
+              className="relative w-full sm:w-[calc((100%-1.25rem)/2)] lg:w-[calc((100%-2.5rem)/3)] shrink-0 snap-start aspect-[4/5] rounded-2xl overflow-hidden ring-1 ring-line"
+            >
             <Image
               src={o.img}
               alt={t(`items.${o.key}.name`)}
               fill
-              sizes="(max-width: 640px) 300px, 370px"
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
               className="object-cover object-center"
             />
             {/* Scrim keeps the quote legible over the portrait */}
@@ -107,8 +118,9 @@ export default function PmTestimonials() {
                 </span>
               </div>
             </figcaption>
-          </figure>
-        ))}
+            </figure>
+          ))}
+        </div>
       </div>
     </section>
   );
