@@ -32,10 +32,9 @@ export default function Navigation() {
     { label: t("propertyManagement"), href: "/property-management" },
   ];
 
-  const navItemsAfterDropdown = [
-    { label: t("guides"), href: "/guides" },
-    { label: t("contactUs"), href: "/contact-us" },
-  ];
+  // Guides + Contact Us removed from the nav bar to keep it short (pages still exist,
+  // reachable via the footer).
+  const navItemsAfterDropdown: { label: string; href: string }[] = [];
 
   const propertyItems = [
     {
