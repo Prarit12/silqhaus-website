@@ -91,7 +91,7 @@ export function PMSListingCard({ listing, basePath }: PMSListingCardProps) {
           <div className="flex items-center gap-2 text-[#aaa]">
             {listing.bedrooms != null && (
               <div className="flex items-center gap-0.5">
-                <Bed size={10} className="text-[#8c7429]" />
+                <Bed size={10} className="text-[#ffffff]" />
                 <span className="font-poppins font-normal text-[12px]">
                   {listing.bedrooms}
                 </span>
@@ -99,7 +99,7 @@ export function PMSListingCard({ listing, basePath }: PMSListingCardProps) {
             )}
             {listing.bathrooms != null && (
               <div className="flex items-center gap-0.5">
-                <Bath size={10} className="text-[#8c7429]" />
+                <Bath size={10} className="text-[#ffffff]" />
                 <span className="font-poppins text-[12px]">
                   {listing.bathrooms}
                 </span>
@@ -107,7 +107,7 @@ export function PMSListingCard({ listing, basePath }: PMSListingCardProps) {
             )}
             {listing.areaSqm != null && (
               <div className="flex items-center gap-0.5">
-                <Maximize2 size={10} className="text-[#8c7429]" />
+                <Maximize2 size={10} className="text-[#ffffff]" />
                 <span className="font-poppins text-[12px]">
                   {listing.areaSqm}
                   {t("areaUnit")}

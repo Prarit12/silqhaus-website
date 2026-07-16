@@ -44,7 +44,7 @@ export default function WhatWeOfferSection() {
         <div
           className="absolute inset-0"
           style={{
-            backgroundImage: `radial-gradient(circle at 25% 25%, #7e6725 2px, transparent 2px), radial-gradient(circle at 75% 75%, #7e6725 2px, transparent 2px)`,
+            backgroundImage: `radial-gradient(circle at 25% 25%, #ffffff 2px, transparent 2px), radial-gradient(circle at 75% 75%, #ffffff 2px, transparent 2px)`,
             backgroundSize: "100px 100px",
           }}
         ></div>
@@ -65,7 +65,7 @@ export default function WhatWeOfferSection() {
               <div className="bg-white/80 backdrop-blur-sm rounded-xl p-4 border border-gray-200/50 shadow-sm hover:bg-white/90 hover:shadow-md hover:-translate-y-1 transition-all duration-300 group">
                 <div className="flex flex-col items-start space-y-3">
                   {/* Icon */}
-                  <div className="w-8 h-8 bg-gradient-to-br from-[#7e6725] to-[#957e34] rounded-lg flex items-center justify-center">
+                  <div className="w-8 h-8 bg-gradient-to-br from-[#ffffff] to-[#957e34] rounded-lg flex items-center justify-center">
                     <svg
                       className="w-4 h-4 text-white"
                       fill="none"
@@ -96,7 +96,7 @@ export default function WhatWeOfferSection() {
               <div className="bg-white/80 backdrop-blur-sm rounded-xl p-4 border border-gray-200/50 shadow-sm hover:bg-white/90 hover:shadow-md hover:-translate-y-1 transition-all duration-300 group">
                 <div className="flex flex-col items-start space-y-3">
                   {/* Icon */}
-                  <div className="w-8 h-8 bg-gradient-to-br from-[#7e6725] to-[#957e34] rounded-lg flex items-center justify-center">
+                  <div className="w-8 h-8 bg-gradient-to-br from-[#ffffff] to-[#957e34] rounded-lg flex items-center justify-center">
                     <svg
                       className="w-4 h-4 text-white"
                       fill="none"
@@ -127,7 +127,7 @@ export default function WhatWeOfferSection() {
               <div className="bg-white/80 backdrop-blur-sm rounded-xl p-4 border border-gray-200/50 shadow-sm hover:bg-white/90 hover:shadow-md hover:-translate-y-1 transition-all duration-300 group">
                 <div className="flex flex-col items-start space-y-3">
                   {/* Icon */}
-                  <div className="w-8 h-8 bg-gradient-to-br from-[#7e6725] to-[#957e34] rounded-lg flex items-center justify-center">
+                  <div className="w-8 h-8 bg-gradient-to-br from-[#ffffff] to-[#957e34] rounded-lg flex items-center justify-center">
                     <svg
                       className="w-4 h-4 text-white"
                       fill="none"
@@ -164,7 +164,7 @@ export default function WhatWeOfferSection() {
               <div className="bg-white/80 backdrop-blur-sm rounded-xl p-4 border border-gray-200/50 shadow-sm hover:bg-white/90 hover:shadow-md hover:-translate-y-1 transition-all duration-300 group">
                 <div className="flex flex-col items-start space-y-3">
                   {/* Icon */}
-                  <div className="w-8 h-8 bg-gradient-to-br from-[#7e6725] to-[#957e34] rounded-lg flex items-center justify-center">
+                  <div className="w-8 h-8 bg-gradient-to-br from-[#ffffff] to-[#957e34] rounded-lg flex items-center justify-center">
                     <svg
                       className="w-4 h-4 text-white"
                       fill="none"
@@ -194,7 +194,7 @@ export default function WhatWeOfferSection() {
 
             {/* CTA Button */}
             <div className="pt-2">
-              <button className="font-poppins bg-gradient-to-r from-[#7e6725] to-[#957e34] text-white px-6 py-3 rounded-xl font-semibold text-base hover:shadow-lg hover:scale-105 transition-all duration-300">
+              <button className="font-poppins bg-gradient-to-r from-[#ffffff] to-[#957e34] text-white px-6 py-3 rounded-xl font-semibold text-base hover:shadow-lg hover:scale-105 transition-all duration-300">
                 Explore Properties
               </button>
             </div>
@@ -214,8 +214,8 @@ export default function WhatWeOfferSection() {
               {/* Tools Grid */}
               <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                 {/* Hostaway */}
-                <div className="group bg-white rounded-xl border border-gray-200 p-4 text-center shadow-sm hover:shadow-2xl hover:shadow-[#7e6725]/20 hover:bg-gradient-to-br hover:from-white hover:to-gray-50/50 hover:border-[#7e6725]/30 hover:scale-105 hover:-translate-y-2 transition-all duration-300 ease-out flex flex-col items-center justify-start min-h-[160px] cursor-pointer">
-                  <div className="w-12 h-12 grid place-items-center rounded-full bg-[#7e6725]/10 text-[#7e6725] shadow-sm group-hover:bg-[#7e6725] group-hover:shadow-lg group-hover:shadow-[#7e6725]/30 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300">
+                <div className="group bg-white rounded-xl border border-gray-200 p-4 text-center shadow-sm hover:shadow-2xl hover:shadow-[#ffffff]/20 hover:bg-gradient-to-br hover:from-white hover:to-gray-50/50 hover:border-[#ffffff]/30 hover:scale-105 hover:-translate-y-2 transition-all duration-300 ease-out flex flex-col items-center justify-start min-h-[160px] cursor-pointer">
+                  <div className="w-12 h-12 grid place-items-center rounded-full bg-[#ffffff]/10 text-[#ffffff] shadow-sm group-hover:bg-[#ffffff] group-hover:shadow-lg group-hover:shadow-[#ffffff]/30 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       className="w-6 h-6 group-hover:text-white transition-colors duration-300"
@@ -231,7 +231,7 @@ export default function WhatWeOfferSection() {
                       />
                     </svg>
                   </div>
-                  <h3 className="mt-3 font-bold text-black text-[14px] group-hover:text-[#7e6725] transition-colors duration-300">
+                  <h3 className="mt-3 font-bold text-black text-[14px] group-hover:text-[#ffffff] transition-colors duration-300">
                     Hostaway
                   </h3>
                   <p className="mt-2 text-[10px] leading-relaxed text-black/65 max-w-[24ch] mx-auto group-hover:text-black/80 transition-colors duration-300">
@@ -241,8 +241,8 @@ export default function WhatWeOfferSection() {
                 </div>
 
                 {/* PriceLabs */}
-                <div className="group bg-white rounded-xl border border-gray-200 p-4 text-center shadow-sm hover:shadow-2xl hover:shadow-[#7e6725]/20 hover:bg-gradient-to-br hover:from-white hover:to-gray-50/50 hover:border-[#7e6725]/30 hover:scale-105 hover:-translate-y-2 transition-all duration-300 ease-out flex flex-col items-center justify-start min-h-[160px] cursor-pointer">
-                  <div className="w-12 h-12 grid place-items-center rounded-full bg-[#7e6725]/10 text-[#7e6725] shadow-sm group-hover:bg-[#7e6725] group-hover:shadow-lg group-hover:shadow-[#7e6725]/30 group-hover:scale-110 group-hover:-rotate-3 transition-all duration-300">
+                <div className="group bg-white rounded-xl border border-gray-200 p-4 text-center shadow-sm hover:shadow-2xl hover:shadow-[#ffffff]/20 hover:bg-gradient-to-br hover:from-white hover:to-gray-50/50 hover:border-[#ffffff]/30 hover:scale-105 hover:-translate-y-2 transition-all duration-300 ease-out flex flex-col items-center justify-start min-h-[160px] cursor-pointer">
+                  <div className="w-12 h-12 grid place-items-center rounded-full bg-[#ffffff]/10 text-[#ffffff] shadow-sm group-hover:bg-[#ffffff] group-hover:shadow-lg group-hover:shadow-[#ffffff]/30 group-hover:scale-110 group-hover:-rotate-3 transition-all duration-300">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       className="w-6 h-6 group-hover:text-white transition-colors duration-300"
@@ -258,7 +258,7 @@ export default function WhatWeOfferSection() {
                       />
                     </svg>
                   </div>
-                  <h3 className="mt-3 font-bold text-black text-[14px] group-hover:text-[#7e6725] transition-colors duration-300">
+                  <h3 className="mt-3 font-bold text-black text-[14px] group-hover:text-[#ffffff] transition-colors duration-300">
                     PriceLabs
                   </h3>
                   <p className="mt-2 text-[10px] leading-relaxed text-black/65 max-w-[24ch] mx-auto group-hover:text-black/80 transition-colors duration-300">
@@ -267,8 +267,8 @@ export default function WhatWeOfferSection() {
                 </div>
 
                 {/* AirDNA */}
-                <div className="group bg-white rounded-xl border border-gray-200 p-4 text-center shadow-sm hover:shadow-2xl hover:shadow-[#7e6725]/20 hover:bg-gradient-to-br hover:from-white hover:to-gray-50/50 hover:border-[#7e6725]/30 hover:scale-105 hover:-translate-y-2 transition-all duration-300 ease-out flex flex-col items-center justify-start min-h-[160px] cursor-pointer">
-                  <div className="w-12 h-12 grid place-items-center rounded-full bg-[#7e6725]/10 text-[#7e6725] shadow-sm group-hover:bg-[#7e6725] group-hover:shadow-lg group-hover:shadow-[#7e6725]/30 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
+                <div className="group bg-white rounded-xl border border-gray-200 p-4 text-center shadow-sm hover:shadow-2xl hover:shadow-[#ffffff]/20 hover:bg-gradient-to-br hover:from-white hover:to-gray-50/50 hover:border-[#ffffff]/30 hover:scale-105 hover:-translate-y-2 transition-all duration-300 ease-out flex flex-col items-center justify-start min-h-[160px] cursor-pointer">
+                  <div className="w-12 h-12 grid place-items-center rounded-full bg-[#ffffff]/10 text-[#ffffff] shadow-sm group-hover:bg-[#ffffff] group-hover:shadow-lg group-hover:shadow-[#ffffff]/30 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       className="w-6 h-6 group-hover:text-white transition-colors duration-300"
@@ -284,7 +284,7 @@ export default function WhatWeOfferSection() {
                       />
                     </svg>
                   </div>
-                  <h3 className="mt-3 font-bold text-black text-[14px] group-hover:text-[#7e6725] transition-colors duration-300">
+                  <h3 className="mt-3 font-bold text-black text-[14px] group-hover:text-[#ffffff] transition-colors duration-300">
                     AirDNA
                   </h3>
                   <p className="mt-2 text-[10px] leading-relaxed text-black/65 max-w-[24ch] mx-auto group-hover:text-black/80 transition-colors duration-300">
@@ -293,8 +293,8 @@ export default function WhatWeOfferSection() {
                 </div>
 
                 {/* Rankbreeze */}
-                <div className="group bg-white rounded-xl border border-gray-200 p-4 text-center shadow-sm hover:shadow-2xl hover:shadow-[#7e6725]/20 hover:bg-gradient-to-br hover:from-white hover:to-gray-50/50 hover:border-[#7e6725]/30 hover:scale-105 hover:-translate-y-2 transition-all duration-300 ease-out flex flex-col items-center justify-start min-h-[160px] cursor-pointer">
-                  <div className="w-12 h-12 grid place-items-center rounded-full bg-[#7e6725]/10 text-[#7e6725] shadow-sm group-hover:bg-[#7e6725] group-hover:shadow-lg group-hover:shadow-[#7e6725]/30 group-hover:scale-110 group-hover:-rotate-6 transition-all duration-300">
+                <div className="group bg-white rounded-xl border border-gray-200 p-4 text-center shadow-sm hover:shadow-2xl hover:shadow-[#ffffff]/20 hover:bg-gradient-to-br hover:from-white hover:to-gray-50/50 hover:border-[#ffffff]/30 hover:scale-105 hover:-translate-y-2 transition-all duration-300 ease-out flex flex-col items-center justify-start min-h-[160px] cursor-pointer">
+                  <div className="w-12 h-12 grid place-items-center rounded-full bg-[#ffffff]/10 text-[#ffffff] shadow-sm group-hover:bg-[#ffffff] group-hover:shadow-lg group-hover:shadow-[#ffffff]/30 group-hover:scale-110 group-hover:-rotate-6 transition-all duration-300">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       className="w-6 h-6 group-hover:text-white transition-colors duration-300"
@@ -310,7 +310,7 @@ export default function WhatWeOfferSection() {
                       />
                     </svg>
                   </div>
-                  <h3 className="mt-3 font-bold text-black text-[14px] group-hover:text-[#7e6725] transition-colors duration-300">
+                  <h3 className="mt-3 font-bold text-black text-[14px] group-hover:text-[#ffffff] transition-colors duration-300">
                     Rankbreeze
                   </h3>
                   <p className="mt-2 text-[10px] leading-relaxed text-black/65 max-w-[24ch] mx-auto group-hover:text-black/80 transition-colors duration-300">
@@ -319,8 +319,8 @@ export default function WhatWeOfferSection() {
                 </div>
 
                 {/* HandiGo */}
-                <div className="group bg-white rounded-xl border border-gray-200 p-4 text-center shadow-sm hover:shadow-2xl hover:shadow-[#7e6725]/20 hover:bg-gradient-to-br hover:from-white hover:to-gray-50/50 hover:border-[#7e6725]/30 hover:scale-105 hover:-translate-y-2 transition-all duration-300 ease-out flex flex-col items-center justify-start min-h-[160px] cursor-pointer">
-                  <div className="w-12 h-12 grid place-items-center rounded-full bg-[#7e6725]/10 text-[#7e6725] shadow-sm group-hover:bg-[#7e6725] group-hover:shadow-lg group-hover:shadow-[#7e6725]/30 group-hover:scale-110 group-hover:rotate-12 transition-all duration-300">
+                <div className="group bg-white rounded-xl border border-gray-200 p-4 text-center shadow-sm hover:shadow-2xl hover:shadow-[#ffffff]/20 hover:bg-gradient-to-br hover:from-white hover:to-gray-50/50 hover:border-[#ffffff]/30 hover:scale-105 hover:-translate-y-2 transition-all duration-300 ease-out flex flex-col items-center justify-start min-h-[160px] cursor-pointer">
+                  <div className="w-12 h-12 grid place-items-center rounded-full bg-[#ffffff]/10 text-[#ffffff] shadow-sm group-hover:bg-[#ffffff] group-hover:shadow-lg group-hover:shadow-[#ffffff]/30 group-hover:scale-110 group-hover:rotate-12 transition-all duration-300">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       className="w-6 h-6 group-hover:text-white transition-colors duration-300"
@@ -342,7 +342,7 @@ export default function WhatWeOfferSection() {
                       />
                     </svg>
                   </div>
-                  <h3 className="mt-3 font-bold text-black text-[14px] group-hover:text-[#7e6725] transition-colors duration-300">
+                  <h3 className="mt-3 font-bold text-black text-[14px] group-hover:text-[#ffffff] transition-colors duration-300">
                     HandiGo
                   </h3>
                   <p className="mt-2 text-[10px] leading-relaxed text-black/65 max-w-[24ch] mx-auto group-hover:text-black/80 transition-colors duration-300">
@@ -351,8 +351,8 @@ export default function WhatWeOfferSection() {
                 </div>
 
                 {/* Meta & Google Ads */}
-                <div className="group bg-white rounded-xl border border-gray-200 p-4 text-center shadow-sm hover:shadow-2xl hover:shadow-[#7e6725]/20 hover:bg-gradient-to-br hover:from-white hover:to-gray-50/50 hover:border-[#7e6725]/30 hover:scale-105 hover:-translate-y-2 transition-all duration-300 ease-out flex flex-col items-center justify-start min-h-[160px] cursor-pointer">
-                  <div className="w-12 h-12 grid place-items-center rounded-full bg-[#7e6725]/10 text-[#7e6725] shadow-sm group-hover:bg-[#7e6725] group-hover:shadow-lg group-hover:shadow-[#7e6725]/30 group-hover:scale-110 group-hover:-rotate-12 transition-all duration-300">
+                <div className="group bg-white rounded-xl border border-gray-200 p-4 text-center shadow-sm hover:shadow-2xl hover:shadow-[#ffffff]/20 hover:bg-gradient-to-br hover:from-white hover:to-gray-50/50 hover:border-[#ffffff]/30 hover:scale-105 hover:-translate-y-2 transition-all duration-300 ease-out flex flex-col items-center justify-start min-h-[160px] cursor-pointer">
+                  <div className="w-12 h-12 grid place-items-center rounded-full bg-[#ffffff]/10 text-[#ffffff] shadow-sm group-hover:bg-[#ffffff] group-hover:shadow-lg group-hover:shadow-[#ffffff]/30 group-hover:scale-110 group-hover:-rotate-12 transition-all duration-300">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       className="w-6 h-6 group-hover:text-white transition-colors duration-300"
@@ -368,7 +368,7 @@ export default function WhatWeOfferSection() {
                       />
                     </svg>
                   </div>
-                  <h3 className="mt-3 font-bold text-black text-[14px] group-hover:text-[#7e6725] transition-colors duration-300">
+                  <h3 className="mt-3 font-bold text-black text-[14px] group-hover:text-[#ffffff] transition-colors duration-300">
                     Meta & Google Ads
                   </h3>
                   <p className="mt-2 text-[10px] leading-relaxed text-black/65 max-w-[24ch] mx-auto group-hover:text-black/80 transition-colors duration-300">
@@ -393,10 +393,10 @@ export default function WhatWeOfferSection() {
             {/* Services Cards - Mobile */}
             <div className="grid grid-cols-1 gap-3">
               {/* Revenue Management */}
-              <div className="group bg-white/80 backdrop-blur-sm rounded-xl p-4 border border-gray-200/50 shadow-sm hover:bg-white/95 hover:shadow-xl hover:shadow-[#7e6725]/10 hover:border-[#7e6725]/30 hover:scale-[1.02] hover:-translate-y-2 transition-all duration-300 cursor-pointer">
+              <div className="group bg-white/80 backdrop-blur-sm rounded-xl p-4 border border-gray-200/50 shadow-sm hover:bg-white/95 hover:shadow-xl hover:shadow-[#ffffff]/10 hover:border-[#ffffff]/30 hover:scale-[1.02] hover:-translate-y-2 transition-all duration-300 cursor-pointer">
                 <div className="flex flex-col items-center text-center space-y-3">
                   {/* Icon */}
-                  <div className="w-8 h-8 bg-gradient-to-br from-[#7e6725] to-[#957e34] rounded-lg flex items-center justify-center group-hover:scale-110 group-hover:rotate-3 group-hover:shadow-lg transition-all duration-300">
+                  <div className="w-8 h-8 bg-gradient-to-br from-[#ffffff] to-[#957e34] rounded-lg flex items-center justify-center group-hover:scale-110 group-hover:rotate-3 group-hover:shadow-lg transition-all duration-300">
                     <svg
                       className="w-4 h-4 text-white group-hover:scale-110 transition-transform duration-300"
                       fill="none"
@@ -412,7 +412,7 @@ export default function WhatWeOfferSection() {
                     </svg>
                   </div>
                   {/* Title */}
-                  <h3 className="font-poppins font-bold text-xs text-black group-hover:text-[#7e6725] transition-colors duration-300">
+                  <h3 className="font-poppins font-bold text-xs text-black group-hover:text-[#ffffff] transition-colors duration-300">
                     Revenue Management
                   </h3>
                   {/* Description */}
@@ -424,10 +424,10 @@ export default function WhatWeOfferSection() {
               </div>
 
               {/* Booking Services */}
-              <div className="group bg-white/80 backdrop-blur-sm rounded-xl p-4 border border-gray-200/50 shadow-sm hover:bg-white/95 hover:shadow-xl hover:shadow-[#7e6725]/10 hover:border-[#7e6725]/30 hover:scale-[1.02] hover:-translate-y-2 transition-all duration-300 cursor-pointer">
+              <div className="group bg-white/80 backdrop-blur-sm rounded-xl p-4 border border-gray-200/50 shadow-sm hover:bg-white/95 hover:shadow-xl hover:shadow-[#ffffff]/10 hover:border-[#ffffff]/30 hover:scale-[1.02] hover:-translate-y-2 transition-all duration-300 cursor-pointer">
                 <div className="flex flex-col items-center text-center space-y-3">
                   {/* Icon */}
-                  <div className="w-8 h-8 bg-gradient-to-br from-[#7e6725] to-[#957e34] rounded-lg flex items-center justify-center group-hover:scale-110 group-hover:-rotate-3 group-hover:shadow-lg transition-all duration-300">
+                  <div className="w-8 h-8 bg-gradient-to-br from-[#ffffff] to-[#957e34] rounded-lg flex items-center justify-center group-hover:scale-110 group-hover:-rotate-3 group-hover:shadow-lg transition-all duration-300">
                     <svg
                       className="w-4 h-4 text-white group-hover:scale-110 transition-transform duration-300"
                       fill="none"
@@ -443,7 +443,7 @@ export default function WhatWeOfferSection() {
                     </svg>
                   </div>
                   {/* Title */}
-                  <h3 className="font-poppins font-bold text-xs text-black group-hover:text-[#7e6725] transition-colors duration-300">
+                  <h3 className="font-poppins font-bold text-xs text-black group-hover:text-[#ffffff] transition-colors duration-300">
                     Booking Services
                   </h3>
                   {/* Description */}
@@ -455,10 +455,10 @@ export default function WhatWeOfferSection() {
               </div>
 
               {/* Marketing Services */}
-              <div className="group bg-white/80 backdrop-blur-sm rounded-xl p-4 border border-gray-200/50 shadow-sm hover:bg-white/95 hover:shadow-xl hover:shadow-[#7e6725]/10 hover:border-[#7e6725]/30 hover:scale-[1.02] hover:-translate-y-2 transition-all duration-300 cursor-pointer">
+              <div className="group bg-white/80 backdrop-blur-sm rounded-xl p-4 border border-gray-200/50 shadow-sm hover:bg-white/95 hover:shadow-xl hover:shadow-[#ffffff]/10 hover:border-[#ffffff]/30 hover:scale-[1.02] hover:-translate-y-2 transition-all duration-300 cursor-pointer">
                 <div className="flex flex-col items-center text-center space-y-3">
                   {/* Icon */}
-                  <div className="w-8 h-8 bg-gradient-to-br from-[#7e6725] to-[#957e34] rounded-lg flex items-center justify-center group-hover:scale-110 group-hover:rotate-6 group-hover:shadow-lg transition-all duration-300">
+                  <div className="w-8 h-8 bg-gradient-to-br from-[#ffffff] to-[#957e34] rounded-lg flex items-center justify-center group-hover:scale-110 group-hover:rotate-6 group-hover:shadow-lg transition-all duration-300">
                     <svg
                       className="w-4 h-4 text-white group-hover:scale-110 transition-transform duration-300"
                       fill="none"
@@ -480,7 +480,7 @@ export default function WhatWeOfferSection() {
                     </svg>
                   </div>
                   {/* Title */}
-                  <h3 className="font-poppins font-bold text-xs text-black group-hover:text-[#7e6725] transition-colors duration-300">
+                  <h3 className="font-poppins font-bold text-xs text-black group-hover:text-[#ffffff] transition-colors duration-300">
                     Marketing Services
                   </h3>
                   {/* Description */}
@@ -492,10 +492,10 @@ export default function WhatWeOfferSection() {
               </div>
 
               {/* Taxation Services */}
-              <div className="group bg-white/80 backdrop-blur-sm rounded-xl p-4 border border-gray-200/50 shadow-sm hover:bg-white/95 hover:shadow-xl hover:shadow-[#7e6725]/10 hover:border-[#7e6725]/30 hover:scale-[1.02] hover:-translate-y-2 transition-all duration-300 cursor-pointer">
+              <div className="group bg-white/80 backdrop-blur-sm rounded-xl p-4 border border-gray-200/50 shadow-sm hover:bg-white/95 hover:shadow-xl hover:shadow-[#ffffff]/10 hover:border-[#ffffff]/30 hover:scale-[1.02] hover:-translate-y-2 transition-all duration-300 cursor-pointer">
                 <div className="flex flex-col items-center text-center space-y-3">
                   {/* Icon */}
-                  <div className="w-8 h-8 bg-gradient-to-br from-[#7e6725] to-[#957e34] rounded-lg flex items-center justify-center group-hover:scale-110 group-hover:-rotate-6 group-hover:shadow-lg transition-all duration-300">
+                  <div className="w-8 h-8 bg-gradient-to-br from-[#ffffff] to-[#957e34] rounded-lg flex items-center justify-center group-hover:scale-110 group-hover:-rotate-6 group-hover:shadow-lg transition-all duration-300">
                     <svg
                       className="w-4 h-4 text-white group-hover:scale-110 transition-transform duration-300"
                       fill="none"
@@ -511,7 +511,7 @@ export default function WhatWeOfferSection() {
                     </svg>
                   </div>
                   {/* Title */}
-                  <h3 className="font-poppins font-bold text-xs text-black group-hover:text-[#7e6725] transition-colors duration-300">
+                  <h3 className="font-poppins font-bold text-xs text-black group-hover:text-[#ffffff] transition-colors duration-300">
                     Taxation Services
                   </h3>
                   {/* Description */}
@@ -525,7 +525,7 @@ export default function WhatWeOfferSection() {
 
             {/* CTA Button */}
             <div className="pt-2">
-              <button className="font-poppins bg-gradient-to-r from-[#7e6725] to-[#957e34] text-white px-5 py-2 rounded-xl font-semibold text-sm hover:shadow-lg hover:scale-105 transition-all duration-300">
+              <button className="font-poppins bg-gradient-to-r from-[#ffffff] to-[#957e34] text-white px-5 py-2 rounded-xl font-semibold text-sm hover:shadow-lg hover:scale-105 transition-all duration-300">
                 Explore Properties
               </button>
             </div>
@@ -550,7 +550,7 @@ export default function WhatWeOfferSection() {
                     : "opacity-0 translate-y-8"
                 }`}
               >
-                <div className="w-12 h-12 mb-4 bg-white rounded-full shadow-lg flex items-center justify-center group-hover:bg-[#7e6725] group-hover:scale-110 transition-all duration-300">
+                <div className="w-12 h-12 mb-4 bg-white rounded-full shadow-lg flex items-center justify-center group-hover:bg-[#ffffff] group-hover:scale-110 transition-all duration-300">
                   <FaCalendarAlt className="w-6 h-6 text-black group-hover:text-white transition-colors duration-300" />
                 </div>
                 <h3 className="font-poppins font-bold text-lg text-white mb-2">
@@ -574,7 +574,7 @@ export default function WhatWeOfferSection() {
                     : "opacity-0 translate-y-8"
                 }`}
               >
-                <div className="w-12 h-12 mb-4 bg-white rounded-full shadow-lg flex items-center justify-center group-hover:bg-[#7e6725] group-hover:scale-110 transition-all duration-300">
+                <div className="w-12 h-12 mb-4 bg-white rounded-full shadow-lg flex items-center justify-center group-hover:bg-[#ffffff] group-hover:scale-110 transition-all duration-300">
                   <FaChartLine className="w-6 h-6 text-black group-hover:text-white transition-colors duration-300" />
                 </div>
                 <h3 className="font-poppins font-bold text-lg text-white mb-2">
@@ -598,7 +598,7 @@ export default function WhatWeOfferSection() {
                     : "opacity-0 translate-y-8"
                 }`}
               >
-                <div className="w-12 h-12 mb-4 bg-white rounded-full shadow-lg flex items-center justify-center group-hover:bg-[#7e6725] group-hover:scale-110 transition-all duration-300">
+                <div className="w-12 h-12 mb-4 bg-white rounded-full shadow-lg flex items-center justify-center group-hover:bg-[#ffffff] group-hover:scale-110 transition-all duration-300">
                   <FaDatabase className="w-6 h-6 text-black group-hover:text-white transition-colors duration-300" />
                 </div>
                 <h3 className="font-poppins font-bold text-lg text-white mb-2">
@@ -622,7 +622,7 @@ export default function WhatWeOfferSection() {
                     : "opacity-0 translate-y-8"
                 }`}
               >
-                <div className="w-12 h-12 mb-4 bg-white rounded-full shadow-lg flex items-center justify-center group-hover:bg-[#7e6725] group-hover:scale-110 transition-all duration-300">
+                <div className="w-12 h-12 mb-4 bg-white rounded-full shadow-lg flex items-center justify-center group-hover:bg-[#ffffff] group-hover:scale-110 transition-all duration-300">
                   <FaSearch className="w-6 h-6 text-black group-hover:text-white transition-colors duration-300" />
                 </div>
                 <h3 className="font-poppins font-bold text-lg text-white mb-2">
@@ -646,7 +646,7 @@ export default function WhatWeOfferSection() {
                     : "opacity-0 translate-y-8"
                 }`}
               >
-                <div className="w-12 h-12 mb-4 bg-white rounded-full shadow-lg flex items-center justify-center group-hover:bg-[#7e6725] group-hover:scale-110 transition-all duration-300">
+                <div className="w-12 h-12 mb-4 bg-white rounded-full shadow-lg flex items-center justify-center group-hover:bg-[#ffffff] group-hover:scale-110 transition-all duration-300">
                   <FaHeadset className="w-6 h-6 text-black group-hover:text-white transition-colors duration-300" />
                 </div>
                 <h3 className="font-poppins font-bold text-lg text-white mb-2">
@@ -670,7 +670,7 @@ export default function WhatWeOfferSection() {
                     : "opacity-0 translate-y-8"
                 }`}
               >
-                <div className="w-12 h-12 mb-4 bg-white rounded-full shadow-lg flex items-center justify-center group-hover:bg-[#7e6725] group-hover:scale-110 transition-all duration-300">
+                <div className="w-12 h-12 mb-4 bg-white rounded-full shadow-lg flex items-center justify-center group-hover:bg-[#ffffff] group-hover:scale-110 transition-all duration-300">
                   <FaBullhorn className="w-6 h-6 text-black group-hover:text-white transition-colors duration-300" />
                 </div>
                 <h3 className="font-poppins font-bold text-lg text-white mb-2">

@@ -906,10 +906,10 @@ export default function PropertyDetails({
               </div>
 
               {/* Property Highlights - COMMENTED OUT
-              <div className="mt-8 p-6 bg-gradient-to-r from-[#7e6725]/20 to-[#6b5a20]/20 backdrop-blur-sm border border-[#7e6725]/30 rounded-2xl">
+              <div className="mt-8 p-6 bg-gradient-to-r from-[#ffffff]/20 to-[#6b5a20]/20 backdrop-blur-sm border border-[#ffffff]/30 rounded-2xl">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
                   <div className="space-y-2">
-                    <div className="w-12 h-12 bg-[#7e6725] rounded-full flex items-center justify-center mx-auto">
+                    <div className="w-12 h-12 bg-[#ffffff] rounded-full flex items-center justify-center mx-auto">
                       <Mountain
                         className="w-6 h-6 text-white"
                         strokeWidth={1.5}
@@ -924,7 +924,7 @@ export default function PropertyDetails({
                   </div>
 
                   <div className="space-y-2">
-                    <div className="w-12 h-12 bg-[#7e6725] rounded-full flex items-center justify-center mx-auto">
+                    <div className="w-12 h-12 bg-[#ffffff] rounded-full flex items-center justify-center mx-auto">
                       <Sparkles
                         className="w-6 h-6 text-white"
                         strokeWidth={1.5}
@@ -939,7 +939,7 @@ export default function PropertyDetails({
                   </div>
 
                   <div className="space-y-2">
-                    <div className="w-12 h-12 bg-[#7e6725] rounded-full flex items-center justify-center mx-auto">
+                    <div className="w-12 h-12 bg-[#ffffff] rounded-full flex items-center justify-center mx-auto">
                       <Waves className="w-6 h-6 text-white" strokeWidth={1.5} />
                     </div>
                     <h4 className="text-white font-semibold font-poppins">
@@ -988,7 +988,7 @@ export default function PropertyDetails({
             calendarData.calendar.length > 0) && (
             <div className="hidden md:block md:sticky md:top-6 md:h-fit">
               <section className="bg-white rounded-lg border border-[var(--ink-detail)] shadow-lg">
-                <div className="bg-black rounded-t-lg p-4 border-b-2 border-[#7e6725]">
+                <div className="bg-black rounded-t-lg p-4 border-b-2 border-[#ffffff]">
                   <DateRangePicker
                     checkInDate={checkInDate}
                     checkOutDate={checkOutDate}
@@ -1016,7 +1016,7 @@ export default function PropertyDetails({
                     {t("monthlyPromoText")}{" "}
                     <Link
                       href={`/monthly-inquiry?property=${encodeURIComponent(property?.name || "")}`}
-                      className="text-[#7e6725] hover:text-[#a3894a] underline transition-colors"
+                      className="text-[#ffffff] hover:text-[#a3894a] underline transition-colors"
                     >
                       {t("monthlyPromoLink")}
                     </Link>
@@ -1039,7 +1039,7 @@ export default function PropertyDetails({
                             setGuestCount(Math.max(1, guestCount - 1))
                           }
                           disabled={guestCount <= 1}
-                          className="w-8 h-8 rounded-full border border-white/20 flex items-center justify-center text-gray-300 hover:border-[#7e6725] disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+                          className="w-8 h-8 rounded-full border border-white/20 flex items-center justify-center text-gray-300 hover:border-[#ffffff] disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
                           aria-label={t("decreaseGuests")}
                         >
                           <Minus className="w-4 h-4" />
@@ -1060,7 +1060,7 @@ export default function PropertyDetails({
                           disabled={
                             guestCount >= (property?.personCapacity || 10)
                           }
-                          className="w-8 h-8 rounded-full border border-white/20 flex items-center justify-center text-gray-300 hover:border-[#7e6725] disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+                          className="w-8 h-8 rounded-full border border-white/20 flex items-center justify-center text-gray-300 hover:border-[#ffffff] disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
                           aria-label={t("increaseGuests")}
                         >
                           <Plus className="w-4 h-4" />
@@ -1129,7 +1129,7 @@ export default function PropertyDetails({
                     */}
                       <div className="flex justify-between text-sm font-bold mt-1">
                         <span className="text-white">{t("total")}</span>
-                        <span className="text-[#7e6725]">
+                        <span className="text-[#ffffff]">
                           {formatPriceForDisplay(
                             calculateSilqhausPrice(
                               pricingData.totalPrice,
@@ -1149,13 +1149,13 @@ export default function PropertyDetails({
                   <p className="text-sm font-medium mb-3 text-gray-900">
                     {t("priceComparison")}
                   </p>
-                  <div className="relative mb-3 rounded-lg border border-[#7e6725] bg-[#7e6725]/10 px-3 py-2.5">
+                  <div className="relative mb-3 rounded-lg border border-[#ffffff] bg-[#ffffff]/10 px-3 py-2.5">
                     <div className="flex items-center gap-3">
                       <span className="relative flex h-2.5 w-2.5 shrink-0">
-                        <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#7e6725] opacity-60"></span>
-                        <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-[#7e6725]"></span>
+                        <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#ffffff] opacity-60"></span>
+                        <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-[#ffffff]"></span>
                       </span>
-                      <p className="text-xs font-semibold text-[#7e6725]">
+                      <p className="text-xs font-semibold text-[#ffffff]">
                         {t("priceComparisonNote")}
                       </p>
                     </div>
@@ -1185,7 +1185,7 @@ export default function PropertyDetails({
                         </div>
                         {pricingData.totalPrice > 0 && (
                           <div className="text-right">
-                            <span className="text-sm font-bold text-[#7e6725]">
+                            <span className="text-sm font-bold text-[#ffffff]">
                               {formatPriceForDisplay(
                                 calculateSilqhausPrice(
                                   pricingData.totalPrice,
@@ -1224,7 +1224,7 @@ export default function PropertyDetails({
                           }
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="w-full py-2 bg-[#7e6725] text-white text-xs font-medium rounded-md text-center hover:bg-[#6b5620] transition-colors block"
+                          className="w-full py-2 bg-[#ffffff] text-white text-xs font-medium rounded-md text-center hover:bg-[#6b5620] transition-colors block"
                           aria-label={t("bookOnSilqhaus")}
                         >
                           {t("bookNow")}
@@ -1271,7 +1271,7 @@ export default function PropertyDetails({
                           </div>
                           {pricingData.totalPrice > 0 && (
                             <div className="text-right">
-                              <span className="text-sm font-bold text-[#7e6725]">
+                              <span className="text-sm font-bold text-[#ffffff]">
                                 {formatPriceForDisplay(
                                   calculateOTAPrice(
                                     pricingData.totalPrice,
@@ -1360,7 +1360,7 @@ export default function PropertyDetails({
                           </div>
                           {pricingData.totalPrice > 0 && (
                             <div className="text-right">
-                              <span className="text-sm font-bold text-[#7e6725]">
+                              <span className="text-sm font-bold text-[#ffffff]">
                                 {formatPriceForDisplay(
                                   calculateOTAPrice(
                                     pricingData.totalPrice,
@@ -1455,7 +1455,7 @@ export default function PropertyDetails({
                           </div>
                           {pricingData.totalPrice > 0 && (
                             <div className="text-right">
-                              <span className="text-sm font-bold text-[#7e6725]">
+                              <span className="text-sm font-bold text-[#ffffff]">
                                 {formatPriceForDisplay(
                                   calculateOTAPrice(
                                     pricingData.totalPrice,
@@ -1542,7 +1542,7 @@ export default function PropertyDetails({
                           </div>
                           {pricingData.totalPrice > 0 && (
                             <div className="text-right">
-                              <span className="text-sm font-bold text-[#7e6725]">
+                              <span className="text-sm font-bold text-[#ffffff]">
                                 {formatPriceForDisplay(
                                   calculateOTAPrice(
                                     pricingData.totalPrice,
@@ -1627,7 +1627,7 @@ export default function PropertyDetails({
                           </div>
                           {pricingData.totalPrice > 0 && (
                             <div className="text-right">
-                              <span className="text-sm font-bold text-[#7e6725]">
+                              <span className="text-sm font-bold text-[#ffffff]">
                                 {formatPriceForDisplay(
                                   calculateOTAPrice(
                                     pricingData.totalPrice,
@@ -1795,13 +1795,13 @@ export default function PropertyDetails({
         >
           {/* Slide-up Panel Container - Tab at top, content below */}
           <div
-            className="bg-[#000000] border-t border-[#7e6725] h-full flex flex-col"
+            className="bg-[#000000] border-t border-[#ffffff] h-full flex flex-col"
             id="mobile-booking-panel"
           >
             {/* Toggle Tab - At top of panel, slides with content */}
             <button
               onClick={() => setMobileBookingOpen(!mobileBookingOpen)}
-              className="shrink-0 w-full bg-[#7e6725] text-white py-4 flex items-center justify-center gap-2 font-medium text-[14px] shadow-lg"
+              className="shrink-0 w-full bg-[#ffffff] text-white py-4 flex items-center justify-center gap-2 font-medium text-[14px] shadow-lg"
               aria-expanded={mobileBookingOpen}
               aria-controls="mobile-booking-content"
               aria-label={
@@ -1830,7 +1830,7 @@ export default function PropertyDetails({
               aria-hidden={!mobileBookingOpen}
             >
               <section className="bg-white rounded-lg border border-[var(--ink-detail)] shadow-lg">
-                <div className="bg-black rounded-t-lg p-4 border-b-2 border-[#7e6725]">
+                <div className="bg-black rounded-t-lg p-4 border-b-2 border-[#ffffff]">
                   <DateRangePicker
                     checkInDate={checkInDate}
                     checkOutDate={checkOutDate}
@@ -1858,7 +1858,7 @@ export default function PropertyDetails({
                     {t("monthlyPromoText")}{" "}
                     <Link
                       href={`/monthly-inquiry?property=${encodeURIComponent(property?.name || "")}`}
-                      className="text-[#7e6725] hover:text-[#a3894a] underline transition-colors"
+                      className="text-[#ffffff] hover:text-[#a3894a] underline transition-colors"
                     >
                       {t("monthlyPromoLink")}
                     </Link>
@@ -1881,7 +1881,7 @@ export default function PropertyDetails({
                             setGuestCount(Math.max(1, guestCount - 1))
                           }
                           disabled={guestCount <= 1}
-                          className="w-8 h-8 rounded-full border border-white/20 flex items-center justify-center text-gray-300 hover:border-[#7e6725] disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+                          className="w-8 h-8 rounded-full border border-white/20 flex items-center justify-center text-gray-300 hover:border-[#ffffff] disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
                           aria-label={t("decreaseGuests")}
                         >
                           <Minus className="w-4 h-4" />
@@ -1902,7 +1902,7 @@ export default function PropertyDetails({
                           disabled={
                             guestCount >= (property?.personCapacity || 10)
                           }
-                          className="w-8 h-8 rounded-full border border-white/20 flex items-center justify-center text-gray-300 hover:border-[#7e6725] disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+                          className="w-8 h-8 rounded-full border border-white/20 flex items-center justify-center text-gray-300 hover:border-[#ffffff] disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
                           aria-label={t("increaseGuests")}
                         >
                           <Plus className="w-4 h-4" />
@@ -1971,7 +1971,7 @@ export default function PropertyDetails({
                     */}
                       <div className="flex justify-between text-sm font-bold mt-1">
                         <span className="text-white">{t("total")}</span>
-                        <span className="text-[#7e6725]">
+                        <span className="text-[#ffffff]">
                           {formatPriceForDisplay(
                             calculateSilqhausPrice(
                               pricingData.totalPrice,
@@ -1991,13 +1991,13 @@ export default function PropertyDetails({
                   <p className="text-sm font-medium mb-3 text-gray-900">
                     {t("priceComparison")}
                   </p>
-                  <div className="relative mb-3 rounded-lg border border-[#7e6725] bg-[#7e6725]/10 px-3 py-2.5">
+                  <div className="relative mb-3 rounded-lg border border-[#ffffff] bg-[#ffffff]/10 px-3 py-2.5">
                     <div className="flex items-center gap-3">
                       <span className="relative flex h-2.5 w-2.5 shrink-0">
-                        <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#7e6725] opacity-60"></span>
-                        <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-[#7e6725]"></span>
+                        <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#ffffff] opacity-60"></span>
+                        <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-[#ffffff]"></span>
                       </span>
-                      <p className="text-xs font-semibold text-[#7e6725]">
+                      <p className="text-xs font-semibold text-[#ffffff]">
                         {t("priceComparisonNote")}
                       </p>
                     </div>
@@ -2027,7 +2027,7 @@ export default function PropertyDetails({
                         </div>
                         {pricingData.totalPrice > 0 && (
                           <div className="text-right">
-                            <span className="text-sm font-bold text-[#7e6725]">
+                            <span className="text-sm font-bold text-[#ffffff]">
                               {formatPriceForDisplay(
                                 calculateSilqhausPrice(
                                   pricingData.totalPrice,
@@ -2066,7 +2066,7 @@ export default function PropertyDetails({
                           }
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="w-full py-2 bg-[#7e6725] text-white text-xs font-medium rounded-md text-center hover:bg-[#6b5620] transition-colors block"
+                          className="w-full py-2 bg-[#ffffff] text-white text-xs font-medium rounded-md text-center hover:bg-[#6b5620] transition-colors block"
                           aria-label={t("bookOnSilqhaus")}
                         >
                           {t("bookNow")}
@@ -2113,7 +2113,7 @@ export default function PropertyDetails({
                           </div>
                           {pricingData.totalPrice > 0 && (
                             <div className="text-right">
-                              <span className="text-sm font-bold text-[#7e6725]">
+                              <span className="text-sm font-bold text-[#ffffff]">
                                 {formatPriceForDisplay(
                                   calculateOTAPrice(
                                     pricingData.totalPrice,
@@ -2202,7 +2202,7 @@ export default function PropertyDetails({
                           </div>
                           {pricingData.totalPrice > 0 && (
                             <div className="text-right">
-                              <span className="text-sm font-bold text-[#7e6725]">
+                              <span className="text-sm font-bold text-[#ffffff]">
                                 {formatPriceForDisplay(
                                   calculateOTAPrice(
                                     pricingData.totalPrice,
@@ -2297,7 +2297,7 @@ export default function PropertyDetails({
                           </div>
                           {pricingData.totalPrice > 0 && (
                             <div className="text-right">
-                              <span className="text-sm font-bold text-[#7e6725]">
+                              <span className="text-sm font-bold text-[#ffffff]">
                                 {formatPriceForDisplay(
                                   calculateOTAPrice(
                                     pricingData.totalPrice,
@@ -2384,7 +2384,7 @@ export default function PropertyDetails({
                           </div>
                           {pricingData.totalPrice > 0 && (
                             <div className="text-right">
-                              <span className="text-sm font-bold text-[#7e6725]">
+                              <span className="text-sm font-bold text-[#ffffff]">
                                 {formatPriceForDisplay(
                                   calculateOTAPrice(
                                     pricingData.totalPrice,
@@ -2469,7 +2469,7 @@ export default function PropertyDetails({
                           </div>
                           {pricingData.totalPrice > 0 && (
                             <div className="text-right">
-                              <span className="text-sm font-bold text-[#7e6725]">
+                              <span className="text-sm font-bold text-[#ffffff]">
                                 {formatPriceForDisplay(
                                   calculateOTAPrice(
                                     pricingData.totalPrice,

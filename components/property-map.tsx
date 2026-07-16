@@ -57,7 +57,7 @@ export default function PropertyMap({
       // Create custom icon
       const customIcon = L.divIcon({
         html: `
-          <div class="flex items-center justify-center w-8 h-8 bg-[#7e6725] text-white rounded-full shadow-lg border-2 border-white">
+          <div class="flex items-center justify-center w-8 h-8 bg-[#ffffff] text-white rounded-full shadow-lg border-2 border-white">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
               <circle cx="12" cy="10" r="3"></circle>
@@ -97,7 +97,7 @@ export default function PropertyMap({
       {showHeading && (
         <div className="mb-6">
           <h2 className="font-bold text-white mb-4 font-gilroy text-xl flex items-center gap-2">
-            <MapPin className="w-5 h-5 text-[#7e6725]" />
+            <MapPin className="w-5 h-5 text-[#ffffff]" />
             {t("locationAndMap")}
           </h2>
         </div>
@@ -114,7 +114,7 @@ export default function PropertyMap({
         {overlayText && (
           <div className="absolute top-3 left-3 bg-black/60 backdrop-blur-sm text-white px-2 py-1 rounded text-xs font-poppins">
             <div className="flex items-center gap-1">
-              <MapPin className="w-3 h-3 text-[#7e6725]" />
+              <MapPin className="w-3 h-3 text-[#ffffff]" />
               <span>{overlayText}</span>
             </div>
           </div>
@@ -126,7 +126,7 @@ export default function PropertyMap({
             href={`https://www.google.com/maps/search/?api=1&query=${lat},${lng}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-[#7e6725] hover:bg-[#6b5a20] text-white px-4 py-2 rounded-lg text-sm font-poppins transition-colors duration-200 shadow-lg"
+            className="bg-[#ffffff] hover:bg-[#6b5a20] text-white px-4 py-2 rounded-lg text-sm font-poppins transition-colors duration-200 shadow-lg"
             data-testid="directions-link"
           >
             Get Directions

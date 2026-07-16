@@ -129,7 +129,7 @@ function FilterPanelContent({
                       aria-pressed={isActive}
                       className={`text-[11px] font-poppins font-medium px-3 py-1 rounded-full transition-colors ${
                         isActive
-                          ? "bg-[#7e6725] text-white"
+                          ? "bg-[#ffffff] text-white"
                           : "text-white/70 hover:text-white"
                       }`}
                       data-testid={`pms-filter-rent-term-${term}`}
@@ -151,7 +151,7 @@ function FilterPanelContent({
               onChange={(e) =>
                 update("priceMin", parseNumberInput(e.target.value))
               }
-              className="bg-black border border-white/15 rounded-md px-3 py-2 text-[13px] font-poppins text-white placeholder-white/40 focus:outline-none focus:border-[#7e6725]"
+              className="bg-black border border-white/15 rounded-md px-3 py-2 text-[13px] font-poppins text-white placeholder-white/40 focus:outline-none focus:border-[#ffffff]"
               data-testid="pms-filter-price-min"
             />
             <input
@@ -163,7 +163,7 @@ function FilterPanelContent({
               onChange={(e) =>
                 update("priceMax", parseNumberInput(e.target.value))
               }
-              className="bg-black border border-white/15 rounded-md px-3 py-2 text-[13px] font-poppins text-white placeholder-white/40 focus:outline-none focus:border-[#7e6725]"
+              className="bg-black border border-white/15 rounded-md px-3 py-2 text-[13px] font-poppins text-white placeholder-white/40 focus:outline-none focus:border-[#ffffff]"
               data-testid="pms-filter-price-max"
             />
           </div>
@@ -184,7 +184,7 @@ function FilterPanelContent({
               onChange={(e) =>
                 update("areaMin", parseNumberInput(e.target.value))
               }
-              className="bg-black border border-white/15 rounded-md px-3 py-2 text-[13px] font-poppins text-white placeholder-white/40 focus:outline-none focus:border-[#7e6725]"
+              className="bg-black border border-white/15 rounded-md px-3 py-2 text-[13px] font-poppins text-white placeholder-white/40 focus:outline-none focus:border-[#ffffff]"
               data-testid="pms-filter-area-min"
             />
             <input
@@ -196,7 +196,7 @@ function FilterPanelContent({
               onChange={(e) =>
                 update("areaMax", parseNumberInput(e.target.value))
               }
-              className="bg-black border border-white/15 rounded-md px-3 py-2 text-[13px] font-poppins text-white placeholder-white/40 focus:outline-none focus:border-[#7e6725]"
+              className="bg-black border border-white/15 rounded-md px-3 py-2 text-[13px] font-poppins text-white placeholder-white/40 focus:outline-none focus:border-[#ffffff]"
               data-testid="pms-filter-area-max"
             />
           </div>
@@ -217,7 +217,7 @@ function FilterPanelContent({
               onChange={(e) =>
                 update("yearBuiltMin", parseNumberInput(e.target.value))
               }
-              className="bg-black border border-white/15 rounded-md px-3 py-2 text-[13px] font-poppins text-white placeholder-white/40 focus:outline-none focus:border-[#7e6725]"
+              className="bg-black border border-white/15 rounded-md px-3 py-2 text-[13px] font-poppins text-white placeholder-white/40 focus:outline-none focus:border-[#ffffff]"
               data-testid="pms-filter-year-min"
             />
             <input
@@ -229,7 +229,7 @@ function FilterPanelContent({
               onChange={(e) =>
                 update("yearBuiltMax", parseNumberInput(e.target.value))
               }
-              className="bg-black border border-white/15 rounded-md px-3 py-2 text-[13px] font-poppins text-white placeholder-white/40 focus:outline-none focus:border-[#7e6725]"
+              className="bg-black border border-white/15 rounded-md px-3 py-2 text-[13px] font-poppins text-white placeholder-white/40 focus:outline-none focus:border-[#ffffff]"
               data-testid="pms-filter-year-max"
             />
           </div>
@@ -251,8 +251,8 @@ function FilterPanelContent({
                   aria-pressed={isActive}
                   className={`px-3 py-1.5 rounded-full text-[12px] font-poppins border transition-colors ${
                     isActive
-                      ? "bg-[#7e6725] border-[#7e6725] text-white"
-                      : "border-white/15 text-white/80 hover:border-[#7e6725]/70 hover:text-white"
+                      ? "bg-[#ffffff] border-[#ffffff] text-white"
+                      : "border-white/15 text-white/80 hover:border-[#ffffff]/70 hover:text-white"
                   }`}
                   data-testid={`pms-filter-baths-${n}`}
                 >
@@ -274,7 +274,7 @@ function FilterPanelContent({
             <select
               value={state.city}
               onChange={(e) => update("city", e.target.value)}
-              className="w-full bg-black border border-white/15 rounded-md px-3 py-2 text-[13px] font-poppins text-white focus:outline-none focus:border-[#7e6725]"
+              className="w-full bg-black border border-white/15 rounded-md px-3 py-2 text-[13px] font-poppins text-white focus:outline-none focus:border-[#ffffff]"
               data-testid="pms-filter-city"
             >
               <option value="">{t("anyCity")}</option>
@@ -293,7 +293,7 @@ function FilterPanelContent({
               value={state.subdistrict}
               onChange={(e) => update("subdistrict", e.target.value)}
               disabled={options.subdistricts.length === 0}
-              className="w-full bg-black border border-white/15 rounded-md px-3 py-2 text-[13px] font-poppins text-white focus:outline-none focus:border-[#7e6725] disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full bg-black border border-white/15 rounded-md px-3 py-2 text-[13px] font-poppins text-white focus:outline-none focus:border-[#ffffff] disabled:opacity-50 disabled:cursor-not-allowed"
               data-testid="pms-filter-subdistrict"
             >
               <option value="">{t("anySubdistrict")}</option>
@@ -323,8 +323,8 @@ function FilterPanelContent({
                     aria-pressed={isActive}
                     className={`px-3 py-1.5 rounded-full text-[12px] font-poppins border transition-colors ${
                       isActive
-                        ? "bg-[#7e6725] border-[#7e6725] text-white"
-                        : "border-white/15 text-white/80 hover:border-[#7e6725]/70 hover:text-white"
+                        ? "bg-[#ffffff] border-[#ffffff] text-white"
+                        : "border-white/15 text-white/80 hover:border-[#ffffff]/70 hover:text-white"
                     }`}
                     data-testid={`pms-filter-feature-${feat}`}
                   >
@@ -350,7 +350,7 @@ function FilterPanelContent({
         <button
           type="button"
           onClick={onApply}
-          className="bg-[#7e6725] hover:bg-[#8c7429] text-white text-[13px] font-poppins font-medium uppercase tracking-wide px-6 py-2.5 rounded-full transition-colors"
+          className="bg-[#ffffff] hover:bg-[#ffffff] text-white text-[13px] font-poppins font-medium uppercase tracking-wide px-6 py-2.5 rounded-full transition-colors"
           data-testid="pms-filter-drawer-apply"
         >
           {t("apply")}
@@ -394,8 +394,8 @@ export function PMSFilterBar({ filters, side }: PMSFilterBarProps) {
                     aria-pressed={isActive}
                     className={`px-3 py-1.5 rounded-full text-[12px] font-poppins font-medium uppercase tracking-wide transition-colors whitespace-nowrap border ${
                       isActive
-                        ? "bg-[#7e6725] text-white border-[#7e6725]"
-                        : "bg-transparent text-white/80 border-white/15 hover:border-[#7e6725]/70 hover:text-white"
+                        ? "bg-[#ffffff] text-white border-[#ffffff]"
+                        : "bg-transparent text-white/80 border-white/15 hover:border-[#ffffff]/70 hover:text-white"
                     }`}
                     data-testid={`pms-filter-chip-type-${type}`}
                   >
@@ -414,7 +414,7 @@ export function PMSFilterBar({ filters, side }: PMSFilterBarProps) {
                 onChange={(e) =>
                   update("minBedrooms", parseInt(e.target.value, 10) || 0)
                 }
-                className="appearance-none bg-transparent text-white text-[12px] font-poppins font-medium border border-white/15 rounded-full pl-3 pr-8 py-1.5 hover:border-[#7e6725]/70 focus:outline-none focus:border-[#7e6725] cursor-pointer"
+                className="appearance-none bg-transparent text-white text-[12px] font-poppins font-medium border border-white/15 rounded-full pl-3 pr-8 py-1.5 hover:border-[#ffffff]/70 focus:outline-none focus:border-[#ffffff] cursor-pointer"
                 data-testid="pms-filter-beds"
               >
                 {BED_OPTIONS.map((n) => (
@@ -437,7 +437,7 @@ export function PMSFilterBar({ filters, side }: PMSFilterBarProps) {
                 onChange={(e) =>
                   update("sort", e.target.value as PMSSortOption)
                 }
-                className="appearance-none bg-transparent text-white text-[12px] font-poppins font-medium border border-white/15 rounded-full pl-3 pr-8 py-1.5 hover:border-[#7e6725]/70 focus:outline-none focus:border-[#7e6725] cursor-pointer"
+                className="appearance-none bg-transparent text-white text-[12px] font-poppins font-medium border border-white/15 rounded-full pl-3 pr-8 py-1.5 hover:border-[#ffffff]/70 focus:outline-none focus:border-[#ffffff] cursor-pointer"
                 data-testid="pms-filter-sort"
               >
                 {PMS_SORT_OPTIONS.map((opt) => (
@@ -454,13 +454,13 @@ export function PMSFilterBar({ filters, side }: PMSFilterBarProps) {
             <button
               type="button"
               onClick={() => setOpen(true)}
-              className="flex items-center gap-2 text-[12px] font-poppins font-medium px-3 py-1.5 rounded-full border border-white/15 text-white hover:border-[#7e6725]/70 transition-colors"
+              className="flex items-center gap-2 text-[12px] font-poppins font-medium px-3 py-1.5 rounded-full border border-white/15 text-white hover:border-[#ffffff]/70 transition-colors"
               data-testid="pms-filter-open-more"
             >
               <SlidersHorizontal className="w-3.5 h-3.5" />
               <span>{t("moreFilters")}</span>
               {activeFilterCount > 0 && (
-                <span className="inline-flex items-center justify-center min-w-[18px] h-[18px] px-1 rounded-full bg-[#7e6725] text-white text-[10px] font-bold leading-none">
+                <span className="inline-flex items-center justify-center min-w-[18px] h-[18px] px-1 rounded-full bg-[#ffffff] text-white text-[10px] font-bold leading-none">
                   {activeFilterCount}
                 </span>
               )}

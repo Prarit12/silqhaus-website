@@ -30,7 +30,7 @@ export function NavFavoritesLink({
           {label}
         </span>
         {count > 0 && (
-          <span className="inline-flex items-center justify-center min-w-[20px] h-5 px-1.5 rounded-full bg-[#7e6725] text-white text-[10px] font-bold leading-none">
+          <span className="inline-flex items-center justify-center min-w-[20px] h-5 px-1.5 rounded-full bg-[#ffffff] text-white text-[10px] font-bold leading-none">
             {count}
           </span>
         )}
@@ -49,7 +49,7 @@ export function NavFavoritesLink({
       <Heart className="w-5 h-5 text-white" />
       {count > 0 && (
         <span
-          className="absolute -top-1 -right-1 inline-flex items-center justify-center min-w-[18px] h-[18px] px-1 rounded-full bg-[#7e6725] text-white text-[10px] font-bold leading-none"
+          className="absolute -top-1 -right-1 inline-flex items-center justify-center min-w-[18px] h-[18px] px-1 rounded-full bg-[#ffffff] text-white text-[10px] font-bold leading-none"
           data-testid="nav-favorites-badge"
         >
           {count}

@@ -75,7 +75,7 @@ export default function DatePickerCalendar({
           onClick={() => onToggle(false)}
           className="w-full flex items-center gap-2 cursor-pointer hover:bg-snow/10 rounded-full px-3 py-3 md:py-2 transition-all duration-300 ease-out text-left min-h-[48px] touch-manipulation"
         >
-          <Calendar className="w-4 h-4 text-[#7e6725] flex-shrink-0" />
+          <Calendar className="w-4 h-4 text-[#ffffff] flex-shrink-0" />
           <div className="flex-1 min-w-0">
             <div className="text-[10px] font-sulphur-point font-bold text-mist/70 uppercase tracking-wider">
               {t("filters.checkIn")}
@@ -99,7 +99,7 @@ export default function DatePickerCalendar({
           onClick={() => onToggle(true)}
           className={`w-full flex items-center gap-2 cursor-pointer hover:bg-snow/10 rounded-full px-3 py-3 md:py-2 transition-all duration-300 ease-out text-left min-h-[48px] touch-manipulation`}
         >
-          <Calendar className="w-4 h-4 text-[#7e6725] flex-shrink-0" />
+          <Calendar className="w-4 h-4 text-[#ffffff] flex-shrink-0" />
           <div className="flex-1 min-w-0">
             <div className="text-[10px] font-sulphur-point font-bold text-mist/70 uppercase tracking-wider">
               {t("filters.checkOut")}
@@ -185,12 +185,12 @@ export default function DatePickerCalendar({
                           : isPast
                             ? "text-gray-400 cursor-not-allowed"
                             : isSelected
-                              ? "bg-[#7e6725] text-white"
+                              ? "bg-[#ffffff] text-white"
                               : inRange
-                                ? "bg-[#7e6725]/10 text-gray-800"
+                                ? "bg-[#ffffff]/10 text-gray-800"
                                 : isToday
                                   ? "bg-gray-100 text-gray-800"
-                                  : "text-gray-800 hover:bg-[#7e6725]/20 cursor-pointer"
+                                  : "text-gray-800 hover:bg-[#ffffff]/20 cursor-pointer"
                       }`}
                     >
                       <span
@@ -206,7 +206,7 @@ export default function DatePickerCalendar({
                 <button
                   type="button"
                   onClick={onClose}
-                  className="text-[#7e6725] text-xs font-medium hover:underline"
+                  className="text-[#ffffff] text-xs font-medium hover:underline"
                 >
                   {t("filters.close")}
                 </button>

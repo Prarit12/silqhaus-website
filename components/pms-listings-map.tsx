@@ -36,7 +36,7 @@ const THAILAND_CENTER: [number, number] = [13.7563, 100.5018];
 function buildIdleIcon(): IconType {
   return L.divIcon({
     html: `
-      <div style="display:flex;align-items:center;justify-content:center;width:30px;height:30px;background:#7e6725;color:#fff;border-radius:9999px;box-shadow:0 4px 10px rgba(0,0,0,0.45);border:2px solid #fff;transition:transform .2s ease;">
+      <div style="display:flex;align-items:center;justify-content:center;width:30px;height:30px;background:#ffffff;color:#fff;border-radius:9999px;box-shadow:0 4px 10px rgba(0,0,0,0.45);border:2px solid #fff;transition:transform .2s ease;">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
           <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
           <circle cx="12" cy="10" r="3"></circle>
@@ -133,7 +133,7 @@ function MapPreviewCard({
             <div className="flex items-center gap-2 text-[#aaa]">
               {facts.map(({ Icon, value }, i) => (
                 <div key={i} className="flex items-center gap-0.5">
-                  <Icon size={10} className="text-[#8c7429]" />
+                  <Icon size={10} className="text-[#ffffff]" />
                   <span className="text-[11px]">{value}</span>
                 </div>
               ))}

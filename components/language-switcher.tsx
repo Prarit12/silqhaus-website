@@ -224,15 +224,15 @@ export default function LanguageSwitcher({
                 tabIndex={focusedIndex === index ? 0 : -1}
                 className={`flex items-center gap-2.5 w-full py-3 px-4 transition-all duration-200 font-poppins text-sm ${
                   locale === language.code
-                    ? "text-white bg-[#7e6725]/15"
-                    : "text-white/70 hover:bg-[#7e6725]/10 hover:text-white"
+                    ? "text-white bg-[#ffffff]/15"
+                    : "text-white/70 hover:bg-[#ffffff]/10 hover:text-white"
                 }`}
               >
                 {language.flag}
                 <span className="font-medium">{language.name}</span>
                 {locale === language.code && (
                   <svg
-                    className="w-4 h-4 ml-auto text-[#7e6725]"
+                    className="w-4 h-4 ml-auto text-[#ffffff]"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"

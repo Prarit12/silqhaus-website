@@ -127,7 +127,7 @@ export default function ContactUs() {
 
   return (
     <main className="min-h-screen bg-[#0a0a0a]">
-      <section className="relative bg-gradient-to-br from-[#7e6725] to-[#a3894a] text-[#0a0a0a] pt-32 pb-24">
+      <section className="relative bg-gradient-to-br from-[#ffffff] to-[#a3894a] text-[#0a0a0a] pt-32 pb-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <div className="w-16 h-16 mx-auto mb-6 bg-[#0a0a0a]/20 rounded-full flex items-center justify-center">
@@ -154,7 +154,7 @@ export default function ContactUs() {
           >
             <CardHeader>
               <div className="flex items-center gap-4 mb-4">
-                <div className="w-12 h-12 bg-[#7e6725] rounded-full flex items-center justify-center">
+                <div className="w-12 h-12 bg-[#ffffff] rounded-full flex items-center justify-center">
                   <Users className="w-6 h-6 text-[#0a0a0a]" />
                 </div>
                 <div>
@@ -185,7 +185,7 @@ export default function ContactUs() {
                         setGuestForm({ ...guestForm, name: e.target.value })
                       }
                       required
-                      className="font-poppins bg-[#1a1a1a] border-white/20 focus:border-[#7e6725] text-white placeholder:text-white/40"
+                      className="font-poppins bg-[#1a1a1a] border-white/20 focus:border-[#ffffff] text-white placeholder:text-white/40"
                       placeholder={t("form.placeholders.fullName")}
                     />
                   </div>
@@ -222,7 +222,7 @@ export default function ContactUs() {
                         }
                       }}
                       required
-                      className={`font-poppins bg-[#1a1a1a] border-white/20 focus:border-[#7e6725] text-white placeholder:text-white/40 ${errors.email ? "border-red-500" : ""}`}
+                      className={`font-poppins bg-[#1a1a1a] border-white/20 focus:border-[#ffffff] text-white placeholder:text-white/40 ${errors.email ? "border-red-500" : ""}`}
                       placeholder={t("form.placeholders.email")}
                     />
                     {errors.email && (
@@ -255,7 +255,7 @@ export default function ContactUs() {
                           <SelectItem
                             key={cc.value}
                             value={cc.value}
-                            className="text-white hover:bg-[#7e6725]/20"
+                            className="text-white hover:bg-[#ffffff]/20"
                           >
                             {cc.code} {cc.country}
                           </SelectItem>
@@ -287,7 +287,7 @@ export default function ContactUs() {
                           }));
                         }
                       }}
-                      className={`flex-1 font-poppins bg-[#1a1a1a] border-white/20 focus:border-[#7e6725] text-white placeholder:text-white/40 ${errors.phone ? "border-red-500" : ""}`}
+                      className={`flex-1 font-poppins bg-[#1a1a1a] border-white/20 focus:border-[#ffffff] text-white placeholder:text-white/40 ${errors.phone ? "border-red-500" : ""}`}
                       placeholder={t("form.placeholders.phone")}
                     />
                   </div>
@@ -314,7 +314,7 @@ export default function ContactUs() {
                     required
                     maxLength={MAX_MESSAGE_CHARS}
                     placeholder={t("form.placeholders.message")}
-                    className="min-h-[120px] font-poppins bg-[#1a1a1a] border-white/20 focus:border-[#7e6725] text-white placeholder:text-white/40"
+                    className="min-h-[120px] font-poppins bg-[#1a1a1a] border-white/20 focus:border-[#ffffff] text-white placeholder:text-white/40"
                   />
                 </div>
                 <div className="text-right text-white/60 text-xs font-poppins">
@@ -341,7 +341,7 @@ export default function ContactUs() {
                   <Button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full sm:w-auto bg-[#7e6725] text-white hover:bg-[#6d5820] px-8 py-4 rounded-md text-base font-poppins font-medium tracking-wide transition-all duration-300 hover:scale-105 transform disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+                    className="w-full sm:w-auto bg-[#ffffff] text-white hover:bg-[#6d5820] px-8 py-4 rounded-md text-base font-poppins font-medium tracking-wide transition-all duration-300 hover:scale-105 transform disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
                   >
                     {isSubmitting ? (
                       <>
@@ -375,7 +375,7 @@ export default function ContactUs() {
 
           <div className="flex flex-col sm:flex-row sm:justify-center sm:space-x-24 gap-12">
             <div className="text-center">
-              <div className="w-16 h-16 mx-auto mb-6 bg-[#7e6725] rounded-full flex items-center justify-center">
+              <div className="w-16 h-16 mx-auto mb-6 bg-[#ffffff] rounded-full flex items-center justify-center">
                 <Phone className="w-8 h-8 text-[#0a0a0a]" />
               </div>
               <h3 className="font-poppins font-semibold text-white text-lg mb-2">
@@ -390,7 +390,7 @@ export default function ContactUs() {
             </div>
 
             <div className="text-center">
-              <div className="w-16 h-16 mx-auto mb-6 bg-[#7e6725] rounded-full flex items-center justify-center">
+              <div className="w-16 h-16 mx-auto mb-6 bg-[#ffffff] rounded-full flex items-center justify-center">
                 <Mail className="w-8 h-8 text-[#0a0a0a]" />
               </div>
               <h3 className="font-poppins font-semibold text-white text-lg mb-2">

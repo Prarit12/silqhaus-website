@@ -53,7 +53,7 @@ export default function FilterModal({
         <div className="space-y-6 md:space-y-0 md:flex md:gap-8">
           <div className="md:flex-1">
             <div className="flex items-center gap-2 mb-3">
-              <Users className="w-4 h-4 text-[#7e6725]" />
+              <Users className="w-4 h-4 text-[#ffffff]" />
               <span className="text-sm font-poppins font-medium text-gray-800">
                 {t("filters.minGuestCapacityLabel")}
               </span>
@@ -64,7 +64,7 @@ export default function FilterModal({
             <div className="flex items-center gap-3 justify-center">
               <button
                 onClick={() => onGuestsChange(Math.max(1, guests - 1))}
-                className="w-9 h-9 rounded-full border border-gray-300 text-gray-700 hover:border-[#7e6725] hover:bg-[#7e6725]/10 transition-colors flex items-center justify-center touch-manipulation"
+                className="w-9 h-9 rounded-full border border-gray-300 text-gray-700 hover:border-[#ffffff] hover:bg-[#ffffff]/10 transition-colors flex items-center justify-center touch-manipulation"
                 disabled={guests <= 1}
               >
                 <Minus className="w-4 h-4" />
@@ -74,7 +74,7 @@ export default function FilterModal({
               </span>
               <button
                 onClick={() => onGuestsChange(Math.min(16, guests + 1))}
-                className="w-9 h-9 rounded-full border border-gray-300 text-gray-700 hover:border-[#7e6725] hover:bg-[#7e6725]/10 transition-colors flex items-center justify-center touch-manipulation"
+                className="w-9 h-9 rounded-full border border-gray-300 text-gray-700 hover:border-[#ffffff] hover:bg-[#ffffff]/10 transition-colors flex items-center justify-center touch-manipulation"
                 disabled={guests >= 16}
               >
                 <Plus className="w-4 h-4" />
@@ -87,7 +87,7 @@ export default function FilterModal({
 
           <div className="md:flex-1">
             <div className="flex items-center gap-2 mb-3">
-              <Bed className="w-4 h-4 text-[#7e6725]" />
+              <Bed className="w-4 h-4 text-[#ffffff]" />
               <span className="text-sm font-poppins font-medium text-gray-800">
                 {t("filters.minBedrooms")}
               </span>
@@ -98,7 +98,7 @@ export default function FilterModal({
                   onMinBedroomsChange(Math.max(1, minBedrooms - 1))
                 }
                 disabled={minBedrooms <= 1}
-                className="w-9 h-9 rounded-full border border-gray-300 text-gray-700 hover:border-[#7e6725] hover:bg-[#7e6725]/10 disabled:opacity-30 disabled:cursor-not-allowed transition-colors flex items-center justify-center touch-manipulation"
+                className="w-9 h-9 rounded-full border border-gray-300 text-gray-700 hover:border-[#ffffff] hover:bg-[#ffffff]/10 disabled:opacity-30 disabled:cursor-not-allowed transition-colors flex items-center justify-center touch-manipulation"
               >
                 <Minus className="w-4 h-4" />
               </button>
@@ -110,7 +110,7 @@ export default function FilterModal({
                   onMinBedroomsChange(Math.min(maxBedrooms, minBedrooms + 1))
                 }
                 disabled={minBedrooms >= maxBedrooms}
-                className="w-9 h-9 rounded-full border border-gray-300 text-gray-700 hover:border-[#7e6725] hover:bg-[#7e6725]/10 disabled:opacity-30 disabled:cursor-not-allowed transition-colors flex items-center justify-center touch-manipulation"
+                className="w-9 h-9 rounded-full border border-gray-300 text-gray-700 hover:border-[#ffffff] hover:bg-[#ffffff]/10 disabled:opacity-30 disabled:cursor-not-allowed transition-colors flex items-center justify-center touch-manipulation"
               >
                 <Plus className="w-4 h-4" />
               </button>
@@ -122,7 +122,7 @@ export default function FilterModal({
 
           <div className="md:flex-1">
             <div className="flex items-center gap-2 mb-3">
-              <SlidersHorizontal className="w-4 h-4 text-[#7e6725]" />
+              <SlidersHorizontal className="w-4 h-4 text-[#ffffff]" />
               <span className="text-sm font-poppins font-medium text-gray-800">
                 {t("filters.priceRange")}
               </span>
@@ -139,7 +139,7 @@ export default function FilterModal({
             <div className="relative h-10 flex items-center">
               <div className="absolute w-full h-1.5 bg-gray-200 rounded-full" />
               <div
-                className="absolute h-1.5 bg-[#7e6725] rounded-full"
+                className="absolute h-1.5 bg-[#ffffff] rounded-full"
                 style={{
                   left: `${(priceRange[0] / 100000) * 100}%`,
                   right: `${100 - (priceRange[1] / 100000) * 100}%`,
@@ -159,7 +159,7 @@ export default function FilterModal({
                   onPriceRangeChange([val, priceRange[1]]);
                   onPriceFilterActiveChange(true);
                 }}
-                className="absolute w-full appearance-none bg-transparent pointer-events-none [&::-webkit-slider-thumb]:pointer-events-auto [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-5 [&::-webkit-slider-thumb]:h-5 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-[#7e6725] [&::-webkit-slider-thumb]:border-2 [&::-webkit-slider-thumb]:border-white [&::-webkit-slider-thumb]:cursor-pointer [&::-webkit-slider-thumb]:shadow-md [&::-moz-range-thumb]:pointer-events-auto [&::-moz-range-thumb]:appearance-none [&::-moz-range-thumb]:w-5 [&::-moz-range-thumb]:h-5 [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:bg-[#7e6725] [&::-moz-range-thumb]:border-2 [&::-moz-range-thumb]:border-white [&::-moz-range-thumb]:cursor-pointer z-10"
+                className="absolute w-full appearance-none bg-transparent pointer-events-none [&::-webkit-slider-thumb]:pointer-events-auto [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-5 [&::-webkit-slider-thumb]:h-5 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-[#ffffff] [&::-webkit-slider-thumb]:border-2 [&::-webkit-slider-thumb]:border-white [&::-webkit-slider-thumb]:cursor-pointer [&::-webkit-slider-thumb]:shadow-md [&::-moz-range-thumb]:pointer-events-auto [&::-moz-range-thumb]:appearance-none [&::-moz-range-thumb]:w-5 [&::-moz-range-thumb]:h-5 [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:bg-[#ffffff] [&::-moz-range-thumb]:border-2 [&::-moz-range-thumb]:border-white [&::-moz-range-thumb]:cursor-pointer z-10"
               />
               <input
                 type="range"
@@ -175,7 +175,7 @@ export default function FilterModal({
                   onPriceRangeChange([priceRange[0], val]);
                   onPriceFilterActiveChange(true);
                 }}
-                className="absolute w-full appearance-none bg-transparent pointer-events-none [&::-webkit-slider-thumb]:pointer-events-auto [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-5 [&::-webkit-slider-thumb]:h-5 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-[#7e6725] [&::-webkit-slider-thumb]:border-2 [&::-webkit-slider-thumb]:border-white [&::-webkit-slider-thumb]:cursor-pointer [&::-webkit-slider-thumb]:shadow-md [&::-moz-range-thumb]:pointer-events-auto [&::-moz-range-thumb]:appearance-none [&::-moz-range-thumb]:w-5 [&::-moz-range-thumb]:h-5 [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:bg-[#7e6725] [&::-moz-range-thumb]:border-2 [&::-moz-range-thumb]:border-white [&::-moz-range-thumb]:cursor-pointer z-20"
+                className="absolute w-full appearance-none bg-transparent pointer-events-none [&::-webkit-slider-thumb]:pointer-events-auto [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-5 [&::-webkit-slider-thumb]:h-5 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-[#ffffff] [&::-webkit-slider-thumb]:border-2 [&::-webkit-slider-thumb]:border-white [&::-webkit-slider-thumb]:cursor-pointer [&::-webkit-slider-thumb]:shadow-md [&::-moz-range-thumb]:pointer-events-auto [&::-moz-range-thumb]:appearance-none [&::-moz-range-thumb]:w-5 [&::-moz-range-thumb]:h-5 [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:bg-[#ffffff] [&::-moz-range-thumb]:border-2 [&::-moz-range-thumb]:border-white [&::-moz-range-thumb]:cursor-pointer z-20"
               />
             </div>
           </div>
@@ -184,13 +184,13 @@ export default function FilterModal({
         <div className="flex items-center justify-between mt-6 pt-4 border-t border-gray-100">
           <button
             onClick={onClearAll}
-            className="text-[#7e6725] font-poppins text-sm hover:underline"
+            className="text-[#ffffff] font-poppins text-sm hover:underline"
           >
             {t("filters.clearFilters")}
           </button>
           <button
             onClick={onClose}
-            className="bg-[#7e6725] text-white font-poppins text-sm font-medium px-6 py-2 rounded-full hover:bg-[#6b5720] transition-colors"
+            className="bg-[#ffffff] text-white font-poppins text-sm font-medium px-6 py-2 rounded-full hover:bg-[#6b5720] transition-colors"
           >
             {t("filters.close")}
           </button>

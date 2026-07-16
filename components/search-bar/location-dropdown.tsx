@@ -37,7 +37,7 @@ export default function LocationDropdown({
         aria-expanded={isOpen}
         aria-haspopup="listbox"
       >
-        <MapPin className="w-4 h-4 text-[#7e6725] flex-shrink-0" />
+        <MapPin className="w-4 h-4 text-[#ffffff] flex-shrink-0" />
         <div className="flex-1 min-w-0">
           <div className="text-[10px] font-sulphur-point font-bold text-mist/70 uppercase tracking-wider">
             {t("filters.where")}
@@ -59,7 +59,7 @@ export default function LocationDropdown({
           <div className="max-h-60 overflow-y-auto scrollbar-hide">
             <button
               onClick={() => onSelect("")}
-              className="w-full flex items-center gap-3 p-2.5 hover:bg-[#7e6725]/10 rounded-lg transition-colors text-left"
+              className="w-full flex items-center gap-3 p-2.5 hover:bg-[#ffffff]/10 rounded-lg transition-colors text-left"
             >
               <span className="font-poppins text-gray-800">
                 {t("filters.wherever")}
@@ -69,7 +69,7 @@ export default function LocationDropdown({
               <button
                 key={province.name}
                 onClick={() => onSelect(province.name)}
-                className="w-full flex items-center gap-3 p-2.5 hover:bg-[#7e6725]/10 rounded-lg transition-colors text-left"
+                className="w-full flex items-center gap-3 p-2.5 hover:bg-[#ffffff]/10 rounded-lg transition-colors text-left"
               >
                 <span className="font-poppins text-gray-800">
                   {province.name}

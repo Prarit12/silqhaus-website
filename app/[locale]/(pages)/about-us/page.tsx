@@ -23,7 +23,7 @@ export default function AboutUs() {
           <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a0a]/90 via-[#0a0a0a]/70 to-transparent" />
         </div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
-          <p className="text-[#7e6725] text-sm font-poppins tracking-[0.3em] uppercase mb-4">
+          <p className="text-[#ffffff] text-sm font-poppins tracking-[0.3em] uppercase mb-4">
             {t("hero.subtitle")}
           </p>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-gilroy font-bold text-white mb-6 max-w-3xl">
@@ -39,7 +39,7 @@ export default function AboutUs() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div>
-              <p className="text-[#7e6725] text-sm font-poppins tracking-[0.3em] uppercase mb-4">
+              <p className="text-[#ffffff] text-sm font-poppins tracking-[0.3em] uppercase mb-4">
                 {t("whoWeAre.subtitle")}
               </p>
               <h2 className="text-4xl font-gilroy font-bold text-white mb-6">
@@ -66,7 +66,7 @@ export default function AboutUs() {
                   className="object-cover rounded-xl shadow-xl"
                 />
               </div>
-              <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-[#7e6725]/20 rounded-xl" />
+              <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-[#ffffff]/20 rounded-xl" />
             </div>
           </div>
         </div>
@@ -75,7 +75,7 @@ export default function AboutUs() {
       <section className="py-24 bg-[#0a0a0a]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <p className="text-[#7e6725] text-sm font-poppins tracking-[0.3em] uppercase mb-4">
+            <p className="text-[#ffffff] text-sm font-poppins tracking-[0.3em] uppercase mb-4">
               {t("locations.subtitle")}
             </p>
             <h2 className="text-4xl font-gilroy font-bold text-white mb-6">
@@ -86,10 +86,10 @@ export default function AboutUs() {
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="bg-[#141414] rounded-xl p-8 border border-[#7e6725]/20">
+            <div className="bg-[#141414] rounded-xl p-8 border border-[#ffffff]/20">
               <div className="flex items-center gap-4 mb-6">
-                <div className="w-14 h-14 rounded-full bg-[#7e6725]/10 flex items-center justify-center">
-                  <MapPin className="w-7 h-7 text-[#7e6725]" />
+                <div className="w-14 h-14 rounded-full bg-[#ffffff]/10 flex items-center justify-center">
+                  <MapPin className="w-7 h-7 text-[#ffffff]" />
                 </div>
                 <h3 className="text-2xl font-gilroy font-bold text-white">
                   {t("locations.phuket.name")}
@@ -104,10 +104,10 @@ export default function AboutUs() {
                 ))}
               </ul>
             </div>
-            <div className="bg-[#141414] rounded-xl p-8 border border-[#7e6725]/20">
+            <div className="bg-[#141414] rounded-xl p-8 border border-[#ffffff]/20">
               <div className="flex items-center gap-4 mb-6">
-                <div className="w-14 h-14 rounded-full bg-[#7e6725]/10 flex items-center justify-center">
-                  <MapPin className="w-7 h-7 text-[#7e6725]" />
+                <div className="w-14 h-14 rounded-full bg-[#ffffff]/10 flex items-center justify-center">
+                  <MapPin className="w-7 h-7 text-[#ffffff]" />
                 </div>
                 <h3 className="text-2xl font-gilroy font-bold text-white">
                   {t("locations.pattaya.name")}
@@ -129,7 +129,7 @@ export default function AboutUs() {
       <section className="py-24 bg-[#141414]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <p className="text-[#7e6725] text-sm font-poppins tracking-[0.3em] uppercase mb-4">
+            <p className="text-[#ffffff] text-sm font-poppins tracking-[0.3em] uppercase mb-4">
               {t("whySilqhaus.subtitle")}
             </p>
             <h2 className="text-4xl font-gilroy font-bold text-white mb-6">
@@ -147,9 +147,9 @@ export default function AboutUs() {
             ].map(({ icon: Icon, key }) => (
               <div
                 key={key}
-                className="bg-[#0a0a0a] rounded-xl p-8 border border-[#7e6725]/20"
+                className="bg-[#0a0a0a] rounded-xl p-8 border border-[#ffffff]/20"
               >
-                <Icon className="w-12 h-12 text-[#7e6725] mb-6" />
+                <Icon className="w-12 h-12 text-[#ffffff] mb-6" />
                 <h3 className="text-xl font-gilroy font-bold text-white mb-3">
                   {t(`whySilqhaus.items.${key}.title`)}
                 </h3>
@@ -173,13 +173,13 @@ export default function AboutUs() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/property-management"
-              className="bg-[#7e6725] hover:bg-[#6d5820] text-white font-poppins px-8 py-4 text-lg transition-colors inline-block"
+              className="bg-[#ffffff] hover:bg-[#6d5820] text-white font-poppins px-8 py-4 text-lg transition-colors inline-block"
             >
               {t("cta.propertyManagement")}
             </Link>
             <Link
               href="/our-property"
-              className="border border-[#7e6725] text-[#7e6725] hover:bg-[#7e6725]/10 font-poppins px-8 py-4 text-lg transition-colors inline-block"
+              className="border border-[#ffffff] text-[#ffffff] hover:bg-[#ffffff]/10 font-poppins px-8 py-4 text-lg transition-colors inline-block"
             >
               {t("cta.browseProperties")}
             </Link>

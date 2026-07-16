@@ -161,7 +161,7 @@ function MonthlyInquiryForm() {
 
   return (
     <main className="min-h-screen bg-[#0a0a0a]">
-      <section className="relative bg-gradient-to-br from-[#7e6725] to-[#a3894a] text-[#0a0a0a] pt-32 pb-24">
+      <section className="relative bg-gradient-to-br from-[#ffffff] to-[#a3894a] text-[#0a0a0a] pt-32 pb-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <div className="w-16 h-16 mx-auto mb-6 bg-[#0a0a0a]/20 rounded-full flex items-center justify-center">
@@ -185,7 +185,7 @@ function MonthlyInquiryForm() {
           <Card className="bg-[#141414] border border-white/10 shadow-lg">
             <CardHeader>
               <div className="flex items-center gap-4 mb-4">
-                <div className="w-12 h-12 bg-[#7e6725] rounded-full flex items-center justify-center">
+                <div className="w-12 h-12 bg-[#ffffff] rounded-full flex items-center justify-center">
                   <Calendar className="w-6 h-6 text-[#0a0a0a]" />
                 </div>
                 <div>
@@ -208,7 +208,7 @@ function MonthlyInquiryForm() {
                       className="font-poppins font-medium text-white"
                     >
                       {t("form.labels.fullName")}{" "}
-                      <span className="text-[#7e6725]">*</span>
+                      <span className="text-[#ffffff]">*</span>
                     </Label>
                     <Input
                       id="inq-name"
@@ -219,7 +219,7 @@ function MonthlyInquiryForm() {
                         setForm({ ...form, name: e.target.value })
                       }
                       placeholder={t("form.placeholders.fullName")}
-                      className="font-poppins bg-[#1a1a1a] border-white/20 focus:border-[#7e6725] text-white placeholder:text-white/40"
+                      className="font-poppins bg-[#1a1a1a] border-white/20 focus:border-[#ffffff] text-white placeholder:text-white/40"
                     />
                   </div>
 
@@ -229,7 +229,7 @@ function MonthlyInquiryForm() {
                       className="font-poppins font-medium text-white"
                     >
                       {t("form.labels.email")}{" "}
-                      <span className="text-[#7e6725]">*</span>
+                      <span className="text-[#ffffff]">*</span>
                     </Label>
                     <Input
                       id="inq-email"
@@ -249,7 +249,7 @@ function MonthlyInquiryForm() {
                         }
                       }}
                       placeholder={t("form.placeholders.email")}
-                      className={`font-poppins bg-[#1a1a1a] border-white/20 focus:border-[#7e6725] text-white placeholder:text-white/40 ${errors.email ? "border-red-500" : ""}`}
+                      className={`font-poppins bg-[#1a1a1a] border-white/20 focus:border-[#ffffff] text-white placeholder:text-white/40 ${errors.email ? "border-red-500" : ""}`}
                     />
                     {errors.email && (
                       <p className="text-red-400 text-xs font-poppins">
@@ -281,7 +281,7 @@ function MonthlyInquiryForm() {
                           <SelectItem
                             key={cc.value}
                             value={cc.value}
-                            className="text-white hover:bg-[#7e6725]/20"
+                            className="text-white hover:bg-[#ffffff]/20"
                           >
                             {cc.code} {cc.country}
                           </SelectItem>
@@ -305,7 +305,7 @@ function MonthlyInquiryForm() {
                         }
                       }}
                       placeholder={t("form.placeholders.phone")}
-                      className={`flex-1 font-poppins bg-[#1a1a1a] border-white/20 focus:border-[#7e6725] text-white placeholder:text-white/40 ${errors.phone ? "border-red-500" : ""}`}
+                      className={`flex-1 font-poppins bg-[#1a1a1a] border-white/20 focus:border-[#ffffff] text-white placeholder:text-white/40 ${errors.phone ? "border-red-500" : ""}`}
                     />
                   </div>
                   {errors.phone && (
@@ -331,14 +331,14 @@ function MonthlyInquiryForm() {
                       setForm({ ...form, tenants: e.target.value })
                     }
                     placeholder={t("form.placeholders.tenants")}
-                    className="font-poppins bg-[#1a1a1a] border-white/20 focus:border-[#7e6725] text-white placeholder:text-white/40"
+                    className="font-poppins bg-[#1a1a1a] border-white/20 focus:border-[#ffffff] text-white placeholder:text-white/40"
                   />
                 </div>
 
                 <div className="space-y-2">
                   <Label className="font-poppins font-medium text-white">
                     {t("form.labels.dates")}{" "}
-                    <span className="text-[#7e6725]">*</span>
+                    <span className="text-[#ffffff]">*</span>
                   </Label>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div className="space-y-1">
@@ -368,7 +368,7 @@ function MonthlyInquiryForm() {
                             moveOut: undefined,
                           }));
                         }}
-                        className="font-poppins bg-[#1a1a1a] border-white/20 focus:border-[#7e6725] text-white [color-scheme:dark]"
+                        className="font-poppins bg-[#1a1a1a] border-white/20 focus:border-[#ffffff] text-white [color-scheme:dark]"
                       />
                     </div>
                     <div className="space-y-1">
@@ -387,7 +387,7 @@ function MonthlyInquiryForm() {
                             moveOut: undefined,
                           }));
                         }}
-                        className={`font-poppins bg-[#1a1a1a] border-white/20 focus:border-[#7e6725] text-white [color-scheme:dark] ${errors.moveOut ? "border-red-500" : ""}`}
+                        className={`font-poppins bg-[#1a1a1a] border-white/20 focus:border-[#ffffff] text-white [color-scheme:dark] ${errors.moveOut ? "border-red-500" : ""}`}
                       />
                     </div>
                   </div>
@@ -437,7 +437,7 @@ function MonthlyInquiryForm() {
                     }
                     maxLength={600}
                     placeholder={t("form.placeholders.message")}
-                    className="min-h-[120px] font-poppins bg-[#1a1a1a] border-white/20 focus:border-[#7e6725] text-white placeholder:text-white/40"
+                    className="min-h-[120px] font-poppins bg-[#1a1a1a] border-white/20 focus:border-[#ffffff] text-white placeholder:text-white/40"
                   />
                   <div className="text-right text-white/40 text-xs font-poppins">
                     {form.message.length}/600
@@ -464,7 +464,7 @@ function MonthlyInquiryForm() {
                   <Button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full sm:w-auto bg-[#7e6725] text-white hover:bg-[#6d5820] px-8 py-4 rounded-md text-base font-poppins font-medium tracking-wide transition-all duration-300 hover:scale-105 transform disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+                    className="w-full sm:w-auto bg-[#ffffff] text-white hover:bg-[#6d5820] px-8 py-4 rounded-md text-base font-poppins font-medium tracking-wide transition-all duration-300 hover:scale-105 transform disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
                   >
                     {isSubmitting ? (
                       <>

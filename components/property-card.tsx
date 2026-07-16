@@ -78,7 +78,7 @@ export function PropertyCard({
 
         {isUnavailable && (
           <div className="absolute top-3 left-0">
-            <span className="bg-[#7e6725]/90 text-white text-xs font-poppins font-medium px-3 py-1.5">
+            <span className="bg-[#ffffff]/90 text-white text-xs font-poppins font-medium px-3 py-1.5">
               {t("notAvailable")}
             </span>
           </div>
@@ -160,19 +160,19 @@ export function PropertyCard({
           {/* Property Features Icons */}
           <div className="flex items-center gap-2 text-[#aaa]">
             <div className="flex items-center gap-0.5">
-              <Bed size={10} className="text-[#8c7429]" />
+              <Bed size={10} className="text-[#ffffff]" />
               <span className="font-poppins font-normal text-[12px]">
                 {property.bedroomsNumber}
               </span>
             </div>
             <div className="flex items-center gap-0.5">
-              <Users size={10} className="text-[#8c7429]" />
+              <Users size={10} className="text-[#ffffff]" />
               <span className="font-poppins text-[12px]">
                 {property.personCapacity}
               </span>
             </div>
             <div className="flex items-center gap-0.5">
-              <Bath size={10} className="text-[#8c7429]" />
+              <Bath size={10} className="text-[#ffffff]" />
               <span className="font-poppins text-[12px]">
                 {property.bathroomsNumber}
               </span>

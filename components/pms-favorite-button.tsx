@@ -30,9 +30,9 @@ export function PMSFavoriteButton({
   const label = active ? t("removeFavorite") : t("addFavorite");
 
   const baseCard =
-    "absolute bottom-3 right-3 z-10 w-9 h-9 rounded-full bg-black/55 backdrop-blur-sm border border-white/15 hover:border-[#7e6725] flex items-center justify-center transition-colors";
+    "absolute bottom-3 right-3 z-10 w-9 h-9 rounded-full bg-black/55 backdrop-blur-sm border border-white/15 hover:border-[#ffffff] flex items-center justify-center transition-colors";
   const baseDetail =
-    "inline-flex items-center gap-2 rounded-full border border-white/15 hover:border-[#7e6725] bg-[#0a0a0a] text-white text-sm font-poppins px-4 py-2 transition-colors";
+    "inline-flex items-center gap-2 rounded-full border border-white/15 hover:border-[#ffffff] bg-[#0a0a0a] text-white text-sm font-poppins px-4 py-2 transition-colors";
 
   return (
     <button

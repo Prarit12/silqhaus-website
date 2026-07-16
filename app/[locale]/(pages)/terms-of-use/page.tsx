@@ -9,7 +9,7 @@ export default function TermsOfUse() {
       <section className="relative py-24 bg-[#141414]">
         <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0a] via-[#141414] to-[#141414]" />
         <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-8">
-          <p className="text-[#7e6725] text-sm font-poppins tracking-[0.3em] uppercase mb-4">
+          <p className="text-[#ffffff] text-sm font-poppins tracking-[0.3em] uppercase mb-4">
             {t("header.operator")}
           </p>
           <h1 className="text-4xl md:text-5xl font-gilroy font-bold text-white mb-4">
@@ -44,7 +44,7 @@ export default function TermsOfUse() {
             </p>
           </div>
 
-          <div className="border-t border-[#7e6725]/20" />
+          <div className="border-t border-[#ffffff]/20" />
 
           <div>
             <h2 className="text-2xl font-gilroy font-bold text-white mb-4">
@@ -58,7 +58,7 @@ export default function TermsOfUse() {
             </p>
           </div>
 
-          <div className="border-t border-[#7e6725]/20" />
+          <div className="border-t border-[#ffffff]/20" />
 
           <div>
             <h2 className="text-2xl font-gilroy font-bold text-white mb-4">
@@ -69,14 +69,14 @@ export default function TermsOfUse() {
             </p>
           </div>
 
-          <div className="border-t border-[#7e6725]/20" />
+          <div className="border-t border-[#ffffff]/20" />
 
           <div>
             <h2 className="text-2xl font-gilroy font-bold text-white mb-4">
               {t("section4.title")}
             </h2>
 
-            <h3 className="text-lg font-gilroy font-semibold text-[#7e6725] mb-3 mt-6">
+            <h3 className="text-lg font-gilroy font-semibold text-[#ffffff] mb-3 mt-6">
               {t("section4.sub1.title")}
             </h3>
             <p className="text-white/70 font-poppins leading-relaxed mb-4">
@@ -86,14 +86,14 @@ export default function TermsOfUse() {
               {t("section4.sub1.p2")}
             </p>
 
-            <h3 className="text-lg font-gilroy font-semibold text-[#7e6725] mb-3 mt-6">
+            <h3 className="text-lg font-gilroy font-semibold text-[#ffffff] mb-3 mt-6">
               {t("section4.sub2.title")}
             </h3>
             <p className="text-white/70 font-poppins leading-relaxed">
               {t("section4.sub2.p1")}
             </p>
 
-            <h3 className="text-lg font-gilroy font-semibold text-[#7e6725] mb-3 mt-6">
+            <h3 className="text-lg font-gilroy font-semibold text-[#ffffff] mb-3 mt-6">
               {t("section4.sub3.title")}
             </h3>
             <p className="text-white/70 font-poppins leading-relaxed mb-4">
@@ -109,7 +109,7 @@ export default function TermsOfUse() {
             </p>
           </div>
 
-          <div className="border-t border-[#7e6725]/20" />
+          <div className="border-t border-[#ffffff]/20" />
 
           <div>
             <h2 className="text-2xl font-gilroy font-bold text-white mb-4">
@@ -126,7 +126,7 @@ export default function TermsOfUse() {
             </p>
           </div>
 
-          <div className="border-t border-[#7e6725]/20" />
+          <div className="border-t border-[#ffffff]/20" />
 
           <div>
             <h2 className="text-2xl font-gilroy font-bold text-white mb-4">
@@ -148,14 +148,14 @@ export default function TermsOfUse() {
             </p>
           </div>
 
-          <div className="border-t border-[#7e6725]/20" />
+          <div className="border-t border-[#ffffff]/20" />
 
           <div>
             <h2 className="text-2xl font-gilroy font-bold text-white mb-4">
               {t("section7.title")}
             </h2>
 
-            <h3 className="text-lg font-gilroy font-semibold text-[#7e6725] mb-3 mt-6">
+            <h3 className="text-lg font-gilroy font-semibold text-[#ffffff] mb-3 mt-6">
               {t("section7.sub1.title")}
             </h3>
             <p className="text-white/70 font-poppins leading-relaxed mb-4">
@@ -170,7 +170,7 @@ export default function TermsOfUse() {
               {t("section7.sub1.p2")}
             </p>
 
-            <h3 className="text-lg font-gilroy font-semibold text-[#7e6725] mb-3 mt-6">
+            <h3 className="text-lg font-gilroy font-semibold text-[#ffffff] mb-3 mt-6">
               {t("section7.sub2.title")}
             </h3>
             <p className="text-white/70 font-poppins leading-relaxed mb-4">
@@ -185,7 +185,7 @@ export default function TermsOfUse() {
               {t("section7.sub2.p2")}
             </p>
 
-            <h3 className="text-lg font-gilroy font-semibold text-[#7e6725] mb-3 mt-6">
+            <h3 className="text-lg font-gilroy font-semibold text-[#ffffff] mb-3 mt-6">
               {t("section7.sub3.title")}
             </h3>
             <p className="text-white/70 font-poppins leading-relaxed mb-4">
@@ -196,7 +196,7 @@ export default function TermsOfUse() {
             </p>
           </div>
 
-          <div className="border-t border-[#7e6725]/20" />
+          <div className="border-t border-[#ffffff]/20" />
 
           <div>
             <h2 className="text-2xl font-gilroy font-bold text-white mb-4">
@@ -215,7 +215,7 @@ export default function TermsOfUse() {
             </p>
           </div>
 
-          <div className="border-t border-[#7e6725]/20" />
+          <div className="border-t border-[#ffffff]/20" />
 
           <div>
             <h2 className="text-2xl font-gilroy font-bold text-white mb-4">
@@ -229,7 +229,7 @@ export default function TermsOfUse() {
             </p>
           </div>
 
-          <div className="border-t border-[#7e6725]/20" />
+          <div className="border-t border-[#ffffff]/20" />
 
           <div>
             <h2 className="text-2xl font-gilroy font-bold text-white mb-4">
@@ -245,14 +245,14 @@ export default function TermsOfUse() {
             </ul>
           </div>
 
-          <div className="border-t border-[#7e6725]/20" />
+          <div className="border-t border-[#ffffff]/20" />
 
           <div>
             <h2 className="text-2xl font-gilroy font-bold text-white mb-4">
               {t("section11.title")}
             </h2>
 
-            <h3 className="text-lg font-gilroy font-semibold text-[#7e6725] mb-3 mt-6">
+            <h3 className="text-lg font-gilroy font-semibold text-[#ffffff] mb-3 mt-6">
               {t("section11.sub1.title")}
             </h3>
             <p className="text-white/70 font-poppins leading-relaxed mb-4 uppercase text-sm">
@@ -262,7 +262,7 @@ export default function TermsOfUse() {
               {t("section11.sub1.p2")}
             </p>
 
-            <h3 className="text-lg font-gilroy font-semibold text-[#7e6725] mb-3 mt-6">
+            <h3 className="text-lg font-gilroy font-semibold text-[#ffffff] mb-3 mt-6">
               {t("section11.sub2.title")}
             </h3>
             <p className="text-white/70 font-poppins leading-relaxed mb-4">
@@ -278,7 +278,7 @@ export default function TermsOfUse() {
             </p>
           </div>
 
-          <div className="border-t border-[#7e6725]/20" />
+          <div className="border-t border-[#ffffff]/20" />
 
           <div>
             <h2 className="text-2xl font-gilroy font-bold text-white mb-4">
@@ -292,7 +292,7 @@ export default function TermsOfUse() {
             </p>
           </div>
 
-          <div className="border-t border-[#7e6725]/20" />
+          <div className="border-t border-[#ffffff]/20" />
 
           <div>
             <h2 className="text-2xl font-gilroy font-bold text-white mb-4">
@@ -303,7 +303,7 @@ export default function TermsOfUse() {
             </p>
           </div>
 
-          <div className="border-t border-[#7e6725]/20" />
+          <div className="border-t border-[#ffffff]/20" />
 
           <div>
             <h2 className="text-2xl font-gilroy font-bold text-white mb-4">
@@ -317,7 +317,7 @@ export default function TermsOfUse() {
             </p>
           </div>
 
-          <div className="border-t border-[#7e6725]/20" />
+          <div className="border-t border-[#ffffff]/20" />
 
           <div>
             <h2 className="text-2xl font-gilroy font-bold text-white mb-4">
@@ -326,20 +326,20 @@ export default function TermsOfUse() {
             <p className="text-white/70 font-poppins leading-relaxed mb-4">
               {t("section15.p1")}
             </p>
-            <div className="bg-[#141414] rounded-xl p-6 border border-[#7e6725]/20">
+            <div className="bg-[#141414] rounded-xl p-6 border border-[#ffffff]/20">
               <p className="text-white font-poppins font-medium">
                 {t("section15.companyName")}
               </p>
               <p className="text-white/70 font-poppins text-sm">
                 {t("section15.address")}
               </p>
-              <p className="text-[#7e6725] font-poppins text-sm mt-1">
+              <p className="text-[#ffffff] font-poppins text-sm mt-1">
                 {t("section15.email")}
               </p>
             </div>
           </div>
 
-          <div className="border-t border-[#7e6725]/20" />
+          <div className="border-t border-[#ffffff]/20" />
 
           <div className="text-center pb-8">
             <p className="text-white/50 font-poppins text-sm">

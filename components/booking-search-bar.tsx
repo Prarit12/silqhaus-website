@@ -181,13 +181,13 @@ export default function BookingSearchBar({
           <button
             onClick={() => onShowAvailableOnlyChange?.(!showAvailableOnly)}
             className={`flex items-center gap-2 cursor-pointer rounded-full px-3 py-3 md:py-2 transition-all duration-300 ease-out text-left min-h-[48px] touch-manipulation ${
-              showAvailableOnly ? "bg-[#7e6725]/20" : "hover:bg-snow/10"
+              showAvailableOnly ? "bg-[#ffffff]/20" : "hover:bg-snow/10"
             }`}
           >
             <div
               className={`w-4 h-4 rounded-sm border-2 flex items-center justify-center transition-colors flex-shrink-0 ${
                 showAvailableOnly
-                  ? "bg-[#7e6725] border-[#7e6725]"
+                  ? "bg-[#ffffff] border-[#ffffff]"
                   : "border-mist/50"
               }`}
             >
@@ -218,8 +218,8 @@ export default function BookingSearchBar({
             onClick={() => toggleDropdown("filterModal")}
             className={`w-full md:w-auto flex items-center justify-center gap-2 text-[12px] font-poppins font-medium transition-all duration-200 px-4 py-2 rounded-full min-h-[44px] touch-manipulation whitespace-nowrap ${
               activeDropdown === "filterModal" || filtersActive
-                ? "text-[#7e6725] border border-[#7e6725] bg-[#7e6725]/10"
-                : "text-mist hover:text-[#7e6725] border border-mist/20 hover:border-[#7e6725]"
+                ? "text-[#ffffff] border border-[#ffffff] bg-[#ffffff]/10"
+                : "text-mist hover:text-[#ffffff] border border-mist/20 hover:border-[#ffffff]"
             }`}
           >
             <SlidersHorizontal className="w-4 h-4" />

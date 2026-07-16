@@ -112,7 +112,7 @@ const DestinationCarousel = ({ className = "" }) => {
           <button
             onClick={() => handlePageNavigation("prev")}
             disabled={!canGoLeft}
-            className="absolute -left-1 sm:-left-2 top-1/2 -translate-y-1/2 z-30 w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 bg-white/90 hover:bg-[#7e6725] disabled:opacity-30 disabled:cursor-not-allowed text-black hover:text-white rounded-full shadow-lg border border-white/20 sm:border-2 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#7e6725] focus:ring-offset-2"
+            className="absolute -left-1 sm:-left-2 top-1/2 -translate-y-1/2 z-30 w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 bg-white/90 hover:bg-[#ffffff] disabled:opacity-30 disabled:cursor-not-allowed text-black hover:text-white rounded-full shadow-lg border border-white/20 sm:border-2 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#ffffff] focus:ring-offset-2"
             aria-label="Previous page"
             data-testid="button-prev-page"
           >
@@ -122,7 +122,7 @@ const DestinationCarousel = ({ className = "" }) => {
           <button
             onClick={() => handlePageNavigation("next")}
             disabled={!canGoRight}
-            className="absolute -right-1 sm:-right-2 top-1/2 -translate-y-1/2 z-30 w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 bg-white/90 hover:bg-[#7e6725] disabled:opacity-30 disabled:cursor-not-allowed text-black hover:text-white rounded-full shadow-lg border border-white/20 sm:border-2 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#7e6725] focus:ring-offset-2"
+            className="absolute -right-1 sm:-right-2 top-1/2 -translate-y-1/2 z-30 w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 bg-white/90 hover:bg-[#ffffff] disabled:opacity-30 disabled:cursor-not-allowed text-black hover:text-white rounded-full shadow-lg border border-white/20 sm:border-2 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#ffffff] focus:ring-offset-2"
             aria-label="Next page"
             data-testid="button-next-page"
           >
@@ -179,7 +179,7 @@ const DestinationCarousel = ({ className = "" }) => {
           <button
             onClick={() => handlePageNavigation("prev")}
             disabled={!canGoLeft}
-            className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center transition-all duration-300 disabled:opacity-30 disabled:cursor-not-allowed text-white/60 hover:text-[#7e6725] hover:bg-white/10"
+            className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center transition-all duration-300 disabled:opacity-30 disabled:cursor-not-allowed text-white/60 hover:text-[#ffffff] hover:bg-white/10"
             aria-label="Previous page"
             data-testid="pagination-prev"
           >
@@ -192,9 +192,9 @@ const DestinationCarousel = ({ className = "" }) => {
               <button
                 key={index}
                 onClick={() => goToPage(index)}
-                className={`transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#7e6725]/40 focus:ring-offset-2 focus:ring-offset-black ${
+                className={`transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#ffffff]/40 focus:ring-offset-2 focus:ring-offset-black ${
                   currentPage === index
-                    ? "w-6 sm:w-8 md:w-10 h-2.5 sm:h-3 md:h-4 bg-[#7e6725] rounded-full shadow-lg shadow-[#7e6725]/30"
+                    ? "w-6 sm:w-8 md:w-10 h-2.5 sm:h-3 md:h-4 bg-[#ffffff] rounded-full shadow-lg shadow-[#ffffff]/30"
                     : "w-2.5 sm:w-3 md:w-4 h-2.5 sm:h-3 md:h-4 bg-white/30 hover:bg-white/50 rounded-full hover:scale-110"
                 }`}
                 aria-label={`Go to page ${index + 1}`}
@@ -207,7 +207,7 @@ const DestinationCarousel = ({ className = "" }) => {
           <button
             onClick={() => handlePageNavigation("next")}
             disabled={!canGoRight}
-            className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center transition-all duration-300 disabled:opacity-30 disabled:cursor-not-allowed text-white/60 hover:text-[#7e6725] hover:bg-white/10"
+            className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center transition-all duration-300 disabled:opacity-30 disabled:cursor-not-allowed text-white/60 hover:text-[#ffffff] hover:bg-white/10"
             aria-label="Next page"
             data-testid="pagination-next"
           >

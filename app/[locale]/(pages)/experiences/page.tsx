@@ -19,9 +19,9 @@ const experienceKeys = [
 ];
 
 const seasonKeys = [
-  { key: "cool", borderColor: "border-[#7e6725]" },
+  { key: "cool", borderColor: "border-[#ffffff]" },
   { key: "hot", borderColor: "border-[#c4a962]" },
-  { key: "rainy", borderColor: "border-[#7e6725]/50" },
+  { key: "rainy", borderColor: "border-[#ffffff]/50" },
 ];
 
 const essentialKeys = ["visa", "currency", "language", "health"];
@@ -49,9 +49,9 @@ export default function Experiences() {
             {experienceKeys.map(({ key, icon: Icon }) => (
               <div
                 key={key}
-                className="bg-[#141414] rounded-lg p-8 hover:shadow-lg transition-shadow duration-300 border border-[#7e6725]/20 hover:border-[#7e6725]/50"
+                className="bg-[#141414] rounded-lg p-8 hover:shadow-lg transition-shadow duration-300 border border-[#ffffff]/20 hover:border-[#ffffff]/50"
               >
-                <div className="w-12 h-12 mb-6 bg-[#7e6725] rounded-full flex items-center justify-center">
+                <div className="w-12 h-12 mb-6 bg-[#ffffff] rounded-full flex items-center justify-center">
                   <Icon className="w-6 h-6 text-white" />
                 </div>
                 <h3 className="text-white font-poppins font-bold text-xl mb-4">
@@ -72,7 +72,7 @@ export default function Experiences() {
       <section className="py-24 bg-[#0a0a0a]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <p className="text-[#7e6725] text-sm font-poppins font-light tracking-[0.3em] uppercase mb-4">
+            <p className="text-[#ffffff] text-sm font-poppins font-light tracking-[0.3em] uppercase mb-4">
               {t("travelPlanning.subtitle")}
             </p>
             <h2 className="text-white mb-6 tracking-wide font-gilroy font-bold leading-tight text-3xl sm:text-4xl">
@@ -107,7 +107,7 @@ export default function Experiences() {
                 {essentialKeys.map((key) => (
                   <div
                     key={key}
-                    className="bg-[#141414] rounded-lg p-6 border border-[#7e6725]/20"
+                    className="bg-[#141414] rounded-lg p-6 border border-[#ffffff]/20"
                   >
                     <h4 className="font-poppins font-semibold text-white text-lg mb-3">
                       {t(`essentials.${key}.title`)}

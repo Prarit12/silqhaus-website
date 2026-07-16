@@ -95,12 +95,12 @@
   --ink-2: #141414;
   --snow: #ffffff;
   --mist: #f2f2f2;
-  --gold: #7e6725;
+  --gold: #ffffff;
   --sand: #f0dc91;
   --line: rgba(255, 255, 255, 0.12);
   --ivory: #f4f4f1;
   --stone: #cbc2b2;
-  --cocoa: #8c7429;
+  --cocoa: #ffffff;
   --ink-detail: #131412;
   --background: #0d0d0d;
   --foreground: #ffffff;
@@ -110,7 +110,7 @@
   --card-foreground: #ffffff;
   --border: rgba(255, 255, 255, 0.12);
   --input: rgba(255, 255, 255, 0.06);
-  --primary: #7e6725;
+  --primary: #ffffff;
   --primary-foreground: #0d0d0d;
   --secondary: rgba(255, 255, 255, 0.08);
   --secondary-foreground: #ffffff;
@@ -118,12 +118,17 @@
   --accent-foreground: #0d0d0d;
   --destructive: #dc2626;
   --destructive-foreground: #ffffff;
-  --ring: rgba(90, 73, 51, 0.5);
+  --ring: rgba(255, 255, 255, 0.5);
   --radius: 0.5rem;
-  /* Refined Dark Luxe accents */
-  --champagne: #e7d19b;
-  --gold-antique: #b99552;
-  --hairline: rgba(231, 209, 155, 0.28);
+  /* Plain white accent system (monochrome) */
+  --orange: #ffffff;
+  --orange-deep: #ffffff;
+  --champagne: #ffffff; /* white text accents on dark */
+  --gold-antique: rgba(255, 255, 255, 0.7); /* white hairlines / borders */
+  --hairline: rgba(255, 255, 255, 0.25);
+  /* Repoint legacy gold tokens to white so every text-gold / bg-gold turns white */
+  --gold: #ffffff;
+  --sand: #ffffff;
 }
 
 @layer base {
@@ -178,28 +183,29 @@
   }
 
   .btn-primary {
-    @apply btn-base text-white;
-    background: linear-gradient(135deg, #7e6725 0%, #8c7429 100%);
-    border: 1px solid #7e6725;
-    box-shadow: 0 2px 4px rgba(126, 103, 37, 0.2);
+    @apply btn-base;
+    color: var(--ink);
+    background: var(--snow);
+    border: 1px solid var(--snow);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   }
 
   .btn-primary:hover {
-    background: linear-gradient(135deg, #6b5620 0%, #7e6725 100%);
-    box-shadow: 0 6px 20px rgba(126, 103, 37, 0.3);
+    background: rgba(255, 255, 255, 0.88);
+    box-shadow: 0 6px 20px rgba(255, 255, 255, 0.2);
     transform: translateY(-1px) scale(1.02);
   }
 
   .btn-secondary {
     @apply btn-base bg-transparent border-2;
-    color: #7e6725;
-    border-color: #7e6725;
+    color: var(--snow);
+    border-color: rgba(255, 255, 255, 0.5);
   }
 
   .btn-secondary:hover {
-    background: linear-gradient(135deg, #7e6725 0%, #8c7429 100%);
-    color: white;
-    border-color: #8c7429;
+    background: var(--snow);
+    color: var(--ink);
+    border-color: var(--snow);
   }
 
   /* ── Refined Dark Luxe: editorial button system ── */
@@ -216,25 +222,26 @@
   .btn-lux-solid {
     @apply btn-lux;
     color: var(--ink);
-    background: linear-gradient(135deg, var(--champagne) 0%, var(--gold-antique) 100%);
-    border: 1px solid rgba(231, 209, 155, 0.6);
+    background: var(--snow);
+    border: 1px solid var(--snow);
   }
   .btn-lux-solid:hover {
     color: var(--ink);
-    box-shadow: 0 10px 30px -8px rgba(231, 209, 155, 0.35);
+    background: rgba(255, 255, 255, 0.88);
+    box-shadow: 0 10px 30px -8px rgba(255, 255, 255, 0.25);
     transform: translateY(-1px);
   }
 
   .btn-lux-ghost {
     @apply btn-lux;
-    color: var(--champagne);
+    color: var(--snow);
     background: transparent;
-    border: 1px solid var(--hairline);
+    border: 1px solid rgba(255, 255, 255, 0.3);
   }
   .btn-lux-ghost:hover {
     color: var(--ink);
-    background: var(--champagne);
-    border-color: var(--champagne);
+    background: var(--snow);
+    border-color: var(--snow);
     transform: translateY(-1px);
   }
 }
@@ -376,19 +383,19 @@
   border-radius: 8px;
   transition: all 0.3s ease;
   cursor: pointer;
-  background: linear-gradient(135deg, #7e6725 0%, #8c7429 100%);
-  color: #ffffff !important;
-  border: 1px solid #7e6725;
-  box-shadow: 0 2px 4px rgba(126, 103, 37, 0.2);
+  background: #ffffff;
+  color: #0d0d0d !important;
+  border: 1px solid #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   letter-spacing: 0.025em;
 }
 
 .wp-block-button__link:hover,
 .wp-element-button:hover {
-  background: linear-gradient(135deg, #6b5620 0%, #7e6725 100%);
-  box-shadow: 0 6px 20px rgba(126, 103, 37, 0.3);
+  background: rgba(255, 255, 255, 0.88);
+  box-shadow: 0 6px 20px rgba(255, 255, 255, 0.2);
   transform: translateY(-1px) scale(1.02);
-  color: #ffffff !important;
+  color: #0d0d0d !important;
 }
 
 .wp-block-button__link strong,

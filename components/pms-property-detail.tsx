@@ -167,7 +167,7 @@ export function PMSPropertyDetail({
       <section className="pb-6">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {listing.propertyType && (
-            <span className="inline-block bg-[#7e6725]/20 text-[#bf9b3a] text-[11px] font-poppins font-medium uppercase tracking-wider px-3 py-1 rounded-full mb-3">
+            <span className="inline-block bg-[#ffffff]/20 text-[#bf9b3a] text-[11px] font-poppins font-medium uppercase tracking-wider px-3 py-1 rounded-full mb-3">
               {listing.propertyType}
             </span>
           )}
@@ -350,7 +350,7 @@ export function PMSPropertyDetail({
                             key={i}
                             className="flex items-center gap-2 bg-[#0a0a0a] border border-line rounded-full px-4 py-2"
                           >
-                            <Icon size={16} className="text-[#8c7429]" />
+                            <Icon size={16} className="text-[#ffffff]" />
                             <span className="font-poppins text-snow text-sm">
                               {f.label}
                             </span>
@@ -462,7 +462,7 @@ export function PMSPropertyDetail({
         {isMobileInquiry && (
           <>
             <div
-              className="fixed inset-x-0 bottom-0 z-40 bg-[#000000] border-t border-[#7e6725]"
+              className="fixed inset-x-0 bottom-0 z-40 bg-[#000000] border-t border-[#ffffff]"
               data-testid="mobile-inquiry-cta-bar"
             >
               {/* {ctaPrice && (
@@ -481,7 +481,7 @@ export function PMSPropertyDetail({
                 ref={ctaButtonRef}
                 type="button"
                 onClick={() => setInquiryDrawerOpen(true)}
-                className="w-full h-auto rounded-none bg-[#7e6725] hover:bg-[#8c7429] text-white font-poppins font-medium text-[14px] uppercase tracking-wide py-4 pb-[calc(1rem+env(safe-area-inset-bottom))] flex items-center justify-center gap-2 shadow-lg"
+                className="w-full h-auto rounded-none bg-[#ffffff] hover:bg-[#ffffff] text-white font-poppins font-medium text-[14px] uppercase tracking-wide py-4 pb-[calc(1rem+env(safe-area-inset-bottom))] flex items-center justify-center gap-2 shadow-lg"
                 data-testid="mobile-inquiry-cta"
               >
                 <Send className="w-4 h-4" />

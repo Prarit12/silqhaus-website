@@ -58,7 +58,7 @@ function VacationFavoriteCard({
         <div className="flex items-center gap-2 text-[#aaa] mt-1">
           {snap.bedroomsNumber != null && (
             <span className="flex items-center gap-0.5">
-              <Bed size={10} className="text-[#8c7429]" />
+              <Bed size={10} className="text-[#ffffff]" />
               <span className="font-poppins text-[12px]">
                 {snap.bedroomsNumber}
               </span>
@@ -66,7 +66,7 @@ function VacationFavoriteCard({
           )}
           {snap.personCapacity != null && (
             <span className="flex items-center gap-0.5">
-              <Users size={10} className="text-[#8c7429]" />
+              <Users size={10} className="text-[#ffffff]" />
               <span className="font-poppins text-[12px]">
                 {snap.personCapacity}
               </span>
@@ -74,7 +74,7 @@ function VacationFavoriteCard({
           )}
           {snap.bathroomsNumber != null && (
             <span className="flex items-center gap-0.5">
-              <Bath size={10} className="text-[#8c7429]" />
+              <Bath size={10} className="text-[#ffffff]" />
               <span className="font-poppins text-[12px]">
                 {snap.bathroomsNumber}
               </span>

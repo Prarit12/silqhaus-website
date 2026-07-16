@@ -176,7 +176,7 @@ export default function NearbyListingsCarousel({
           <>
             <button
               onClick={() => handleListingsScroll("left")}
-              className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-3 sm:-translate-x-2 z-30 w-8 h-8 sm:w-10 sm:h-10 bg-white/90 hover:bg-[#7e6725] disabled:opacity-30 disabled:cursor-not-allowed text-black hover:text-white rounded-full shadow-lg border border-white/20 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#7e6725] focus:ring-offset-2"
+              className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-3 sm:-translate-x-2 z-30 w-8 h-8 sm:w-10 sm:h-10 bg-white/90 hover:bg-[#ffffff] disabled:opacity-30 disabled:cursor-not-allowed text-black hover:text-white rounded-full shadow-lg border border-white/20 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#ffffff] focus:ring-offset-2"
               aria-label={t("previousListings")}
             >
               <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5 mx-auto" />
@@ -184,7 +184,7 @@ export default function NearbyListingsCarousel({
 
             <button
               onClick={() => handleListingsScroll("right")}
-              className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-3 sm:translate-x-2 z-30 w-8 h-8 sm:w-10 sm:h-10 bg-white/90 hover:bg-[#7e6725] disabled:opacity-30 disabled:cursor-not-allowed text-black hover:text-white rounded-full shadow-lg border border-white/20 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#7e6725] focus:ring-offset-2"
+              className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-3 sm:translate-x-2 z-30 w-8 h-8 sm:w-10 sm:h-10 bg-white/90 hover:bg-[#ffffff] disabled:opacity-30 disabled:cursor-not-allowed text-black hover:text-white rounded-full shadow-lg border border-white/20 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#ffffff] focus:ring-offset-2"
               aria-label={t("nextListings")}
             >
               <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 mx-auto" />
@@ -205,7 +205,7 @@ export default function NearbyListingsCarousel({
                 href={href}
                 prefetch={false}
                 {...buildHoverHandlers(href)}
-                className="flex-none w-64 sm:w-72 md:w-80 lg:w-72 xl:w-80 2xl:w-96 group cursor-pointer rounded-lg overflow-hidden relative border border-white/10 hover:border-[#7e6725]/40 focus:outline-none focus:ring-2 focus:ring-[#7e6725]/20 transition-all duration-300 hover:scale-[1.02]"
+                className="flex-none w-64 sm:w-72 md:w-80 lg:w-72 xl:w-80 2xl:w-96 group cursor-pointer rounded-lg overflow-hidden relative border border-white/10 hover:border-[#ffffff]/40 focus:outline-none focus:ring-2 focus:ring-[#ffffff]/20 transition-all duration-300 hover:scale-[1.02]"
               >
                 <div className="aspect-[3/4] relative">
                   {listing.listingImages?.[0] || listing.images?.[0] ? (
@@ -248,9 +248,9 @@ export default function NearbyListingsCarousel({
             <button
               key={index}
               onClick={() => handleDotClick(index)}
-              className={`w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#7e6725]/40 focus:ring-offset-2 focus:ring-offset-black ${
+              className={`w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#ffffff]/40 focus:ring-offset-2 focus:ring-offset-black ${
                 currentListing === index
-                  ? "bg-[#7e6725] w-6 sm:w-7"
+                  ? "bg-[#ffffff] w-6 sm:w-7"
                   : "bg-white/30 hover:bg-white/60"
               }`}
               aria-label={t("goToSlide", { index: index + 1 })}

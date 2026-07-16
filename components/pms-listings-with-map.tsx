@@ -155,7 +155,7 @@ export function PMSListingsWithMap({
               <button
                 type="button"
                 onClick={clearAll}
-                className="inline-flex items-center px-6 py-2.5 rounded-full bg-[#7e6725] hover:bg-[#8c7429] text-white text-[13px] font-poppins font-medium uppercase tracking-wide transition-colors"
+                className="inline-flex items-center px-6 py-2.5 rounded-full bg-[#ffffff] hover:bg-[#ffffff] text-white text-[13px] font-poppins font-medium uppercase tracking-wide transition-colors"
                 data-testid="pms-filter-no-matches-clear"
               >
                 {tFilters("clearFilters")}

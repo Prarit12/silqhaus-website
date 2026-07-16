@@ -348,9 +348,9 @@ export function DateRangePicker({
                   disabled={disabled || noPrice}
                   className={`
                     w-12 h-14 text-xs rounded-md relative flex flex-col items-center justify-center gap-0
-                    ${disabled || noPrice ? "cursor-not-allowed" : "cursor-pointer hover:bg-[#7e6725]/20"}
-                    ${isSelected ? "bg-[#7e6725] text-white" : ""}
-                    ${isInRange ? "bg-[#7e6725]/10" : ""}
+                    ${disabled || noPrice ? "cursor-not-allowed" : "cursor-pointer hover:bg-[#ffffff]/20"}
+                    ${isSelected ? "bg-[#ffffff] text-white" : ""}
+                    ${isInRange ? "bg-[#ffffff]/10" : ""}
                     ${isPast || reserved || noPrice ? "text-gray-400" : ""}
                     ${isMinStayBlocked && !isPast && !reserved && !noPrice ? "text-orange-400 bg-orange-50" : ""}
                     ${spansUnavailable ? "text-red-500 bg-red-50 ring-1 ring-red-300" : ""}
@@ -389,7 +389,7 @@ export function DateRangePicker({
           <button
             type="button"
             onClick={() => setShowCalendar(null)}
-            className="text-[#7e6725] font-medium hover:underline"
+            className="text-[#ffffff] font-medium hover:underline"
           >
             {t("close")}
           </button>
@@ -422,7 +422,7 @@ export function DateRangePicker({
             }
             className={`
               w-full p-1.5 text-xs border rounded text-left bg-white
-              ${showCalendar === "checkin" ? "border-[#7e6725] ring-1 ring-[#7e6725]" : "border-white/60"}
+              ${showCalendar === "checkin" ? "border-[#ffffff] ring-1 ring-[#ffffff]" : "border-white/60"}
               ${checkInDate ? "text-gray-900" : "text-gray-400"}
             `}
           >
@@ -455,7 +455,7 @@ export function DateRangePicker({
             disabled={!checkInDate}
             className={`
               w-full p-1.5 text-xs border rounded text-left bg-white
-              ${showCalendar === "checkout" ? "border-[#7e6725] ring-1 ring-[#7e6725]" : "border-white/60"}
+              ${showCalendar === "checkout" ? "border-[#ffffff] ring-1 ring-[#ffffff]" : "border-white/60"}
               ${checkOutDate ? "text-gray-900" : "text-gray-400"}
               ${!checkInDate ? "opacity-50 cursor-not-allowed" : ""}
             `}

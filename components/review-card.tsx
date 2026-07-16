@@ -76,7 +76,7 @@ function OTAIcon({ channelId }: { channelId: number }) {
       );
     default:
       return (
-        <div className={`${badge} bg-[#7e6725]`}>
+        <div className={`${badge} bg-[#ffffff]`}>
           <Star className="w-5 h-5 text-white" />
         </div>
       );

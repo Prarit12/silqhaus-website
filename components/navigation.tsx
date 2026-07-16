@@ -181,8 +181,8 @@ export default function Navigation() {
                     <span
                       className={`cursor-pointer transition-colors duration-300 font-poppins font-medium text-xs md:text-sm ${
                         isActive
-                          ? "text-white border-b-2 border-[#7e6725]"
-                          : "text-white/80 hover:text-white hover:border-b-2 hover:border-[#7e6725]"
+                          ? "text-white border-b-2 border-[#ffffff]"
+                          : "text-white/80 hover:text-white hover:border-b-2 hover:border-[#ffffff]"
                       } pb-1`}
                     >
                       {item.label}
@@ -209,7 +209,7 @@ export default function Navigation() {
                     pathname.startsWith("/properties-for-rent") ||
                     pathname.startsWith("/properties-for-sale")
                       ? "text-white"
-                      : "text-white/80 hover:text-white hover:border-b-2 hover:border-[#7e6725]"
+                      : "text-white/80 hover:text-white hover:border-b-2 hover:border-[#ffffff]"
                   }`}
                 >
                   {t("properties")}
@@ -230,7 +230,7 @@ export default function Navigation() {
                         <Link key={item.href} href={item.href}>
                           <div
                             role="menuitem"
-                            className="block px-4 py-3 hover:bg-[#7e6725]/10 focus:bg-[#7e6725]/10 transition-colors cursor-pointer border-b border-line last:border-b-0 first:rounded-t-lg last:rounded-b-lg"
+                            className="block px-4 py-3 hover:bg-[#ffffff]/10 focus:bg-[#ffffff]/10 transition-colors cursor-pointer border-b border-line last:border-b-0 first:rounded-t-lg last:rounded-b-lg"
                             onClick={() => setIsPropertyDropdownOpen(false)}
                             data-testid={`link-properties-${item.href.replace("/", "")}`}
                           >
@@ -256,8 +256,8 @@ export default function Navigation() {
                     <span
                       className={`cursor-pointer transition-colors duration-300 font-poppins font-medium text-xs md:text-sm ${
                         isActive
-                          ? "text-white border-b-2 border-[#7e6725]"
-                          : "text-white/80 hover:text-white hover:border-b-2 hover:border-[#7e6725]"
+                          ? "text-white border-b-2 border-[#ffffff]"
+                          : "text-white/80 hover:text-white hover:border-b-2 hover:border-[#ffffff]"
                       } pb-1`}
                     >
                       {item.label}
@@ -272,7 +272,7 @@ export default function Navigation() {
                   onClick={() =>
                     setIsContactDropdownOpen(!isContactDropdownOpen)
                   }
-                  className="cursor-pointer transition-colors duration-300 font-poppins font-medium text-xs md:text-sm flex items-center gap-1 text-white/80 hover:text-white hover:border-b-2 hover:border-[#7e6725] pb-1 mt-1"
+                  className="cursor-pointer transition-colors duration-300 font-poppins font-medium text-xs md:text-sm flex items-center gap-1 text-white/80 hover:text-white hover:border-b-2 hover:border-[#ffffff] pb-1 mt-1"
                 >
                   CONTACT
                   <ChevronDown
@@ -355,14 +355,14 @@ export default function Navigation() {
 
         {/* Menu Panel */}
         <div
-          className={`absolute top-20 left-4 right-4 max-h-[calc(100vh-100px)] overflow-y-auto bg-[#0a0a0a] border border-[#7e6725]/30 rounded-2xl shadow-2xl transition-all duration-300 ${
+          className={`absolute top-20 left-4 right-4 max-h-[calc(100vh-100px)] overflow-y-auto bg-[#0a0a0a] border border-[#ffffff]/30 rounded-2xl shadow-2xl transition-all duration-300 ${
             isMobileMenuOpen
               ? "translate-y-0 opacity-100"
               : "-translate-y-4 opacity-0"
           }`}
         >
           {/* Close button header */}
-          <div className="flex items-center justify-between p-4 border-b border-[#7e6725]/20">
+          <div className="flex items-center justify-between p-4 border-b border-[#ffffff]/20">
             <span className="font-poppins font-semibold text-white text-sm tracking-wide">
               {t("menu")}
             </span>
@@ -385,7 +385,7 @@ export default function Navigation() {
                   <div
                     className={`block py-3 px-4 rounded-xl transition-all duration-200 ${
                       isActive
-                        ? "bg-[#7e6725]/20 text-white border-l-2 border-[#7e6725]"
+                        ? "bg-[#ffffff]/20 text-white border-l-2 border-[#ffffff]"
                         : "text-white/80 hover:bg-white/5 hover:text-white"
                     }`}
                     onClick={() => setIsMobileMenuOpen(false)}
@@ -400,7 +400,7 @@ export default function Navigation() {
 
             {/* Properties Section */}
             <div className="pt-2">
-              <div className="py-2 px-4 text-[#7e6725] font-poppins font-semibold text-xs uppercase tracking-widest">
+              <div className="py-2 px-4 text-[#ffffff] font-poppins font-semibold text-xs uppercase tracking-widest">
                 {t("properties")}
               </div>
               {propertyItems.map((item) => {
@@ -411,7 +411,7 @@ export default function Navigation() {
                     <div
                       className={`block py-3 px-4 rounded-xl transition-all duration-200 ${
                         isActive
-                          ? "bg-[#7e6725]/20 text-white border-l-2 border-[#7e6725]"
+                          ? "bg-[#ffffff]/20 text-white border-l-2 border-[#ffffff]"
                           : "text-white/80 hover:bg-white/5 hover:text-white"
                       }`}
                       onClick={() => setIsMobileMenuOpen(false)}
@@ -436,7 +436,7 @@ export default function Navigation() {
                   <div
                     className={`block py-3 px-4 rounded-xl transition-all duration-200 ${
                       isActive
-                        ? "bg-[#7e6725]/20 text-white border-l-2 border-[#7e6725]"
+                        ? "bg-[#ffffff]/20 text-white border-l-2 border-[#ffffff]"
                         : "text-white/80 hover:bg-white/5 hover:text-white"
                     }`}
                     onClick={() => setIsMobileMenuOpen(false)}
@@ -451,7 +451,7 @@ export default function Navigation() {
 
             {/* Our Property Section */}
             {/* <div className="pt-2">
-              <div className="py-2 px-4 text-[#7e6725] font-poppins font-semibold text-xs uppercase tracking-widest">
+              <div className="py-2 px-4 text-[#ffffff] font-poppins font-semibold text-xs uppercase tracking-widest">
                 Our Property
               </div>
               {propertyItems.map((item) => {
@@ -461,7 +461,7 @@ export default function Navigation() {
                     <div
                       className={`block py-3 px-4 rounded-xl transition-all duration-200 ${
                         isActive
-                          ? "bg-[#7e6725]/20 text-white border-l-2 border-[#7e6725]"
+                          ? "bg-[#ffffff]/20 text-white border-l-2 border-[#ffffff]"
                           : "text-white/80 hover:bg-white/5 hover:text-white"
                       }`}
                       onClick={() => setIsMobileMenuOpen(false)}
@@ -480,7 +480,7 @@ export default function Navigation() {
 
             {/* Contact Section */}
             {/* <div className="pt-2">
-              <div className="py-2 px-4 text-[#7e6725] font-poppins font-semibold text-xs uppercase tracking-widest">
+              <div className="py-2 px-4 text-[#ffffff] font-poppins font-semibold text-xs uppercase tracking-widest">
                 Contact
               </div>
               {contactItems.map((item) => (
@@ -502,14 +502,14 @@ export default function Navigation() {
 
             {/* Divider */}
             <div className="pt-4 pb-2">
-              <div className="h-px bg-gradient-to-r from-transparent via-[#7e6725]/30 to-transparent" />
+              <div className="h-px bg-gradient-to-r from-transparent via-[#ffffff]/30 to-transparent" />
             </div>
 
             {/* Contact Info */}
             <div className="px-4 py-3 space-y-3">
               <a
                 href={`mailto:${process.env.NEXT_PUBLIC_CONTACT_EMAIL}`}
-                className="flex items-center gap-3 text-white/70 hover:text-[#7e6725] transition-colors"
+                className="flex items-center gap-3 text-white/70 hover:text-[#ffffff] transition-colors"
               >
                 <svg
                   className="w-4 h-4"
@@ -530,7 +530,7 @@ export default function Navigation() {
               </a>
               <a
                 href={`tel:${process.env.NEXT_PUBLIC_CONTACT_PHONE_TEL}`}
-                className="flex items-center gap-3 text-white/70 hover:text-[#7e6725] transition-colors"
+                className="flex items-center gap-3 text-white/70 hover:text-[#ffffff] transition-colors"
               >
                 <svg
                   className="w-4 h-4"

@@ -311,7 +311,7 @@ export function PMSPropertyInquiry({ listing, basePath }: Props) {
                   className="font-poppins text-white"
                 >
                   {t("form.labels.name")}{" "}
-                  <span className="text-[#7e6725]">*</span>
+                  <span className="text-[#ffffff]">*</span>
                 </Label>
                 <Input
                   id="pms-inq-name"
@@ -331,7 +331,7 @@ export function PMSPropertyInquiry({ listing, basePath }: Props) {
                   aria-describedby={
                     errors.name ? "pms-inq-name-err" : undefined
                   }
-                  className={`font-poppins bg-[#1a1a1a] border-white/20 focus:border-[#7e6725] text-white placeholder:text-white/40 ${errors.name ? "border-red-500" : ""}`}
+                  className={`font-poppins bg-[#1a1a1a] border-white/20 focus:border-[#ffffff] text-white placeholder:text-white/40 ${errors.name ? "border-red-500" : ""}`}
                   data-testid="inquiry-name"
                 />
                 {errors.name && (
@@ -350,7 +350,7 @@ export function PMSPropertyInquiry({ listing, basePath }: Props) {
                   className="font-poppins text-white"
                 >
                   {t("form.labels.email")}{" "}
-                  <span className="text-[#7e6725]">*</span>
+                  <span className="text-[#ffffff]">*</span>
                 </Label>
                 <Input
                   id="pms-inq-email"
@@ -373,7 +373,7 @@ export function PMSPropertyInquiry({ listing, basePath }: Props) {
                   aria-describedby={
                     errors.email ? "pms-inq-email-err" : undefined
                   }
-                  className={`font-poppins bg-[#1a1a1a] border-white/20 focus:border-[#7e6725] text-white placeholder:text-white/40 ${errors.email ? "border-red-500" : ""}`}
+                  className={`font-poppins bg-[#1a1a1a] border-white/20 focus:border-[#ffffff] text-white placeholder:text-white/40 ${errors.email ? "border-red-500" : ""}`}
                   data-testid="inquiry-email"
                 />
                 {errors.email && (
@@ -394,7 +394,7 @@ export function PMSPropertyInquiry({ listing, basePath }: Props) {
                 className="font-poppins text-white"
               >
                 {t("form.labels.phone")}{" "}
-                <span className="text-[#7e6725]">*</span>
+                <span className="text-[#ffffff]">*</span>
               </Label>
               <div className="flex gap-2">
                 <Select
@@ -413,7 +413,7 @@ export function PMSPropertyInquiry({ listing, basePath }: Props) {
                       <SelectItem
                         key={cc.value}
                         value={cc.value}
-                        className="text-white hover:bg-[#7e6725]/20"
+                        className="text-white hover:bg-[#ffffff]/20"
                       >
                         {cc.code} {cc.country}
                       </SelectItem>
@@ -441,7 +441,7 @@ export function PMSPropertyInquiry({ listing, basePath }: Props) {
                   aria-describedby={
                     errors.phone ? "pms-inq-phone-err" : undefined
                   }
-                  className={`flex-1 font-poppins bg-[#1a1a1a] border-white/20 focus:border-[#7e6725] text-white placeholder:text-white/40 ${errors.phone ? "border-red-500" : ""}`}
+                  className={`flex-1 font-poppins bg-[#1a1a1a] border-white/20 focus:border-[#ffffff] text-white placeholder:text-white/40 ${errors.phone ? "border-red-500" : ""}`}
                   data-testid="inquiry-phone"
                 />
               </div>
@@ -462,7 +462,7 @@ export function PMSPropertyInquiry({ listing, basePath }: Props) {
                 className="font-poppins text-white"
               >
                 {t("form.labels.purpose")}{" "}
-                <span className="text-[#7e6725]">*</span>
+                <span className="text-[#ffffff]">*</span>
               </Label>
               <Select
                 value={form.purpose}
@@ -482,7 +482,7 @@ export function PMSPropertyInquiry({ listing, basePath }: Props) {
                     <SelectItem
                       key={p}
                       value={p}
-                      className="text-white hover:bg-[#7e6725]/20"
+                      className="text-white hover:bg-[#ffffff]/20"
                     >
                       {t(`purpose.${p}`)}
                     </SelectItem>
@@ -504,7 +504,7 @@ export function PMSPropertyInquiry({ listing, basePath }: Props) {
                 onChange={(e) => setForm({ ...form, message: e.target.value })}
                 maxLength={2000}
                 placeholder={t("form.placeholders.message")}
-                className="min-h-[110px] font-poppins bg-[#1a1a1a] border-white/20 focus:border-[#7e6725] text-white placeholder:text-white/40"
+                className="min-h-[110px] font-poppins bg-[#1a1a1a] border-white/20 focus:border-[#ffffff] text-white placeholder:text-white/40"
                 data-testid="inquiry-message"
               />
               <div className="text-right text-white/40 text-xs font-poppins">
@@ -528,7 +528,7 @@ export function PMSPropertyInquiry({ listing, basePath }: Props) {
                 aria-describedby={
                   errors.terms ? "pms-inq-terms-err" : undefined
                 }
-                className="mt-0.5 border-white/30 data-[state=checked]:bg-[#7e6725] data-[state=checked]:border-[#7e6725]"
+                className="mt-0.5 border-white/30 data-[state=checked]:bg-[#ffffff] data-[state=checked]:border-[#ffffff]"
                 data-testid="inquiry-terms"
               />
               <div>
@@ -597,7 +597,7 @@ export function PMSPropertyInquiry({ listing, basePath }: Props) {
             <Button
               type="submit"
               disabled={isSubmitting}
-              className="w-full bg-[#7e6725] hover:bg-[#8c7429] text-white font-poppins font-medium px-6 py-5 rounded-full text-sm uppercase tracking-wider"
+              className="w-full bg-[#ffffff] hover:bg-[#ffffff] text-white font-poppins font-medium px-6 py-5 rounded-full text-sm uppercase tracking-wider"
               data-testid="inquiry-submit"
             >
               {isSubmitting ? (
@@ -641,7 +641,7 @@ export function PMSPropertyInquiry({ listing, basePath }: Props) {
                 {channels.map(({ key, href, onClick, label, value, Icon }) => {
                   const inner = (
                     <>
-                      <span className="w-9 h-9 rounded-full bg-[#7e6725]/20 flex items-center justify-center text-[#a3894a] flex-shrink-0">
+                      <span className="w-9 h-9 rounded-full bg-[#ffffff]/20 flex items-center justify-center text-[#a3894a] flex-shrink-0">
                         <Icon className="w-4 h-4" />
                       </span>
                       <span className="flex-1 min-w-0">
@@ -661,7 +661,7 @@ export function PMSPropertyInquiry({ listing, basePath }: Props) {
                     </>
                   );
                   const className =
-                    "flex items-center gap-3 bg-[#1a1a1a] border border-white/10 hover:border-[#7e6725] hover:bg-[#7e6725]/10 transition-colors rounded-xl px-4 py-3 text-white font-poppins w-full text-left";
+                    "flex items-center gap-3 bg-[#1a1a1a] border border-white/10 hover:border-[#ffffff] hover:bg-[#ffffff]/10 transition-colors rounded-xl px-4 py-3 text-white font-poppins w-full text-left";
                   if (onClick) {
                     return (
                       <button

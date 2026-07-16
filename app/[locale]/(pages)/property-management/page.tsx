@@ -356,7 +356,7 @@ export default function PropertyManagement() {
         <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a0a] via-[#0a0a0a]/90 to-[#0a0a0a]/70" />
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32">
           <div className="max-w-3xl">
-            <p className="text-[#7e6725] text-sm font-poppins tracking-[0.3em] uppercase mb-6">
+            <p className="text-[#ffffff] text-sm font-poppins tracking-[0.3em] uppercase mb-6">
               {t("hero.subtitle")}
             </p>
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-gilroy font-bold text-white mb-8 leading-tight">
@@ -367,7 +367,7 @@ export default function PropertyManagement() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Button
-                className="bg-[#7e6725] hover:bg-[#6d5820] text-white font-poppins px-8 py-6 text-lg"
+                className="bg-[#ffffff] hover:bg-[#6d5820] text-white font-poppins px-8 py-6 text-lg"
                 onClick={() =>
                   document
                     .getElementById("contact-form")
@@ -379,7 +379,7 @@ export default function PropertyManagement() {
               </Button>
               <Button
                 variant="outline"
-                className="border-[#7e6725] text-[#7e6725] hover:bg-[#7e6725] hover:text-white font-poppins px-8 py-6 text-lg"
+                className="border-[#ffffff] text-[#ffffff] hover:bg-[#ffffff] hover:text-white font-poppins px-8 py-6 text-lg"
                 onClick={() =>
                   document
                     .getElementById("services")
@@ -399,7 +399,7 @@ export default function PropertyManagement() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {benefits.map((benefit, index) => (
               <div key={index} className="text-center">
-                <p className="text-4xl md:text-5xl font-gilroy font-bold text-[#7e6725] mb-2">
+                <p className="text-4xl md:text-5xl font-gilroy font-bold text-[#ffffff] mb-2">
                   {benefit.stat}
                 </p>
                 <p className="text-white font-poppins font-semibold mb-1">
@@ -418,7 +418,7 @@ export default function PropertyManagement() {
       <section className="py-20 bg-[#141414]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <p className="text-[#7e6725] text-sm font-poppins tracking-[0.3em] uppercase mb-4">
+            <p className="text-[#ffffff] text-sm font-poppins tracking-[0.3em] uppercase mb-4">
               {t("platforms.subtitle")}
             </p>
             <h2 className="text-3xl md:text-4xl font-gilroy font-bold text-white mb-6">
@@ -429,19 +429,19 @@ export default function PropertyManagement() {
             </p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 items-center max-w-4xl mx-auto">
-            <div className="bg-[#0a0a0a] rounded-xl p-8 text-center border border-[#7e6725]/20 hover:border-[#7e6725]/50 transition-colors">
+            <div className="bg-[#0a0a0a] rounded-xl p-8 text-center border border-[#ffffff]/20 hover:border-[#ffffff]/50 transition-colors">
               <SiAirbnb className="w-16 h-16 text-[#FF5A5F] mx-auto mb-4" />
               <h3 className="text-white font-gilroy font-bold text-lg">
                 Airbnb
               </h3>
             </div>
-            <div className="bg-[#0a0a0a] rounded-xl p-8 text-center border border-[#7e6725]/20 hover:border-[#7e6725]/50 transition-colors">
+            <div className="bg-[#0a0a0a] rounded-xl p-8 text-center border border-[#ffffff]/20 hover:border-[#ffffff]/50 transition-colors">
               <div className="w-16 h-16 mx-auto mb-4 flex items-center justify-center">
                 <span className="text-[#3D67A6] font-bold text-2xl">Vrbo</span>
               </div>
               <h3 className="text-white font-gilroy font-bold text-lg">Vrbo</h3>
             </div>
-            <div className="bg-[#0a0a0a] rounded-xl p-8 text-center border border-[#7e6725]/20 hover:border-[#7e6725]/50 transition-colors">
+            <div className="bg-[#0a0a0a] rounded-xl p-8 text-center border border-[#ffffff]/20 hover:border-[#ffffff]/50 transition-colors">
               <div className="w-16 h-16 mx-auto mb-4 flex items-center justify-center">
                 <span className="text-[#003580] font-bold text-lg">
                   Booking<span className="text-[#003580]">.com</span>
@@ -477,10 +477,10 @@ export default function PropertyManagement() {
             </div>
             <div>
               <div className="flex items-center gap-3 mb-4">
-                <div className="w-10 h-10 rounded-full bg-[#7e6725]/10 flex items-center justify-center">
-                  <Settings className="w-5 h-5 text-[#7e6725]" />
+                <div className="w-10 h-10 rounded-full bg-[#ffffff]/10 flex items-center justify-center">
+                  <Settings className="w-5 h-5 text-[#ffffff]" />
                 </div>
-                <p className="text-[#7e6725] text-xs font-poppins tracking-[0.3em] uppercase">
+                <p className="text-[#ffffff] text-xs font-poppins tracking-[0.3em] uppercase">
                   {tw("hardTruth.subtitle")}
                 </p>
               </div>
@@ -496,7 +496,7 @@ export default function PropertyManagement() {
                     {i < 2 ? (
                       <X className="w-5 h-5 text-red-400 flex-shrink-0 mt-0.5" />
                     ) : (
-                      <CheckCircle className="w-5 h-5 text-[#7e6725] flex-shrink-0 mt-0.5" />
+                      <CheckCircle className="w-5 h-5 text-[#ffffff] flex-shrink-0 mt-0.5" />
                     )}
                     <p className="text-white/80 font-poppins text-sm leading-relaxed">
                       {tw(`hardTruth.points.${i}`)}
@@ -526,10 +526,10 @@ export default function PropertyManagement() {
             </div>
             <div className="lg:order-1">
               <div className="flex items-center gap-3 mb-4">
-                <div className="w-10 h-10 rounded-full bg-[#7e6725]/10 flex items-center justify-center">
-                  <Sparkles className="w-5 h-5 text-[#7e6725]" />
+                <div className="w-10 h-10 rounded-full bg-[#ffffff]/10 flex items-center justify-center">
+                  <Sparkles className="w-5 h-5 text-[#ffffff]" />
                 </div>
-                <p className="text-[#7e6725] text-xs font-poppins tracking-[0.3em] uppercase">
+                <p className="text-[#ffffff] text-xs font-poppins tracking-[0.3em] uppercase">
                   {tw("housekeeping.subtitle")}
                 </p>
               </div>
@@ -562,7 +562,7 @@ export default function PropertyManagement() {
                   <div className="space-y-2">
                     {[0, 1, 2].map((i) => (
                       <div key={i} className="flex items-start gap-3">
-                        <CheckCircle className="w-4 h-4 text-[#7e6725] flex-shrink-0 mt-0.5" />
+                        <CheckCircle className="w-4 h-4 text-[#ffffff] flex-shrink-0 mt-0.5" />
                         <span className="text-white/80 font-poppins text-sm">
                           {tw(`housekeeping.ourModel.items.${i}`)}
                         </span>
@@ -593,10 +593,10 @@ export default function PropertyManagement() {
             </div>
             <div>
               <div className="flex items-center gap-3 mb-4">
-                <div className="w-10 h-10 rounded-full bg-[#7e6725]/10 flex items-center justify-center">
-                  <ClipboardCheck className="w-5 h-5 text-[#7e6725]" />
+                <div className="w-10 h-10 rounded-full bg-[#ffffff]/10 flex items-center justify-center">
+                  <ClipboardCheck className="w-5 h-5 text-[#ffffff]" />
                 </div>
-                <p className="text-[#7e6725] text-xs font-poppins tracking-[0.3em] uppercase">
+                <p className="text-[#ffffff] text-xs font-poppins tracking-[0.3em] uppercase">
                   {tw("aiQuality.subtitle")}
                 </p>
               </div>
@@ -609,15 +609,15 @@ export default function PropertyManagement() {
               <div className="space-y-3 mb-6">
                 {[0, 1, 2, 3].map((i) => (
                   <div key={i} className="flex items-start gap-3">
-                    <CheckCircle className="w-5 h-5 text-[#7e6725] flex-shrink-0 mt-0.5" />
+                    <CheckCircle className="w-5 h-5 text-[#ffffff] flex-shrink-0 mt-0.5" />
                     <p className="text-white/80 font-poppins text-sm leading-relaxed">
                       {tw(`aiQuality.features.${i}`)}
                     </p>
                   </div>
                 ))}
               </div>
-              <div className="bg-[#0a0a0a] rounded-xl p-4 border border-[#7e6725]/20">
-                <p className="text-[#7e6725] font-poppins font-semibold text-sm">
+              <div className="bg-[#0a0a0a] rounded-xl p-4 border border-[#ffffff]/20">
+                <p className="text-[#ffffff] font-poppins font-semibold text-sm">
                   {tw("aiQuality.conclusion")}
                 </p>
               </div>
@@ -643,10 +643,10 @@ export default function PropertyManagement() {
             </div>
             <div className="lg:order-1">
               <div className="flex items-center gap-3 mb-4">
-                <div className="w-10 h-10 rounded-full bg-[#7e6725]/10 flex items-center justify-center">
-                  <Eye className="w-5 h-5 text-[#7e6725]" />
+                <div className="w-10 h-10 rounded-full bg-[#ffffff]/10 flex items-center justify-center">
+                  <Eye className="w-5 h-5 text-[#ffffff]" />
                 </div>
-                <p className="text-[#7e6725] text-xs font-poppins tracking-[0.3em] uppercase">
+                <p className="text-[#ffffff] text-xs font-poppins tracking-[0.3em] uppercase">
                   {tw("realTimeVisibility.subtitle")}
                 </p>
               </div>
@@ -659,15 +659,15 @@ export default function PropertyManagement() {
               <div className="space-y-3 mb-6">
                 {[0, 1, 2, 3].map((i) => (
                   <div key={i} className="flex items-start gap-3">
-                    <CheckCircle className="w-5 h-5 text-[#7e6725] flex-shrink-0 mt-0.5" />
+                    <CheckCircle className="w-5 h-5 text-[#ffffff] flex-shrink-0 mt-0.5" />
                     <p className="text-white/80 font-poppins text-sm leading-relaxed">
                       {tw(`realTimeVisibility.features.${i}`)}
                     </p>
                   </div>
                 ))}
               </div>
-              <div className="bg-[#141414] rounded-xl p-4 border border-[#7e6725]/20">
-                <p className="text-[#7e6725] font-poppins font-semibold text-sm">
+              <div className="bg-[#141414] rounded-xl p-4 border border-[#ffffff]/20">
+                <p className="text-[#ffffff] font-poppins font-semibold text-sm">
                   {tw("realTimeVisibility.conclusion")}
                 </p>
               </div>
@@ -680,7 +680,7 @@ export default function PropertyManagement() {
       <section id="services" className="py-24 bg-black">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <p className="text-[#7e6725] text-sm font-poppins tracking-[0.3em] uppercase mb-4">
+            <p className="text-[#ffffff] text-sm font-poppins tracking-[0.3em] uppercase mb-4">
               {t("services.subtitle")}
             </p>
             <h2 className="text-4xl font-gilroy font-bold text-white mb-6">
@@ -694,9 +694,9 @@ export default function PropertyManagement() {
             {services.map((service, index) => (
               <div
                 key={index}
-                className="bg-[#141414] rounded-xl p-8 border border-[#7e6725]/20 hover:border-[#7e6725]/50 transition-colors"
+                className="bg-[#141414] rounded-xl p-8 border border-[#ffffff]/20 hover:border-[#ffffff]/50 transition-colors"
               >
-                <service.icon className="w-12 h-12 text-[#7e6725] mb-6" />
+                <service.icon className="w-12 h-12 text-[#ffffff] mb-6" />
                 <h3 className="text-white font-gilroy font-bold text-xl mb-3">
                   {service.title}
                 </h3>
@@ -713,7 +713,7 @@ export default function PropertyManagement() {
       <section className="py-24 bg-[#141414]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <p className="text-[#7e6725] text-sm font-poppins tracking-[0.3em] uppercase mb-4">
+            <p className="text-[#ffffff] text-sm font-poppins tracking-[0.3em] uppercase mb-4">
               {t("howItWorks.subtitle")}
             </p>
             <h2 className="text-4xl font-gilroy font-bold text-white mb-6">
@@ -744,7 +744,7 @@ export default function PropertyManagement() {
               },
             ].map((item, index) => (
               <div key={index} className="text-center">
-                <div className="w-16 h-16 rounded-full bg-[#7e6725] text-white flex items-center justify-center mx-auto mb-6">
+                <div className="w-16 h-16 rounded-full bg-[#ffffff] text-white flex items-center justify-center mx-auto mb-6">
                   <span className="font-gilroy font-bold text-xl">
                     {item.step}
                   </span>
@@ -764,7 +764,7 @@ export default function PropertyManagement() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
             <div>
-              <p className="text-[#7e6725] text-sm font-poppins tracking-[0.3em] uppercase mb-4">
+              <p className="text-[#ffffff] text-sm font-poppins tracking-[0.3em] uppercase mb-4">
                 {t("contact.subtitle")}
               </p>
               <h2 className="text-4xl font-gilroy font-bold text-white mb-6">
@@ -775,8 +775,8 @@ export default function PropertyManagement() {
               </p>
               <div className="space-y-6">
                 <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-full bg-[#7e6725]/10 flex items-center justify-center">
-                    <Clock className="w-6 h-6 text-[#7e6725]" />
+                  <div className="w-12 h-12 rounded-full bg-[#ffffff]/10 flex items-center justify-center">
+                    <Clock className="w-6 h-6 text-[#ffffff]" />
                   </div>
                   <div>
                     <p className="text-white font-poppins font-semibold">
@@ -788,8 +788,8 @@ export default function PropertyManagement() {
                   </div>
                 </div>
                 <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-full bg-[#7e6725]/10 flex items-center justify-center">
-                    <Shield className="w-6 h-6 text-[#7e6725]" />
+                  <div className="w-12 h-12 rounded-full bg-[#ffffff]/10 flex items-center justify-center">
+                    <Shield className="w-6 h-6 text-[#ffffff]" />
                   </div>
                   <div>
                     <p className="text-white font-poppins font-semibold">
@@ -801,8 +801,8 @@ export default function PropertyManagement() {
                   </div>
                 </div>
                 <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-full bg-[#7e6725]/10 flex items-center justify-center">
-                    <Users className="w-6 h-6 text-[#7e6725]" />
+                  <div className="w-12 h-12 rounded-full bg-[#ffffff]/10 flex items-center justify-center">
+                    <Users className="w-6 h-6 text-[#ffffff]" />
                   </div>
                   <div>
                     <p className="text-white font-poppins font-semibold">
@@ -816,7 +816,7 @@ export default function PropertyManagement() {
               </div>
             </div>
 
-            <div className="bg-[#141414] rounded-xl p-8 border border-[#7e6725]/20">
+            <div className="bg-[#141414] rounded-xl p-8 border border-[#ffffff]/20">
               <h3 className="text-2xl font-gilroy font-bold text-white mb-6">
                 {t("contact.form.title")}
               </h3>
@@ -833,7 +833,7 @@ export default function PropertyManagement() {
                       onChange={(e) =>
                         setFormData({ ...formData, name: e.target.value })
                       }
-                      className="bg-[#0a0a0a] border-[#7e6725]/30 text-white focus:border-[#7e6725] placeholder:text-white/40"
+                      className="bg-[#0a0a0a] border-[#ffffff]/30 text-white focus:border-[#ffffff] placeholder:text-white/40"
                       placeholder={t("contact.form.placeholders.fullName")}
                     />
                   </div>
@@ -866,7 +866,7 @@ export default function PropertyManagement() {
                           }));
                         }
                       }}
-                      className={`bg-[#0a0a0a] border-[#7e6725]/30 text-white focus:border-[#7e6725] placeholder:text-white/40 ${errors.email ? "border-red-500" : ""}`}
+                      className={`bg-[#0a0a0a] border-[#ffffff]/30 text-white focus:border-[#ffffff] placeholder:text-white/40 ${errors.email ? "border-red-500" : ""}`}
                       placeholder={t("contact.form.placeholders.email")}
                     />
                     {errors.email && (
@@ -888,15 +888,15 @@ export default function PropertyManagement() {
                           setFormData({ ...formData, countryCode: value })
                         }
                       >
-                        <SelectTrigger className="w-[120px] bg-[#0a0a0a] border-[#7e6725]/30 text-white">
+                        <SelectTrigger className="w-[120px] bg-[#0a0a0a] border-[#ffffff]/30 text-white">
                           <SelectValue placeholder="+66" />
                         </SelectTrigger>
-                        <SelectContent className="bg-[#141414] border-[#7e6725]/30">
+                        <SelectContent className="bg-[#141414] border-[#ffffff]/30">
                           {COUNTRY_CODES.map((cc) => (
                             <SelectItem
                               key={cc.value}
                               value={cc.value}
-                              className="text-white hover:bg-[#7e6725]/20"
+                              className="text-white hover:bg-[#ffffff]/20"
                             >
                               {cc.code} {cc.country}
                             </SelectItem>
@@ -914,7 +914,7 @@ export default function PropertyManagement() {
                               phone: undefined,
                             }));
                         }}
-                        className={`flex-1 bg-[#0a0a0a] border-[#7e6725]/30 text-white focus:border-[#7e6725] placeholder:text-white/40 ${errors.phone ? "border-red-500" : ""}`}
+                        className={`flex-1 bg-[#0a0a0a] border-[#ffffff]/30 text-white focus:border-[#ffffff] placeholder:text-white/40 ${errors.phone ? "border-red-500" : ""}`}
                         placeholder={t("contact.form.placeholders.phone")}
                       />
                     </div>
@@ -938,7 +938,7 @@ export default function PropertyManagement() {
                           propertyLocation: e.target.value,
                         })
                       }
-                      className="bg-[#0a0a0a] border-[#7e6725]/30 text-white focus:border-[#7e6725] placeholder:text-white/40"
+                      className="bg-[#0a0a0a] border-[#ffffff]/30 text-white focus:border-[#ffffff] placeholder:text-white/40"
                       placeholder={t(
                         "contact.form.placeholders.propertyLocation",
                       )}
@@ -955,7 +955,7 @@ export default function PropertyManagement() {
                     onChange={(e) =>
                       setFormData({ ...formData, propertyType: e.target.value })
                     }
-                    className="bg-[#0a0a0a] border-[#7e6725]/30 text-white focus:border-[#7e6725] placeholder:text-white/40"
+                    className="bg-[#0a0a0a] border-[#ffffff]/30 text-white focus:border-[#ffffff] placeholder:text-white/40"
                     placeholder={t("contact.form.placeholders.propertyType")}
                   />
                 </div>
@@ -974,19 +974,19 @@ export default function PropertyManagement() {
                         })
                       }
                     >
-                      <SelectTrigger className="bg-[#0a0a0a] border-[#7e6725]/30 text-white">
+                      <SelectTrigger className="bg-[#0a0a0a] border-[#ffffff]/30 text-white">
                         <SelectValue
                           placeholder={t(
                             "contact.form.placeholders.contactMethod",
                           )}
                         />
                       </SelectTrigger>
-                      <SelectContent className="bg-[#141414] border-[#7e6725]/30">
+                      <SelectContent className="bg-[#141414] border-[#ffffff]/30">
                         {CONTACT_METHODS.map((method) => (
                           <SelectItem
                             key={method.value}
                             value={method.value}
-                            className="text-white hover:bg-[#7e6725]/20"
+                            className="text-white hover:bg-[#ffffff]/20"
                           >
                             {method.label}
                           </SelectItem>
@@ -1010,15 +1010,15 @@ export default function PropertyManagement() {
                             })
                           }
                         >
-                          <SelectTrigger className="w-[120px] bg-[#0a0a0a] border-[#7e6725]/30 text-white">
+                          <SelectTrigger className="w-[120px] bg-[#0a0a0a] border-[#ffffff]/30 text-white">
                             <SelectValue placeholder="+66" />
                           </SelectTrigger>
-                          <SelectContent className="bg-[#141414] border-[#7e6725]/30">
+                          <SelectContent className="bg-[#141414] border-[#ffffff]/30">
                             {COUNTRY_CODES.map((cc) => (
                               <SelectItem
                                 key={cc.value}
                                 value={cc.value}
-                                className="text-white hover:bg-[#7e6725]/20"
+                                className="text-white hover:bg-[#ffffff]/20"
                               >
                                 {cc.code} {cc.country}
                               </SelectItem>
@@ -1034,7 +1034,7 @@ export default function PropertyManagement() {
                               contactAddress: e.target.value,
                             })
                           }
-                          className="flex-1 bg-[#0a0a0a] border-[#7e6725]/30 text-white focus:border-[#7e6725] placeholder:text-white/40"
+                          className="flex-1 bg-[#0a0a0a] border-[#ffffff]/30 text-white focus:border-[#ffffff] placeholder:text-white/40"
                           placeholder={getContactPlaceholder()}
                         />
                       </div>
@@ -1048,7 +1048,7 @@ export default function PropertyManagement() {
                             contactAddress: e.target.value,
                           })
                         }
-                        className="bg-[#0a0a0a] border-[#7e6725]/30 text-white focus:border-[#7e6725] placeholder:text-white/40"
+                        className="bg-[#0a0a0a] border-[#ffffff]/30 text-white focus:border-[#ffffff] placeholder:text-white/40"
                         placeholder={getContactPlaceholder()}
                       />
                     )}
@@ -1064,17 +1064,17 @@ export default function PropertyManagement() {
                       setFormData({ ...formData, preferredContactTime: value })
                     }
                   >
-                    <SelectTrigger className="bg-[#0a0a0a] border-[#7e6725]/30 text-white">
+                    <SelectTrigger className="bg-[#0a0a0a] border-[#ffffff]/30 text-white">
                       <SelectValue
                         placeholder={t("contact.form.placeholders.contactTime")}
                       />
                     </SelectTrigger>
-                    <SelectContent className="bg-[#141414] border-[#7e6725]/30">
+                    <SelectContent className="bg-[#141414] border-[#ffffff]/30">
                       {CONTACT_TIMES.map((time) => (
                         <SelectItem
                           key={time.value}
                           value={time.value}
-                          className="text-white hover:bg-[#7e6725]/20"
+                          className="text-white hover:bg-[#ffffff]/20"
                         >
                           {time.label}
                         </SelectItem>
@@ -1091,7 +1091,7 @@ export default function PropertyManagement() {
                     onChange={(e) =>
                       setFormData({ ...formData, message: e.target.value })
                     }
-                    className="bg-[#0a0a0a] border-[#7e6725]/30 text-white focus:border-[#7e6725] placeholder:text-white/40 min-h-[120px]"
+                    className="bg-[#0a0a0a] border-[#ffffff]/30 text-white focus:border-[#ffffff] placeholder:text-white/40 min-h-[120px]"
                     placeholder={t(
                       "contact.form.placeholders.propertyDescription",
                     )}
@@ -1100,7 +1100,7 @@ export default function PropertyManagement() {
                 <Button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full bg-[#7e6725] hover:bg-[#6d5820] text-white font-poppins py-6 text-lg disabled:opacity-50"
+                  className="w-full bg-[#ffffff] hover:bg-[#6d5820] text-white font-poppins py-6 text-lg disabled:opacity-50"
                 >
                   {isSubmitting ? (
                     <>
@@ -1141,7 +1141,7 @@ export default function PropertyManagement() {
       <section className="py-24 bg-[#141414]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <p className="text-[#7e6725] text-sm font-poppins tracking-[0.3em] uppercase mb-4">
+            <p className="text-[#ffffff] text-sm font-poppins tracking-[0.3em] uppercase mb-4">
               {t("testimonials.subtitle")}
             </p>
             <h2 className="text-4xl font-gilroy font-bold text-white mb-6">
@@ -1155,13 +1155,13 @@ export default function PropertyManagement() {
             {testimonials.map((testimonial, index) => (
               <div
                 key={index}
-                className="bg-[#0a0a0a] rounded-xl p-8 border border-[#7e6725]/20"
+                className="bg-[#0a0a0a] rounded-xl p-8 border border-[#ffffff]/20"
               >
                 <div className="flex gap-1 mb-4">
                   {[...Array(testimonial.rating)].map((_, i) => (
                     <Star
                       key={i}
-                      className="w-5 h-5 text-[#7e6725] fill-[#7e6725]"
+                      className="w-5 h-5 text-[#ffffff] fill-[#ffffff]"
                     />
                   ))}
                 </div>
@@ -1186,7 +1186,7 @@ export default function PropertyManagement() {
       <section className="py-24 bg-[#0a0a0a]">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <p className="text-[#7e6725] text-sm font-poppins tracking-[0.3em] uppercase mb-4">
+            <p className="text-[#ffffff] text-sm font-poppins tracking-[0.3em] uppercase mb-4">
               {t("faq.subtitle")}
             </p>
             <h2 className="text-4xl font-gilroy font-bold text-white mb-6">
@@ -1197,17 +1197,17 @@ export default function PropertyManagement() {
             {faqs.map((faq, index) => (
               <div
                 key={index}
-                className="bg-[#141414] rounded-lg border border-[#7e6725]/20 overflow-hidden"
+                className="bg-[#141414] rounded-lg border border-[#ffffff]/20 overflow-hidden"
               >
                 <button
                   onClick={() => setOpenFaq(openFaq === index ? null : index)}
-                  className="w-full px-6 py-4 flex items-center justify-between text-left hover:bg-[#7e6725]/10 transition-colors"
+                  className="w-full px-6 py-4 flex items-center justify-between text-left hover:bg-[#ffffff]/10 transition-colors"
                 >
                   <span className="text-white font-poppins font-medium">
                     {faq.question}
                   </span>
                   <ChevronRight
-                    className={`w-5 h-5 text-[#7e6725] transform transition-transform ${openFaq === index ? "rotate-90" : ""}`}
+                    className={`w-5 h-5 text-[#ffffff] transform transition-transform ${openFaq === index ? "rotate-90" : ""}`}
                   />
                 </button>
                 {openFaq === index && (

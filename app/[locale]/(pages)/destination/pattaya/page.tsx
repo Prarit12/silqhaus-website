@@ -163,12 +163,12 @@ export default function DestinationPattaya() {
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12 sm:pb-16 w-full">
           <Link
             href="/destination"
-            className="inline-flex items-center gap-2 text-white/60 hover:text-[#7e6725] mb-4 sm:mb-6 transition-colors text-sm"
+            className="inline-flex items-center gap-2 text-white/60 hover:text-[#ffffff] mb-4 sm:mb-6 transition-colors text-sm"
           >
             <ArrowLeft className="w-4 h-4" />
             {t("backLink")}
           </Link>
-          <div className="flex items-center gap-2 text-[#7e6725] mb-2">
+          <div className="flex items-center gap-2 text-[#ffffff] mb-2">
             <MapPin className="w-4 h-4 sm:w-5 sm:h-5" />
             <span className="text-xs sm:text-sm font-medium uppercase tracking-wider font-poppins">
               {t("region")}
@@ -189,31 +189,31 @@ export default function DestinationPattaya() {
           <div className="flex items-center gap-4 sm:gap-6 py-3 sm:py-4 scrollbar-hide flex-wrap overflow-x-auto">
             <button
               onClick={() => scrollToSection("overview")}
-              className="text-white/60 hover:text-[#7e6725] text-sm font-poppins whitespace-nowrap transition-colors"
+              className="text-white/60 hover:text-[#ffffff] text-sm font-poppins whitespace-nowrap transition-colors"
             >
               {t("navOverview")}
             </button>
             <button
               onClick={() => scrollToSection("attractions")}
-              className="text-white/60 hover:text-[#7e6725] text-sm font-poppins whitespace-nowrap transition-colors"
+              className="text-white/60 hover:text-[#ffffff] text-sm font-poppins whitespace-nowrap transition-colors"
             >
               {t("navAttractions")}
             </button>
             <button
               onClick={() => scrollToSection("getting-there")}
-              className="text-white/60 hover:text-[#7e6725] text-sm font-poppins whitespace-nowrap transition-colors"
+              className="text-white/60 hover:text-[#ffffff] text-sm font-poppins whitespace-nowrap transition-colors"
             >
               {t("navGettingThere")}
             </button>
             <button
               onClick={() => scrollToSection("faq")}
-              className="text-white/60 hover:text-[#7e6725] text-sm font-poppins whitespace-nowrap transition-colors"
+              className="text-white/60 hover:text-[#ffffff] text-sm font-poppins whitespace-nowrap transition-colors"
             >
               {t("navFaq")}
             </button>
             <button
               onClick={goToProperties}
-              className="sm:ml-auto bg-[#7e6725] hover:bg-[#6d5820] text-white text-sm font-poppins px-4 py-2 rounded-lg transition-colors whitespace-nowrap w-full sm:w-auto"
+              className="sm:ml-auto bg-[#ffffff] hover:bg-[#6d5820] text-white text-sm font-poppins px-4 py-2 rounded-lg transition-colors whitespace-nowrap w-full sm:w-auto"
             >
               {t("viewProperties")}
             </button>
@@ -228,7 +228,7 @@ export default function DestinationPattaya() {
             <div>
               <h2 className="text-2xl sm:text-3xl font-gilroy font-bold mb-4 sm:mb-6">
                 {t("discoverTitle")}{" "}
-                <span className="text-[#7e6725]">{t("discoverHighlight")}</span>
+                <span className="text-[#ffffff]">{t("discoverHighlight")}</span>
               </h2>
               <div className="space-y-4 text-white/80 font-poppins font-light leading-relaxed">
                 <p>{t("discoverP1")}</p>
@@ -238,7 +238,7 @@ export default function DestinationPattaya() {
             </div>
             <div className="grid grid-cols-2 gap-3 sm:gap-4">
               <div className="bg-white/5 rounded-xl p-4 sm:p-6 border border-white/10">
-                <p className="text-[#7e6725] text-2xl sm:text-3xl font-gilroy font-bold">
+                <p className="text-[#ffffff] text-2xl sm:text-3xl font-gilroy font-bold">
                   {t("stat1Value")}
                 </p>
                 <p className="text-white/60 text-sm font-poppins mt-1">
@@ -246,7 +246,7 @@ export default function DestinationPattaya() {
                 </p>
               </div>
               <div className="bg-white/5 rounded-xl p-4 sm:p-6 border border-white/10">
-                <p className="text-[#7e6725] text-2xl sm:text-3xl font-gilroy font-bold">
+                <p className="text-[#ffffff] text-2xl sm:text-3xl font-gilroy font-bold">
                   {t("stat2Value")}
                 </p>
                 <p className="text-white/60 text-sm font-poppins mt-1">
@@ -254,7 +254,7 @@ export default function DestinationPattaya() {
                 </p>
               </div>
               <div className="bg-white/5 rounded-xl p-4 sm:p-6 border border-white/10">
-                <p className="text-[#7e6725] text-2xl sm:text-3xl font-gilroy font-bold">
+                <p className="text-[#ffffff] text-2xl sm:text-3xl font-gilroy font-bold">
                   {t("stat3Value")}
                 </p>
                 <p className="text-white/60 text-sm font-poppins mt-1">
@@ -262,7 +262,7 @@ export default function DestinationPattaya() {
                 </p>
               </div>
               <div className="bg-white/5 rounded-xl p-4 sm:p-6 border border-white/10">
-                <p className="text-[#7e6725] text-2xl sm:text-3xl font-gilroy font-bold">
+                <p className="text-[#ffffff] text-2xl sm:text-3xl font-gilroy font-bold">
                   {t("stat4Value")}
                 </p>
                 <p className="text-white/60 text-sm font-poppins mt-1">
@@ -282,7 +282,7 @@ export default function DestinationPattaya() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-2xl sm:text-3xl font-gilroy font-bold mb-2">
             {t("attractionsTitle")}{" "}
-            <span className="text-[#7e6725]">{t("attractionsHighlight")}</span>
+            <span className="text-[#ffffff]">{t("attractionsHighlight")}</span>
           </h2>
           <p className="text-white/60 font-poppins font-light mb-6 sm:mb-8">
             {t("attractionsSubtitle")}
@@ -304,7 +304,7 @@ export default function DestinationPattaya() {
                 <TabsTrigger
                   key={tab.value}
                   value={tab.value}
-                  className="px-4 py-2 text-sm font-poppins rounded-full border border-white/20 data-[state=active]:bg-[#7e6725] data-[state=active]:border-[#7e6725] data-[state=active]:text-white text-white/60 hover:text-white transition-colors"
+                  className="px-4 py-2 text-sm font-poppins rounded-full border border-white/20 data-[state=active]:bg-[#ffffff] data-[state=active]:border-[#ffffff] data-[state=active]:text-white text-white/60 hover:text-white transition-colors"
                 >
                   {t(tab.label)}
                 </TabsTrigger>
@@ -330,7 +330,7 @@ export default function DestinationPattaya() {
                               ? attraction.linkTh || attraction.linkEn || "#"
                               : attraction.linkEn || "#";
                           return (
-                            <div className="group bg-white/5 rounded-xl overflow-hidden border border-white/10 hover:border-[#7e6725]/40 transition-all duration-300">
+                            <div className="group bg-white/5 rounded-xl overflow-hidden border border-white/10 hover:border-[#ffffff]/40 transition-all duration-300">
                               <div className="aspect-[4/3] relative overflow-hidden">
                                 <Image
                                   src={attraction.image}
@@ -344,7 +344,7 @@ export default function DestinationPattaya() {
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                                 <div className="absolute bottom-3 left-3">
-                                  {/* <span className="text-[#7e6725] text-xs font-poppins uppercase tracking-wider"> */}
+                                  {/* <span className="text-[#ffffff] text-xs font-poppins uppercase tracking-wider"> */}
                                   <span className="text-white text-xs font-poppins uppercase tracking-wider">
                                     {categoryLabelMap[category]}
                                   </span>
@@ -364,7 +364,7 @@ export default function DestinationPattaya() {
 
                                 {link !== "#" && (
                                   <Link href={link} className="group" key={idx}>
-                                    <h3 className="text-[#7e6725] font-gilroy font-semibold mt-3 hover:underline cursor-pointer">
+                                    <h3 className="text-[#ffffff] font-gilroy font-semibold mt-3 hover:underline cursor-pointer">
                                       {t("readMore")}
                                     </h3>
                                   </Link>
@@ -395,10 +395,10 @@ export default function DestinationPattaya() {
         <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a0a] via-[#0a0a0a]/80 to-[#0a0a0a]" />
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center gap-3 mb-6">
-            <Plane className="w-6 h-6 text-[#7e6725]" />
+            <Plane className="w-6 h-6 text-[#ffffff]" />
             <h2 className="text-2xl sm:text-3xl font-gilroy font-bold">
               {t("gettingThereTitle")}{" "}
-              <span className="text-[#7e6725]">
+              <span className="text-[#ffffff]">
                 {t("gettingThereHighlight")}
               </span>
             </h2>
@@ -437,7 +437,7 @@ export default function DestinationPattaya() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-2xl sm:text-3xl font-gilroy font-bold mb-6 sm:mb-8 text-center">
             {t("faqTitle")}{" "}
-            <span className="text-[#7e6725]">{t("faqHighlight")}</span>
+            <span className="text-[#ffffff]">{t("faqHighlight")}</span>
           </h2>
           <div className="space-y-4">
             {faqs.map((faq, idx) => (
@@ -446,7 +446,7 @@ export default function DestinationPattaya() {
                 className="bg-white/5 rounded-xl p-5 sm:p-6 border border-white/10"
               >
                 <h3 className="text-base sm:text-lg font-gilroy font-semibold mb-2 flex items-start gap-3">
-                  <ChevronRight className="w-5 h-5 text-[#7e6725] flex-shrink-0 mt-0.5" />
+                  <ChevronRight className="w-5 h-5 text-[#ffffff] flex-shrink-0 mt-0.5" />
                   {faq.q}
                 </h3>
                 <p className="text-white/70 text-sm font-poppins font-light pl-8">
@@ -463,14 +463,14 @@ export default function DestinationPattaya() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-2xl sm:text-3xl font-gilroy font-bold mb-4">
             {t("ctaTitle")}{" "}
-            <span className="text-[#7e6725]">{t("ctaHighlight")}</span>?
+            <span className="text-[#ffffff]">{t("ctaHighlight")}</span>?
           </h2>
           <p className="text-white/70 font-poppins font-light mb-6 sm:mb-8 max-w-2xl mx-auto">
             {t("ctaSubtitle")}
           </p>
           <button
             onClick={goToProperties}
-            className="bg-[#7e6725] hover:bg-[#6d5820] text-white font-poppins px-8 py-4 rounded-lg transition-colors inline-flex items-center gap-2"
+            className="bg-[#ffffff] hover:bg-[#6d5820] text-white font-poppins px-8 py-4 rounded-lg transition-colors inline-flex items-center gap-2"
           >
             {t("ctaButton")}
             <ChevronRight className="w-5 h-5" />

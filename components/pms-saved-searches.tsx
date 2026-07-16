@@ -142,7 +142,7 @@ export function PMSSavedSearches({ side, filters }: PMSSavedSearchesProps) {
             setSaveOpen((v) => !v);
             setMenuOpen(false);
           }}
-          className="flex items-center gap-1.5 text-[12px] font-poppins font-medium px-3 py-1.5 rounded-full border border-white/15 text-white hover:border-[#7e6725]/70 transition-colors"
+          className="flex items-center gap-1.5 text-[12px] font-poppins font-medium px-3 py-1.5 rounded-full border border-white/15 text-white hover:border-[#ffffff]/70 transition-colors"
           data-testid="pms-saved-save-trigger"
         >
           <BookmarkPlus className="w-3.5 h-3.5" />
@@ -169,7 +169,7 @@ export function PMSSavedSearches({ side, filters }: PMSSavedSearchesProps) {
                 if (e.key === "Escape") setSaveOpen(false);
               }}
               placeholder={t("namePlaceholder")}
-              className="w-full bg-[#000000] border border-white/15 rounded-lg px-3 py-1.5 text-white text-[13px] font-poppins focus:outline-none focus:border-[#7e6725]"
+              className="w-full bg-[#000000] border border-white/15 rounded-lg px-3 py-1.5 text-white text-[13px] font-poppins focus:outline-none focus:border-[#ffffff]"
               data-testid="pms-saved-name-input"
               autoFocus
             />
@@ -184,7 +184,7 @@ export function PMSSavedSearches({ side, filters }: PMSSavedSearchesProps) {
               <button
                 type="button"
                 onClick={handleSave}
-                className="text-[12px] font-poppins font-medium text-white bg-[#7e6725] hover:bg-[#8c7429] px-3 py-1.5 rounded-full"
+                className="text-[12px] font-poppins font-medium text-white bg-[#ffffff] hover:bg-[#ffffff] px-3 py-1.5 rounded-full"
                 data-testid="pms-saved-save-confirm"
               >
                 {t("save")}
@@ -202,13 +202,13 @@ export function PMSSavedSearches({ side, filters }: PMSSavedSearchesProps) {
             setMenuOpen((v) => !v);
             setSaveOpen(false);
           }}
-          className="flex items-center gap-1.5 text-[12px] font-poppins font-medium px-3 py-1.5 rounded-full border border-white/15 text-white hover:border-[#7e6725]/70 transition-colors"
+          className="flex items-center gap-1.5 text-[12px] font-poppins font-medium px-3 py-1.5 rounded-full border border-white/15 text-white hover:border-[#ffffff]/70 transition-colors"
           data-testid="pms-saved-menu-trigger"
         >
           <Bookmark className="w-3.5 h-3.5" />
           <span className="hidden sm:inline">{t("savedSearches")}</span>
           {searches.length > 0 && (
-            <span className="inline-flex items-center justify-center min-w-[18px] h-[18px] px-1 rounded-full bg-[#7e6725] text-white text-[10px] font-bold leading-none">
+            <span className="inline-flex items-center justify-center min-w-[18px] h-[18px] px-1 rounded-full bg-[#ffffff] text-white text-[10px] font-bold leading-none">
               {searches.length}
             </span>
           )}
@@ -246,7 +246,7 @@ export function PMSSavedSearches({ side, filters }: PMSSavedSearchesProps) {
                               if (e.key === "Enter") handleRenameCommit();
                               if (e.key === "Escape") setRenamingId(null);
                             }}
-                            className="flex-1 bg-[#000000] border border-white/15 rounded-md px-2 py-1 text-white text-[12px] font-poppins focus:outline-none focus:border-[#7e6725]"
+                            className="flex-1 bg-[#000000] border border-white/15 rounded-md px-2 py-1 text-white text-[12px] font-poppins focus:outline-none focus:border-[#ffffff]"
                             autoFocus
                           />
                           <button
