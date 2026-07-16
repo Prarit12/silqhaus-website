@@ -13,25 +13,39 @@ const GROUPS: {
   rows: { key: string; vals: [number, number, number, number] }[];
 }[] = [
   {
-    title: "tech",
+    title: "guest",
     rows: [
       { key: "ai", vals: [1, 0, 0, 0] },
-      { key: "os", vals: [1, 0, 0, 0] },
-      { key: "photo", vals: [1, 0, 0, 0] },
-      { key: "portal", vals: [1, 0, 1, 0] },
-      { key: "revenue", vals: [1, 0, 1, 0] },
-      { key: "distribution", vals: [1, 1, 1, 0] },
-      { key: "aiFuture", vals: [1, 0, 0, 0] },
+      { key: "booking", vals: [1, 1, 1, 0] },
+      { key: "concierge", vals: [1, 1, 0, 0] },
+      { key: "checkin", vals: [1, 0, 1, 0] },
     ],
   },
   {
     title: "care",
     rows: [
       { key: "local", vals: [1, 1, 0, 0] },
-      { key: "ownerFirst", vals: [1, 0, 0, 1] },
-      { key: "guestCare", vals: [1, 0, 1, 0] },
+      { key: "photo", vals: [1, 0, 0, 0] },
+      { key: "housekeeping", vals: [1, 1, 1, 0] },
       { key: "safety", vals: [1, 0, 1, 0] },
-      { key: "transparency", vals: [1, 0, 1, 0] },
+    ],
+  },
+  {
+    title: "tech",
+    rows: [
+      { key: "os", vals: [1, 0, 0, 0] },
+      { key: "revenue", vals: [1, 0, 1, 0] },
+      { key: "distribution", vals: [1, 1, 1, 0] },
+      { key: "aiFuture", vals: [1, 0, 0, 0] },
+    ],
+  },
+  {
+    title: "owner",
+    rows: [
+      { key: "portal", vals: [1, 0, 1, 0] },
+      { key: "transparency", vals: [1, 0, 0, 1] },
+      { key: "ownerFirst", vals: [1, 0, 0, 1] },
+      { key: "directLine", vals: [1, 1, 0, 0] },
     ],
   },
 ];

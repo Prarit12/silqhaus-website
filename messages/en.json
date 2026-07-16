@@ -165,22 +165,28 @@
         "self": "Self-managed"
       },
       "groups": {
+        "guest": "Guest experience",
+        "care": "Hospitality & care",
         "tech": "Technology",
-        "care": "Hospitality & care"
+        "owner": "Owner communication"
       },
       "rows": {
-        "ai": "AI guest support, 24/7 in any language",
-        "os": "Software built in-house for your home",
+        "ai": "Instant AI guest replies, 24/7 in any language",
+        "booking": "Seamless booking across every channel",
+        "concierge": "Local concierge & experiences",
+        "checkin": "Smooth digital check-in",
+        "local": "Local team on the ground",
         "photo": "Every task photo-verified",
-        "portal": "Real-time owner portal & statements",
+        "housekeeping": "Dedicated housekeeping & maintenance",
+        "safety": "Complete care, safety & damage handling",
+        "os": "Software built in-house (Silqhaus OS)",
         "revenue": "Dynamic pricing & revenue management",
         "distribution": "Distribution across major channels",
         "aiFuture": "A stack built to evolve with AI",
-        "local": "Local team on the ground",
+        "portal": "Real-time owner portal & statements",
+        "transparency": "Full transparency, any time",
         "ownerFirst": "Owner-first, no conflicts of interest",
-        "guestCare": "24/7 multilingual guest care",
-        "safety": "Complete care, safety & damage handling",
-        "transparency": "Full transparency, any time"
+        "directLine": "A direct line to your local team"
       }
     },
     "stats": {
