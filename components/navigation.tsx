@@ -160,9 +160,9 @@ export default function Navigation() {
                 src="/logos/silqhaus-wordmark.png"
                 alt="Silqhaus"
                 width={767}
-                height={276}
+                height={291}
                 priority
-                className="h-5 sm:h-6 md:h-7 w-auto transition-opacity duration-300 hover:opacity-80"
+                className="h-6 sm:h-7 md:h-8 w-auto transition-opacity duration-300 hover:opacity-80"
               />
             </Link>
 
