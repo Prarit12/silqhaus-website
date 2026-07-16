@@ -183,6 +183,11 @@ export default function PmServices() {
             <span className="text-[21px] font-semibold tracking-tight text-white/80 transition-colors duration-300 hover:text-white">
               Vrbo
             </span>
+
+            {/* Trip.com */}
+            <span className="text-[21px] font-semibold tracking-tight text-white/80 transition-colors duration-300 hover:text-white">
+              Trip.com
+            </span>
           </div>
         </div>
       </div>
