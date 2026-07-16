@@ -125,7 +125,7 @@
       "steps": {
         "os": {
           "title": "Silqhaus OS",
-          "desc": "One operating system runs every property, task, booking, and payout — purpose-built for how we operate, not stitched together from tools that weren't."
+          "desc": "Off-the-shelf property software was never built for how we work, so we built our own. Silqhaus OS runs every property, task, booking, and payout in one place — the backbone that Mali, the staff app, and your owner portal all plug into. One system, one source of truth, tuned exactly to our operation."
         },
         "mali": {
           "title": "Mali, your 24/7 guest manager",
@@ -133,11 +133,11 @@
         },
         "staff": {
           "title": "Every task, photo-verified",
-          "desc": "Our staff app logs each job with before-and-after photos, timestamps, and the person who did it. Nothing happens at your home that isn't on the record."
+          "desc": "Every job your home needs — cleaning, maintenance, inspections — is logged in our staff app with before-and-after photos, timestamps, and the name of whoever did it. Nothing happens at your property that isn't on the record, so quality is verifiable, not just promised. You can see exactly what was done, and when."
         },
         "portal": {
           "title": "Your owner portal",
-          "desc": "Your calendar, statements, documents, and every task on your property — in one place, updated live, open to you anytime."
+          "desc": "Your calendar, statements, documents, and every task on your home live in one portal, updated in real time. No waiting on a monthly email or chasing us for an update — open it any time, from anywhere, and see exactly how your property is performing and being cared for. Full transparency, by default."
         }
       }
     },
