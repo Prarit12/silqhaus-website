@@ -462,24 +462,41 @@
       }
     },
     "testimonials": {
-      "subtitle": "TESTIMONIALS",
-      "title": "What Our Partners Say",
-      "description": "Don't just take our word for it. Hear from property owners who have transformed their rental business with Silqhaus.",
+      "subtitle": "Owner stories",
+      "title": "Trusted with homes across Thailand.",
+      "description": "A few words from the owners we work for.",
+      "prev": "Previous story",
+      "next": "Next story",
       "items": {
-        "testimonial1": {
-          "name": "Michael Chen",
-          "property": "Luxury Villa, Patong",
-          "quote": "Silqhaus transformed my rental income. Their attention to detail and professional approach exceeded all expectations. My villa is now consistently booked at premium rates."
+        "t1": {
+          "quote": "They treat my villa like it's their own home. Photos after every clean, and the statement arrives before I even think to ask.",
+          "name": "Nattaya S.",
+          "role": "Villa owner",
+          "location": "Bang Tao · Phuket"
         },
-        "testimonial2": {
-          "name": "Sarah Williams",
-          "property": "Beachfront Condo, Kata",
-          "quote": "As an overseas owner, I needed a team I could trust completely. Silqhaus handles everything seamlessly - from guest management to maintenance. Highly recommended."
+        "t2": {
+          "quote": "I'm eight time zones away, yet I always know exactly what's happening at my house. The owner portal changed everything.",
+          "name": "James W.",
+          "role": "Villa owner",
+          "location": "Pratumnak · Pattaya"
         },
-        "testimonial3": {
-          "name": "James Thompson",
-          "property": "Pool Villa, Kamala",
-          "quote": "The difference in bookings and revenue since partnering with Silqhaus has been remarkable. Their dynamic pricing strategy alone has increased my income by 40%."
+        "t3": {
+          "quote": "Guests message at midnight and get an answer in seconds. That level of care is what you're really paying for.",
+          "name": "Krit P.",
+          "role": "Owner of two villas",
+          "location": "Rawai · Phuket"
+        },
+        "t4": {
+          "quote": "The handover took a week, and I haven't worried since. A small team with huge attention to detail.",
+          "name": "Elena M.",
+          "role": "Villa owner",
+          "location": "Kamala · Phuket"
+        },
+        "t5": {
+          "quote": "Every job at my villa is logged with photos and a name. No surprises, no excuses — just a home that's genuinely looked after.",
+          "name": "Daniel C.",
+          "role": "Villa owner",
+          "location": "Jomtien · Pattaya"
         }
       }
     },

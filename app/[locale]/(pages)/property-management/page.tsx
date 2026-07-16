@@ -22,7 +22,6 @@ import {
   Headphones,
   ChevronRight,
   CheckCircle,
-  Star,
   BarChart3,
   MapPin,
   Percent,
@@ -51,6 +50,7 @@ import PmTechStack from "@/components/pm-tech-stack";
 import PmTeam from "@/components/pm-team";
 import PmComparison from "@/components/pm-comparison";
 import PmGuestExperience from "@/components/pm-guest-experience";
+import PmTestimonials from "@/components/pm-testimonials";
 import { useTranslations } from "next-intl";
 
 const EMAILJS_SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || "";
@@ -372,27 +372,6 @@ export default function PropertyManagement() {
     },
   ];
 
-  const testimonials = [
-    {
-      name: t("testimonials.items.testimonial1.name"),
-      property: t("testimonials.items.testimonial1.property"),
-      quote: t("testimonials.items.testimonial1.quote"),
-      rating: 5,
-    },
-    {
-      name: t("testimonials.items.testimonial2.name"),
-      property: t("testimonials.items.testimonial2.property"),
-      quote: t("testimonials.items.testimonial2.quote"),
-      rating: 5,
-    },
-    {
-      name: t("testimonials.items.testimonial3.name"),
-      property: t("testimonials.items.testimonial3.property"),
-      quote: t("testimonials.items.testimonial3.quote"),
-      rating: 5,
-    },
-  ];
-
   const faqs = [
     {
       question: t("faq.items.faq1.question"),
@@ -601,50 +580,8 @@ export default function PropertyManagement() {
       {/* Comparison — Silqhaus vs traditional / long-established / self-managed */}
       <PmComparison />
 
-      {/* Testimonials */}
-      <section className="py-24 bg-[#141414]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <p className="text-[#ffffff] text-sm font-poppins tracking-[0.3em] uppercase mb-4">
-              {t("testimonials.subtitle")}
-            </p>
-            <h2 className="text-4xl font-gilroy font-bold text-white mb-6">
-              {t("testimonials.title")}
-            </h2>
-            <p className="text-white/70 max-w-3xl mx-auto font-poppins leading-relaxed">
-              {t("testimonials.description")}
-            </p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {testimonials.map((testimonial, index) => (
-              <div
-                key={index}
-                className="bg-[#0a0a0a] rounded-xl p-8 border border-[#ffffff]/20"
-              >
-                <div className="flex gap-1 mb-4">
-                  {[...Array(testimonial.rating)].map((_, i) => (
-                    <Star
-                      key={i}
-                      className="w-5 h-5 text-[#ffffff] fill-[#ffffff]"
-                    />
-                  ))}
-                </div>
-                <p className="text-white/80 font-poppins leading-relaxed mb-6 italic">
-                  "{testimonial.quote}"
-                </p>
-                <div>
-                  <p className="text-white font-gilroy font-bold">
-                    {testimonial.name}
-                  </p>
-                  <p className="text-white/60 font-poppins text-sm">
-                    {testimonial.property}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* Testimonials — owner-story photo carousel */}
+      <PmTestimonials />
 
       {/* FAQ Section */}
       <section className="py-24 bg-[#0a0a0a]">
