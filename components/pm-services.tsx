@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useTranslations } from "next-intl";
+import CollapsibleSection from "@/components/collapsible-section";
 import {
   MessageSquare,
   TrendingUp,
@@ -67,19 +68,13 @@ export default function PmServices() {
   const t = useTranslations("propertyManagement.services");
 
   return (
-    <section className="bg-ink py-24 sm:py-28 md:py-32 border-t border-line">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-3xl mb-12 sm:mb-16">
-          <span className="eyebrow mb-5">{t("subtitle")}</span>
-          <h2 className="font-display text-white text-4xl sm:text-5xl md:text-6xl font-light leading-[1.05] tracking-tight normal-case text-balance mt-5">
-            {t("title")}
-          </h2>
-          <p className="text-white/60 mt-6 text-lg leading-relaxed">
-            {t("description")}
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
+    <CollapsibleSection
+      eyebrow={t("subtitle")}
+      title={t("title")}
+      intro={t("description")}
+      className="bg-ink"
+    >
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
           {SERVICES.map((s) => {
             return (
               <div
@@ -141,8 +136,7 @@ export default function PmServices() {
               </div>
             );
           })}
-        </div>
       </div>
-    </section>
+    </CollapsibleSection>
   );
 }

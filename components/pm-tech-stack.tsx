@@ -10,6 +10,7 @@ import {
   FileText,
   ClipboardList,
 } from "lucide-react";
+import CollapsibleSection from "@/components/collapsible-section";
 
 /** Single restrained data accent used inside the white product mockups. */
 const ACCENT = "#3d7bd6";
@@ -266,21 +267,14 @@ export default function PmTechStack() {
   ] as const;
 
   return (
-    <section className="bg-ink py-16 sm:py-20 md:py-24 border-t border-line">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Manifesto — compact, left-aligned */}
-        <div className="max-w-2xl mb-10 sm:mb-14">
-          <span className="eyebrow mb-4">{t("eyebrow")}</span>
-          <h2 className="font-display text-white text-3xl sm:text-4xl md:text-5xl font-light leading-[1.06] tracking-tight mt-5 normal-case text-balance">
-            {t("title")}
-          </h2>
-          <p className="text-white/60 mt-4 text-base sm:text-lg leading-relaxed">
-            {t("intro")}
-          </p>
-        </div>
-
-        {/* Compact 2×2 product cards */}
-        <div className="grid md:grid-cols-2 gap-5 lg:gap-6">
+    <CollapsibleSection
+      eyebrow={t("eyebrow")}
+      title={t("title")}
+      intro={t("intro")}
+      className="bg-ink"
+    >
+      {/* Compact 2×2 product cards */}
+      <div className="grid md:grid-cols-2 gap-5 lg:gap-6">
           {steps.map((s, i) => (
             <div
               key={s.key}
@@ -346,7 +340,6 @@ export default function PmTechStack() {
             ))}
           </div>
         </div>
-      </div>
-    </section>
+    </CollapsibleSection>
   );
 }

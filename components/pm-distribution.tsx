@@ -3,6 +3,7 @@
 import { useTranslations } from "next-intl";
 import AirbnbLogo from "@/components/logos/airbnb-logo";
 import VrboLogo from "@/components/logos/vrbo-logo";
+import CollapsibleSection from "@/components/collapsible-section";
 
 const PILLARS = ["reach", "paid", "convert"] as const;
 
@@ -10,21 +11,14 @@ export default function PmDistribution() {
   const t = useTranslations("propertyManagement.distribution");
 
   return (
-    <section className="bg-ink-2 py-24 sm:py-28 md:py-32 border-t border-line">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <div className="max-w-3xl mb-14 sm:mb-16">
-          <span className="eyebrow mb-5">{t("eyebrow")}</span>
-          <h2 className="font-display text-white text-4xl sm:text-5xl md:text-6xl font-light leading-[1.05] tracking-tight normal-case text-balance mt-5">
-            {t("title")}
-          </h2>
-          <p className="text-white/60 mt-6 text-lg leading-relaxed">
-            {t("intro")}
-          </p>
-        </div>
-
-        {/* Supporting pillars */}
-        <div className="mb-14 sm:mb-16 grid grid-cols-1 sm:grid-cols-3 gap-x-8 gap-y-10">
+    <CollapsibleSection
+      eyebrow={t("eyebrow")}
+      title={t("title")}
+      intro={t("intro")}
+      className="bg-ink-2"
+    >
+      {/* Supporting pillars */}
+      <div className="mb-14 sm:mb-16 grid grid-cols-1 sm:grid-cols-3 gap-x-8 gap-y-10">
           {PILLARS.map((k) => (
             <div key={k}>
               <h3 className="text-white font-semibold text-lg leading-snug tracking-tight text-balance">
@@ -109,7 +103,6 @@ export default function PmDistribution() {
             </span>
           </div>
         </div>
-      </div>
-    </section>
+    </CollapsibleSection>
   );
 }
