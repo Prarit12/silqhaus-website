@@ -17,10 +17,8 @@ export default async function HeroSection() {
       {/* Left-aligned headline + search bar (HomeToGo-style) */}
       <div className="relative z-30 w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-10">
         <div className="max-w-2xl">
-          <span className="eyebrow reveal-up">{t("eyebrow")}</span>
-
           <h1
-            className="mt-6 tracking-tight reveal-up"
+            className="tracking-tight reveal-up"
             style={{ animationDelay: "0.1s" }}
           >
             <span className="block font-normal text-white text-4xl sm:text-5xl md:text-6xl lg:text-[4.25rem] leading-[1.03]">
