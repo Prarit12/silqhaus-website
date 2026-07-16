@@ -38,6 +38,12 @@
         "search": "Search"
       }
     },
+    "bookDirect": {
+      "title": "Best rate guarantee when you book direct with us.",
+      "subtitle": "Guaranteed 10% off every stay you can book direct — leave us your email.",
+      "emailPlaceholder": "Email address",
+      "cta": "Talk to our staff"
+    },
     "guestFavorites": {
       "eyebrow": "Handpicked",
       "title": "Homes our guests love",

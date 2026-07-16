@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Link } from "@/i18n/navigation";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import HeroSection from "@/components/hero-section";
+import BookDirectBanner from "@/components/book-direct-banner";
 import GuestFavorites from "@/components/guest-favorites";
 import DestinationCovers from "@/components/destination-covers";
 import { OTASection } from "@/components/ota-section";
@@ -62,6 +63,7 @@ export default async function Home({
     <>
       <div className="min-h-screen bg-[#0d0d0d00]">
         <HeroSection />
+        <BookDirectBanner />
         <GuestFavorites />
         <OTASection />
         <DestinationCovers />
