@@ -141,6 +141,22 @@
         }
       }
     },
+    "team": {
+      "eyebrow": "Our people",
+      "title": "A local team, held to a national standard.",
+      "intro": "Our team is pure Thai — raised on, and forged by, the country's hospitality standards. Locally owned and operated means sharper service for owners and better stays for guests.",
+      "chips": {
+        "local": "On the ground in Phuket & Pattaya",
+        "trained": "Hospitality-school backgrounds",
+        "standard": "Thai national service standards"
+      },
+      "roles": {
+        "guest": "Guest Experience",
+        "housekeeping": "Housekeeping & Care",
+        "maintenance": "Maintenance",
+        "operations": "Villa Operations"
+      }
+    },
     "stats": {
       "revenueIncrease": {
         "stat": "35%",

@@ -45,6 +45,7 @@ import {
 } from "@/lib/country-codes";
 import Image from "next/image";
 import PmTechStack from "@/components/pm-tech-stack";
+import PmTeam from "@/components/pm-team";
 import { useTranslations } from "next-intl";
 
 const EMAILJS_SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || "";
@@ -576,6 +577,9 @@ export default function PropertyManagement() {
 
       {/* Tech Stack — Silqhaus OS, Mali, staff app, owner portal */}
       <PmTechStack />
+
+      {/* Local team — pure Thai, national standards, generated portraits */}
+      <PmTeam />
 
       {/* Services Section */}
       <section id="services" className="py-24 bg-black">
