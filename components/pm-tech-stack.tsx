@@ -14,6 +14,52 @@ import {
 /** Single restrained data accent used inside the white product mockups. */
 const ACCENT = "#3d7bd6";
 
+/* ── Third-party platforms that plug into Silqhaus OS ──
+   Monochrome wordmark lockups keep the strip on-brand; swap in official
+   SVG/PNG marks here later if desired. */
+const CONNECTORS = [
+  {
+    key: "pms",
+    logo: (
+      <span className="text-white text-[26px] font-semibold tracking-tight">
+        Guesty
+      </span>
+    ),
+  },
+  {
+    key: "pricing",
+    logo: (
+      <span className="text-white text-[26px] tracking-tight">
+        <span className="font-semibold">Price</span>
+        <span className="font-light">Labs</span>
+      </span>
+    ),
+  },
+  {
+    key: "data",
+    logo: (
+      <span className="text-white text-[26px] tracking-tight">
+        <span className="font-semibold">Air</span>
+        <span className="font-light tracking-[0.08em]">DNA</span>
+      </span>
+    ),
+  },
+  {
+    key: "marketing",
+    logo: (
+      <span className="flex items-center gap-2.5">
+        <span className="text-white text-xl font-semibold tracking-tight">
+          Meta
+        </span>
+        <span className="text-white/25 text-xl">·</span>
+        <span className="text-white text-xl font-semibold tracking-tight">
+          Google
+        </span>
+      </span>
+    ),
+  },
+] as const;
+
 /* ── Product mockup: Silqhaus OS operations dashboard ── */
 function CardOS() {
   const rows = [
@@ -272,6 +318,47 @@ export default function PmTechStack() {
               </div>
             </div>
           ))}
+        </div>
+
+        {/* Connectors — best-in-class third-party platforms that plug into the OS */}
+        <div className="mt-16 sm:mt-20 pt-12 sm:pt-14 border-t border-line">
+          <div className="flex flex-wrap items-end justify-between gap-x-8 gap-y-5 mb-9 sm:mb-11">
+            <div className="max-w-2xl">
+              <span className="eyebrow mb-4">{t("connectors.eyebrow")}</span>
+              <h3 className="font-display text-white text-2xl sm:text-3xl md:text-[2.5rem] font-light leading-[1.1] tracking-tight mt-4 normal-case text-balance">
+                {t("connectors.title")}
+              </h3>
+              <p className="text-white/60 mt-4 text-base sm:text-lg leading-relaxed">
+                {t("connectors.intro")}
+              </p>
+            </div>
+            <div className="inline-flex items-center gap-2 rounded-full border border-line px-4 py-2 text-sm text-white/70">
+              <span
+                className="w-1.5 h-1.5 rounded-full"
+                style={{ background: ACCENT }}
+              />
+              {t("connectors.badge")}
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
+            {CONNECTORS.map((c) => (
+              <div
+                key={c.key}
+                className="group flex flex-col rounded-2xl border border-line bg-white/[0.02] p-6 transition-colors duration-300 hover:bg-white/[0.045] hover:border-white/15"
+              >
+                <span className="text-[10.5px] font-medium uppercase tracking-[0.16em] text-white/40">
+                  {t(`connectors.items.${c.key}.category`)}
+                </span>
+                <div className="mt-5 mb-6 flex min-h-[40px] flex-1 items-center">
+                  {c.logo}
+                </div>
+                <p className="text-white/55 text-sm leading-relaxed">
+                  {t(`connectors.items.${c.key}.role`)}
+                </p>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>

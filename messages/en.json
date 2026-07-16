@@ -139,6 +139,30 @@
           "title": "Your owner portal",
           "desc": "Your calendar, statements, documents, and every task on your home live in one portal, updated in real time. No waiting on a monthly email or chasing us for an update — open it any time, from anywhere, and see exactly how your property is performing and being cared for. Full transparency, by default."
         }
+      },
+      "connectors": {
+        "eyebrow": "Connectors",
+        "title": "Best-in-class tools, plugged into one brain.",
+        "intro": "Silqhaus OS is the core we built. Around it, we connect proven third-party platforms — so every booking, price move, and market signal flows through one system instead of four disconnected logins.",
+        "badge": "Plugs into Silqhaus OS",
+        "items": {
+          "pms": {
+            "category": "Property management",
+            "role": "Keeps every channel, calendar, and reservation in perfect sync — the booking engine behind the OS."
+          },
+          "pricing": {
+            "category": "Dynamic pricing",
+            "role": "Reprices every night to real demand, local events, and booking pace — automatically, never by guesswork."
+          },
+          "data": {
+            "category": "Market data & comp set",
+            "role": "Benchmarks your villa against its true competitive set, so our calls are backed by the whole market."
+          },
+          "marketing": {
+            "category": "Marketing & reach",
+            "role": "Paid social, search, and SEO that put your home in front of the right guests, wherever they look."
+          }
+        }
       }
     },
     "team": {
