@@ -44,20 +44,6 @@ const CONNECTORS = [
       </span>
     ),
   },
-  {
-    key: "marketing",
-    logo: (
-      <span className="flex items-center gap-2.5">
-        <span className="text-white text-xl font-semibold tracking-tight">
-          Meta
-        </span>
-        <span className="text-white/25 text-xl">·</span>
-        <span className="text-white text-xl font-semibold tracking-tight">
-          Google
-        </span>
-      </span>
-    ),
-  },
 ] as const;
 
 /* ── Product mockup: Silqhaus OS operations dashboard ── */
@@ -341,7 +327,7 @@ export default function PmTechStack() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-5">
             {CONNECTORS.map((c) => (
               <div
                 key={c.key}

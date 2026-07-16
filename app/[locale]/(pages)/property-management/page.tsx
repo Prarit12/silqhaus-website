@@ -45,6 +45,7 @@ import {
 } from "@/lib/country-codes";
 import Image from "next/image";
 import PmServices from "@/components/pm-services";
+import PmDistribution from "@/components/pm-distribution";
 import PmTechStack from "@/components/pm-tech-stack";
 import PmTeam from "@/components/pm-team";
 import PmComparison from "@/components/pm-comparison";
@@ -580,6 +581,9 @@ export default function PropertyManagement() {
 
       {/* Services — what we do, each tagged with the tech behind it */}
       <PmServices />
+
+      {/* Marketing & Distribution — reach, paid marketing, and OTA platforms */}
+      <PmDistribution />
 
       {/* Tech Stack — Silqhaus OS, Mali, staff app, owner portal */}
       <PmTechStack />

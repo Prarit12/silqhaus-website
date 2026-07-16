@@ -157,13 +157,29 @@
           "data": {
             "category": "Market data & comp set",
             "role": "Benchmarks your villa against its true competitive set, so our calls are backed by the whole market."
-          },
-          "marketing": {
-            "category": "Marketing & reach",
-            "role": "Paid social, search, and SEO that put your home in front of the right guests, wherever they look."
           }
         }
       }
+    },
+    "distribution": {
+      "eyebrow": "Marketing & Distribution",
+      "title": "Seen everywhere guests book.",
+      "intro": "Brilliant management only pays off if travellers actually find your villa. We list it across every major platform, market it actively, and keep each listing sharp — so your calendar stays full.",
+      "pillars": {
+        "reach": {
+          "title": "Everywhere guests search",
+          "desc": "Listed and kept in perfect sync across every major booking platform — you never miss a channel, a market, or a booking."
+        },
+        "paid": {
+          "title": "Active paid marketing",
+          "desc": "Targeted Meta and Google campaigns put your home in front of travellers who are already planning their trip."
+        },
+        "convert": {
+          "title": "Built to convert",
+          "desc": "Professional photography, sharp listing copy, and continuous SEO turn views into confirmed stays."
+        }
+      },
+      "platformsTitle": "We advertise your home on the world's most competitive booking platforms"
     },
     "team": {
       "eyebrow": "Our people",
@@ -332,9 +348,6 @@
           "description": "Guest screening, damage handling, and local compliance — handled and tracked, for complete peace of mind.",
           "tag": "Tracked & handled"
         }
-      },
-      "distribution": {
-        "title": "We advertise your home on the world's most competitive booking platforms"
       }
     },
     "howItWorks": {
