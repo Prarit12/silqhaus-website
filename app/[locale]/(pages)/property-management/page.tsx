@@ -44,6 +44,7 @@ import {
   DEFAULT_COUNTRY_VALUE,
 } from "@/lib/country-codes";
 import Image from "next/image";
+import PmBridge from "@/components/pm-bridge";
 import PmServices from "@/components/pm-services";
 import PmDistribution from "@/components/pm-distribution";
 import PmTechStack from "@/components/pm-tech-stack";
@@ -579,6 +580,12 @@ export default function PropertyManagement() {
         </div>
       </section>
 
+      {/* Bridge — who Silqhaus is, and a cue that the chapters below open */}
+      <PmBridge />
+
+      {/* Our Promise — care philosophy, first chapter in the stack */}
+      <PmGuestExperience />
+
       {/* Services — what we do, each tagged with the tech behind it */}
       <PmServices />
 
@@ -593,11 +600,6 @@ export default function PropertyManagement() {
 
       {/* Comparison — Silqhaus vs traditional / long-established / self-managed */}
       <PmComparison />
-
-
-
-      {/* Our Guest Experience — how we care for guests */}
-      <PmGuestExperience />
 
       {/* Testimonials */}
       <section className="py-24 bg-[#141414]">

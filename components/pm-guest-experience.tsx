@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useTranslations } from "next-intl";
+import CollapsibleSection from "@/components/collapsible-section";
 
 // Reused imagery — the people and moments behind every stay.
 const ORBS = [
@@ -22,22 +23,17 @@ export default function PmGuestExperience() {
   const t = useTranslations("propertyManagement.guestExperience");
 
   return (
-    <section className="bg-ink-2 py-24 sm:py-28 md:py-32 border-t border-line overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-3xl mx-auto text-center">
-          <span className="eyebrow eyebrow--center mb-5">{t("eyebrow")}</span>
-          <h2 className="font-display text-white text-4xl sm:text-5xl md:text-6xl lg:text-[4rem] font-normal leading-[1.04] tracking-tight mt-6 normal-case text-balance">
-            {t("title")}
-          </h2>
-          <p className="text-white/60 mt-6 text-lg leading-relaxed">
-            {t.rich("intro", {
-              b: (chunks) => (
-                <strong className="font-semibold text-white">{chunks}</strong>
-              ),
-            })}
-          </p>
-        </div>
-
+    <CollapsibleSection
+      eyebrow={t("eyebrow")}
+      title={t("title")}
+      intro={t.rich("intro", {
+        b: (chunks) => (
+          <strong className="font-semibold text-white">{chunks}</strong>
+        ),
+      })}
+      className="bg-ink-2"
+    >
+      <div className="overflow-hidden">
         {/* Constellation of people & moments (desktop) */}
         <div className="relative mt-8 hidden lg:block h-[420px]">
           <svg
@@ -120,6 +116,6 @@ export default function PmGuestExperience() {
           ))}
         </div>
       </div>
-    </section>
+    </CollapsibleSection>
   );
 }

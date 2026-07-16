@@ -313,6 +313,11 @@
         }
       }
     },
+    "bridge": {
+      "eyebrow": "Meet Silqhaus",
+      "statement": "Silqhaus is a <b>small-by-design</b> villa operator in Phuket & Pattaya — fewer homes, hotel standards, and <b>technology we built ourselves</b>.",
+      "cue": "Here's how we do it — open any chapter below."
+    },
     "services": {
       "subtitle": "Our standard",
       "title": "Everything you'd expect — and the technology you wouldn't.",
