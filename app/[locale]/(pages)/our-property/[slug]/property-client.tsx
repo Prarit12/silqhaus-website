@@ -987,8 +987,8 @@ export default function PropertyDetails({
             calendarData.isLoading ||
             calendarData.calendar.length > 0) && (
             <div className="hidden md:block md:sticky md:top-6 md:h-fit">
-              <section className="bg-white rounded-lg border border-[var(--ink-detail)] shadow-lg">
-                <div className="bg-black rounded-t-lg p-4 border-b-2 border-[#ffffff]">
+              <section className="bg-ink-2 rounded-2xl border border-line shadow-2xl shadow-black/40 overflow-hidden">
+                <div className="bg-ink-2 p-5 border-b border-line">
                   <DateRangePicker
                     checkInDate={checkInDate}
                     checkOutDate={checkOutDate}
@@ -1146,7 +1146,7 @@ export default function PropertyDetails({
                 </div>
 
                 <div className="p-4">
-                  <p className="text-sm font-medium mb-3 text-gray-900">
+                  <p className="text-sm font-medium mb-3 text-white">
                     {t("priceComparison")}
                   </p>
                   <div className="relative mb-3 rounded-lg border border-[#ffffff] bg-[#ffffff]/10 px-3 py-2.5">
@@ -1162,7 +1162,7 @@ export default function PropertyDetails({
                   </div>
                   <div className="flex flex-col gap-2">
                     {/* Silqhaus Direct */}
-                    <div className="flex flex-col gap-2 p-3 rounded-lg border border-gray-200">
+                    <div className="flex flex-col gap-2 p-3.5 rounded-xl border border-line">
                       <div className="flex items-center gap-3">
                         <div className="flex items-center justify-center w-10 h-10 rounded-full bg-black overflow-hidden relative">
                           <Image
@@ -1174,7 +1174,7 @@ export default function PropertyDetails({
                           />
                         </div>
                         <div className="flex-1">
-                          <span className="text-sm font-medium text-gray-900">
+                          <span className="text-sm font-medium text-white">
                             {t("silqhausDirect")}
                           </span>
                           {pricingData.totalPrice > 0 && (
@@ -1197,7 +1197,7 @@ export default function PropertyDetails({
                               )}
                             </span>
                             {pricingData.nights > 0 && (
-                              <div className="text-[10px] text-gray-500">
+                              <div className="text-[10px] text-white/50">
                                 {formatPriceForDisplay(
                                   Math.round(
                                     calculateSilqhausPrice(
@@ -1224,7 +1224,7 @@ export default function PropertyDetails({
                           }
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="w-full py-2 bg-[#ffffff] text-white text-xs font-medium rounded-md text-center hover:bg-[#6b5620] transition-colors block"
+                          className="w-full py-2 bg-white text-ink text-xs font-semibold rounded-md text-center hover:bg-white/90 transition-colors block"
                           aria-label={t("bookOnSilqhaus")}
                         >
                           {t("bookNow")}
@@ -1233,13 +1233,13 @@ export default function PropertyDetails({
                     </div>
 
                     {property.airbnbListingUrl && (
-                      <div className="flex flex-col gap-2 p-3 rounded-lg border border-gray-200">
+                      <div className="flex flex-col gap-2 p-3.5 rounded-xl border border-line">
                         <div className="flex items-center gap-3">
                           <div className="flex items-center justify-center w-10 h-10 rounded-full bg-[#FF5A5F]">
                             <SiAirbnb className="w-5 h-5 text-white" />
                           </div>
                           <div className="flex-1">
-                            <span className="text-sm font-medium text-gray-900">
+                            <span className="text-sm font-medium text-white">
                               Airbnb
                             </span>
                             {pricingData.totalPrice > 0 &&
@@ -1283,7 +1283,7 @@ export default function PropertyDetails({
                                 )}
                               </span>
                               {pricingData.nights > 0 && (
-                                <div className="text-[10px] text-gray-500">
+                                <div className="text-[10px] text-white/50">
                                   {formatPriceForDisplay(
                                     Math.round(
                                       calculateOTAPrice(
@@ -1320,7 +1320,7 @@ export default function PropertyDetails({
                     )}
 
                     {property.bookingcomListingUrl && (
-                      <div className="flex flex-col gap-2 p-3 rounded-lg border border-gray-200">
+                      <div className="flex flex-col gap-2 p-3.5 rounded-xl border border-line">
                         <div className="flex items-center gap-3">
                           <div className="flex items-center justify-center w-10 h-10 rounded-full bg-[#003580]">
                             <span className="text-white font-bold text-[9px]">
@@ -1328,7 +1328,7 @@ export default function PropertyDetails({
                             </span>
                           </div>
                           <div className="flex-1">
-                            <span className="text-sm font-medium text-gray-900">
+                            <span className="text-sm font-medium text-white">
                               Booking.com
                             </span>
                             {pricingData.totalPrice > 0 &&
@@ -1372,7 +1372,7 @@ export default function PropertyDetails({
                                 )}
                               </span>
                               {pricingData.nights > 0 && (
-                                <div className="text-[10px] text-gray-500">
+                                <div className="text-[10px] text-white/50">
                                   {formatPriceForDisplay(
                                     Math.round(
                                       calculateOTAPrice(
@@ -1415,7 +1415,7 @@ export default function PropertyDetails({
                     )}
 
                     {property.vrboListingUrl && (
-                      <div className="flex flex-col gap-2 p-3 rounded-lg border border-gray-200">
+                      <div className="flex flex-col gap-2 p-3.5 rounded-xl border border-line">
                         <div className="flex items-center gap-3">
                           <div className="flex items-center justify-center w-10 h-10 rounded-full bg-[#3B5998]">
                             <span className="text-white font-bold text-xs">
@@ -1423,7 +1423,7 @@ export default function PropertyDetails({
                             </span>
                           </div>
                           <div className="flex-1">
-                            <span className="text-sm font-medium text-gray-900">
+                            <span className="text-sm font-medium text-white">
                               Vrbo
                             </span>
                             {pricingData.totalPrice > 0 &&
@@ -1467,7 +1467,7 @@ export default function PropertyDetails({
                                 )}
                               </span>
                               {pricingData.nights > 0 && (
-                                <div className="text-[10px] text-gray-500">
+                                <div className="text-[10px] text-white/50">
                                   {formatPriceForDisplay(
                                     Math.round(
                                       calculateOTAPrice(
@@ -1502,7 +1502,7 @@ export default function PropertyDetails({
                     )}
 
                     {property.expediaListingUrl && (
-                      <div className="flex flex-col gap-2 p-3 rounded-lg border border-gray-200">
+                      <div className="flex flex-col gap-2 p-3.5 rounded-xl border border-line">
                         <div className="flex items-center gap-3">
                           <div className="flex items-center justify-center w-10 h-10 rounded-full bg-[#FFCC00]">
                             <span className="text-[#1A1A1A] font-bold text-xs">
@@ -1510,7 +1510,7 @@ export default function PropertyDetails({
                             </span>
                           </div>
                           <div className="flex-1">
-                            <span className="text-sm font-medium text-gray-900">
+                            <span className="text-sm font-medium text-white">
                               Expedia
                             </span>
                             {pricingData.totalPrice > 0 &&
@@ -1554,7 +1554,7 @@ export default function PropertyDetails({
                                 )}
                               </span>
                               {pricingData.nights > 0 && (
-                                <div className="text-[10px] text-gray-500">
+                                <div className="text-[10px] text-white/50">
                                   {formatPriceForDisplay(
                                     Math.round(
                                       calculateOTAPrice(
@@ -1587,7 +1587,7 @@ export default function PropertyDetails({
                     )}
 
                     {property.tripcomListingUrl && (
-                      <div className="flex flex-col gap-2 p-3 rounded-lg border border-gray-200">
+                      <div className="flex flex-col gap-2 p-3.5 rounded-xl border border-line">
                         <div className="flex items-center gap-3">
                           <div className="flex items-center justify-center w-10 h-10 rounded-full bg-[#287DFA]">
                             <span className="text-white font-bold text-[10px]">
@@ -1595,7 +1595,7 @@ export default function PropertyDetails({
                             </span>
                           </div>
                           <div className="flex-1">
-                            <span className="text-sm font-medium text-gray-900">
+                            <span className="text-sm font-medium text-white">
                               Trip.com
                             </span>
                             {pricingData.totalPrice > 0 &&
@@ -1639,7 +1639,7 @@ export default function PropertyDetails({
                                 )}
                               </span>
                               {pricingData.nights > 0 && (
-                                <div className="text-[10px] text-gray-500">
+                                <div className="text-[10px] text-white/50">
                                   {formatPriceForDisplay(
                                     Math.round(
                                       calculateOTAPrice(
@@ -1829,8 +1829,8 @@ export default function PropertyDetails({
               id="mobile-booking-content"
               aria-hidden={!mobileBookingOpen}
             >
-              <section className="bg-white rounded-lg border border-[var(--ink-detail)] shadow-lg">
-                <div className="bg-black rounded-t-lg p-4 border-b-2 border-[#ffffff]">
+              <section className="bg-ink-2 rounded-2xl border border-line shadow-2xl shadow-black/40 overflow-hidden">
+                <div className="bg-ink-2 p-5 border-b border-line">
                   <DateRangePicker
                     checkInDate={checkInDate}
                     checkOutDate={checkOutDate}
@@ -1988,7 +1988,7 @@ export default function PropertyDetails({
                 </div>
 
                 <div className="p-4">
-                  <p className="text-sm font-medium mb-3 text-gray-900">
+                  <p className="text-sm font-medium mb-3 text-white">
                     {t("priceComparison")}
                   </p>
                   <div className="relative mb-3 rounded-lg border border-[#ffffff] bg-[#ffffff]/10 px-3 py-2.5">
@@ -2004,7 +2004,7 @@ export default function PropertyDetails({
                   </div>
                   <div className="flex flex-col gap-2">
                     {/* Silqhaus Direct */}
-                    <div className="flex flex-col gap-2 p-3 rounded-lg border border-gray-200">
+                    <div className="flex flex-col gap-2 p-3.5 rounded-xl border border-line">
                       <div className="flex items-center gap-3">
                         <div className="flex items-center justify-center w-10 h-10 rounded-full bg-black overflow-hidden relative">
                           <Image
@@ -2016,7 +2016,7 @@ export default function PropertyDetails({
                           />
                         </div>
                         <div className="flex-1">
-                          <span className="text-sm font-medium text-gray-900">
+                          <span className="text-sm font-medium text-white">
                             {t("silqhausDirect")}
                           </span>
                           {pricingData.totalPrice > 0 && (
@@ -2039,7 +2039,7 @@ export default function PropertyDetails({
                               )}
                             </span>
                             {pricingData.nights > 0 && (
-                              <div className="text-[10px] text-gray-500">
+                              <div className="text-[10px] text-white/50">
                                 {formatPriceForDisplay(
                                   Math.round(
                                     calculateSilqhausPrice(
@@ -2066,7 +2066,7 @@ export default function PropertyDetails({
                           }
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="w-full py-2 bg-[#ffffff] text-white text-xs font-medium rounded-md text-center hover:bg-[#6b5620] transition-colors block"
+                          className="w-full py-2 bg-white text-ink text-xs font-semibold rounded-md text-center hover:bg-white/90 transition-colors block"
                           aria-label={t("bookOnSilqhaus")}
                         >
                           {t("bookNow")}
@@ -2075,13 +2075,13 @@ export default function PropertyDetails({
                     </div>
 
                     {property.airbnbListingUrl && (
-                      <div className="flex flex-col gap-2 p-3 rounded-lg border border-gray-200">
+                      <div className="flex flex-col gap-2 p-3.5 rounded-xl border border-line">
                         <div className="flex items-center gap-3">
                           <div className="flex items-center justify-center w-10 h-10 rounded-full bg-[#FF5A5F]">
                             <SiAirbnb className="w-5 h-5 text-white" />
                           </div>
                           <div className="flex-1">
-                            <span className="text-sm font-medium text-gray-900">
+                            <span className="text-sm font-medium text-white">
                               Airbnb
                             </span>
                             {pricingData.totalPrice > 0 &&
@@ -2125,7 +2125,7 @@ export default function PropertyDetails({
                                 )}
                               </span>
                               {pricingData.nights > 0 && (
-                                <div className="text-[10px] text-gray-500">
+                                <div className="text-[10px] text-white/50">
                                   {formatPriceForDisplay(
                                     Math.round(
                                       calculateOTAPrice(
@@ -2162,7 +2162,7 @@ export default function PropertyDetails({
                     )}
 
                     {property.bookingcomListingUrl && (
-                      <div className="flex flex-col gap-2 p-3 rounded-lg border border-gray-200">
+                      <div className="flex flex-col gap-2 p-3.5 rounded-xl border border-line">
                         <div className="flex items-center gap-3">
                           <div className="flex items-center justify-center w-10 h-10 rounded-full bg-[#003580]">
                             <span className="text-white font-bold text-[9px]">
@@ -2170,7 +2170,7 @@ export default function PropertyDetails({
                             </span>
                           </div>
                           <div className="flex-1">
-                            <span className="text-sm font-medium text-gray-900">
+                            <span className="text-sm font-medium text-white">
                               Booking.com
                             </span>
                             {pricingData.totalPrice > 0 &&
@@ -2214,7 +2214,7 @@ export default function PropertyDetails({
                                 )}
                               </span>
                               {pricingData.nights > 0 && (
-                                <div className="text-[10px] text-gray-500">
+                                <div className="text-[10px] text-white/50">
                                   {formatPriceForDisplay(
                                     Math.round(
                                       calculateOTAPrice(
@@ -2257,7 +2257,7 @@ export default function PropertyDetails({
                     )}
 
                     {property.vrboListingUrl && (
-                      <div className="flex flex-col gap-2 p-3 rounded-lg border border-gray-200">
+                      <div className="flex flex-col gap-2 p-3.5 rounded-xl border border-line">
                         <div className="flex items-center gap-3">
                           <div className="flex items-center justify-center w-10 h-10 rounded-full bg-[#3B5998]">
                             <span className="text-white font-bold text-xs">
@@ -2265,7 +2265,7 @@ export default function PropertyDetails({
                             </span>
                           </div>
                           <div className="flex-1">
-                            <span className="text-sm font-medium text-gray-900">
+                            <span className="text-sm font-medium text-white">
                               Vrbo
                             </span>
                             {pricingData.totalPrice > 0 &&
@@ -2309,7 +2309,7 @@ export default function PropertyDetails({
                                 )}
                               </span>
                               {pricingData.nights > 0 && (
-                                <div className="text-[10px] text-gray-500">
+                                <div className="text-[10px] text-white/50">
                                   {formatPriceForDisplay(
                                     Math.round(
                                       calculateOTAPrice(
@@ -2344,7 +2344,7 @@ export default function PropertyDetails({
                     )}
 
                     {property.expediaListingUrl && (
-                      <div className="flex flex-col gap-2 p-3 rounded-lg border border-gray-200">
+                      <div className="flex flex-col gap-2 p-3.5 rounded-xl border border-line">
                         <div className="flex items-center gap-3">
                           <div className="flex items-center justify-center w-10 h-10 rounded-full bg-[#FFCC00]">
                             <span className="text-[#1A1A1A] font-bold text-xs">
@@ -2352,7 +2352,7 @@ export default function PropertyDetails({
                             </span>
                           </div>
                           <div className="flex-1">
-                            <span className="text-sm font-medium text-gray-900">
+                            <span className="text-sm font-medium text-white">
                               Expedia
                             </span>
                             {pricingData.totalPrice > 0 &&
@@ -2396,7 +2396,7 @@ export default function PropertyDetails({
                                 )}
                               </span>
                               {pricingData.nights > 0 && (
-                                <div className="text-[10px] text-gray-500">
+                                <div className="text-[10px] text-white/50">
                                   {formatPriceForDisplay(
                                     Math.round(
                                       calculateOTAPrice(
@@ -2429,7 +2429,7 @@ export default function PropertyDetails({
                     )}
 
                     {property.tripcomListingUrl && (
-                      <div className="flex flex-col gap-2 p-3 rounded-lg border border-gray-200">
+                      <div className="flex flex-col gap-2 p-3.5 rounded-xl border border-line">
                         <div className="flex items-center gap-3">
                           <div className="flex items-center justify-center w-10 h-10 rounded-full bg-[#287DFA]">
                             <span className="text-white font-bold text-[10px]">
@@ -2437,7 +2437,7 @@ export default function PropertyDetails({
                             </span>
                           </div>
                           <div className="flex-1">
-                            <span className="text-sm font-medium text-gray-900">
+                            <span className="text-sm font-medium text-white">
                               Trip.com
                             </span>
                             {pricingData.totalPrice > 0 &&
@@ -2481,7 +2481,7 @@ export default function PropertyDetails({
                                 )}
                               </span>
                               {pricingData.nights > 0 && (
-                                <div className="text-[10px] text-gray-500">
+                                <div className="text-[10px] text-white/50">
                                   {formatPriceForDisplay(
                                     Math.round(
                                       calculateOTAPrice(
