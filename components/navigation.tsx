@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import { Link, usePathname } from "@/i18n/navigation";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { useTranslations } from "next-intl";
@@ -147,12 +148,24 @@ export default function Navigation() {
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div
-            className={`flex items-center justify-end rounded-full h-12 md:h-14 px-2.5 md:px-3 transition-all duration-500 ${
+            className={`flex items-center justify-between rounded-full h-12 md:h-14 px-2.5 md:px-3 transition-all duration-500 ${
               isScrolled
                 ? "bg-ink/95 border border-line backdrop-blur-sm shadow-[0_10px_30px_rgba(0,0,0,0.45)]"
                 : "bg-black/20 border border-white/15 backdrop-blur-sm shadow-[0_8px_24px_rgba(0,0,0,0.15)]"
             }`}
           >
+            {/* Logo */}
+            <Link href="/" aria-label="Silqhaus home">
+              <Image
+                src="/logos/silqhaus-wordmark.png"
+                alt="Silqhaus"
+                width={767}
+                height={276}
+                priority
+                className="h-5 sm:h-6 md:h-7 w-auto transition-opacity duration-300 hover:opacity-80"
+              />
+            </Link>
+
             {/* Desktop Navigation */}
             <div className="hidden xl:flex items-center gap-4 md:gap-5">
               {navItems.map((item) => {
