@@ -267,7 +267,7 @@ export default function PmTechStack() {
                   </p>
                 </div>
               </div>
-              <div className="mt-auto rounded-xl bg-white/[0.03] border border-line p-4 sm:p-5">
+              <div className="mt-auto flex flex-col justify-center rounded-xl bg-white/[0.03] border border-line p-4 sm:p-5 h-[420px] sm:h-[452px]">
                 {s.card}
               </div>
             </div>
