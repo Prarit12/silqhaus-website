@@ -200,10 +200,11 @@
     "comparison": {
       "title": "The Silqhaus difference",
       "columns": {
-        "traditional": "Traditional agency",
-        "established": "Long-established PM",
+        "agency": "Real estate agency doing PM",
+        "traditional": "Traditional property management",
         "self": "Self-managed"
       },
+      "legend": "Varies from provider to provider — ask before you sign.",
       "groups": {
         "guest": "Guest experience",
         "care": "Hospitality & care",

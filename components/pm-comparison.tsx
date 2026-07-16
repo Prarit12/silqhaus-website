@@ -6,8 +6,9 @@ import { Check, X } from "lucide-react";
 
 const ACCENT = "#3d7bd6";
 
-const COLS = ["silqhaus", "traditional", "established", "self"] as const;
+const COLS = ["silqhaus", "agency", "traditional", "self"] as const;
 
+/** Cell states: 1 = yes, 0 = no, 2 = varies / unknown ("?"). */
 const GROUPS: {
   title: string;
   rows: { key: string; vals: [number, number, number, number] }[];
@@ -16,18 +17,18 @@ const GROUPS: {
     title: "guest",
     rows: [
       { key: "ai", vals: [1, 0, 0, 0] },
-      { key: "booking", vals: [1, 1, 1, 0] },
-      { key: "concierge", vals: [1, 1, 0, 0] },
-      { key: "checkin", vals: [1, 0, 1, 0] },
+      { key: "booking", vals: [1, 2, 1, 2] },
+      { key: "concierge", vals: [1, 0, 2, 0] },
+      { key: "checkin", vals: [1, 0, 2, 2] },
     ],
   },
   {
     title: "care",
     rows: [
-      { key: "local", vals: [1, 1, 0, 0] },
+      { key: "local", vals: [1, 1, 1, 2] },
       { key: "photo", vals: [1, 0, 0, 0] },
-      { key: "housekeeping", vals: [1, 1, 1, 0] },
-      { key: "safety", vals: [1, 0, 1, 0] },
+      { key: "housekeeping", vals: [1, 2, 1, 2] },
+      { key: "safety", vals: [1, 2, 1, 0] },
     ],
   },
   {
@@ -35,16 +36,16 @@ const GROUPS: {
     rows: [
       { key: "os", vals: [1, 0, 0, 0] },
       { key: "revenue", vals: [1, 0, 1, 0] },
-      { key: "distribution", vals: [1, 1, 1, 0] },
+      { key: "distribution", vals: [1, 2, 1, 2] },
       { key: "aiFuture", vals: [1, 0, 0, 0] },
     ],
   },
   {
     title: "owner",
     rows: [
-      { key: "portal", vals: [1, 0, 1, 0] },
-      { key: "transparency", vals: [1, 0, 0, 1] },
-      { key: "ownerFirst", vals: [1, 0, 0, 1] },
+      { key: "portal", vals: [1, 0, 2, 0] },
+      { key: "transparency", vals: [1, 0, 2, 1] },
+      { key: "ownerFirst", vals: [1, 0, 2, 1] },
       { key: "directLine", vals: [1, 1, 0, 0] },
     ],
   },
@@ -55,7 +56,7 @@ function Cell({ on, highlight }: { on: number; highlight?: boolean }) {
     <td
       className={`py-4 text-center ${highlight ? "bg-white/[0.04]" : ""}`}
     >
-      {on ? (
+      {on === 1 ? (
         <span
           className="inline-flex w-6 h-6 rounded-full items-center justify-center"
           style={{ background: highlight ? ACCENT : "rgba(255,255,255,0.9)" }}
@@ -64,6 +65,10 @@ function Cell({ on, highlight }: { on: number; highlight?: boolean }) {
             className={`w-3.5 h-3.5 ${highlight ? "text-white" : "text-ink"}`}
             strokeWidth={3}
           />
+        </span>
+      ) : on === 2 ? (
+        <span className="inline-flex w-6 h-6 rounded-full items-center justify-center bg-white/10 text-white/60 text-[13px] font-semibold leading-none">
+          ?
         </span>
       ) : (
         <X className="w-4 h-4 text-white/20 mx-auto" strokeWidth={2.5} />
@@ -135,6 +140,14 @@ export default function PmComparison() {
             </tbody>
           </table>
         </div>
+
+        {/* Legend for the "?" state */}
+        <p className="mt-8 flex items-center justify-center gap-2.5 text-sm text-white/45">
+          <span className="inline-flex w-5 h-5 shrink-0 rounded-full items-center justify-center bg-white/10 text-white/60 text-[11px] font-semibold leading-none">
+            ?
+          </span>
+          {t("legend")}
+        </p>
       </div>
     </section>
   );
