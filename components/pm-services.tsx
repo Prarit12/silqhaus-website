@@ -88,7 +88,7 @@ export default function PmServices() {
                   s.featured ? "sm:p-8" : ""
                 }`}
               >
-                {/* faint meaning-photo, desaturated + gradient so text stays crisp */}
+                {/* meaning-photo: faint by default, revealed in full colour on hover */}
                 <div
                   className="pointer-events-none absolute inset-0"
                   aria-hidden="true"
@@ -98,9 +98,12 @@ export default function PmServices() {
                     alt=""
                     fill
                     sizes="(max-width: 640px) 100vw, 33vw"
-                    className="object-cover object-center opacity-[0.13] grayscale transition-all duration-500 group-hover:opacity-[0.2] group-hover:scale-[1.03]"
+                    className="object-cover object-center opacity-[0.13] grayscale transition-all duration-500 ease-out group-hover:opacity-100 group-hover:grayscale-0 group-hover:scale-[1.04]"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/85 to-ink/55" />
+                  {/* default heavy scrim — keeps the card dark until hover */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/85 to-ink/55 transition-opacity duration-500 group-hover:opacity-0" />
+                  {/* hover scrim — light, so the photo shows through and text stays legible */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-black/10 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
                 </div>
                 {/* accent glow on hover */}
                 <div
