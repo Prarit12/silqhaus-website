@@ -38,6 +38,14 @@
         "search": "Search"
       }
     },
+    "guestFavorites": {
+      "eyebrow": "Handpicked",
+      "title": "Homes our guests love",
+      "badge": "Luxury",
+      "bedrooms": "bedrooms",
+      "baths": "baths",
+      "loading": "Loading stays…"
+    },
     "ota": {
       "asSeenOn": "As Seen On",
       "butIts": "But it's",

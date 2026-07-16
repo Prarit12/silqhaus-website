@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import { Link } from "@/i18n/navigation";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import HeroSection from "@/components/hero-section";
+import GuestFavorites from "@/components/guest-favorites";
 import DestinationCovers from "@/components/destination-covers";
-import PopularLocations from "@/components/popular-locations";
 import { OTASection } from "@/components/ota-section";
 // import newsletter from "@/components/newsletter";
 // import Newsletter from "@/components/newsletter";
@@ -62,9 +62,9 @@ export default async function Home({
     <>
       <div className="min-h-screen bg-[#0d0d0d00]">
         <HeroSection />
+        <GuestFavorites />
         <OTASection />
         <DestinationCovers />
-        <PopularLocations />
         {/* <NewsletterSection /> */}
         {/* CTA Banner */}
         <section className="relative py-16 sm:py-20 md:py-24 overflow-hidden">
