@@ -32,6 +32,10 @@ import {
   ClipboardCheck,
   Eye,
   X,
+  Mail,
+  Phone,
+  User,
+  MessageSquare,
 } from "lucide-react";
 import { SiAirbnb } from "react-icons/si";
 import {
@@ -68,6 +72,20 @@ export default function PropertyManagement() {
     "idle" | "success" | "error"
   >("idle");
   const [errors, setErrors] = useState<{ email?: string; phone?: string }>({});
+
+  // Hero quick-lead form (independent from the detailed contact form below).
+  const [lead, setLead] = useState({
+    address: "",
+    firstName: "",
+    lastName: "",
+    email: "",
+    phone: "",
+    message: "",
+  });
+  const [leadStatus, setLeadStatus] = useState<
+    "idle" | "submitting" | "success" | "error"
+  >("idle");
+  const [leadEmailError, setLeadEmailError] = useState<string | null>(null);
 
   useEffect(() => {
     if (submitStatus === "success" || submitStatus === "error") {
@@ -239,6 +257,58 @@ export default function PropertyManagement() {
     }
   };
 
+  const handleLeadSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (!validateEmail(lead.email)) {
+      setLeadEmailError(t("contact.validation.invalidEmail"));
+      return;
+    }
+    setLeadEmailError(null);
+    setLeadStatus("submitting");
+
+    const templateParams = {
+      name: `${lead.firstName} ${lead.lastName}`.trim() || "Not provided",
+      email: lead.email,
+      phone: lead.phone || "Not provided",
+      location: lead.address || "Not provided",
+      type: "Not specified",
+      description: lead.message || "Hero lead form",
+      preferred_contact_method: "Not specified",
+      contact_address: lead.email,
+      preferred_contact_time: "Not specified",
+    };
+
+    try {
+      await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        templateParams,
+        EMAILJS_PUBLIC_KEY,
+      );
+      if (
+        typeof window !== "undefined" &&
+        typeof (window as any).fbq === "function"
+      ) {
+        (window as any).fbq(
+          "trackCustom",
+          "PropertyManagementLeadFormSubmission",
+        );
+      }
+      setLeadStatus("success");
+      setLead({
+        address: "",
+        firstName: "",
+        lastName: "",
+        email: "",
+        phone: "",
+        message: "",
+      });
+    } catch (error) {
+      console.error("EmailJS error:", error);
+      setLeadStatus("error");
+    }
+  };
+
   const services = [
     {
       icon: Camera,
@@ -348,46 +418,156 @@ export default function PropertyManagement() {
   return (
     <main className="min-h-screen bg-[#0a0a0a]">
       {/* Hero Section */}
-      <section className="relative min-h-[80vh] flex items-center bg-[#0a0a0a]">
+      <section className="relative flex items-center bg-[#0a0a0a] min-h-[90vh] py-28 lg:py-32">
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: `url(/property-management/hero-2026.jpg)` }}
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a0a] via-[#0a0a0a]/90 to-[#0a0a0a]/70" />
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32">
-          <div className="max-w-3xl">
-            <p className="text-[#ffffff] text-sm font-poppins tracking-[0.3em] uppercase mb-6">
-              {t("hero.subtitle")}
-            </p>
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-gilroy font-bold text-white mb-8 leading-tight">
-              {t("hero.title")}
-            </h1>
-            <p className="text-xl text-white/80 font-poppins leading-relaxed mb-10">
-              {t("hero.description")}
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Button
-                className="bg-white text-ink hover:bg-white/90 font-poppins px-8 py-6 text-lg"
-                onClick={() =>
-                  document
-                    .getElementById("contact-form")
-                    ?.scrollIntoView({ behavior: "smooth" })
-                }
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a0a] via-[#0a0a0a]/85 to-[#0a0a0a]/55" />
+        <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-[1fr_minmax(0,460px)] gap-10 lg:gap-16 items-center">
+            {/* Pitch */}
+            <div className="max-w-xl">
+              <p className="text-white/70 text-xs sm:text-sm font-poppins tracking-[0.3em] uppercase mb-5">
+                {t("hero.subtitle")}
+              </p>
+              <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white leading-[1.05] tracking-tight">
+                {t("hero.title")}
+              </h1>
+              <p className="text-lg text-white/75 font-poppins leading-relaxed mt-6">
+                {t("hero.description")}
+              </p>
+              <div className="mt-7 flex items-center gap-2.5 text-white/80 text-sm font-poppins">
+                <CheckCircle className="w-4 h-4 text-white shrink-0" />
+                {t("hero.reassurance")}
+              </div>
+              <p className="mt-3 text-white/60 text-sm font-poppins">
+                {t("hero.callText")}{" "}
+                <a
+                  href={`tel:${process.env.NEXT_PUBLIC_CONTACT_PHONE_TEL}`}
+                  className="text-white underline underline-offset-2 hover:text-white/80"
+                >
+                  {process.env.NEXT_PUBLIC_CONTACT_PHONE}
+                </a>
+              </p>
+            </div>
+
+            {/* Lead form card */}
+            <div className="bg-white rounded-2xl p-6 sm:p-7 shadow-2xl shadow-black/50 ring-1 ring-black/5">
+              <h2 className="text-ink text-lg font-semibold normal-case tracking-normal">
+                {t("heroForm.title")}
+              </h2>
+              <p className="text-neutral-500 text-sm mt-1 mb-5 font-poppins">
+                {t("heroForm.subtitle")}
+              </p>
+              <form
+                onSubmit={handleLeadSubmit}
+                className="space-y-3 font-poppins"
               >
-                {t("hero.ctaPrimary")}
-                <ChevronRight className="w-5 h-5 ml-2" />
-              </Button>
-              <Button
-                variant="outline"
-                className="border-white/40 text-white hover:bg-white hover:text-ink font-poppins px-8 py-6 text-lg"
-                onClick={() =>
-                  document
-                    .getElementById("services")
-                    ?.scrollIntoView({ behavior: "smooth" })
-                }
-              >
-                {t("hero.ctaSecondary")}
-              </Button>
+                <div className="flex items-center gap-3 border border-neutral-300 rounded-lg px-4 py-3 focus-within:border-neutral-500 transition-colors">
+                  <MapPin className="w-5 h-5 text-neutral-400 shrink-0" />
+                  <input
+                    value={lead.address}
+                    onChange={(e) =>
+                      setLead((l) => ({ ...l, address: e.target.value }))
+                    }
+                    placeholder={t("heroForm.address")}
+                    className="w-full bg-transparent text-neutral-900 placeholder:text-neutral-500 outline-none text-[15px]"
+                  />
+                </div>
+                <div className="grid grid-cols-2 gap-3">
+                  <div className="flex items-center gap-3 border border-neutral-300 rounded-lg px-4 py-3 focus-within:border-neutral-500 transition-colors">
+                    <User className="w-5 h-5 text-neutral-400 shrink-0" />
+                    <input
+                      value={lead.firstName}
+                      onChange={(e) =>
+                        setLead((l) => ({ ...l, firstName: e.target.value }))
+                      }
+                      placeholder={t("heroForm.firstName")}
+                      className="w-full min-w-0 bg-transparent text-neutral-900 placeholder:text-neutral-500 outline-none text-[15px]"
+                    />
+                  </div>
+                  <div className="flex items-center gap-3 border border-neutral-300 rounded-lg px-4 py-3 focus-within:border-neutral-500 transition-colors">
+                    <User className="w-5 h-5 text-neutral-400 shrink-0" />
+                    <input
+                      value={lead.lastName}
+                      onChange={(e) =>
+                        setLead((l) => ({ ...l, lastName: e.target.value }))
+                      }
+                      placeholder={t("heroForm.lastName")}
+                      className="w-full min-w-0 bg-transparent text-neutral-900 placeholder:text-neutral-500 outline-none text-[15px]"
+                    />
+                  </div>
+                </div>
+                <div className="grid grid-cols-2 gap-3">
+                  <div className="flex items-center gap-3 border border-neutral-300 rounded-lg px-4 py-3 focus-within:border-neutral-500 transition-colors">
+                    <Mail className="w-5 h-5 text-neutral-400 shrink-0" />
+                    <input
+                      type="email"
+                      value={lead.email}
+                      onChange={(e) =>
+                        setLead((l) => ({ ...l, email: e.target.value }))
+                      }
+                      placeholder={t("heroForm.email")}
+                      className="w-full min-w-0 bg-transparent text-neutral-900 placeholder:text-neutral-500 outline-none text-[15px]"
+                    />
+                  </div>
+                  <div className="flex items-center gap-3 border border-neutral-300 rounded-lg px-4 py-3 focus-within:border-neutral-500 transition-colors">
+                    <Phone className="w-5 h-5 text-neutral-400 shrink-0" />
+                    <input
+                      type="tel"
+                      value={lead.phone}
+                      onChange={(e) =>
+                        setLead((l) => ({ ...l, phone: e.target.value }))
+                      }
+                      placeholder={t("heroForm.phone")}
+                      className="w-full min-w-0 bg-transparent text-neutral-900 placeholder:text-neutral-500 outline-none text-[15px]"
+                    />
+                  </div>
+                </div>
+                <div className="flex gap-3 border border-neutral-300 rounded-lg px-4 py-3 focus-within:border-neutral-500 transition-colors">
+                  <MessageSquare className="w-5 h-5 text-neutral-400 shrink-0 mt-0.5" />
+                  <textarea
+                    rows={3}
+                    value={lead.message}
+                    onChange={(e) =>
+                      setLead((l) => ({ ...l, message: e.target.value }))
+                    }
+                    placeholder={t("heroForm.message")}
+                    className="w-full bg-transparent text-neutral-900 placeholder:text-neutral-500 outline-none text-[15px] resize-none"
+                  />
+                </div>
+                {leadEmailError && (
+                  <p className="text-red-600 text-xs">{leadEmailError}</p>
+                )}
+                <button
+                  type="submit"
+                  disabled={leadStatus === "submitting"}
+                  className="w-full bg-ink text-white rounded-lg py-4 font-semibold text-[15px] hover:bg-neutral-800 transition-colors disabled:opacity-60 flex items-center justify-center gap-2"
+                >
+                  {leadStatus === "submitting" ? (
+                    <>
+                      <Loader2 className="w-4 h-4 animate-spin" />
+                      {t("heroForm.submitting")}
+                    </>
+                  ) : (
+                    t("heroForm.submit")
+                  )}
+                </button>
+                <p className="text-center text-neutral-500 text-xs">
+                  {t("heroForm.disclaimer")}
+                </p>
+                {leadStatus === "success" && (
+                  <p className="text-green-600 text-sm text-center">
+                    {t("heroForm.success")}
+                  </p>
+                )}
+                {leadStatus === "error" && (
+                  <p className="text-red-600 text-sm text-center">
+                    {t("heroForm.error")}
+                  </p>
+                )}
+              </form>
             </div>
           </div>
         </div>

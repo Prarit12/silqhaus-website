@@ -96,10 +96,27 @@
     },
     "hero": {
       "subtitle": "PROFESSIONAL PROPERTY MANAGEMENT",
-      "title": "Maximize Your Property's Potential",
-      "description": "Partner with Thailand's premier luxury property management company, specializing in property management in Phuket and Pattaya. We handle everything from guest acquisition to property maintenance, so you can enjoy effortless, hassle-free passive income.",
+      "title": "Vacation Rental Management",
+      "description": "Partner with a dedicated vacation rental management team across Phuket and Pattaya. From guest acquisition to on-the-ground maintenance, we handle everything — so you earn more with less effort.",
+      "reassurance": "No cost, no commitment — a free revenue estimate for your home.",
+      "callText": "Prefer to talk? Call or text us at",
       "ctaPrimary": "Get Free Consultation",
       "ctaSecondary": "Learn More"
+    },
+    "heroForm": {
+      "title": "Get your free revenue estimate",
+      "subtitle": "Tell us about your home and we'll be in touch.",
+      "address": "What's your property's address?",
+      "firstName": "First name",
+      "lastName": "Last name",
+      "email": "Email",
+      "phone": "Phone",
+      "message": "Tell us more about your home or paste a listing link",
+      "submit": "Get my free revenue estimate",
+      "submitting": "Sending…",
+      "disclaimer": "No cost, no commitment.",
+      "success": "Thanks! We'll be in touch shortly.",
+      "error": "Something went wrong. Please try again."
     },
     "stats": {
       "revenueIncrease": {
