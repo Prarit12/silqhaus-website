@@ -20,7 +20,6 @@ import {
   Camera,
   Calendar,
   Headphones,
-  ChevronRight,
   CheckCircle,
   BarChart3,
   MapPin,
@@ -51,6 +50,7 @@ import PmTeam from "@/components/pm-team";
 import PmComparison from "@/components/pm-comparison";
 import PmGuestExperience from "@/components/pm-guest-experience";
 import PmTestimonials from "@/components/pm-testimonials";
+import PmFaq from "@/components/pm-faq";
 import { useTranslations } from "next-intl";
 
 const EMAILJS_SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || "";
@@ -372,35 +372,6 @@ export default function PropertyManagement() {
     },
   ];
 
-  const faqs = [
-    {
-      question: t("faq.items.faq1.question"),
-      answer: t("faq.items.faq1.answer"),
-    },
-    {
-      question: t("faq.items.faq2.question"),
-      answer: t("faq.items.faq2.answer"),
-    },
-    {
-      question: t("faq.items.faq3.question"),
-      answer: t("faq.items.faq3.answer"),
-    },
-    {
-      question: t("faq.items.faq4.question"),
-      answer: t("faq.items.faq4.answer"),
-    },
-    {
-      question: t("faq.items.faq5.question"),
-      answer: t("faq.items.faq5.answer"),
-    },
-    {
-      question: t("faq.items.faq6.question"),
-      answer: t("faq.items.faq6.answer"),
-    },
-  ];
-
-  const [openFaq, setOpenFaq] = useState<number | null>(null);
-
   return (
     <main className="min-h-screen bg-[#0a0a0a]">
       {/* Hero Section */}
@@ -583,46 +554,8 @@ export default function PropertyManagement() {
       {/* Testimonials — owner-story photo carousel */}
       <PmTestimonials />
 
-      {/* FAQ Section */}
-      <section className="py-24 bg-[#0a0a0a]">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <p className="text-[#ffffff] text-sm font-poppins tracking-[0.3em] uppercase mb-4">
-              {t("faq.subtitle")}
-            </p>
-            <h2 className="text-4xl font-gilroy font-bold text-white mb-6">
-              {t("faq.title")}
-            </h2>
-          </div>
-          <div className="space-y-4">
-            {faqs.map((faq, index) => (
-              <div
-                key={index}
-                className="bg-[#141414] rounded-lg border border-[#ffffff]/20 overflow-hidden"
-              >
-                <button
-                  onClick={() => setOpenFaq(openFaq === index ? null : index)}
-                  className="w-full px-6 py-4 flex items-center justify-between text-left hover:bg-[#ffffff]/10 transition-colors"
-                >
-                  <span className="text-white font-poppins font-medium">
-                    {faq.question}
-                  </span>
-                  <ChevronRight
-                    className={`w-5 h-5 text-[#ffffff] transform transition-transform ${openFaq === index ? "rotate-90" : ""}`}
-                  />
-                </button>
-                {openFaq === index && (
-                  <div className="px-6 pb-4">
-                    <p className="text-white/70 font-poppins leading-relaxed">
-                      {faq.answer}
-                    </p>
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* FAQ — categorized, masonry, expandable */}
+      <PmFaq />
     </main>
   );
 }

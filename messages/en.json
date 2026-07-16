@@ -502,32 +502,137 @@
       }
     },
     "faq": {
-      "subtitle": "FAQ",
-      "title": "Frequently Asked Questions",
-      "items": {
-        "faq1": {
-          "question": "What types of properties do you manage?",
-          "answer": "We specialize in luxury short-term rentals including villas, condominiums, apartments, and boutique properties across Thailand. Our focus is on premium properties that attract discerning travelers."
+      "title": "Your questions, answered honestly.",
+      "description": "The things owners actually ask us — fees, care, technology, and getting started. If yours isn't here, call and a real person will answer.",
+      "contact": "Talk to us",
+      "seeAll": "See all questions",
+      "showLess": "Show fewer",
+      "tabs": {
+        "fees": "Fees & payouts",
+        "start": "Getting started",
+        "care": "Care & operations",
+        "tech": "Technology & booking"
+      },
+      "categories": {
+        "fees": {
+          "q1": {
+            "q": "How much does Silqhaus charge?",
+            "a": "Two plans, one simple rule — we only earn when you do. Revenue & Marketing management is 10% of rental revenue: we run your pricing, marketing, listings, and guest bookings while your own team cares for the home. Full property management is 25%: we run everything, end to end."
+          },
+          "q2": {
+            "q": "What's the difference between the two plans?",
+            "a": "With the 10% plan you keep your own on-the-ground staff and we bring the demand — dynamic pricing, distribution across every major platform, marketing, and 24/7 guest communication. The 25% plan adds complete care of the home itself: housekeeping, maintenance, inspections, and compliance, all photo-verified."
+          },
+          "q3": {
+            "q": "Are there any setup or hidden fees?",
+            "a": "No setup fee, no monthly retainer, no surprise charges. Our commission is performance-based — if your villa doesn't earn, we don't either."
+          },
+          "q4": {
+            "q": "When and how do I get paid?",
+            "a": "Statements close at month-end and payouts land in your account between the 1st and 5th of the following month. Every line is visible in your owner portal long before the statement arrives."
+          },
+          "q5": {
+            "q": "Who pays for repairs and supplies?",
+            "a": "Owners cover materials and third-party costs at cost — no markups. Every job is logged with photos and receipts in your portal, and anything beyond an agreed threshold is approved by you first."
+          },
+          "q6": {
+            "q": "Do I pay anything when the calendar is empty?",
+            "a": "No. We charge a percentage of actual rental revenue — an empty month costs you nothing."
+          },
+          "q7": {
+            "q": "Can I switch plans later?",
+            "a": "Yes. Many owners start with Revenue & Marketing at 10% and move to full management at 25% once they've seen how we work. Switching is a conversation, not a contract fight."
+          }
         },
-        "faq2": {
-          "question": "How do you handle guest screening?",
-          "answer": "We implement a thorough vetting process including ID verification, previous guest reviews, and communication assessment. This ensures your property is occupied by respectful guests who will treat your home with care."
+        "start": {
+          "q1": {
+            "q": "How do I get started?",
+            "a": "Ask for a free revenue estimate — no cost, no commitment. If the numbers make sense, we visit your villa, agree a plan, and have you listed and earning within about a week: photography, listings, pricing, everything."
+          },
+          "q2": {
+            "q": "Which areas do you cover?",
+            "a": "Phuket and Pattaya today, with expansion across Thailand underway. If your villa is elsewhere in the country, talk to us — we may be closer than you think."
+          },
+          "q3": {
+            "q": "My villa has never been rented — can you set it up from zero?",
+            "a": "Yes. We handle professional photography, listing copy, amenity setup, pricing, and guidance through local licensing requirements — from empty house to first booking."
+          },
+          "q4": {
+            "q": "Can I still use my villa myself?",
+            "a": "Of course — it's your home. Block any dates you want in the owner portal, and we'll work bookings around your stays."
+          },
+          "q5": {
+            "q": "Do you accept every villa?",
+            "a": "No — we're small by design. We assess every home first, because our promise is to run a few villas brilliantly rather than many badly."
+          },
+          "q6": {
+            "q": "How long is the contract?",
+            "a": "Flexible terms with a fair notice period, not a multi-year lock-in. We'd rather keep you with results than with paperwork."
+          },
+          "q7": {
+            "q": "I live abroad — is that a problem?",
+            "a": "Most of our owners do. The portal keeps you connected in real time from anywhere, payouts arrive wherever you bank, and nothing about your home requires you to be in Thailand."
+          }
         },
-        "faq3": {
-          "question": "What are your management fees?",
-          "answer": "Our fees are performance-based, typically ranging from 10-25% of rental income depending on the property type and services required. We only succeed when you succeed - there are no hidden charges."
+        "care": {
+          "q1": {
+            "q": "How do you keep my home in top condition?",
+            "a": "Every job — cleaning, maintenance, inspections — is logged in our staff app with before-and-after photos, timestamps, and the name of who did it. Quality is verifiable, not just promised."
+          },
+          "q2": {
+            "q": "Who looks after my guests?",
+            "a": "Mali, our AI guest manager, answers instantly 24/7 in any language — and our Thai team on the ground handles everything a screen can't, with hotel standards."
+          },
+          "q3": {
+            "q": "What happens if a guest damages something?",
+            "a": "We document everything, claim through the booking platform's damage protection or the deposit, and manage the repair ourselves. You see the full record — photos, costs, and resolution — in your portal."
+          },
+          "q4": {
+            "q": "How do you screen guests?",
+            "a": "Verified profiles, booking-platform history, clear house rules, and deposits where appropriate. Bad fits are declined before they ever check in."
+          },
+          "q5": {
+            "q": "Do you handle cleaning and laundry?",
+            "a": "Yes — dedicated housekeeping with hotel-grade turnover between every stay, photo-verified so nothing is missed."
+          },
+          "q6": {
+            "q": "What about the pool and garden?",
+            "a": "Scheduled vendor visits, tracked like every other task — skimmed, tested, trimmed, and logged with photos."
+          },
+          "q7": {
+            "q": "Do you handle legal compliance?",
+            "a": "We guide you through local licensing and reporting requirements and keep the paperwork tracked — handled and documented, for complete peace of mind."
+          }
         },
-        "faq4": {
-          "question": "How quickly can you start managing my property?",
-          "answer": "Once you decide to partner with us, we can have your property listed and ready for bookings within 7 days on average. This includes professional photography, listing optimization, and pricing strategy setup."
-        },
-        "faq5": {
-          "question": "Can I still use my property when I want?",
-          "answer": "Absolutely. You maintain full control of your calendar and can block dates for personal use anytime. We simply work around your schedule to maximize bookings during available periods."
-        },
-        "faq6": {
-          "question": "How do I receive my passive income?",
-          "answer": "We provide clear monthly statements with detailed breakdowns. Payouts are processed at month-end and deposited between the 1st and 5th of the following month to your preferred bank account."
+        "tech": {
+          "q1": {
+            "q": "Where will my villa be listed?",
+            "a": "Everywhere guests actually book: Airbnb, Booking.com, Expedia, Agoda, Vrbo, Trip.com, and direct through silqhaus.com — all synced in real time so double bookings can't happen."
+          },
+          "q2": {
+            "q": "How do you price my nights?",
+            "a": "Dynamic pricing repriced every night against real demand, local events, and your true competitive set — data from PriceLabs and AirDNA, sharpened by our local judgment. Never guesswork."
+          },
+          "q3": {
+            "q": "What is Silqhaus OS?",
+            "a": "The operating system we built ourselves. It runs every property, task, booking, and payout in one place — the backbone that Mali, the staff app, and your owner portal plug into."
+          },
+          "q4": {
+            "q": "What can I see in my owner portal?",
+            "a": "Your calendar, statements, documents, and every task on your home — updated in real time, open to you any hour, from anywhere."
+          },
+          "q5": {
+            "q": "What exactly is Mali?",
+            "a": "Our AI guest manager with a memory. Before every reply she reads the whole conversation, then checks your property's facts in our database — so guests get instant, correct answers in any language, at any hour."
+          },
+          "q6": {
+            "q": "How do bookings stay in sync across platforms?",
+            "a": "Our PMS keeps every channel's calendar and rates aligned to the minute. One booking anywhere closes those dates everywhere."
+          },
+          "q7": {
+            "q": "Why does the technology matter to me as an owner?",
+            "a": "Fewer mistakes, faster replies, and full transparency. Software carries the routine so our people can spend their time on what actually needs a human — your home and your guests."
+          }
         }
       }
     }
