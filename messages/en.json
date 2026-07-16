@@ -189,6 +189,33 @@
         "directLine": "A direct line to your local team"
       }
     },
+    "guestExperience": {
+      "eyebrow": "Guest experience",
+      "title": "We don't just manage homes — we host.",
+      "intro": "Property management is a people business. How we treat your guests is how your home earns its reputation — so we obsess over every stay.",
+      "points": {
+        "reply": {
+          "title": "We treat our inbox like sales",
+          "desc": "Every guest message gets a reply within 5 minutes — day, night, any timezone. A fast answer is the difference between a booking and a bounce, and a question and a complaint."
+        },
+        "flex": {
+          "title": "We flex to the guest",
+          "desc": "Early check-in, a stocked fridge, a late checkout, a hard-to-find tip — guest needs shift, and because we're local, we can actually say yes."
+        },
+        "vendors": {
+          "title": "Our local black book",
+          "desc": "Private chef, boat charter, in-villa spa, airport transfer — whatever a guest asks for, we connect them to the right trusted local vendor, instantly."
+        },
+        "anticipate": {
+          "title": "We get ahead of it",
+          "desc": "Pre-arrival check-ins, a welcome that fits the occasion, and a quiet fix before a small issue ever becomes a bad review."
+        },
+        "onground": {
+          "title": "Always on the ground",
+          "desc": "A real local team minutes away means help arrives in person when it matters — never a call centre a timezone away."
+        }
+      }
+    },
     "stats": {
       "revenueIncrease": {
         "stat": "35%",

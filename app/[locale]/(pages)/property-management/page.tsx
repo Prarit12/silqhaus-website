@@ -48,6 +48,7 @@ import PmServices from "@/components/pm-services";
 import PmTechStack from "@/components/pm-tech-stack";
 import PmTeam from "@/components/pm-team";
 import PmComparison from "@/components/pm-comparison";
+import PmGuestExperience from "@/components/pm-guest-experience";
 import { useTranslations } from "next-intl";
 
 const EMAILJS_SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || "";
@@ -967,6 +968,9 @@ export default function PropertyManagement() {
           </div>
         </div>
       </section>
+
+      {/* Our Guest Experience — how we care for guests */}
+      <PmGuestExperience />
 
       {/* Testimonials */}
       <section className="py-24 bg-[#141414]">
