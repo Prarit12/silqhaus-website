@@ -198,19 +198,36 @@ export default function PmServices() {
               </span>
             </span>
 
-            {/* Agoda */}
-            <span className="text-[21px] font-bold lowercase tracking-tight text-white/80 transition-colors duration-300 hover:text-white">
-              agoda
+            {/* Agoda — light wordmark + signature five-dot row */}
+            <span className="inline-flex flex-col items-center gap-[5px] text-white/80 transition-colors duration-300 hover:text-white">
+              <span className="text-[21px] font-normal lowercase leading-none tracking-[0.01em]">
+                agoda
+              </span>
+              <span className="flex items-center gap-[5px]" aria-hidden="true">
+                <span className="h-[5px] w-[5px] rounded-full bg-current" />
+                <span className="h-[5px] w-[5px] rounded-full bg-current" />
+                <span className="h-[5px] w-[5px] rounded-full bg-current" />
+                <span className="h-[5px] w-[5px] rounded-full bg-current" />
+                <span className="h-[5px] w-[5px] rounded-full bg-current" />
+              </span>
             </span>
 
-            {/* Vrbo */}
-            <span className="text-[21px] font-semibold tracking-tight text-white/80 transition-colors duration-300 hover:text-white">
+            {/* Vrbo — serif-italic wordmark */}
+            <span
+              className="text-[24px] italic leading-none tracking-tight text-white/80 transition-colors duration-300 hover:text-white"
+              style={{
+                fontFamily: "'Didot', 'Bodoni MT', 'Playfair Display', Georgia, serif",
+                fontWeight: 600,
+              }}
+            >
               Vrbo
             </span>
 
-            {/* Trip.com */}
-            <span className="text-[21px] font-semibold tracking-tight text-white/80 transition-colors duration-300 hover:text-white">
-              Trip.com
+            {/* Trip.com — bold wordmark with round dot */}
+            <span className="inline-flex items-center text-[21px] font-bold tracking-tight text-white/80 transition-colors duration-300 hover:text-white">
+              Trip
+              <span className="mx-[2px] inline-block h-[6px] w-[6px] translate-y-[5px] rounded-full bg-current" />
+              com
             </span>
           </div>
         </div>
