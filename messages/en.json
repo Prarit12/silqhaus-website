@@ -28,7 +28,13 @@
       "brand": "SILQHAUS",
       "eyebrow": "Luxury Villas · Phuket & Pattaya",
       "headline": "Exceptional Stays, Extraordinary Experiences",
-      "cta": "Book Your Stay"
+      "cta": "Book Your Stay",
+      "search": {
+        "whereTo": "Where to?",
+        "anytime": "Anytime",
+        "guests": "Guests",
+        "search": "Search"
+      }
     },
     "ota": {
       "asSeenOn": "As Seen On",
