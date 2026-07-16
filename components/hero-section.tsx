@@ -23,10 +23,10 @@ export default async function HeroSection() {
             className="mt-6 tracking-tight reveal-up"
             style={{ animationDelay: "0.1s" }}
           >
-            <span className="block font-extrabold text-white text-4xl sm:text-5xl md:text-6xl lg:text-[4.25rem] leading-[1.03]">
+            <span className="block font-normal text-white text-4xl sm:text-5xl md:text-6xl lg:text-[4.25rem] leading-[1.03]">
               {t("headlineLead")}
             </span>
-            <span className="block whitespace-nowrap font-semibold text-white/90 text-xl sm:text-2xl md:text-3xl lg:text-[2.4rem] leading-[1.1] mt-1.5">
+            <span className="block whitespace-nowrap font-light text-white/90 text-xl sm:text-2xl md:text-3xl lg:text-[2.4rem] leading-[1.1] mt-1.5">
               {t("headlineSub")}
             </span>
           </h1>
