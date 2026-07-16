@@ -248,32 +248,38 @@
     },
     "services": {
       "subtitle": "OUR SERVICES",
-      "title": "Comprehensive Property Management",
-      "description": "From listing creation to guest checkout, we handle every aspect of your rental business with meticulous attention to detail.",
+      "title": "Everything you'd expect — and the technology you wouldn't.",
+      "description": "Full-service management is the baseline. What sets us apart is the technology running behind every task.",
       "items": {
         "photography": {
           "title": "Professional Photography",
-          "description": "High-quality photos and virtual tours that showcase your property at its best and attract premium guests."
+          "description": "High-quality photos and virtual tours that show your property at its best and attract the right guests.",
+          "tag": "Listing-optimised"
         },
         "pricing": {
           "title": "Dynamic Pricing",
-          "description": "AI-powered pricing strategies that maximize your revenue based on demand, seasonality, and market trends."
+          "description": "Pricing that adjusts to demand, seasonality, and market trends — tuned continuously, not set once.",
+          "tag": "AI pricing · Silqhaus OS"
         },
         "booking": {
           "title": "Booking Management",
-          "description": "Seamless reservation handling across all major platforms including Airbnb, Booking.com, Vrbo, and direct bookings."
+          "description": "Reservations handled across Airbnb, Booking.com, Vrbo, and direct — all synced automatically.",
+          "tag": "Channels auto-synced"
         },
         "guestCommunication": {
           "title": "Guest Communication",
-          "description": "24/7 guest support from inquiry to checkout, ensuring 5-star reviews and repeat bookings."
+          "description": "Every guest answered instantly, in their language, from first enquiry to checkout — day or night.",
+          "tag": "Mali · 24/7 AI"
         },
         "maintenance": {
           "title": "Property Maintenance",
-          "description": "Regular inspections, cleaning coordination, and preventive maintenance to protect your investment."
+          "description": "Inspections, cleaning, and preventive care — every task logged with photos, timestamps, and who did it.",
+          "tag": "Photo-verified app"
         },
         "compliance": {
-          "title": "Compliance",
-          "description": "Local regulation compliance to give you complete peace of mind."
+          "title": "Care & Compliance",
+          "description": "Guest screening, damage handling, and local compliance — handled and tracked, for complete peace of mind.",
+          "tag": "Tracked & handled"
         }
       }
     },

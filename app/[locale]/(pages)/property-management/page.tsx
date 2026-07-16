@@ -44,6 +44,7 @@ import {
   DEFAULT_COUNTRY_VALUE,
 } from "@/lib/country-codes";
 import Image from "next/image";
+import PmServices from "@/components/pm-services";
 import PmTechStack from "@/components/pm-tech-stack";
 import PmTeam from "@/components/pm-team";
 import PmComparison from "@/components/pm-comparison";
@@ -576,6 +577,9 @@ export default function PropertyManagement() {
         </div>
       </section>
 
+      {/* Services — what we do, each tagged with the tech behind it */}
+      <PmServices />
+
       {/* Tech Stack — Silqhaus OS, Mali, staff app, owner portal */}
       <PmTechStack />
 
@@ -585,88 +589,6 @@ export default function PropertyManagement() {
       {/* Comparison — Silqhaus vs traditional / long-established / self-managed */}
       <PmComparison />
 
-      {/* Services Section */}
-      <section id="services" className="py-24 bg-black">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <p className="text-[#ffffff] text-sm font-poppins tracking-[0.3em] uppercase mb-4">
-              {t("services.subtitle")}
-            </p>
-            <h2 className="text-4xl font-gilroy font-bold text-white mb-6">
-              {t("services.title")}
-            </h2>
-            <p className="text-white/70 max-w-3xl mx-auto font-poppins leading-relaxed">
-              {t("services.description")}
-            </p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {services.map((service, index) => (
-              <div
-                key={index}
-                className="bg-[#141414] rounded-xl p-8 border border-[#ffffff]/20 hover:border-[#ffffff]/50 transition-colors"
-              >
-                <service.icon className="w-12 h-12 text-[#ffffff] mb-6" />
-                <h3 className="text-white font-gilroy font-bold text-xl mb-3">
-                  {service.title}
-                </h3>
-                <p className="text-white/70 font-poppins leading-relaxed">
-                  {service.description}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Process Section */}
-      <section className="py-24 bg-[#141414]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <p className="text-[#ffffff] text-sm font-poppins tracking-[0.3em] uppercase mb-4">
-              {t("howItWorks.subtitle")}
-            </p>
-            <h2 className="text-4xl font-gilroy font-bold text-white mb-6">
-              {t("howItWorks.title")}
-            </h2>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-            {[
-              {
-                step: t("howItWorks.steps.step1.step"),
-                title: t("howItWorks.steps.step1.title"),
-                description: t("howItWorks.steps.step1.description"),
-              },
-              {
-                step: t("howItWorks.steps.step2.step"),
-                title: t("howItWorks.steps.step2.title"),
-                description: t("howItWorks.steps.step2.description"),
-              },
-              {
-                step: t("howItWorks.steps.step3.step"),
-                title: t("howItWorks.steps.step3.title"),
-                description: t("howItWorks.steps.step3.description"),
-              },
-              {
-                step: t("howItWorks.steps.step4.step"),
-                title: t("howItWorks.steps.step4.title"),
-                description: t("howItWorks.steps.step4.description"),
-              },
-            ].map((item, index) => (
-              <div key={index} className="text-center">
-                <div className="w-16 h-16 rounded-full bg-white text-ink flex items-center justify-center mx-auto mb-6">
-                  <span className="font-gilroy font-bold text-xl">
-                    {item.step}
-                  </span>
-                </div>
-                <h3 className="text-white font-gilroy font-bold text-xl mb-3">
-                  {item.title}
-                </h3>
-                <p className="text-white/70 font-poppins">{item.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* Contact Form Section */}
       <section id="contact-form" className="py-24 bg-black">
