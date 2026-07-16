@@ -1,7 +1,7 @@
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages, setRequestLocale } from "next-intl/server";
 import { routing } from "@/i18n/routing";
-import { Sulphur_Point, Cormorant_Garamond } from "next/font/google";
+import { Manrope } from "next/font/google";
 import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
 import Providers from "@/components/providers";
@@ -9,18 +9,11 @@ import ChatwootWidget from "@/components/chatwoot-widget";
 import { GoogleTagManager } from "@next/third-parties/google";
 import Script from "next/script";
 
-const sulphurPoint = Sulphur_Point({
+const manrope = Manrope({
   subsets: ["latin"],
-  weight: ["300", "400", "700"],
+  weight: ["300", "400", "500", "600", "700", "800"],
   display: "swap",
-  variable: "--font-sulphur-point",
-});
-
-const cormorantGaramond = Cormorant_Garamond({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
-  display: "swap",
-  variable: "--font-cormorant",
+  variable: "--font-manrope",
 });
 
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://www.silqhaus.com";
@@ -118,10 +111,7 @@ export default async function LocaleLayout({
   };
 
   return (
-    <html
-      lang={locale}
-      className={`${sulphurPoint.variable} ${cormorantGaramond.variable}`}
-    >
+    <html lang={locale} className={manrope.variable}>
       <head>
         <link
           rel="preconnect"
@@ -130,20 +120,6 @@ export default async function LocaleLayout({
         <link
           rel="dns-prefetch"
           href="https://hostaway-platform.s3.us-west-2.amazonaws.com"
-        />
-        <link
-          rel="preload"
-          href="/fonts/Poppins-Bold_1757941333833.woff2"
-          as="font"
-          type="font/woff2"
-          crossOrigin="anonymous"
-        />
-        <link
-          rel="preload"
-          href="/fonts/Gilroy-Light_1757944089769.woff2"
-          as="font"
-          type="font/woff2"
-          crossOrigin="anonymous"
         />
         <JsonLd data={organizationSchema} />
         <JsonLd data={webSiteSchema} />

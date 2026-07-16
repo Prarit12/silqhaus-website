@@ -12,7 +12,8 @@ export default {
     extend: {
       fontFamily: {
         sans: [
-          "Poppins",
+          "var(--font-manrope)",
+          "Manrope",
           "ui-sans-serif",
           "system-ui",
           "-apple-system",
@@ -24,15 +25,18 @@ export default {
           "Noto Sans",
           "sans-serif",
         ],
-        gilroy: ["Gilroy", "ui-sans-serif", "system-ui", "sans-serif"],
-        poppins: ["Poppins", "ui-sans-serif", "system-ui", "sans-serif"],
+        // All legacy font tokens now resolve to Manrope so existing
+        // font-poppins / font-gilroy / font-cormorant classes stay valid.
+        gilroy: ["var(--font-manrope)", "Manrope", "ui-sans-serif", "sans-serif"],
+        poppins: ["var(--font-manrope)", "Manrope", "ui-sans-serif", "sans-serif"],
+        manrope: ["var(--font-manrope)", "Manrope", "ui-sans-serif", "sans-serif"],
         "sulphur-point": [
-          "var(--font-sulphur-point)",
+          "var(--font-manrope)",
+          "Manrope",
           "ui-sans-serif",
-          "system-ui",
           "sans-serif",
         ],
-        cormorant: ["var(--font-cormorant)", "ui-sans-serif", "serif"],
+        cormorant: ["var(--font-manrope)", "Manrope", "ui-sans-serif", "sans-serif"],
       },
       borderRadius: {
         lg: "var(--radius)",
