@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useTranslations } from "next-intl";
 import {
   MessageSquare,
@@ -18,6 +19,7 @@ type Svc = {
   key: string;
   icon: LucideIcon;
   span: string;
+  img: string;
   featured?: boolean;
 };
 
@@ -26,13 +28,39 @@ const SERVICES: Svc[] = [
     key: "guestCommunication",
     icon: MessageSquare,
     span: "sm:col-span-2 lg:col-span-2",
+    img: "/property-management/services/guest.jpg",
     featured: true,
   },
-  { key: "pricing", icon: TrendingUp, span: "lg:col-span-1" },
-  { key: "booking", icon: Calendar, span: "lg:col-span-1" },
-  { key: "maintenance", icon: Wrench, span: "lg:col-span-1" },
-  { key: "photography", icon: Camera, span: "lg:col-span-1" },
-  { key: "compliance", icon: ShieldCheck, span: "sm:col-span-2 lg:col-span-3" },
+  {
+    key: "pricing",
+    icon: TrendingUp,
+    span: "lg:col-span-1",
+    img: "/property-management/services/pricing.jpg",
+  },
+  {
+    key: "booking",
+    icon: Calendar,
+    span: "lg:col-span-1",
+    img: "/property-management/services/booking.jpg",
+  },
+  {
+    key: "maintenance",
+    icon: Wrench,
+    span: "lg:col-span-1",
+    img: "/property-management/services/maintenance.jpg",
+  },
+  {
+    key: "photography",
+    icon: Camera,
+    span: "lg:col-span-1",
+    img: "/property-management/services/photography.jpg",
+  },
+  {
+    key: "compliance",
+    icon: ShieldCheck,
+    span: "sm:col-span-2 lg:col-span-3",
+    img: "/property-management/services/compliance.jpg",
+  },
 ];
 
 export default function PmServices() {
@@ -60,13 +88,27 @@ export default function PmServices() {
                   s.featured ? "sm:p-8" : ""
                 }`}
               >
+                {/* faint meaning-photo, desaturated + gradient so text stays crisp */}
+                <div
+                  className="pointer-events-none absolute inset-0"
+                  aria-hidden="true"
+                >
+                  <Image
+                    src={s.img}
+                    alt=""
+                    fill
+                    sizes="(max-width: 640px) 100vw, 33vw"
+                    className="object-cover object-center opacity-[0.13] grayscale transition-all duration-500 group-hover:opacity-[0.2] group-hover:scale-[1.03]"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/85 to-ink/55" />
+                </div>
                 {/* accent glow on hover */}
                 <div
                   className="pointer-events-none absolute -top-24 -right-24 h-48 w-48 rounded-full opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-100"
                   style={{ background: `${ACCENT}22` }}
                   aria-hidden="true"
                 />
-                <div className="relative">
+                <div className="relative z-10">
                   <div
                     className={`rounded-xl bg-white/[0.06] border border-line flex items-center justify-center mb-5 ${
                       s.featured ? "w-12 h-12" : "w-11 h-11"
