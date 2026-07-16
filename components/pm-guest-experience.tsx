@@ -26,7 +26,7 @@ export default function PmGuestExperience() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl mx-auto text-center">
           <span className="eyebrow eyebrow--center mb-5">{t("eyebrow")}</span>
-          <h2 className="font-display text-white text-4xl sm:text-5xl md:text-6xl font-light leading-[1.05] tracking-tight mt-6 normal-case text-balance">
+          <h2 className="font-display text-white text-4xl sm:text-5xl md:text-6xl lg:text-[4rem] font-normal leading-[1.04] tracking-tight mt-6 normal-case text-balance">
             {t("title")}
           </h2>
           <p className="text-white/60 mt-6 text-lg leading-relaxed">
