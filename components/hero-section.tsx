@@ -1,18 +1,29 @@
 import { getTranslations } from "next-intl/server";
 import { ChevronDown } from "lucide-react";
-import HeroCarousel from "./hero-carousel";
 import HeroSearchBar from "./hero-search-bar";
 
 export default async function HeroSection() {
   const t = await getTranslations("home.hero");
 
   return (
-    <section className="relative h-screen sm:h-[85vh] md:h-[88vh] lg:h-[92vh] flex items-center">
-      <HeroCarousel />
+    <section className="relative h-screen sm:h-[85vh] md:h-[88vh] lg:h-[92vh] flex items-center overflow-hidden">
+      {/* HomeToGo-style gradient background (purple -> coral) */}
+      <div
+        className="absolute inset-0"
+        style={{
+          background:
+            "linear-gradient(158deg, #4b1e9e 0%, #6d28d9 26%, #a726b0 50%, #db4f88 74%, #f9835f 100%)",
+        }}
+      />
 
-      {/* Legibility scrims over the photo (left + bottom) */}
-      <div className="absolute inset-0 z-10 bg-gradient-to-r from-black/80 via-black/45 to-black/10 pointer-events-none" />
-      <div className="absolute inset-0 z-10 bg-gradient-to-t from-black/55 via-transparent to-black/20 pointer-events-none" />
+      {/* Soft blend into the dark sections below */}
+      <div
+        className="absolute bottom-0 left-0 right-0 h-40 z-10 pointer-events-none"
+        style={{
+          background:
+            "linear-gradient(to bottom, transparent 0%, rgba(13,13,13,0.2) 55%, rgb(13,13,13) 100%)",
+        }}
+      />
 
       {/* Left-aligned headline + search bar (HomeToGo-style) */}
       <div className="relative z-30 w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-10">
@@ -44,19 +55,6 @@ export default async function HeroSection() {
       >
         <ChevronDown className="w-5 h-5 text-snow opacity-80" />
       </div>
-      <div
-        className="absolute bottom-0 left-0 right-0 h-48 z-20 pointer-events-none"
-        style={{
-          background: `linear-gradient(to bottom,
-            transparent 0%,
-            rgba(12, 12, 12, 0.05) 15%,
-            rgba(12, 12, 12, 0.15) 30%,
-            rgba(12, 12, 12, 0.35) 50%,
-            rgba(12, 12, 12, 0.65) 70%,
-            rgba(12, 12, 12, 0.85) 85%,
-            rgb(12, 12, 12) 100%)`,
-        }}
-      ></div>
     </section>
   );
 }
