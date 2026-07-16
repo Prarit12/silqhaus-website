@@ -7,12 +7,12 @@ export default async function HeroSection() {
 
   return (
     <section className="relative h-screen sm:h-[85vh] md:h-[88vh] lg:h-[92vh] flex items-center overflow-hidden">
-      {/* HomeToGo-style gradient background (purple -> coral) */}
+      {/* HomeToGo-style gradient background — monochrome graphite -> black */}
       <div
         className="absolute inset-0"
         style={{
           background:
-            "linear-gradient(158deg, #4b1e9e 0%, #6d28d9 26%, #a726b0 50%, #db4f88 74%, #f9835f 100%)",
+            "linear-gradient(158deg, #565656 0%, #333333 32%, #1a1a1a 64%, #0d0d0d 100%)",
         }}
       />
 
