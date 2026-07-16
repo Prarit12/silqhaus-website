@@ -94,16 +94,16 @@ export default function PmTestimonials() {
                 &ldquo;{t(`items.${o.key}.quote`)}&rdquo;
               </blockquote>
               <div className="mt-4 pt-4 border-t border-white/20 flex items-end justify-between gap-4">
-                <span className="text-[10px] font-medium uppercase tracking-[0.18em] text-white/60">
-                  {t(`items.${o.key}.location`)}
-                </span>
-                <span className="text-right">
+                <span>
                   <span className="block text-white font-semibold text-sm">
                     {t(`items.${o.key}.name`)}
                   </span>
-                  <span className="block text-white/60 text-xs mt-0.5">
-                    {t(`items.${o.key}.role`)}
+                  <span className="block text-[10px] font-medium uppercase tracking-[0.18em] text-white/60 mt-1">
+                    {t(`items.${o.key}.location`)}
                   </span>
+                </span>
+                <span className="text-white/75 text-sm font-medium text-right">
+                  {t(`items.${o.key}.property`)}
                 </span>
               </div>
             </figcaption>

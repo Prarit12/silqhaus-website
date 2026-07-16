@@ -471,31 +471,31 @@
         "t1": {
           "quote": "They treat my villa like it's their own home. Photos after every clean, and the statement arrives before I even think to ask.",
           "name": "Nattaya S.",
-          "role": "Villa owner",
+          "property": "BS Villa",
           "location": "Bang Tao · Phuket"
         },
         "t2": {
           "quote": "I'm eight time zones away, yet I always know exactly what's happening at my house. The owner portal changed everything.",
           "name": "James W.",
-          "role": "Villa owner",
+          "property": "Laguna Park",
           "location": "Pratumnak · Pattaya"
         },
         "t3": {
           "quote": "Guests message at midnight and get an answer in seconds. That level of care is what you're really paying for.",
           "name": "Krit P.",
-          "role": "Owner of two villas",
+          "property": "Sava Villa",
           "location": "Rawai · Phuket"
         },
         "t4": {
           "quote": "The handover took a week, and I haven't worried since. A small team with huge attention to detail.",
           "name": "Elena M.",
-          "role": "Villa owner",
+          "property": "Liva Villa",
           "location": "Kamala · Phuket"
         },
         "t5": {
           "quote": "Every job at my villa is logged with photos and a name. No surprises, no excuses — just a home that's genuinely looked after.",
           "name": "Daniel C.",
-          "role": "Villa owner",
+          "property": "Niva Villa",
           "location": "Jomtien · Pattaya"
         }
       }
