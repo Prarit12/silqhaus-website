@@ -70,7 +70,8 @@ export default function PmServices() {
     <section className="bg-ink py-24 sm:py-28 md:py-32 border-t border-line">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl mb-12 sm:mb-16">
-          <h2 className="font-display text-white text-4xl sm:text-5xl md:text-6xl font-light leading-[1.05] tracking-tight normal-case text-balance">
+          <span className="eyebrow mb-5">{t("subtitle")}</span>
+          <h2 className="font-display text-white text-4xl sm:text-5xl md:text-6xl font-light leading-[1.05] tracking-tight normal-case text-balance mt-5">
             {t("title")}
           </h2>
           <p className="text-white/60 mt-6 text-lg leading-relaxed">
