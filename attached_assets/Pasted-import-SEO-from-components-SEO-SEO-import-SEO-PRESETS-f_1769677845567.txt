@@ -1,0 +1,771 @@
+import SEO from "@/components/SEO/SEO";
+import { SEO_PRESETS } from "@/components/SEO/seoPresets";
+import Navigation from "@/components/navigation";
+import Footer from "@/components/footer";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import {
+  Home,
+  TrendingUp,
+  Shield,
+  Clock,
+  Users,
+  Camera,
+  Calendar,
+  Headphones,
+  ChevronRight,
+  CheckCircle,
+  Star,
+  BarChart3,
+  MapPin,
+  Percent,
+} from "lucide-react";
+import { SiAirbnb } from "react-icons/si";
+import { useState } from "react";
+
+import heroImage from "../../../attached_assets/about-us/luxury_private_villa_1087f690.jpg";
+import propertyImage from "../../../attached_assets/about-us//luxury_private_villa_48d054ce.jpg";
+
+export default function PropertyManagement() {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    propertyLocation: "",
+    propertyType: "",
+    message: "",
+  });
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    console.log("Lead form submitted:", formData);
+  };
+
+  const services = [
+    {
+      icon: Camera,
+      title: "Professional Photography",
+      description:
+        "High-quality photos and virtual tours that showcase your property at its best and attract premium guests.",
+    },
+    {
+      icon: TrendingUp,
+      title: "Dynamic Pricing",
+      description:
+        "AI-powered pricing strategies that maximize your revenue based on demand, seasonality, and market trends.",
+    },
+    {
+      icon: Calendar,
+      title: "Booking Management",
+      description:
+        "Seamless reservation handling across all major platforms including Airbnb, Booking.com, Vrbo, and direct bookings.",
+    },
+    {
+      icon: Users,
+      title: "Guest Communication",
+      description:
+        "24/7 guest support from inquiry to checkout, ensuring 5-star reviews and repeat bookings.",
+    },
+    {
+      icon: Home,
+      title: "Property Maintenance",
+      description:
+        "Regular inspections, cleaning coordination, and preventive maintenance to protect your investment.",
+    },
+    {
+      icon: Shield,
+      title: "Compliance",
+      description:
+        // "Full coverage protection and local regulation compliance to give you complete peace of mind.",
+        "Local regulation compliance to give you complete peace of mind.",
+    },
+  ];
+
+  const benefits = [
+    {
+      stat: "35%",
+      label: "Average Revenue Increase",
+      description:
+        "Our owners see significant income growth within the first year",
+    },
+    {
+      stat: "4.9",
+      label: "Average Guest Rating",
+      description: "Consistently high ratings across all managed properties",
+    },
+    {
+      stat: "95%",
+      label: "Occupancy Rate",
+      description: "Maximized bookings during peak and off-peak seasons",
+    },
+    {
+      stat: "24/7",
+      label: "Support Available",
+      description: "Round-the-clock assistance for guests and owners alike",
+    },
+  ];
+
+  const testimonials = [
+    {
+      name: "Michael Chen",
+      property: "Luxury Villa, Patong",
+      quote:
+        "Silqhaus transformed my rental income. Their attention to detail and professional approach exceeded all expectations. My villa is now consistently booked at premium rates.",
+      rating: 5,
+    },
+    {
+      name: "Sarah Williams",
+      property: "Beachfront Condo, Kata",
+      quote:
+        "As an overseas owner, I needed a team I could trust completely. Silqhaus handles everything seamlessly - from guest management to maintenance. Highly recommended.",
+      rating: 5,
+    },
+    {
+      name: "James Thompson",
+      property: "Pool Villa, Kamala",
+      quote:
+        "The difference in bookings and revenue since partnering with Silqhaus has been remarkable. Their dynamic pricing strategy alone has increased my income by 40%.",
+      rating: 5,
+    },
+  ];
+
+  const faqs = [
+    {
+      question: "What types of properties do you manage?",
+      answer:
+        "We specialize in luxury short-term rentals including villas, condominiums, apartments, and boutique properties across Thailand. Our focus is on premium properties that attract discerning travelers.",
+    },
+    {
+      question: "How do you handle guest screening?",
+      answer:
+        "We implement a thorough vetting process including ID verification, previous guest reviews, and communication assessment. This ensures your property is occupied by respectful guests who will treat your home with care.",
+    },
+    {
+      question: "What are your management fees?",
+      answer:
+        "Our fees are performance-based, typically ranging from 10-25% of rental income depending on the property type and services required. We only succeed when you succeed - there are no hidden charges.",
+    },
+    {
+      question: "How quickly can you start managing my property?",
+      answer:
+        "Once you decide to partner with us, we can have your property listed and ready for bookings within 7 days on average. This includes professional photography, listing optimization, and pricing strategy setup.",
+    },
+    {
+      question: "Can I still use my property when I want?",
+      answer:
+        "Absolutely. You maintain full control of your calendar and can block dates for personal use anytime. We simply work around your schedule to maximize bookings during available periods.",
+    },
+    {
+      question: "How do I receive my passive income?",
+      answer:
+        "We provide clear monthly statements with detailed breakdowns. Payouts are processed at month-end and deposited between the 1st and 5th of the following month to your preferred bank account.",
+    },
+  ];
+
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
+
+  return (
+    <>
+      <SEO
+        title={SEO_PRESETS.propertyManagement.title}
+        description={SEO_PRESETS.propertyManagement.description}
+        type={SEO_PRESETS.propertyManagement.type}
+        image="/og/pool.jpg"
+      />
+      <div className="min-h-screen bg-ink">
+        <Navigation />
+
+        {/* Hero Section */}
+        <section className="relative min-h-[80vh] flex items-center bg-ink">
+          <div
+            className="absolute inset-0 bg-cover bg-center"
+            style={{ backgroundImage: `url(${heroImage})` }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-ink via-ink/90 to-ink/70" />
+          <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32">
+            <div className="max-w-3xl">
+              <p className="text-gold text-sm font-poppins tracking-[0.3em] uppercase mb-6">
+                PROFESSIONAL PROPERTY MANAGEMENT
+              </p>
+              <h1 className="text-5xl md:text-6xl font-gilroy font-bold text-snow mb-8 leading-tight">
+                Maximize Your Property's Potential
+              </h1>
+              <p className="text-xl text-snow/80 font-poppins leading-relaxed mb-10">
+                Partner with Thailand’s premier luxury property management
+                company, specializing in property management in Phuket and
+                Pattaya. We handle everything from guest acquisition to property
+                maintenance, so you can enjoy effortless, hassle-free passive
+                income.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Button
+                  className="bg-gold hover:bg-gold/90 text-ink font-poppins px-8 py-6 text-lg"
+                  onClick={() =>
+                    document
+                      .getElementById("contact-form")
+                      ?.scrollIntoView({ behavior: "smooth" })
+                  }
+                >
+                  Get Free Consultation
+                  <ChevronRight className="w-5 h-5 ml-2" />
+                </Button>
+                <Button
+                  variant="outline"
+                  className="border-gold text-gold hover:bg-gold hover:text-ink font-poppins px-8 py-6 text-lg"
+                  onClick={() =>
+                    document
+                      .getElementById("services")
+                      ?.scrollIntoView({ behavior: "smooth" })
+                  }
+                >
+                  Learn More
+                </Button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Stats Section */}
+        <section className="py-20 bg-[#000000]">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+              {benefits.map((benefit, index) => (
+                <div key={index} className="text-center">
+                  <p className="text-4xl md:text-5xl font-gilroy font-bold text-gold mb-2">
+                    {benefit.stat}
+                  </p>
+                  <p className="text-snow font-poppins font-semibold mb-1">
+                    {benefit.label}
+                  </p>
+                  <p className="text-snow/60 font-poppins text-sm">
+                    {benefit.description}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Platforms Section */}
+        <section className="py-20 bg-ink-2">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-12">
+              <p className="text-gold text-sm font-poppins tracking-[0.3em] uppercase mb-4">
+                MULTI-PLATFORM DISTRIBUTION
+              </p>
+              <h2 className="text-3xl md:text-4xl font-gilroy font-bold text-snow mb-6">
+                Your Property, Everywhere
+              </h2>
+              <p className="text-snow/70 max-w-3xl mx-auto font-poppins leading-relaxed">
+                We list and manage your property across all major booking
+                platforms, maximizing visibility and bookings while you maintain
+                a single point of contact with our team.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-3 gap-8 items-center">
+              {/* Airbnb */}
+              <div className="bg-ink rounded-xl p-8 text-center border border-gold/20 hover:border-gold/50 transition-colors">
+                <SiAirbnb className="w-16 h-16 text-[#FF5A5F] mx-auto mb-4" />
+                <h3 className="text-snow font-gilroy font-bold text-lg">
+                  Airbnb
+                </h3>
+              </div>
+
+              {/* Vrbo */}
+              <div className="bg-ink rounded-xl p-8 text-center border border-gold/20 hover:border-gold/50 transition-colors">
+                <div className="w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+                  <span className="text-[#3D67A6] font-bold text-2xl">
+                    Vrbo
+                  </span>
+                </div>
+                <h3 className="text-snow font-gilroy font-bold text-lg">
+                  Vrbo
+                </h3>
+              </div>
+
+              {/* Booking.com */}
+              <div className="bg-ink rounded-xl p-8 text-center border border-gold/20 hover:border-gold/50 transition-colors">
+                <div className="w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+                  <span className="text-[#003580] font-bold text-lg">
+                    Booking<span className="text-[#003580]">.com</span>
+                  </span>
+                </div>
+                <h3 className="text-snow font-gilroy font-bold text-lg">
+                  Booking.com
+                </h3>
+              </div>
+
+              {/* Silqhaus Direct */}
+              {/* <div className="bg-ink rounded-xl p-8 text-center border border-gold/20 hover:border-gold/50 transition-colors">
+              <div className="w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+                <span className="text-gold font-gilroy font-bold text-2xl">
+                  SH
+                </span>
+              </div>
+              <h3 className="text-snow font-gilroy font-bold text-lg">
+                Silqhaus Direct
+              </h3>
+            </div> */}
+            </div>
+
+            {/* <div className="mt-12 text-center">
+            <p className="text-snow/70 font-poppins">
+              Plus integration with <span className="text-gold">Expedia</span>,{" "}
+              <span className="text-gold">Google Vacation Rentals</span>,
+              <span className="text-gold"> TripAdvisor</span>, and{" "}
+              <span className="text-gold">20+ more platforms</span>
+            </p>
+          </div> */}
+          </div>
+        </section>
+
+        {/* Why Choose Us */}
+        <section className="py-24 bg-[#000000]">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+              <div>
+                <p className="text-gold text-sm font-poppins tracking-[0.3em] uppercase mb-4">
+                  WHY SILQHAUS
+                </p>
+                <h2 className="text-4xl font-gilroy font-bold text-snow mb-6">
+                  Your Property Deserves Expert Care
+                </h2>
+                <p className="text-snow/70 font-poppins leading-relaxed mb-8">
+                  Silqhaus combines local expertise with international
+                  hospitality standards to deliver exceptional results. Our
+                  dedicated team treats every property as if it were our own,
+                  ensuring maximum returns and complete peace of mind for
+                  owners.
+                </p>
+                <div className="space-y-4">
+                  {[
+                    "Dedicated property manager for personalized service",
+                    "Multi-platform listing optimization for maximum visibility",
+                    "Professional cleaning and turnover teams",
+                    "Real-time performance dashboards and reporting",
+                    // "Legal and tax compliance support",
+                    "Emergency response within 60 minutes",
+                  ].map((item, index) => (
+                    <div key={index} className="flex items-center gap-3">
+                      <CheckCircle className="w-5 h-5 text-gold flex-shrink-0" />
+                      <span className="text-snow/80 font-poppins">{item}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <div className="space-y-6">
+                <div className="relative rounded-xl overflow-hidden">
+                  <img
+                    src={propertyImage}
+                    alt="Luxury property managed by Silqhaus"
+                    className="w-full h-64 object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-ink/80 to-transparent" />
+                </div>
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="bg-ink-2 rounded-xl p-6 text-center border border-gold/20">
+                    <MapPin className="w-10 h-10 text-gold mx-auto mb-3" />
+                    <h3 className="text-snow font-gilroy font-bold text-lg mb-1">
+                      Local Experts
+                    </h3>
+                    <p className="text-snow/70 font-poppins text-xs">
+                      Thailand specialists
+                    </p>
+                  </div>
+                  <div className="bg-ink-2 rounded-xl p-6 text-center border border-gold/20">
+                    <Percent className="w-10 h-10 text-gold mx-auto mb-3" />
+                    <h3 className="text-snow font-gilroy font-bold text-lg mb-1">
+                      No Hidden Fees
+                    </h3>
+                    <p className="text-snow/70 font-poppins text-xs">
+                      Transparent pricing
+                    </p>
+                  </div>
+                  <div className="bg-ink-2 rounded-xl p-6 text-center border border-gold/20">
+                    <BarChart3 className="w-10 h-10 text-gold mx-auto mb-3" />
+                    <h3 className="text-snow font-gilroy font-bold text-lg mb-1">
+                      Data Driven
+                    </h3>
+                    <p className="text-snow/70 font-poppins text-xs">
+                      Smart pricing strategies
+                    </p>
+                  </div>
+                  <div className="bg-ink-2 rounded-xl p-6 text-center border border-gold/20">
+                    <Headphones className="w-10 h-10 text-gold mx-auto mb-3" />
+                    <h3 className="text-snow font-gilroy font-bold text-lg mb-1">
+                      24/7 Support
+                    </h3>
+                    <p className="text-snow/70 font-poppins text-xs">
+                      Always here for you
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Services Section */}
+        <section id="services" className="py-24 bg-ink">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-16">
+              <p className="text-gold text-sm font-poppins tracking-[0.3em] uppercase mb-4">
+                OUR SERVICES
+              </p>
+              <h2 className="text-4xl font-gilroy font-bold text-snow mb-6">
+                Comprehensive Property Management
+              </h2>
+              <p className="text-snow/70 max-w-3xl mx-auto font-poppins leading-relaxed">
+                From listing creation to guest checkout, we handle every aspect
+                of your rental business with meticulous attention to detail.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {services.map((service, index) => (
+                <div
+                  key={index}
+                  className="bg-ink-2 rounded-xl p-8 border border-gold/20 hover:border-gold/50 transition-colors"
+                >
+                  <service.icon className="w-12 h-12 text-gold mb-6" />
+                  <h3 className="text-snow font-gilroy font-bold text-xl mb-3">
+                    {service.title}
+                  </h3>
+                  <p className="text-snow/70 font-poppins leading-relaxed">
+                    {service.description}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Process Section */}
+        <section className="py-24 bg-ink-2">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-16">
+              <p className="text-gold text-sm font-poppins tracking-[0.3em] uppercase mb-4">
+                HOW IT WORKS
+              </p>
+              <h2 className="text-4xl font-gilroy font-bold text-snow mb-6">
+                Getting Started is Easy
+              </h2>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+              {[
+                {
+                  step: "01",
+                  title: "Initial Consultation",
+                  description:
+                    "Schedule a free call to discuss your property and goals",
+                },
+                {
+                  step: "02",
+                  title: "Property Assessment",
+                  description:
+                    "We visit your property and create a customized management plan",
+                },
+                {
+                  step: "03",
+                  title: "Listing Creation",
+                  description:
+                    "Professional photos, optimized listings, and strategic pricing",
+                },
+                {
+                  step: "04",
+                  title: "Start Earning",
+                  description:
+                    "Sit back and watch the bookings come in while we handle everything",
+                },
+              ].map((item, index) => (
+                <div key={index} className="text-center">
+                  <div className="w-16 h-16 rounded-full bg-gold text-ink flex items-center justify-center mx-auto mb-6">
+                    <span className="font-gilroy font-bold text-xl">
+                      {item.step}
+                    </span>
+                  </div>
+                  <h3 className="text-snow font-gilroy font-bold text-xl mb-3">
+                    {item.title}
+                  </h3>
+                  <p className="text-snow/70 font-poppins">
+                    {item.description}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Contact Form Section */}
+        <section id="contact-form" className="py-24 bg-[#000000]">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+              <div>
+                <p className="text-gold text-sm font-poppins tracking-[0.3em] uppercase mb-4">
+                  GET IN TOUCH
+                </p>
+                <h2 className="text-4xl font-gilroy font-bold text-snow mb-6">
+                  Ready to Maximize Your Rental Income?
+                </h2>
+                <p className="text-snow/70 font-poppins leading-relaxed mb-8">
+                  Take the first step towards hassle-free property ownership.
+                  Fill out the form and our team will contact you within 24
+                  hours to schedule your free consultation.
+                </p>
+                <div className="space-y-6">
+                  <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 rounded-full bg-gold/10 flex items-center justify-center">
+                      <Clock className="w-6 h-6 text-gold" />
+                    </div>
+                    <div>
+                      <p className="text-snow font-poppins font-semibold">
+                        Quick Response
+                      </p>
+                      <p className="text-snow/60 font-poppins text-sm">
+                        We respond within 24 hours
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 rounded-full bg-gold/10 flex items-center justify-center">
+                      <Shield className="w-6 h-6 text-gold" />
+                    </div>
+                    <div>
+                      <p className="text-snow font-poppins font-semibold">
+                        No Obligation
+                      </p>
+                      <p className="text-snow/60 font-poppins text-sm">
+                        Free consultation with no commitment
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 rounded-full bg-gold/10 flex items-center justify-center">
+                      <Users className="w-6 h-6 text-gold" />
+                    </div>
+                    <div>
+                      <p className="text-snow font-poppins font-semibold">
+                        Expert Advice
+                      </p>
+                      <p className="text-snow/60 font-poppins text-sm">
+                        Speak directly with our management team
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-ink-2 rounded-xl p-8 border border-gold/20">
+                <h3 className="text-2xl font-gilroy font-bold text-snow mb-6">
+                  Request Free Consultation
+                </h3>
+                <form onSubmit={handleSubmit} className="space-y-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-snow font-poppins text-sm mb-2">
+                        Full Name *
+                      </label>
+                      <Input
+                        type="text"
+                        required
+                        value={formData.name}
+                        onChange={(e) =>
+                          setFormData({ ...formData, name: e.target.value })
+                        }
+                        className="bg-ink border-gold/30 text-snow focus:border-gold placeholder:text-snow/40"
+                        placeholder="Your name"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-snow font-poppins text-sm mb-2">
+                        Email *
+                      </label>
+                      <Input
+                        type="email"
+                        required
+                        value={formData.email}
+                        onChange={(e) =>
+                          setFormData({ ...formData, email: e.target.value })
+                        }
+                        className="bg-ink border-gold/30 text-snow focus:border-gold placeholder:text-snow/40"
+                        placeholder="your@email.com"
+                      />
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-snow font-poppins text-sm mb-2">
+                        Phone Number
+                      </label>
+                      <Input
+                        type="tel"
+                        value={formData.phone}
+                        onChange={(e) =>
+                          setFormData({ ...formData, phone: e.target.value })
+                        }
+                        className="bg-ink border-gold/30 text-snow focus:border-gold placeholder:text-snow/40"
+                        placeholder="+66 XX XXX XXXX"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-snow font-poppins text-sm mb-2">
+                        Property Location *
+                      </label>
+                      <Input
+                        type="text"
+                        required
+                        value={formData.propertyLocation}
+                        onChange={(e) =>
+                          setFormData({
+                            ...formData,
+                            propertyLocation: e.target.value,
+                          })
+                        }
+                        className="bg-ink border-gold/30 text-snow focus:border-gold placeholder:text-snow/40"
+                        placeholder="e.g., Patong, Phuket"
+                      />
+                    </div>
+                  </div>
+                  <div>
+                    <label className="block text-snow font-poppins text-sm mb-2">
+                      Property Type
+                    </label>
+                    <Input
+                      type="text"
+                      value={formData.propertyType}
+                      onChange={(e) =>
+                        setFormData({
+                          ...formData,
+                          propertyType: e.target.value,
+                        })
+                      }
+                      className="bg-ink border-gold/30 text-snow focus:border-gold placeholder:text-snow/40"
+                      placeholder="e.g., Villa, Condo, Apartment"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-snow font-poppins text-sm mb-2">
+                      Tell Us About Your Property
+                    </label>
+                    <Textarea
+                      value={formData.message}
+                      onChange={(e) =>
+                        setFormData({ ...formData, message: e.target.value })
+                      }
+                      className="bg-ink border-gold/30 text-snow focus:border-gold placeholder:text-snow/40 min-h-[120px]"
+                      placeholder="Number of bedrooms, current rental status, any specific requirements..."
+                    />
+                  </div>
+                  <Button
+                    type="submit"
+                    className="w-full bg-gold hover:bg-gold/90 text-ink font-poppins py-6 text-lg"
+                  >
+                    Submit Inquiry
+                    <ChevronRight className="w-5 h-5 ml-2" />
+                  </Button>
+                  <p className="text-snow/50 font-poppins text-xs text-center">
+                    By submitting this form, you agree to our privacy policy.
+                    We'll never share your information.
+                  </p>
+                </form>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Testimonials */}
+        <section className="py-24 bg-ink-2">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-16">
+              <p className="text-gold text-sm font-poppins tracking-[0.3em] uppercase mb-4">
+                TESTIMONIALS
+              </p>
+              <h2 className="text-4xl font-gilroy font-bold text-snow mb-6">
+                What Our Partners Say
+              </h2>
+              <p className="text-snow/70 max-w-3xl mx-auto font-poppins leading-relaxed">
+                Don't just take our word for it. Hear from property owners who
+                have transformed their rental business with Silqhaus.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {testimonials.map((testimonial, index) => (
+                <div
+                  key={index}
+                  className="bg-ink rounded-xl p-8 border border-gold/20"
+                >
+                  <div className="flex gap-1 mb-4">
+                    {[...Array(testimonial.rating)].map((_, i) => (
+                      <Star key={i} className="w-5 h-5 text-gold fill-gold" />
+                    ))}
+                  </div>
+                  <p className="text-snow/80 font-poppins leading-relaxed mb-6 italic">
+                    "{testimonial.quote}"
+                  </p>
+                  <div>
+                    <p className="text-snow font-gilroy font-bold">
+                      {testimonial.name}
+                    </p>
+                    <p className="text-snow/60 font-poppins text-sm">
+                      {testimonial.property}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* FAQ Section */}
+        <section className="py-24 bg-ink">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-16">
+              <p className="text-gold text-sm font-poppins tracking-[0.3em] uppercase mb-4">
+                FAQ
+              </p>
+              <h2 className="text-4xl font-gilroy font-bold text-snow mb-6">
+                Frequently Asked Questions
+              </h2>
+            </div>
+
+            <div className="space-y-4">
+              {faqs.map((faq, index) => (
+                <div
+                  key={index}
+                  className="bg-ink-2 rounded-lg border border-gold/20 overflow-hidden"
+                >
+                  <button
+                    onClick={() => setOpenFaq(openFaq === index ? null : index)}
+                    className="w-full px-6 py-4 flex items-center justify-between text-left hover:bg-gold/10 transition-colors"
+                  >
+                    <span className="text-snow font-poppins font-medium">
+                      {faq.question}
+                    </span>
+                    <ChevronRight
+                      className={`w-5 h-5 text-gold transform transition-transform ${
+                        openFaq === index ? "rotate-90" : ""
+                      }`}
+                    />
+                  </button>
+                  {openFaq === index && (
+                    <div className="px-6 pb-4">
+                      <p className="text-snow/70 font-poppins leading-relaxed">
+                        {faq.answer}
+                      </p>
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <Footer />
+      </div>
+    </>
+  );
+}

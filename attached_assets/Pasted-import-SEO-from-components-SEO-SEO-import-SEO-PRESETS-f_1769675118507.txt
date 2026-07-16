@@ -1,0 +1,1283 @@
+import SEO from "@/components/SEO/SEO";
+import { SEO_PRESETS } from "@/components/SEO/seoPresets";
+import Navigation from "@/components/navigation";
+import Footer from "@/components/footer";
+import { Button } from "@/components/ui/button";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { MapPin, Plane, ChevronRight } from "lucide-react";
+import { useEffect, useState } from "react";
+import { useLocation } from "wouter";
+import patong from "@/assets/featured-destinations/patong.webp";
+import phuket from "@/assets/destination-carousel/phuket.webp";
+import kataBeach from "@/assets/featured-destinations/kata-beach.webp";
+import karonBeach from "@/assets/featured-destinations/karon-beach.webp";
+import bigBhuddha from "@/assets/featured-destinations/phuket/big-bhuddha.webp";
+import chalongTemple from "@/assets/featured-destinations/phuket/chalong-temple.webp";
+import promthepCape from "@/assets/featured-destinations/phuket/promthep-cape.webp";
+import karonViewpoint from "@/assets/featured-destinations/phuket/karon-viewpoint.webp";
+import phangngaBay from "@/assets/featured-destinations/phuket/phang-nga-bay.webp";
+import oldPhuketTown from "@/assets/featured-destinations/phuket/old-town.avif";
+import nakaMarket from "@/assets/featured-destinations/phuket/night-market.webp";
+import elephantSanctuary from "@/assets/featured-destinations/phuket/elephant-sanctuary.webp";
+import phiphiIsland from "@/assets/featured-destinations/phuket/phi-phi-island.webp";
+import pf1 from "@/assets/featured-destinations/phuket/pfs.webp";
+import flightBg from "@/assets/featured-destinations/phuket/flight-bg.webp";
+import { url } from "inspector";
+
+export default function DestinationPhuket() {
+  // Tabs (attractions)
+  const [, setLocation] = useLocation();
+  const [activeTab, setActiveTab] = useState("beaches");
+
+  // Scroll to section on initial load if URL has a hash (e.g., #overview, #faq, or #temples)
+  // NOTE: Tab switching itself will NOT scroll (see handleTabChange).
+  useEffect(() => {
+    const hash = window.location.hash.replace("#", "");
+    if (!hash) return;
+
+    // If hash matches a known tab, activate it (no scroll)
+    const tabValues = [
+      "beaches",
+      "temples",
+      "viewpoints",
+      "cultural",
+      "nature",
+      "islands",
+      "entertainment",
+      "markets",
+    ];
+    if (tabValues.includes(hash)) {
+      setActiveTab(hash);
+    }
+
+    // Scroll to a section or element matching the hash
+    const el = document.getElementById(hash);
+    if (el) {
+      setTimeout(() => {
+        el.scrollIntoView({ behavior: "smooth", block: "start" });
+      }, 300);
+    }
+  }, []);
+
+  // Switch tabs without scrolling; still update hash for deep-linking
+  const handleTabChange = (value: string) => {
+    setActiveTab(value);
+    window.history.pushState({}, "", `#${value}`);
+  };
+
+  const scrollToSection = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      window.history.pushState({}, "", `#${id}`);
+      element.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
+
+  // Navigate to properties page with Phuket filter
+  const goToProperties = () => {
+    setLocation("/our-property?location=Phuket");
+    window.scrollTo(0, 0);
+  };
+
+  // ---------- FULL ATTRACTIONS (restored) ----------
+  const attractions = [
+    // Beaches
+    {
+      category: "Beaches",
+      name: "Patong Beach",
+      description:
+        "The most famous and vibrant beach in Phuket, Patong is the heart of the island's entertainment scene. This 3-kilometer stretch of sand offers crystal-clear waters perfect for swimming and water sports. By day, enjoy jet skiing, parasailing, and beach volleyball. By night, the beachfront comes alive with restaurants, bars, and clubs. The beach is lined with palm trees and offers stunning sunset views. Despite being busy, it maintains its charm with clean facilities and a wide range of dining options from street food to fine dining.",
+      //image: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+      image: patong,
+      cta: false,
+    },
+    {
+      category: "Beaches",
+      name: "Kata Beach",
+      description:
+        "Kata Beach is divided into two bays - Kata Yai (Big Kata) and Kata Noi (Little Kata). This family-friendly destination offers calm, clear waters ideal for swimming and snorkeling. The beach is particularly popular with surfers during the monsoon season (May-October) when waves can reach impressive heights. The surrounding area features excellent restaurants, beach clubs, and the famous Kata Viewpoint offering panoramic views of three bays. Palm trees provide natural shade, and the relaxed atmosphere makes it perfect for families and couples alike.",
+      image: kataBeach,
+      cta: false,
+    },
+    {
+      category: "Beaches",
+      name: "Karon Beach",
+      description:
+        "Stretching over 3 kilometers, Karon Beach is one of Phuket's longest and most peaceful beaches. The fine white sand produces a distinctive squeaking sound when you walk on it. The beach is less commercialized than Patong, offering a more relaxed atmosphere. The clear turquoise waters are perfect for swimming, though waves can be strong during the monsoon season. The beachfront road is lined with restaurants, shops, and massage pavilions. It's an excellent choice for those seeking a balance between tranquility and amenities.",
+      //image: "linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)",
+      image: karonBeach,
+      cta: false,
+    },
+
+    // Temples
+    {
+      category: "Cultural",
+      name: "Big Buddha",
+      description:
+        "Standing 45 meters tall atop Nakkerd Hills, the Big Buddha is one of Phuket's most revered landmarks. This massive white marble statue can be seen from miles away and offers breathtaking 360-degree views of the island. The journey to the top takes you through winding roads with scenic vistas. At the site, you'll find smaller Buddha statues, bells that visitors can ring for good luck, and a peaceful meditation area. The best time to visit is during sunset when the statue glows golden. Modest dress is required - shoulders and knees must be covered.",
+      image: bigBhuddha,
+    },
+    {
+      category: "Cultural",
+      name: "Wat Chalong",
+      description:
+        "Phuket's largest and most important Buddhist temple, Wat Chalong is a stunning example of Thai religious architecture. The temple complex features ornate decorations, colorful murals depicting Buddha's life, and a grand pagoda housing a bone fragment of Buddha. Visitors can light incense, make offerings, and receive blessings from monks. The peaceful gardens and ponds create a serene atmosphere. The temple is dedicated to two highly revered monks who helped injured locals during a tin miners' rebellion in 1876. It's a must-visit for anyone interested in Thai culture and Buddhism.",
+      image: chalongTemple,
+    },
+
+    // Viewpoints
+    {
+      category: "Viewpoints",
+      name: "Promthep Cape",
+      description:
+        "Located at Phuket's southernmost tip, Promthep Cape is famous for having the most spectacular sunsets on the island. This rocky promontory offers panoramic views of the Andaman Sea, with Koh Kew island visible in the distance. The viewpoint features a lighthouse, elephant shrine, and well-maintained walking paths. Arrive early to secure a good spot, as it gets crowded during sunset. The site also includes a small museum and souvenir shops. The dramatic coastal scenery and crashing waves below make it a photographer's paradise year-round.",
+      image: promthepCape,
+    },
+    {
+      category: "Viewpoints",
+      name: "Karon Viewpoint",
+      description:
+        "Also known as Three Beaches Viewpoint, this scenic spot offers stunning vistas of three consecutive bays: Kata Noi, Kata Yai, and Karon Beach. Located on the hillside road between Nai Harn and Kata, it's easily accessible and features parking areas and viewing platforms. The viewpoint is particularly beautiful in the morning when the sun illuminates the turquoise waters. Several small vendors sell refreshments and snacks. It's an ideal stop while exploring the southern beaches, offering perfect photo opportunities of Phuket's coastline.",
+      image: karonViewpoint,
+    },
+
+    // Cultural
+    {
+      category: "Cultural",
+      name: "Old Phuket Town",
+      description:
+        "A charming blend of Chinese and Portuguese colonial architecture, Old Phuket Town is the island's cultural heart. Colorful Sino-Portuguese buildings line Thalang Road, Dibuk Road, and Yaowarat Road, now housing boutique hotels, art galleries, cafes, and restaurants. The area comes alive during the Sunday Walking Street market, where locals sell handicrafts, street food, and vintage items. Don't miss the Thai Hua Museum, vintage coffee shops, and street art murals. The preserved shophouses tell the story of Phuket's prosperous tin mining era and multicultural heritage.",
+      image: oldPhuketTown,
+    },
+
+    // Nature
+    {
+      category: "Nature",
+      name: "Phang Nga Bay",
+      description:
+        'A stunning seascape of limestone karsts rising dramatically from emerald waters, Phang Nga Bay is a geological wonder. Famous for James Bond Island (featured in "The Man with the Golden Gun"), the bay offers incredible kayaking through hidden lagoons and caves. Explore the Muslim fishing village of Koh Panyee, built on stilts over the water. Tours typically include visits to multiple islands, sea cave exploration, and traditional long-tail boat rides. The bay is a protected marine national park, home to diverse wildlife including monkeys, eagles, and marine life.',
+      image: phangngaBay,
+    },
+    {
+      category: "Nature",
+      name: "Phuket Elephant Sanctuary",
+      description:
+        "Located in Paklok, the Phuket Elephant Sanctuary is the island’s first ethical elephant park. Visitors can observe rescued elephants roaming freely in lush natural surroundings. No riding or performances—just education, conservation, and compassion. Guided tours offer a moving insight into elephant rehabilitation.",
+      image: elephantSanctuary,
+    },
+
+    // Islands
+    {
+      category: "Islands",
+      name: "Phi Phi Islands",
+      description:
+        'Made famous by "The Beach" movie, the Phi Phi Islands are a tropical paradise of crystal-clear waters, white sand beaches, and towering limestone cliffs. The archipelago consists of six islands, with Phi Phi Don being the only inhabited one. Maya Bay, though periodically closed for environmental recovery, remains iconic. Activities include snorkeling in vibrant coral reefs, cliff jumping, beach hopping, and diving with leopard sharks. Day trips and overnight stays are available. The dramatic scenery, both above and below water, makes it one of Thailand\'s most photographed destinations.',
+      image: phiphiIsland,
+    },
+
+    // Entertainment
+    {
+      category: "Entertainment",
+      name: "Phuket FantaSea",
+      description:
+        "Thailand's ultimate cultural theme park, Phuket FantaSea combines Las Vegas-style entertainment with Thai mythology. The spectacular Palace of the Elephants show features traditional dance, aerial ballet, pyrotechnics, and a cast of elephants in an air-conditioned theater seating 3,000 people. The complex includes a carnival village with games, shopping, and dining at the 4,000-seat Royal Feast buffet restaurant. The elaborate sets, costumes, and special effects create an immersive journey through Thai culture and folklore. It's perfect for families and anyone wanting to experience Thai culture in a modern, entertaining format.",
+      image: pf1,
+    },
+
+    // Markets
+    {
+      category: "Markets",
+      name: "Phuket Weekend Market",
+      description:
+        "Also known as Naka Market, this sprawling weekend market is where locals shop for everything from fresh produce to clothing and electronics. Open Saturday and Sunday evenings, it offers an authentic Thai market experience away from tourist areas. Browse hundreds of food stalls serving southern Thai specialties, grilled seafood, fresh fruit, and desserts. You'll find affordable clothing, accessories, home decor, and plants. The atmosphere is lively, with live music and entertainment. It's an excellent place to experience local life, practice bargaining skills, and enjoy genuine Thai street food at local prices.",
+      image: nakaMarket,
+    },
+  ];
+
+  // ---------- FULL FAQ (restored) ----------
+  const faqs = [
+    {
+      q: "What is the best time to visit Phuket?",
+      a: "The best time to visit Phuket is from November to February during the cool, dry season when temperatures are comfortable (25-31°C) and rainfall is minimal.",
+    },
+    {
+      q: "How do I get to Phuket?",
+      a: "Phuket International Airport (HKT) is well-connected to major Asian cities and international destinations. Direct flights are available from Bangkok, Singapore, Hong Kong, and many other cities.",
+    },
+    {
+      q: "Is Phuket suitable for families?",
+      a: "Absolutely! Phuket offers family-friendly beaches like Kata and Karon, water parks, elephant sanctuaries, and numerous activities suitable for all ages.",
+    },
+    {
+      q: "What currency is used in Phuket?",
+      a: "Thai Baht (THB) is the local currency. Credit cards are widely accepted in hotels and restaurants, but cash is recommended for local markets and street vendors.",
+    },
+    {
+      q: "Do I need a visa to visit Phuket?",
+      a: "Most nationalities receive a 30-day visa exemption on arrival. Check current requirements based on your nationality before traveling.",
+    },
+    {
+      q: "What are the must-visit attractions in Phuket?",
+      a: "Must-visit attractions include Big Buddha, Wat Chalong Temple, Old Phuket Town, Phang Nga Bay, Phi Phi Islands, and the stunning viewpoints like Promthep Cape.",
+    },
+  ];
+
+  // ------ JSON-LD (updated for quarterly seasons) ------
+  const touristDestinationSchema = {
+    "@context": "https://schema.org",
+    "@type": "TouristDestination",
+    name: "Phuket, Thailand",
+    description:
+      "Phuket is Thailand's largest island, a tropical paradise known for beaches, culture, temples, and vibrant nightlife. Each quarter offers distinct travel experiences.",
+    image: "https://yourdomain.com/attached_assets/Beach_1756385610227.jpg",
+    url: "https://yourdomain.com/phuket",
+    geo: {
+      "@type": "GeoCoordinates",
+      latitude: 7.8804,
+      longitude: 98.3923,
+    },
+    touristType: [
+      "Luxury travellers",
+      "Families",
+      "Adventure seekers",
+      "Cultural tourists",
+    ],
+    climate: "Tropical monsoon with dry (Nov–Apr) and wet (May–Oct) seasons.",
+    isPartOf: { "@type": "Place", name: "Thailand" },
+    hasPart: [
+      {
+        "@type": "TouristSeason",
+        name: "January – March",
+        description:
+          "High season with sunny, dry weather (26–32°C). Ideal for beaches, snorkeling, and island hopping.",
+        activity: ["Snorkeling", "Diving", "Sunset cruises", "Beach sports"],
+        event: [
+          { "@type": "Event", name: "Chinese New Year", startDate: "2025-02" },
+          { "@type": "Event", name: "Makha Bucha Day", startDate: "2025-02" },
+        ],
+      },
+      {
+        "@type": "TouristSeason",
+        name: "April – June",
+        description:
+          "Transition from dry to rainy season. Hot temperatures and lighter crowds.",
+        activity: [
+          "Temple visits",
+          "Spa retreats",
+          "Cooking classes",
+          "Cultural tours",
+        ],
+        event: [
+          {
+            "@type": "Event",
+            name: "Songkran (Thai New Year)",
+            startDate: "2025-04-13",
+          },
+          { "@type": "Event", name: "Visakha Bucha Day", startDate: "2025-05" },
+        ],
+      },
+      {
+        "@type": "TouristSeason",
+        name: "July – September",
+        description:
+          "Low season with lush greenery, frequent rainfall, and fewer tourists. Ideal for wellness and cultural immersion.",
+        activity: [
+          "Yoga retreats",
+          "Wellness programs",
+          "Old Town exploration",
+          "Cafe hopping",
+        ],
+        event: [
+          { "@type": "Event", name: "Asalha Bucha Day", startDate: "2025-07" },
+          {
+            "@type": "Event",
+            name: "Phuket Vegetarian Festival",
+            startDate: "2025-09",
+          },
+        ],
+      },
+      {
+        "@type": "TouristSeason",
+        name: "October – December",
+        description:
+          "Start of dry season with bright skies and calm seas—perfect for outdoor activities and festivals.",
+        activity: ["Island hopping", "Sailing", "Hiking", "Sightseeing"],
+        event: [
+          {
+            "@type": "Event",
+            name: "Loy Krathong Festival",
+            startDate: "2025-11",
+          },
+          {
+            "@type": "Event",
+            name: "Christmas & New Year Celebrations",
+            startDate: "2025-12",
+          },
+        ],
+      },
+    ],
+    // Preserve key attractions for additional context
+    hasPartAdditional: [
+      { "@type": "TouristAttraction", name: "Patong Beach" },
+      { "@type": "TouristAttraction", name: "Kata Beach" },
+      { "@type": "TouristAttraction", name: "Big Buddha" },
+      { "@type": "TouristAttraction", name: "Wat Chalong" },
+      { "@type": "TouristAttraction", name: "Phang Nga Bay" },
+      { "@type": "TouristAttraction", name: "Old Phuket Town" },
+    ],
+  };
+
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((f) => ({
+      "@type": "Question",
+      name: f.q,
+      acceptedAnswer: { "@type": "Answer", text: f.a },
+    })),
+  };
+
+  return (
+    <>
+      <SEO
+        title={SEO_PRESETS.phuket.title}
+        description={SEO_PRESETS.phuket.description}
+        type={SEO_PRESETS.phuket.type}
+        image="/og/pool.jpg"
+      />
+
+      <div className="min-h-screen bg-ink">
+        <Navigation />
+
+        {/* ===================== HERO ===================== */}
+        <section className="relative h-screen">
+          <div
+            className="absolute inset-0 bg-cover bg-center"
+            style={{
+              backgroundImage: `linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url(${phuket})`,
+            }}
+          />
+          <div className="relative z-10 h-full flex items-center justify-center text-center px-4">
+            <div className="max-w-4xl">
+              <div className="mb-6">
+                <span className="inline-flex items-center gap-2 bg-gold/20 backdrop-blur-sm px-6 py-3 rounded-full text-snow text-sm font-poppins tracking-wider">
+                  <MapPin className="w-4 h-4" />
+                  FEATURED DESTINATION
+                </span>
+              </div>
+              <h1 className="text-5xl md:text-7xl font-gilroy font-bold text-snow mb-6">
+                Discover Phuket
+              </h1>
+              {/* (Removed the nav under H1 per your request) */}
+              <p className="text-xl md:text-2xl text-snow/90 font-poppins font-light mb-8 leading-relaxed">
+                Thailand's largest island paradise where luxury meets natural
+                beauty
+              </p>
+              <Button
+                onClick={() => scrollToSection("overview")}
+                className="bg-gold hover:bg-gold/90 text-ink font-semibold px-8 py-6 text-lg"
+              >
+                Explore Phuket
+              </Button>
+            </div>
+          </div>
+        </section>
+
+        {/* ===================== Secondary TOC (non-sticky) ===================== */}
+        <section className="py-12 bg-ink-2 border-b border-gold/20">
+          <div className="max-w-7xl mx-auto px-4">
+            <nav className="flex flex-wrap justify-center gap-4 md:gap-8">
+              {[
+                "overview",
+                "attractions",
+                "activities",
+                "best-time",
+                "book-flight",
+                "faq",
+              ].map((section) => (
+                <a
+                  key={section}
+                  href={`#${section}`}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    scrollToSection(section);
+                  }}
+                  className="text-snow/70 hover:text-gold font-poppins text-sm uppercase tracking-wider transition-colors"
+                >
+                  {section.replace("-", " ")}
+                </a>
+              ))}
+            </nav>
+          </div>
+        </section>
+
+        {/* ===================== OVERVIEW ===================== */}
+        <section id="overview" className="py-24 bg-[#000000]">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+              <div>
+                <p className="text-gold text-sm font-poppins tracking-[0.3em] uppercase mb-4">
+                  ABOUT PHUKET
+                </p>
+                <h2 className="text-4xl font-gilroy font-bold text-snow mb-6">
+                  Thailand's Pearl of the Andaman
+                </h2>
+                <div className="space-y-4 text-snow/80 font-poppins leading-relaxed">
+                  <p>
+                    Phuket, Thailand’s largest island — known in Thai as{" "}
+                    <span className="italic">"ภูเก็ต" </span>— is a
+                    world-renowned tropical paradise in the Andaman Sea. With
+                    its pristine beaches, crystal-clear turquoise waters, and
+                    vibrant culture, Phuket has become one of Asia’s premier
+                    luxury destinations, offering an unmatched blend of
+                    relaxation and adventure.
+                  </p>
+                  <p>
+                    Whether you’re staying at a beachfront Phuket hotel, a
+                    private Phuket resort, or one of the many elegant hotels in
+                    Phuket, the island caters to every kind of traveler. From
+                    world-class dining and rejuvenating spas to championship
+                    golf courses and thrilling water sports, resort Phuket
+                    experiences are designed for those who seek both comfort and
+                    excitement.
+                  </p>
+                  <p>
+                    Visitors arriving through Phuket Airport can easily explore
+                    the island’s many attractions. There’s so much to do in
+                    Phuket — from snorkeling and island hopping to visiting
+                    cultural landmarks and enjoying the lively nightlife. Beyond
+                    its beaches, Phuket’s Old Town reveals colorful
+                    Sino-Portuguese architecture, bustling markets, and
+                    authentic Phuket Thai cuisine that delights every palate.
+                  </p>
+                  <p>
+                    With its perfect balance of natural beauty, luxury Phuket
+                    hotels, and warm local hospitality, Phuket Thailand remains
+                    a destination that captivates the senses — truly earning its
+                    title as{" "}
+                    <span className="italic">The Pearl of the Andaman</span>.
+                  </p>
+                </div>
+              </div>
+              <div className="grid grid-cols-2 gap-4">
+                <div className="bg-ink-2 rounded-lg p-6 text-center">
+                  <div className="text-4xl font-gilroy font-bold text-gold mb-2">
+                    543 km²
+                  </div>
+                  <div className="text-snow/70 font-poppins text-sm">
+                    Total Area
+                  </div>
+                </div>
+                <div className="bg-ink-2 rounded-lg p-6 text-center">
+                  <div className="text-4xl font-gilroy font-bold text-gold mb-2">
+                    30+
+                  </div>
+                  <div className="text-snow/70 font-poppins text-sm">
+                    Beaches
+                  </div>
+                </div>
+                <div className="bg-ink-2 rounded-lg p-6 text-center">
+                  <div className="text-4xl font-gilroy font-bold text-gold mb-2">
+                    400K
+                  </div>
+                  <div className="text-snow/70 font-poppins text-sm">
+                    Population
+                  </div>
+                </div>
+                <div className="bg-ink-2 rounded-lg p-6 text-center">
+                  <div className="text-4xl font-gilroy font-bold text-gold mb-2">
+                    12M+
+                  </div>
+                  <div className="text-snow/70 font-poppins text-sm">
+                    Annual Visitors
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ===================== ATTRACTIONS (Tabs) ===================== */}
+        <section id="attractions" className="py-24 bg-ink">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-16">
+              <p className="text-gold text-sm font-poppins tracking-[0.3em] uppercase mb-4">
+                TOURIST ATTRACTIONS
+              </p>
+              <h2 className="text-4xl font-gilroy font-bold text-snow mb-6">
+                Discover Phuket's Top Attractions
+              </h2>
+              <p className="text-snow/70 max-w-3xl mx-auto font-poppins leading-relaxed">
+                Explore temples, beaches, viewpoints, cultural sites, and
+                natural wonders across Thailand's premier island destination.
+              </p>
+            </div>
+
+            <Tabs
+              value={activeTab}
+              onValueChange={handleTabChange}
+              className="w-full"
+            >
+              <TabsList className="grid w-full grid-cols-3 lg:grid-cols-7 bg-ink-2 p-1 rounded-lg mb-12 sm:mb-20 lg:mb-8 h-28 sm:h-10">
+                <TabsTrigger
+                  value="beaches"
+                  className="data-[state=active]:bg-gold data-[state=active]:text-ink text-snow/70 font-poppins text-sm"
+                >
+                  Beaches
+                </TabsTrigger>
+                {/* <TabsTrigger
+                value="temples"
+                className="data-[state=active]:bg-gold data-[state=active]:text-ink text-snow/70 font-poppins text-sm"
+              >
+                Temples
+              </TabsTrigger> */}
+                <TabsTrigger
+                  value="viewpoints"
+                  className="data-[state=active]:bg-gold data-[state=active]:text-ink text-snow/70 font-poppins text-sm"
+                >
+                  Viewpoints
+                </TabsTrigger>
+                <TabsTrigger
+                  value="cultural"
+                  className="data-[state=active]:bg-gold data-[state=active]:text-ink text-snow/70 font-poppins text-sm"
+                >
+                  Cultural
+                </TabsTrigger>
+                <TabsTrigger
+                  value="nature"
+                  className="data-[state=active]:bg-gold data-[state=active]:text-ink text-snow/70 font-poppins text-sm"
+                >
+                  Nature
+                </TabsTrigger>
+                <TabsTrigger
+                  value="islands"
+                  className="data-[state=active]:bg-gold data-[state=active]:text-ink text-snow/70 font-poppins text-sm"
+                >
+                  Islands
+                </TabsTrigger>
+                <TabsTrigger
+                  value="entertainment"
+                  className="data-[state=active]:bg-gold data-[state=active]:text-ink text-snow/70 font-poppins text-sm"
+                >
+                  Entertainment
+                </TabsTrigger>
+                <TabsTrigger
+                  value="markets"
+                  className="data-[state=active]:bg-gold data-[state=active]:text-ink text-snow/70 font-poppins text-sm"
+                >
+                  Markets
+                </TabsTrigger>
+              </TabsList>
+
+              {/* Beaches */}
+              <TabsContent value="beaches" className="space-y-6" id="beaches">
+                {attractions
+                  .filter((a) => a.category === "Beaches")
+                  .map((attraction, index) => (
+                    <div
+                      key={index}
+                      className="bg-ink-2 rounded-lg border border-gold/20 overflow-hidden"
+                    >
+                      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 p-6">
+                        <div className="md:col-span-1">
+                          <div
+                            className="h-64 rounded-lg bg-cover bg-center"
+                            style={{
+                              backgroundImage: `url(${attraction.image})`,
+                            }}
+                          />
+                        </div>
+                        <div className="md:col-span-2">
+                          <h3 className="text-snow font-gilroy font-bold text-2xl mb-4">
+                            {attraction.name}
+                          </h3>
+                          <p className="text-snow/80 font-poppins leading-relaxed mb-4">
+                            {attraction.description}
+                          </p>
+                          {attraction.cta && (
+                            <Button
+                              className="bg-gold/10 hover:bg-gold text-gold hover:text-ink border border-gold transition-all"
+                              data-testid={`button-explore-${attraction.name
+                                .toLowerCase()
+                                .replace(/ /g, "-")}`}
+                            >
+                              Explore Properties near {attraction.name}
+                              <ChevronRight className="w-4 h-4 ml-2" />
+                            </Button>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+              </TabsContent>
+
+              {/* Temples */}
+              <TabsContent value="temples" className="space-y-6" id="temples">
+                {attractions
+                  .filter((a) => a.category === "Temples")
+                  .map((attraction, index) => (
+                    <div
+                      key={index}
+                      className="bg-ink-2 rounded-lg border border-gold/20 overflow-hidden"
+                    >
+                      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 p-6">
+                        <div className="md:col-span-1">
+                          <div
+                            className="h-64 rounded-lg bg-cover bg-center"
+                            style={{
+                              backgroundImage: `url(${attraction.image})`,
+                            }}
+                          />
+                        </div>
+                        <div className="md:col-span-2">
+                          <h3 className="text-snow font-gilroy font-bold text-2xl mb-4">
+                            {attraction.name}
+                          </h3>
+                          <p className="text-snow/80 font-poppins leading-relaxed mb-4">
+                            {attraction.description}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+              </TabsContent>
+
+              {/* Viewpoints */}
+              <TabsContent
+                value="viewpoints"
+                className="space-y-6"
+                id="viewpoints"
+              >
+                {attractions
+                  .filter((a) => a.category === "Viewpoints")
+                  .map((attraction, index) => (
+                    <div
+                      key={index}
+                      className="bg-ink-2 rounded-lg border border-gold/20 overflow-hidden"
+                    >
+                      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 p-6">
+                        <div className="md:col-span-1">
+                          <div
+                            className="h-64 rounded-lg bg-cover bg-center"
+                            style={{
+                              backgroundImage: `url(${attraction.image})`,
+                            }}
+                          />
+                        </div>
+                        <div className="md:col-span-2">
+                          <h3 className="text-snow font-gilroy font-bold text-2xl mb-4">
+                            {attraction.name}
+                          </h3>
+                          <p className="text-snow/80 font-poppins leading-relaxed mb-4">
+                            {attraction.description}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+              </TabsContent>
+
+              {/* Cultural */}
+              <TabsContent value="cultural" className="space-y-6" id="cultural">
+                {attractions
+                  .filter((a) => a.category === "Cultural")
+                  .map((attraction, index) => (
+                    <div
+                      key={index}
+                      className="bg-ink-2 rounded-lg border border-gold/20 overflow-hidden"
+                    >
+                      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 p-6">
+                        <div className="md:col-span-1">
+                          <div
+                            className="h-64 rounded-lg bg-cover bg-center"
+                            style={{
+                              backgroundImage: `url(${attraction.image})`,
+                            }}
+                          />
+                        </div>
+                        <div className="md:col-span-2">
+                          <h3 className="text-snow font-gilroy font-bold text-2xl mb-4">
+                            {attraction.name}
+                          </h3>
+                          <p className="text-snow/80 font-poppins leading-relaxed mb-4">
+                            {attraction.description}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+              </TabsContent>
+
+              {/* Nature */}
+              <TabsContent value="nature" className="space-y-6" id="nature">
+                {attractions
+                  .filter((a) => a.category === "Nature")
+                  .map((attraction, index) => (
+                    <div
+                      key={index}
+                      className="bg-ink-2 rounded-lg border border-gold/20 overflow-hidden"
+                    >
+                      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 p-6">
+                        <div className="md:col-span-1">
+                          <div
+                            className="h-64 rounded-lg bg-cover bg-center"
+                            style={{
+                              backgroundImage: `url(${attraction.image})`,
+                            }}
+                          />
+                        </div>
+                        <div className="md:col-span-2">
+                          <h3 className="text-snow font-gilroy font-bold text-2xl mb-4">
+                            {attraction.name}
+                          </h3>
+                          <p className="text-snow/80 font-poppins leading-relaxed mb-4">
+                            {attraction.description}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+              </TabsContent>
+
+              {/* Islands */}
+              <TabsContent value="islands" className="space-y-6" id="islands">
+                {attractions
+                  .filter((a) => a.category === "Islands")
+                  .map((attraction, index) => (
+                    <div
+                      key={index}
+                      className="bg-ink-2 rounded-lg border border-gold/20 overflow-hidden"
+                    >
+                      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 p-6">
+                        <div className="md:col-span-1">
+                          <div
+                            className="h-64 rounded-lg bg-cover bg-center"
+                            style={{
+                              backgroundImage: `url(${attraction.image})`,
+                            }}
+                          />
+                        </div>
+                        <div className="md:col-span-2">
+                          <h3 className="text-snow font-gilroy font-bold text-2xl mb-4">
+                            {attraction.name}
+                          </h3>
+                          <p className="text-snow/80 font-poppins leading-relaxed mb-4">
+                            {attraction.description}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+              </TabsContent>
+
+              {/* Entertainment */}
+              <TabsContent
+                value="entertainment"
+                className="space-y-6"
+                id="entertainment"
+              >
+                {attractions
+                  .filter((a) => a.category === "Entertainment")
+                  .map((attraction, index) => (
+                    <div
+                      key={index}
+                      className="bg-ink-2 rounded-lg border border-gold/20 overflow-hidden"
+                    >
+                      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 p-6">
+                        <div className="md:col-span-1">
+                          <div
+                            className="h-64 rounded-lg bg-cover bg-center"
+                            style={{
+                              backgroundImage: `url(${attraction.image})`,
+                            }}
+                          />
+                        </div>
+                        <div className="md:col-span-2">
+                          <h3 className="text-snow font-gilroy font-bold text-2xl mb-4">
+                            {attraction.name}
+                          </h3>
+                          <p className="text-snow/80 font-poppins leading-relaxed mb-4">
+                            {attraction.description}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+              </TabsContent>
+
+              {/* Markets */}
+              <TabsContent value="markets" className="space-y-6" id="markets">
+                {attractions
+                  .filter((a) => a.category === "Markets")
+                  .map((attraction, index) => (
+                    <div
+                      key={index}
+                      className="bg-ink-2 rounded-lg border border-gold/20 overflow-hidden"
+                    >
+                      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 p-6">
+                        <div className="md:col-span-1">
+                          <div
+                            className="h-64 rounded-lg bg-cover bg-center"
+                            style={{
+                              backgroundImage: `url(${attraction.image})`,
+                            }}
+                          />
+                        </div>
+                        <div className="md:col-span-2">
+                          <h3 className="text-snow font-gilroy font-bold text-2xl mb-4">
+                            {attraction.name}
+                          </h3>
+                          <p className="text-snow/80 font-poppins leading-relaxed mb-4">
+                            {attraction.description}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+              </TabsContent>
+            </Tabs>
+          </div>
+        </section>
+
+        {/* ===================== Find Properties ===================== */}
+        <section
+          id="find-phuket-properties-1"
+          className="py-24 bg-gradient-to-br from-gold to-sand text-ink"
+        >
+          {/* 🔹 Content (above overlay) */}
+          <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div className="border border-white rounded-2xl p-12">
+              <h2 className="text-4xl font-gilroy font-bold mb-4">
+                Your Perfect Stay Awaits in Phuket
+              </h2>
+              <p className="text-snow/80 font-poppins text-lg mb-8 leading-relaxed">
+                Discover a curated collection of premium villas, elegant condos,
+                and sophisticated apartments — each designed for comfort, style,
+                and unforgettable experiences.
+              </p>
+              <div className="flex sm:flex-row gap-4 justify-center">
+                <Button
+                  variant="outline"
+                  className="border-gold text-snow hover:bg-gold hover:text-snow px-8 py-6 text-lg"
+                  data-testid="button-view-properties"
+                  onClick={goToProperties}
+                >
+                  Explore Our Phuket Properties
+                </Button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ===================== ACTIVITIES ===================== */}
+        <section id="activities" className="py-24 bg-[#000000]">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-16">
+              <p className="text-gold text-sm font-poppins tracking-[0.3em] uppercase mb-4">
+                THINGS TO DO
+              </p>
+              <h2 className="text-4xl font-gilroy font-bold text-snow mb-6">
+                Activities & Experiences
+              </h2>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              <div className="bg-ink-2 rounded-lg p-6 text-center hover:bg-gold/10 transition-all">
+                <div className="w-16 h-16 bg-gold/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                  🏊‍♂️
+                </div>
+                <h3 className="text-snow font-poppins font-semibold mb-2">
+                  Water Sports
+                </h3>
+                <p className="text-snow/70 text-sm">
+                  Diving, snorkeling, surfing, jet skiing
+                </p>
+              </div>
+              <div className="bg-ink-2 rounded-lg p-6 text-center hover:bg-gold/10 transition-all">
+                <div className="w-16 h-16 bg-gold/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                  🛥️
+                </div>
+                <h3 className="text-snow font-poppins font-semibold mb-2">
+                  Island Hopping
+                </h3>
+                <p className="text-snow/70 text-sm">
+                  Phi Phi Islands, James Bond Island tours
+                </p>
+              </div>
+              <div className="bg-ink-2 rounded-lg p-6 text-center hover:bg-gold/10 transition-all">
+                <div className="w-16 h-16 bg-gold/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                  🏛️
+                </div>
+                <h3 className="text-snow font-poppins font-semibold mb-2">
+                  Cultural Tours
+                </h3>
+                <p className="text-snow/70 text-sm">
+                  Temples, Old Town, local markets
+                </p>
+              </div>
+              <div className="bg-ink-2 rounded-lg p-6 text-center hover:bg-gold/10 transition-all">
+                <div className="w-16 h-16 bg-gold/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                  🐘
+                </div>
+                <h3 className="text-snow font-poppins font-semibold mb-2">
+                  Elephant Encounters
+                </h3>
+                <p className="text-snow/70 text-sm">
+                  Visit ethical sanctuaries like Phuket Elephant Sanctuary for a
+                  heartwarming wildlife experience.
+                </p>
+              </div>
+              {/* Muay Thai */}
+              <div className="bg-ink-2 rounded-lg p-6 text-center hover:bg-gold/10 transition-all">
+                <div className="w-16 h-16 bg-gold/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                  🥊
+                </div>
+                <h3 className="text-snow font-poppins font-semibold mb-2">
+                  Muay Thai
+                </h3>
+                <p className="text-snow/70 text-sm">
+                  Train at renowned gyms like Tiger Muay Thai or watch live
+                  fights at Patong Boxing Stadium.
+                </p>
+              </div>
+
+              {/* Shooting Range */}
+              <div className="bg-ink-2 rounded-lg p-6 text-center hover:bg-gold/10 transition-all">
+                <div className="w-16 h-16 bg-gold/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                  🎯
+                </div>
+                <h3 className="text-snow font-poppins font-semibold mb-2">
+                  Shooting Range
+                </h3>
+                <p className="text-snow/70 text-sm">
+                  Try your aim at Patong Shooting Range or Phuket Shooting Range
+                  with professional guidance.
+                </p>
+              </div>
+
+              {/* Go-Kart */}
+              <div className="bg-ink-2 rounded-lg p-6 text-center hover:bg-gold/10 transition-all">
+                <div className="w-16 h-16 bg-gold/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                  🏎️
+                </div>
+                <h3 className="text-snow font-poppins font-semibold mb-2">
+                  Go-Kart Racing
+                </h3>
+                <p className="text-snow/70 text-sm">
+                  Experience high-speed fun at Patong or Phuket Kart Speedway —
+                  perfect for families and groups.
+                </p>
+              </div>
+
+              <div className="bg-ink-2 rounded-lg p-6 text-center hover:bg-gold/10 transition-all">
+                <div className="w-16 h-16 bg-gold/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                  🍜
+                </div>
+                <h3 className="text-snow font-poppins font-semibold mb-2">
+                  Culinary Experiences
+                </h3>
+                <p className="text-snow/70 text-sm">
+                  Cooking classes, street food tours
+                </p>
+              </div>
+              <div className="bg-ink-2 rounded-lg p-6 text-center hover:bg-gold/10 transition-all">
+                <div className="w-16 h-16 bg-gold/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                  💆
+                </div>
+                <h3 className="text-snow font-poppins font-semibold mb-2">
+                  Spa & Wellness
+                </h3>
+                <p className="text-snow/70 text-sm">
+                  Thai massage, luxury spa treatments
+                </p>
+              </div>
+              <div className="bg-ink-2 rounded-lg p-6 text-center hover:bg-gold/10 transition-all">
+                <div className="w-16 h-16 bg-gold/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                  🌙
+                </div>
+                <h3 className="text-snow font-poppins font-semibold mb-2">
+                  Nightlife
+                </h3>
+                <p className="text-snow/70 text-sm">
+                  Beach clubs, bars, entertainment
+                </p>
+              </div>
+              <div className="bg-ink-2 rounded-lg p-6 text-center hover:bg-gold/10 transition-all">
+                <div className="w-16 h-16 bg-gold/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                  ⛳
+                </div>
+                <h3 className="text-snow font-poppins font-semibold mb-2">
+                  Golf
+                </h3>
+                <p className="text-snow/70 text-sm">
+                  Championship courses, ocean views
+                </p>
+              </div>
+              <div className="bg-ink-2 rounded-lg p-6 text-center hover:bg-gold/10 transition-all">
+                <div className="w-16 h-16 bg-gold/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                  🛍️
+                </div>
+                <h3 className="text-snow font-poppins font-semibold mb-2">
+                  Shopping
+                </h3>
+                <p className="text-snow/70 text-sm">
+                  Malls, markets, boutiques
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ===================== BEST TIME (Quarterly, Summary on top, text-based) ===================== */}
+        <section id="best-time" className="py-24 bg-ink">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-16">
+              <p className="text-gold text-sm font-poppins tracking-[0.3em] uppercase mb-4">
+                TRAVEL PLANNING
+              </p>
+              <h2 className="text-4xl font-gilroy font-bold text-snow mb-6">
+                Best Time to Visit Phuket
+              </h2>
+              <p className="text-snow/70 max-w-3xl mx-auto font-poppins leading-relaxed">
+                Split the year into quarters to match your travel style—choose
+                peak sun, shoulder value, or lush green season vibes.
+              </p>
+            </div>
+
+            {/* Summary (replaces Insider Tip, moved above the breakdown) */}
+            <div className="bg-gold/10 border border-gold/30 rounded-xl p-8 mb-12">
+              <h3 className="text-gold font-gilroy font-bold text-lg mb-3">
+                Summary
+              </h3>
+              <p className="text-snow/80 font-poppins leading-relaxed">
+                The best time to visit Phuket is from November to February
+                during the cool, dry season when temperatures are comfortable
+                (25-31°C) and rainfall is minimal.
+                <br />
+                <br />
+                Phuket enjoys a tropical monsoon climate year-round. The dry
+                season (Nov–Apr) brings sunshine and calm seas, ideal for island
+                hopping and water sports. The green season (May–Oct) means fewer
+                crowds, lush scenery, and great deals—perfect for spa retreats,
+                cultural days in Old Town, and slower travel.
+              </p>
+            </div>
+
+            {/* Quarterly Breakdown - plain text, no buttons */}
+            <div className="space-y-12 text-snow/80 font-poppins">
+              <div>
+                <h3 className="text-2xl font-gilroy font-bold text-gold mb-2">
+                  🌤️ January – March
+                </h3>
+                <p className="leading-relaxed">
+                  High season with dry, sunny weather around 26–32°C. Seas are
+                  calm and visibility is great.
+                  <br />
+                  <strong className="text-snow">
+                    Recommended activities:
+                  </strong>{" "}
+                  beaches and snorkeling, diving trips (Similan liveaboards),
+                  sunset cruises, day trips to Phi Phi and Phang Nga.
+                  <br />
+                  <strong className="text-snow">
+                    Festivals & events:
+                  </strong>{" "}
+                  Chinese New Year (Jan/Feb), Makha Bucha Day (Feb).
+                </p>
+              </div>
+
+              <div>
+                <h3 className="text-2xl font-gilroy font-bold text-gold mb-2">
+                  🌦️ April – June
+                </h3>
+                <p className="leading-relaxed">
+                  Transition from dry to rainy season; hottest temps peak in
+                  April with short, scattered showers later. Lighter crowds and
+                  better rates make this a strong value window.
+                  <br />
+                  <strong className="text-snow">
+                    Recommended activities:
+                  </strong>{" "}
+                  temple & cultural tours, Thai cooking classes, spa & wellness,
+                  cafes and galleries in Old Phuket Town.
+                  <br />
+                  <strong className="text-snow">
+                    Festivals & events:
+                  </strong>{" "}
+                  Songkran (Thai New Year, mid-April), Visakha Bucha Day (May).
+                </p>
+              </div>
+
+              <div>
+                <h3 className="text-2xl font-gilroy font-bold text-gold mb-2">
+                  🌧️ July – September
+                </h3>
+                <p className="leading-relaxed">
+                  Southwest monsoon brings frequent rainfall and occasional
+                  rough seas, but the island is at its greenest. Excellent for
+                  slow travel, quiet resorts, and wellness.
+                  <br />
+                  <strong className="text-snow">
+                    Recommended activities:
+                  </strong>{" "}
+                  yoga & wellness retreats, museums, coffee shops, street food
+                  hunts, photo walks in Old Town.
+                  <br />
+                  <strong className="text-snow">
+                    Festivals & events:
+                  </strong>{" "}
+                  Asalha Bucha Day (July), Phuket Vegetarian Festival (late
+                  Sep/early Oct).
+                </p>
+              </div>
+
+              <div>
+                <h3 className="text-2xl font-gilroy font-bold text-gold mb-2">
+                  🌅 October – December
+                </h3>
+                <p className="leading-relaxed">
+                  Rains ease and the dry season returns; November is typically
+                  bright and breezy with comfortable humidity.
+                  <br />
+                  <strong className="text-snow">
+                    Recommended activities:
+                  </strong>{" "}
+                  sailing, island hopping, hiking viewpoints (Promthep Cape,
+                  Karon Viewpoint), full-day sightseeing.
+                  <br />
+                  <strong className="text-snow">Festivals & events:</strong> Loy
+                  Krathong (Nov), Christmas & New Year celebrations (Dec).
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ===================== Find Properties ===================== */}
+        <section
+          id="find-phuket-properties-2"
+          className="py-24 bg-gradient-to-br from-gold to-sand text-ink"
+        >
+          {/* 🔹 Content (above overlay) */}
+          <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div className="border border-white rounded-2xl p-12">
+              <h2 className="text-4xl font-gilroy font-bold mb-4">
+                Indulge in the Ultimate Phuket Getaway
+              </h2>
+              <p className="text-snow/80 font-poppins text-lg mb-8 leading-relaxed">
+                Escape to a world of comfort and sophistication. Our exclusive
+                short-term rentals — from breathtaking villas to chic condos —
+                offer the perfect blend of privacy, style, and convenience for
+                your island retreat.
+              </p>
+              <div className="flex sm:flex-row gap-4 justify-center">
+                <Button
+                  variant="outline"
+                  className="border-gold text-snow hover:bg-gold hover:text-snow px-8 py-6 text-lg"
+                  data-testid="button-view-properties"
+                  onClick={goToProperties}
+                >
+                  Find Your Luxury Stay
+                </Button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ===================== BOOK FLIGHT CTA (kept) ===================== */}
+        {/* <section
+        id="book-flight"
+        className="relative py-24 bg-center bg-cover"
+        style={{
+          backgroundImage: `url(${flightBg})`,
+        }}
+      > */}
+        {/* 🔹 Overlay (below content) */}
+        {/* <div className="absolute inset-0 bg-black/50"></div> */}
+        {/* Example: use your brand color instead */}
+        {/* <div className="absolute inset-0 bg-[#3fa3eb]/40"></div> */}
+
+        {/* 🔹 Content (above overlay) */}
+        {/* <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div className="border border-yellow-500 rounded-2xl p-12">
+            <Plane className="w-16 h-16 text-yellow-500 mx-auto mb-6" />
+            <h2 className="text-4xl font-gilroy font-bold text-snow mb-4">
+              Ready to Fly to Phuket?
+            </h2>
+            <p className="text-snow/80 font-poppins text-lg mb-8 leading-relaxed">
+              Book your flight to Phuket International Airport (HKT) and start
+              your luxury island adventure. Direct connections available from
+              major cities worldwide.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button
+                className="bg-yellow-500 hover:bg-gold/90 text-ink font-semibold px-8 py-6 text-lg"
+                data-testid="button-book-flight"
+              >
+                Book Flight to Phuket
+                <Plane className="w-5 h-5 ml-2" />
+              </Button>
+              <Button
+                variant="outline"
+                className="border-gold text-gold hover:bg-yellow-500 hover:text-ink px-8 py-6 text-lg"
+                data-testid="button-view-properties"
+              >
+                View Our Properties
+              </Button>
+            </div>
+          </div>
+        </div>
+      </section> */}
+
+        {/* ===================== FAQ (restored) ===================== */}
+        <section id="faq" className="py-24 bg-ink">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-16">
+              <p className="text-gold text-sm font-poppins tracking-[0.3em] uppercase mb-4">
+                FREQUENTLY ASKED
+              </p>
+              <h2 className="text-4xl font-gilroy font-bold text-snow mb-6">
+                Phuket Travel FAQs
+              </h2>
+            </div>
+
+            <div className="space-y-4">
+              {faqs.map((faq, index) => (
+                <details
+                  key={index}
+                  className="bg-ink-2 rounded-lg border border-gold/20 overflow-hidden group"
+                >
+                  <summary className="px-6 py-4 cursor-pointer list-none flex items-center justify-between hover:bg-gold/10 transition-colors">
+                    <h3 className="text-snow font-poppins font-semibold pr-4">
+                      {faq.q}
+                    </h3>
+                    <ChevronRight className="w-5 h-5 text-gold transform group-open:rotate-90 transition-transform flex-shrink-0" />
+                  </summary>
+                  <div className="px-6 pb-4">
+                    <p className="text-snow/70 font-poppins leading-relaxed">
+                      {faq.a}
+                    </p>
+                  </div>
+                </details>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <Footer />
+
+        {/* ===================== JSON-LD Structured Data ===================== */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(touristDestinationSchema),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        />
+      </div>
+    </>
+  );
+}

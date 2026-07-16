@@ -1,0 +1,1793 @@
+{
+  "navigation": {
+    "buy_rent": "FOR SALE & RENT",
+    "experiences": "EXPERIENCES",
+    "propertyManagement": "PROPERTY MANAGEMENT",
+    "ourProperty": "OUR PROPERTY",
+    "vacationRentals": "VACATION RENTALS",
+    "properties": "FOR RENT & SALE",
+    "forRent": "FOR RENT",
+    "forRentDescription": "Long-term rental properties",
+    "forSale": "FOR SALE",
+    "forSaleDescription": "Properties available to buy",
+    "allProperties": "All Properties",
+    "allPropertiesDescription": "Browse our full collection",
+    "guides": "GUIDES",
+    "contactUs": "CONTACT US",
+    "contactUsDescription": "For booking inquiries and support",
+    "whyOwners": "WHY OWNERS CHOOSE US",
+    "menu": "Menu",
+    "language": "Language"
+  },
+  "home": {
+    "metadata": {
+      "title": "Silqhaus | Luxury Vacation Rentals in Phuket & Pattaya, Thailand",
+      "description": "Experience Thailand's premier luxury vacation rentals. Discover handpicked villas and apartments in Phuket and Pattaya with exceptional hospitality."
+    },
+    "hero": {
+      "brand": "SILQHAUS",
+      "headline": "Exceptional Stays, Extraordinary Experiences",
+      "cta": "Book Your Stay"
+    },
+    "ota": {
+      "asSeenOn": "As Seen On",
+      "butIts": "But it's",
+      "cheaper": "10% CHEAPER",
+      "to": "to",
+      "bookDirectly": "book directly on Silqhaus"
+    },
+    "destinations": {
+      "title": "Our Destinations",
+      "description": "Explore our curated selection of luxury properties across Thailand's most sought-after locations",
+      "phuket": "Phuket",
+      "pattaya": "Pattaya",
+      "andaman": "Andaman",
+      "eastern": "Eastern"
+    },
+    "popularLocations": {
+      "title": "Stay Highlights",
+      "description": "Handpicked luxury properties in Thailand for unforgettable escapes",
+      "loading": "Loading popular locations…",
+      "error": "Failed to load listings",
+      "bedrooms": "bedrooms",
+      "perNight": "/ night"
+    },
+    "cta": {
+      "subtitle": "EXCEPTIONAL HOSPITALITY",
+      "title": "READY FOR YOUR NEXT JOURNEY?",
+      "descriptionPart1": "Experience the",
+      "descriptionHighlight1": "future of luxury hospitality",
+      "descriptionPart2": "through our",
+      "descriptionHighlight2": "decentralized network",
+      "descriptionPart3": "of premium accommodations",
+      "button": "Explore All Destinations"
+    }
+  },
+  "propertyManagement": {
+    "metadata": {
+      "title": "Property Management in Phuket & Pattaya | Silqhaus",
+      "description": "Professional property management for luxury vacation rentals in Thailand. Maximize your rental income with Silqhaus."
+    },
+    "hero": {
+      "subtitle": "PROFESSIONAL PROPERTY MANAGEMENT",
+      "title": "Maximize Your Property's Potential",
+      "description": "Partner with Thailand's premier luxury property management company, specializing in property management in Phuket and Pattaya. We handle everything from guest acquisition to property maintenance, so you can enjoy effortless, hassle-free passive income.",
+      "ctaPrimary": "Get Free Consultation",
+      "ctaSecondary": "Learn More"
+    },
+    "stats": {
+      "revenueIncrease": {
+        "stat": "35%",
+        "label": "Average Revenue Increase",
+        "description": "Our owners see significant income growth within the first year"
+      },
+      "guestRating": {
+        "stat": "4.9",
+        "label": "Average Guest Rating",
+        "description": "Consistently high ratings across all managed properties"
+      },
+      "occupancyRate": {
+        "stat": "95%",
+        "label": "Occupancy Rate",
+        "description": "Maximized bookings during peak and off-peak seasons"
+      },
+      "support": {
+        "stat": "24/7",
+        "label": "Support Available",
+        "description": "Round-the-clock assistance for guests and owners alike"
+      }
+    },
+    "platforms": {
+      "subtitle": "MULTI-PLATFORM DISTRIBUTION",
+      "title": "Your Property, Everywhere",
+      "description": "We list and manage your property across all major booking platforms, maximizing visibility and bookings while you maintain a single point of contact with our team."
+    },
+    "whyChooseUs": {
+      "subtitle": "WHY SILQHAUS",
+      "title": "Your Property Deserves Expert Care",
+      "description": "Silqhaus combines local expertise with international hospitality standards to deliver exceptional results. Our dedicated team treats every property as if it were our own, ensuring maximum returns and complete peace of mind for owners.",
+      "checklist": [
+        "Dedicated property manager for personalized service",
+        "Multi-platform listing optimization for maximum visibility",
+        "Professional cleaning and turnover teams",
+        "Real-time performance dashboards and reporting",
+        "Emergency response within 60 minutes"
+      ],
+      "cards": {
+        "localExperts": {
+          "title": "Local Experts",
+          "description": "Thailand specialists"
+        },
+        "noHiddenFees": {
+          "title": "No Hidden Fees",
+          "description": "Transparent pricing"
+        },
+        "dataDriven": {
+          "title": "Data Driven",
+          "description": "Smart pricing strategies"
+        },
+        "support": {
+          "title": "24/7 Support",
+          "description": "Always here for you"
+        }
+      }
+    },
+    "services": {
+      "subtitle": "OUR SERVICES",
+      "title": "Comprehensive Property Management",
+      "description": "From listing creation to guest checkout, we handle every aspect of your rental business with meticulous attention to detail.",
+      "items": {
+        "photography": {
+          "title": "Professional Photography",
+          "description": "High-quality photos and virtual tours that showcase your property at its best and attract premium guests."
+        },
+        "pricing": {
+          "title": "Dynamic Pricing",
+          "description": "AI-powered pricing strategies that maximize your revenue based on demand, seasonality, and market trends."
+        },
+        "booking": {
+          "title": "Booking Management",
+          "description": "Seamless reservation handling across all major platforms including Airbnb, Booking.com, Vrbo, and direct bookings."
+        },
+        "guestCommunication": {
+          "title": "Guest Communication",
+          "description": "24/7 guest support from inquiry to checkout, ensuring 5-star reviews and repeat bookings."
+        },
+        "maintenance": {
+          "title": "Property Maintenance",
+          "description": "Regular inspections, cleaning coordination, and preventive maintenance to protect your investment."
+        },
+        "compliance": {
+          "title": "Compliance",
+          "description": "Local regulation compliance to give you complete peace of mind."
+        }
+      }
+    },
+    "howItWorks": {
+      "subtitle": "HOW IT WORKS",
+      "title": "Getting Started is Easy",
+      "steps": {
+        "step1": {
+          "step": "01",
+          "title": "Initial Consultation",
+          "description": "Schedule a free call to discuss your property and goals"
+        },
+        "step2": {
+          "step": "02",
+          "title": "Property Assessment",
+          "description": "We visit your property and create a customized management plan"
+        },
+        "step3": {
+          "step": "03",
+          "title": "Listing Creation",
+          "description": "Professional photos, optimized listings, and strategic pricing"
+        },
+        "step4": {
+          "step": "04",
+          "title": "Start Earning",
+          "description": "Sit back and watch the bookings come in while we handle everything"
+        }
+      }
+    },
+    "contact": {
+      "subtitle": "GET IN TOUCH",
+      "title": "Ready to Maximize Your Rental Income?",
+      "description": "Take the first step towards hassle-free property ownership. Fill out the form and our team will contact you within 24 hours to schedule your free consultation.",
+      "benefits": {
+        "quickResponse": {
+          "title": "Quick Response",
+          "description": "We respond within 24 hours"
+        },
+        "noObligation": {
+          "title": "No Obligation",
+          "description": "Free consultation with no commitment"
+        },
+        "expertAdvice": {
+          "title": "Expert Advice",
+          "description": "Speak directly with our management team"
+        }
+      },
+      "form": {
+        "title": "Request Free Consultation",
+        "labels": {
+          "fullName": "Full Name *",
+          "email": "Email *",
+          "phone": "Phone Number",
+          "propertyLocation": "Property Location *",
+          "propertyType": "Property Type",
+          "preferredContactMethod": "Preferred Contact Method",
+          "preferredContactTime": "Preferred Contact Time",
+          "tellUsAboutProperty": "Tell Us About Your Property"
+        },
+        "placeholders": {
+          "fullName": "Enter your full name",
+          "email": "your@email.com",
+          "phone": "XX XXX XXXX",
+          "propertyLocation": "e.g., Patong, Phuket or Pattaya",
+          "propertyType": "e.g., Villa, Condo, Apartment, House",
+          "contactMethod": "Select how you'd like to be contacted",
+          "contactTime": "When is the best time to reach you?",
+          "propertyDescription": "Number of bedrooms, bathrooms, current rental status, any specific requirements or questions..."
+        },
+        "contactMethods": {
+          "email": "Email",
+          "phone": "Phone",
+          "whatsapp": "WhatsApp",
+          "line": "Line",
+          "wechat": "WeChat"
+        },
+        "contactLabels": {
+          "email": "Email Address",
+          "phone": "Phone Number",
+          "whatsapp": "WhatsApp Number",
+          "line": "Line ID",
+          "wechat": "WeChat ID",
+          "default": "Contact Details"
+        },
+        "contactPlaceholders": {
+          "email": "your@email.com",
+          "phone": "+66 XX XXX XXXX",
+          "whatsapp": "Your WhatsApp number",
+          "line": "Your Line ID",
+          "wechat": "Your WeChat ID",
+          "default": "Enter your contact details"
+        },
+        "contactTimes": {
+          "morning": "Morning (9AM - 12PM)",
+          "afternoon": "Afternoon (12PM - 5PM)",
+          "evening": "Evening (5PM - 9PM)",
+          "anytime": "Anytime"
+        },
+        "submitButton": "Submit Inquiry",
+        "submitting": "Sending...",
+        "successMessage": "Thank you for your inquiry! We will contact you within 24 hours to schedule your free consultation.",
+        "errorMessage": "Something went wrong. Please try again or contact us directly.",
+        "privacyNotice": "By submitting this form, you agree to our privacy policy. We'll never share your information."
+      },
+      "validation": {
+        "invalidEmail": "Please enter a valid email address",
+        "invalidPhone": "Please enter a valid phone number (digits, spaces, and dashes only)"
+      }
+    },
+    "testimonials": {
+      "subtitle": "TESTIMONIALS",
+      "title": "What Our Partners Say",
+      "description": "Don't just take our word for it. Hear from property owners who have transformed their rental business with Silqhaus.",
+      "items": {
+        "testimonial1": {
+          "name": "Michael Chen",
+          "property": "Luxury Villa, Patong",
+          "quote": "Silqhaus transformed my rental income. Their attention to detail and professional approach exceeded all expectations. My villa is now consistently booked at premium rates."
+        },
+        "testimonial2": {
+          "name": "Sarah Williams",
+          "property": "Beachfront Condo, Kata",
+          "quote": "As an overseas owner, I needed a team I could trust completely. Silqhaus handles everything seamlessly - from guest management to maintenance. Highly recommended."
+        },
+        "testimonial3": {
+          "name": "James Thompson",
+          "property": "Pool Villa, Kamala",
+          "quote": "The difference in bookings and revenue since partnering with Silqhaus has been remarkable. Their dynamic pricing strategy alone has increased my income by 40%."
+        }
+      }
+    },
+    "faq": {
+      "subtitle": "FAQ",
+      "title": "Frequently Asked Questions",
+      "items": {
+        "faq1": {
+          "question": "What types of properties do you manage?",
+          "answer": "We specialize in luxury short-term rentals including villas, condominiums, apartments, and boutique properties across Thailand. Our focus is on premium properties that attract discerning travelers."
+        },
+        "faq2": {
+          "question": "How do you handle guest screening?",
+          "answer": "We implement a thorough vetting process including ID verification, previous guest reviews, and communication assessment. This ensures your property is occupied by respectful guests who will treat your home with care."
+        },
+        "faq3": {
+          "question": "What are your management fees?",
+          "answer": "Our fees are performance-based, typically ranging from 10-25% of rental income depending on the property type and services required. We only succeed when you succeed - there are no hidden charges."
+        },
+        "faq4": {
+          "question": "How quickly can you start managing my property?",
+          "answer": "Once you decide to partner with us, we can have your property listed and ready for bookings within 7 days on average. This includes professional photography, listing optimization, and pricing strategy setup."
+        },
+        "faq5": {
+          "question": "Can I still use my property when I want?",
+          "answer": "Absolutely. You maintain full control of your calendar and can block dates for personal use anytime. We simply work around your schedule to maximize bookings during available periods."
+        },
+        "faq6": {
+          "question": "How do I receive my passive income?",
+          "answer": "We provide clear monthly statements with detailed breakdowns. Payouts are processed at month-end and deposited between the 1st and 5th of the following month to your preferred bank account."
+        }
+      }
+    }
+  },
+  "whyOwners": {
+    "metadata": {
+      "title": "Why Owners Choose Silqhaus | Property Management in Thailand",
+      "description": "Built for year-round performance — not just high season. Discover why property owners trust Silqhaus for consistent quality control, real operational systems, and transparent numbers."
+    },
+    "hero": {
+      "subtitle": "FOR PROPERTY OWNERS",
+      "title": "Why Owners Choose Silqhaus",
+      "description": "We are built for year-round performance — not just high season.",
+      "ctaPrimary": "Get Free Consultation",
+      "ctaSecondary": "Learn How We Operate"
+    },
+    "intro": {
+      "title": "Built for Every Season",
+      "description": "Most short-term rental operators only look good in peak season. Low season is where weak systems, weak teams, and weak processes get exposed.",
+      "seasons": {
+        "low": "Low season",
+        "shoulder": "Shoulder season",
+        "peak": "Peak season"
+      },
+      "conclusion": "Because a real business must survive all three."
+    },
+    "hardTruth": {
+      "subtitle": "THE HARD TRUTH",
+      "title": "Property Management is Operations — Not Marketing",
+      "image": "/why-owners/operations.webp",
+      "description": "Many property management companies invest heavily in social media, branding, and paid advertising. While visibility matters, it is not what determines whether your property earns consistent revenue.",
+      "points": [
+        "Pretty posts, boosted ads, and \"premium branding\" do not protect your revenue.",
+        "If cleaning, maintenance, and guest communication are inconsistent, revenue will leak no matter how good the listings look.",
+        "Revenue protection comes from operational discipline — the systems behind the scenes that ensure every guest has a flawless experience.",
+        "At Silqhaus, marketing supports operations — not the other way around. We focus on building repeatable processes that deliver consistent results month after month."
+      ]
+    },
+    "selectivePortfolio": {
+      "subtitle": "QUALITY OVER QUANTITY",
+      "title": "Selective Portfolio = Real Quality Control",
+      "image": "/why-owners/quality-control.webp",
+      "description": "We intentionally do not manage a large number of homes. Not because we cannot onboard more — but because we believe quality control is the single most important factor in long-term rental performance.",
+      "reasons": [
+        "Quality control takes time — every unit requires dedicated attention to maintain standards",
+        "Regular checks and inspections catch issues before they reach guests",
+        "People matter — we train and retain our team rather than outsourcing to third parties",
+        "Accountability means one clear owner for every task, every property, every guest experience"
+      ],
+      "conclusion": "We only onboard more properties when our technology and our team capacity scale first. Growth never comes at the cost of quality."
+    },
+    "housekeeping": {
+      "subtitle": "IN-HOUSE OPERATIONS",
+      "title": "In-House Housekeeping is Non-Negotiable",
+      "image": "/why-owners/housekeeping.webp",
+      "description": "Housekeeping is the most visible part of property management to guests. It directly impacts reviews, repeat bookings, and your property's reputation. That is why we refuse to outsource it.",
+      "outsourcedProblems": {
+        "title": "Outsourced cleaning usually creates:",
+        "items": [
+          "Inconsistent standards — different cleaners, different results every time",
+          "Slow problem resolution — finger-pointing between vendors and managers",
+          "Unclear responsibility — no single person accountable for cleanliness"
+        ]
+      },
+      "ourModel": {
+        "title": "Our model:",
+        "items": [
+          "In-house housekeeping team trained to hotel-grade standards",
+          "One unified standard across every property we manage",
+          "One clear owner of quality — our operations team, not a vendor"
+        ]
+      },
+      "results": {
+        "title": "This gives:",
+        "items": [
+          "Faster turnaround between guests with zero quality compromise",
+          "Consistent cleaning results that guests notice and mention in reviews",
+          "Real accountability — we know exactly who cleaned what and when"
+        ]
+      }
+    },
+    "aiQuality": {
+      "subtitle": "AI-POWERED QUALITY CONTROL",
+      "title": "Proof-Based Housekeeping Control",
+      "image": "/why-owners/ai-quality.webp",
+      "description": "Trust is important, but proof is better. Silqhaus uses an internal AI-powered quality control system that removes guesswork from the cleaning process and gives property managers verifiable evidence of every turnover.",
+      "features": [
+        "Housekeeping sends photo-based cleaning proof after every turnover",
+        "The AI system analyzes and tracks each unit's cleanliness performance over time",
+        "Property managers receive real, visual evidence for quality checks — not just verbal confirmation",
+        "Historical data reveals patterns, helping us improve and maintain consistently high standards"
+      ],
+      "eliminates": {
+        "title": "This removes:",
+        "items": [
+          "\"I think it's clean\" — replaced with photographic evidence",
+          "\"The vendor said it was done\" — replaced with verifiable, timestamped proof"
+        ]
+      },
+      "conclusion": "We operate with proof — not promises. Every clean is documented, every standard is measurable."
+    },
+    "realTimeVisibility": {
+      "subtitle": "OWNER DASHBOARD",
+      "title": "Real-Time Visibility for Owners",
+      "image": "/why-owners/dashboard.webp",
+      "description": "As a property owner, you should never feel disconnected from what's happening with your investment. Our owner dashboard gives you complete, real-time transparency into every aspect of your property's performance.",
+      "features": [
+        "Real-time revenue tracking — see exactly what your property earns as bookings come in",
+        "Real-time booking activity — monitor upcoming reservations, check-ins, and check-outs",
+        "Real-time guest performance — track ratings, reviews, and guest satisfaction scores",
+        "Real-time payout records — every payment documented, every deduction explained"
+      ],
+      "conclusion": "No waiting for monthly reports. No surprises. You always know exactly what is happening with your property."
+    },
+    "payouts": {
+      "subtitle": "TRANSPARENT PAYOUTS",
+      "title": "Faster and Clearer Owner Payout Logic",
+      "image": "/why-owners/payouts.webp",
+      "description": "Financial transparency is not optional — it is foundational to a healthy owner-manager relationship. We designed our payout system so that owners never have to guess, ask, or wait to understand their earnings.",
+      "points": [
+        "Each booking is visible — you see the guest, the dates, the rate, and the platform it came from.",
+        "Each payout is traceable — from booking confirmation to bank deposit, every step is documented.",
+        "Each deduction is transparent — maintenance costs, cleaning fees, commissions, and any other charges are itemized clearly.",
+        "Payouts are processed promptly — no waiting until end-of-quarter for your earnings."
+      ]
+    },
+    "assetProtection": {
+      "subtitle": "LONG-TERM THINKING",
+      "title": "We Protect Your Home — Not Just Fill Your Calendar",
+      "image": "/why-owners/asset-protection.webp",
+      "description": "Many operators prioritize maximum occupancy at any cost. We take a different approach. Your property is a long-term asset, and we treat it that way — balancing revenue generation with asset preservation.",
+      "goals": [
+        "Stable, sustainable revenue that performs across all seasons — not just during peak months",
+        "Protected asset condition through regular maintenance, inspections, and preventive care",
+        "Controlled guest quality — we screen guests carefully to protect your home from damage and misuse",
+        "Long-term performance of your property — maintaining its value, condition, and earning potential for years to come"
+      ]
+    },
+    "onboarding": {
+      "subtitle": "ONBOARDING PHILOSOPHY",
+      "title": "Onboarding is Part of Operations",
+      "image": "/why-owners/onboarding.webp",
+      "description": "A successful rental property does not start with the first guest — it starts with proper preparation. Our onboarding process is designed to set your property up for long-term success from day one, addressing every operational detail before the first booking ever arrives.",
+      "steps": [
+        "Pricing strategy — data-driven rate optimization based on market analysis and seasonal demand",
+        "Positioning — identifying your property's unique strengths and target guest profile",
+        "Listing structure — professional photography, compelling descriptions, and optimized platform presence",
+        "Operational workflows — check-in procedures, maintenance protocols, and emergency response plans",
+        "Housekeeping standards — detailed cleaning checklists customized to your property's specific needs",
+        "Guest communication flows — automated and personalized messaging from inquiry to post-checkout review"
+      ],
+      "conclusion": "Most problems in short-term rentals start before the first guest ever checks in. Proper onboarding prevents them."
+    },
+    "summary": {
+      "subtitle": "IN SUMMARY",
+      "title": "Silqhaus is Designed for Owners Who Want",
+      "points": [
+        "Consistent quality control",
+        "Real operational systems",
+        "Transparent numbers",
+        "Controlled scaling",
+        "A partner that protects both revenue and property condition"
+      ],
+      "cta": "Get Free Consultation"
+    }
+  },
+  "footer": {
+    "brand": "SILQHAUS",
+    "tagline": "Hospitality & Revenue Management",
+    "company": "By Better Home and Better Living Co., Ltd.",
+    "about": "About",
+    "guides": "Guides",
+    "aboutUs": "About Us",
+    "propertyManagement": "Property Management",
+    "explore": "Explore",
+    "properties": "Properties",
+    "destinations": "Destinations",
+    "experiences": "Experiences",
+    "contact": "Contact",
+    "contactUs": "Contact Us",
+    "followUs": "Follow Us",
+    "allRightsReserved": "All rights reserved.",
+    "privacyPolicy": "Privacy Policy",
+    "termsOfService": "Terms of Service",
+    "legal": "LEGAL"
+  },
+  "common": {
+    "learnMore": "Learn More",
+    "bookNow": "Book Now",
+    "viewAll": "View All",
+    "loading": "Loading...",
+    "error": "Something went wrong",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous",
+    "close": "Close",
+    "search": "Search",
+    "filters": "Filters"
+  },
+  "aboutUs": {
+    "metadata": {
+      "title": "About Us | Silqhaus - Thailand's Premier Luxury Rental Management",
+      "description": "Learn about Silqhaus, Thailand's premier luxury rental management company. We elevate short-term rental experiences in Phuket and Pattaya."
+    },
+    "hero": {
+      "subtitle": "ABOUT US",
+      "title": "Thailand's Premier Luxury Rental Management",
+      "description": "Elevating short-term rental experiences in Phuket and Pattaya through exceptional property management and personalized guest services.",
+      "heroAlt": "Luxury villa in Thailand"
+    },
+    "whoWeAre": {
+      "subtitle": "WHO WE ARE",
+      "title": "Your Trusted Partner in Luxury Hospitality",
+      "description1": "Silqhaus is a boutique short-term rental property management company specializing in luxury villas and apartments across Thailand's most sought-after destinations—Phuket and Pattaya.",
+      "description2": "We partner with property owners to maximize their rental income while delivering unforgettable experiences to discerning travelers from around the world. Our team combines local expertise with international hospitality standards to ensure every stay exceeds expectations.",
+      "description3": "From marketing and guest communications to cleaning and maintenance, we handle every aspect of property management so owners can enjoy passive income without the stress.",
+      "villaAlt": "Luxury property managed by Silqhaus"
+    },
+    "locations": {
+      "subtitle": "OUR LOCATIONS",
+      "title": "Where We Operate",
+      "description": "We focus on Thailand's premier vacation destinations, providing exceptional property management services where travelers want to be.",
+      "phuket": {
+        "name": "Phuket",
+        "description": "Thailand's largest island and a world-renowned tropical paradise. From beachfront villas in Patong to hillside retreats in Kamala, we manage properties across Phuket's most desirable locations.",
+        "areas": [
+          "Patong, Kata, Karon beaches",
+          "Kamala, Surin, Bang Tao",
+          "Rawai, Nai Harn, Cape Panwa"
+        ]
+      },
+      "pattaya": {
+        "name": "Pattaya",
+        "description": "A vibrant coastal city just two hours from Bangkok, offering stunning beachfront condos and luxury villas. Perfect for both short getaways and extended stays.",
+        "areas": ["Jomtien Beach", "Pratumnak Hill", "Wong Amat, Na Jomtien"]
+      }
+    },
+    "whySilqhaus": {
+      "subtitle": "WHY SILQHAUS",
+      "title": "What Sets Us Apart",
+      "items": {
+        "luxuryFocus": {
+          "title": "Luxury Focus",
+          "description": "We exclusively manage premium properties, ensuring every listing meets our high standards for quality and guest experience."
+        },
+        "localExpertise": {
+          "title": "Local Expertise",
+          "description": "Our Thai-based team understands the local market, regulations, and what international guests expect from their Thailand vacation."
+        },
+        "multiPlatform": {
+          "title": "Multi-Platform Reach",
+          "description": "We list on Airbnb, Vrbo, Booking.com, and our own platform to maximize visibility and bookings for every property."
+        },
+        "personalTouch": {
+          "title": "Personal Touch",
+          "description": "Every property gets a dedicated manager who treats it as their own, ensuring consistent quality and owner peace of mind."
+        },
+        "transparentPricing": {
+          "title": "Transparent Pricing",
+          "description": "No hidden fees or surprise charges. Our commission-based model means we only succeed when you succeed."
+        },
+        "support247": {
+          "title": "24/7 Support",
+          "description": "Round-the-clock support for guests and rapid response for any property issues, ensuring smooth operations always."
+        }
+      }
+    },
+    "cta": {
+      "title": "Ready to Partner With Us?",
+      "description": "Whether you own a luxury villa in Phuket or a beachfront condo in Pattaya, we're here to help you maximize your rental potential.",
+      "propertyManagement": "Property Management",
+      "browseProperties": "Browse Properties"
+    }
+  },
+  "contactUs": {
+    "metadata": {
+      "title": "Contact Us | Silqhaus - Get in Touch",
+      "description": "Contact Silqhaus for inquiries about luxury vacation rentals, property management, or partnerships. We're here to help."
+    },
+    "hero": {
+      "subtitle": "GUEST SERVICES",
+      "title": "PLAN YOUR LUXURY STAY",
+      "description": "Ready to experience Thailand's finest luxury accommodations? Our dedicated concierge team is here to help you find and book the perfect property for your unforgettable getaway."
+    },
+    "form": {
+      "title": "Guest Booking Inquiry",
+      "subtitle": "Let us help you plan your perfect luxury getaway",
+      "labels": {
+        "fullName": "Full Name *",
+        "email": "Email Address *",
+        "phone": "Phone Number",
+        "message": "Your Message *"
+      },
+      "placeholders": {
+        "fullName": "Enter your full name",
+        "email": "Enter your email",
+        "phone": "XX XXX XXXX",
+        "message": "Describe your preferences, special requirements, activities you're interested in, or any questions about our properties..."
+      },
+      "validation": {
+        "invalidEmail": "Please enter a valid email address",
+        "invalidPhone": "Please enter a valid phone number (digits, spaces, and dashes only)"
+      },
+      "submitting": "Sending...",
+      "submit": "Send Inquiry",
+      "successMessage": "Thank you for your inquiry! We will contact you within 24 hours to assist with your booking.",
+      "errorMessage": "Something went wrong. Please try again or contact us directly at {email}.",
+      "notProvided": "Not provided",
+      "noMessage": "No message provided"
+    },
+    "guestServices": {
+      "title": "24/7 Guest Services",
+      "description": "Our dedicated guest services team is available around the clock to ensure your stay is perfect.",
+      "hotline": {
+        "title": "Guest Hotline",
+        "description": "24/7 guest support"
+      },
+      "email": {
+        "title": "Guest Email",
+        "description": "Response within 2 hours",
+        "note": "Booking & concierge"
+      }
+    }
+  },
+  "experiences": {
+    "metadata": {
+      "title": "Experiences | Silqhaus - Discover Thailand's Best Adventures",
+      "description": "Explore curated experiences in Thailand including culinary adventures, temple tours, island hopping, wellness retreats, and more."
+    },
+    "hero": {
+      "subtitle": "LUXURY EXPERIENCES",
+      "title": "Unique Thailand Travel Experiences",
+      "description": "Discover extraordinary experiences that showcase Thailand's natural beauty, cultural richness, and luxury hospitality standards."
+    },
+    "items": {
+      "culinary": {
+        "title": "Culinary Adventures",
+        "description": "Experience Thailand's world-renowned cuisine through private cooking classes, street food tours, and fine dining at Michelin-starred restaurants. Discover the perfect balance of sweet, sour, salty, and spicy flavors.",
+        "featured": "Tom Yum, Pad Thai, Green Curry, Mango Sticky Rice"
+      },
+      "temple": {
+        "title": "Temple & Cultural Tours",
+        "description": "Explore Thailand's spiritual heritage through guided temple visits, meditation sessions, and cultural performances. Learn about Buddhism, Thai history, and traditional arts from expert guides.",
+        "featured": "Grand Palace, Wat Pho, Temple of Dawn, Golden Buddha"
+      },
+      "island": {
+        "title": "Island Hopping",
+        "description": "Charter private yachts or join luxury boat tours to explore Thailand's stunning archipelagos. Visit hidden beaches, snorkel in coral reefs, and enjoy sunset dinners on pristine islands.",
+        "featured": "Phi Phi Islands, James Bond Island, Similan Islands"
+      },
+      "wellness": {
+        "title": "Wellness & Spa",
+        "description": "Rejuvenate with traditional Thai massage, luxury spa treatments, and wellness retreats. Experience ancient healing practices in serene settings designed for ultimate relaxation and renewal.",
+        "featured": "Thai Massage, Herbal Steam, Yoga Retreats, Detox Programs"
+      },
+      "photography": {
+        "title": "Photography Tours",
+        "description": "Capture Thailand's beauty through professional photography tours. From sunrise at ancient temples to underwater photography in crystal-clear waters, create lasting memories of your journey.",
+        "featured": "Temple Photography, Underwater Shots, Cultural Portraits"
+      },
+      "festival": {
+        "title": "Festival Experiences",
+        "description": "Participate in Thailand's vibrant festivals and celebrations. Experience Songkran water festival, Loy Krathong lantern festival, and local celebrations that showcase Thai culture and traditions.",
+        "featured": "Songkran, Loy Krathong, Thai New Year, Full Moon Parties"
+      }
+    },
+    "featuredLabel": "Featured",
+    "travelPlanning": {
+      "subtitle": "TRAVEL PLANNING",
+      "title": "Essential Thailand Travel Information",
+      "bestTime": "Best Time to Visit Thailand",
+      "essentials": "Thailand Travel Essentials"
+    },
+    "seasons": {
+      "cool": {
+        "title": "Cool Season (November - February)",
+        "description": "Ideal weather with comfortable temperatures (70-85°F) and minimal rainfall. Perfect for sightseeing, outdoor activities, and beach vacations. Peak tourist season with higher prices."
+      },
+      "hot": {
+        "title": "Hot Season (March - May)",
+        "description": "Hot and humid with temperatures reaching 95°F+. Excellent for beach destinations and swimming. Fewer crowds and competitive accommodation rates."
+      },
+      "rainy": {
+        "title": "Rainy Season (June - October)",
+        "description": "Monsoon season with afternoon showers and high humidity. Lush landscapes, lowest prices, and fewer tourists. Great for cultural experiences and indoor activities."
+      }
+    },
+    "essentials": {
+      "visa": {
+        "title": "Visa Requirements",
+        "description": "Most nationalities receive a 30-day visa exemption on arrival. Tourist visas available for longer stays. Check current requirements based on your nationality."
+      },
+      "currency": {
+        "title": "Currency & Payments",
+        "description": "Thai Baht (THB) is the local currency. Credit cards widely accepted in hotels and restaurants. Cash recommended for markets and local transportation."
+      },
+      "language": {
+        "title": "Language & Culture",
+        "description": "Thai is the official language, English widely spoken in tourist areas. Buddhism is the main religion. Dress modestly when visiting temples and respect local customs."
+      },
+      "health": {
+        "title": "Health & Safety",
+        "description": "Thailand has excellent private healthcare. Stay hydrated, use sun protection, and drink bottled water. Travel insurance recommended for all visitors."
+      }
+    }
+  },
+
+  "ourProperty": {
+    "metadata": {
+      "title": "Our Properties | Silqhaus - Browse Luxury Rentals",
+      "description": "Browse our curated collection of luxury vacation rentals in Thailand. Find your perfect villa or apartment in Phuket and Pattaya."
+    },
+    "hero": {
+      "title": "Our Properties",
+      "description": "Discover our exclusive collection of luxury properties in Thailand's most prestigious destinations"
+    },
+    "filters": {
+      "petFriendly": "Pet-friendly",
+      "filters": "Filters",
+      "bedrooms": "Bedrooms",
+      "guests": "Guests",
+      "location": "Location",
+      "any": "Any",
+      "guest": "Guest",
+      "guestsPlural": "Guests",
+      "property": "property",
+      "properties": "properties",
+      "found": "found",
+      "availableOnly": "Available only",
+      "priceRange": "Price range",
+      "clearPrice": "Clear",
+      "anyPrice": "Any",
+      "wherever": "Wherever",
+      "clearAll": "Clear all",
+      "minBedrooms": "Minimum Bedrooms",
+      "minGuestCapacity": "MIN. GUEST CAPACITY",
+      "clearBedrooms": "Clear",
+      "filter": "Filter",
+      "clearFilters": "Clear Filters",
+      "where": "Where",
+      "chooseDestination": "Choose destination",
+      "checkIn": "Check-in",
+      "checkOut": "Check-out",
+      "selectDate": "Select date",
+      "minGuestCapacityLabel": "Min. Guest Capacity",
+      "guestsLabel": "Guests",
+      "agesAbove": "Ages 13 or above",
+      "pets": "Pets",
+      "bringingPet": "Bringing a service animal?",
+      "search": "Search",
+      "close": "Close",
+      "selectDatesForAvailability": "Select dates to filter by availability"
+    },
+    "loading": "Loading properties…",
+    "noResults": "No properties available at the moment. Please adjust your filters to see more results.",
+    "error": "Failed to load properties.",
+    "perNight": "/ night",
+    "avgPerNight": "avg / night",
+    "avgLabel": "Avg.",
+    "fromLabel": "from",
+    "notAvailable": "Not available on selected dates",
+    "loadingPrices": "Loading prices…",
+    "selectDatesToSeePrices": "Select dates to see prices"
+  },
+  "guidesPage": {
+    "title": "Your Guide to Top Travel Destinations",
+    "description": "Get expert tips on where to stay, what to do, and how to make the most of your trip in popular cities and hidden gems.",
+    "noPosts": "No posts found.",
+    "metadata": {
+      "title": "Travel Guides | Silqhaus",
+      "description": "Get expert tips on where to stay, what to do, and how to make the most of your trip in popular cities and hidden gems."
+    },
+    "readNow": "Read Now"
+  },
+  "destination": {
+    "metadata": {
+      "title": "Destinations | Silqhaus - Explore Phuket & Pattaya",
+      "description": "Explore our luxury vacation rental destinations in Thailand. Discover properties in Phuket and Pattaya."
+    },
+    "phuket": {
+      "metadata": {
+        "title": "Phuket | Silqhaus - Luxury Villas & Rentals",
+        "description": "Discover luxury vacation rentals in Phuket, Thailand. From beachfront villas to hillside retreats, find your perfect Phuket getaway."
+      },
+      "backLink": "All Destinations",
+      "region": "Thailand • Andaman Coast",
+      "title": "Phuket",
+      "subtitle": "Thailand’s largest island, where turquoise waters meet lush tropical landscapes and world-class luxury",
+      "navOverview": "Overview",
+      "navAttractions": "Attractions",
+      "navGettingThere": "Getting There",
+      "navFaq": "FAQ",
+      "viewProperties": "View Properties",
+      "discoverTitle": "Discover",
+      "discoverHighlight": "Phuket",
+      "discoverP1": "Thailand’s largest island, Phuket is a tropical paradise that offers the perfect blend of natural beauty, cultural richness, and modern luxury. From the vibrant nightlife of Patong to the serene beaches of Kata and Karon, Phuket caters to every type of traveler.",
+      "discoverP2": "The island’s west coast is lined with stunning beaches, each with its own character—from the bustling shores of Patong to the peaceful coves of Nai Harn. Inland, you’ll discover lush rainforests, hidden waterfalls, and the iconic Big Buddha overlooking the island.",
+      "discoverP3": "Our curated collection of luxury villas in Phuket provides the ultimate base for exploring this stunning destination. Wake up to panoramic ocean views, enjoy private infinity pools overlooking the Andaman Sea, and experience Thai hospitality at its finest.",
+      "stat1Value": "30+",
+      "stat1Label": "Beaches",
+      "stat2Value": "29",
+      "stat2Label": "Buddhist Temples",
+      "stat3Value": "Year-Round",
+      "stat3Label": "Tropical Climate",
+      "stat4Value": "1hr",
+      "stat4Label": "From Bangkok",
+      "attractionsTitle": "Things to",
+      "attractionsHighlight": "See & Do",
+      "attractionsSubtitle": "Explore the best attractions Phuket has to offer",
+      "tabBeaches": "Beaches",
+      "tabCultural": "Cultural",
+      "tabViewpoints": "Viewpoints",
+      "tabNature": "Nature",
+      "tabIslands": "Islands",
+      "tabEntertainment": "Entertainment",
+      "tabMarkets": "Markets",
+      "attractions": {
+        "patongBeach": {
+          "name": "Patong Beach",
+          "description": "The most famous and vibrant beach in Phuket, Patong is the heart of the island’s entertainment scene. This 3-kilometer stretch of sand offers crystal-clear waters perfect for swimming and water sports. By day, enjoy jet skiing, parasailing, and beach volleyball. By night, the beachfront comes alive with restaurants, bars, and clubs."
+        },
+        "kataBeach": {
+          "name": "Kata Beach",
+          "description": "Kata Beach is divided into two bays - Kata Yai (Big Kata) and Kata Noi (Little Kata). This family-friendly destination offers calm, clear waters ideal for swimming and snorkeling. The beach is particularly popular with surfers during the monsoon season when waves can reach impressive heights."
+        },
+        "yaNuiBeach": {
+          "name": "Ya Nui Beach",
+          "description": "A hidden gem tucked between rocky headlands, Ya Nui Beach is a small, secluded spot perfect for snorkeling and kayaking. The calm waters are home to vibrant coral reefs and abundant marine life, making it a favorite among nature lovers."
+        },
+        "maiKhaoBeach": {
+          "name": "Mai Khao Beach",
+          "description": "Stretching over 11 kilometers, Mai Khao is Phuket’s longest beach and part of Sirinat National Park. This tranquil beach is ideal for long walks, birdwatching, and witnessing sea turtles nesting during the season. The nearby luxury resorts offer a peaceful retreat away from the crowds."
+        },
+        "karonBeach": {
+          "name": "Karon Beach",
+          "description": "Stretching over 3 kilometers, Karon Beach is one of Phuket’s longest and most peaceful beaches. The fine white sand produces a distinctive squeaking sound when you walk on it. The beach is less commercialized than Patong, offering a more relaxed atmosphere."
+        },
+        "freedomBeach": {
+          "name": "Freedom Beach",
+          "description": "Accessible only by boat or a steep jungle trail, Freedom Beach is a hidden gem that rewards visitors with pristine white sand and crystal-clear waters. This secluded beach offers a tranquil escape from the crowds, perfect for swimming, sunbathing, and snorkeling."
+        },
+        "naiHarnBeach": {
+          "name": "Nai Harn Beach",
+          "description": "Nestled in a quiet bay on Phuket’s southern coast, Nai Harn Beach is a favorite among locals and travelers seeking a more laid-back vibe. The beach is surrounded by lush greenery and offers calm waters ideal for swimming and paddleboarding."
+        },
+        "naiYangBeach": {
+          "name": "Nai Yang Beach",
+          "description": "Located within Sirinat National Park, Nai Yang Beach is a peaceful haven known for its natural beauty and turtle conservation efforts. The beach features soft sand, clear waters, and a relaxed atmosphere, making it perfect for families and nature lovers."
+        },
+        "naiThonBeach": {
+          "name": "Nai Thon Beach",
+          "description": "A quiet, crescent-shaped beach on Phuket’s northwest coast, Nai Thon offers a serene escape with soft sand and clear waters. The beach is ideal for swimming and relaxing, with a few beachfront restaurants serving fresh seafood."
+        },
+        "rawaiBeach": {
+          "name": "Rawai Beach",
+          "description": "Rawai Beach is a charming fishing village known for its seafood restaurants and vibrant local culture. While the beach itself is not ideal for swimming due to boat traffic, it serves as a gateway to nearby islands and offers stunning sunset views."
+        },
+        "surinBeach": {
+          "name": "Surin Beach",
+          "description": "Known as 'Millionaire’s Row' due to the luxury resorts and villas that line its shores, Surin Beach offers a sophisticated beach experience. The golden sand and clear waters are perfect for swimming and sunbathing, while the nearby beach clubs provide upscale dining and entertainment options."
+        },
+        "kamalaBeach": {
+          "name": "Kamala Beach",
+          "description": "A tranquil beach located north of Patong, Kamala is perfect for those seeking a quieter escape. The calm waters are ideal for swimming and stand-up paddleboarding. The beach is also home to Phuket FantaSea, a cultural theme park offering spectacular shows and entertainment."
+        },
+        "bigBuddha": {
+          "name": "Big Buddha",
+          "description": "Standing 45 meters tall atop Nakkerd Hills, the Big Buddha is one of Phuket’s most revered landmarks. This massive white marble statue can be seen from miles away and offers breathtaking 360-degree views of the island. The best time to visit is during sunset when the statue glows golden."
+        },
+        "watChalong": {
+          "name": "Wat Chalong",
+          "description": "Phuket’s largest and most important Buddhist temple, Wat Chalong is a stunning example of Thai religious architecture. The temple complex features ornate decorations, colorful murals depicting Buddha’s life, and a grand pagoda housing a bone fragment of Buddha."
+        },
+        "promthepCape": {
+          "name": "Promthep Cape",
+          "description": "Located at Phuket’s southernmost tip, Promthep Cape is famous for having the most spectacular sunsets on the island. This rocky promontory offers panoramic views of the Andaman Sea, with Koh Kew island visible in the distance."
+        },
+        "karonViewpoint": {
+          "name": "Karon Viewpoint",
+          "description": "Also known as Three Beaches Viewpoint, this scenic spot offers stunning vistas of three consecutive bays: Kata Noi, Kata Yai, and Karon Beach. Located on the hillside road between Nai Harn and Kata, it’s easily accessible and features parking areas and viewing platforms."
+        },
+        "oldPhuketTown": {
+          "name": "Old Phuket Town",
+          "description": "A charming blend of Chinese and Portuguese colonial architecture, Old Phuket Town is the island’s cultural heart. Colorful Sino-Portuguese buildings line Thalang Road, Dibuk Road, and Yaowarat Road, now housing boutique hotels, art galleries, cafes, and restaurants."
+        },
+        "phangNgaBay": {
+          "name": "Phang Nga Bay",
+          "description": "A stunning seascape of limestone karsts rising dramatically from emerald waters, Phang Nga Bay is a geological wonder. Famous for James Bond Island (featured in \"The Man with the Golden Gun\"), the bay offers incredible kayaking through hidden lagoons and caves."
+        },
+        "elephantSanctuary": {
+          "name": "Phuket Elephant Sanctuary",
+          "description": "Located in Paklok, the Phuket Elephant Sanctuary is the island’s first ethical elephant park. Visitors can observe rescued elephants roaming freely in lush natural surroundings. No riding or performances—just education, conservation, and compassion."
+        },
+        "phiPhiIslands": {
+          "name": "Phi Phi Islands",
+          "description": "Made famous by \"The Beach\" movie, the Phi Phi Islands are a tropical paradise of crystal-clear waters, white sand beaches, and towering limestone cliffs. Activities include snorkeling in vibrant coral reefs, cliff jumping, beach hopping, and diving with leopard sharks."
+        },
+        "fantasea": {
+          "name": "Phuket FantaSea",
+          "description": "Thailand’s ultimate cultural theme park, Phuket FantaSea combines Las Vegas-style entertainment with Thai mythology. The spectacular Palace of the Elephants show features traditional dance, aerial ballet, pyrotechnics, and a cast of elephants in an air-conditioned theater."
+        },
+        "weekendMarket": {
+          "name": "Phuket Weekend Market",
+          "description": "Also known as Naka Market, this sprawling weekend market is where locals shop for everything from fresh produce to clothing and electronics. Open Saturday and Sunday evenings, it offers an authentic Thai market experience away from tourist areas."
+        }
+      },
+      "gettingThereTitle": "Getting to",
+      "gettingThereHighlight": "Phuket",
+      "byAirTitle": "By Air",
+      "byAirDesc": "Phuket International Airport (HKT) receives direct flights from Bangkok (1 hour), Singapore, Hong Kong, Kuala Lumpur, and many other international destinations.",
+      "airportTransferTitle": "Airport Transfer",
+      "airportTransferDesc": "Private transfers, taxis, and ride-sharing services are available at the airport. Many luxury villas offer complimentary airport pickup for guests.",
+      "gettingAroundTitle": "Getting Around",
+      "gettingAroundDesc": "Rent a car or scooter for flexibility, use Grab for convenient rides, or arrange private drivers through your villa for a hassle-free experience.",
+      "faqTitle": "Frequently Asked",
+      "faqHighlight": "Questions",
+      "faqs": {
+        "q1": "What is the best time to visit Phuket?",
+        "a1": "The best time to visit Phuket is from November to February during the cool, dry season when temperatures are comfortable (25-31°C) and rainfall is minimal.",
+        "q2": "How do I get to Phuket?",
+        "a2": "Phuket International Airport (HKT) is well-connected to major Asian cities and international destinations. Direct flights are available from Bangkok, Singapore, Hong Kong, and many other cities.",
+        "q3": "Is Phuket suitable for families?",
+        "a3": "Absolutely! Phuket offers family-friendly beaches like Kata and Karon, water parks, elephant sanctuaries, and numerous activities suitable for all ages.",
+        "q4": "What currency is used in Phuket?",
+        "a4": "Thai Baht (THB) is the local currency. Credit cards are widely accepted in hotels and restaurants, but cash is recommended for local markets and street vendors."
+      },
+      "ctaTitle": "Ready to Experience",
+      "ctaHighlight": "Phuket",
+      "ctaSubtitle": "Browse our handpicked collection of luxury villas in Phuket’s most desirable locations",
+      "ctaButton": "View Phuket Properties",
+      "heroAlt": "Phuket aerial view",
+      "readMore": "Read More"
+    },
+    "pattaya": {
+      "metadata": {
+        "title": "Pattaya | Silqhaus - Luxury Rentals & Beachfront Properties",
+        "description": "Explore luxury vacation rentals in Pattaya, Thailand. Beachfront condos, private villas, and premium apartments await."
+      },
+      "backLink": "All Destinations",
+      "region": "Thailand • Eastern Gulf Coast",
+      "title": "Pattaya",
+      "subtitle": "Thailand’s premier beach resort city, where vibrant entertainment meets stunning coastlines and world-class attractions",
+      "navOverview": "Overview",
+      "navAttractions": "Attractions",
+      "navGettingThere": "Getting There",
+      "navFaq": "FAQ",
+      "viewProperties": "View Properties",
+      "discoverTitle": "Discover",
+      "discoverHighlight": "Pattaya",
+      "discoverP1": "Once a quiet fishing village, Pattaya has transformed into Thailand’s most dynamic beach resort destination. Located just 150 kilometers southeast of Bangkok on the Eastern Gulf Coast, this vibrant city offers an incredible mix of entertainment, culture, and natural beauty.",
+      "discoverP2": "Beyond its famous nightlife scene, Pattaya surprises visitors with world-class attractions like the awe-inspiring Sanctuary of Truth, the spectacular Nong Nooch Tropical Garden, and pristine island escapes just a short boat ride away.",
+      "discoverP3": "Our luxury villas in Pattaya offer the perfect retreat after exploring the city’s many attractions. Enjoy private pools, stunning views, and the finest Thai hospitality in exclusive residential settings.",
+      "stat1Value": "2 hrs",
+      "stat1Label": "From Bangkok",
+      "stat2Value": "15+",
+      "stat2Label": "Beaches & Islands",
+      "stat3Value": "Year-Round",
+      "stat3Label": "Entertainment",
+      "stat4Value": "10M+",
+      "stat4Label": "Annual Visitors",
+      "attractionsTitle": "Things to",
+      "attractionsHighlight": "See & Do",
+      "attractionsSubtitle": "Explore the best attractions Pattaya has to offer",
+      "tabBeaches": "Beaches",
+      "tabCultural": "Cultural",
+      "tabNature": "Nature",
+      "tabEntertainment": "Entertainment",
+      "tabMarkets": "Markets",
+      "attractions": {
+        "jomtienBeach": {
+          "name": "Jomtien Beach",
+          "description": "A family-friendly beach stretching 6 kilometers south of Pattaya, Jomtien offers a more relaxed atmosphere than the main beach. The calm waters are perfect for swimming, jet skiing, parasailing, and beach volleyball. Palm-lined shores provide natural shade, and the beachfront promenade is dotted with seafood restaurants and massage pavilions."
+        },
+        "pattayaBeach": {
+          "name": "Pattaya Beach",
+          "description": "The iconic 4-kilometer crescent-shaped beach is the heart of Pattaya’s coastal scene. While the water quality varies, the beach offers stunning sunset views and easy access to the city’s vibrant nightlife on Walking Street. Beach bars, water sports vendors, and comfortable sun loungers line the sandy shore."
+        },
+        "kohLarn": {
+          "name": "Koh Larn (Coral Island)",
+          "description": "Just 40 minutes by ferry from Bali Hai Pier, Koh Larn offers the crystal-clear turquoise waters that Pattaya’s mainland beaches lack. This tropical paradise features six pristine beaches, with Tawaen and Samae being the most popular. Enjoy snorkeling, banana boat rides, and fresh seafood at beachside restaurants."
+        },
+        "sanctuaryOfTruth": {
+          "name": "Sanctuary of Truth",
+          "description": "A breathtaking 105-meter tall temple made entirely of wood without a single nail. This architectural masterpiece features intricate hand-carved sculptures depicting Buddhist, Hindu, and Chinese mythology. Started in 1981 and still under construction, it stands majestically on the oceanfront. Traditional Thai cultural performances are held daily."
+        },
+        "bigBuddha": {
+          "name": "Wat Phra Yai (Big Buddha)",
+          "description": "Perched atop Pratumnak Hill, this 18-meter golden Buddha statue has been watching over Pattaya Bay since the 1940s. The temple offers panoramic 360-degree views of the city and coastline. Visitors can receive blessings from monks, ring bells for good luck, and explore the peaceful temple grounds. Entry is free with donations welcome."
+        },
+        "nongNooch": {
+          "name": "Nong Nooch Tropical Garden",
+          "description": "Southeast Asia’s largest botanical garden spanning 600 acres of beautifully landscaped grounds. Marvel at tropical flowers, themed gardens including French, Stonehenge, and dinosaur valleys, plus traditional Thai houses. Daily cultural shows feature elephant performances and Thai dancing. A full day is needed to explore this horticultural wonderland."
+        },
+        "ramayanaWaterPark": {
+          "name": "Ramayana Water Park",
+          "description": "Thailand’s largest water park and ranked among Asia’s best, Ramayana features over 21 thrilling slides, a 600-meter lazy river, and a massive wave pool. Set against a backdrop of Thai mythology-themed architecture, it offers attractions for all ages from gentle family pools to heart-pumping drop slides. Open daily with full-day and half-day passes available."
+        },
+        "floatingMarket": {
+          "name": "Pattaya Floating Market",
+          "description": "A unique cultural attraction featuring over 100 traditional wooden shops and restaurants built on waterways. Representing all four regions of Thailand, vendors sell authentic handicrafts, souvenirs, and delicious street food. Take a boat ride through the canals or walk along the wooden pathways. Traditional dance performances and live music add to the atmosphere."
+        },
+        "nightMarket": {
+          "name": "Thepprasit Night Market",
+          "description": "A sprawling weekend market where locals shop for everything from fresh produce to electronics. Open Friday through Sunday evenings, it offers an authentic Thai market experience away from tourist areas. Hundreds of food stalls serve southern Thai specialties, grilled seafood, and fresh tropical fruits at local prices."
+        }
+      },
+      "gettingThereTitle": "Getting to",
+      "gettingThereHighlight": "Pattaya",
+      "fromBangkokTitle": "From Bangkok",
+      "fromBangkokDesc": "Regular buses depart from Ekkamai Bus Station (2 hours, ~150 THB) and Mo Chit. Private taxis and ride-sharing services take about 1.5-2 hours depending on traffic and cost 1,500-2,000 THB.",
+      "byAirTitle": "By Air",
+      "byAirDesc": "Most visitors fly into Bangkok’s Suvarnabhumi Airport and take ground transport to Pattaya.",
+      "gettingAroundTitle": "Getting Around",
+      "gettingAroundDesc": "Songthaews (baht buses) run fixed routes for 10-20 THB. Grab is widely available for convenience. Motorbike and car rentals are popular for exploring nearby attractions independently.",
+      "faqTitle": "Frequently Asked",
+      "faqHighlight": "Questions",
+      "faqs": {
+        "q1": "What is the best time to visit Pattaya?",
+        "a1": "The best time to visit Pattaya is from November to February during the cool, dry season. Temperatures are comfortable (25-32°C) with minimal rainfall. The monsoon season runs from May to October with occasional heavy showers.",
+        "q2": "How do I get to Pattaya from Bangkok?",
+        "a2": "Pattaya is just 2 hours from Bangkok by bus (around 150 THB). Regular buses depart from Ekkamai and Mo Chit bus stations. Private taxis cost around 1,500-2,000 THB. U-Tapao Airport near Pattaya also has limited international flights.",
+        "q3": "Is Pattaya suitable for families?",
+        "a3": "Yes! Pattaya offers many family-friendly attractions including Ramayana Water Park, Nong Nooch Garden, Underwater World aquarium, and the peaceful beaches of Jomtien. Many resorts cater specifically to families with kids’ clubs and pools.",
+        "q4": "What is the local transportation in Pattaya?",
+        "a4": "Songthaews (shared pickup trucks) are the most common transport, costing 10-20 THB within the city. Motorbike taxis are quick for short trips. Grab is widely available, and car rentals are popular for exploring nearby attractions."
+      },
+      "ctaTitle": "Ready to Experience",
+      "ctaHighlight": "Pattaya",
+      "ctaSubtitle": "Browse our handpicked collection of luxury villas in Pattaya’s most desirable locations",
+      "ctaButton": "View Pattaya Properties",
+      "heroAlt": "Pattaya bay aerial view",
+      "readMore": "Read More"
+    }
+  },
+  "termsOfUse": {
+    "metadata": {
+      "title": "Terms of Use | Silqhaus - Better Home & Better Living Co., Ltd",
+      "description": "Read the Terms of Use for Silqhaus (www.silqhaus.com), operated by Better Home & Better Living Co., Ltd. Learn about your rights, intellectual property, disclaimers, and governing law."
+    },
+    "pageTitle": "Terms of Use",
+    "effectiveDate": "Effective Date: February 17, 2026",
+    "header": {
+      "website": "Website: www.silqhaus.com",
+      "operator": "Operated by: Better Home & Better Living Co., Ltd",
+      "address": "Wichit, Meung, Phuket 83000, Thailand"
+    },
+    "section1": {
+      "title": "1. Acceptance of Terms",
+      "p1": "Welcome to Silqhaus (the \"Website\"), operated by Better Home & Better Living Co., Ltd (\"Company,\" \"we,\" \"us,\" or \"our\"), a company registered in Thailand with its principal place of business at Wichit, Meung, Phuket 83000, Thailand. By accessing or using the Website located at www.silqhaus.com, you (\"User,\" \"you,\" or \"your\") agree to be legally bound by these Terms of Use (the \"Terms\"). If you do not agree to these Terms in their entirety, you must immediately cease using the Website.",
+      "p2": "The following terminology applies throughout these Terms, the Privacy Policy, and any related agreements: \"Client,\" \"You,\" and \"Your\" refer to you, the person accessing and using the Website in compliance with these Terms. \"The Company,\" \"We,\" \"Our,\" and \"Us\" refer to Better Home & Better Living Co., Ltd. \"Party\" or \"Parties\" refers to both you and the Company collectively. All such terms are interchangeable regardless of number, gender, or capitalization.",
+      "p3": "These Terms apply to all visitors and users of the Website. The Company reserves the right to modify these Terms at any time. Changes become effective upon posting to the Website. Your continued use of the Website following any modifications constitutes acceptance of the revised Terms. It is your responsibility to review these Terms periodically."
+    },
+    "section2": {
+      "title": "2. Description of the Website",
+      "p1": "Silqhaus is an informational and promotional website for luxury short-term rental properties located in Thailand. The Website allows Users to browse property listings, view descriptions and imagery, and access links to third-party Online Travel Agency (\"OTA\") platforms — including but not limited to Airbnb, Vrbo, and Booking.com — where reservations may be made.",
+      "p2": "The Website does not process reservations, payments, or bookings directly. All transactions, agreements, and communications related to property reservations occur exclusively on the respective OTA platforms, and are governed solely by those platforms' own terms and conditions. Better Home & Better Living Co., Ltd is not a party to any reservation agreement entered into between a User and an OTA platform."
+    },
+    "section3": {
+      "title": "3. No Account Registration",
+      "p1": "The Website does not currently offer or require User account creation, registration, or login. Users may access and browse the Website without providing personal credentials. Users also cannot upload, post, or submit any content to the Website at this time. These features may be introduced at a future date, at the Company's sole discretion, subject to updated Terms."
+    },
+    "section4": {
+      "title": "4. Intellectual Property and Proprietary Rights",
+      "sub1": {
+        "title": "4.1 Ownership of Content",
+        "p1": "All content appearing on or accessible through the Website — including but not limited to text, articles, guides, blog posts, descriptions, photographs, images, video, audio, graphics, logos, icons, software, code, and the overall design and layout of the Website (collectively, the \"Content\") — is the exclusive property of Better Home & Better Living Co., Ltd or its duly licensed content providers.",
+        "p2": "The Content is protected under the intellectual property laws of the Kingdom of Thailand and applicable international treaties, including copyright law, trademark law, and related rights."
+      },
+      "sub2": {
+        "title": "4.2 Trademarks",
+        "p1": "The name \"Silqhaus,\" the Silqhaus logo, and all related names, logos, product and service names, designs, and slogans are exclusive trademarks and trade dress of Better Home & Better Living Co., Ltd. These marks may not be used, reproduced, imitated, or applied to any goods or services without the prior written consent of the Company. All other trademarks, service marks, or logos mentioned on the Website are the property of their respective owners."
+      },
+      "sub3": {
+        "title": "4.3 License to Use the Website",
+        "p1": "Subject to these Terms, the Company grants you a limited, non-exclusive, non-transferable, revocable license to access and use the Website for your own personal, non-commercial purposes. This license does not include the right to:",
+        "items": {
+          "0": "Republish, redistribute, or make available any Content from the Website to any third party;",
+          "1": "Sell, rent, sub-license, or otherwise commercially exploit any Content from the Website;",
+          "2": "Reproduce, duplicate, copy, or systematically extract Content from the Website;",
+          "3": "Modify, adapt, translate, or create derivative works based on any Content;",
+          "4": "Remove or alter any copyright, trademark, or other proprietary rights notices contained in the Content;",
+          "5": "Use any automated means — including bots, scrapers, or crawlers — to extract or index Content from the Website without express written permission."
+        },
+        "p2": "Any unauthorized use of the Content or trademarks may violate applicable laws and will be subject to legal action."
+      }
+    },
+    "section5": {
+      "title": "5. User Feedback and Suggestions",
+      "p1": "If you choose to submit any feedback, comments, ideas, suggestions, recommendations, or other communications to the Company (collectively, \"Feedback\"), whether by email or any other means, you hereby irrevocably and unconditionally assign to the Company all rights, title, and interest in and to such Feedback, including all intellectual property rights therein.",
+      "p2": "The Company shall be entitled to use, reproduce, modify, adapt, publish, translate, create derivative works from, distribute, and otherwise exploit such Feedback for any purpose whatsoever — commercial or otherwise — without restriction, without any obligation to notify you, and without any compensation, attribution, credit, or royalty payable to you. By submitting Feedback, you represent and warrant that you have all necessary rights to make such an assignment and that the Feedback does not infringe on any third party's rights.",
+      "p3": "You acknowledge that the Company is under no obligation to use, review, return, or respond to any Feedback submitted."
+    },
+    "section6": {
+      "title": "6. Third-Party Links and OTA Platforms",
+      "p1": "The Website contains hyperlinks and references to third-party OTA platforms and other external websites. These links are provided for your convenience only. The Company does not endorse, control, or assume any responsibility for the content, practices, policies, or services of any third-party websites or platforms.",
+      "p2": "When you follow a link to an OTA platform or other external site, you leave the Silqhaus Website. The Company is not responsible for:",
+      "items": {
+        "0": "The availability, accuracy, or reliability of any third-party website;",
+        "1": "Any loss or damage arising from your use of any third-party website;",
+        "2": "Any transactions, reservations, payments, cancellations, or disputes that occur on OTA platforms;",
+        "3": "The privacy practices or data handling of any third-party platform."
+      },
+      "p3": "Your use of third-party platforms is subject to their respective terms of service and privacy policies. You are encouraged to review those documents before making any reservation or submitting any personal information to those platforms."
+    },
+    "section7": {
+      "title": "7. Hyperlinking to Our Content",
+      "sub1": {
+        "title": "7.1 Permitted Links",
+        "p1": "The following categories of organizations may link to the Website without prior written approval, provided that such links comply with the conditions set out in Section 7.2:",
+        "items": {
+          "0": "Government agencies and public authorities;",
+          "1": "Search engines and web indexing services;",
+          "2": "News organizations and media outlets;",
+          "3": "Online directory distributors, in the same manner as they hyperlink to other listed businesses."
+        },
+        "p2": "Other organizations — including consumer information sources, trade and professional associations, educational institutions, and internet portals — may submit a written link request to the Company at info@silqhaus.com. Such requests will be evaluated at the Company's sole discretion and approved only where the Company determines that the link is appropriate, non-deceptive, and consistent with the Company's brand and reputation."
+      },
+      "sub2": {
+        "title": "7.2 Conditions for All Links",
+        "p1": "All links to the Website — whether permitted by default or approved upon request — must satisfy the following conditions:",
+        "items": {
+          "0": "The link must not be deceptive or misleading in any way;",
+          "1": "The link must not falsely imply sponsorship, endorsement, partnership, or approval of the linking party or its products and services by the Company;",
+          "2": "The link must be contextually appropriate within the linking party's site."
+        },
+        "p2": "No use of the Silqhaus name, logo, or other artwork is permitted for linking purposes without a separate, duly executed trademark license agreement with the Company."
+      },
+      "sub3": {
+        "title": "7.3 Reservation of Rights Regarding Links",
+        "p1": "The Company reserves the right, at its sole discretion, to request the removal of any link to the Website at any time. Upon receiving such a request, you agree to promptly remove all such links. The Company also reserves the right to amend this hyperlinking policy at any time by updating these Terms.",
+        "p2": "If you encounter any link on the Website that you consider offensive or inappropriate, you are welcome to notify us at info@silqhaus.com. We will consider such requests but are under no obligation to remove any link or to respond directly."
+      }
+    },
+    "section8": {
+      "title": "8. iFrames and Visual Framing",
+      "p1": "Without the prior written approval of Better Home & Better Living Co., Ltd, you may not create frames, iFrames, or any other inline embedding mechanism around the Website's pages that in any way alters the visual presentation, appearance, or User experience of the Website. This prohibition includes any framing technique that:",
+      "items": {
+        "0": "Obscures, hides, or modifies any part of the Website's content or navigation;",
+        "1": "Displays the Website's content within a third-party interface in a manner that misrepresents its origin or ownership;",
+        "2": "Removes or conceals headers, footers, branding, or legal notices present on the Website."
+      },
+      "p2": "Any unauthorized framing constitutes a violation of these Terms and may also infringe the Company's intellectual property rights."
+    },
+    "section9": {
+      "title": "9. No Promotions, Contests, or Sweepstakes",
+      "p1": "As of the Effective Date of these Terms, the Company does not offer, conduct, sponsor, or administer any promotions, contests, sweepstakes, loyalty programs, discount schemes, prize draws, or similar marketing activities through the Website. Any representation to the contrary, unless expressly communicated in an official written communication from the Company, is unauthorized and void.",
+      "p2": "Should the Company elect to introduce any such programs in the future, they will be governed by separate terms and conditions published on the Website at that time."
+    },
+    "section10": {
+      "title": "10. Prohibited Conduct",
+      "p1": "You agree not to use the Website to:",
+      "items": {
+        "0": "Violate any applicable local, national, or international laws or regulations;",
+        "1": "Transmit any unsolicited or unauthorized advertising, promotional materials, spam, or chain letters;",
+        "2": "Engage in any conduct that restricts or inhibits any other person's use or enjoyment of the Website;",
+        "3": "Attempt to gain unauthorized access to any portion of the Website or its related systems;",
+        "4": "Collect or harvest any personally identifiable information from the Website;",
+        "5": "Impersonate or falsely represent any person or entity, or otherwise misrepresent your affiliation with any person or entity."
+      }
+    },
+    "section11": {
+      "title": "11. Disclaimers",
+      "sub1": {
+        "title": "11.1 No Warranties",
+        "p1": "THE WEBSITE AND ALL CONTENT ARE PROVIDED ON AN \"AS IS\" AND \"AS AVAILABLE\" BASIS WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR IMPLIED. TO THE FULLEST EXTENT PERMITTED BY APPLICABLE LAW, THE COMPANY EXPRESSLY DISCLAIMS ALL WARRANTIES, INCLUDING BUT NOT LIMITED TO IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, ACCURACY, TITLE, AND NON-INFRINGEMENT.",
+        "p2": "The Company does not warrant that: (a) the Website will be uninterrupted, error-free, or free of viruses or other harmful components; (b) defects will be corrected; (c) the Website or the server that makes it available are free of harmful components; or (d) any information obtained from or through the Website will be accurate, complete, reliable, or current."
+      },
+      "sub2": {
+        "title": "11.2 Scope of Disclaimer",
+        "p1": "To the maximum extent permitted by applicable law, the Company excludes all representations, warranties, and conditions relating to the Website and your use of it. Nothing in this disclaimer will:",
+        "items": {
+          "0": "Limit or exclude the Company's or your liability for death or personal injury caused by negligence;",
+          "1": "Limit or exclude the Company's or your liability for fraud or fraudulent misrepresentation;",
+          "2": "Limit any liability in any way that is not permitted under applicable Thai law;",
+          "3": "Exclude any liability that may not be excluded under applicable Thai law."
+        },
+        "p2": "The limitations and exclusions of liability set out in this Section and elsewhere in these Terms govern all liabilities arising hereunder, including liabilities arising in contract, in tort, and for breach of statutory duty."
+      }
+    },
+    "section12": {
+      "title": "12. Limitation of Liability",
+      "p1": "TO THE FULLEST EXTENT PERMITTED BY LAW, BETTER HOME & BETTER LIVING CO., LTD, ITS DIRECTORS, OFFICERS, EMPLOYEES, AFFILIATES, AGENTS, AND LICENSORS SHALL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, PUNITIVE, OR EXEMPLARY DAMAGES ARISING OUT OF OR IN CONNECTION WITH YOUR USE OF OR INABILITY TO USE THE WEBSITE OR ITS CONTENT, EVEN IF THE COMPANY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.",
+      "p2": "As long as the Website and the information and services on the Website are provided free of charge, the Company will not be liable for any loss or damage of any nature arising from your use of the Website. In no event shall the Company's total aggregate liability to you exceed one thousand Thai Baht (THB 1,000), regardless of the nature of the claim."
+    },
+    "section13": {
+      "title": "13. Indemnification",
+      "p1": "You agree to defend, indemnify, and hold harmless Better Home & Better Living Co., Ltd, its officers, directors, employees, agents, licensors, and suppliers from and against any and all claims, liabilities, damages, judgments, awards, losses, costs, expenses, or fees (including reasonable attorneys' fees) arising out of or relating to your violation of these Terms or your use of the Website, including but not limited to your reliance on any information obtained from the Website, any illegal conduct, or any breach of your representations and warranties herein."
+    },
+    "section14": {
+      "title": "14. Governing Law and Dispute Resolution",
+      "p1": "These Terms of Use shall be governed by, construed, and enforced in accordance with the laws of the Kingdom of Thailand, without regard to its conflict of laws principles.",
+      "p2": "Any dispute, claim, or controversy arising out of or relating to these Terms or the breach, termination, enforcement, interpretation, or validity thereof, or your use of the Website, shall be subject to the exclusive jurisdiction of the competent courts located in the Kingdom of Thailand. By using the Website, you irrevocably consent to the personal jurisdiction and venue of such courts and waive any objection that such jurisdiction or venue is inconvenient."
+    },
+    "section15": {
+      "title": "15. Contact Information",
+      "p1": "If you have any questions, concerns, or inquiries regarding these Terms of Use, please contact us at:",
+      "companyName": "Better Home & Better Living Co., Ltd",
+      "address": "Wichit, Meung, Phuket 83000, Thailand",
+      "email": "Email: info@silqhaus.com"
+    },
+    "lastUpdated": "These Terms of Use were last updated on February 17, 2026.",
+    "copyright": "© 2026 Better Home & Better Living Co., Ltd. All rights reserved."
+  },
+  "privacyPolicyPage": {
+    "metadata": {
+      "title": "Privacy Policy | Silqhaus - Better Home & Better Living Co., Ltd",
+      "description": "Read the Privacy Policy for Silqhaus (www.silqhaus.com). Learn how Better Home & Better Living Co., Ltd collects, uses, and protects your information, including cookies, data retention, and your privacy rights under Thai law."
+    },
+    "pageTitle": "Privacy Policy",
+    "effectiveDate": "Effective Date: February 17, 2026",
+    "header": {
+      "website": "Website: www.silqhaus.com",
+      "operator": "Operated by: Better Home & Better Living Co., Ltd",
+      "address": "Wichit, Meung, Phuket 83000, Thailand"
+    },
+    "intro": {
+      "p1": "This Privacy Policy (\"Policy\") describes how Better Home & Better Living Co., Ltd (\"Company,\" \"we,\" \"us,\" or \"our\") collects, uses, stores, shares, and protects information obtained from visitors and users (\"you\" or \"User\") of the Silqhaus website located at www.silqhaus.com (the \"Website\"). By accessing or using the Website, you acknowledge that you have read, understood, and agree to the practices described in this Policy.",
+      "p2": "This Policy is incorporated into and forms part of our Terms of Use. Capitalized terms not defined herein shall have the meanings given to them in the Terms of Use."
+    },
+    "section1": {
+      "title": "1. Scope of This Policy",
+      "p1": "This Policy applies exclusively to information collected through the Website. It does not apply to information collected by:",
+      "items": {
+        "0": "Third-party Online Travel Agency (\"OTA\") platforms — such as Airbnb, Vrbo, or Booking.com — that you may access via links on the Website. Those platforms' data practices are governed entirely by their own privacy policies; or",
+        "1": "Any offline interactions or communications you may have with the Company outside of the Website."
+      },
+      "p2": "We encourage you to carefully review the privacy policies of any third-party platforms before submitting personal information to them. The Company accepts no responsibility for the privacy practices of any such platforms."
+    },
+    "section2": {
+      "title": "2. Information We Collect",
+      "sub1": {
+        "title": "2.1 Information You Provide Voluntarily",
+        "p1": "The Website does not currently offer account registration, login, or content upload functionality. The primary means by which you may voluntarily provide information to us is through direct communication via email or telephone. Information you may provide includes:",
+        "items": {
+          "0": "Your name;",
+          "1": "Your email address;",
+          "2": "Your telephone number, if you choose to call us; and",
+          "3": "Any other information you choose to include in your message or correspondence."
+        }
+      },
+      "sub2": {
+        "title": "2.2 Information Collected Automatically",
+        "p1": "When you visit the Website, certain information may be collected automatically through standard internet technologies, including:",
+        "items": {
+          "0": "Internet Protocol (IP) address and approximate geographic location derived therefrom;",
+          "1": "Browser type, version, and operating system;",
+          "2": "Referring and exit page URLs;",
+          "3": "Pages viewed, time spent on pages, and navigation patterns;",
+          "4": "Date and time of your visit; and",
+          "5": "Device type and screen resolution."
+        },
+        "p2": "This information is collected through server log files, cookies, and similar tracking technologies as described in Section 5 below."
+      },
+      "sub3": {
+        "title": "2.3 Feedback and Communications",
+        "p1": "If you submit any feedback, suggestions, ideas, or other communications to us — whether by email or any other means — we collect the content of those communications. As stated in our Terms of Use, all such feedback becomes the exclusive property of the Company and may be used without restriction, compensation, or attribution to you."
+      }
+    },
+    "section3": {
+      "title": "3. How We Use Your Information",
+      "p1": "We use the information we collect for the following purposes:",
+      "items": {
+        "0": "To operate, maintain, and improve the Website and its content;",
+        "1": "To respond to your inquiries, feedback, or communications submitted via email or telephone;",
+        "2": "To analyze usage trends and monitor the performance and security of the Website;",
+        "3": "To measure the effectiveness of our marketing campaigns through third-party analytics and advertising pixels, as described in Section 5;",
+        "4": "To enable retargeting and conversion tracking on platforms such as Google, Meta, TikTok, and LinkedIn, based on your interactions with the Website;",
+        "5": "To detect, investigate, and prevent fraudulent, unauthorized, or unlawful activity;",
+        "6": "To comply with applicable legal obligations under the laws of the Kingdom of Thailand; and",
+        "7": "To enforce our Terms of Use and protect the rights, property, and safety of the Company and others."
+      },
+      "p2": "We do not use your information for automated decision-making that produces legal or similarly significant effects on you without human oversight."
+    },
+    "section4": {
+      "title": "4. Legal Basis for Processing",
+      "p1": "Where applicable data protection laws require a lawful basis for the processing of personal data, we rely on the following:",
+      "items": {
+        "0": "Legitimate interests: To operate and improve the Website, ensure its security, and respond to user inquiries;",
+        "1": "Consent: Where you have provided information voluntarily, such as by emailing us; and",
+        "2": "Legal obligation: Where processing is necessary to comply with applicable Thai law, including the Personal Data Protection Act B.E. 2562 (2019) (\"PDPA\")."
+      }
+    },
+    "section5": {
+      "title": "5. Cookies and Tracking Technologies",
+      "sub1": {
+        "title": "5.1 What Are Cookies",
+        "p1": "Cookies are small text files placed on your device when you visit a website. They are widely used to make websites function efficiently, remember preferences, and provide analytical data to website operators."
+      },
+      "sub2": {
+        "title": "5.2 Types of Cookies and Tracking Technologies We Use",
+        "p1": "The Website uses the following categories of cookies and third-party tracking technologies:",
+        "categories": {
+          "0": "Essential Cookies: Necessary for the basic functioning of the Website. These cannot be disabled without impairing Website functionality.",
+          "1": "Analytics and Performance Cookies: Used to collect information about how visitors interact with the Website — such as pages visited, time on site, and traffic sources — to help us understand and improve the user experience.",
+          "2": "Advertising and Conversion Pixels: Used to measure the effectiveness of our marketing campaigns and to enable retargeting on third-party advertising platforms.",
+          "3": "Preference Cookies: Used to remember your language selection or other display preferences."
+        },
+        "p2": "The specific third-party tools and services we currently use include, but are not limited to:",
+        "tools": {
+          "0": "Google Analytics (Google LLC) — website traffic and behaviour analysis;",
+          "1": "Meta Pixel (Meta Platforms, Inc.) — conversion tracking and advertising measurement for Facebook and Instagram;",
+          "2": "TikTok Pixel (TikTok Inc.) — conversion tracking and advertising measurement for TikTok;",
+          "3": "Google Ads Conversion Tracking (Google LLC) — measurement of actions taken after interacting with Google Ads;",
+          "4": "LinkedIn Insight Tag (LinkedIn Corporation) — conversion tracking and audience analytics for LinkedIn advertising; and",
+          "5": "Other third-party analytics and marketing tools as may be adopted from time to time."
+        },
+        "p3": "Each of these third-party services operates under its own privacy policy and data practices. We encourage you to review the privacy policies of these providers directly. Their collection and use of data is subject to their own terms, not this Policy."
+      },
+      "sub3": {
+        "title": "5.3 Cookie Consent",
+        "p1": "Where required by applicable law, including the PDPA, we will seek your consent before placing non-essential cookies on your device. You may be presented with a cookie consent notice when you first visit the Website. By accepting non-essential cookies, you consent to the use of the tracking technologies described above."
+      },
+      "sub4": {
+        "title": "5.4 Managing Cookies",
+        "p1": "You may withdraw your consent or manage your cookie preferences at any time by adjusting your browser settings to block or delete cookies. Please note that disabling certain cookies may affect the functionality of the Website and limit the accuracy of analytics data we collect. Instructions for managing cookies are available through your browser's help documentation."
+      }
+    },
+    "section6": {
+      "title": "6. No Account Creation or User-Generated Content",
+      "p1": "The Website does not support user account creation, registration, or login. Users are not able to post, upload, share, or otherwise publish any content on or through the Website. Accordingly, the Company does not collect or store account credentials, user-generated content, or associated metadata at this time.",
+      "p2": "No reservations or payment transactions are processed through the Website. Any reservation made via a linked OTA platform is processed entirely by that platform, under its own terms and privacy policy. The Company is not a party to any such transaction."
+    },
+    "section7": {
+      "title": "7. How We Share Your Information",
+      "p1": "We do not sell, rent, or trade your personal information to third parties for their marketing purposes. We may share your information only in the following limited circumstances:",
+      "items": {
+        "0": "Service Providers: We may engage trusted third-party service providers — such as web hosting, analytics, or IT support providers — who process information on our behalf under contractual obligations of confidentiality and appropriate data security measures;",
+        "1": "Legal Requirements: We may disclose your information if required to do so by law, court order, or governmental or regulatory authority in the Kingdom of Thailand or elsewhere;",
+        "2": "Protection of Rights: We may disclose your information where we believe in good faith that disclosure is necessary to protect the Company's legal rights, investigate suspected fraud, or ensure the safety of any person; and",
+        "3": "Business Transfers: In the event of a merger, acquisition, reorganization, or sale of all or a substantial part of the Company's assets, your information may be transferred as part of that transaction, subject to equivalent privacy protections."
+      }
+    },
+    "section8": {
+      "title": "8. Data Retention",
+      "p1": "We retain personal information only for as long as is necessary to fulfil the purposes outlined in this Policy, comply with applicable legal obligations, resolve disputes, and enforce our agreements. We do not retain personal data for longer than is reasonably required for these purposes.",
+      "p2": "The appropriate retention period for any given category of data depends on the nature of the information, the purpose for which it was collected, and any applicable legal or regulatory requirements. As a general principle:",
+      "items": {
+        "0": "Information submitted via email or telephone correspondence is retained for as long as is necessary for business record-keeping and to respond to any follow-up communications;",
+        "1": "Automatically collected data — such as server log files and analytics data — is retained for a period proportionate to its analytical value, after which it is deleted or anonymized; and",
+        "2": "Data processed through third-party analytics and advertising pixels is subject to the retention policies of the respective third-party providers."
+      },
+      "p3": "When personal information is no longer required for any of the above purposes, we will take reasonable steps to securely delete, destroy, or anonymize it in accordance with applicable law, including the PDPA."
+    },
+    "section9": {
+      "title": "9. Data Security",
+      "p1": "We implement reasonable and appropriate administrative, technical, and physical safeguards designed to protect your information against unauthorized access, loss, alteration, disclosure, or destruction. However, no method of transmission over the internet or electronic storage is entirely secure, and we cannot guarantee absolute security.",
+      "p2": "You provide your information at your own risk. In the event of a data breach that is likely to result in a risk to your rights and freedoms, we will notify you and the relevant authorities in accordance with our obligations under applicable Thai law, including the PDPA."
+    },
+    "section10": {
+      "title": "10. International Data Transfers",
+      "p1": "The Company is headquartered in Thailand and the Website is operated primarily from Thailand. If you access the Website from outside Thailand, please be aware that your information may be transferred to and processed in Thailand, where data protection laws may differ from those in your country of residence.",
+      "p2": "By using the Website, you consent to such transfer and processing in accordance with this Policy. Where required by applicable law, we will take appropriate steps to ensure that any international transfers of personal data are subject to adequate safeguards."
+    },
+    "section11": {
+      "title": "11. Children's Privacy",
+      "p1": "The Website is not directed to children under the age of 20, which is the age of majority in the Kingdom of Thailand, or under the applicable age of majority in your jurisdiction. We do not knowingly collect personal information from minors. If we become aware that we have inadvertently collected personal information from a child, we will take prompt steps to delete such information from our records.",
+      "p2": "If you are a parent or guardian and believe that your child has provided us with personal information, please contact us at info@silqhaus.com so that we may take appropriate action."
+    },
+    "section12": {
+      "title": "12. Your Privacy Rights",
+      "p1": "Depending on your jurisdiction and applicable law — including the Personal Data Protection Act B.E. 2562 (2019) of Thailand — you may have certain rights with respect to your personal information, including:",
+      "items": {
+        "0": "The right to be informed about how your personal data is collected and used;",
+        "1": "The right to access a copy of the personal information we hold about you;",
+        "2": "The right to request correction of inaccurate or incomplete personal information;",
+        "3": "The right to request deletion or destruction of your personal information, subject to certain legal exceptions;",
+        "4": "The right to object to or request restriction of certain processing of your information;",
+        "5": "The right to data portability, where applicable; and",
+        "6": "The right to withdraw consent at any time where processing is based on your consent, without affecting the lawfulness of processing carried out prior to withdrawal."
+      },
+      "p2": "To exercise any of these rights, please contact us in writing at info@silqhaus.com. We will respond to your request within a reasonable timeframe and in accordance with applicable law. Please note that we may need to verify your identity before processing your request, and that certain rights may be subject to legal limitations."
+    },
+    "section13": {
+      "title": "13. No Promotions or Contests",
+      "p1": "As of the Effective Date, the Company does not conduct any promotional campaigns, contests, sweepstakes, loyalty programs, or similar activities through the Website. No personal data is collected for such purposes at this time. Should this change in the future, a separate and specific privacy notice will be provided."
+    },
+    "section14": {
+      "title": "14. Links to Third-Party Websites",
+      "p1": "The Website contains links to OTA platforms and other third-party websites. Once you leave the Website by following such a link, this Policy no longer applies. The Company is not responsible for the privacy practices, content, or data handling of any third-party websites or platforms. We strongly encourage you to read the privacy policies of any external websites you visit before providing any personal information."
+    },
+    "section15": {
+      "title": "15. Governing Law",
+      "p1": "This Privacy Policy shall be governed by and construed in accordance with the laws of the Kingdom of Thailand, including the Personal Data Protection Act B.E. 2562 (2019). Any disputes arising in connection with this Policy shall be subject to the exclusive jurisdiction of the competent courts of the Kingdom of Thailand, as further set forth in the Terms of Use."
+    },
+    "section16": {
+      "title": "16. Updates to This Policy",
+      "p1": "We reserve the right to update or modify this Privacy Policy at any time to reflect changes in our practices, legal requirements, or the nature of the Website. When we make material changes, we will update the \"Effective Date\" at the top of this Policy. Your continued use of the Website after any such changes are posted constitutes your acceptance of the revised Policy.",
+      "p2": "We encourage you to review this Policy periodically to stay informed about how we protect your information."
+    },
+    "section17": {
+      "title": "17. Contact Us",
+      "p1": "If you have any questions, concerns, complaints, or requests regarding this Privacy Policy or our data practices, please contact our designated point of contact:",
+      "companyName": "Better Home & Better Living Co., Ltd",
+      "address": "Wichit, Meung, Phuket 83000, Thailand",
+      "email": "Email: info@silqhaus.com",
+      "telephone": "Telephone: +66 (0) 929 490 211",
+      "p2": "We are committed to working with you to resolve any concerns about your privacy in a fair and timely manner."
+    },
+    "lastUpdated": "This Privacy Policy was last updated on February 17, 2026.",
+    "copyright": "© 2026 Better Home & Better Living Co., Ltd. All rights reserved."
+  },
+
+  "pmsListingCard": {
+    "perMonth": "/ mo",
+    "areaUnit": "m²",
+    "rentPriceYearly": "Yearly",
+    "rentPriceMidterm": "Midterm",
+    "rentPriceMonthly": "Monthly"
+  },
+  "pmsFilters": {
+    "title": "Filters",
+    "close": "Close",
+    "propertyType": "Property type",
+    "bedrooms": "Bedrooms",
+    "anyBedrooms": "Any beds",
+    "bedroomsPlus": "{count}+ beds",
+    "bathrooms": "Bathrooms",
+    "anyBathrooms": "Any baths",
+    "bathroomsPlus": "{count}+ baths",
+    "moreFilters": "More filters",
+    "clearAll": "Clear all",
+    "activeCount": "{count} active",
+    "apply": "Apply",
+    "priceRange": "Price range",
+    "minPrice": "Min",
+    "maxPrice": "Max",
+    "rentTerm": "Rent term",
+    "rentTermMonthly": "Monthly",
+    "rentTermMidterm": "Midterm",
+    "rentTermYearly": "Yearly",
+    "areaRange": "Area (m²)",
+    "minArea": "Min",
+    "maxArea": "Max",
+    "yearBuilt": "Year built",
+    "minYear": "From",
+    "maxYear": "To",
+    "city": "City",
+    "anyCity": "Any city",
+    "subdistrict": "Subdistrict",
+    "anySubdistrict": "Any subdistrict",
+    "features": "Features",
+    "noResultsTitle": "No properties match your filters",
+    "noResultsBody": "Try removing some filters or clearing them all.",
+    "clearFilters": "Clear all filters",
+    "sort": "Sort",
+    "sortNewest": "Newest first",
+    "sortPriceAsc": "Price: low to high",
+    "sortPriceDesc": "Price: high to low",
+    "sortBedroomsDesc": "Bedrooms: most first",
+    "sortAreaDesc": "Area: largest first"
+  },
+  "pmsFavorites": {
+    "addFavorite": "Save to favorites",
+    "removeFavorite": "Remove from favorites",
+    "save": "Save",
+    "saved": "Saved",
+    "navLabel": "Favorites"
+  },
+  "pmsSavedSearches": {
+    "saveSearch": "Save search",
+    "savedSearches": "Saved searches",
+    "nameLabel": "Name this search",
+    "namePlaceholder": "e.g. Pattaya 2+ bed villas",
+    "save": "Save",
+    "cancel": "Cancel",
+    "rename": "Rename",
+    "delete": "Delete",
+    "emptyMenu": "No saved searches yet. Adjust the filters and click \"Save search\"."
+  },
+  "favoritesPage": {
+    "title": "Your <gold>Favorites</gold>",
+    "subtitle": "Properties you've saved for later.",
+    "count": "{count, plural, one {# saved property} other {# saved properties}}",
+    "loading": "Loading your favorites…",
+    "emptyTitle": "No favorites yet",
+    "emptyBody": "Start exploring our collection and tap the heart on any property to save it here.",
+    "explore": "Explore properties",
+    "groupVacation": "Vacation rentals",
+    "groupRent": "For rent",
+    "groupSale": "For sale"
+  },
+  "propertiesForRent": {
+    "metadata": {
+      "title": "Properties for Rent | Silqhaus",
+      "description": "Browse long-term rental properties available through Silqhaus partners in Thailand."
+    },
+    "hero": {
+      "title": "PROPERTIES FOR RENT",
+      "description": "Long-term rental properties from our trusted partners."
+    },
+    "loading": "Loading properties...",
+    "noResults": "No rental properties available right now.",
+    "error": "Unable to load properties. Please try again later.",
+    "countOne": "{count} property found",
+    "countOther": "{count} properties found",
+    "backToList": "Back to For Rent",
+    "mapAriaLabel": "Map of rental properties"
+  },
+  "propertiesForSale": {
+    "metadata": {
+      "title": "Properties for Sale | Silqhaus",
+      "description": "Browse properties available to buy through Silqhaus partners in Thailand."
+    },
+    "hero": {
+      "title": "PROPERTIES FOR SALE",
+      "description": "Properties available to buy from our trusted partners."
+    },
+    "loading": "Loading properties...",
+    "noResults": "No properties for sale right now.",
+    "error": "Unable to load properties. Please try again later.",
+    "countOne": "{count} property found",
+    "countOther": "{count} properties found",
+    "backToList": "Back to For Sale",
+    "mapAriaLabel": "Map of properties for sale"
+  },
+  "pmsPropertyDetail": {
+    "perMonth": "/ mo",
+    "imageLabel": "Image {index}",
+    "errorTitle": "We couldn't load this property",
+    "errorBody": "Something went wrong fetching this listing. Please try again in a moment.",
+    "bedrooms": "{count} Bedrooms",
+    "bathrooms": "{count} Bathrooms",
+    "areaSqm": "{count} m²",
+    "lotSizeSqm": "Lot: {count} m²",
+    "yearBuilt": "Built {year}",
+    "parkingSpaces": "{count} Parking",
+    "description": "About this property",
+    "features": "Features",
+    "location": "Location",
+    "inquireCta": "Inquire about this property",
+    "notFound": "Property Not Found | Silqhaus",
+    "similarListings": "Similar listings",
+    "rentPriceYearly": "Yearly (12+ months)",
+    "rentPriceMidterm": "Midterm (3–6 months)",
+    "rentPriceMonthly": "Monthly (1–2 months)",
+    "rentalRatesHeading": "Rental rates"
+  },
+
+  "pmsPropertyInquiry": {
+    "form": {
+      "title": "Inquire about this property",
+      "subtitle": "Send us a message about {property} and we'll get back to you shortly.",
+      "labels": {
+        "name": "Full name",
+        "email": "Email",
+        "phone": "Phone number",
+        "countryCode": "Country code",
+        "purpose": "I'm interested in",
+        "message": "Message"
+      },
+      "placeholders": {
+        "name": "Your full name",
+        "email": "your@email.com",
+        "phone": "XX XXX XXXX",
+        "message": "Tell us a bit more about what you're looking for…"
+      },
+      "terms": "I agree to the <termsLink>Terms of Use</termsLink> and <privacyLink>Privacy Policy</privacyLink>.",
+      "submit": "Send inquiry",
+      "submitting": "Sending…",
+      "successMessage": "Thank you! Your inquiry has been sent. Our team will be in touch shortly.",
+      "errorMessage": "Something went wrong sending your inquiry. Please try again or email us at {email}.",
+      "errorRateLimited": "Too many inquiries from this device. Please wait a moment and try again.",
+      "errorValidation": "Please check the highlighted fields and try again."
+    },
+    "purpose": {
+      "more_info": "More information",
+      "schedule_viewing": "Schedule a viewing",
+      "want_to_buy": "I want to buy",
+      "want_to_rent": "I want to rent"
+    },
+    "validation": {
+      "nameRequired": "Please enter your name",
+      "invalidEmail": "Please enter a valid email address",
+      "invalidPhone": "Please enter a valid phone number (digits, spaces, and dashes only)",
+      "termsRequired": "Please accept the terms to continue"
+    },
+    "channels": {
+      "title": "Reach us directly",
+      "subtitle": "Pick the channel that suits you best.",
+      "phone": "Call us",
+      "whatsapp": "WhatsApp",
+      "wechat": "WeChat (tap to copy)",
+      "line": "Line",
+      "openLine": "Open Line chat",
+      "wechatCopied": "WeChat ID copied to clipboard"
+    },
+    "or": "OR",
+    "notProvided": "Not provided",
+    "drawer": {
+      "cta": "Send inquiry",
+      "title": "Inquire about this property",
+      "close": "Close"
+    }
+  },
+
+  "propertyDetail": {
+    "metadata": {
+      "notFoundTitle": "Property Not Found | Silqhaus",
+      "notFoundDescription": "The property you're looking for could not be found.",
+      "fallbackName": "Luxury Property",
+      "inLocation": " in {location}",
+      "bedrooms": "{count} bedrooms",
+      "bathrooms": "{count} bathrooms",
+      "sleeps": "sleeps {count}",
+      "titleTemplate": "{name}{location} | Silqhaus – Luxury Property Management & Short-Term Rentals",
+      "descriptionFallback": "Book {name}{location}{features}. Luxury vacation rental with exclusive amenities. Book direct for the best price.",
+      "breadcrumbHome": "Home",
+      "breadcrumbProperties": "Properties"
+    },
+    "backToExplore": "Back to Explore",
+    "aboutThisProperty": "About this property",
+    "amenitiesAndFeatures": "Amenities & Features",
+    "maxGuests": "Max Guests: {count}",
+    "bathrooms": "{count} Bathrooms",
+    "bedrooms": "{count} Bedrooms",
+    "guest": "GUEST",
+    "guestAgeNote": "(2+ years)",
+    "maximumGuests": "Maximum {count} guests",
+    "minimumStay": "Minimum stay: {count} nights",
+    "calculatingPrice": "Calculating price...",
+    "nightCount": "{count} night",
+    "nightCountPlural": "{count} nights",
+    "avg": "Avg.",
+    "perNight": "/night",
+    "total": "Total",
+    "cleaningFee": "Cleaning fee",
+    "priceComparison": "Price Comparison",
+    "priceComparisonNote": "Prices shown do not include taxes or platform-specific discounts.",
+    "silqhausDirect": "Silqhaus Direct",
+    "bestPrice": "BEST PRICE",
+    "moreExpensive": "+{amount} more",
+    "bookNow": "Book Now",
+    "hide": "Hide",
+    "checkPriceComparison": "Check Price Comparison",
+    "hideBookingOptions": "Hide booking options",
+    "checkPriceAndBookingOptions": "Check price and booking options",
+    "decreaseGuests": "Decrease guests",
+    "increaseGuests": "Increase guests",
+    "checkoutAfterCheckin": "Check-out must be after check-in",
+    "minimumStayError": "Minimum stay is {count} night(s)",
+    "unavailableDatesError": "Some dates are not available: {dates}",
+    "pricingFetchError": "Unable to fetch pricing. Please try again.",
+    "bookOnSilqhaus": "Book on Silqhaus",
+    "bookOnAirbnb": "Book on Airbnb",
+    "bookOnBookingCom": "Book on Booking.com",
+    "bookOnVrbo": "Book on Vrbo",
+    "bookOnExpedia": "Book on Expedia",
+    "bookOnTripcom": "Book on Trip.com",
+    "monthlyPromoText": "Staying 30+ days? Get",
+    "monthlyPromoLink": "EXCLUSIVE MONTHLY RATES →"
+  },
+  "dateRangePicker": {
+    "months": {
+      "0": "January",
+      "1": "February",
+      "2": "March",
+      "3": "April",
+      "4": "May",
+      "5": "June",
+      "6": "July",
+      "7": "August",
+      "8": "September",
+      "9": "October",
+      "10": "November",
+      "11": "December"
+    },
+    "days": {
+      "0": "Su",
+      "1": "Mo",
+      "2": "Tu",
+      "3": "We",
+      "4": "Th",
+      "5": "Fr",
+      "6": "Sa"
+    },
+    "checkIn": "Check-in",
+    "checkOut": "Check-out",
+    "selectDate": "Select date",
+    "close": "Close",
+    "loadingAvailability": "Loading availability...",
+    "minimumStayTooltip": "Minimum stay: {count} night(s)",
+    "unavailable": "Unavailable",
+    "checkoutAfterCheckin": "Check-out must be after check-in",
+    "minimumStayError": "Minimum stay is {count} night(s)",
+    "previousMonth": "Previous month",
+    "nextMonth": "Next month",
+    "clearCheckIn": "Clear check-in date",
+    "clearCheckOut": "Clear check-out date",
+    "reserved": "reserved",
+    "past": "past",
+    "unavailableDatesInRange": "unavailable dates in range"
+  },
+  "gallery": {
+    "title": "Property Gallery",
+    "photos": "{count} photos",
+    "clickToOpen": "Click any image to open in lightbox viewer",
+    "countOf": "{current} of {total} photos",
+    "all": "All ({count})",
+    "noImages": "No images found for this category",
+    "closeGallery": "Close gallery",
+    "viewInLightbox": "View {name} in lightbox"
+  },
+  "lightbox": {
+    "ariaLabel": "Image gallery lightbox",
+    "closeLightbox": "Close lightbox",
+    "previousImage": "Previous image",
+    "nextImage": "Next image",
+    "goToImage": "Go to image {index}",
+    "imageCounter": "{current} of {total}",
+    "navigateHint": "← → Navigate",
+    "escHint": "ESC Close"
+  },
+  "galleryCarousel": {
+    "viewAll": "View all {count}",
+    "viewAllPhotos": "View all {count} photos",
+    "sampleImages": "Sample images shown",
+    "previousImages": "Previous images",
+    "nextImages": "Next images"
+  },
+  "propertyMap": {
+    "locationAndMap": "Location & Map"
+  },
+  "nearbyListings": {
+    "moreProperties": "More Properties in {city}",
+    "bedrooms": "{count} bedrooms",
+    "previousListings": "Previous listings",
+    "nextListings": "Next listings",
+    "goToSlide": "Go to slide {index}"
+  },
+  "monthlyInquiry": {
+    "hero": {
+      "subtitle": "Extended Stay Rates",
+      "title": "Monthly Stay Inquiry",
+      "description": "Enjoy exclusive rates for stays of 30 days or more. Fill in the form below and our team will get back to you within 24 hours."
+    },
+    "form": {
+      "title": "Request Monthly Rate",
+      "subtitle": "We'll prepare a custom quote for your long-term stay.",
+      "labels": {
+        "fullName": "Full Name",
+        "email": "Email Address",
+        "phone": "Phone Number",
+        "dates": "Move-In / Move-Out",
+        "moveIn": "Move-In Date",
+        "moveOut": "Move-Out Date",
+        "property": "Property",
+        "tenants": "Number of Tenants",
+        "message": "Message / Specific Questions"
+      },
+      "placeholders": {
+        "fullName": "Your full name",
+        "email": "your@email.com",
+        "phone": "Phone number",
+        "tenants": "e.g. 2",
+        "message": "Tell us anything specific about your stay — preferred floor, parking needs, pet details, or anything else you'd like to know."
+      },
+      "datesNote": "Minimum stay for monthly rates is 30 nights.",
+      "propertyNote": "Property will be pre-filled when you arrive from a property page.",
+      "submit": "Send Inquiry",
+      "submitting": "Sending...",
+      "successMessage": "Thank you! Your inquiry has been received. Our team will be in touch within 24 hours.",
+      "errorMessage": "Something went wrong. Please email us directly at {email}."
+    },
+    "validation": {
+      "invalidEmail": "Please enter a valid email address.",
+      "invalidPhone": "Please enter a valid phone number (6–15 digits).",
+      "moveOutAfterMoveIn": "Move-out date must be after move-in date."
+    },
+    "notProvided": "Not provided",
+    "promoText": "Get special prices for monthly stays (30+ days).",
+    "promoLink": "Complete this inquiry form →"
+  }
+}

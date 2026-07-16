@@ -1,0 +1,520 @@
+import React, { useState } from "react";
+import SEO from "@/components/SEO/SEO";
+import { SEO_PRESETS } from "@/components/SEO/seoPresets";
+import Navigation from "@/components/navigation";
+import Footer from "@/components/footer";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Phone, Mail, MapPin, Users, Send, MessageCircle } from "lucide-react";
+
+const SUPPORT_EMAIL = "hello@silqhaus.com";
+
+function compactObject<T extends Record<string, any>>(obj: T) {
+  const out: Record<string, any> = {};
+  Object.entries(obj).forEach(([k, v]) => {
+    if (v !== undefined && v !== null) {
+      const s = typeof v === "string" ? v.trim() : v;
+      if (s !== "") out[k] = s;
+    }
+  });
+  return out;
+}
+
+function buildSubject(form: any) {
+  const parts = [
+    "Website Booking Inquiry",
+    form.name ? `— ${form.name}` : "",
+    form.checkIn && form.checkOut
+      ? ` (${form.checkIn} → ${form.checkOut})`
+      : "",
+  ].filter(Boolean);
+  return parts.join(" ");
+}
+
+// REPLACE your existing buildBody with this:
+
+function buildBody(form: any) {
+  const payload = compactObject(form);
+
+  const summaryLines = [
+    `Name: ${form.name || "—"}`,
+    `Email: ${form.email || "—"}`,
+    `Phone: ${form.phone || "—"}`,
+    `Inquiry Type: ${form.inquiryType || "—"}`,
+    `Check-in (YYYY-MM-DD): ${form.checkIn || "—"}`,
+    `Check-out (YYYY-MM-DD): ${form.checkOut || "—"}`,
+    `Guests: ${form.guests || "—"}`,
+    // `Property Interest: ${form.propertyInterest || "—"}`,
+  ].join("\n");
+
+  // JSON → pretty string → strip curly braces → remove empty lines
+  const prettyJsonRaw = JSON.stringify(payload, null, 2);
+  const prettyJsonNoBraces = prettyJsonRaw.replace(/[{}]/g, "");
+  const prettyJsonTidy = prettyJsonNoBraces
+    .split("\n")
+    .filter((line) => line.trim() !== "")
+    .join("\n");
+
+  return (
+    "Inquiry Summary:\n" + summaryLines + "\n\nMessage: " + form.message ||
+    "-" + "\n"
+  );
+}
+
+function createMailto(form: any) {
+  const subject = encodeURIComponent(buildSubject(form));
+  const body = encodeURIComponent(buildBody(form));
+  return `mailto:${encodeURIComponent(
+    SUPPORT_EMAIL,
+  )}?subject=${subject}&body=${body}`;
+}
+
+export default function ContactUs() {
+  const [guestForm, setGuestForm] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    inquiryType: "",
+    propertyInterest: "",
+    checkIn: "",
+    checkOut: "",
+    guests: "",
+    message: "",
+  });
+
+  const handleGuestSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const mailto = createMailto(guestForm);
+
+    window.location.href = mailto; // opens default email client
+    console.log("Guest inquiry:", guestForm);
+    alert(
+      "Thank you for your inquiry! We will contact you within 24 hours to assist with your booking.",
+    );
+
+    setGuestForm({
+      name: "",
+      email: "",
+      phone: "",
+      inquiryType: "",
+      propertyInterest: "",
+      checkIn: "",
+      checkOut: "",
+      guests: "",
+      message: "",
+    });
+  };
+
+  const MAX_MESSAGE_CHARS = 800;
+
+  return (
+    <>
+      <SEO
+        title={SEO_PRESETS.contact.title}
+        description={SEO_PRESETS.contact.description}
+        type={SEO_PRESETS.contact.type}
+        image="/og/pool.jpg"
+      />
+      <div className="min-h-screen bg-ink">
+        <Navigation />
+        {/* Hero Section */}
+        <section className="relative bg-gradient-to-br from-gold to-sand text-ink pt-32 pb-24">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center">
+              <div className="w-16 h-16 mx-auto mb-6 bg-ink/20 rounded-full flex items-center justify-center">
+                <Users className="w-8 h-8 text-ink" />
+              </div>
+              <p className="text-ink text-sm font-poppins font-light tracking-[0.3em] uppercase mb-4">
+                GUEST SERVICES
+              </p>
+              <h1 className="text-4xl sm:text-5xl md:text-6xl font-gilroy font-bold mb-6 leading-tight tracking-wide">
+                PLAN YOUR LUXURY STAY
+              </h1>
+              <p className="text-ink/90 max-w-3xl mx-auto font-poppins font-light text-lg sm:text-xl leading-snug mb-8">
+                Ready to experience Thailand's finest luxury accommodations? Our
+                dedicated concierge team is here to help you find and book the
+                perfect property for your unforgettable getaway.
+              </p>
+            </div>
+          </div>
+        </section>
+        {/* Contact Options */}
+        <section className="py-24 bg-ink">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            {/* <div className="text-center mb-16">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl text-snow mb-6 tracking-wide font-gilroy font-bold leading-tight">
+              Choose Your Preferred Contact Method
+            </h2>
+            <p className="text-snow/70 max-w-3xl mx-auto font-poppins font-light text-lg leading-snug">
+              Get in touch with us through your preferred method - submit a
+              detailed inquiry form or start an instant live chat.
+            </p>
+          </div> */}
+
+            {/* <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16"> */}
+            {/* Live Chat Option */}
+            {/* <div className="bg-gradient-to-br from-gold to-sand text-ink rounded-lg p-8 text-center">
+              <div className="w-16 h-16 mx-auto mb-6 bg-surface/20 rounded-full flex items-center justify-center">
+                <MessageCircle className="w-8 h-8 text-ink" />
+              </div>
+              <h3 className="text-2xl font-poppins font-bold mb-4">
+                Live Chat Support
+              </h3>
+              <p className="text-ink/90 font-poppins font-light text-lg mb-6 leading-snug">
+                Get instant answers to your questions from our luxury travel
+                specialists. Available 24/7 for immediate assistance.
+              </p>
+              <div className="space-y-3 text-ink/80 font-poppins text-sm mb-8">
+                <div>🕐 Available 24/7</div>
+                <div>⚡ Instant responses</div>
+                <div>💬 Real-time booking assistance</div>
+                <div>🎯 Personalized recommendations</div>
+              </div>
+              <Button className="bg-surface text-snow hover:bg-gold/90 hover:text-ink px-8 py-4 rounded-md text-lg font-poppins font-medium tracking-wide transition-all duration-300 hover:scale-105 transform w-full">
+                Start Live Chat Now
+              </Button>
+            </div> */}
+
+            {/* Inquiry Form Option */}
+            {/* <div className="bg-surface border-2 border-line rounded-lg p-8 text-center">
+              <div className="w-16 h-16 mx-auto mb-6 bg-gold rounded-full flex items-center justify-center">
+                <Users className="w-8 h-8 text-ink" />
+              </div>
+              <h3 className="text-2xl text-snow font-poppins font-bold mb-4">
+                Detailed Inquiry Form
+              </h3>
+              <p className="text-snow/70 font-poppins font-light text-lg mb-6 leading-snug">
+                Share your detailed requirements and preferences. Perfect for
+                complex bookings and special requests.
+              </p>
+              <div className="space-y-3 text-snow/60 font-poppins text-sm mb-8">
+                <div>📝 Detailed booking preferences</div>
+                <div>🗓️ Specific date requirements</div>
+                <div>🏨 Property customization</div>
+                <div>📧 Email response within 2 hours</div>
+              </div>
+              <Button
+                onClick={() =>
+                  document
+                    .getElementById("inquiry-form")
+                    ?.scrollIntoView({ behavior: "smooth" })
+                }
+                className="bg-gold text-ink hover:bg-gold/90 hover:text-ink px-8 py-4 rounded-md text-lg font-poppins font-medium tracking-wide transition-all duration-300 hover:scale-105 transform w-full"
+              >
+                Fill Inquiry Form
+              </Button>
+            </div>
+          </div> */}
+
+            {/* Inquiry Form */}
+            <Card id="inquiry-form" className="bg-surface shadow-lg">
+              <CardHeader>
+                <div className="flex items-center gap-4 mb-4">
+                  <div className="w-12 h-12 bg-gold rounded-full flex items-center justify-center">
+                    <Users className="w-6 h-6 text-ink" />
+                  </div>
+                  <div>
+                    <CardTitle className="text-snow font-poppins font-bold text-2xl">
+                      Guest Booking Inquiry
+                    </CardTitle>
+                    <p className="text-snow/70 font-poppins">
+                      Let us help you plan your perfect luxury getaway
+                    </p>
+                  </div>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <form onSubmit={handleGuestSubmit} className="space-y-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="space-y-2">
+                      <Label
+                        htmlFor="guest-name"
+                        className="font-poppins font-medium text-snow"
+                      >
+                        Full Name *
+                      </Label>
+                      <Input
+                        id="guest-name"
+                        type="text"
+                        value={guestForm.name}
+                        onChange={(e) =>
+                          setGuestForm({ ...guestForm, name: e.target.value })
+                        }
+                        required
+                        className="font-poppins border-line focus:border-gold"
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <Label
+                        htmlFor="guest-email"
+                        className="font-poppins font-medium text-snow"
+                      >
+                        Email Address *
+                      </Label>
+                      <Input
+                        id="guest-email"
+                        type="email"
+                        value={guestForm.email}
+                        onChange={(e) =>
+                          setGuestForm({ ...guestForm, email: e.target.value })
+                        }
+                        required
+                        className="font-poppins border-line focus:border-gold"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="space-y-2">
+                      <Label
+                        htmlFor="guest-phone"
+                        className="font-poppins font-medium text-snow"
+                      >
+                        Phone Number
+                      </Label>
+                      <Input
+                        id="guest-phone"
+                        type="tel"
+                        value={guestForm.phone}
+                        onChange={(e) =>
+                          setGuestForm({ ...guestForm, phone: e.target.value })
+                        }
+                        className="font-poppins border-line focus:border-gold"
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <Label
+                        htmlFor="guest-inquiry-type"
+                        className="font-poppins font-medium text-snow"
+                      >
+                        Inquiry Type *
+                      </Label>
+                      <Select
+                        value={guestForm.inquiryType}
+                        onValueChange={(value) =>
+                          setGuestForm({ ...guestForm, inquiryType: value })
+                        }
+                      >
+                        <SelectTrigger className="font-poppins border-line">
+                          <SelectValue placeholder="Select inquiry type" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="booking">New Booking</SelectItem>
+                          <SelectItem value="existing">
+                            Existing Booking
+                          </SelectItem>
+                          <SelectItem value="general">
+                            General Information
+                          </SelectItem>
+                          <SelectItem value="concierge">
+                            Concierge Services
+                          </SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div className="space-y-2">
+                      <Label
+                        htmlFor="guest-checkin"
+                        className="font-poppins font-medium text-snow"
+                      >
+                        Check-in Date
+                      </Label>
+                      <Input
+                        id="guest-checkin"
+                        type="date"
+                        value={guestForm.checkIn}
+                        onChange={(e) =>
+                          setGuestForm({
+                            ...guestForm,
+                            checkIn: e.target.value,
+                          })
+                        }
+                        className="font-poppins border-line focus:border-gold"
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <Label
+                        htmlFor="guest-checkout"
+                        className="font-poppins font-medium text-snow"
+                      >
+                        Check-out Date
+                      </Label>
+                      <Input
+                        id="guest-checkout"
+                        type="date"
+                        value={guestForm.checkOut}
+                        onChange={(e) =>
+                          setGuestForm({
+                            ...guestForm,
+                            checkOut: e.target.value,
+                          })
+                        }
+                        className="font-poppins border-line focus:border-gold"
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <Label
+                        htmlFor="guest-guests"
+                        className="font-poppins font-medium text-snow"
+                      >
+                        Number of Guests
+                      </Label>
+                      <Select
+                        value={guestForm.guests}
+                        onValueChange={(value) =>
+                          setGuestForm({ ...guestForm, guests: value })
+                        }
+                      >
+                        <SelectTrigger className="font-poppins border-line">
+                          <SelectValue placeholder="Select guests" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="1">1 Guest</SelectItem>
+                          <SelectItem value="2">2 Guests</SelectItem>
+                          <SelectItem value="3-4">3-4 Guests</SelectItem>
+                          <SelectItem value="5-8">5-8 Guests</SelectItem>
+                          <SelectItem value="9+">9+ Guests</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label
+                      htmlFor="guest-message"
+                      className="font-poppins font-medium text-snow"
+                    >
+                      Tell Us About Your Ideal Stay
+                    </Label>
+                    <Textarea
+                      id="guest-message"
+                      value={guestForm.message}
+                      onChange={(e) =>
+                        setGuestForm({ ...guestForm, message: e.target.value })
+                      }
+                      maxLength={MAX_MESSAGE_CHARS}
+                      placeholder="Describe your preferences, special requirements, activities you're interested in, or any questions about our properties..."
+                      className="min-h-[120px] font-poppins border-line focus:border-gold"
+                    />
+                  </div>
+                  <div className="text-right text-snow/60 text-xs font-poppins">
+                    {guestForm.message.length}/{MAX_MESSAGE_CHARS}
+                  </div>
+
+                  <div className="centered-cta">
+                    <Button
+                      type="submit"
+                      className="w-full sm:w-auto bg-gold text-snow hover:bg-gold/90 px-8 py-4 rounded-md text-base font-poppins font-medium tracking-wide transition-all duration-300 hover:scale-105 transform"
+                    >
+                      <Send className="w-4 h-4 mr-2" />
+                      Send Booking Inquiry
+                    </Button>
+                  </div>
+                </form>
+              </CardContent>
+            </Card>
+          </div>
+        </section>
+        {/* Contact Information */}
+        <section className="py-24 bg-surface">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl text-snow mb-6 tracking-wide font-gilroy font-bold leading-tight">
+                24/7 Guest Services
+              </h2>
+              <p className="text-snow/70 max-w-3xl mx-auto font-poppins font-light text-lg leading-snug">
+                Our dedicated guest services team is available around the clock
+                to ensure your stay is perfect.
+              </p>
+            </div>
+
+            {/* <div className="grid grid-cols-1 md:grid-cols-3 gap-8"> */}
+            <div className="flex flex-col sm:flex-row sm:justify-center sm:space-x-12 gap-20">
+              <div className="text-center">
+                <div className="w-16 h-16 mx-auto mb-6 bg-gold rounded-full flex items-center justify-center">
+                  <Phone className="w-8 h-8 text-ink" />
+                </div>
+                <h3 className="font-poppins font-semibold text-snow text-lg mb-2">
+                  Guest Hotline
+                </h3>
+                <p className="text-snow/70 font-poppins font-light text-sm mb-4">
+                  24/7 guest support
+                </p>
+                <div className="text-snow font-poppins font-medium">
+                  <div>+66 (0) 80 835 0595</div>
+                  {/* <div className="text-sm text-snow/60 mt-1">
+                  Press 1 for Guest Services
+                </div> */}
+                </div>
+              </div>
+
+              <div className="text-center">
+                <div className="w-16 h-16 mx-auto mb-6 bg-gold rounded-full flex items-center justify-center">
+                  <Mail className="w-8 h-8 text-ink" />
+                </div>
+                <h3 className="font-poppins font-semibold text-snow text-lg mb-2">
+                  Guest Email
+                </h3>
+                <p className="text-snow/70 font-poppins font-light text-sm mb-4">
+                  Response within 2 hours
+                </p>
+                <div className="text-snow font-poppins font-medium">
+                  <div>hello@silqhaus.com</div>
+                  <div className="text-sm text-snow/60 mt-1">
+                    Booking & concierge
+                  </div>
+                </div>
+              </div>
+
+              {/* Live Chat Component */}
+              {/* <div className="text-center">
+              <div className="w-16 h-16 mx-auto mb-6 bg-gold rounded-full flex items-center justify-center">
+                <MessageCircle className="w-8 h-8 text-ink" />
+              </div>
+              <h3 className="font-poppins font-semibold text-snow text-lg mb-2">
+                Live Chat
+              </h3>
+              <p className="text-snow/70 font-poppins font-light text-sm mb-4">
+                Instant assistance
+              </p>
+              <div className="text-snow font-poppins font-medium">
+                <Button className="bg-gold hover:bg-gold/90 text-snow px-6 py-2 text-sm">
+                  Start Chat
+                </Button>
+              </div>
+            </div> */}
+            </div>
+          </div>
+        </section>
+        {/* Footer */}
+        {/* <footer className="bg-ink py-16 border-t border-line">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <h3 className="text-2xl sm:text-3xl font-poppins font-semibold text-snow tracking-widest mb-4">
+              SILQHAUS
+            </h3>
+            <p className="text-snow/60 font-poppins font-light text-sm leading-tight max-w-md mx-auto">
+              Creating unforgettable luxury experiences across Thailand's finest
+              destinations.
+            </p>
+          </div>
+        </div>
+      </footer> */}
+        <Footer />
+      </div>
+    </>
+  );
+}

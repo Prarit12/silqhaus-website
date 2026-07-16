@@ -1,0 +1,72 @@
+Hydration failed because the server rendered HTML didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+See more info here: https://nextjs.org/docs/messages/react-hydration-error
+
+
+  ...
+    <ErrorBoundary errorComponent={undefined} errorStyles={undefined} errorScripts={undefined}>
+      <LoadingBoundary name="/" loading={null}>
+        <HTTPAccessFallbackBoundary notFound={<SegmentViewNode>} forbidden={undefined} unauthorized={undefined}>
+          <HTTPAccessFallbackErrorBoundary pathname="/" notFound={<SegmentViewNode>} forbidden={undefined} ...>
+            <RedirectBoundary>
+              <RedirectErrorBoundary router={{...}}>
+                <InnerLayoutRouter url="/" tree={[...]} params={{}} cacheNode={{rsc:<Fragment>, ...}} segmentPath={[...]} ...>
+                  <SegmentViewNode type="page" pagePath="page.tsx">
+                    <SegmentTrieNode>
+                    <Home>
+                      <div className="min-h-scre...">
+                        <Navigation>
+                        <HeroSection>
+                        <section>
+                        <DestinationCarousel>
+                          <section className="min-h-[60v...">
+                            <div className="w-full">
+                              <div>
+                              <div className="px-4 sm:px...">
+                                <button>
+                                <button
+                                  onClick={function onClick}
++                                 disabled={false}
+-                                 disabled=""
+                                  className="absolute -right-1 sm:-right-2 top-1/2 -translate-y-1/2 z-30 w-8 h-8 sm:w-..."
+                                  aria-label="Next page"
+                                  data-testid="button-next-page"
+                                >
+                                <div className="grid grid-...">
+-                                 <a
+-                                   className="w-full aspect-[4/5] relative rounded-lg shadow border border-black/10 o..."
+-                                   tabindex="0"
+-                                   role="button"
+-                                   aria-label="Visit Pattaya today!"
+-                                   data-testid="destination-card-pattaya"
+-                                   href="/destination/pattaya"
+-                                 >
+                              ...
+                        ...
+                  ...
+                ...
+components/destination-carousel.tsx (197:11) @ DestinationCarousel
+
+
+  195 |
+  196 |           {/* Paginated Layout */}
+> 197 |           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 sm:gap-4 md:gap-5 py-2">
+      |           ^
+  198 |             {getCurrentPageItems().map((destination, index) => (
+  199 |               <Link
+  200 |                 href={`/destination/${encodeURIComponent(destination.slug)}`}
+Call Stack
+15
+
+Show 12 ignore-listed frame(s)
+div
+<anonymous>
+DestinationCarousel
+components/destination-carousel.tsx (197:11)

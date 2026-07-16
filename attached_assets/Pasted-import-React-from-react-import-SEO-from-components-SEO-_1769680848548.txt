@@ -1,0 +1,270 @@
+import React from "react";
+import SEO from "@/components/SEO/SEO";
+import { SEO_PRESETS } from "@/components/SEO/seoPresets";
+import Navigation from "../components/navigation";
+import Footer from "@/components/footer";
+import { MapPin, Users, Home, Award, Heart, Shield } from "lucide-react";
+
+import heroImage from "../../../attached_assets/about-us/luxury_private_villa_1087f690.jpg";
+import villaImage from "../../../attached_assets/about-us//luxury_private_villa_48d054ce.jpg";
+
+export default function AboutUs() {
+  return (
+    <>
+      <SEO
+        title={SEO_PRESETS.about.title}
+        description={SEO_PRESETS.about.description}
+        type={SEO_PRESETS.about.type}
+        image="/og/pool.jpg"
+      />
+
+      <div className="min-h-screen bg-ink">
+        <Navigation />
+
+        {/* Hero Section */}
+        <section className="relative min-h-[60vh] flex items-center">
+          <div className="absolute inset-0">
+            <img
+              src={heroImage}
+              alt="Luxury villa in Thailand"
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-ink/90 via-ink/70 to-transparent" />
+          </div>
+
+          <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+            <p className="text-gold text-sm font-poppins tracking-[0.3em] uppercase mb-4">
+              ABOUT US
+            </p>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-gilroy font-bold text-snow mb-6 max-w-3xl">
+              Thailand's Premier Luxury Rental Management
+            </h1>
+            <p className="text-xl text-snow/80 font-poppins font-light max-w-2xl leading-snug">
+              Elevating short-term rental experiences in Phuket and Pattaya
+              through exceptional property management and personalized guest
+              services.
+            </p>
+          </div>
+        </section>
+
+        {/* Who We Are */}
+        <section className="py-24 bg-ink-2">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+              <div>
+                <p className="text-gold text-sm font-poppins tracking-[0.3em] uppercase mb-4">
+                  WHO WE ARE
+                </p>
+                <h2 className="text-4xl font-gilroy font-bold text-snow mb-6">
+                  Your Trusted Partner in Luxury Hospitality
+                </h2>
+                <p className="text-snow/70 font-poppins leading-snug mb-6">
+                  Silqhaus is a boutique short-term rental property management
+                  company specializing in luxury villas and apartments across
+                  Thailand's most sought-after destinations—Phuket and Pattaya.
+                </p>
+                <p className="text-snow/70 font-poppins leading-snug mb-6">
+                  We partner with property owners to maximize their rental
+                  income while delivering unforgettable experiences to
+                  discerning travelers from around the world. Our team combines
+                  local expertise with international hospitality standards to
+                  ensure every stay exceeds expectations.
+                </p>
+                <p className="text-snow/70 font-poppins leading-snug">
+                  From marketing and guest communications to cleaning and
+                  maintenance, we handle every aspect of property management so
+                  owners can enjoy passive income without the stress.
+                </p>
+              </div>
+              <div className="relative">
+                <img
+                  src={villaImage}
+                  alt="Luxury property managed by Silqhaus"
+                  className="w-full h-[400px] object-cover rounded-xl shadow-xl"
+                />
+                <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-gold/20 rounded-xl" />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Our Locations */}
+        <section className="py-24 bg-ink">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-16">
+              <p className="text-gold text-sm font-poppins tracking-[0.3em] uppercase mb-4">
+                OUR LOCATIONS
+              </p>
+              <h2 className="text-4xl font-gilroy font-bold text-snow mb-6">
+                Where We Operate
+              </h2>
+              <p className="text-snow/70 font-poppins max-w-2xl mx-auto leading-snug">
+                We focus on Thailand's premier vacation destinations, providing
+                exceptional property management services where travelers want to
+                be.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div className="bg-ink-2 rounded-xl p-8 border border-gold/20">
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="w-14 h-14 rounded-full bg-gold/10 flex items-center justify-center">
+                    <MapPin className="w-7 h-7 text-gold" />
+                  </div>
+                  <h3 className="text-2xl font-gilroy font-bold text-snow">
+                    Phuket
+                  </h3>
+                </div>
+                <p className="text-snow/70 font-poppins leading-snug mb-4">
+                  Thailand's largest island and a world-renowned tropical
+                  paradise. From beachfront villas in Patong to hillside
+                  retreats in Kamala, we manage properties across Phuket's most
+                  desirable locations.
+                </p>
+                <ul className="space-y-2 text-snow/60 font-poppins text-sm">
+                  <li>• Patong, Kata, Karon beaches</li>
+                  <li>• Kamala, Surin, Bang Tao</li>
+                  <li>• Rawai, Nai Harn, Cape Panwa</li>
+                </ul>
+              </div>
+
+              <div className="bg-ink-2 rounded-xl p-8 border border-gold/20">
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="w-14 h-14 rounded-full bg-gold/10 flex items-center justify-center">
+                    <MapPin className="w-7 h-7 text-gold" />
+                  </div>
+                  <h3 className="text-2xl font-gilroy font-bold text-snow">
+                    Pattaya
+                  </h3>
+                </div>
+                <p className="text-snow/70 font-poppins leading-snug mb-4">
+                  A vibrant coastal city just two hours from Bangkok, offering
+                  stunning beachfront condos and luxury villas. Perfect for both
+                  short getaways and extended stays.
+                </p>
+                <ul className="space-y-2 text-snow/60 font-poppins text-sm">
+                  <li>• Jomtien Beach</li>
+                  <li>• Pratumnak Hill</li>
+                  <li>• Wong Amat, Na Jomtien</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* What Sets Us Apart */}
+        <section className="py-24 bg-ink-2">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-16">
+              <p className="text-gold text-sm font-poppins tracking-[0.3em] uppercase mb-4">
+                WHY SILQHAUS
+              </p>
+              <h2 className="text-4xl font-gilroy font-bold text-snow mb-6">
+                What Sets Us Apart
+              </h2>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <div className="bg-ink rounded-xl p-8 border border-gold/20">
+                <Home className="w-12 h-12 text-gold mb-6" />
+                <h3 className="text-xl font-gilroy font-bold text-snow mb-3">
+                  Luxury Focus
+                </h3>
+                <p className="text-snow/70 font-poppins leading-snug">
+                  We exclusively manage premium properties, ensuring every
+                  listing meets our high standards for quality and guest
+                  experience.
+                </p>
+              </div>
+
+              <div className="bg-ink rounded-xl p-8 border border-gold/20">
+                <Users className="w-12 h-12 text-gold mb-6" />
+                <h3 className="text-xl font-gilroy font-bold text-snow mb-3">
+                  Local Expertise
+                </h3>
+                <p className="text-snow/70 font-poppins leading-snug">
+                  Our Thai-based team understands the local market, regulations,
+                  and what international guests expect from their Thailand
+                  vacation.
+                </p>
+              </div>
+
+              <div className="bg-ink rounded-xl p-8 border border-gold/20">
+                <Award className="w-12 h-12 text-gold mb-6" />
+                <h3 className="text-xl font-gilroy font-bold text-snow mb-3">
+                  Multi-Platform Reach
+                </h3>
+                <p className="text-snow/70 font-poppins leading-snug">
+                  We list on Airbnb, Vrbo, Booking.com, and our own platform to
+                  maximize visibility and bookings for every property.
+                </p>
+              </div>
+
+              <div className="bg-ink rounded-xl p-8 border border-gold/20">
+                <Heart className="w-12 h-12 text-gold mb-6" />
+                <h3 className="text-xl font-gilroy font-bold text-snow mb-3">
+                  Personal Touch
+                </h3>
+                <p className="text-snow/70 font-poppins leading-snug">
+                  Every property gets a dedicated manager who treats it as their
+                  own, ensuring consistent quality and owner peace of mind.
+                </p>
+              </div>
+
+              <div className="bg-ink rounded-xl p-8 border border-gold/20">
+                <Shield className="w-12 h-12 text-gold mb-6" />
+                <h3 className="text-xl font-gilroy font-bold text-snow mb-3">
+                  Transparent Pricing
+                </h3>
+                <p className="text-snow/70 font-poppins leading-snug">
+                  No hidden fees or surprise charges. Our commission-based model
+                  means we only succeed when you succeed.
+                </p>
+              </div>
+
+              <div className="bg-ink rounded-xl p-8 border border-gold/20">
+                <MapPin className="w-12 h-12 text-gold mb-6" />
+                <h3 className="text-xl font-gilroy font-bold text-snow mb-3">
+                  24/7 Support
+                </h3>
+                <p className="text-snow/70 font-poppins leading-snug">
+                  Round-the-clock support for guests and rapid response for any
+                  property issues, ensuring smooth operations always.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* CTA Section */}
+        <section className="py-24 bg-ink">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 className="text-3xl md:text-4xl font-gilroy font-bold text-snow mb-6">
+              Ready to Partner With Us?
+            </h2>
+            <p className="text-snow/70 font-poppins text-lg mb-8 max-w-2xl mx-auto leading-snug">
+              Whether you own a luxury villa in Phuket or a beachfront condo in
+              Pattaya, we're here to help you maximize your rental potential.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <a
+                href="/property-management"
+                className="bg-gold hover:bg-gold/90 text-ink font-poppins px-8 py-4 text-lg transition-colors inline-block"
+              >
+                Property Management
+              </a>
+              <a
+                href="/our-property"
+                className="border border-gold text-gold hover:bg-gold/10 font-poppins px-8 py-4 text-lg transition-colors inline-block"
+              >
+                Browse Properties
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <Footer />
+      </div>
+    </>
+  );
+}

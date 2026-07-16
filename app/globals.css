@@ -1,0 +1,302 @@
+@font-face {
+  font-family: "Poppins";
+  src: url("/fonts/Poppins-Regular_1757941333834.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("/fonts/Poppins-Medium_1757941333834.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("/fonts/Poppins-SemiBold_1757941333835.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("/fonts/Poppins-Bold_1757941333833.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("/fonts/Poppins-Light_1757941333834.woff2") format("woff2");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Gilroy";
+  src: url("/fonts/Gilroy-Light_1757944089769.woff2") format("woff2");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Gilroy";
+  src: url("/fonts/Gilroy-Regular_1757944089770.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Gilroy";
+  src: url("/fonts/Gilroy-Medium_1757944089770.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Gilroy";
+  src: url("/fonts/Gilroy-SemiBold_1757944089771.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Gilroy";
+  src: url("/fonts/Gilroy-Bold_1757944089767.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Gilroy";
+  src: url("/fonts/Gilroy-ExtraBold_1757944089768.woff2") format("woff2");
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --ink: #0d0d0d;
+  --ink-2: #141414;
+  --snow: #ffffff;
+  --mist: #f2f2f2;
+  --gold: #7e6725;
+  --sand: #f0dc91;
+  --line: rgba(255, 255, 255, 0.12);
+  --ivory: #f4f4f1;
+  --stone: #cbc2b2;
+  --cocoa: #8c7429;
+  --ink-detail: #131412;
+  --background: #0d0d0d;
+  --foreground: #ffffff;
+  --muted: #f2f2f2;
+  --muted-foreground: rgba(255, 255, 255, 0.7);
+  --card: rgba(255, 255, 255, 0.05);
+  --card-foreground: #ffffff;
+  --border: rgba(255, 255, 255, 0.12);
+  --input: rgba(255, 255, 255, 0.06);
+  --primary: #7e6725;
+  --primary-foreground: #0d0d0d;
+  --secondary: rgba(255, 255, 255, 0.08);
+  --secondary-foreground: #ffffff;
+  --accent: #f0dc91;
+  --accent-foreground: #0d0d0d;
+  --destructive: #dc2626;
+  --destructive-foreground: #ffffff;
+  --ring: rgba(90, 73, 51, 0.5);
+  --radius: 0.5rem;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+    font-family: "Poppins", sans-serif;
+  }
+
+  body {
+    background: var(--ink);
+    color: var(--snow);
+    font-family: "Poppins", sans-serif;
+    @apply font-sans antialiased;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    font-family: "Poppins", sans-serif;
+  }
+
+  h2 {
+    font-family: "Gilroy", sans-serif;
+    font-weight: 400;
+    font-size: clamp(28px, 4vw, 40px);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  a {
+    color: var(--snow);
+    transition: color 0.3s ease;
+  }
+
+  a:hover {
+    color: var(--gold);
+  }
+
+  .border-line {
+    border-color: var(--line);
+  }
+}
+
+@layer components {
+  .btn-base {
+    @apply font-poppins font-medium transition-all duration-300 ease-in-out cursor-pointer inline-flex items-center justify-center text-center;
+    border-radius: 8px;
+    letter-spacing: 0.025em;
+    line-height: 1.5;
+    position: relative;
+    overflow: hidden;
+    user-select: none;
+  }
+
+  .btn-primary {
+    @apply btn-base text-white;
+    background: linear-gradient(135deg, #7e6725 0%, #8c7429 100%);
+    border: 1px solid #7e6725;
+    box-shadow: 0 2px 4px rgba(126, 103, 37, 0.2);
+  }
+
+  .btn-primary:hover {
+    background: linear-gradient(135deg, #6b5620 0%, #7e6725 100%);
+    box-shadow: 0 6px 20px rgba(126, 103, 37, 0.3);
+    transform: translateY(-1px) scale(1.02);
+  }
+
+  .btn-secondary {
+    @apply btn-base bg-transparent border-2;
+    color: #7e6725;
+    border-color: #7e6725;
+  }
+
+  .btn-secondary:hover {
+    background: linear-gradient(135deg, #7e6725 0%, #8c7429 100%);
+    color: white;
+    border-color: #8c7429;
+  }
+}
+
+@layer utilities {
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
+
+.property-card {
+  transition: all 0.3s ease;
+}
+
+.property-card:hover {
+  transform: translateY(-4px);
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--muted));
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--muted-foreground));
+  border-radius: 3px;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* WordPress Button Block Styles */
+.wp-block-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin: 2rem 0;
+}
+
+.wp-block-buttons.is-content-justification-center {
+  justify-content: center;
+}
+
+.wp-block-buttons.is-content-justification-left {
+  justify-content: flex-start;
+}
+
+.wp-block-buttons.is-content-justification-right {
+  justify-content: flex-end;
+}
+
+.wp-block-button {
+  display: inline-block;
+}
+
+.wp-block-button__link,
+.wp-element-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.875rem 2rem;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-size: 0.9375rem;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  background: linear-gradient(135deg, #7e6725 0%, #8c7429 100%);
+  color: #ffffff !important;
+  border: 1px solid #7e6725;
+  box-shadow: 0 2px 4px rgba(126, 103, 37, 0.2);
+  letter-spacing: 0.025em;
+}
+
+.wp-block-button__link:hover,
+.wp-element-button:hover {
+  background: linear-gradient(135deg, #6b5620 0%, #7e6725 100%);
+  box-shadow: 0 6px 20px rgba(126, 103, 37, 0.3);
+  transform: translateY(-1px) scale(1.02);
+  color: #ffffff !important;
+}
+
+.wp-block-button__link strong,
+.wp-element-button strong {
+  font-weight: 600;
+}
+
+/* Silqhaus listings map markers */
+.silq-marker {
+  background: transparent !important;
+  border: none !important;
+}

@@ -1,0 +1,266 @@
+import React from "react";
+import SEO from "@/components/SEO/SEO";
+import { SEO_PRESETS } from "@/components/SEO/seoPresets";
+import Navigation from "@/components/navigation";
+import Footer from "@/components/footer";
+import {
+  Utensils,
+  Building2,
+  Waves,
+  Mountain,
+  Camera,
+  Calendar,
+} from "lucide-react";
+
+export default function Experiences() {
+  return (
+    <>
+      <SEO
+        title={SEO_PRESETS.experience.title}
+        description={SEO_PRESETS.experience.description}
+        type={SEO_PRESETS.experience.type}
+        image="/og/pool.jpg"
+      />
+      <div className="min-h-screen bg-ink">
+        <Navigation />
+
+        {/* Hero Section */}
+        <section className="py-24 bg-[#000000]">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-16">
+              <p className="text-snow text-sm font-poppins font-light tracking-[0.3em] uppercase mb-4">
+                LUXURY EXPERIENCES
+              </p>
+              <h1 className="text-snow mb-6 tracking-wide font-gilroy font-bold leading-tight text-4xl sm:text-5xl">
+                Unique Thailand Travel Experiences
+              </h1>
+              <p className="text-snow/70 max-w-4xl mx-auto font-poppins font-light text-lg leading-snug">
+                Discover extraordinary experiences that showcase Thailand's
+                natural beauty, cultural richness, and luxury hospitality
+                standards.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <div className="bg-ink-2 rounded-lg p-8 hover:shadow-lg transition-shadow duration-300">
+                <div className="w-12 h-12 mb-6 bg-gold rounded-full flex items-center justify-center">
+                  <Utensils className="w-6 h-6 text-white" />
+                </div>
+                <h3 className="text-snow font-poppins font-bold text-xl mb-4">
+                  Culinary Adventures
+                </h3>
+                <p className="text-snow/70 font-poppins font-light leading-snug mb-4">
+                  Experience Thailand's world-renowned cuisine through private
+                  cooking classes, street food tours, and fine dining at
+                  Michelin-starred restaurants. Discover the perfect balance of
+                  sweet, sour, salty, and spicy flavors.
+                </p>
+                <div className="text-snow font-poppins font-medium text-sm">
+                  Featured: Tom Yum, Pad Thai, Green Curry, Mango Sticky Rice
+                </div>
+              </div>
+
+              <div className="bg-ink-2 rounded-lg p-8 hover:shadow-lg transition-shadow duration-300">
+                <div className="w-12 h-12 mb-6 bg-gold rounded-full flex items-center justify-center">
+                  <Building2 className="w-6 h-6 text-white" />
+                </div>
+                <h3 className="text-snow font-poppins font-bold text-xl mb-4">
+                  Temple & Cultural Tours
+                </h3>
+                <p className="text-snow/70 font-poppins font-light leading-snug mb-4">
+                  Explore Thailand's spiritual heritage through guided temple
+                  visits, meditation sessions, and cultural performances. Learn
+                  about Buddhism, Thai history, and traditional arts from expert
+                  guides.
+                </p>
+                <div className="text-snow font-poppins font-medium text-sm">
+                  Featured: Grand Palace, Wat Pho, Temple of Dawn, Golden Buddha
+                </div>
+              </div>
+
+              <div className="bg-ink-2 rounded-lg p-8 hover:shadow-lg transition-shadow duration-300">
+                <div className="w-12 h-12 mb-6 bg-gold rounded-full flex items-center justify-center">
+                  <Waves className="w-6 h-6 text-white" />
+                </div>
+                <h3 className="text-snow font-poppins font-bold text-xl mb-4">
+                  Island Hopping
+                </h3>
+                <p className="text-snow/70 font-poppins font-light leading-snug mb-4">
+                  Charter private yachts or join luxury boat tours to explore
+                  Thailand's stunning archipelagos. Visit hidden beaches,
+                  snorkel in coral reefs, and enjoy sunset dinners on pristine
+                  islands.
+                </p>
+                <div className="text-snow font-poppins font-medium text-sm">
+                  Featured: Phi Phi Islands, James Bond Island, Similan Islands
+                </div>
+              </div>
+
+              <div className="bg-ink-2 rounded-lg p-8 hover:shadow-lg transition-shadow duration-300">
+                <div className="w-12 h-12 mb-6 bg-gold rounded-full flex items-center justify-center">
+                  <Mountain className="w-6 h-6 text-white" />
+                </div>
+                <h3 className="text-snow font-poppins font-bold text-xl mb-4">
+                  Wellness & Spa
+                </h3>
+                <p className="text-snow/70 font-poppins font-light leading-snug mb-4">
+                  Rejuvenate with traditional Thai massage, luxury spa
+                  treatments, and wellness retreats. Experience ancient healing
+                  practices in serene settings designed for ultimate relaxation
+                  and renewal.
+                </p>
+                <div className="text-snow font-poppins font-medium text-sm">
+                  Featured: Thai Massage, Herbal Steam, Yoga Retreats, Detox
+                  Programs
+                </div>
+              </div>
+
+              <div className="bg-ink-2 rounded-lg p-8 hover:shadow-lg transition-shadow duration-300">
+                <div className="w-12 h-12 mb-6 bg-gold rounded-full flex items-center justify-center">
+                  <Camera className="w-6 h-6 text-white" />
+                </div>
+                <h3 className="text-snow font-poppins font-bold text-xl mb-4">
+                  Photography Tours
+                </h3>
+                <p className="text-snow/70 font-poppins font-light leading-snug mb-4">
+                  Capture Thailand's beauty through professional photography
+                  tours. From sunrise at ancient temples to underwater
+                  photography in crystal-clear waters, create lasting memories
+                  of your journey.
+                </p>
+                <div className="text-snow font-poppins font-medium text-sm">
+                  Featured: Temple Photography, Underwater Shots, Cultural
+                  Portraits
+                </div>
+              </div>
+
+              <div className="bg-ink-2 rounded-lg p-8 hover:shadow-lg transition-shadow duration-300">
+                <div className="w-12 h-12 mb-6 bg-gold rounded-full flex items-center justify-center">
+                  <Calendar className="w-6 h-6 text-white" />
+                </div>
+                <h3 className="text-snow font-poppins font-bold text-xl mb-4">
+                  Festival Experiences
+                </h3>
+                <p className="text-snow/70 font-poppins font-light leading-snug mb-4">
+                  Participate in Thailand's vibrant festivals and celebrations.
+                  Experience Songkran water festival, Loy Krathong lantern
+                  festival, and local celebrations that showcase Thai culture
+                  and traditions.
+                </p>
+                <div className="text-snow font-poppins font-medium text-sm">
+                  Featured: Songkran, Loy Krathong, Thai New Year, Full Moon
+                  Parties
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Travel Planning Guide */}
+        <section className="py-24 bg-[#000000]">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-16">
+              <p className="text-snow text-sm font-poppins font-light tracking-[0.3em] uppercase mb-4">
+                TRAVEL PLANNING
+              </p>
+              <h2 className="text-snow mb-6 tracking-wide font-gilroy font-bold leading-tight">
+                Essential Thailand Travel Information
+              </h2>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
+              <div>
+                <h3 className="text-2xl text-snow font-poppins font-bold mb-6">
+                  Best Time to Visit Thailand
+                </h3>
+                <div className="space-y-6">
+                  <div className="border-l-4 border-gold pl-6">
+                    <h4 className="font-poppins font-semibold text-snow text-lg mb-2">
+                      Cool Season (November - February)
+                    </h4>
+                    <p className="text-snow/70 font-poppins font-light leading-snug">
+                      Ideal weather with comfortable temperatures (70-85°F) and
+                      minimal rainfall. Perfect for sightseeing, outdoor
+                      activities, and beach vacations. Peak tourist season with
+                      higher prices.
+                    </p>
+                  </div>
+                  <div className="border-l-4 border-sand pl-6">
+                    <h4 className="font-poppins font-semibold text-snow text-lg mb-2">
+                      Hot Season (March - May)
+                    </h4>
+                    <p className="text-snow/70 font-poppins font-light leading-snug">
+                      Hot and humid with temperatures reaching 95°F+. Excellent
+                      for beach destinations and swimming. Fewer crowds and
+                      competitive accommodation rates.
+                    </p>
+                  </div>
+                  <div className="border-l-4 border-gold/50 pl-6">
+                    <h4 className="font-poppins font-semibold text-snow text-lg mb-2">
+                      Rainy Season (June - October)
+                    </h4>
+                    <p className="text-snow/70 font-poppins font-light leading-snug">
+                      Monsoon season with afternoon showers and high humidity.
+                      Lush landscapes, lowest prices, and fewer tourists. Great
+                      for cultural experiences and indoor activities.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <h3 className="text-2xl text-snow font-poppins font-bold mb-6">
+                  Thailand Travel Essentials
+                </h3>
+                <div className="space-y-4">
+                  <div className="bg-ink-2 rounded-lg p-6">
+                    <h4 className="font-poppins font-semibold text-snow text-lg mb-3">
+                      Visa Requirements
+                    </h4>
+                    <p className="text-snow/70 font-poppins font-light text-sm leading-tight">
+                      Most nationalities receive a 30-day visa exemption on
+                      arrival. Tourist visas available for longer stays. Check
+                      current requirements based on your nationality.
+                    </p>
+                  </div>
+                  <div className="bg-ink-2 rounded-lg p-6">
+                    <h4 className="font-poppins font-semibold text-snow text-lg mb-3">
+                      Currency & Payments
+                    </h4>
+                    <p className="text-snow/70 font-poppins font-light text-sm leading-tight">
+                      Thai Baht (THB) is the local currency. Credit cards widely
+                      accepted in hotels and restaurants. Cash recommended for
+                      markets and local transportation.
+                    </p>
+                  </div>
+                  <div className="bg-ink-2 rounded-lg p-6">
+                    <h4 className="font-poppins font-semibold text-snow text-lg mb-3">
+                      Language & Culture
+                    </h4>
+                    <p className="text-snow/70 font-poppins font-light text-sm leading-tight">
+                      Thai is the official language, English widely spoken in
+                      tourist areas. Buddhism is the main religion. Dress
+                      modestly when visiting temples and respect local customs.
+                    </p>
+                  </div>
+                  <div className="bg-ink-2 rounded-lg p-6">
+                    <h4 className="font-poppins font-semibold text-snow text-lg mb-3">
+                      Transportation
+                    </h4>
+                    <p className="text-snow/70 font-poppins font-light text-sm leading-tight">
+                      Excellent domestic flight network, comfortable buses, and
+                      efficient trains. Private transfers and luxury
+                      transportation available for premium experiences.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <Footer />
+      </div>
+    </>
+  );
+}
