@@ -27,9 +27,9 @@ export default function Navigation() {
   }, []);
 
   const navItems = [
+    { label: t("vacationRentals"), href: "/our-property" },
     { label: t("experiences"), href: "/experiences" },
     { label: t("propertyManagement"), href: "/property-management" },
-    { label: t("vacationRentals"), href: "/our-property" },
   ];
 
   const navItemsAfterDropdown = [
