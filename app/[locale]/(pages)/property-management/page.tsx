@@ -351,7 +351,7 @@ export default function PropertyManagement() {
       <section className="relative min-h-[80vh] flex items-center bg-[#0a0a0a]">
         <div
           className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url(/property-management/hero.jpg)` }}
+          style={{ backgroundImage: `url(/property-management/hero-2026.jpg)` }}
         />
         <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a0a] via-[#0a0a0a]/90 to-[#0a0a0a]/70" />
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32">
@@ -367,7 +367,7 @@ export default function PropertyManagement() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Button
-                className="bg-[#ffffff] hover:bg-[#6d5820] text-white font-poppins px-8 py-6 text-lg"
+                className="bg-white text-ink hover:bg-white/90 font-poppins px-8 py-6 text-lg"
                 onClick={() =>
                   document
                     .getElementById("contact-form")
@@ -379,7 +379,7 @@ export default function PropertyManagement() {
               </Button>
               <Button
                 variant="outline"
-                className="border-[#ffffff] text-[#ffffff] hover:bg-[#ffffff] hover:text-white font-poppins px-8 py-6 text-lg"
+                className="border-white/40 text-white hover:bg-white hover:text-ink font-poppins px-8 py-6 text-lg"
                 onClick={() =>
                   document
                     .getElementById("services")
@@ -744,7 +744,7 @@ export default function PropertyManagement() {
               },
             ].map((item, index) => (
               <div key={index} className="text-center">
-                <div className="w-16 h-16 rounded-full bg-[#ffffff] text-white flex items-center justify-center mx-auto mb-6">
+                <div className="w-16 h-16 rounded-full bg-white text-ink flex items-center justify-center mx-auto mb-6">
                   <span className="font-gilroy font-bold text-xl">
                     {item.step}
                   </span>
@@ -1100,7 +1100,7 @@ export default function PropertyManagement() {
                 <Button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full bg-[#ffffff] hover:bg-[#6d5820] text-white font-poppins py-6 text-lg disabled:opacity-50"
+                  className="w-full bg-white text-ink hover:bg-white/90 font-poppins py-6 text-lg disabled:opacity-50"
                 >
                   {isSubmitting ? (
                     <>
