@@ -80,7 +80,6 @@ export default function PmServices() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
           {SERVICES.map((s) => {
-            const Icon = s.icon;
             return (
               <div
                 key={s.key}
@@ -112,15 +111,6 @@ export default function PmServices() {
                   aria-hidden="true"
                 />
                 <div className="relative z-10">
-                  <div
-                    className={`rounded-xl bg-white/[0.06] border border-line flex items-center justify-center mb-5 ${
-                      s.featured ? "w-12 h-12" : "w-11 h-11"
-                    }`}
-                  >
-                    <Icon
-                      className={`text-white ${s.featured ? "w-6 h-6" : "w-5 h-5"}`}
-                    />
-                  </div>
                   <h3
                     className={`text-white font-semibold tracking-tight ${
                       s.featured ? "text-xl sm:text-2xl" : "text-lg"
