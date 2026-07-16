@@ -674,8 +674,17 @@ export default function PropertyDetails({
   // ------------------------------------
   // Helpers
   // ------------------------------------
-  const formatPriceForDisplay = (price: number, currency: string) =>
-    `${currency} ${price.toLocaleString()}`;
+  // Approximate THB→USD rate for a secondary display. Fixed (not a live FX call)
+  // so it introduces no new connection; override via env when the rate moves.
+  const THB_PER_USD = Number(process.env.NEXT_PUBLIC_THB_PER_USD) || 36;
+  const formatPriceForDisplay = (price: number, currency: string) => {
+    const base = `${currency} ${price.toLocaleString()}`;
+    if (currency === "THB") {
+      const usd = Math.round(price / THB_PER_USD);
+      return `${base} · ~$${usd.toLocaleString()}`;
+    }
+    return base;
+  };
 
   // ------------------------------------
   // States
