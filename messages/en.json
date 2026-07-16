@@ -118,6 +118,29 @@
       "success": "Thanks! We'll be in touch shortly.",
       "error": "Something went wrong. Please try again."
     },
+    "techStack": {
+      "eyebrow": "Our technology",
+      "title": "We built the software the industry couldn't.",
+      "intro": "No property-management platform was built for how we work — owner-first, locally run, obsessively detailed. So we built our own.",
+      "steps": {
+        "os": {
+          "title": "Silqhaus OS",
+          "desc": "One operating system runs every property, task, booking, and payout — purpose-built for how we operate, not stitched together from tools that weren't."
+        },
+        "mali": {
+          "title": "Mali, your 24/7 guest manager",
+          "desc": "Our in-house AI answers every guest instantly, in their own language, at any hour — so questions and issues are handled long before they'd ever reach you."
+        },
+        "staff": {
+          "title": "Every task, photo-verified",
+          "desc": "Our staff app logs each job with before-and-after photos, timestamps, and the person who did it. Nothing happens at your home that isn't on the record."
+        },
+        "portal": {
+          "title": "Your owner portal",
+          "desc": "Your calendar, statements, documents, and every task on your property — in one place, updated live, open to you anytime."
+        }
+      }
+    },
     "stats": {
       "revenueIncrease": {
         "stat": "35%",
