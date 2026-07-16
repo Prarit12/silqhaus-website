@@ -106,13 +106,14 @@ export default function PopularLocations() {
   };
 
   return (
-    <section className="min-h-[50vh] sm:min-h-[45vh] md:min-h-[50vh] lg:min-h-[50vh] py-8 sm:py-12 md:py-16 relative bg-[#000000] flex items-center">
-      <div className="w-full px-4 sm:px-6 lg:px-8">
-        <div className="mb-6 sm:mb-8 md:mb-10">
-          <h2 className="mb-4 sm:mb-6 text-lg sm:text-xl md:text-2xl lg:text-3xl tracking-wider text-white uppercase text-left font-gilroy font-medium">
+    <section className="py-16 sm:py-20 md:py-28 relative bg-ink flex items-center">
+      <div className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8">
+        <div className="mb-10 sm:mb-14 max-w-2xl">
+          <span className="eyebrow mb-5">{t("eyebrow")}</span>
+          <h2 className="font-display font-light text-white text-4xl sm:text-5xl md:text-6xl leading-[1.05] tracking-tight mt-5 normal-case">
             {t("title")}
           </h2>
-          <p className="text-white/70 text-left font-poppins font-light text-base sm:text-lg leading-relaxed">
+          <p className="text-white/60 text-left font-poppins font-light text-base sm:text-lg leading-relaxed mt-5">
             {t("description")}
           </p>
         </div>
@@ -157,7 +158,7 @@ export default function PopularLocations() {
                   href={href as any}
                   prefetch={false}
                   {...buildHoverHandlers(href)}
-                  className="flex-none w-64 sm:w-72 md:w-80 lg:w-72 xl:w-80 2xl:w-96 group cursor-pointer rounded-lg overflow-hidden relative border border-white/10 hover:border-[#7e6725]/40 focus:outline-none focus:ring-2 focus:ring-[#7e6725]/20 transition-all duration-300 hover:scale-[1.02]"
+                  className="flex-none w-64 sm:w-72 md:w-80 lg:w-72 xl:w-80 2xl:w-96 group cursor-pointer rounded-2xl overflow-hidden relative ring-1 ring-line hover:ring-gold-antique/50 focus:outline-none focus:ring-2 focus:ring-gold-antique/40 transition-all duration-500"
                   aria-label={`View ${villa.name} details`}
                   data-testid={`card-villa-${villa.name
                     .toLowerCase()
@@ -170,22 +171,28 @@ export default function PopularLocations() {
                       alt={villa.name}
                       fill
                       sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                      className="object-cover object-center transition-transform duration-500 group-hover:scale-105"
+                      className="object-cover object-center transition-transform duration-[900ms] ease-out group-hover:scale-105"
                     />
                     {/* Gradient overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent transition-colors duration-500 group-hover:from-black/90"></div>
                     {/* Text overlay */}
-                    <div className="absolute bottom-0 left-0 right-0 p-3 sm:p-4 text-white">
+                    <div className="absolute bottom-0 left-0 right-0 p-5 text-white">
+                      <p className="text-[0.65rem] text-champagne font-poppins text-left mb-1.5 uppercase tracking-[0.24em]">
+                        {villa.city}
+                        {villa.state ? `, ${villa.state}` : ""}
+                      </p>
                       <h3
-                        className="text-sm sm:text-base font-poppins font-semibold text-left mb-1"
+                        className="font-display text-xl sm:text-2xl font-light text-left leading-tight"
                         data-testid="text-villa-title"
                       >
                         {villa.name}
                       </h3>
-                      <p className="text-xs text-white/60 font-poppins text-left mb-1">
-                        {villa.bedroomsNumber} {t("bedrooms")} • {villa.city},{" "}
-                        {villa.state}
-                      </p>
+                      <div className="flex items-center gap-2 mt-2.5">
+                        <span className="h-px w-6 bg-gold-antique/70" />
+                        <p className="text-xs text-white/60 font-poppins text-left">
+                          {villa.bedroomsNumber} {t("bedrooms")}
+                        </p>
+                      </div>
                       {/* Price hidden per request */}
                     </div>
                   </div>

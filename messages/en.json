@@ -26,6 +26,7 @@
     },
     "hero": {
       "brand": "SILQHAUS",
+      "eyebrow": "Luxury Villas · Phuket & Pattaya",
       "headline": "Exceptional Stays, Extraordinary Experiences",
       "cta": "Book Your Stay"
     },
@@ -38,6 +39,8 @@
     },
     "destinations": {
       "title": "Our Destinations",
+      "eyebrow": "Where to Stay",
+      "explore": "Explore",
       "description": "Explore our curated selection of luxury properties across Thailand's most sought-after locations",
       "phuket": "Phuket",
       "pattaya": "Pattaya",
@@ -46,6 +49,7 @@
     },
     "popularLocations": {
       "title": "Stay Highlights",
+      "eyebrow": "Featured Villas",
       "description": "Handpicked luxury properties in Thailand for unforgettable escapes",
       "loading": "Loading popular locations…",
       "error": "Failed to load listings",

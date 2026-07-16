@@ -140,12 +140,20 @@ export default function Navigation() {
   return (
     <>
       <nav
-        className="absolute top-6 left-0 w-full z-[60] transition-all duration-300 ease-in-out"
+        className={`fixed left-0 w-full z-[60] transition-all duration-500 ease-in-out ${
+          isScrolled ? "top-3" : "top-6"
+        }`}
         role="navigation"
         aria-label="Main"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between rounded-full bg-black/10 border border-white/20 shadow-[0_8px_24px_rgba(0,0,0,0.15)] backdrop-blur-md h-12 md:h-14 px-2.5 md:px-3">
+          <div
+            className={`flex items-center justify-between rounded-full h-12 md:h-14 px-2.5 md:px-3 transition-all duration-500 ${
+              isScrolled
+                ? "bg-ink/95 border border-line backdrop-blur-sm shadow-[0_10px_30px_rgba(0,0,0,0.45)]"
+                : "bg-black/20 border border-white/15 backdrop-blur-sm shadow-[0_8px_24px_rgba(0,0,0,0.15)]"
+            }`}
+          >
             {/* Logo */}
             <Link href="/">
               <div className="cursor-pointer flex items-center gap-2">

@@ -98,6 +98,9 @@ export default {
         gold: "var(--gold)",
         sand: "var(--sand)",
         line: "var(--line)",
+        // Refined Dark Luxe accents
+        champagne: "var(--champagne)",
+        "gold-antique": "var(--gold-antique)",
         // Legacy colors for compatibility
         "brand-light": "#f8f8f8",
         "brand-warm": "#c7c0b7",

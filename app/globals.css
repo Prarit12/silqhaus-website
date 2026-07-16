@@ -120,6 +120,10 @@
   --destructive-foreground: #ffffff;
   --ring: rgba(90, 73, 51, 0.5);
   --radius: 0.5rem;
+  /* Refined Dark Luxe accents */
+  --champagne: #e7d19b;
+  --gold-antique: #b99552;
+  --hairline: rgba(231, 209, 155, 0.28);
 }
 
 @layer base {
@@ -196,6 +200,103 @@
     background: linear-gradient(135deg, #7e6725 0%, #8c7429 100%);
     color: white;
     border-color: #8c7429;
+  }
+
+  /* ── Refined Dark Luxe: editorial button system ── */
+  .btn-lux {
+    @apply btn-base font-poppins;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-size: 0.8125rem;
+    padding: 0.9rem 2.25rem;
+    border-radius: 9999px;
+  }
+
+  .btn-lux-solid {
+    @apply btn-lux;
+    color: var(--ink);
+    background: linear-gradient(135deg, var(--champagne) 0%, var(--gold-antique) 100%);
+    border: 1px solid rgba(231, 209, 155, 0.6);
+  }
+  .btn-lux-solid:hover {
+    color: var(--ink);
+    box-shadow: 0 10px 30px -8px rgba(231, 209, 155, 0.35);
+    transform: translateY(-1px);
+  }
+
+  .btn-lux-ghost {
+    @apply btn-lux;
+    color: var(--champagne);
+    background: transparent;
+    border: 1px solid var(--hairline);
+  }
+  .btn-lux-ghost:hover {
+    color: var(--ink);
+    background: var(--champagne);
+    border-color: var(--champagne);
+    transform: translateY(-1px);
+  }
+}
+
+@layer components {
+  /* ── Refined Dark Luxe: editorial typography helpers ── */
+  .font-display {
+    font-family: var(--font-cormorant), Georgia, "Times New Roman", serif;
+  }
+
+  .eyebrow {
+    font-family: "Poppins", sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    font-size: 0.72rem;
+    font-weight: 500;
+    color: var(--champagne);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.85rem;
+  }
+  .eyebrow::before {
+    content: "";
+    width: 2rem;
+    height: 1px;
+    background: var(--gold-antique);
+    display: inline-block;
+  }
+  .eyebrow--center::after {
+    content: "";
+    width: 2rem;
+    height: 1px;
+    background: var(--gold-antique);
+    display: inline-block;
+  }
+
+  .hairline-gold {
+    height: 1px;
+    width: 100%;
+    background: linear-gradient(
+      to right,
+      transparent,
+      var(--hairline),
+      transparent
+    );
+  }
+}
+
+@layer utilities {
+  /* Elegant scroll-reveal — disabled when user prefers reduced motion */
+  @media (prefers-reduced-motion: no-preference) {
+    .reveal-up {
+      opacity: 0;
+      transform: translateY(28px);
+      animation: reveal-up 0.9s cubic-bezier(0.22, 0.7, 0.2, 1) both;
+    }
+    @keyframes reveal-up {
+      to {
+        opacity: 1;
+        transform: none;
+      }
+    }
   }
 }
 

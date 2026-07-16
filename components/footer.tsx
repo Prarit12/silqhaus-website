@@ -14,10 +14,11 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8 mb-12">
           <div className="lg:col-span-2 space-y-4">
-            <h2 className="font-gilroy font-semibold tracking-widest text-snow">
+            <h2 className="font-display font-light tracking-[0.2em] text-snow text-3xl normal-case">
               {t("brand")}
             </h2>
-            <p className="text-snow/80 font-poppins font-light text-sm leading-relaxed">
+            <div className="hairline-gold max-w-[70px]" />
+            <p className="text-snow/70 font-poppins font-light text-sm leading-relaxed max-w-sm">
               {t("tagline")}
             </p>
             <p className="text-snow/80 font-poppins italic font-medium text-sm leading-relaxed">

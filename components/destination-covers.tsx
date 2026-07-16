@@ -2,6 +2,7 @@
 import Image from "next/image";
 import { Link } from "@/i18n/navigation";
 import { useTranslations } from "next-intl";
+import { ArrowRight } from "lucide-react";
 import phuket from "@/assets/destination-carousel/phuket.webp";
 import pattaya from "@/assets/destination-carousel/pattaya.webp";
 
@@ -34,23 +35,24 @@ export default function DestinationCovers({
   ];
 
   return (
-    <section className={`py-8 sm:py-12 md:py-16 bg-[#000000] ${className}`}>
-      <div className="w-full px-4 sm:px-6 lg:px-8">
-        <div className="text-left mb-6 sm:mb-8 md:mb-10">
-          <h2 className="text-white mb-3 sm:mb-4 text-lg sm:text-xl md:text-2xl lg:text-3xl tracking-wide font-gilroy font-medium">
+    <section className={`py-16 sm:py-20 md:py-28 bg-ink ${className}`}>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-left mb-10 sm:mb-14 max-w-2xl">
+          <span className="eyebrow mb-5">{t("eyebrow")}</span>
+          <h2 className="font-display font-light text-white text-4xl sm:text-5xl md:text-6xl leading-[1.05] tracking-tight mt-5 normal-case">
             {t("title")}
           </h2>
-          <p className="text-white/70 font-poppins font-light text-base sm:text-lg leading-relaxed max-w-2xl">
+          <p className="text-white/60 font-poppins font-light text-base sm:text-lg leading-relaxed mt-5">
             {t("description")}
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6 md:gap-8">
           {DESTINATIONS.map((destination) => (
             <Link
               key={destination.id}
               href={`/destination/${destination.slug}`}
-              className="group relative aspect-[4/3] sm:aspect-[3/2] rounded-xl overflow-hidden cursor-pointer transition-all duration-300 hover:scale-[1.02]"
+              className="group relative aspect-[4/3] sm:aspect-[3/2] rounded-2xl overflow-hidden cursor-pointer ring-1 ring-line transition-all duration-500 hover:ring-gold-antique/50"
             >
               <Image
                 src={destination.image}
@@ -58,16 +60,20 @@ export default function DestinationCovers({
                 fill
                 sizes="(max-width: 640px) 100vw, 50vw"
                 quality={80}
-                className="object-cover object-center transition-transform duration-500 group-hover:scale-105"
+                className="object-cover object-center transition-transform duration-[900ms] ease-out group-hover:scale-105"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent group-hover:from-black/80 group-hover:via-black/40 transition-colors duration-300"></div>
-              <div className="absolute bottom-4 sm:bottom-6 left-4 sm:left-6 right-4 sm:right-6 text-white">
-                <p className="text-xs sm:text-sm text-white/80 font-poppins mb-1 uppercase tracking-wider">
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent group-hover:from-black/85 transition-colors duration-500"></div>
+              <div className="absolute bottom-6 sm:bottom-8 left-6 sm:left-8 right-6 sm:right-8 text-white">
+                <p className="text-[0.7rem] sm:text-xs text-champagne font-poppins mb-2 uppercase tracking-[0.28em]">
                   {destination.region}
                 </p>
-                <h3 className="text-xl sm:text-2xl md:text-3xl font-gilroy font-bold tracking-wide">
+                <h3 className="font-display text-3xl sm:text-4xl md:text-5xl font-light tracking-wide">
                   {destination.province}
                 </h3>
+                <span className="inline-flex items-center gap-2 mt-3 text-sm font-poppins text-white/70 tracking-wide opacity-0 -translate-x-2 transition-all duration-500 group-hover:opacity-100 group-hover:translate-x-0">
+                  {t("explore")}
+                  <ArrowRight className="w-4 h-4" />
+                </span>
               </div>
             </Link>
           ))}

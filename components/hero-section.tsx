@@ -9,23 +9,28 @@ export default async function HeroSection() {
   return (
     <section className="relative h-screen sm:h-[80vh] md:h-[85vh] lg:h-[90vh] flex items-center justify-center">
       <HeroCarousel />
-      <div className="relative z-30 text-left text-snow max-w-5xl px-4 mt-20 sm:mt-0">
-        <div className="pt-[0px] pb-[0px] mt-[40px] mb-[40px] sm:mt-[50px] sm:mb-[50px] md:mt-[40px] md:mb-[40px] lg:mt-[50px] lg:mb-[50px] ml-[0px] mr-[0px]"></div>
+      <div className="relative z-30 text-center text-snow max-w-5xl px-6 mt-20 sm:mt-0">
+        <div className="mx-auto flex flex-col items-center">
+          <span className="eyebrow eyebrow--center reveal-up">
+            {t("eyebrow")}
+          </span>
 
-        <div className="mt-4 mb-6 sm:mt-8 sm:mb-8 md:mt-6 md:mb-6 lg:mt-8 lg:mb-8 text-center mx-auto">
-          <h1 className="text-2xl md:text-3xl lg:text-5xl font-poppins tracking-widest text-white font-bold">
+          <h1 className="font-display font-light tracking-[0.12em] text-white text-5xl sm:text-6xl md:text-7xl lg:text-8xl mt-7 reveal-up" style={{ animationDelay: "0.1s" }}>
             {t("brand")}
           </h1>
-          <h2 className="font-gilroy font-light text-snow opacity-95 text-xl sm:text-2xl md:text-3xl lg:text-4xl leading-tight tracking-normal text-center w-[80%] lg:w-full mx-auto mt-4">
+
+          <div className="hairline-gold max-w-[140px] mt-7 reveal-up" style={{ animationDelay: "0.2s" }} />
+
+          <h2 className="font-poppins font-light text-snow/90 text-lg sm:text-xl md:text-2xl leading-relaxed tracking-wide max-w-2xl mx-auto mt-7 reveal-up" style={{ animationDelay: "0.3s" }}>
             {t("headline")}
           </h2>
         </div>
 
-        <div className="text-center mt-6 sm:mt-8">
+        <div className="mt-10 sm:mt-11 reveal-up" style={{ animationDelay: "0.42s" }}>
           <div className="flex justify-center items-center">
             <Link
               href="/our-property"
-              className="group relative overflow-hidden rounded-full bg-white text-[#7e6725] px-8 py-4 shadow-lg shadow-black/20 transform transition-all duration-300 hover:scale-[1.05] hover:shadow-xl hover:shadow-black/30 active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-white/50 before:absolute before:inset-0 before:bg-gradient-to-r before:from-transparent before:via-[#7e6725]/10 before:to-transparent before:translate-x-[-100%] hover:before:translate-x-[100%] before:transition-transform before:duration-700 text-[14px] pl-[15px] pr-[15px] pt-[4px] pb-[4px] font-bold"
+              className="btn-lux-solid group"
               data-testid="button-view-destinations"
             >
               <span className="relative z-10">{t("cta")}</span>

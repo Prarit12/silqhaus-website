@@ -78,31 +78,27 @@ export default async function Home({
             <source src="/cta-video.mp4" type="video/mp4" />
           </video>
           <div className="absolute inset-0 bg-black/70" />
-          <div className="relative max-w-5xl mx-auto text-center px-4 sm:px-6 lg:px-8">
-            <div className="mb-6 sm:mb-8">
-              <p className="text-brand-warm text-xs sm:text-sm font-poppins font-light tracking-[0.2em] sm:tracking-[0.3em] uppercase mb-4">
-                {t("subtitle")}
-              </p>
+          <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/40 to-ink/40" />
+          <div className="relative max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+            <div className="mb-7 flex justify-center">
+              <span className="eyebrow eyebrow--center">{t("subtitle")}</span>
             </div>
-            <h2 className="font-gilroy font-bold text-white mb-6 sm:mb-8 text-xl sm:text-2xl md:text-3xl lg:text-4xl leading-tight">
+            <h2 className="font-display font-light text-white mb-7 text-4xl sm:text-5xl md:text-6xl leading-[1.08] tracking-tight normal-case">
               {t("title")}
             </h2>
-            <p className="text-base sm:text-lg md:text-xl text-brand-light/90 mb-8 sm:mb-10 md:mb-12 font-poppins font-light max-w-3xl mx-auto px-2 sm:px-4 md:px-8 lg:px-12">
+            <p className="text-base sm:text-lg text-snow/70 mb-10 md:mb-12 font-poppins font-light max-w-2xl mx-auto leading-relaxed">
               {t("descriptionPart1")}{" "}
-              <span className="font-semibold">
+              <span className="text-champagne">
                 {t("descriptionHighlight1")}
               </span>{" "}
               {t("descriptionPart2")}{" "}
-              <span className="font-semibold">
+              <span className="text-champagne">
                 {t("descriptionHighlight2")}
               </span>{" "}
               {t("descriptionPart3")}
             </p>
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
-              <Link
-                href="/our-property"
-                className="btn-primary btn-xl text-sm sm:text-base md:text-lg px-6 sm:px-8 md:px-10 py-3 sm:py-4 md:py-5"
-              >
+              <Link href="/our-property" className="btn-lux-solid">
                 {t("button")}
               </Link>
             </div>
