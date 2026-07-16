@@ -30,7 +30,11 @@ export default function PmGuestExperience() {
             {t("title")}
           </h2>
           <p className="text-white/60 mt-6 text-lg leading-relaxed">
-            {t("intro")}
+            {t.rich("intro", {
+              b: (chunks) => (
+                <strong className="font-semibold text-white">{chunks}</strong>
+              ),
+            })}
           </p>
         </div>
 
