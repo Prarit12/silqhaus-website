@@ -46,6 +46,7 @@ import {
 import Image from "next/image";
 import PmTechStack from "@/components/pm-tech-stack";
 import PmTeam from "@/components/pm-team";
+import PmComparison from "@/components/pm-comparison";
 import { useTranslations } from "next-intl";
 
 const EMAILJS_SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || "";
@@ -580,6 +581,9 @@ export default function PropertyManagement() {
 
       {/* Local team — pure Thai, national standards, generated portraits */}
       <PmTeam />
+
+      {/* Comparison — Silqhaus vs traditional / long-established / self-managed */}
+      <PmComparison />
 
       {/* Services Section */}
       <section id="services" className="py-24 bg-black">

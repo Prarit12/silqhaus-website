@@ -157,6 +157,32 @@
         "operations": "Villa Operations"
       }
     },
+    "comparison": {
+      "title": "The Silqhaus difference",
+      "columns": {
+        "traditional": "Traditional agency",
+        "established": "Long-established PM",
+        "self": "Self-managed"
+      },
+      "groups": {
+        "tech": "Technology",
+        "care": "Hospitality & care"
+      },
+      "rows": {
+        "ai": "AI guest support, 24/7 in any language",
+        "os": "Software built in-house for your home",
+        "photo": "Every task photo-verified",
+        "portal": "Real-time owner portal & statements",
+        "revenue": "Dynamic pricing & revenue management",
+        "distribution": "Distribution across major channels",
+        "aiFuture": "A stack built to evolve with AI",
+        "local": "Local team on the ground",
+        "ownerFirst": "Owner-first, no conflicts of interest",
+        "guestCare": "24/7 multilingual guest care",
+        "safety": "Complete care, safety & damage handling",
+        "transparency": "Full transparency, any time"
+      }
+    },
     "stats": {
       "revenueIncrease": {
         "stat": "35%",
