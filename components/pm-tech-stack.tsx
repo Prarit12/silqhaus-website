@@ -234,41 +234,41 @@ export default function PmTechStack() {
   ] as const;
 
   return (
-    <section className="bg-ink py-24 sm:py-28 md:py-32 border-t border-line">
+    <section className="bg-ink py-16 sm:py-20 md:py-24 border-t border-line">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Manifesto */}
-        <div className="max-w-3xl mx-auto text-center mb-20 sm:mb-28">
-          <span className="eyebrow eyebrow--center mb-5">{t("eyebrow")}</span>
-          <h2 className="font-display text-white text-4xl sm:text-5xl md:text-6xl font-light leading-[1.05] tracking-tight mt-6 normal-case">
+        {/* Manifesto — compact, left-aligned */}
+        <div className="max-w-2xl mb-10 sm:mb-14">
+          <span className="eyebrow mb-4">{t("eyebrow")}</span>
+          <h2 className="font-display text-white text-3xl sm:text-4xl md:text-5xl font-light leading-[1.06] tracking-tight mt-5 normal-case text-balance">
             {t("title")}
           </h2>
-          <p className="text-white/60 mt-6 text-lg leading-relaxed">
+          <p className="text-white/60 mt-4 text-base sm:text-lg leading-relaxed">
             {t("intro")}
           </p>
         </div>
 
-        {/* Numbered product steps */}
-        <div className="space-y-24 sm:space-y-32">
+        {/* Compact 2×2 product cards */}
+        <div className="grid md:grid-cols-2 gap-5 lg:gap-6">
           {steps.map((s, i) => (
             <div
               key={s.key}
-              className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center"
+              className="flex flex-col rounded-2xl border border-line bg-white/[0.02] p-5 sm:p-6"
             >
-              <div className={i % 2 === 1 ? "lg:order-2" : ""}>
-                <div className="inline-flex items-center justify-center w-10 h-10 rounded-xl border border-line text-white/70 text-sm font-medium mb-6">
+              <div className="flex items-start gap-3.5 mb-5">
+                <span className="shrink-0 mt-0.5 inline-flex items-center justify-center w-8 h-8 rounded-lg border border-line text-white/60 text-xs font-medium">
                   {String(i + 1).padStart(2, "0")}
+                </span>
+                <div>
+                  <h3 className="text-white text-lg sm:text-xl font-semibold tracking-tight leading-snug">
+                    {t(`steps.${s.key}.title`)}
+                  </h3>
+                  <p className="text-white/55 mt-1.5 text-sm leading-relaxed">
+                    {t(`steps.${s.key}.desc`)}
+                  </p>
                 </div>
-                <h3 className="text-white text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tight leading-tight">
-                  {t(`steps.${s.key}.title`)}
-                </h3>
-                <p className="text-white/60 mt-5 text-base sm:text-lg leading-relaxed max-w-md">
-                  {t(`steps.${s.key}.desc`)}
-                </p>
               </div>
-              <div className={i % 2 === 1 ? "lg:order-1" : ""}>
-                <div className="rounded-3xl bg-white/[0.03] border border-line p-6 sm:p-10">
-                  {s.card}
-                </div>
+              <div className="mt-auto rounded-xl bg-white/[0.03] border border-line p-4 sm:p-5">
+                {s.card}
               </div>
             </div>
           ))}
