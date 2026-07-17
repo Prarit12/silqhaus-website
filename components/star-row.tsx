@@ -7,9 +7,14 @@ import { Star } from "lucide-react";
 export default function StarRow({ value }: { value: number }) {
   const clamped = Math.max(0, Math.min(5, value));
   const stars = (
-    <span className="flex items-center gap-1">
+    <span className="flex w-max items-center gap-1">
       {Array.from({ length: 5 }).map((_, i) => (
-        <Star key={i} className="w-4 h-4" fill="currentColor" stroke="none" />
+        <Star
+          key={i}
+          className="w-4 h-4 shrink-0"
+          fill="currentColor"
+          stroke="none"
+        />
       ))}
     </span>
   );
