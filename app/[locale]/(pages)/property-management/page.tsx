@@ -388,7 +388,7 @@ export default function PropertyManagement() {
               <p className="text-white/70 text-xs sm:text-sm font-poppins tracking-[0.3em] uppercase mb-5">
                 {t("hero.subtitle")}
               </p>
-              <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white leading-[1.1] tracking-tight text-balance">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl font-light text-white leading-[1.1] tracking-tight text-balance">
                 {t("hero.title")}
               </h1>
               <p className="text-lg text-white/75 font-poppins leading-relaxed mt-6">

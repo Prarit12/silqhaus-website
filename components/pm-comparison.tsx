@@ -6,7 +6,7 @@ import { Check, X } from "lucide-react";
 
 const ACCENT = "#3d7bd6";
 
-const COLS = ["silqhaus", "agency", "traditional", "self"] as const;
+const COLS = ["silqhaus", "traditional", "agency", "self"] as const;
 
 /** Cell states: 1 = yes, 0 = no, 2 = varies / unknown ("?"). */
 const GROUPS: {
@@ -17,9 +17,9 @@ const GROUPS: {
     title: "guest",
     rows: [
       { key: "ai", vals: [1, 0, 0, 0] },
-      { key: "booking", vals: [1, 2, 1, 2] },
-      { key: "concierge", vals: [1, 0, 2, 0] },
-      { key: "checkin", vals: [1, 0, 2, 2] },
+      { key: "booking", vals: [1, 1, 2, 2] },
+      { key: "concierge", vals: [1, 2, 0, 0] },
+      { key: "checkin", vals: [1, 2, 0, 2] },
     ],
   },
   {
@@ -27,26 +27,26 @@ const GROUPS: {
     rows: [
       { key: "local", vals: [1, 1, 1, 2] },
       { key: "photo", vals: [1, 0, 0, 0] },
-      { key: "housekeeping", vals: [1, 2, 1, 2] },
-      { key: "safety", vals: [1, 2, 1, 0] },
+      { key: "housekeeping", vals: [1, 1, 2, 2] },
+      { key: "safety", vals: [1, 1, 2, 0] },
     ],
   },
   {
     title: "tech",
     rows: [
       { key: "os", vals: [1, 0, 0, 0] },
-      { key: "revenue", vals: [1, 0, 1, 0] },
-      { key: "distribution", vals: [1, 2, 1, 2] },
+      { key: "revenue", vals: [1, 1, 0, 0] },
+      { key: "distribution", vals: [1, 1, 2, 2] },
       { key: "aiFuture", vals: [1, 0, 0, 0] },
     ],
   },
   {
     title: "owner",
     rows: [
-      { key: "portal", vals: [1, 0, 2, 0] },
-      { key: "transparency", vals: [1, 0, 2, 1] },
-      { key: "ownerFirst", vals: [1, 0, 2, 1] },
-      { key: "directLine", vals: [1, 1, 0, 0] },
+      { key: "portal", vals: [1, 2, 0, 0] },
+      { key: "transparency", vals: [1, 2, 0, 1] },
+      { key: "ownerFirst", vals: [1, 2, 0, 1] },
+      { key: "directLine", vals: [1, 0, 1, 0] },
     ],
   },
 ];
