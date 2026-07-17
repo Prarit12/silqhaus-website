@@ -389,7 +389,9 @@ export default function PropertyManagement() {
                 {t("hero.subtitle")}
               </p>
               <h1 className="text-3xl sm:text-4xl md:text-5xl font-light text-white leading-[1.1] tracking-tight text-balance">
-                {t("hero.title")}
+                {t.rich("hero.title", {
+                  b: (chunks) => <strong className="font-bold">{chunks}</strong>,
+                })}
               </h1>
               <p className="text-lg text-white/75 font-poppins leading-relaxed mt-6">
                 {t("hero.description")}
