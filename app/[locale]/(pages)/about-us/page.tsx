@@ -1,185 +1,222 @@
 "use client";
-import Image from "next/image";
-import { MapPin, Users, Home, Award, Heart, Shield } from "lucide-react";
+
+import { Phone, Compass, Eye } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { useTranslations } from "next-intl";
+
+/** Leadership — names are proper nouns, roles come from i18n. */
+const LEADERS: {
+  name: string;
+  initials: string;
+  roleKey: string;
+  featured?: boolean;
+}[] = [
+  { name: "Prarit Kantong", initials: "PK", roleKey: "ceo", featured: true },
+  { name: "Piriya Kantong", initials: "PK", roleKey: "coo", featured: true },
+  { name: "Earn Laroeng", initials: "EL", roleKey: "cmo" },
+  { name: "Lara Cohen", initials: "LC", roleKey: "gmPhuket" },
+  { name: "Tim Horton", initials: "TH", roleKey: "gmPattaya" },
+];
+
+/** Photo-ready placeholder: swaps for a portrait without layout change. */
+function PortraitSlot({
+  initials,
+  large,
+}: {
+  initials: string;
+  large?: boolean;
+}) {
+  return (
+    <div className="absolute inset-0 flex items-center justify-center bg-[radial-gradient(ellipse_at_top,rgba(255,255,255,0.06),transparent_65%)]">
+      <span
+        className={`font-display font-light text-white/[0.08] select-none ${
+          large ? "text-8xl sm:text-9xl" : "text-7xl"
+        }`}
+        aria-hidden="true"
+      >
+        {initials}
+      </span>
+    </div>
+  );
+}
 
 export default function AboutUs() {
   const t = useTranslations("aboutUs");
 
   return (
-    <main className="min-h-screen bg-[#0a0a0a]">
-      <section className="relative min-h-[60vh] flex items-center">
-        <div className="absolute inset-0">
-          <Image
-            src="/about-us/hero.jpg"
-            alt={t("hero.heroAlt")}
-            fill
-            sizes="100vw"
-            quality={80}
-            className="object-cover"
-            priority
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a0a]/90 via-[#0a0a0a]/70 to-transparent" />
-        </div>
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
-          <p className="text-[#ffffff] text-sm font-poppins tracking-[0.3em] uppercase mb-4">
+    <main className="min-h-screen bg-ink">
+      {/* Hero — centered statement + direct line */}
+      <section className="pt-36 sm:pt-44 pb-16 sm:pb-20">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <span className="eyebrow eyebrow--center mb-6">
             {t("hero.subtitle")}
-          </p>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-gilroy font-bold text-white mb-6 max-w-3xl">
-            {t("hero.title")}
+          </span>
+          <h1 className="font-display text-white text-4xl sm:text-5xl md:text-6xl font-light leading-[1.06] tracking-tight normal-case text-balance mt-6">
+            {t.rich("hero.title", {
+              b: (chunks) => <strong className="font-bold">{chunks}</strong>,
+            })}
           </h1>
-          <p className="text-xl text-white/80 font-poppins font-light max-w-2xl leading-snug">
+          <p className="text-white/60 mt-6 text-lg leading-relaxed max-w-2xl mx-auto">
             {t("hero.description")}
           </p>
+          <a
+            href={`tel:${process.env.NEXT_PUBLIC_CONTACT_PHONE_TEL}`}
+            className="mt-9 inline-flex items-center gap-2.5 rounded-full bg-white text-ink px-6 py-3.5 text-sm font-semibold transition-colors hover:bg-neutral-200"
+          >
+            <Phone className="w-4 h-4" />
+            {t("hero.cta")}
+          </a>
+        </div>
+
+        {/* Wide team-photo slot — placeholder until the real photo is shot */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-14 sm:mt-16">
+          <div className="relative aspect-[16/7] sm:aspect-[21/8] rounded-2xl sm:rounded-3xl border border-line overflow-hidden bg-white/[0.02]">
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.05),transparent_70%)]" />
+            <div className="absolute inset-0 flex flex-col items-center justify-center gap-3">
+              <span className="font-display text-white/20 text-2xl sm:text-3xl font-light tracking-tight">
+                Silqhaus
+              </span>
+              <span className="text-[11px] font-medium uppercase tracking-[0.2em] text-white/25">
+                {t("hero.photoSoon")}
+              </span>
+            </div>
+          </div>
         </div>
       </section>
 
-      <section className="py-24 bg-[#141414]">
+      {/* Mission / Vision */}
+      <section className="py-16 sm:py-20 border-t border-line bg-ink-2">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16">
             <div>
-              <p className="text-[#ffffff] text-sm font-poppins tracking-[0.3em] uppercase mb-4">
-                {t("whoWeAre.subtitle")}
-              </p>
-              <h2 className="text-4xl font-gilroy font-bold text-white mb-6">
-                {t("whoWeAre.title")}
-              </h2>
-              <p className="text-white/70 font-poppins leading-snug mb-6">
-                {t("whoWeAre.description1")}
-              </p>
-              <p className="text-white/70 font-poppins leading-snug mb-6">
-                {t("whoWeAre.description2")}
-              </p>
-              <p className="text-white/70 font-poppins leading-snug">
-                {t("whoWeAre.description3")}
+              <span className="inline-flex items-center gap-2 rounded-full border border-line px-3.5 py-1.5 text-xs font-medium text-white/70">
+                <Compass className="w-3.5 h-3.5" />
+                {t("mission.label")}
+              </span>
+              <p className="text-white text-xl sm:text-2xl font-light leading-snug tracking-tight mt-6 text-balance">
+                {t("mission.text")}
               </p>
             </div>
-            <div className="relative">
-              <div className="relative w-full h-[400px]">
-                <Image
-                  src="/about-us/villa.jpg"
-                  alt={t("whoWeAre.villaAlt")}
-                  fill
-                  sizes="(max-width: 1024px) 100vw, 50vw"
-                  quality={80}
-                  className="object-cover rounded-xl shadow-xl"
-                />
-              </div>
-              <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-[#ffffff]/20 rounded-xl" />
+            <div className="md:border-l md:border-line md:pl-16">
+              <span className="inline-flex items-center gap-2 rounded-full border border-line px-3.5 py-1.5 text-xs font-medium text-white/70">
+                <Eye className="w-3.5 h-3.5" />
+                {t("vision.label")}
+              </span>
+              <p className="text-white text-xl sm:text-2xl font-light leading-snug tracking-tight mt-6 text-balance">
+                {t("vision.text")}
+              </p>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="py-24 bg-[#0a0a0a]">
+      {/* Leadership */}
+      <section className="py-20 sm:py-24 border-t border-line">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <p className="text-[#ffffff] text-sm font-poppins tracking-[0.3em] uppercase mb-4">
-              {t("locations.subtitle")}
-            </p>
-            <h2 className="text-4xl font-gilroy font-bold text-white mb-6">
-              {t("locations.title")}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-16 gap-y-6 items-end mb-12 sm:mb-14">
+            <h2 className="font-display text-white text-4xl sm:text-5xl font-light leading-[1.05] tracking-tight normal-case text-balance">
+              {t.rich("team.title", {
+                b: (chunks) => <strong className="font-bold">{chunks}</strong>,
+              })}
             </h2>
-            <p className="text-white/70 font-poppins max-w-2xl mx-auto leading-snug">
-              {t("locations.description")}
+            <p className="text-white/60 text-base sm:text-lg leading-relaxed lg:max-w-md lg:justify-self-end">
+              {t("team.intro")}
             </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="bg-[#141414] rounded-xl p-8 border border-[#ffffff]/20">
-              <div className="flex items-center gap-4 mb-6">
-                <div className="w-14 h-14 rounded-full bg-[#ffffff]/10 flex items-center justify-center">
-                  <MapPin className="w-7 h-7 text-[#ffffff]" />
-                </div>
-                <h3 className="text-2xl font-gilroy font-bold text-white">
-                  {t("locations.phuket.name")}
-                </h3>
-              </div>
-              <p className="text-white/70 font-poppins leading-snug mb-4">
-                {t("locations.phuket.description")}
-              </p>
-              <ul className="space-y-2 text-white/60 font-poppins text-sm">
-                {[0, 1, 2].map((i) => (
-                  <li key={i}>• {t(`locations.phuket.areas.${i}`)}</li>
-                ))}
-              </ul>
-            </div>
-            <div className="bg-[#141414] rounded-xl p-8 border border-[#ffffff]/20">
-              <div className="flex items-center gap-4 mb-6">
-                <div className="w-14 h-14 rounded-full bg-[#ffffff]/10 flex items-center justify-center">
-                  <MapPin className="w-7 h-7 text-[#ffffff]" />
-                </div>
-                <h3 className="text-2xl font-gilroy font-bold text-white">
-                  {t("locations.pattaya.name")}
-                </h3>
-              </div>
-              <p className="text-white/70 font-poppins leading-snug mb-4">
-                {t("locations.pattaya.description")}
-              </p>
-              <ul className="space-y-2 text-white/60 font-poppins text-sm">
-                {[0, 1, 2].map((i) => (
-                  <li key={i}>• {t(`locations.pattaya.areas.${i}`)}</li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
 
-      <section className="py-24 bg-[#141414]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <p className="text-[#ffffff] text-sm font-poppins tracking-[0.3em] uppercase mb-4">
-              {t("whySilqhaus.subtitle")}
-            </p>
-            <h2 className="text-4xl font-gilroy font-bold text-white mb-6">
-              {t("whySilqhaus.title")}
-            </h2>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[
-              { icon: Home, key: "luxuryFocus" },
-              { icon: Users, key: "localExpertise" },
-              { icon: Award, key: "multiPlatform" },
-              { icon: Heart, key: "personalTouch" },
-              { icon: Shield, key: "transparentPricing" },
-              { icon: MapPin, key: "support247" },
-            ].map(({ icon: Icon, key }) => (
+          {/* Featured pair */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+            {LEADERS.filter((l) => l.featured).map((l) => (
               <div
-                key={key}
-                className="bg-[#0a0a0a] rounded-xl p-8 border border-[#ffffff]/20"
+                key={l.name}
+                className="group relative aspect-[4/3] rounded-2xl border border-line bg-white/[0.02] overflow-hidden transition-colors duration-300 hover:border-white/20"
               >
-                <Icon className="w-12 h-12 text-[#ffffff] mb-6" />
-                <h3 className="text-xl font-gilroy font-bold text-white mb-3">
-                  {t(`whySilqhaus.items.${key}.title`)}
-                </h3>
-                <p className="text-white/70 font-poppins leading-snug">
-                  {t(`whySilqhaus.items.${key}.description`)}
-                </p>
+                <PortraitSlot initials={l.initials} large />
+                <div className="absolute inset-x-0 bottom-0 p-5 sm:p-6 bg-gradient-to-t from-black/70 to-transparent">
+                  <p className="text-white font-semibold text-lg tracking-tight">
+                    {l.name}
+                  </p>
+                  <p className="text-white/60 text-sm mt-0.5">
+                    {t(`team.roles.${l.roleKey}`)}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Supporting trio */}
+          <div className="mt-5 grid grid-cols-1 sm:grid-cols-3 gap-5">
+            {LEADERS.filter((l) => !l.featured).map((l) => (
+              <div
+                key={l.name}
+                className="group relative aspect-[4/3] sm:aspect-[4/5] rounded-2xl border border-line bg-white/[0.02] overflow-hidden transition-colors duration-300 hover:border-white/20"
+              >
+                <PortraitSlot initials={l.initials} />
+                <div className="absolute inset-x-0 bottom-0 p-5 bg-gradient-to-t from-black/70 to-transparent">
+                  <p className="text-white font-semibold tracking-tight">
+                    {l.name}
+                  </p>
+                  <p className="text-white/60 text-sm mt-0.5">
+                    {t(`team.roles.${l.roleKey}`)}
+                  </p>
+                </div>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="py-24 bg-[#0a0a0a]">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl md:text-4xl font-gilroy font-bold text-white mb-6">
+      {/* Story + facts */}
+      <section className="py-20 sm:py-24 border-t border-line bg-ink-2">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-16 gap-y-12">
+            <div>
+              <h2 className="font-display text-white text-4xl sm:text-5xl font-light leading-[1.05] tracking-tight normal-case text-balance">
+                {t.rich("story.title", {
+                  b: (chunks) => (
+                    <strong className="font-bold">{chunks}</strong>
+                  ),
+                })}
+              </h2>
+              <p className="text-white/60 mt-6 text-lg leading-relaxed max-w-xl">
+                {t("story.intro")}
+              </p>
+            </div>
+            <div className="space-y-10 lg:pl-16 lg:border-l lg:border-line">
+              {(["one", "two", "three"] as const).map((k) => (
+                <div key={k}>
+                  <p className="font-display text-white text-5xl sm:text-6xl font-light tracking-tight">
+                    {t(`story.stats.${k}.value`)}
+                  </p>
+                  <p className="text-white/60 mt-2.5 leading-relaxed max-w-md">
+                    {t(`story.stats.${k}.label`)}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Closing CTA */}
+      <section className="py-20 sm:py-24 border-t border-line">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="font-display text-white text-3xl sm:text-4xl font-light leading-[1.08] tracking-tight normal-case text-balance">
             {t("cta.title")}
           </h2>
-          <p className="text-white/70 font-poppins text-lg mb-8 max-w-2xl mx-auto leading-snug">
+          <p className="text-white/60 mt-5 text-lg leading-relaxed">
             {t("cta.description")}
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="mt-9 flex flex-col sm:flex-row gap-3.5 justify-center">
             <Link
               href="/property-management"
-              className="bg-[#ffffff] hover:bg-[#6d5820] text-white font-poppins px-8 py-4 text-lg transition-colors inline-block"
+              className="rounded-full bg-white text-ink px-7 py-3.5 text-sm font-semibold transition-colors hover:bg-neutral-200"
             >
               {t("cta.propertyManagement")}
             </Link>
             <Link
               href="/our-property"
-              className="border border-[#ffffff] text-[#ffffff] hover:bg-[#ffffff]/10 font-poppins px-8 py-4 text-lg transition-colors inline-block"
+              className="rounded-full border border-line text-white px-7 py-3.5 text-sm font-semibold transition-colors hover:border-white/40"
             >
               {t("cta.browseProperties")}
             </Link>

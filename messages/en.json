@@ -838,71 +838,52 @@
       "description": "Learn about Silqhaus, Thailand's premier luxury rental management company. We elevate short-term rental experiences in Phuket and Pattaya."
     },
     "hero": {
-      "subtitle": "ABOUT US",
-      "title": "Thailand's Premier Luxury Rental Management",
-      "description": "Elevating short-term rental experiences in Phuket and Pattaya through exceptional property management and personalized guest services.",
-      "heroAlt": "Luxury villa in Thailand"
+      "subtitle": "About Silqhaus",
+      "title": "The people behind <b>brilliantly run homes.</b>",
+      "description": "Silqhaus is a tech-enabled property management and short-term rental company from Thailand — small by design, run by people who'd rather do a few things brilliantly than many things adequately.",
+      "cta": "Talk to us",
+      "photoSoon": "Team photo coming soon"
     },
-    "whoWeAre": {
-      "subtitle": "WHO WE ARE",
-      "title": "Your Trusted Partner in Luxury Hospitality",
-      "description1": "Silqhaus is a boutique short-term rental property management company specializing in luxury villas and apartments across Thailand's most sought-after destinations—Phuket and Pattaya.",
-      "description2": "We partner with property owners to maximize their rental income while delivering unforgettable experiences to discerning travelers from around the world. Our team combines local expertise with international hospitality standards to ensure every stay exceeds expectations.",
-      "description3": "From marketing and guest communications to cleaning and maintenance, we handle every aspect of property management so owners can enjoy passive income without the stress.",
-      "villaAlt": "Luxury property managed by Silqhaus"
+    "mission": {
+      "label": "Our mission",
+      "text": "To make owning a rental home in Thailand completely effortless — every villa cared for brilliantly, every booking and payout visible to its owner in real time."
     },
-    "locations": {
-      "subtitle": "OUR LOCATIONS",
-      "title": "Where We Operate",
-      "description": "We focus on Thailand's premier vacation destinations, providing exceptional property management services where travelers want to be.",
-      "phuket": {
-        "name": "Phuket",
-        "description": "Thailand's largest island and a world-renowned tropical paradise. From beachfront villas in Patong to hillside retreats in Kamala, we manage properties across Phuket's most desirable locations.",
-        "areas": [
-          "Patong, Kata, Karon beaches",
-          "Kamala, Surin, Bang Tao",
-          "Rawai, Nai Harn, Cape Panwa"
-        ]
-      },
-      "pattaya": {
-        "name": "Pattaya",
-        "description": "A vibrant coastal city just two hours from Bangkok, offering stunning beachfront condos and luxury villas. Perfect for both short getaways and extended stays.",
-        "areas": ["Jomtien Beach", "Pratumnak Hill", "Wong Amat, Na Jomtien"]
+    "vision": {
+      "label": "Our vision",
+      "text": "A new standard for Thai hospitality, where technology we build ourselves and genuine Thai care run every stay — starting with a few homes done perfectly."
+    },
+    "team": {
+      "title": "Let's get to <b>know each other.</b>",
+      "intro": "Five people lead Silqhaus across Phuket and Pattaya — hands-on, on the ground, and accountable to every owner by name.",
+      "roles": {
+        "ceo": "Founder & CEO",
+        "coo": "COO",
+        "cmo": "CMO",
+        "gmPhuket": "General Manager, Phuket",
+        "gmPattaya": "General Manager, Pattaya"
       }
     },
-    "whySilqhaus": {
-      "subtitle": "WHY SILQHAUS",
-      "title": "What Sets Us Apart",
-      "items": {
-        "luxuryFocus": {
-          "title": "Luxury Focus",
-          "description": "We exclusively manage premium properties, ensuring every listing meets our high standards for quality and guest experience."
+    "story": {
+      "title": "Turning homes into <b>success stories.</b>",
+      "intro": "Since day one we've done things the hard way on purpose: our own software, our own team, fewer homes than we could take on. That's what lets a small company deliver hotel-grade stays — and owner statements that need no explaining.",
+      "stats": {
+        "one": {
+          "value": "2",
+          "label": "Destinations — Phuket & Pattaya, with expansion across Thailand underway."
         },
-        "localExpertise": {
-          "title": "Local Expertise",
-          "description": "Our Thai-based team understands the local market, regulations, and what international guests expect from their Thailand vacation."
+        "two": {
+          "value": "6",
+          "label": "Booking platforms synced in real time — everywhere guests actually book."
         },
-        "multiPlatform": {
-          "title": "Multi-Platform Reach",
-          "description": "We list on Airbnb, Vrbo, Booking.com, and our own platform to maximize visibility and bookings for every property."
-        },
-        "personalTouch": {
-          "title": "Personal Touch",
-          "description": "Every property gets a dedicated manager who treats it as their own, ensuring consistent quality and owner peace of mind."
-        },
-        "transparentPricing": {
-          "title": "Transparent Pricing",
-          "description": "No hidden fees or surprise charges. Our commission-based model means we only succeed when you succeed."
-        },
-        "support247": {
-          "title": "24/7 Support",
-          "description": "Round-the-clock support for guests and rapid response for any property issues, ensuring smooth operations always."
+        "three": {
+          "value": "24/7",
+          "label": "Guest care — Mali answers instantly, and our local team handles the rest."
         }
       }
     },
     "cta": {
-      "title": "Ready to Partner With Us?",
-      "description": "Whether you own a luxury villa in Phuket or a beachfront condo in Pattaya, we're here to help you maximize your rental potential.",
+      "title": "Ready to partner with us?",
+      "description": "Whether you own a villa in Phuket or a beachfront home in Pattaya, we're here to make it earn more — with none of the hassle.",
       "propertyManagement": "Property Management",
       "browseProperties": "Browse Properties"
     }
