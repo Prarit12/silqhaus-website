@@ -32,9 +32,9 @@ export function OTAReviews() {
 
   const [emblaRef, emblaApi] = useEmblaCarousel(
     {
-      align: "start",
+      align: "center",
       loop: true,
-      slidesToScroll: "auto",
+      slidesToScroll: 1,
     },
     [
       Autoplay({
@@ -47,11 +47,13 @@ export function OTAReviews() {
 
   const [canScrollPrev, setCanScrollPrev] = useState(false);
   const [canScrollNext, setCanScrollNext] = useState(false);
+  const [selectedIndex, setSelectedIndex] = useState(0);
 
   const onSelect = useCallback(() => {
     if (!emblaApi) return;
     setCanScrollPrev(emblaApi.canScrollPrev());
     setCanScrollNext(emblaApi.canScrollNext());
+    setSelectedIndex(emblaApi.selectedScrollSnap());
   }, [emblaApi]);
 
   useEffect(() => {
@@ -68,7 +70,7 @@ export function OTAReviews() {
   if (isLoading) {
     return (
       <div className="flex justify-center py-8">
-        <div className="w-6 h-6 border-2 border-gold border-t-transparent rounded-full animate-spin" />
+        <div className="w-6 h-6 border-2 border-white/70 border-t-transparent rounded-full animate-spin" />
       </div>
     );
   }
@@ -82,7 +84,11 @@ export function OTAReviews() {
           {displayReviews.map((review, i) => (
             <div
               key={`${review.listingMapId}-${review.channelId}-${i}`}
-              className="flex-shrink-0 px-2 basis-full sm:basis-1/2 lg:basis-1/3 flex"
+              className={`flex-shrink-0 px-2.5 basis-[86%] sm:basis-[58%] lg:basis-[42%] flex transition-[opacity,transform] duration-500 ease-out motion-reduce:transition-none ${
+                i === selectedIndex
+                  ? "opacity-100 scale-100"
+                  : "opacity-35 scale-[0.94]"
+              }`}
             >
               <ReviewCard review={review} variant="homepage" />
             </div>

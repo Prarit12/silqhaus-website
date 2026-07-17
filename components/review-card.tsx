@@ -129,23 +129,28 @@ export function ReviewCard({
   }
 
   return (
-    <div className="bg-snow border border-white/10 rounded-xl p-5 flex flex-col gap-3 w-full min-h-[220px]">
-      <div className="flex items-start justify-between gap-3">
-        <OTAIcon channelId={review.channelId} />
-        <div className="flex items-center gap-1 bg-gold/20 px-2 py-1 rounded-md">
-          <Star className="w-4 h-4 text-gold fill-gold" />
-          <span className="text-gold font-bold text-lg leading-none">
+    <div className="bg-white/[0.04] ring-1 ring-line rounded-2xl p-6 flex flex-col gap-4 w-full min-h-[230px] text-left">
+      <div className="flex items-center justify-between gap-3">
+        <span className="text-[11px] font-medium uppercase tracking-[0.16em] text-white/45">
+          {channelName}
+        </span>
+        <span className="inline-flex items-center gap-1.5 text-white">
+          <Star className="w-3.5 h-3.5 fill-white text-white" />
+          <span className="font-semibold text-base leading-none">
             {review.rating}
           </span>
-        </div>
+        </span>
       </div>
 
-      <p className="text-ink-2 text-sm font-poppins leading-relaxed min-h-[40px] text-left">
+      <p className="text-white/85 text-[15px] leading-relaxed min-h-[40px]">
         &ldquo;{truncateText(review.publicReview, charLimit2)}&rdquo;
       </p>
 
-      <div className="mt-auto pt-2 border-t border-ink-2">
-        <p className="text-ink-2 text-xs font-poppins text-left">
+      <div className="mt-auto pt-3 border-t border-line">
+        <p className="text-white font-semibold text-sm">
+          {review.reviewerName}
+        </p>
+        <p className="text-white/45 text-xs mt-0.5">
           {!hideListingName && review.listingName && (
             <span>{review.listingName} &middot; </span>
           )}
