@@ -1,6 +1,5 @@
-import BlogCard from "@/components/blog-card";
+import BlogIndex from "@/components/blog-index";
 import { getPosts } from "@/lib/wordpress/blogs";
-import { getTranslations } from "next-intl/server";
 
 const stripHtml = (s = "") => s.replace(/<[^>]*>/g, "");
 const decodeEntities = (s = "") => {
@@ -23,46 +22,17 @@ const excerptFor = (p, maxWords = 28) => {
 };
 const imageFor = (p) => p?.feature_image || p?.post_thumbnail?.URL || "";
 
-export default async function Guides() {
-  const t = await getTranslations("guidesPage");
+export default async function Blog() {
   const result = await getPosts();
-  const posts = result.posts || [];
+  const posts = (result.posts || [])
+    .filter((p) => p?.slug)
+    .map((p) => ({
+      slug: p.slug,
+      title: titleFor(p),
+      excerpt: excerptFor(p),
+      image: imageFor(p),
+      date: p.date ?? null,
+    }));
 
-  return (
-    <div className="min-h-screen bg-black">
-      <section className="pt-40 pb-20 bg-black">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h1 className="text-4xl md:text-5xl font-bold text-white mb-6 uppercase">
-              {t("title")}
-            </h1>
-            <p className="text-xl text-white/70 max-w-3xl mx-auto font-light">
-              {t("description")}
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {posts.length === 0 ? (
-              <div className="col-span-full text-center text-bronze/70">
-                {t("noPosts")}
-              </div>
-            ) : (
-              posts.map((post) => (
-                <BlogCard
-                  key={post.slug}
-                  imageSrc={imageFor(post)}
-                  imgAltText={titleFor(post)}
-                  title={titleFor(post)}
-                  href={`/guides/${post.slug}`}
-                  excerpt={excerptFor(post)}
-                  date={post.date}
-                  readNowText={t("readNow")}
-                />
-              ))
-            )}
-          </div>
-        </div>
-      </section>
-    </div>
-  );
+  return <BlogIndex posts={posts} />;
 }

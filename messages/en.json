@@ -12,7 +12,7 @@
     "forSaleDescription": "Properties available to buy",
     "allProperties": "All Properties",
     "allPropertiesDescription": "Browse our full collection",
-    "guides": "GUIDES",
+    "guides": "BLOG",
     "contactUs": "CONTACT US",
     "contactUsDescription": "For booking inquiries and support",
     "whyOwners": "WHY OWNERS CHOOSE US",
@@ -835,7 +835,7 @@
     "tagline": "Hospitality & Revenue Management",
     "company": "By Better Home and Better Living Co., Ltd.",
     "about": "About",
-    "guides": "Guides",
+    "guides": "Blog",
     "aboutUs": "About Us",
     "propertyManagement": "Property Management",
     "explore": "Explore",
@@ -1111,12 +1111,20 @@
     "selectDatesToSeePrices": "Select dates to see prices"
   },
   "guidesPage": {
-    "title": "Your Guide to Top Travel Destinations",
-    "description": "Get expert tips on where to stay, what to do, and how to make the most of your trip in popular cities and hidden gems.",
+    "chip": "Blog",
+    "title": "Discover our <b>latest stories.</b>",
+    "description": "Guides, tips, and stories from the Silqhaus team — where to stay, what to do, and how to get the most from Thailand's best destinations.",
+    "searchPlaceholder": "Search stories…",
+    "searchCta": "Search",
+    "allStories": "All stories",
+    "results": "Results",
+    "featured": "Featured",
+    "latest": "Latest",
     "noPosts": "No posts found.",
+    "noResults": "Nothing matches your search — try a different word.",
     "metadata": {
-      "title": "Travel Guides | Silqhaus",
-      "description": "Get expert tips on where to stay, what to do, and how to make the most of your trip in popular cities and hidden gems."
+      "title": "Blog | Silqhaus",
+      "description": "Guides, tips, and stories from the Silqhaus team — where to stay, what to do, and how to get the most from Thailand's best destinations."
     },
     "readNow": "Read Now"
   },
