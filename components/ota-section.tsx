@@ -24,12 +24,9 @@ export function OTASection() {
       />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Two-line statement */}
-        <h2 className="font-display text-center text-4xl sm:text-5xl md:text-[3.4rem] leading-[1.08] tracking-tight normal-case text-balance">
-          <span className="block font-bold text-white">{t("headlineA")}</span>
-          <span className="block font-light text-white/75 mt-1">
-            {t("headlineB")}
-          </span>
+        {/* Statement */}
+        <h2 className="font-display text-center text-4xl sm:text-5xl md:text-[3.4rem] font-light text-white leading-[1.08] tracking-tight normal-case text-balance">
+          {t("headlineB")}
         </h2>
 
         {/* Platform trust strip */}
