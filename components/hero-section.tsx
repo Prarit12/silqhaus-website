@@ -1,6 +1,7 @@
 import { getTranslations } from "next-intl/server";
 import { ChevronDown } from "lucide-react";
 import HeroSearchBar from "./hero-search-bar";
+import HeroConnector from "./hero-connector";
 
 export default async function HeroSection() {
   const t = await getTranslations("home.hero");
@@ -25,28 +26,31 @@ export default async function HeroSection() {
         }}
       />
 
-      {/* Left-aligned headline + search bar (HomeToGo-style) */}
+      {/* Headline top-left, search panel right — joined by a dotted elbow connector */}
       <div className="relative z-30 w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-10">
-        <div className="max-w-2xl">
-          <h1
-            className="tracking-tight reveal-up"
-            style={{ animationDelay: "0.1s" }}
-          >
-            <span className="block font-normal text-white text-4xl sm:text-5xl md:text-6xl lg:text-[4.25rem] leading-[1.03]">
-              {t("headlineLead")}
-            </span>
-            <span className="block whitespace-nowrap font-light text-white/90 text-xl sm:text-2xl md:text-3xl lg:text-[2.4rem] leading-[1.1] mt-1.5">
-              {t("headlineSub")}
-            </span>
-          </h1>
-        </div>
-
-        <div
-          className="mt-9 sm:mt-10 reveal-up"
-          style={{ animationDelay: "0.25s" }}
-        >
-          <HeroSearchBar />
-        </div>
+        <HeroConnector
+          headline={
+            <h1
+              className="tracking-tight reveal-up"
+              style={{ animationDelay: "0.1s" }}
+            >
+              <span className="block font-normal text-white text-4xl sm:text-5xl md:text-6xl lg:text-[4.25rem] leading-[1.03]">
+                {t("headlineLead")}
+              </span>
+              <span className="block whitespace-nowrap font-light text-white/90 text-xl sm:text-2xl md:text-3xl lg:text-[2.4rem] leading-[1.1] mt-1.5">
+                {t("headlineSub")}
+              </span>
+            </h1>
+          }
+          search={
+            <div
+              className="reveal-up w-full max-w-3xl"
+              style={{ animationDelay: "0.25s" }}
+            >
+              <HeroSearchBar />
+            </div>
+          }
+        />
       </div>
 
       <div
