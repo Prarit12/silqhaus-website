@@ -3,6 +3,7 @@
 import { SiAirbnb, SiTripadvisor, SiGoogle, SiExpedia } from "react-icons/si";
 import { Star } from "lucide-react";
 import { getChannelName } from "@/config/ota-channels";
+import StarRow from "@/components/star-row";
 
 export interface ReviewData {
   reviewerName: string;
@@ -134,12 +135,8 @@ export function ReviewCard({
         <span className="text-[11px] font-medium uppercase tracking-[0.16em] text-white/45">
           {channelName}
         </span>
-        <span className="inline-flex items-center gap-1.5 text-white">
-          <Star className="w-3.5 h-3.5 fill-white text-white" />
-          <span className="font-semibold text-base leading-none">
-            {review.rating}
-          </span>
-        </span>
+        {/* Hostaway scores arrive on a 10-scale; show them as five stars. */}
+        <StarRow value={review.rating > 5 ? review.rating / 2 : review.rating} />
       </div>
 
       <p className="text-white/85 text-[15px] leading-relaxed min-h-[40px]">
