@@ -46,10 +46,13 @@ function Thumb({ src, alt }: { src: string; alt: string }) {
   );
 }
 
+const PAGE_SIZE = 9;
+
 export default function BlogIndex({ posts }: { posts: BlogPost[] }) {
   const t = useTranslations("guidesPage");
   const fmt = useDateFormatter();
   const [query, setQuery] = useState("");
+  const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
 
   const formatDate = (d: string | null) => {
     if (!d) return "";
@@ -97,7 +100,10 @@ export default function BlogIndex({ posts }: { posts: BlogPost[] }) {
               <input
                 type="search"
                 value={query}
-                onChange={(e) => setQuery(e.target.value)}
+                onChange={(e) => {
+                  setQuery(e.target.value);
+                  setVisibleCount(PAGE_SIZE);
+                }}
                 placeholder={t("searchPlaceholder")}
                 className="w-full rounded-full border border-line bg-white/[0.04] pl-11 pr-5 py-3.5 text-sm text-white placeholder:text-white/45 outline-none transition-colors focus:border-white/40"
               />
@@ -131,7 +137,7 @@ export default function BlogIndex({ posts }: { posts: BlogPost[] }) {
                 </p>
               ) : (
                 <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5">
-                  {filtered.map((p) => (
+                  {filtered.slice(0, visibleCount).map((p) => (
                     <Link
                       key={p.slug}
                       href={`/guides/${p.slug}`}
@@ -159,6 +165,18 @@ export default function BlogIndex({ posts }: { posts: BlogPost[] }) {
                       </div>
                     </Link>
                   ))}
+                </div>
+              )}
+
+              {filtered.length > visibleCount && (
+                <div className="mt-10 flex justify-center">
+                  <button
+                    type="button"
+                    onClick={() => setVisibleCount((c) => c + PAGE_SIZE)}
+                    className="rounded-full border border-line bg-ink px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-white hover:text-ink"
+                  >
+                    {t("seeMore")}
+                  </button>
                 </div>
               )}
             </div>
