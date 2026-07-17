@@ -187,7 +187,7 @@ export default function AboutUs() {
       {/* Story + facts */}
       <section className="py-20 sm:py-24 border-t border-line bg-ink-2">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-16 gap-y-12">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-16 gap-y-12 lg:items-center">
             <div>
               <h2 className="font-display text-white text-4xl sm:text-5xl font-light leading-[1.05] tracking-tight normal-case text-balance">
                 {t.rich("story.title", {
