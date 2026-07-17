@@ -7,7 +7,7 @@ export default async function HeroSection() {
   const t = await getTranslations("home.hero");
 
   return (
-    <section className="relative h-screen sm:h-[85vh] md:h-[88vh] lg:h-[92vh] flex items-center overflow-hidden">
+    <section className="relative h-screen flex items-center overflow-hidden">
       {/* HomeToGo-style gradient background — monochrome graphite -> black */}
       <div
         className="absolute inset-0"
