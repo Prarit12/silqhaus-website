@@ -5,11 +5,12 @@ import { useTranslations } from "next-intl";
 import { Check } from "lucide-react";
 import CollapsibleSection from "@/components/collapsible-section";
 
+/** Chain of command — the same structure in every market, in rank order. */
 const MEMBERS = [
-  { img: "/property-management/team/1.jpg", roleKey: "roles.guest" },
-  { img: "/property-management/team/2.jpg", roleKey: "roles.housekeeping" },
-  { img: "/property-management/team/3.jpg", roleKey: "roles.maintenance" },
-  { img: "/property-management/team/4.jpg", roleKey: "roles.operations" },
+  { img: "/property-management/team/4.jpg", key: "operations" },
+  { img: "/property-management/team/1.jpg", key: "guest" },
+  { img: "/property-management/team/2.jpg", key: "housekeeping" },
+  { img: "/property-management/team/3.jpg", key: "maintenance" },
 ];
 
 /** The SOPs every staff member is trained on and held to. */
@@ -44,25 +45,45 @@ export default function PmTeam() {
         ))}
       </div>
 
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-        {MEMBERS.map((m) => (
-          <div
-            key={m.roleKey}
-            className="group relative aspect-[4/5] rounded-2xl overflow-hidden ring-1 ring-line"
-          >
-            <Image
-              src={m.img}
-              alt={t(m.roleKey)}
-              fill
-              sizes="(max-width: 640px) 50vw, 25vw"
-              className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent" />
-            <div className="absolute bottom-0 left-0 right-0 p-4">
-              <p className="text-white font-medium text-sm">{t(m.roleKey)}</p>
+      {/* Chain of command — rank order, replicated per market */}
+      <div className="border-t border-line pt-10 sm:pt-12">
+        <div className="max-w-2xl mb-8 sm:mb-10">
+          <h3 className="text-white font-semibold text-xl sm:text-2xl tracking-tight text-balance">
+            {t("chain.title")}
+          </h3>
+          <p className="text-white/55 mt-3 leading-relaxed">
+            {t("chain.intro")}
+          </p>
+        </div>
+
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+          {MEMBERS.map((m, i) => (
+            <div
+              key={m.key}
+              className="group relative aspect-[4/5] rounded-2xl overflow-hidden ring-1 ring-line"
+            >
+              <Image
+                src={m.img}
+                alt={t(`roles.${m.key}`)}
+                fill
+                sizes="(max-width: 640px) 50vw, 25vw"
+                className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/15 to-transparent" />
+              <span className="absolute top-3.5 left-3.5 inline-flex items-center justify-center rounded-lg border border-white/25 bg-black/40 px-2 py-1 text-[11px] font-medium text-white/80 backdrop-blur-sm">
+                {String(i + 1).padStart(2, "0")}
+              </span>
+              <div className="absolute bottom-0 left-0 right-0 p-4">
+                <p className="text-white font-semibold text-sm tracking-tight">
+                  {t(`roles.${m.key}`)}
+                </p>
+                <p className="text-white/60 text-xs mt-1 leading-relaxed">
+                  {t(`roleDesc.${m.key}`)}
+                </p>
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </CollapsibleSection>
   );

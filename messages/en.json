@@ -211,11 +211,21 @@
           "desc": "SOPs aren't a poster on a wall. Training is repeated and refreshed, and quality is audited through the photo record."
         }
       },
+      "chain": {
+        "title": "One chain of command, in every market.",
+        "intro": "Each destination we operate runs the same structure: an operations manager leads the market, with guest experience, housekeeping, and maintenance reporting up. Same ranks, same SOPs — so a Silqhaus stay feels identical wherever we open."
+      },
       "roles": {
+        "operations": "Operations Manager",
         "guest": "Guest Experience",
         "housekeeping": "Housekeeping & Care",
-        "maintenance": "Maintenance",
-        "operations": "Villa Operations"
+        "maintenance": "Maintenance"
+      },
+      "roleDesc": {
+        "operations": "Leads the market — every property, person, and SOP reports here.",
+        "guest": "Owns every guest, from first inquiry to checkout.",
+        "housekeeping": "Owns turnovers, linen, and presentation.",
+        "maintenance": "Owns repairs, prevention, and inspections."
       }
     },
     "comparison": {
