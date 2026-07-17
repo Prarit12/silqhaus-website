@@ -1,5 +1,4 @@
 import { useTranslations } from "next-intl";
-import { Link } from "@/i18n/navigation";
 import { OTAReviews } from "@/components/ota-reviews";
 import OtaRatingsRow from "@/components/ota-ratings-row";
 
@@ -36,19 +35,6 @@ export function OTASection() {
 
         {/* Live guest reviews — center-focused carousel */}
         <OTAReviews />
-
-        {/* Direct-booking closer */}
-        <p className="mt-12 sm:mt-14 text-center text-white/60 text-xl sm:text-2xl font-light leading-relaxed text-balance">
-          {t("butIts")}{" "}
-          <strong className="font-bold text-white">{t("cheaper")}</strong>{" "}
-          {t("to")}{" "}
-          <Link
-            href="/our-property"
-            className="text-white font-medium underline decoration-white/40 underline-offset-8 transition-colors hover:decoration-white"
-          >
-            {t("bookDirectly")}
-          </Link>
-        </p>
       </div>
     </section>
   );

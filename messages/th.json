@@ -56,11 +56,7 @@
       "loading": "กำลังโหลดที่พัก…"
     },
     "ota": {
-      "headlineB": "นี่คือเสียงจากแขกของเรา",
-      "butIts": "แต่",
-      "cheaper": "ถูกกว่า 10%",
-      "to": "เมื่อ",
-      "bookDirectly": "จองตรงกับ Silqhaus"
+      "headlineB": "นี่คือเสียงจากแขกของเรา"
     },
     "destinations": {
       "title": "จุดหมายปลายทาง",
