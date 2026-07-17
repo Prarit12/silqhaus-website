@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useTranslations } from "next-intl";
-import { MapPin, GraduationCap, Award } from "lucide-react";
+import { Check } from "lucide-react";
 import CollapsibleSection from "@/components/collapsible-section";
 
 const MEMBERS = [
@@ -12,13 +12,11 @@ const MEMBERS = [
   { img: "/property-management/team/4.jpg", roleKey: "roles.operations" },
 ];
 
+/** The SOPs every staff member is trained on and held to. */
+const STANDARDS = ["sop", "trust", "checkinout", "maintenance", "response", "training"] as const;
+
 export default function PmTeam() {
   const t = useTranslations("propertyManagement.team");
-  const chips = [
-    { icon: MapPin, key: "chips.local" },
-    { icon: GraduationCap, key: "chips.trained" },
-    { icon: Award, key: "chips.standard" },
-  ];
 
   return (
     <CollapsibleSection
@@ -27,15 +25,22 @@ export default function PmTeam() {
       intro={t("intro")}
       className="bg-ink-2"
     >
-      <div className="flex flex-wrap gap-2.5 mb-10 sm:mb-12">
-        {chips.map((c) => (
-          <span
-            key={c.key}
-            className="inline-flex items-center gap-2 rounded-full border border-line px-4 py-2 text-sm text-white/80"
-          >
-            <c.icon className="w-4 h-4 text-white/60" />
-            {t(c.key)}
-          </span>
+      {/* The standards — what our people are trained on, not who they know */}
+      <div className="mb-12 sm:mb-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-9">
+        {STANDARDS.map((k) => (
+          <div key={k} className="flex items-start gap-3.5">
+            <span className="mt-0.5 inline-flex w-6 h-6 shrink-0 rounded-full items-center justify-center bg-white/90">
+              <Check className="w-3.5 h-3.5 text-ink" strokeWidth={3} />
+            </span>
+            <div>
+              <h3 className="text-white font-semibold leading-snug tracking-tight text-balance">
+                {t(`standards.${k}.title`)}
+              </h3>
+              <p className="text-white/55 text-sm mt-2 leading-relaxed">
+                {t(`standards.${k}.desc`)}
+              </p>
+            </div>
+          </div>
         ))}
       </div>
 

@@ -183,12 +183,33 @@
     },
     "team": {
       "eyebrow": "Our people",
-      "title": "A local team, held to a national standard.",
-      "intro": "Our team is pure Thai — raised on, and forged by, the country's hospitality standards. Locally owned and operated means sharper service for owners and better stays for guests.",
-      "chips": {
-        "local": "On the ground in Phuket & Pattaya",
-        "trained": "Hospitality-school backgrounds",
-        "standard": "Thai national service standards"
+      "title": "A local team, held to one standard.",
+      "intro": "We don't sell résumés — we run standards. Every person who enters your home is trained on the same SOPs, and everything they do there is on the record.",
+      "standards": {
+        "sop": {
+          "title": "One SOP for everything",
+          "desc": "Cleaning, maintenance, guest help — every job follows a written procedure, done the same way at every property, every time."
+        },
+        "trust": {
+          "title": "Accountable in your home",
+          "desc": "Staff are vetted before they ever hold a key, and every entry is logged — who came, when, and what they did, with photos to prove it. Nothing leaves your home unnoticed."
+        },
+        "checkinout": {
+          "title": "Every check-in and check-out, recorded",
+          "desc": "Arrivals and departures are logged in our app, so every stay has a complete record from first key to final inspection."
+        },
+        "maintenance": {
+          "title": "Maintenance before breakdowns",
+          "desc": "Quarterly property check-ups and a full yearly inspection catch small issues before they cost you a booking."
+        },
+        "response": {
+          "title": "There when guests need us",
+          "desc": "When a problem arises, response time is part of the SOP — our staff show up fast, day or night."
+        },
+        "training": {
+          "title": "Trained, retrained, rechecked",
+          "desc": "SOPs aren't a poster on a wall. Training is repeated and refreshed, and quality is audited through the photo record."
+        }
       },
       "roles": {
         "guest": "Guest Experience",
