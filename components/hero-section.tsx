@@ -34,17 +34,17 @@ export default async function HeroSection() {
               className="tracking-tight reveal-up"
               style={{ animationDelay: "0.1s" }}
             >
-              <span className="block font-normal text-white text-4xl sm:text-5xl md:text-6xl lg:text-[4.25rem] leading-[1.03]">
+              <span className="block font-normal text-white text-4xl sm:text-5xl lg:text-[3.25rem] leading-[1.05]">
                 {t("headlineLead")}
               </span>
-              <span className="block whitespace-nowrap font-light text-white/90 text-xl sm:text-2xl md:text-3xl lg:text-[2.4rem] leading-[1.1] mt-1.5">
+              <span className="block whitespace-nowrap font-light text-white/90 text-xl sm:text-2xl lg:text-[1.7rem] leading-[1.15] mt-1.5">
                 {t("headlineSub")}
               </span>
             </h1>
           }
           search={
             <div
-              className="reveal-up w-full max-w-3xl"
+              className="reveal-up w-full max-w-3xl lg:max-w-2xl"
               style={{ animationDelay: "0.25s" }}
             >
               <HeroSearchBar />

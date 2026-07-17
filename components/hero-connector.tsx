@@ -11,8 +11,9 @@ import {
 type Geometry = {
   x1: number;
   y1: number;
-  cx: number;
+  vx: number;
   y2: number;
+  x2: number;
 } | null;
 
 /**
@@ -45,19 +46,16 @@ export default function HeroConnector({
     const w = wrap.getBoundingClientRect();
     const h = head.getBoundingClientRect();
     const p = panel.getBoundingClientRect();
-    const x1 = h.right - w.left + 28; // dot just right of the headline
-    const y1 = h.top - w.top + h.height * 0.55;
-    // Elbow drops onto the panel's top edge, a little inside its left end.
-    const cx = Math.min(
-      Math.max(x1 + 72, p.left - w.left + 56),
-      p.right - w.left - 56,
-    );
-    const y2 = p.top - w.top - 6; // dot resting on the panel's top edge
-    if (cx - x1 < 40 || y2 - y1 < 40) {
+    const x1 = h.right - w.left + 20; // dot just right of the headline
+    const y1 = h.top - w.top + h.height * 0.3; // at the first-line height
+    const x2 = p.left - w.left - 8; // dot touching the panel's left edge
+    const vx = x1 + (x2 - x1) / 2; // drop centered in the corridor
+    const y2 = p.top - w.top + p.height / 2; // into the panel's mid height
+    if (vx - x1 < 24 || x2 - vx < 24 || y2 - y1 < 60) {
       setGeo(null); // not enough room for the line to read cleanly
       return;
     }
-    setGeo({ x1, y1, cx, y2 });
+    setGeo({ x1, y1, vx, y2, x2 });
   }, []);
 
   useLayoutEffect(() => {
@@ -71,7 +69,7 @@ export default function HeroConnector({
     };
   }, [measure]);
 
-  const r = 14; // corner radius
+  const r = 12; // corner radius
 
   return (
     <div ref={wrapRef} className="relative">
@@ -92,13 +90,13 @@ export default function HeroConnector({
           aria-hidden="true"
         >
           <path
-            d={`M ${geo.x1} ${geo.y1} H ${geo.cx - r} Q ${geo.cx} ${geo.y1} ${geo.cx} ${geo.y1 + r} V ${geo.y2}`}
+            d={`M ${geo.x1} ${geo.y1} H ${geo.vx - r} Q ${geo.vx} ${geo.y1} ${geo.vx} ${geo.y1 + r} V ${geo.y2 - r} Q ${geo.vx} ${geo.y2} ${geo.vx + r} ${geo.y2} H ${geo.x2}`}
             fill="none"
             stroke="rgba(255,255,255,0.45)"
             strokeWidth="1.5"
           />
           <circle cx={geo.x1} cy={geo.y1} r="3.5" fill="rgba(255,255,255,0.85)" />
-          <circle cx={geo.cx} cy={geo.y2} r="3.5" fill="rgba(255,255,255,0.85)" />
+          <circle cx={geo.x2} cy={geo.y2} r="3.5" fill="rgba(255,255,255,0.85)" />
         </svg>
       )}
     </div>
