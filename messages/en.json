@@ -32,9 +32,12 @@
       "headlineSub": "Extraordinary Experiences",
       "cta": "Book Your Stay",
       "search": {
+        "locationLabel": "Location",
+        "dateLabel": "Date",
+        "guestsLabel": "Guests",
         "whereTo": "Where to?",
         "anytime": "Anytime",
-        "guests": "Guests",
+        "guests": "Any group size",
         "search": "Search"
       }
     },

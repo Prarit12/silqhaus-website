@@ -32,9 +32,12 @@
       "headlineSub": "ประสบการณ์สุดพิเศษ",
       "cta": "จองที่พัก",
       "search": {
+        "locationLabel": "สถานที่",
+        "dateLabel": "วันที่",
+        "guestsLabel": "ผู้เข้าพัก",
         "whereTo": "ค้นหาจุดหมาย",
         "anytime": "ช่วงเวลาใดก็ได้",
-        "guests": "ผู้เข้าพัก",
+        "guests": "กี่คนก็ได้",
         "search": "ค้นหา"
       }
     },
