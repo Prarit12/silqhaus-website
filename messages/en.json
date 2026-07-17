@@ -897,6 +897,7 @@
     "story": {
       "title": "Turning homes into <b>success stories.</b>",
       "intro": "Since day one we've done things the hard way on purpose: our own software, our own team, fewer homes than we could take on. That's what lets a small company deliver hotel-grade stays — and owner statements that need no explaining.",
+      "ratingsTitle": "What guests rate us, everywhere we're listed",
       "stats": {
         "one": {
           "value": "2",
