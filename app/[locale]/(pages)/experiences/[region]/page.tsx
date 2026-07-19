@@ -24,6 +24,7 @@ import {
   REGION_SHOPPING,
   REGION_TRANSPORT,
 } from "@/config/region-highlights";
+import RegionNeighborhoods from "@/components/region-neighborhoods";
 
 const TRANSPORT_ICONS: Record<string, LucideIcon> = {
   airports: Plane,
@@ -112,32 +113,9 @@ export default async function RegionGuide({
         </div>
       </section>
 
-      {/* ── Neighborhoods — orientation before the deep dives ── */}
+      {/* ── Neighborhoods — interactive map, orientation before the deep dives ── */}
       {areas.length > 0 && (
-        <section className="pb-20 sm:pb-24">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex flex-wrap items-end justify-between gap-x-10 gap-y-4 mb-9 sm:mb-11">
-              <h2 className="font-display text-white text-3xl sm:text-4xl font-light leading-[1.08] tracking-tight normal-case text-balance">
-                {g("areas.title")}
-              </h2>
-              <p className="text-white/55 max-w-md text-base leading-relaxed">
-                {g("areas.intro")}
-              </p>
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-12">
-              {areas.map((a) => (
-                <div key={a} className="border-t border-line py-5">
-                  <h3 className="text-white font-semibold tracking-tight">
-                    {g(`areas.items.${a}.name`)}
-                  </h3>
-                  <p className="text-white/55 text-sm mt-1.5 leading-relaxed">
-                    {g(`areas.items.${a}.desc`)}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
+        <RegionNeighborhoods region={region} areaKeys={areas} />
       )}
 
       {/* ── Highlights — real photos, linked to blog guides where they exist ── */}
