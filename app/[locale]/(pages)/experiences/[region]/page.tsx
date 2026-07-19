@@ -1,7 +1,17 @@
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { getTranslations } from "next-intl/server";
-import { ArrowLeft, ArrowRight } from "lucide-react";
+import {
+  ArrowLeft,
+  ArrowRight,
+  Plane,
+  TrainFront,
+  TramFront,
+  Ship,
+  CarTaxiFront,
+  Bike,
+  type LucideIcon,
+} from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import {
   EXPERIENCE_CATEGORIES,
@@ -10,7 +20,19 @@ import {
 import {
   REGION_HIGHLIGHTS,
   REGION_SPOT_GUIDES,
+  REGION_AREAS,
+  REGION_SHOPPING,
+  REGION_TRANSPORT,
 } from "@/config/region-highlights";
+
+const TRANSPORT_ICONS: Record<string, LucideIcon> = {
+  airports: Plane,
+  airportRail: TrainFront,
+  rail: TramFront,
+  river: Ship,
+  ride: CarTaxiFront,
+  moto: Bike,
+};
 
 const GUIDED = EXPERIENCE_REGIONS.filter((r) => r.hasGuide).map((r) => r.key);
 
@@ -44,6 +66,9 @@ export default async function RegionGuide({
   const g = (key: string) => t(`guides.${region}.${key}`);
   const highlights = REGION_HIGHLIGHTS[region] ?? [];
   const spotGuides = REGION_SPOT_GUIDES[region] ?? {};
+  const areas = REGION_AREAS[region] ?? [];
+  const shoppingGroups = REGION_SHOPPING[region] ?? [];
+  const transportItems = REGION_TRANSPORT[region] ?? [];
 
   return (
     <main className="min-h-screen bg-ink">
@@ -86,6 +111,34 @@ export default async function RegionGuide({
           </p>
         </div>
       </section>
+
+      {/* ── Neighborhoods — orientation before the deep dives ── */}
+      {areas.length > 0 && (
+        <section className="pb-20 sm:pb-24">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex flex-wrap items-end justify-between gap-x-10 gap-y-4 mb-9 sm:mb-11">
+              <h2 className="font-display text-white text-3xl sm:text-4xl font-light leading-[1.08] tracking-tight normal-case text-balance">
+                {g("areas.title")}
+              </h2>
+              <p className="text-white/55 max-w-md text-base leading-relaxed">
+                {g("areas.intro")}
+              </p>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-12">
+              {areas.map((a) => (
+                <div key={a} className="border-t border-line py-5">
+                  <h3 className="text-white font-semibold tracking-tight">
+                    {g(`areas.items.${a}.name`)}
+                  </h3>
+                  <p className="text-white/55 text-sm mt-1.5 leading-relaxed">
+                    {g(`areas.items.${a}.desc`)}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* ── Highlights — real photos, linked to blog guides where they exist ── */}
       {highlights.length > 0 && (
@@ -199,6 +252,77 @@ export default async function RegionGuide({
           </section>
         ))}
       </div>
+
+      {/* ── Shopping culture ── */}
+      {shoppingGroups.length > 0 && (
+        <section className="py-20 sm:py-24 border-t border-line bg-ink-2">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="max-w-2xl mb-10 sm:mb-12">
+              <h2 className="font-display text-white text-3xl sm:text-4xl font-light leading-[1.08] tracking-tight normal-case text-balance">
+                {g("shopping.title")}
+              </h2>
+              <p className="text-white/60 mt-4 text-lg leading-relaxed">
+                {g("shopping.lead")}
+              </p>
+            </div>
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-x-10 gap-y-12">
+              {shoppingGroups.map((grp) => (
+                <div key={grp}>
+                  <h3 className="text-white/45 text-xs font-medium uppercase tracking-[0.18em] mb-2">
+                    {g(`shopping.groups.${grp}.title`)}
+                  </h3>
+                  {(["s1", "s2", "s3"] as const).map((s) => (
+                    <div key={s} className="border-t border-line py-4">
+                      <h4 className="text-white font-semibold tracking-tight">
+                        {g(`shopping.groups.${grp}.${s}.name`)}
+                      </h4>
+                      <p className="text-white/55 text-sm mt-1.5 leading-relaxed">
+                        {g(`shopping.groups.${grp}.${s}.desc`)}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* ── Getting there & around ── */}
+      {transportItems.length > 0 && (
+        <section className="py-20 sm:py-24 border-t border-line">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="max-w-2xl mb-10 sm:mb-12">
+              <h2 className="font-display text-white text-3xl sm:text-4xl font-light leading-[1.08] tracking-tight normal-case text-balance">
+                {g("transport.title")}
+              </h2>
+              <p className="text-white/60 mt-4 text-lg leading-relaxed">
+                {g("transport.lead")}
+              </p>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-9">
+              {transportItems.map((item) => {
+                const Icon = TRANSPORT_ICONS[item] ?? TrainFront;
+                return (
+                  <div key={item} className="flex items-start gap-4">
+                    <span className="mt-0.5 inline-flex w-10 h-10 shrink-0 items-center justify-center rounded-full border border-line text-white/70">
+                      <Icon className="w-[18px] h-[18px]" strokeWidth={1.5} />
+                    </span>
+                    <div>
+                      <h3 className="text-white font-semibold tracking-tight">
+                        {g(`transport.items.${item}.name`)}
+                      </h3>
+                      <p className="text-white/55 text-sm mt-1.5 leading-relaxed">
+                        {g(`transport.items.${item}.desc`)}
+                      </p>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* ── Footer nav ── */}
       <section className="py-16 sm:py-20 border-t border-line bg-ink-2">

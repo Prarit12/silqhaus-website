@@ -39,6 +39,32 @@ export const REGION_HIGHLIGHTS: Record<string, RegionHighlight[]> = {
   ],
 };
 
+/** Neighborhood keys per region — content in `guides.<region>.areas.items.*`. */
+export const REGION_AREAS: Record<string, string[]> = {
+  bangkok: [
+    "rattanakosin",
+    "riverside",
+    "yaowarat",
+    "khaosan",
+    "siam",
+    "silomSathorn",
+    "sukhumvit",
+    "thonglor",
+    "ari",
+    "ratchada",
+  ],
+};
+
+/** Shopping group keys per region — content in `guides.<region>.shopping.groups.*`. */
+export const REGION_SHOPPING: Record<string, string[]> = {
+  bangkok: ["malls", "markets", "night"],
+};
+
+/** Transport item keys per region — content in `guides.<region>.transport.items.*`. */
+export const REGION_TRANSPORT: Record<string, string[]> = {
+  bangkok: ["airports", "airportRail", "rail", "river", "ride", "moto"],
+};
+
 /** Blog guides backing specific spots inside the six category sections. */
 export const REGION_SPOT_GUIDES: Record<
   string,

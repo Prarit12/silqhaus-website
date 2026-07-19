@@ -1301,6 +1301,133 @@
         "heroAlt": "Bangkok at dusk with the Chao Phraya river curving through the lit skyline",
         "stayLine": "After Bangkok? Our villas are in Phuket & Pattaya.",
         "intro": "Every Thailand trip starts here whether you plan it or not — so plan it. Give Bangkok three days and it repays you in gold-spired temples, river islands, rooftop sunsets, and the best street food on the planet. This is the capital as we actually eat, walk, and photograph it.",
+        "areas": {
+          "title": "Know your neighborhoods.",
+          "intro": "Bangkok is a city of villages wearing a metropolis costume — pick the right base and the city opens up.",
+          "items": {
+            "rattanakosin": {
+              "name": "Rattanakosin (Old Town)",
+              "desc": "The royal island of the Grand Palace, Wat Pho, and the amulet markets — Bangkok's ceremonial heart."
+            },
+            "riverside": {
+              "name": "Riverside (Charoenkrung–Bang Rak)",
+              "desc": "The old trading riverfront turned creative district — heritage hotels, Warehouse 30, and ICONSIAM glittering across the water."
+            },
+            "yaowarat": {
+              "name": "Yaowarat & Songwat",
+              "desc": "Chinatown's neon food mile — and Songwat, its riverside backstreet where old godowns are now cafés and galleries."
+            },
+            "khaosan": {
+              "name": "Khao San & Banglamphu",
+              "desc": "The backpacker legend, aging gracefully — come for the buzz, stay for old Banglamphu's shophouse kitchens."
+            },
+            "siam": {
+              "name": "Siam & Ratchaprasong",
+              "desc": "The retail nucleus — mega-malls chained together by skywalks, with the Erawan Shrine steps from the designer flagships."
+            },
+            "silomSathorn": {
+              "name": "Silom & Sathorn",
+              "desc": "The financial district that moonlights as a nightlife district — Lumpini Park mornings, rooftop bars at dusk."
+            },
+            "sukhumvit": {
+              "name": "Sukhumvit (Asok–Phrom Phong)",
+              "desc": "The cosmopolitan artery — Japanese enclaves, the EM District malls, and side-soi restaurants that reward wandering."
+            },
+            "thonglor": {
+              "name": "Thonglor & Ekkamai",
+              "desc": "Bangkok's coolest kids — natural-wine bars, izakayas, specialty coffee, and design shops down every soi."
+            },
+            "ari": {
+              "name": "Ari",
+              "desc": "The leafy local favorite — brunch cafés and slow sois, fifteen minutes from Chatuchak on the BTS."
+            },
+            "ratchada": {
+              "name": "Ratchada & Huai Khwang",
+              "desc": "Night-market territory along the MRT, with late-night Chinese-Thai kitchens that never seem to close."
+            }
+          }
+        },
+        "shopping": {
+          "title": "Shopping — a national sport.",
+          "lead": "Bangkok shops in three registers: ice-cold mega-malls, sprawling markets, and night bazaars — most visits need all three.",
+          "groups": {
+            "malls": {
+              "title": "The malls",
+              "s1": {
+                "name": "Siam Paragon & Siam Center",
+                "desc": "The flagship cluster at the BTS's crossroads — luxury below, food halls above."
+              },
+              "s2": {
+                "name": "ICONSIAM",
+                "desc": "The riverside giant with an indoor floating market — worth the crossing for the building alone."
+              },
+              "s3": {
+                "name": "The EM District",
+                "desc": "EmQuartier, Emporium, and Emsphere stacked along Phrom Phong — Sukhumvit's polished heart."
+              }
+            },
+            "markets": {
+              "title": "The markets",
+              "s1": {
+                "name": "Chatuchak",
+                "desc": "The weekend giant — 15,000 stalls, from vintage denim to garden orchids."
+              },
+              "s2": {
+                "name": "Pratunam & Platinum",
+                "desc": "Wholesale fashion by the rack — where half of Southeast Asia stocks its boutiques."
+              },
+              "s3": {
+                "name": "Sampeng Lane",
+                "desc": "Chinatown's ribbon of haberdashery chaos — fabric, beads, and everything by the dozen."
+              }
+            },
+            "night": {
+              "title": "Night & design",
+              "s1": {
+                "name": "Talad Rot Fai Srinakarin",
+                "desc": "The vintage night market — classic cars, retro barbers, and smoke rising off a hundred grills."
+              },
+              "s2": {
+                "name": "Warehouse 30 & Charoenkrung",
+                "desc": "The creative district's design shops, galleries, and coffee in converted river godowns."
+              },
+              "s3": {
+                "name": "Asiatique",
+                "desc": "The riverside night bazaar — a ferris wheel, open-air dining, and easy souvenir sweeps."
+              }
+            }
+          }
+        },
+        "transport": {
+          "title": "Getting there & around.",
+          "lead": "Bangkok traffic is legendary — but the rails, the river, and the motorbike sois beat it daily.",
+          "items": {
+            "airports": {
+              "name": "Two airports",
+              "desc": "Suvarnabhumi (BKK) for full-service airlines, Don Mueang (DMK) for budget carriers — check which one is on your ticket, twice."
+            },
+            "airportRail": {
+              "name": "Airport Rail Link",
+              "desc": "Suvarnabhumi to the city in about 26 minutes, connecting to the BTS at Phaya Thai."
+            },
+            "rail": {
+              "name": "BTS Skytrain & MRT",
+              "desc": "Fast, cold, and rush-hour packed — the modern city runs on them. Grab a stored-value card on day one."
+            },
+            "river": {
+              "name": "River & canal boats",
+              "desc": "The Chao Phraya Express and Saen Saep canal line — the fastest way across old Bangkok, and the most scenic."
+            },
+            "ride": {
+              "name": "Grab, taxis & tuk-tuks",
+              "desc": "Grab for honesty, meter taxis for luck, tuk-tuks for the story — agree the price before you sit down."
+            },
+            "moto": {
+              "name": "Motorcycle taxis",
+              "desc": "Orange vests at every soi mouth — the rush-hour cheat code for short hops."
+            }
+          }
+        },
         "categories": {
           "culture": {
             "title": "Culture — a city of layers",
