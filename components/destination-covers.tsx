@@ -30,7 +30,7 @@ export default function DestinationCovers({
       province: t("pattaya"),
       region: t("eastern"),
       staysHref: { pathname: "/our-property", query: { location: "Pattaya" } },
-      guideHref: "/destination/pattaya",
+      guideHref: "/experiences/pattaya",
       image: pattaya,
       alt: "Dynamic coastal cityscape of Pattaya with high-rise buildings, beach promenade and busy waterfront activities",
     },

@@ -19,7 +19,7 @@ export const EXPERIENCE_REGIONS = [
   { key: "phuket", img: "/experiences/regions/phuket.jpg", hasGuide: true },
   { key: "chiangmai", img: "/experiences/regions/chiangmai.jpg", hasGuide: false },
   { key: "samui", img: "/experiences/regions/samui.jpg", hasGuide: false },
-  { key: "pattaya", img: "/experiences/regions/pattaya.jpg", hasGuide: false },
+  { key: "pattaya", img: "/experiences/regions/pattaya.jpg", hasGuide: true },
   { key: "huahin", img: "/experiences/regions/huahin.jpg", hasGuide: false },
 ] as const;
 

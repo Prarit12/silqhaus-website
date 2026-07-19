@@ -8,9 +8,9 @@ import {
   EXPERIENCE_REGIONS,
 } from "@/config/experience-regions";
 import {
-  PHUKET_BEACHES,
-  PHUKET_SPOT_GUIDES,
-} from "@/config/phuket-highlights";
+  REGION_HIGHLIGHTS,
+  REGION_SPOT_GUIDES,
+} from "@/config/region-highlights";
 
 const GUIDED = EXPERIENCE_REGIONS.filter((r) => r.hasGuide).map((r) => r.key);
 
@@ -40,10 +40,10 @@ export default async function RegionGuide({
   const { region } = await params;
   if (!GUIDED.includes(region as (typeof GUIDED)[number])) notFound();
   const t = await getTranslations("experiences");
-  const tAttr = await getTranslations("destination.phuket.attractions");
+  const tAttr = await getTranslations(`destination.${region}.attractions`);
   const g = (key: string) => t(`guides.${region}.${key}`);
-  const beaches = region === "phuket" ? PHUKET_BEACHES : [];
-  const spotGuides = region === "phuket" ? PHUKET_SPOT_GUIDES : {};
+  const highlights = REGION_HIGHLIGHTS[region] ?? [];
+  const spotGuides = REGION_SPOT_GUIDES[region] ?? {};
 
   return (
     <main className="min-h-screen bg-ink">
@@ -87,47 +87,58 @@ export default async function RegionGuide({
         </div>
       </section>
 
-      {/* ── The beaches — real photos, each backed by a full blog guide ── */}
-      {beaches.length > 0 && (
+      {/* ── Highlights — real photos, linked to blog guides where they exist ── */}
+      {highlights.length > 0 && (
         <section className="pb-20 sm:pb-24">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex flex-wrap items-end justify-between gap-x-10 gap-y-4 mb-9 sm:mb-11">
               <h2 className="font-display text-white text-3xl sm:text-4xl font-light leading-[1.08] tracking-tight normal-case text-balance">
-                {g("beachesTitle")}
+                {g("highlightsTitle")}
               </h2>
               <p className="text-white/55 max-w-md text-base leading-relaxed">
-                {g("beachesIntro")}
+                {g("highlightsIntro")}
               </p>
             </div>
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3.5 sm:gap-4">
-              {beaches.map((b) => (
-                <Link
-                  key={b.key}
-                  href={b.link}
-                  className="group relative aspect-[4/3] rounded-xl sm:rounded-2xl overflow-hidden ring-1 ring-line"
-                >
-                  <Image
-                    src={b.img}
-                    alt={tAttr(`${b.key}.name`)}
-                    fill
-                    sizes="(max-width: 640px) 50vw, 25vw"
-                    className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-[1.05]"
-                  />
-                  <div
-                    className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/15 to-transparent"
-                    aria-hidden="true"
-                  />
-                  <div className="absolute inset-x-0 bottom-0 p-3.5 sm:p-4">
-                    <p className="text-white font-semibold text-sm sm:text-[15px] tracking-tight">
-                      {tAttr(`${b.key}.name`)}
-                    </p>
-                    <p className="text-white/60 text-xs mt-0.5 inline-flex items-center gap-1">
-                      {t("guides.readGuide")}
-                      <ArrowRight className="w-3 h-3 transition-transform duration-300 group-hover:translate-x-0.5" />
-                    </p>
+              {highlights.map((b) => {
+                const inner = (
+                  <>
+                    <Image
+                      src={b.img}
+                      alt={tAttr(`${b.key}.name`)}
+                      fill
+                      sizes="(max-width: 640px) 50vw, 25vw"
+                      className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-[1.05]"
+                    />
+                    <div
+                      className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/15 to-transparent"
+                      aria-hidden="true"
+                    />
+                    <div className="absolute inset-x-0 bottom-0 p-3.5 sm:p-4">
+                      <p className="text-white font-semibold text-sm sm:text-[15px] tracking-tight">
+                        {tAttr(`${b.key}.name`)}
+                      </p>
+                      {b.link && (
+                        <p className="text-white/60 text-xs mt-0.5 inline-flex items-center gap-1">
+                          {t("guides.readGuide")}
+                          <ArrowRight className="w-3 h-3 transition-transform duration-300 group-hover:translate-x-0.5" />
+                        </p>
+                      )}
+                    </div>
+                  </>
+                );
+                const classes =
+                  "group relative aspect-[4/3] rounded-xl sm:rounded-2xl overflow-hidden ring-1 ring-line";
+                return b.link ? (
+                  <Link key={b.key} href={b.link} className={classes}>
+                    {inner}
+                  </Link>
+                ) : (
+                  <div key={b.key} className={classes}>
+                    {inner}
                   </div>
-                </Link>
-              ))}
+                );
+              })}
             </div>
           </div>
         </section>
@@ -195,7 +206,7 @@ export default async function RegionGuide({
           <div>
             <p className="text-white/50 text-sm">{t("guides.moreComing")}</p>
             <p className="text-white font-semibold text-lg mt-1">
-              {t("guides.stayLine")}
+              {g("stayLine")}
             </p>
           </div>
           <div className="flex flex-wrap gap-3.5">

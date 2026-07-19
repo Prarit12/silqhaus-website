@@ -1057,13 +1057,13 @@
       "allRegions": "All regions",
       "readGuide": "Read the guide",
       "moreComing": "More region guides are on the way.",
-      "stayLine": "Staying in Phuket? Our villas are here.",
       "phuket": {
         "metaTitle": "Phuket Experiences | Thailand with Silqhaus",
         "metaDescription": "Phuket beyond the beach — Old Town culture, Wat Chalong and the Big Buddha, Phang Nga Bay island days, spa rituals, photo spots, and the festivals worth planning around.",
         "heroAlt": "Aerial view of Phuket's west coast at golden hour, white sand and turquoise sea",
-        "beachesTitle": "Thirty beaches, twelve favorites.",
-        "beachesIntro": "Every beach below has its own full guide on our blog — written from living here, not from a press trip.",
+        "stayLine": "Staying in Phuket? Our villas are here.",
+        "highlightsTitle": "Thirty beaches, twelve favorites.",
+        "highlightsIntro": "Every beach below has its own full guide on our blog — written from living here, not from a press trip.",
         "intro": "Thailand's largest island is also its most complete — a pastel Sino-Portuguese old town, more than thirty beaches, island-studded seas in two directions, and some of the country's best spas. It's also home: our villas and our team live here. This is Phuket the way we'd show a friend.",
         "categories": {
           "culture": {
@@ -1171,6 +1171,125 @@
               "s3": {
                 "name": "Loy Krathong · November",
                 "desc": "Candlelit krathongs released on every beach and lagoon — the island's gentlest night of the year."
+              }
+            }
+          }
+        }
+      },
+      "pattaya": {
+        "metaTitle": "Pattaya Experiences | Thailand with Silqhaus",
+        "metaDescription": "Pattaya beyond the postcard — the Sanctuary of Truth, Khao Chi Chan, Koh Larn island days, oceanfront spas, the crescent-bay viewpoint, and the festivals worth timing a trip around.",
+        "heroAlt": "Aerial view of Pattaya's crescent bay at dusk, city lights along the beach",
+        "stayLine": "Staying in Pattaya? Our villas are here.",
+        "highlightsTitle": "The Pattaya hit list.",
+        "highlightsIntro": "The places our guests ask about most — beaches, islands, and the icons. Guides on the blog where you see the arrow.",
+        "intro": "Pattaya gets typecast, and it shouldn't be. Two hours from Bangkok, our second home is a bay of quiet northern sands, a temple carved entirely from teak, islands you can reach by longtail — and one of Thailand's best city sunsets from Pratumnak Hill. Here's the Pattaya we actually live in.",
+        "categories": {
+          "culture": {
+            "title": "Culture — more than the postcard",
+            "lead": "Between the beach crowds lives a Pattaya of hand-carved teak, floating kitchens, and market nights.",
+            "spots": {
+              "s1": {
+                "name": "The Sanctuary of Truth",
+                "desc": "A 105-metre temple carved entirely from teak — no nails, all myth. Come at golden hour, when the seafront spires catch fire."
+              },
+              "s2": {
+                "name": "Pattaya Floating Market",
+                "desc": "Four regions of Thailand trading from one lake — food first, crafts second, boat-to-boat."
+              },
+              "s3": {
+                "name": "Thepprasit Night Market",
+                "desc": "Pattaya's biggest night market — come hungry, leave with souvenirs you didn't plan on."
+              }
+            }
+          },
+          "temples": {
+            "title": "Temples — hilltop, cliff-face, and royal",
+            "lead": "Pattaya's sacred sites come supersized, and each earns its detour.",
+            "spots": {
+              "s1": {
+                "name": "Wat Phra Yai (Big Buddha Hill)",
+                "desc": "The 18-metre golden Buddha that has watched over the bay from Pratumnak Hill since 1940."
+              },
+              "s2": {
+                "name": "Khao Chi Chan",
+                "desc": "A 109-metre Buddha traced in gold on a sheer limestone cliff — clearest light in the morning."
+              },
+              "s3": {
+                "name": "Wat Yansangwararam",
+                "desc": "A serene royal temple complex twenty minutes south, gardens and lake included."
+              }
+            }
+          },
+          "islands": {
+            "title": "Islands — turquoise within sight of the skyline",
+            "lead": "The gulf's near islands are Pattaya's best-kept secret: white sand a short boat ride from your villa.",
+            "spots": {
+              "s1": {
+                "name": "Koh Larn",
+                "desc": "The Coral Island — 45 minutes by ferry or 15 by speedboat. Tawaen Beach for the buzz, Samae for the calm."
+              },
+              "s2": {
+                "name": "Koh Sak",
+                "desc": "A quiet horseshoe of sand just past Koh Larn — snorkeling and not much else, blissfully."
+              },
+              "s3": {
+                "name": "Koh Phai",
+                "desc": "The furthest of the near islands — navy-kept, day-trip only, and the clearest water in the bay."
+              }
+            }
+          },
+          "wellness": {
+            "title": "Wellness — the bay at its quietest",
+            "lead": "Between beach days, Pattaya restores as well as it entertains.",
+            "spots": {
+              "s1": {
+                "name": "Oceanfront spas",
+                "desc": "Resort spas on Wongamat and Pratumnak — treatments with the gulf as the soundtrack."
+              },
+              "s2": {
+                "name": "Thai massage on Jomtien",
+                "desc": "Beachside salas and old-school studios by the kilometre — the real thing, a few hundred baht."
+              },
+              "s3": {
+                "name": "Muay Thai gyms",
+                "desc": "Train alongside fighters at gyms from Naklua down to Jomtien."
+              }
+            }
+          },
+          "photo": {
+            "title": "Photo tours — a city on a crescent bay",
+            "lead": "Pattaya photographs far better than it gets credit for — especially at the edges of the day.",
+            "spots": {
+              "s1": {
+                "name": "Khao Pattaya Viewpoint",
+                "desc": "The classic crescent-bay frame from Pratumnak Hill — best at blue hour as the city lights come on."
+              },
+              "s2": {
+                "name": "Sanctuary of Truth at sunset",
+                "desc": "Carved spires against a burning sky — shoot from the seawall below."
+              },
+              "s3": {
+                "name": "Wongamat sunset",
+                "desc": "Naklua's quiet sand faces west — longtails, gulls, and a low golden sun."
+              }
+            }
+          },
+          "festivals": {
+            "title": "Festivals — the loudest parties, the gentlest nights",
+            "lead": "Time a trip to one of these and Pattaya becomes a different city entirely.",
+            "spots": {
+              "s1": {
+                "name": "Wan Lai Songkran · 18–19 April",
+                "desc": "Pattaya celebrates Thai New Year a week late and twice as wet — Beach Road becomes a water parade."
+              },
+              "s2": {
+                "name": "International Fireworks Festival · November",
+                "desc": "Two nights of world-class pyrotechnics over the bay — book a sea-view balcony early."
+              },
+              "s3": {
+                "name": "Loy Krathong · November",
+                "desc": "Candlelit krathongs drifting from Jomtien to Naklua — the whole bay glitters."
               }
             }
           }
