@@ -116,11 +116,6 @@ export default async function RegionGuide({
         </div>
       </section>
 
-      {/* ── Neighborhoods — interactive map, orientation before the deep dives ── */}
-      {areas.length > 0 && (
-        <RegionNeighborhoods region={region} areaKeys={areas} />
-      )}
-
       {/* ── Highlights — real photos, linked to blog guides where they exist ── */}
       {highlights.length > 0 && (
         <section className="pb-20 sm:pb-24">
@@ -269,6 +264,11 @@ export default async function RegionGuide({
           </section>
         ))}
       </div>
+
+      {/* ── Neighborhoods — the interactive map, after the deep dives ── */}
+      {areas.length > 0 && (
+        <RegionNeighborhoods region={region} areaKeys={areas} />
+      )}
 
       {/* ── Shopping culture ── */}
       {shoppingGroups.length > 0 && (
