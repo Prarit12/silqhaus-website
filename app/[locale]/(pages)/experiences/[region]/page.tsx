@@ -271,11 +271,12 @@ export default async function RegionGuide({
           region={region}
           areaKeys={areas}
           transportKeys={transportItems}
+          shoppingKeys={shoppingGroups}
         />
       )}
 
-      {/* ── Shopping culture ── */}
-      {shoppingGroups.length > 0 && (
+      {/* ── Shopping culture (standalone when there's no map section) ── */}
+      {shoppingGroups.length > 0 && areas.length === 0 && (
         <section className="py-20 sm:py-24 border-t border-line bg-ink-2">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-2xl mb-10 sm:mb-12">

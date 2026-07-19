@@ -60,10 +60,12 @@ export default function RegionNeighborhoods({
   region,
   areaKeys,
   transportKeys = [],
+  shoppingKeys = [],
 }: {
   region: string;
   areaKeys: string[];
   transportKeys?: string[];
+  shoppingKeys?: string[];
 }) {
   const t = useTranslations("experiences");
   const g = (key: string) => t(`guides.${region}.${key}`);
@@ -91,18 +93,18 @@ export default function RegionNeighborhoods({
                 onMouseEnter={() => setActive(a)}
                 onMouseLeave={() => setActive(null)}
                 onClick={() => setActive(active === a ? null : a)}
-                className={`border-t border-line py-3.5 px-3 -mx-3 rounded-lg cursor-default transition-colors duration-300 ${
+                className={`border-t border-line py-[18px] px-3 -mx-3 rounded-lg cursor-default transition-colors duration-300 ${
                   active === a ? "bg-white/[0.05]" : ""
                 }`}
               >
                 <h3
-                  className={`text-[15px] font-semibold tracking-tight transition-colors duration-300 ${
+                  className={`font-semibold tracking-tight transition-colors duration-300 ${
                     active === a ? "text-white" : "text-white/85"
                   }`}
                 >
                   {g(`areas.items.${a}.name`)}
                 </h3>
-                <p className="text-white/55 text-[13px] mt-1 leading-relaxed">
+                <p className="text-white/55 text-sm mt-1.5 leading-relaxed">
                   {g(`areas.items.${a}.desc`)}
                 </p>
               </div>
@@ -224,35 +226,69 @@ export default function RegionNeighborhoods({
             </div>
           )}
 
-          {/* Getting there & around — alongside the map */}
-          {transportKeys.length > 0 && (
+          {/* Getting there & around + shopping — alongside the map */}
+          {(transportKeys.length > 0 || shoppingKeys.length > 0) && (
             <div>
-              <h3 className="text-white font-semibold text-xl tracking-tight">
-                {g("transport.title")}
-              </h3>
-              <p className="text-white/55 text-sm mt-2 leading-relaxed">
-                {g("transport.lead")}
-              </p>
-              <div className="mt-7 space-y-6">
-                {transportKeys.map((item) => {
-                  const Icon = TRANSPORT_ICONS[item] ?? TramFront;
-                  return (
-                    <div key={item} className="flex items-start gap-3.5">
-                      <span className="mt-0.5 inline-flex w-9 h-9 shrink-0 items-center justify-center rounded-full border border-line text-white/70">
-                        <Icon className="w-4 h-4" strokeWidth={1.5} />
-                      </span>
-                      <div>
-                        <h4 className="text-white text-[15px] font-semibold tracking-tight">
-                          {g(`transport.items.${item}.name`)}
+              {transportKeys.length > 0 && (
+                <>
+                  <h3 className="text-white font-semibold text-xl tracking-tight">
+                    {g("transport.title")}
+                  </h3>
+                  <p className="text-white/55 text-sm mt-2 leading-relaxed">
+                    {g("transport.lead")}
+                  </p>
+                  <div className="mt-7 space-y-6">
+                    {transportKeys.map((item) => {
+                      const Icon = TRANSPORT_ICONS[item] ?? TramFront;
+                      return (
+                        <div key={item} className="flex items-start gap-3.5">
+                          <span className="mt-0.5 inline-flex w-9 h-9 shrink-0 items-center justify-center rounded-full border border-line text-white/70">
+                            <Icon className="w-4 h-4" strokeWidth={1.5} />
+                          </span>
+                          <div>
+                            <h4 className="text-white text-[15px] font-semibold tracking-tight">
+                              {g(`transport.items.${item}.name`)}
+                            </h4>
+                            <p className="text-white/55 text-[13px] mt-1 leading-relaxed">
+                              {g(`transport.items.${item}.desc`)}
+                            </p>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </>
+              )}
+
+              {shoppingKeys.length > 0 && (
+                <div className={transportKeys.length > 0 ? "mt-12" : ""}>
+                  <h3 className="text-white font-semibold text-xl tracking-tight">
+                    {g("shopping.title")}
+                  </h3>
+                  <p className="text-white/55 text-sm mt-2 leading-relaxed">
+                    {g("shopping.lead")}
+                  </p>
+                  <div className="mt-6 space-y-8">
+                    {shoppingKeys.map((grp) => (
+                      <div key={grp}>
+                        <h4 className="text-white/45 text-[11px] font-medium uppercase tracking-[0.18em] mb-1.5">
+                          {g(`shopping.groups.${grp}.title`)}
                         </h4>
-                        <p className="text-white/55 text-[13px] mt-1 leading-relaxed">
-                          {g(`transport.items.${item}.desc`)}
-                        </p>
+                        {(["s1", "s2", "s3"] as const).map((s) => (
+                          <div key={s} className="border-t border-line py-3">
+                            <h5 className="text-white text-[15px] font-semibold tracking-tight">
+                              {g(`shopping.groups.${grp}.${s}.name`)}
+                            </h5>
+                            <p className="text-white/55 text-[13px] mt-1 leading-relaxed">
+                              {g(`shopping.groups.${grp}.${s}.desc`)}
+                            </p>
+                          </div>
+                        ))}
                       </div>
-                    </div>
-                  );
-                })}
-              </div>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
           )}
         </div>
