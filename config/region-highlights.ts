@@ -70,6 +70,11 @@ export const REGION_SPOT_COUNTS: Record<string, Record<string, number>> = {
   bangkok: { culture: 6, temples: 5, islands: 4 },
 };
 
+/** Length of the numbered things-to-do checklist, when a region has one. */
+export const REGION_THINGS_COUNT: Record<string, number> = {
+  bangkok: 30,
+};
+
 /** Blog guides backing specific spots inside the six category sections. */
 export const REGION_SPOT_GUIDES: Record<
   string,

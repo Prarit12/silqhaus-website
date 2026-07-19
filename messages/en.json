@@ -1398,6 +1398,42 @@
             }
           }
         },
+        "things": {
+          "title": "Thirty things to do in Bangkok.",
+          "lead": "The capital checklist — tick them off across a first trip, a fifth, or a lifetime.",
+          "items": {
+            "i1": "Watch dawn hit the Grand Palace before the crowds do",
+            "i2": "Meet the Emerald Buddha at Wat Phra Kaew",
+            "i3": "Stand at the feet of Wat Pho's Reclining Buddha",
+            "i4": "Cross the river and climb Wat Arun",
+            "i5": "Circle the Golden Mount at dusk",
+            "i6": "Find the 37 spires of Loha Prasat, the Metal Castle",
+            "i7": "Take the Marble Temple on a quiet morning",
+            "i8": "Pay respects at the City Pillar Shrine",
+            "i9": "Eat your way down Yaowarat after dark",
+            "i10": "Stack the little bowls at a boat-noodle alley",
+            "i11": "Cook Thai for a morning, market run included",
+            "i12": "Graze the gourmet stalls of Or Tor Kor market",
+            "i13": "Hunt vintage treasure through Chatuchak's 15,000 stalls",
+            "i14": "Smell the marigolds at the midnight flower market",
+            "i15": "Decode Thainess at the Museum of Siam",
+            "i16": "See what Thai artists are making at MOCA",
+            "i17": "Walk the royal halls of the National Museum",
+            "i18": "Cycle the jungle paths of Bang Krachao, the Green Lung",
+            "i19": "Ride a longtail through the Thonburi canals",
+            "i20": "Catch a puppet show at the Artist's House",
+            "i21": "Ferry to Koh Kret for pottery and river breeze",
+            "i22": "Day-trip to the island city of Ayutthaya",
+            "i23": "Learn massage where it was invented, at Wat Pho",
+            "i24": "Sweat through one honest Muay Thai class",
+            "i25": "Join the six a.m. tai chi circles in Lumpini Park",
+            "i26": "Book a spa afternoon high above the skyline",
+            "i27": "Toast the sunset from a rooftop bar",
+            "i28": "Shoot Wat Arun at blue hour from Tha Tien pier",
+            "i29": "Wander Talat Noi's painted alleys and old engines",
+            "i30": "Ride the Chao Phraya Express at golden hour, just because"
+          }
+        },
         "transport": {
           "title": "Getting there & around.",
           "lead": "Bangkok traffic is legendary — but the rails, the river, and the motorbike sois beat it daily.",

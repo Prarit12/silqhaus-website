@@ -24,6 +24,7 @@ import {
   REGION_AREAS,
   REGION_SHOPPING,
   REGION_TRANSPORT,
+  REGION_THINGS_COUNT,
 } from "@/config/region-highlights";
 import RegionNeighborhoods from "@/components/region-neighborhoods";
 
@@ -71,6 +72,7 @@ export default async function RegionGuide({
   const areas = REGION_AREAS[region] ?? [];
   const shoppingGroups = REGION_SHOPPING[region] ?? [];
   const transportItems = REGION_TRANSPORT[region] ?? [];
+  const thingsCount = REGION_THINGS_COUNT[region] ?? 0;
 
   return (
     <main className="min-h-screen bg-ink">
@@ -302,6 +304,39 @@ export default async function RegionGuide({
                 );
               })}
             </div>
+          </div>
+        </section>
+      )}
+
+      {/* ── The numbered checklist ── */}
+      {thingsCount > 0 && (
+        <section className="py-20 sm:py-24 border-t border-line bg-ink-2">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="max-w-2xl mb-10 sm:mb-12">
+              <h2 className="font-display text-white text-3xl sm:text-4xl font-light leading-[1.08] tracking-tight normal-case text-balance">
+                {g("things.title")}
+              </h2>
+              <p className="text-white/60 mt-4 text-lg leading-relaxed">
+                {g("things.lead")}
+              </p>
+            </div>
+            <ol className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-x-10">
+              {Array.from({ length: thingsCount }, (_, i) => i + 1).map(
+                (num) => (
+                  <li
+                    key={num}
+                    className="flex items-baseline gap-4 border-t border-line py-3.5"
+                  >
+                    <span className="shrink-0 w-7 text-white/35 text-sm font-medium tabular-nums">
+                      {String(num).padStart(2, "0")}
+                    </span>
+                    <span className="text-white/80 text-[15px] leading-relaxed">
+                      {g(`things.items.i${num}`)}
+                    </span>
+                  </li>
+                ),
+              )}
+            </ol>
           </div>
         </section>
       )}
