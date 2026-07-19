@@ -26,7 +26,7 @@ const MAPS: Record<
       siam: { x: 271, y: 406, side: "right" },
       yaowarat: { x: 198, y: 443, side: "left" },
       sukhumvit: { x: 368, y: 445, side: "right" },
-      thonglor: { x: 433, y: 472, side: "right" },
+      thonglor: { x: 433, y: 472, side: "left" },
       riverside: { x: 217, y: 522, side: "left" },
       silomSathorn: { x: 294, y: 503, side: "right" },
     },
@@ -111,7 +111,11 @@ export default function RegionNeighborhoods({
 
                 {Object.entries(map.nodes).map(([key, n]) => {
                   const isActive = active === key;
-                  const labelX = n.side === "left" ? n.x - 14 : n.x + 14;
+                  const label = g(`areas.items.${key}.name`)
+                    .split(" (")[0]
+                    .split(" & ")[0];
+                  const pillW = label.length * 7.4 + 22;
+                  const pillX = n.side === "left" ? n.x - 15 - pillW : n.x + 15;
                   return (
                     <g
                       key={key}
@@ -156,22 +160,35 @@ export default function RegionNeighborhoods({
                           transition: "fill 300ms ease-out",
                         }}
                       />
-                      <text
-                        x={labelX}
-                        y={n.y + 4}
-                        textAnchor={n.side === "left" ? "end" : "start"}
-                        fontSize="13"
-                        stroke="rgba(10,10,10,0.75)"
-                        strokeWidth="3"
+                      <rect
+                        x={pillX}
+                        y={n.y - 12}
+                        width={pillW}
+                        height={24}
+                        rx={12}
                         style={{
-                          paintOrder: "stroke",
                           fill: isActive
-                            ? "rgba(255,255,255,0.95)"
-                            : "rgba(255,255,255,0.6)",
+                            ? "rgba(255,255,255,0.96)"
+                            : "rgba(8,8,8,0.72)",
+                          stroke: isActive
+                            ? "rgba(255,255,255,0)"
+                            : "rgba(255,255,255,0.28)",
+                          strokeWidth: 1,
+                          transition: "fill 300ms ease-out, stroke 300ms ease-out",
+                        }}
+                      />
+                      <text
+                        x={pillX + pillW / 2}
+                        y={n.y + 4.5}
+                        textAnchor="middle"
+                        fontSize="13"
+                        fontWeight="600"
+                        style={{
+                          fill: isActive ? "#0d0d0d" : "rgba(255,255,255,0.9)",
                           transition: "fill 300ms ease-out",
                         }}
                       >
-                        {g(`areas.items.${key}.name`).split(" (")[0].split(" & ")[0]}
+                        {label}
                       </text>
                       {/* generous invisible hit area */}
                       <circle cx={n.x} cy={n.y} r="26" fill="transparent" />
