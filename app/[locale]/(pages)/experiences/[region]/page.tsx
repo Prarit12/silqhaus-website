@@ -267,7 +267,11 @@ export default async function RegionGuide({
 
       {/* ── Neighborhoods — the interactive map, after the deep dives ── */}
       {areas.length > 0 && (
-        <RegionNeighborhoods region={region} areaKeys={areas} />
+        <RegionNeighborhoods
+          region={region}
+          areaKeys={areas}
+          transportKeys={transportItems}
+        />
       )}
 
       {/* ── Shopping culture ── */}
@@ -305,8 +309,8 @@ export default async function RegionGuide({
         </section>
       )}
 
-      {/* ── Getting there & around ── */}
-      {transportItems.length > 0 && (
+      {/* ── Getting there & around (standalone when there's no map section) ── */}
+      {transportItems.length > 0 && areas.length === 0 && (
         <section className="py-20 sm:py-24 border-t border-line">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-2xl mb-10 sm:mb-12">
