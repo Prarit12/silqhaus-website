@@ -20,6 +20,7 @@ import {
 import {
   REGION_HIGHLIGHTS,
   REGION_SPOT_GUIDES,
+  REGION_SPOT_COUNTS,
   REGION_AREAS,
   REGION_SHOPPING,
   REGION_TRANSPORT,
@@ -203,7 +204,10 @@ export default async function RegionGuide({
                 {g(`categories.${c}.lead`)}
               </p>
               <div className="mt-8 space-y-6">
-                {(["s1", "s2", "s3"] as const).map((s) => {
+                {Array.from(
+                  { length: REGION_SPOT_COUNTS[region]?.[c] ?? 3 },
+                  (_, si) => `s${si + 1}`,
+                ).map((s) => {
                   const guide = spotGuides[c]?.[s];
                   return (
                     <div key={s} className="border-t border-line pt-5">

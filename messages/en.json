@@ -1444,12 +1444,24 @@
               "s3": {
                 "name": "Chatuchak Weekend Market",
                 "desc": "Fifteen thousand stalls of everything imaginable — go early, and let your nose navigate."
+              },
+              "s4": {
+                "name": "Museum of Siam",
+                "desc": "The interactive 'discovery museum' that decodes what it means to be Thai — if you visit one museum, make it this."
+              },
+              "s5": {
+                "name": "Pak Khlong Talad",
+                "desc": "The flower market that never closes — go toward midnight, when the marigold trucks unload."
+              },
+              "s6": {
+                "name": "A Thai cooking class",
+                "desc": "From market basket to plate in a morning — the souvenir you'll actually use forever."
               }
             }
           },
           "temples": {
             "title": "Temples — gold at every turn",
-            "lead": "The capital's wats range from imperial to intimate — these three cover the spectrum.",
+            "lead": "The capital's wats range from imperial to intimate — these cover the spectrum.",
             "spots": {
               "s1": {
                 "name": "Wat Arun",
@@ -1462,6 +1474,14 @@
               "s3": {
                 "name": "Wat Benchamabophit",
                 "desc": "The Marble Temple — Carrara stone drawn in Thai lines, and a fraction of the crowds."
+              },
+              "s4": {
+                "name": "Wat Saket (the Golden Mount)",
+                "desc": "Three hundred steps spiral up to the gilded chedi — old Bangkok's best panorama, softest at dusk."
+              },
+              "s5": {
+                "name": "Loha Prasat",
+                "desc": "The 37-spired 'Metal Castle' at Wat Ratchanadda — one of the last of its kind on earth, and strangely serene."
               }
             }
           },
@@ -1480,6 +1500,10 @@
               "s3": {
                 "name": "Ayutthaya",
                 "desc": "The old capital literally is an island — three rivers around four centuries of ruins, an easy day trip north."
+              },
+              "s4": {
+                "name": "The Thonburi khlongs",
+                "desc": "A longtail through the west bank's canals — stilt houses, temple piers, and the Artist's House puppet theatre. Bangkok as Venice, one hour."
               }
             }
           },
