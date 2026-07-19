@@ -971,52 +971,209 @@
   },
   "experiences": {
     "metadata": {
-      "title": "Experiences | Silqhaus - Discover Thailand's Best Adventures",
-      "description": "Explore curated experiences in Thailand including culinary adventures, temple tours, island hopping, wellness retreats, and more."
+      "title": "Experiences | Thailand with Silqhaus",
+      "description": "Thailand explored properly — Bangkok, Phuket, Pattaya, Koh Samui, Hua Hin, and Chiang Mai through culture, temples, islands, wellness, photo tours, and festivals."
     },
     "hero": {
-      "subtitle": "LUXURY EXPERIENCES",
-      "title": "Unique Thailand Travel Experiences",
-      "description": "Discover extraordinary experiences that showcase Thailand's natural beauty, cultural richness, and luxury hospitality standards."
+      "title": "Thailand, <b>experienced properly.</b>",
+      "description": "From Bangkok's midnight food streets to a silent dawn over Doi Suthep — this is our home, explored the way we'd show a friend.",
+      "heroAlt": "Longtail boat crossing turquoise water between limestone cliffs in Phang Nga Bay, Thailand"
     },
-    "items": {
-      "culinary": {
-        "title": "Culinary Adventures",
-        "description": "Experience Thailand's world-renowned cuisine through private cooking classes, street food tours, and fine dining at Michelin-starred restaurants. Discover the perfect balance of sweet, sour, salty, and spicy flavors.",
-        "featured": "Tom Yum, Pad Thai, Green Curry, Mango Sticky Rice"
-      },
-      "temple": {
-        "title": "Temple & Cultural Tours",
-        "description": "Explore Thailand's spiritual heritage through guided temple visits, meditation sessions, and cultural performances. Learn about Buddhism, Thai history, and traditional arts from expert guides.",
-        "featured": "Grand Palace, Wat Pho, Temple of Dawn, Golden Buddha"
-      },
-      "island": {
-        "title": "Island Hopping",
-        "description": "Charter private yachts or join luxury boat tours to explore Thailand's stunning archipelagos. Visit hidden beaches, snorkel in coral reefs, and enjoy sunset dinners on pristine islands.",
-        "featured": "Phi Phi Islands, James Bond Island, Similan Islands"
-      },
-      "wellness": {
-        "title": "Wellness & Spa",
-        "description": "Rejuvenate with traditional Thai massage, luxury spa treatments, and wellness retreats. Experience ancient healing practices in serene settings designed for ultimate relaxation and renewal.",
-        "featured": "Thai Massage, Herbal Steam, Yoga Retreats, Detox Programs"
-      },
-      "photography": {
-        "title": "Photography Tours",
-        "description": "Capture Thailand's beauty through professional photography tours. From sunrise at ancient temples to underwater photography in crystal-clear waters, create lasting memories of your journey.",
-        "featured": "Temple Photography, Underwater Shots, Cultural Portraits"
-      },
-      "festival": {
-        "title": "Festival Experiences",
-        "description": "Participate in Thailand's vibrant festivals and celebrations. Experience Songkran water festival, Loy Krathong lantern festival, and local celebrations that showcase Thai culture and traditions.",
-        "featured": "Songkran, Loy Krathong, Thai New Year, Full Moon Parties"
+    "glance": {
+      "statement": "One country, <b>1,400 islands</b>, more than <b>40,000 temples</b>, and street food worth the flight on its own. Thailand rewards the traveler who knows where to look — start with the six places below."
+    },
+    "regions": {
+      "title": "Where will you begin?",
+      "intro": "The six regions every Thailand trip is built around — each with its own character, and its own guide for going deep.",
+      "explore": "Explore the guide",
+      "comingSoon": "Guide coming soon",
+      "items": {
+        "bangkok": {
+          "name": "Bangkok",
+          "tagline": "The capital that never sits still — temples at dawn, rooftops at dusk, food all night."
+        },
+        "phuket": {
+          "name": "Phuket",
+          "tagline": "The Andaman's big island — beaches, Old Town charm, and islands in every direction."
+        },
+        "chiangmai": {
+          "name": "Chiang Mai",
+          "tagline": "The northern soul — misty mountains, Lanna temples, and slow café mornings."
+        },
+        "samui": {
+          "name": "Koh Samui",
+          "tagline": "The gulf island of palm-lined coves, luxury hideaways, and easy island living."
+        },
+        "pattaya": {
+          "name": "Pattaya",
+          "tagline": "Two hours from Bangkok — beach clubs, the Sanctuary of Truth, and quiet Wongamat sands."
+        },
+        "huahin": {
+          "name": "Hua Hin",
+          "tagline": "The royal seaside town — long beaches, night markets, and Thailand's gentlest pace."
+        }
       }
     },
-    "featuredLabel": "Featured",
+    "lenses": {
+      "title": "Six ways into every region.",
+      "intro": "Every Silqhaus guide explores a place through the same six lenses — so wherever you land, you know exactly how to go deeper.",
+      "imageAlt": "Hands of Thai classical dancers in a traditional Lanna pose",
+      "items": {
+        "culture": {
+          "title": "Culture",
+          "desc": "Old towns, markets, craft, and the daily rituals that make a place itself."
+        },
+        "temples": {
+          "title": "Temples",
+          "desc": "From landmark wats to quiet neighborhood shrines worth a detour."
+        },
+        "islands": {
+          "title": "Islands",
+          "desc": "Boat days, hidden coves, and the archipelagos within reach."
+        },
+        "wellness": {
+          "title": "Wellness",
+          "desc": "Thai massage, spa rituals, and retreats that actually restore."
+        },
+        "photo": {
+          "title": "Photo tours",
+          "desc": "The viewpoints, the light, and the timing for photographs worth framing."
+        },
+        "festivals": {
+          "title": "Festivals",
+          "desc": "Songkran, Loy Krathong, and the local celebrations worth planning a trip around."
+        }
+      }
+    },
+    "closer": {
+      "title": "Keep exploring.",
+      "description": "Our blog goes deeper — neighborhood guides, seasonal tips, and the places we send our own guests. And when you're ready to stay, our villas are in Phuket and Pattaya.",
+      "blogCta": "Read the blog",
+      "stayCta": "Browse our villas"
+    },
+    "guides": {
+      "allRegions": "All regions",
+      "moreComing": "More region guides are on the way.",
+      "stayLine": "Staying in Phuket? Our villas are here.",
+      "phuket": {
+        "metaTitle": "Phuket Experiences | Thailand with Silqhaus",
+        "metaDescription": "Phuket beyond the beach — Old Town culture, Wat Chalong and the Big Buddha, Phang Nga Bay island days, spa rituals, photo spots, and the festivals worth planning around.",
+        "heroAlt": "Aerial view of Phuket's west coast at golden hour, white sand and turquoise sea",
+        "intro": "Thailand's largest island is also its most complete — a pastel Sino-Portuguese old town, more than thirty beaches, island-studded seas in two directions, and some of the country's best spas. It's also home: our villas and our team live here. This is Phuket the way we'd show a friend.",
+        "categories": {
+          "culture": {
+            "title": "Culture — the island beyond the beach",
+            "lead": "Phuket's soul isn't on the sand. It's in the shophouse streets, the markets, and a heritage of tin-mining fortunes and Peranakan kitchens.",
+            "spots": {
+              "s1": {
+                "name": "Phuket Old Town",
+                "desc": "Pastel Sino-Portuguese shophouses along Thalang and Dibuk Roads — cafés, galleries, and some of Thailand's best-preserved streetscapes."
+              },
+              "s2": {
+                "name": "Lard Yai Sunday market",
+                "desc": "Thalang Road closes to traffic on Sunday evenings — street food, local craft, and live music between the heritage facades."
+              },
+              "s3": {
+                "name": "Kathu village",
+                "desc": "The island's tin-mining heartland — quiet temples, an old-town museum, and the origin story of Phuket's fortunes."
+              }
+            }
+          },
+          "temples": {
+            "title": "Temples — from grand chedis to golden legends",
+            "lead": "Give the island one temple morning and it will repay you: go early, dress modestly, and take the hilltop light.",
+            "spots": {
+              "s1": {
+                "name": "Wat Chalong",
+                "desc": "Phuket's most revered temple — its Grand Pagoda is said to enshrine a fragment of the Buddha's bone."
+              },
+              "s2": {
+                "name": "The Big Buddha",
+                "desc": "The 45-metre white marble Buddha on Nakkerd Hill — arrive for sunrise, before the coaches, when the whole island glows below."
+              },
+              "s3": {
+                "name": "Wat Phra Thong",
+                "desc": "Thalang's half-buried golden Buddha, wrapped in three centuries of local legend."
+              }
+            }
+          },
+          "islands": {
+            "title": "Islands — two seas to choose from",
+            "lead": "Phuket is a harbor as much as an island: limestone bays to the east, dive archipelagos to the north-west, and a boat for every mood.",
+            "spots": {
+              "s1": {
+                "name": "Phang Nga Bay",
+                "desc": "Limestone karsts, sea caves, and floating villages by longtail or kayak — James Bond Island is the postcard; Hong Island is the quieter frame."
+              },
+              "s2": {
+                "name": "Phi Phi & Maya Bay",
+                "desc": "The famous one, and still worth it — go early in the day and early in the season."
+              },
+              "s3": {
+                "name": "The Similan Islands",
+                "desc": "Granite boulders and gin-clear water north-west of Phuket — Thailand's benchmark diving, open October to May."
+              }
+            }
+          },
+          "wellness": {
+            "title": "Wellness — the island that invented relaxing",
+            "lead": "From a one-hour beach sala massage to a week-long resort ritual, Phuket takes recovery as seriously as adventure.",
+            "spots": {
+              "s1": {
+                "name": "Traditional Thai massage",
+                "desc": "From old-school shophouse studios in Phuket Town to salas right on the sand — the real thing costs a few hundred baht."
+              },
+              "s2": {
+                "name": "Destination spas",
+                "desc": "World-class resort spas across the island's west coast — think ocean-facing pavilions at Trisara, Banyan Tree, and Amanpuri."
+              },
+              "s3": {
+                "name": "Muay Thai & yoga camps",
+                "desc": "Train like a local in Chalong's gyms, or slow everything down at an island yoga shala."
+              }
+            }
+          },
+          "photo": {
+            "title": "Photo tours — chasing the island's light",
+            "lead": "Phuket photographs best at its edges — first light on the hilltops, last light on the capes, blue hour in the old town.",
+            "spots": {
+              "s1": {
+                "name": "Promthep Cape",
+                "desc": "The island's southern tip and its definitive sunset — arrive an hour early for a spot on the rail."
+              },
+              "s2": {
+                "name": "Karon Viewpoint",
+                "desc": "Three bays — Kata Noi, Kata, and Karon — stacked in a single frame."
+              },
+              "s3": {
+                "name": "Old Town at blue hour",
+                "desc": "Neon signs warming up against pastel facades — Thalang Road is the classic frame."
+              }
+            }
+          },
+          "festivals": {
+            "title": "Festivals — when the island celebrates",
+            "lead": "Time a trip to one of these and Phuket becomes a different island entirely.",
+            "spots": {
+              "s1": {
+                "name": "Songkran · April",
+                "desc": "Thai New Year — three days when the whole island becomes a joyful water fight."
+              },
+              "s2": {
+                "name": "Vegetarian Festival · Sep–Oct",
+                "desc": "Nine days of processions, drums, and firecrackers — Phuket's most intense and most local tradition."
+              },
+              "s3": {
+                "name": "Loy Krathong · November",
+                "desc": "Candlelit krathongs released on every beach and lagoon — the island's gentlest night of the year."
+              }
+            }
+          }
+        }
+      }
+    },
     "travelPlanning": {
-      "subtitle": "TRAVEL PLANNING",
-      "title": "Essential Thailand Travel Information",
-      "bestTime": "Best Time to Visit Thailand",
-      "essentials": "Thailand Travel Essentials"
+      "bestTime": "When to come"
     },
     "seasons": {
       "cool": {
@@ -1030,24 +1187,6 @@
       "rainy": {
         "title": "Rainy Season (June - October)",
         "description": "Monsoon season with afternoon showers and high humidity. Lush landscapes, lowest prices, and fewer tourists. Great for cultural experiences and indoor activities."
-      }
-    },
-    "essentials": {
-      "visa": {
-        "title": "Visa Requirements",
-        "description": "Most nationalities receive a 30-day visa exemption on arrival. Tourist visas available for longer stays. Check current requirements based on your nationality."
-      },
-      "currency": {
-        "title": "Currency & Payments",
-        "description": "Thai Baht (THB) is the local currency. Credit cards widely accepted in hotels and restaurants. Cash recommended for markets and local transportation."
-      },
-      "language": {
-        "title": "Language & Culture",
-        "description": "Thai is the official language, English widely spoken in tourist areas. Buddhism is the main religion. Dress modestly when visiting temples and respect local customs."
-      },
-      "health": {
-        "title": "Health & Safety",
-        "description": "Thailand has excellent private healthcare. Stay hydrated, use sun protection, and drink bottled water. Travel insurance recommended for all visitors."
       }
     }
   },
