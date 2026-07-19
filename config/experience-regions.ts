@@ -15,7 +15,7 @@ export const EXPERIENCE_CATEGORIES = [
 export type ExperienceCategory = (typeof EXPERIENCE_CATEGORIES)[number];
 
 export const EXPERIENCE_REGIONS = [
-  { key: "bangkok", img: "/experiences/regions/bangkok.jpg", hasGuide: false },
+  { key: "bangkok", img: "/experiences/regions/bangkok.jpg", hasGuide: true },
   { key: "phuket", img: "/experiences/regions/phuket.jpg", hasGuide: true },
   { key: "chiangmai", img: "/experiences/regions/chiangmai.jpg", hasGuide: false },
   { key: "samui", img: "/experiences/regions/samui.jpg", hasGuide: false },

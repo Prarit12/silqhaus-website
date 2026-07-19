@@ -1294,6 +1294,123 @@
             }
           }
         }
+      },
+      "bangkok": {
+        "metaTitle": "Bangkok Experiences | Thailand with Silqhaus",
+        "metaDescription": "Bangkok the way locals live it — the Grand Palace and Wat Arun, Chinatown after dark, river islands and the Green Lung, rooftop sunsets, and the festivals that stop the city.",
+        "heroAlt": "Bangkok at dusk with the Chao Phraya river curving through the lit skyline",
+        "stayLine": "After Bangkok? Our villas are in Phuket & Pattaya.",
+        "intro": "Every Thailand trip starts here whether you plan it or not — so plan it. Give Bangkok three days and it repays you in gold-spired temples, river islands, rooftop sunsets, and the best street food on the planet. This is the capital as we actually eat, walk, and photograph it.",
+        "categories": {
+          "culture": {
+            "title": "Culture — a city of layers",
+            "lead": "Bangkok stacks royal splendor over canal-side life over 24-hour markets — give each layer its own day.",
+            "spots": {
+              "s1": {
+                "name": "The Grand Palace & Wat Phra Kaew",
+                "desc": "Thailand's most sacred ground — the Emerald Buddha and gold at every turn. Arrive at opening, shoulders covered."
+              },
+              "s2": {
+                "name": "Chinatown (Yaowarat)",
+                "desc": "Neon, gold shops, and the city's densest food street after dark — come hungry and follow the queues."
+              },
+              "s3": {
+                "name": "Chatuchak Weekend Market",
+                "desc": "Fifteen thousand stalls of everything imaginable — go early, and let your nose navigate."
+              }
+            }
+          },
+          "temples": {
+            "title": "Temples — gold at every turn",
+            "lead": "The capital's wats range from imperial to intimate — these three cover the spectrum.",
+            "spots": {
+              "s1": {
+                "name": "Wat Arun",
+                "desc": "The Temple of Dawn, studded with porcelain — climb it at noon, admire it from the opposite bank at sunset."
+              },
+              "s2": {
+                "name": "Wat Pho",
+                "desc": "The 46-metre Reclining Buddha — and the birthplace of Thai massage. Get one on the premises."
+              },
+              "s3": {
+                "name": "Wat Benchamabophit",
+                "desc": "The Marble Temple — Carrara stone drawn in Thai lines, and a fraction of the crowds."
+              }
+            }
+          },
+          "islands": {
+            "title": "Islands — yes, Bangkok has them",
+            "lead": "The Chao Phraya hides green escapes minutes from the skyline — and Thailand's old capital is an island too.",
+            "spots": {
+              "s1": {
+                "name": "Bang Krachao",
+                "desc": "The 'Green Lung' — a jungle island in a bend of the river, best explored by bicycle on raised paths."
+              },
+              "s2": {
+                "name": "Koh Kret",
+                "desc": "A car-free pottery island upriver — Mon communities, river breeze, and a lively Sunday market."
+              },
+              "s3": {
+                "name": "Ayutthaya",
+                "desc": "The old capital literally is an island — three rivers around four centuries of ruins, an easy day trip north."
+              }
+            }
+          },
+          "wellness": {
+            "title": "Wellness — the original urban retreat",
+            "lead": "Bangkok invented recovering from Bangkok — from massage's birthplace to spas above the clouds.",
+            "spots": {
+              "s1": {
+                "name": "Wat Pho Massage School",
+                "desc": "Learn — or simply receive — Thai massage where it was first codified."
+              },
+              "s2": {
+                "name": "Sky-high hotel spas",
+                "desc": "World-ranked spas at The Peninsula, Mandarin Oriental, and Banyan Tree — treatments with the skyline underfoot."
+              },
+              "s3": {
+                "name": "Lumpini Park at dawn",
+                "desc": "Tai chi circles, monitor lizards, and the softest light the city gets — six a.m. is the secret."
+              }
+            }
+          },
+          "photo": {
+            "title": "Photo tours — the city of golden hours",
+            "lead": "Bangkok photographs in layers: river, rooftop, and backstreet each keep their own light.",
+            "spots": {
+              "s1": {
+                "name": "Wat Arun from Tha Tien",
+                "desc": "The cross-river blue-hour classic — spires lighting up as long-tail boats streak the frame."
+              },
+              "s2": {
+                "name": "Rooftop sunsets",
+                "desc": "The sprawl going amber from Mahanakhon SkyWalk or a riverside rooftop bar."
+              },
+              "s3": {
+                "name": "Talat Noi",
+                "desc": "Street art, old Chinese shophouses, and vintage engine parts — Bangkok's most photogenic backstreets."
+              }
+            }
+          },
+          "festivals": {
+            "title": "Festivals — the capital celebrates hardest",
+            "lead": "When Bangkok celebrates, whole districts transform — time your trip to one of these.",
+            "spots": {
+              "s1": {
+                "name": "Songkran · April",
+                "desc": "Silom and Khao San become joyful water battlefields; the temples keep the gentler rituals."
+              },
+              "s2": {
+                "name": "Loy Krathong · November",
+                "desc": "Krathongs on the Chao Phraya and every park lake — the river glows from Asiatique to Rama VIII."
+              },
+              "s3": {
+                "name": "Chinese New Year · Jan–Feb",
+                "desc": "Yaowarat erupts — lion dances, red lanterns, and food stalls to the horizon."
+              }
+            }
+          }
+        }
       }
     },
     "travelPlanning": {
