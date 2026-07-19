@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { useTranslations } from "next-intl";
 
 type NodeSpec = {
@@ -10,25 +11,24 @@ type NodeSpec = {
   side?: "left" | "right";
 };
 
-/** Stylized neighborhood maps per region — the river + node positions. */
+/** Neighborhood maps per region — a generated map image + node overlay. */
 const MAPS: Record<
   string,
-  { river: string; nodes: Record<string, NodeSpec> }
+  { image: string; nodes: Record<string, NodeSpec> }
 > = {
   bangkok: {
-    river:
-      "M 218 -10 C 212 60 188 96 178 150 C 168 204 212 234 218 272 C 224 308 176 330 168 368 C 160 406 210 432 226 472 C 240 507 218 570 236 650",
+    image: "/experiences/bangkok/map.jpg",
     nodes: {
-      ari: { x: 312, y: 168, side: "right" },
-      ratchada: { x: 428, y: 236, side: "right" },
-      khaosan: { x: 244, y: 244, side: "right" },
-      rattanakosin: { x: 208, y: 300, side: "left" },
-      siam: { x: 336, y: 322, side: "right" },
-      yaowarat: { x: 252, y: 356, side: "left" },
-      sukhumvit: { x: 408, y: 362, side: "right" },
-      thonglor: { x: 462, y: 398, side: "right" },
-      riverside: { x: 252, y: 432, side: "left" },
-      silomSathorn: { x: 330, y: 442, side: "right" },
+      ari: { x: 240, y: 240, side: "right" },
+      ratchada: { x: 368, y: 271, side: "right" },
+      khaosan: { x: 162, y: 337, side: "right" },
+      rattanakosin: { x: 172, y: 384, side: "left" },
+      siam: { x: 271, y: 406, side: "right" },
+      yaowarat: { x: 198, y: 443, side: "left" },
+      sukhumvit: { x: 368, y: 445, side: "right" },
+      thonglor: { x: 433, y: 472, side: "right" },
+      riverside: { x: 217, y: 522, side: "left" },
+      silomSathorn: { x: 294, y: 503, side: "right" },
     },
   },
 };
@@ -84,43 +84,30 @@ export default function RegionNeighborhoods({
             ))}
           </div>
 
-          {/* Stylized map — nodes glow on hover */}
+          {/* Generated map — nodes glow on hover */}
           {map && (
             <div
-              className="hidden lg:block sticky top-28 rounded-3xl border border-line bg-white/[0.02] p-6"
+              className="hidden lg:block sticky top-28 relative aspect-[3/4] rounded-3xl border border-line overflow-hidden bg-ink-2"
               aria-hidden="true"
             >
-              <svg viewBox="0 0 520 640" className="w-full h-auto">
+              <Image
+                src={map.image}
+                alt=""
+                fill
+                sizes="460px"
+                className="object-cover object-center opacity-90"
+              />
+              {/* Soften edges into the panel */}
+              <div className="absolute inset-0 shadow-[inset_0_0_60px_30px_rgba(13,13,13,0.55)]" />
+              <svg
+                viewBox="0 0 520 694"
+                className="absolute inset-0 w-full h-full"
+              >
                 <defs>
                   <filter id="node-glow" x="-200%" y="-200%" width="500%" height="500%">
                     <feGaussianBlur stdDeviation="10" />
                   </filter>
                 </defs>
-
-                {/* Chao Phraya */}
-                <path
-                  d={map.river}
-                  fill="none"
-                  stroke="rgba(255,255,255,0.16)"
-                  strokeWidth="14"
-                  strokeLinecap="round"
-                />
-                <path
-                  d={map.river}
-                  fill="none"
-                  stroke="rgba(255,255,255,0.28)"
-                  strokeWidth="1.5"
-                />
-                <text
-                  x="150"
-                  y="560"
-                  fill="rgba(255,255,255,0.3)"
-                  fontSize="11"
-                  letterSpacing="2"
-                  transform="rotate(-70 150 560)"
-                >
-                  CHAO PHRAYA
-                </text>
 
                 {Object.entries(map.nodes).map(([key, n]) => {
                   const isActive = active === key;
@@ -174,10 +161,13 @@ export default function RegionNeighborhoods({
                         y={n.y + 4}
                         textAnchor={n.side === "left" ? "end" : "start"}
                         fontSize="13"
+                        stroke="rgba(10,10,10,0.75)"
+                        strokeWidth="3"
                         style={{
+                          paintOrder: "stroke",
                           fill: isActive
                             ? "rgba(255,255,255,0.95)"
-                            : "rgba(255,255,255,0.55)",
+                            : "rgba(255,255,255,0.6)",
                           transition: "fill 300ms ease-out",
                         }}
                       >
