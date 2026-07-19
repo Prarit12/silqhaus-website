@@ -267,80 +267,79 @@ export default async function RegionGuide({
 
       {/* ── Neighborhoods — the interactive map, after the deep dives ── */}
       {areas.length > 0 && (
-        <RegionNeighborhoods
-          region={region}
-          areaKeys={areas}
-          transportKeys={transportItems}
-          shoppingKeys={shoppingGroups}
-        />
+        <RegionNeighborhoods region={region} areaKeys={areas} />
       )}
 
-      {/* ── Shopping culture (standalone when there's no map section) ── */}
-      {shoppingGroups.length > 0 && areas.length === 0 && (
+      {/* ── Getting around & shopping — practicalities in one section ── */}
+      {(transportItems.length > 0 || shoppingGroups.length > 0) && (
         <section className="py-20 sm:py-24 border-t border-line bg-ink-2">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-2xl mb-10 sm:mb-12">
               <h2 className="font-display text-white text-3xl sm:text-4xl font-light leading-[1.08] tracking-tight normal-case text-balance">
-                {g("shopping.title")}
+                {g("practical.title")}
               </h2>
               <p className="text-white/60 mt-4 text-lg leading-relaxed">
-                {g("shopping.lead")}
+                {g("practical.lead")}
               </p>
             </div>
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-x-10 gap-y-12">
-              {shoppingGroups.map((grp) => (
-                <div key={grp}>
-                  <h3 className="text-white/45 text-xs font-medium uppercase tracking-[0.18em] mb-2">
-                    {g(`shopping.groups.${grp}.title`)}
-                  </h3>
-                  {(["s1", "s2", "s3"] as const).map((s) => (
-                    <div key={s} className="border-t border-line py-4">
-                      <h4 className="text-white font-semibold tracking-tight">
-                        {g(`shopping.groups.${grp}.${s}.name`)}
-                      </h4>
-                      <p className="text-white/55 text-sm mt-1.5 leading-relaxed">
-                        {g(`shopping.groups.${grp}.${s}.desc`)}
-                      </p>
-                    </div>
-                  ))}
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
 
-      {/* ── Getting there & around (standalone when there's no map section) ── */}
-      {transportItems.length > 0 && areas.length === 0 && (
-        <section className="py-20 sm:py-24 border-t border-line">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="max-w-2xl mb-10 sm:mb-12">
-              <h2 className="font-display text-white text-3xl sm:text-4xl font-light leading-[1.08] tracking-tight normal-case text-balance">
-                {g("transport.title")}
-              </h2>
-              <p className="text-white/60 mt-4 text-lg leading-relaxed">
-                {g("transport.lead")}
-              </p>
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-9">
-              {transportItems.map((item) => {
-                const Icon = TRANSPORT_ICONS[item] ?? TrainFront;
-                return (
-                  <div key={item} className="flex items-start gap-4">
-                    <span className="mt-0.5 inline-flex w-10 h-10 shrink-0 items-center justify-center rounded-full border border-line text-white/70">
-                      <Icon className="w-[18px] h-[18px]" strokeWidth={1.5} />
-                    </span>
-                    <div>
-                      <h3 className="text-white font-semibold tracking-tight">
-                        {g(`transport.items.${item}.name`)}
-                      </h3>
-                      <p className="text-white/55 text-sm mt-1.5 leading-relaxed">
-                        {g(`transport.items.${item}.desc`)}
-                      </p>
-                    </div>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-16 gap-y-14">
+              {/* Getting around */}
+              {transportItems.length > 0 && (
+                <div>
+                  <h3 className="text-white font-semibold text-xl tracking-tight mb-7">
+                    {g("transport.title")}
+                  </h3>
+                  <div className="space-y-6">
+                    {transportItems.map((item) => {
+                      const Icon = TRANSPORT_ICONS[item] ?? TrainFront;
+                      return (
+                        <div key={item} className="flex items-start gap-4">
+                          <span className="mt-0.5 inline-flex w-10 h-10 shrink-0 items-center justify-center rounded-full border border-line text-white/70">
+                            <Icon className="w-[18px] h-[18px]" strokeWidth={1.5} />
+                          </span>
+                          <div>
+                            <h4 className="text-white font-semibold tracking-tight">
+                              {g(`transport.items.${item}.name`)}
+                            </h4>
+                            <p className="text-white/55 text-sm mt-1.5 leading-relaxed">
+                              {g(`transport.items.${item}.desc`)}
+                            </p>
+                          </div>
+                        </div>
+                      );
+                    })}
                   </div>
-                );
-              })}
+                </div>
+              )}
+
+              {/* Shopping */}
+              {shoppingGroups.length > 0 && (
+                <div>
+                  <h3 className="text-white font-semibold text-xl tracking-tight mb-7">
+                    {g("shopping.title")}
+                  </h3>
+                  <div className="space-y-8">
+                    {shoppingGroups.map((grp) => (
+                      <div key={grp}>
+                        <h4 className="text-white/45 text-xs font-medium uppercase tracking-[0.18em] mb-1.5">
+                          {g(`shopping.groups.${grp}.title`)}
+                        </h4>
+                        {(["s1", "s2", "s3"] as const).map((s) => (
+                          <div key={s} className="border-t border-line py-3.5">
+                            <h5 className="text-white text-[15px] font-semibold tracking-tight">
+                              {g(`shopping.groups.${grp}.${s}.name`)}
+                            </h5>
+                            <p className="text-white/55 text-sm mt-1 leading-relaxed">
+                              {g(`shopping.groups.${grp}.${s}.desc`)}
+                            </p>
+                          </div>
+                        ))}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         </section>

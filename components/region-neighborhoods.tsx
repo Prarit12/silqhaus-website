@@ -3,24 +3,6 @@
 import { useState } from "react";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
-import {
-  Plane,
-  TrainFront,
-  TramFront,
-  Ship,
-  CarTaxiFront,
-  Bike,
-  type LucideIcon,
-} from "lucide-react";
-
-const TRANSPORT_ICONS: Record<string, LucideIcon> = {
-  airports: Plane,
-  airportRail: TrainFront,
-  rail: TramFront,
-  river: Ship,
-  ride: CarTaxiFront,
-  moto: Bike,
-};
 
 type NodeSpec = {
   x: number;
@@ -59,13 +41,9 @@ const MAPS: Record<
 export default function RegionNeighborhoods({
   region,
   areaKeys,
-  transportKeys = [],
-  shoppingKeys = [],
 }: {
   region: string;
   areaKeys: string[];
-  transportKeys?: string[];
-  shoppingKeys?: string[];
 }) {
   const t = useTranslations("experiences");
   const g = (key: string) => t(`guides.${region}.${key}`);
@@ -74,7 +52,7 @@ export default function RegionNeighborhoods({
 
   return (
     <section className="pb-20 sm:pb-24">
-      <div className="max-w-[1536px] mx-auto px-4 sm:px-6 lg:px-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-wrap items-end justify-between gap-x-10 gap-y-4 mb-9 sm:mb-11">
           <h2 className="font-display text-white text-3xl sm:text-4xl font-light leading-[1.08] tracking-tight normal-case text-balance">
             {g("areas.title")}
@@ -84,16 +62,16 @@ export default function RegionNeighborhoods({
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-[5fr_6fr_5fr] gap-x-10 gap-y-10 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-12 gap-y-10 items-start">
           {/* Area list — hover lights the map */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-x-10">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-10">
             {areaKeys.map((a) => (
               <div
                 key={a}
                 onMouseEnter={() => setActive(a)}
                 onMouseLeave={() => setActive(null)}
                 onClick={() => setActive(active === a ? null : a)}
-                className={`group/row border-t border-line py-[18px] px-3 -mx-3 rounded-lg cursor-pointer transition-colors duration-300 ${
+                className={`border-t border-line py-4 px-3 -mx-3 rounded-lg cursor-pointer transition-colors duration-300 ${
                   active === a ? "bg-white/[0.06]" : "hover:bg-white/[0.03]"
                 }`}
               >
@@ -130,7 +108,7 @@ export default function RegionNeighborhoods({
                 src={map.image}
                 alt=""
                 fill
-                sizes="460px"
+                sizes="600px"
                 className="object-cover object-center opacity-90"
               />
               {/* Soften edges into the panel */}
@@ -243,72 +221,6 @@ export default function RegionNeighborhoods({
                   );
                 })}
               </svg>
-            </div>
-          )}
-
-          {/* Getting there & around + shopping — alongside the map */}
-          {(transportKeys.length > 0 || shoppingKeys.length > 0) && (
-            <div className="space-y-6">
-              {transportKeys.length > 0 && (
-                <div className="rounded-2xl border border-line bg-white/[0.02] p-6">
-                  <h3 className="text-white font-semibold text-xl tracking-tight">
-                    {g("transport.title")}
-                  </h3>
-                  <p className="text-white/55 text-sm mt-2 leading-relaxed">
-                    {g("transport.lead")}
-                  </p>
-                  <div className="mt-7 space-y-6">
-                    {transportKeys.map((item) => {
-                      const Icon = TRANSPORT_ICONS[item] ?? TramFront;
-                      return (
-                        <div key={item} className="flex items-start gap-3.5">
-                          <span className="mt-0.5 inline-flex w-9 h-9 shrink-0 items-center justify-center rounded-full border border-line text-white/70">
-                            <Icon className="w-4 h-4" strokeWidth={1.5} />
-                          </span>
-                          <div>
-                            <h4 className="text-white text-[15px] font-semibold tracking-tight">
-                              {g(`transport.items.${item}.name`)}
-                            </h4>
-                            <p className="text-white/55 text-[13px] mt-1 leading-relaxed">
-                              {g(`transport.items.${item}.desc`)}
-                            </p>
-                          </div>
-                        </div>
-                      );
-                    })}
-                  </div>
-                </div>
-              )}
-
-              {shoppingKeys.length > 0 && (
-                <div className="rounded-2xl border border-line bg-white/[0.02] p-6">
-                  <h3 className="text-white font-semibold text-xl tracking-tight">
-                    {g("shopping.title")}
-                  </h3>
-                  <p className="text-white/55 text-sm mt-2 leading-relaxed">
-                    {g("shopping.lead")}
-                  </p>
-                  <div className="mt-6 space-y-8">
-                    {shoppingKeys.map((grp) => (
-                      <div key={grp}>
-                        <h4 className="text-white/45 text-[11px] font-medium uppercase tracking-[0.18em] mb-1.5">
-                          {g(`shopping.groups.${grp}.title`)}
-                        </h4>
-                        {(["s1", "s2", "s3"] as const).map((s) => (
-                          <div key={s} className="border-t border-line py-3">
-                            <h5 className="text-white text-[15px] font-semibold tracking-tight">
-                              {g(`shopping.groups.${grp}.${s}.name`)}
-                            </h5>
-                            <p className="text-white/55 text-[13px] mt-1 leading-relaxed">
-                              {g(`shopping.groups.${grp}.${s}.desc`)}
-                            </p>
-                          </div>
-                        ))}
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
             </div>
           )}
         </div>
