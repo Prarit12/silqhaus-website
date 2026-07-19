@@ -62,11 +62,13 @@
       "title": "Our Destinations",
       "eyebrow": "Where to Stay",
       "explore": "Explore",
+      "browseVillas": "Browse villas",
+      "guide": "Travel guide",
       "description": "Explore our curated selection of luxury properties across Thailand's most sought-after locations",
       "phuket": "Phuket",
       "pattaya": "Pattaya",
-      "andaman": "Andaman",
-      "eastern": "Eastern"
+      "andaman": "Andaman Coast",
+      "eastern": "Eastern Seaboard"
     },
     "popularLocations": {
       "title": "Stay Highlights",
