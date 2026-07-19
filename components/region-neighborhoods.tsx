@@ -23,7 +23,6 @@ const MAPS: Record<
       ari: { x: 240, y: 240, side: "right" },
       ratchada: { x: 368, y: 271, side: "right" },
       dusit: { x: 222, y: 288, side: "left" },
-      victoryMonument: { x: 295, y: 305, side: "right" },
       khaosan: { x: 162, y: 337, side: "right" },
       rattanakosin: { x: 172, y: 384, side: "left" },
       siam: { x: 271, y: 406, side: "right" },

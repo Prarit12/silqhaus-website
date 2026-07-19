@@ -53,7 +53,6 @@ export const REGION_AREAS: Record<string, string[]> = {
     "thonglor",
     "phraKhanong",
     "ari",
-    "victoryMonument",
     "chatuchakArea",
     "ratchada",
     "bangKrachao",
