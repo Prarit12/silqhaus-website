@@ -69,6 +69,11 @@ export const REGION_TRANSPORT: Record<string, string[]> = {
   bangkok: ["airports", "airportRail", "rail", "river", "ride", "moto"],
 };
 
+/** Good-to-know tip keys per region — content in `guides.<region>.good.items.*`. */
+export const REGION_GOOD: Record<string, string[]> = {
+  bangkok: ["sim", "cash", "temple", "tuktuk", "water"],
+};
+
 /** Spots per category when a region goes deeper than the default three. */
 export const REGION_SPOT_COUNTS: Record<string, Record<string, number>> = {
   bangkok: { culture: 6, temples: 5, islands: 4 },

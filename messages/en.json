@@ -1374,8 +1374,35 @@
           }
         },
         "practical": {
-          "title": "Getting around & shopping.",
-          "lead": "The practical side of the capital — how to beat the traffic, and where to spend once you've arrived."
+          "title": "Getting around, shopping & good to know.",
+          "lead": "The practical side of the capital, in three parts — open a section, and its places light up on the map.",
+          "hint": "Open a section, then hover a place"
+        },
+        "good": {
+          "title": "Good to know",
+          "lead": "The small things that make Bangkok easier.",
+          "items": {
+            "sim": {
+              "name": "Get a Thai eSIM on arrival",
+              "desc": "Data the moment you land — cheaper and simpler than a SIM counter, and you'll want it for Grab and maps."
+            },
+            "cash": {
+              "name": "Cash for markets, cards for malls",
+              "desc": "Street stalls, taxis, and tuk-tuks want baht; malls, hotels, and Grab take cards. Keep small notes handy."
+            },
+            "temple": {
+              "name": "Cover shoulders and knees",
+              "desc": "Temples enforce it — carry a light layer, and slip your shoes off where the signs ask."
+            },
+            "tuktuk": {
+              "name": "Agree the fare first",
+              "desc": "Tuk-tuks and some taxis won't meter for tourists — settle the price before you climb in, or just use Grab."
+            },
+            "water": {
+              "name": "Drink bottled water",
+              "desc": "Tap water isn't for drinking; bottled is everywhere and cheap. Pace yourself in the afternoon heat."
+            }
+          }
         },
         "shopping": {
           "title": "Shopping — a national sport.",
