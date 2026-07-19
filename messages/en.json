@@ -64,11 +64,20 @@
       "explore": "Explore",
       "browseVillas": "Browse villas",
       "guide": "Travel guide",
+      "comingSoon": "Guide coming soon",
       "description": "Explore our curated selection of luxury properties across Thailand's most sought-after locations",
       "phuket": "Phuket",
       "pattaya": "Pattaya",
+      "bangkok": "Bangkok",
+      "samui": "Koh Samui",
+      "huahin": "Hua Hin",
+      "chiangmai": "Chiang Mai",
       "andaman": "Andaman Coast",
-      "eastern": "Eastern Seaboard"
+      "eastern": "Eastern Seaboard",
+      "central": "The Capital",
+      "gulf": "Gulf of Thailand",
+      "royalCoast": "The Royal Coast",
+      "north": "Northern Thailand"
     },
     "popularLocations": {
       "title": "Stay Highlights",

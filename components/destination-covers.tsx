@@ -36,6 +36,42 @@ export default function DestinationCovers({
     },
   ] as const;
 
+  /** Guide-only destinations — no villas (yet), so the guide is the story. */
+  const GUIDE_DESTINATIONS = [
+    {
+      id: "bangkok",
+      province: t("bangkok"),
+      region: t("central"),
+      guideHref: "/experiences/bangkok" as const,
+      image: "/experiences/regions/bangkok.jpg",
+      alt: "Wat Arun temple glowing at blue hour in Bangkok",
+    },
+    {
+      id: "samui",
+      province: t("samui"),
+      region: t("gulf"),
+      guideHref: null,
+      image: "/experiences/regions/samui.jpg",
+      alt: "Palm-fringed beach with a longtail boat on Koh Samui",
+    },
+    {
+      id: "huahin",
+      province: t("huahin"),
+      region: t("royalCoast"),
+      guideHref: null,
+      image: "/experiences/regions/huahin.jpg",
+      alt: "Hua Hin beach at sunrise with a wooden pier",
+    },
+    {
+      id: "chiangmai",
+      province: t("chiangmai"),
+      region: t("north"),
+      guideHref: null,
+      image: "/experiences/regions/chiangmai.jpg",
+      alt: "Doi Suthep's golden chedi above the mist in Chiang Mai",
+    },
+  ] as const;
+
   return (
     <section className={`py-16 sm:py-20 md:py-28 bg-ink ${className}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -91,6 +127,56 @@ export default function DestinationCovers({
               </div>
             </div>
           ))}
+        </div>
+
+        {/* Guide destinations — Bangkok live, the rest teased */}
+        <div className="mt-5 sm:mt-6 md:mt-8 grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
+          {GUIDE_DESTINATIONS.map((d) => {
+            const card = (
+              <>
+                <Image
+                  src={d.image}
+                  alt={d.alt}
+                  fill
+                  sizes="(max-width: 1024px) 50vw, 25vw"
+                  quality={80}
+                  className="object-cover object-center transition-transform duration-[900ms] ease-out group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent transition-colors duration-500 group-hover:from-black/90" />
+                <div className="absolute bottom-4 sm:bottom-5 left-4 sm:left-5 right-4 sm:right-5 text-white">
+                  <p className="text-[0.62rem] sm:text-[0.7rem] text-white/60 mb-1.5 uppercase tracking-[0.24em]">
+                    {d.region}
+                  </p>
+                  <h3 className="font-display text-2xl sm:text-3xl font-light tracking-wide">
+                    {d.province}
+                  </h3>
+                  <div className="mt-3">
+                    {d.guideHref ? (
+                      <span className="inline-flex items-center gap-2 rounded-full bg-white text-ink px-3.5 py-1.5 text-xs font-semibold">
+                        <BookOpen className="w-3 h-3" />
+                        {t("guide")}
+                      </span>
+                    ) : (
+                      <span className="inline-flex items-center rounded-full border border-white/25 bg-black/35 px-3.5 py-1.5 text-xs font-medium text-white/70 backdrop-blur-sm">
+                        {t("comingSoon")}
+                      </span>
+                    )}
+                  </div>
+                </div>
+              </>
+            );
+            const classes =
+              "group relative aspect-[4/5] sm:aspect-[3/4] rounded-2xl overflow-hidden ring-1 ring-line transition-all duration-500 hover:ring-white/30";
+            return d.guideHref ? (
+              <Link key={d.id} href={d.guideHref} className={classes}>
+                {card}
+              </Link>
+            ) : (
+              <div key={d.id} className={classes}>
+                {card}
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>
