@@ -1053,12 +1053,15 @@
     },
     "guides": {
       "allRegions": "All regions",
+      "readGuide": "Read the guide",
       "moreComing": "More region guides are on the way.",
       "stayLine": "Staying in Phuket? Our villas are here.",
       "phuket": {
         "metaTitle": "Phuket Experiences | Thailand with Silqhaus",
         "metaDescription": "Phuket beyond the beach — Old Town culture, Wat Chalong and the Big Buddha, Phang Nga Bay island days, spa rituals, photo spots, and the festivals worth planning around.",
         "heroAlt": "Aerial view of Phuket's west coast at golden hour, white sand and turquoise sea",
+        "beachesTitle": "Thirty beaches, twelve favorites.",
+        "beachesIntro": "Every beach below has its own full guide on our blog — written from living here, not from a press trip.",
         "intro": "Thailand's largest island is also its most complete — a pastel Sino-Portuguese old town, more than thirty beaches, island-studded seas in two directions, and some of the country's best spas. It's also home: our villas and our team live here. This is Phuket the way we'd show a friend.",
         "categories": {
           "culture": {
