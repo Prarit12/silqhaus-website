@@ -1313,6 +1313,7 @@
         "areas": {
           "title": "Know your neighborhoods.",
           "intro": "Bangkok is a city of villages wearing a metropolis costume — pick the right base and the city opens up.",
+          "hint": "Hover a neighborhood to find it on the map",
           "items": {
             "rattanakosin": {
               "name": "Rattanakosin (Old Town)",

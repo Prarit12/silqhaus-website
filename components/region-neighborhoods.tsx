@@ -93,18 +93,27 @@ export default function RegionNeighborhoods({
                 onMouseEnter={() => setActive(a)}
                 onMouseLeave={() => setActive(null)}
                 onClick={() => setActive(active === a ? null : a)}
-                className={`border-t border-line py-[18px] px-3 -mx-3 rounded-lg cursor-default transition-colors duration-300 ${
-                  active === a ? "bg-white/[0.05]" : ""
+                className={`group/row border-t border-line py-[18px] px-3 -mx-3 rounded-lg cursor-pointer transition-colors duration-300 ${
+                  active === a ? "bg-white/[0.06]" : "hover:bg-white/[0.03]"
                 }`}
               >
                 <h3
-                  className={`font-semibold tracking-tight transition-colors duration-300 ${
+                  className={`flex items-center gap-2.5 font-semibold tracking-tight transition-colors duration-300 ${
                     active === a ? "text-white" : "text-white/85"
                   }`}
                 >
+                  {/* Mirrors the map node — fills when this area is lit */}
+                  <span
+                    className={`inline-block w-2 h-2 shrink-0 rounded-full border transition-all duration-300 ${
+                      active === a
+                        ? "bg-white border-white shadow-[0_0_10px_rgba(255,255,255,0.7)]"
+                        : "border-white/40"
+                    }`}
+                    aria-hidden="true"
+                  />
                   {g(`areas.items.${a}.name`)}
                 </h3>
-                <p className="text-white/55 text-sm mt-1.5 leading-relaxed">
+                <p className="text-white/55 text-sm mt-1.5 leading-relaxed pl-[18px]">
                   {g(`areas.items.${a}.desc`)}
                 </p>
               </div>
@@ -126,6 +135,17 @@ export default function RegionNeighborhoods({
               />
               {/* Soften edges into the panel */}
               <div className="absolute inset-0 shadow-[inset_0_0_60px_30px_rgba(13,13,13,0.55)]" />
+              {/* Interaction hint */}
+              <div className="absolute inset-x-0 bottom-4 flex justify-center">
+                <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-black/55 px-3.5 py-1.5 text-xs font-medium text-white/75 backdrop-blur-sm">
+                  <span
+                    className={`w-1.5 h-1.5 rounded-full transition-colors duration-300 ${
+                      active ? "bg-white" : "bg-white/50 animate-pulse"
+                    }`}
+                  />
+                  {g("areas.hint")}
+                </span>
+              </div>
               <svg
                 viewBox="0 0 520 694"
                 className="absolute inset-0 w-full h-full"
@@ -148,7 +168,7 @@ export default function RegionNeighborhoods({
                       key={key}
                       onMouseEnter={() => setActive(key)}
                       onMouseLeave={() => setActive(null)}
-                      style={{ cursor: "default" }}
+                      style={{ cursor: "pointer" }}
                     >
                       {/* glow */}
                       <circle
@@ -228,9 +248,9 @@ export default function RegionNeighborhoods({
 
           {/* Getting there & around + shopping — alongside the map */}
           {(transportKeys.length > 0 || shoppingKeys.length > 0) && (
-            <div>
+            <div className="space-y-6">
               {transportKeys.length > 0 && (
-                <>
+                <div className="rounded-2xl border border-line bg-white/[0.02] p-6">
                   <h3 className="text-white font-semibold text-xl tracking-tight">
                     {g("transport.title")}
                   </h3>
@@ -257,11 +277,11 @@ export default function RegionNeighborhoods({
                       );
                     })}
                   </div>
-                </>
+                </div>
               )}
 
               {shoppingKeys.length > 0 && (
-                <div className={transportKeys.length > 0 ? "mt-12" : ""}>
+                <div className="rounded-2xl border border-line bg-white/[0.02] p-6">
                   <h3 className="text-white font-semibold text-xl tracking-tight">
                     {g("shopping.title")}
                   </h3>
