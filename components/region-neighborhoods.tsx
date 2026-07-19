@@ -32,8 +32,8 @@ const MAPS: Record<
       thonglor: { x: 433, y: 472, side: "left" },
       riverside: { x: 217, y: 522, side: "left" },
       silomSathorn: { x: 294, y: 503, side: "right" },
-      phraKhanong: { x: 475, y: 545, side: "left" },
-      bangKrachao: { x: 232, y: 600, side: "right" },
+      phraKhanong: { x: 480, y: 528, side: "left" },
+      bangKrachao: { x: 452, y: 592, side: "left" },
     },
   },
 };
