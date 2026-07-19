@@ -46,12 +46,17 @@ export const REGION_AREAS: Record<string, string[]> = {
     "riverside",
     "yaowarat",
     "khaosan",
+    "dusit",
     "siam",
     "silomSathorn",
     "sukhumvit",
     "thonglor",
+    "phraKhanong",
     "ari",
+    "victoryMonument",
+    "chatuchakArea",
     "ratchada",
+    "bangKrachao",
   ],
 };
 

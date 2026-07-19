@@ -19,8 +19,11 @@ const MAPS: Record<
   bangkok: {
     image: "/experiences/bangkok/map.jpg",
     nodes: {
+      chatuchakArea: { x: 330, y: 205, side: "right" },
       ari: { x: 240, y: 240, side: "right" },
       ratchada: { x: 368, y: 271, side: "right" },
+      dusit: { x: 222, y: 288, side: "left" },
+      victoryMonument: { x: 295, y: 305, side: "right" },
       khaosan: { x: 162, y: 337, side: "right" },
       rattanakosin: { x: 172, y: 384, side: "left" },
       siam: { x: 271, y: 406, side: "right" },
@@ -29,6 +32,8 @@ const MAPS: Record<
       thonglor: { x: 433, y: 472, side: "left" },
       riverside: { x: 217, y: 522, side: "left" },
       silomSathorn: { x: 294, y: 503, side: "right" },
+      phraKhanong: { x: 475, y: 545, side: "left" },
+      bangKrachao: { x: 232, y: 600, side: "right" },
     },
   },
 };
@@ -57,7 +62,7 @@ export default function RegionNeighborhoods({
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_minmax(0,460px)] gap-x-14 gap-y-10 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-12 gap-y-10 items-start">
           {/* Area list — hover lights the map */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-10">
             {areaKeys.map((a) => (
