@@ -199,39 +199,72 @@ export default async function RegionGuide({
               />
             </div>
             <div>
-              <h2 className="font-display text-white text-3xl sm:text-4xl font-light leading-[1.08] tracking-tight normal-case text-balance">
-                {g(`categories.${c}.title`)}
-              </h2>
-              <p className="text-white/60 mt-4 text-lg leading-relaxed">
-                {g(`categories.${c}.lead`)}
-              </p>
-              <div className="mt-8 space-y-6">
-                {Array.from(
-                  { length: REGION_SPOT_COUNTS[region]?.[c] ?? 3 },
-                  (_, si) => `s${si + 1}`,
-                ).map((s) => {
-                  const guide = spotGuides[c]?.[s];
-                  return (
-                    <div key={s} className="border-t border-line pt-5">
-                      <h3 className="text-white font-semibold tracking-tight">
-                        {g(`categories.${c}.spots.${s}.name`)}
-                      </h3>
-                      <p className="text-white/55 text-sm mt-1.5 leading-relaxed">
-                        {g(`categories.${c}.spots.${s}.desc`)}
-                      </p>
-                      {guide && (
-                        <Link
-                          href={guide}
-                          className="mt-2.5 inline-flex items-center gap-1.5 text-sm font-medium text-white/75 underline decoration-white/30 underline-offset-4 transition-colors hover:text-white hover:decoration-white"
-                        >
-                          {t("guides.readGuide")}
-                          <ArrowRight className="w-3.5 h-3.5" />
-                        </Link>
-                      )}
+              {(() => {
+                const spotCount = REGION_SPOT_COUNTS[region]?.[c] ?? 3;
+                const compact = spotCount > 3;
+                return (
+                  <>
+                    <h2 className="font-display text-white text-3xl sm:text-4xl font-light leading-[1.08] tracking-tight normal-case text-balance">
+                      {g(`categories.${c}.title`)}
+                    </h2>
+                    <p
+                      className={`text-white/60 mt-4 leading-relaxed ${
+                        compact ? "text-base" : "text-lg"
+                      }`}
+                    >
+                      {g(`categories.${c}.lead`)}
+                    </p>
+                    <div
+                      className={
+                        compact
+                          ? "mt-6 grid grid-cols-1 sm:grid-cols-2 gap-x-8"
+                          : "mt-8 space-y-6"
+                      }
+                    >
+                      {Array.from(
+                        { length: spotCount },
+                        (_, si) => `s${si + 1}`,
+                      ).map((s) => {
+                        const guide = spotGuides[c]?.[s];
+                        return (
+                          <div
+                            key={s}
+                            className={`border-t border-line ${
+                              compact ? "py-3.5" : "pt-5"
+                            }`}
+                          >
+                            <h3
+                              className={`text-white font-semibold tracking-tight ${
+                                compact ? "text-[15px]" : ""
+                              }`}
+                            >
+                              {g(`categories.${c}.spots.${s}.name`)}
+                            </h3>
+                            <p
+                              className={`text-white/55 leading-relaxed ${
+                                compact ? "text-[13px] mt-1" : "text-sm mt-1.5"
+                              }`}
+                            >
+                              {g(`categories.${c}.spots.${s}.desc`)}
+                            </p>
+                            {guide && (
+                              <Link
+                                href={guide}
+                                className={`inline-flex items-center gap-1.5 font-medium text-white/75 underline decoration-white/30 underline-offset-4 transition-colors hover:text-white hover:decoration-white ${
+                                  compact ? "mt-2 text-[13px]" : "mt-2.5 text-sm"
+                                }`}
+                              >
+                                {t("guides.readGuide")}
+                                <ArrowRight className="w-3.5 h-3.5" />
+                              </Link>
+                            )}
+                          </div>
+                        );
+                      })}
                     </div>
-                  );
-                })}
-              </div>
+                  </>
+                );
+              })()}
             </div>
           </section>
         ))}
