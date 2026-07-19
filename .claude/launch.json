@@ -6,6 +6,12 @@
       "runtimeExecutable": "npx",
       "runtimeArgs": ["next", "dev", "-p", "5050"],
       "port": 5050
+    },
+    {
+      "name": "os-next-dev",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["--prefix", "/Users/praritkantong/SilqhausApps/silqhaus-os-next", "run", "dev"],
+      "port": 5173
     }
   ]
 }
