@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { ArrowDown } from "lucide-react";
 
@@ -12,8 +13,21 @@ export default function PmBridge() {
   const t = useTranslations("propertyManagement.bridge");
 
   return (
-    <section className="bg-ink py-20 sm:py-24 md:py-28 border-t border-line">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <section className="relative bg-ink py-24 sm:py-28 md:py-36 border-t border-line overflow-hidden">
+      {/* Villa photo, held back so the statement stays the subject */}
+      <div className="absolute inset-0" aria-hidden="true">
+        <Image
+          src="/property-management/hero-2026.jpg"
+          alt=""
+          fill
+          sizes="100vw"
+          className="object-cover object-center"
+        />
+        <div className="absolute inset-0 bg-black/70" />
+        <div className="absolute inset-0 bg-gradient-to-b from-ink via-transparent to-ink" />
+      </div>
+
+      <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <span className="eyebrow eyebrow--center mb-6">{t("eyebrow")}</span>
         <p className="font-display text-white/60 text-3xl sm:text-4xl md:text-[2.75rem] font-light leading-[1.25] tracking-tight normal-case text-balance mt-6">
           {t.rich("statement", {
