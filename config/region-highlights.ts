@@ -41,6 +41,21 @@ export const REGION_HIGHLIGHTS: Record<string, RegionHighlight[]> = {
 
 /** Neighborhood keys per region — content in `guides.<region>.areas.items.*`. */
 export const REGION_AREAS: Record<string, string[]> = {
+  phuket: [
+    "phuketTown",
+    "patong",
+    "karon",
+    "kata",
+    "naiHarn",
+    "rawai",
+    "kamala",
+    "surin",
+    "bangTao",
+    "naithon",
+    "naiYang",
+    "capePanwa",
+    "thalang",
+  ],
   bangkok: [
     "rattanakosin",
     "riverside",
@@ -61,16 +76,19 @@ export const REGION_AREAS: Record<string, string[]> = {
 
 /** Shopping group keys per region — content in `guides.<region>.shopping.groups.*`. */
 export const REGION_SHOPPING: Record<string, string[]> = {
+  phuket: ["malls", "markets", "night"],
   bangkok: ["malls", "markets", "night"],
 };
 
 /** Transport item keys per region — content in `guides.<region>.transport.items.*`. */
 export const REGION_TRANSPORT: Record<string, string[]> = {
+  phuket: ["airport", "car", "ride", "moto", "bus", "ferry"],
   bangkok: ["airports", "airportRail", "rail", "river", "ride", "moto"],
 };
 
 /** Good-to-know tip keys per region — content in `guides.<region>.good.items.*`. */
 export const REGION_GOOD: Record<string, string[]> = {
+  phuket: ["sim", "cash", "temple", "riptide", "scooter", "season"],
   bangkok: ["sim", "cash", "temple", "tuktuk", "water"],
 };
 
@@ -81,6 +99,7 @@ export const REGION_SPOT_COUNTS: Record<string, Record<string, number>> = {
 
 /** Length of the numbered things-to-do checklist, when a region has one. */
 export const REGION_THINGS_COUNT: Record<string, number> = {
+  phuket: 30,
   bangkok: 30,
 };
 

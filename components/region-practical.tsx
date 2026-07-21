@@ -7,7 +7,9 @@ import {
   TrainFront,
   TramFront,
   Ship,
+  Car,
   CarTaxiFront,
+  Bus,
   Bike,
   Navigation,
   ShoppingBag,
@@ -18,10 +20,14 @@ import {
 
 const TRANSPORT_ICONS: Record<string, LucideIcon> = {
   airports: Plane,
+  airport: Plane,
   airportRail: TrainFront,
   rail: TramFront,
   river: Ship,
+  ferry: Ship,
+  car: Car,
   ride: CarTaxiFront,
+  bus: Bus,
   moto: Bike,
 };
 

@@ -1183,6 +1183,216 @@
               }
             }
           }
+        },
+        "areas": {
+          "title": "Know your side of the island.",
+          "intro": "Phuket changes character every few kilometres — west coast for sunsets, east coast for calm water, and a green middle most visitors never see.",
+          "hint": "Hover an area to find it on the map",
+          "items": {
+            "phuketTown": {
+              "name": "Phuket Town (Old Town)",
+              "desc": "Pastel Sino-Portuguese shophouses, Peranakan kitchens, and the island's only real streetlife after dark — the antidote to the beach strips."
+            },
+            "patong": {
+              "name": "Patong",
+              "desc": "The island's loudest room — Bangla Road, jet skis, and every holiday service imaginable packed into two square kilometres."
+            },
+            "karon": {
+              "name": "Karon",
+              "desc": "Patong with the volume down two notches — a long straight beach, squeaky white sand, and room to breathe."
+            },
+            "kata": {
+              "name": "Kata & Kata Noi",
+              "desc": "Surf schools in low season, families in high — with Kata Noi around the headland, quieter and prettier still."
+            },
+            "naiHarn": {
+              "name": "Nai Harn",
+              "desc": "The local favourite at the southern tip — a lagoon behind, a near-perfect bay in front, and not a high-rise in sight."
+            },
+            "rawai": {
+              "name": "Rawai & Chalong",
+              "desc": "Where Phuket actually lives — longtail piers, seafood by the kilo, and the launch point for every island day."
+            },
+            "kamala": {
+              "name": "Kamala",
+              "desc": "Millionaire's Mile on the headland, a quiet Muslim fishing village on the sand — the island's most surprising split personality."
+            },
+            "surin": {
+              "name": "Surin",
+              "desc": "Old-money Phuket — beach clubs under casuarina trees and villas tucked up the hillside, out of view."
+            },
+            "bangTao": {
+              "name": "Bang Tao & Laguna",
+              "desc": "Six kilometres of sand fronting the resort belt, with Boat Avenue's restaurants and Friday market just inland."
+            },
+            "naithon": {
+              "name": "Nai Thon & Layan",
+              "desc": "The quiet north-west — one low-rise row behind the beach and almost no through traffic."
+            },
+            "naiYang": {
+              "name": "Nai Yang & Mai Khao",
+              "desc": "National-park sand under casuarina shade, and a runway close enough to watch the landings from the water."
+            },
+            "capePanwa": {
+              "name": "Cape Panwa",
+              "desc": "The east-coast headland — aquarium, deep-water piers, and the sunrises the west coast never gets."
+            },
+            "thalang": {
+              "name": "Thalang & the interior",
+              "desc": "The green middle — waterfalls, rubber plantations, the Heroines Monument, and Phuket before tourism arrived."
+            }
+          }
+        },
+        "practical": {
+          "title": "Getting around, shopping & good to know.",
+          "lead": "The practical side of the island, in three parts — open a section to dive in."
+        },
+        "transport": {
+          "title": "Getting there & around.",
+          "lead": "There's no train and no meter — Phuket runs on rental cars, scooters, and whichever pier you leave from.",
+          "items": {
+            "airport": {
+              "name": "One airport, up north",
+              "desc": "Phuket International (HKT) sits at the island's top end — allow 40 minutes down to Bang Tao, and up to 90 to Patong in traffic."
+            },
+            "car": {
+              "name": "Rent a car",
+              "desc": "The island is bigger than it looks and the hills are real — a car is the difference between three beaches in a day and one."
+            },
+            "ride": {
+              "name": "Grab, Bolt & taxis",
+              "desc": "App rides now cover most of the island and settle the old taxi arguments — coverage thins after midnight and out in Thalang."
+            },
+            "moto": {
+              "name": "Scooters",
+              "desc": "The local default and the local hazard — helmet on, licence in the wallet, and stay off the Patong hill in the rain."
+            },
+            "bus": {
+              "name": "Songthaews & smart buses",
+              "desc": "Blue songthaews run beach-to-town on fixed routes for pocket change; the airport smart bus is the cheapest way in."
+            },
+            "ferry": {
+              "name": "Piers & island boats",
+              "desc": "Rassada for Phi Phi and Krabi, Chalong for day trips, Bang Rong for Koh Yao — pick the pier before you book the boat."
+            }
+          }
+        },
+        "shopping": {
+          "title": "Shopping — markets first, malls second.",
+          "lead": "Phuket shops in three registers: air-conditioned malls out on the bypass, weekend markets worth planning around, and night bazaars that only wake at seven.",
+          "groups": {
+            "malls": {
+              "title": "The malls",
+              "s1": {
+                "name": "Central Phuket",
+                "desc": "Floresta and Festival joined at the hip on the bypass — the island's only full-scale mall day."
+              },
+              "s2": {
+                "name": "Jungceylon",
+                "desc": "Patong's indoor escape — practical rather than glamorous, and very welcome when the sun is brutal."
+              },
+              "s3": {
+                "name": "Central Village",
+                "desc": "The outlet mall near the airport — last-day bargain territory if your flight is an evening one."
+              }
+            },
+            "markets": {
+              "title": "The markets",
+              "s1": {
+                "name": "Naka Weekend Market",
+                "desc": "The big Saturday–Sunday sprawl below Central — clothes, phone cases, and a serious food alley."
+              },
+              "s2": {
+                "name": "Lard Yai walking street",
+                "desc": "Thalang Road closed to cars on Sundays — the island's most atmospheric market, heritage facades and all."
+              },
+              "s3": {
+                "name": "Banzaan Fresh Market",
+                "desc": "Patong's proper wet market behind Jungceylon — buy the fish downstairs, have it cooked upstairs."
+              }
+            },
+            "night": {
+              "title": "Night & local",
+              "s1": {
+                "name": "Chillva Market",
+                "desc": "Phuket Town's container-yard night market — where the island's twenty-somethings actually go."
+              },
+              "s2": {
+                "name": "Boat Avenue & Porto de Phuket",
+                "desc": "Cherngtalay's restaurant strip, with a Friday market that pulls in the whole north-west coast."
+              },
+              "s3": {
+                "name": "Malin Plaza",
+                "desc": "Patong's open-air food court near the sea — grilled seafood, cold beer, no pretence."
+              }
+            }
+          }
+        },
+        "good": {
+          "title": "Good to know",
+          "lead": "The small things that make Phuket easier.",
+          "items": {
+            "sim": {
+              "name": "Get a Thai eSIM on arrival",
+              "desc": "Data from the moment you land — you'll want it for Grab, maps, and checking the ferry timetables."
+            },
+            "cash": {
+              "name": "Cash for markets, cards for malls",
+              "desc": "Beach vendors, songthaews, and longtail boatmen want baht; malls, resorts, and Grab take cards. Keep small notes."
+            },
+            "temple": {
+              "name": "Cover shoulders and knees",
+              "desc": "Wat Chalong and the Big Buddha enforce it — carry a light layer, and slip your shoes off where the signs ask."
+            },
+            "riptide": {
+              "name": "Respect the red flags",
+              "desc": "The west coast gets serious rip currents from May to October. A red flag means out of the water — every year people ignore it."
+            },
+            "scooter": {
+              "name": "Helmet, licence, no flip-flops",
+              "desc": "Checkpoints are routine, and most travel insurance voids without a motorcycle licence. The hills punish inexperience."
+            },
+            "season": {
+              "name": "Know which month, which coast",
+              "desc": "November to April is the postcard; May to October brings rain, swell, and half-price villas — the east coast stays calmer either way."
+            }
+          }
+        },
+        "things": {
+          "title": "Thirty things to do in Phuket.",
+          "lead": "The island checklist — tick them off across a long weekend, a low season, or a life lived here.",
+          "items": {
+            "i1": "Watch the sun drop off Promthep Cape with everyone else, and not mind",
+            "i2": "Climb to the Big Buddha for the island's widest view",
+            "i3": "Pay respects at Wat Chalong, Phuket's most revered temple",
+            "i4": "Wander Old Town's pastel shophouses along Thalang and Dibuk Roads",
+            "i5": "Eat your way down Lard Yai on a Sunday evening",
+            "i6": "Take a longtail through Phang Nga Bay's limestone karsts",
+            "i7": "Kayak into the hongs — the collapsed caves hidden inside the islands",
+            "i8": "Reach Coral Island early and swim before the tour boats land",
+            "i9": "Sail to the Similans for the clearest water in Thailand (Oct–May)",
+            "i10": "Snorkel Racha Yai's shallow reef on a calm morning",
+            "i11": "Learn to surf on Kata's low-season break",
+            "i12": "Drive the Karon viewpoint road for the three-bay panorama",
+            "i13": "Swim at Freedom Beach after the longtail drops you off",
+            "i14": "Find Ya Nui's tiny cove below the windmill",
+            "i15": "Watch the planes come in low over Mai Khao from the sand",
+            "i16": "Book a proper Thai massage, then a proper spa day",
+            "i17": "Eat Hokkien mee in an Old Town coffee shop that predates you",
+            "i18": "Try Peranakan cooking — the island's own Sino-Thai kitchen",
+            "i19": "Buy the day's catch at Rawai seafood market and have it grilled",
+            "i20": "Take a cooking class and learn southern curries, not Bangkok ones",
+            "i21": "Drink a sundowner at a Surin or Kamala beach club",
+            "i22": "See a Muay Thai fight at a Patong stadium",
+            "i23": "Walk Bangla Road once, for the anthropology",
+            "i24": "Cross to Koh Yao Noi for the Phuket that stopped in 1995",
+            "i25": "Ride out to Bang Pae and Ton Sai waterfalls after the rain",
+            "i26": "Visit the Phuket Elephant Sanctuary — retired elephants, no riding",
+            "i27": "Catch the Vegetarian Festival's processions in September or October",
+            "i28": "Walk up Khao Rang for a town-side sunset instead of a beach one",
+            "i29": "Get out to Sirinat National Park for empty northern sand",
+            "i30": "Ferry to Phi Phi and stay the night, after the day boats leave"
+          }
         }
       },
       "pattaya": {

@@ -61,9 +61,17 @@ export default function RegionNeighborhoods({
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-12 gap-y-10 items-start">
-          {/* Area list — hover lights the map */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-10">
+        <div
+          className={`grid grid-cols-1 gap-x-12 gap-y-10 items-start ${
+            map ? "lg:grid-cols-2" : ""
+          }`}
+        >
+          {/* Area list — hover lights the map. Without a map it spreads wide. */}
+          <div
+            className={`grid grid-cols-1 sm:grid-cols-2 gap-x-10 ${
+              map ? "" : "lg:grid-cols-3"
+            }`}
+          >
             {areaKeys.map((a) => (
               <div
                 key={a}
