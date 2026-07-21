@@ -1,38 +1,25 @@
 "use client";
 
-import { useState } from "react";
-import { Mail } from "lucide-react";
+import { Mail, MessageCircle } from "lucide-react";
 import { useTranslations } from "next-intl";
-import { useRouter } from "@/i18n/navigation";
+import { Link, useRouter } from "@/i18n/navigation";
 
 /**
  * "Book direct — best rate guarantee" promo band shown under the hero.
- * The CTA opens the live Chatwoot chat (talk to staff); if the chat SDK
- * isn't ready it falls back to the contact page. No backend/API changes.
+ * Two paths: send an inquiry via the contact form (we follow up), or open
+ * the live Chatwoot chat right away (falls back to the contact page if the
+ * chat SDK isn't ready). No backend/API changes.
  */
 export default function BookDirectBanner() {
   const t = useTranslations("home.bookDirect");
   const router = useRouter();
-  const [email, setEmail] = useState("");
 
   const talkToStaff = () => {
-    const mail = email.trim();
     const cw = (window as any).$chatwoot;
     if (cw && typeof cw.toggle === "function") {
-      if (mail) {
-        try {
-          cw.setUser(mail, { email: mail });
-        } catch {
-          /* non-fatal */
-        }
-      }
       cw.toggle("open");
     } else {
-      router.push(
-        mail
-          ? { pathname: "/contact-us", query: { email: mail } }
-          : "/contact-us",
-      );
+      router.push("/contact-us");
     }
   };
 
@@ -41,7 +28,7 @@ export default function BookDirectBanner() {
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-9 sm:py-12">
         <div className="flex flex-col lg:flex-row lg:items-center gap-6 lg:gap-10">
           <div className="lg:flex-1">
-            <h2 className="text-ink font-bold text-2xl sm:text-3xl md:text-[2rem] leading-[1.12] tracking-tight normal-case">
+            <h2 className="text-ink font-bold text-xl sm:text-2xl lg:text-[1.65rem] leading-[1.15] tracking-tight normal-case xl:whitespace-nowrap">
               {t("title")}
             </h2>
             <p className="text-neutral-600 font-poppins text-sm sm:text-base mt-2.5 max-w-2xl leading-relaxed">
@@ -49,34 +36,33 @@ export default function BookDirectBanner() {
             </p>
           </div>
 
-          <form
-            onSubmit={(e) => {
-              e.preventDefault();
-              talkToStaff();
-            }}
-            className="flex flex-col sm:flex-row items-stretch gap-3 lg:shrink-0"
-          >
-            <div className="flex items-center gap-3 bg-neutral-100 border border-neutral-200 rounded-full px-5 py-3 min-w-0 sm:w-80 focus-within:border-neutral-400 transition-colors">
-              <Mail
-                className="w-5 h-5 text-neutral-400 shrink-0"
-                aria-hidden="true"
-              />
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder={t("emailPlaceholder")}
-                aria-label={t("emailPlaceholder")}
-                className="w-full bg-transparent text-neutral-900 placeholder:text-neutral-500 outline-none font-poppins text-[15px]"
-              />
+          {/* Equal columns so both pills are exactly the same size */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-3 lg:shrink-0">
+            {/* Path one — inquiry form, we follow up */}
+            <div className="flex flex-col gap-1.5">
+              <p className="text-neutral-500 text-xs pl-2">{t("inquiryHint")}</p>
+              <Link
+                href="/contact-us"
+                className="inline-flex w-full sm:min-w-56 items-center justify-center gap-2.5 rounded-full border border-neutral-300 bg-neutral-100 text-ink px-6 py-3 font-poppins font-semibold text-[15px] whitespace-nowrap hover:border-neutral-400 hover:bg-neutral-200 transition-colors"
+              >
+                <Mail className="w-4 h-4 shrink-0" aria-hidden="true" />
+                {t("inquiryCta")}
+              </Link>
             </div>
-            <button
-              type="submit"
-              className="rounded-full bg-ink text-white px-7 py-3 font-poppins font-semibold text-[15px] hover:bg-neutral-800 transition-colors shrink-0"
-            >
-              {t("cta")}
-            </button>
-          </form>
+
+            {/* Path two — no waiting, straight to live chat */}
+            <div className="flex flex-col gap-1.5">
+              <p className="text-neutral-500 text-xs pl-2">{t("ctaHint")}</p>
+              <button
+                type="button"
+                onClick={talkToStaff}
+                className="inline-flex w-full sm:min-w-56 items-center justify-center gap-2.5 rounded-full border border-transparent bg-ink text-white px-6 py-3 font-poppins font-semibold text-[15px] whitespace-nowrap hover:bg-neutral-800 transition-colors"
+              >
+                <MessageCircle className="w-4 h-4 shrink-0" aria-hidden="true" />
+                {t("cta")}
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </section>

@@ -3,6 +3,7 @@
     "buy_rent": "FOR SALE & RENT",
     "experiences": "EXPERIENCES",
     "propertyManagement": "PROPERTY MANAGEMENT",
+    "forAgencies": "FOR AGENCIES",
     "ourProperty": "OUR PROPERTY",
     "vacationRentals": "VACATION RENTALS",
     "properties": "FOR RENT & SALE",
@@ -43,8 +44,10 @@
     },
     "bookDirect": {
       "title": "Best rate guarantee when you book direct with us.",
-      "subtitle": "Guaranteed 10% off every stay you can book direct — leave us your email.",
-      "emailPlaceholder": "Email address",
+      "subtitle": "Guaranteed 10% off every stay when you book direct.",
+      "inquiryHint": "Prefer we get back to you?",
+      "inquiryCta": "Send us an inquiry",
+      "ctaHint": "Can't wait?",
       "cta": "Talk to our staff"
     },
     "guestFavorites": {
@@ -842,8 +845,10 @@
   },
   "footer": {
     "brand": "SILQHAUS",
-    "tagline": "Hospitality & Revenue Management",
-    "company": "By Better Home and Better Living Co., Ltd.",
+    "tagline": "Hospitality & Property Management",
+    "company": "Better Home and Better Living Co., Ltd.",
+    "phoneLabel": "Phone number",
+    "emailLabel": "Email",
     "about": "About",
     "guides": "Blog",
     "aboutUs": "About Us",
@@ -855,6 +860,22 @@
     "contact": "Contact",
     "contactUs": "Contact Us",
     "followUs": "Follow Us",
+    "stay": "Stay",
+    "vacationRentals": "Vacation Rentals",
+    "forRent": "Properties for Rent",
+    "forSale": "Properties for Sale",
+    "monthlyStays": "Monthly Stays",
+    "guestLogin": "Guest Login",
+    "guidesCol": "Guides",
+    "regionGuide": "{region} Guide",
+    "companyCol": "Company",
+    "ourStory": "Our Story",
+    "forGuests": "For Guests",
+    "forOwners": "For Property Owners",
+    "forAgencies": "For Partners/Agencies",
+    "tatLicense": "TAT License No. 31/01480",
+    "addressLine1": "Boat Plaza, 143/123 (2nd Floor)",
+    "addressLine2": "Moo 5, Si Sunthon, Mueang, Phuket 83000",
     "allRightsReserved": "All rights reserved.",
     "privacyPolicy": "Privacy Policy",
     "termsOfService": "Terms of Service",
@@ -937,12 +958,12 @@
     },
     "hero": {
       "subtitle": "GUEST SERVICES",
-      "title": "PLAN YOUR LUXURY STAY",
-      "description": "Ready to experience Thailand's finest luxury accommodations? Our dedicated concierge team is here to help you find and book the perfect property for your unforgettable getaway."
+      "title": "Let's plan your stay.",
+      "description": "Tell us what you're looking for — dates, group size, the view you want to wake up to — and our team will come back with the right villa."
     },
     "form": {
-      "title": "Guest Booking Inquiry",
-      "subtitle": "Let us help you plan your perfect luxury getaway",
+      "title": "Send us an inquiry",
+      "subtitle": "Tell us what you're looking for — we usually reply within two hours.",
       "labels": {
         "fullName": "Full Name *",
         "email": "Email Address *",
@@ -978,6 +999,363 @@
         "description": "Response within 2 hours",
         "note": "Booking & concierge"
       }
+    }
+  },
+  "contactOwner": {
+    "metadata": {
+      "title": "Partner With Us | List Your Property — Silqhaus",
+      "description": "Hand your villa to a small-by-design operator running its own software. Photo-verified housekeeping, 24/7 AI guest replies, and a real-time owner portal. Phuket, Pattaya & Bangkok."
+    },
+    "hero": {
+      "title": "Partner with us.",
+      "description": "Fewer homes, hotel standards, and software we built ourselves. Tell us about your property and we'll come back with what it should be earning."
+    },
+    "why": {
+      "title": "Why owners choose us.",
+      "intro": "Most management in Thailand runs on rented software and monthly PDFs. Here's what we do differently.",
+      "items": {
+        "os": {
+          "title": "Software we built ourselves",
+          "desc": "Silqhaus OS runs every booking, task, and payout in one place. Most managers here rent generic software — we built ours around owners."
+        },
+        "mali": {
+          "title": "Guests answered in seconds, not hours",
+          "desc": "Mali, our AI guest manager, reads the whole thread and your villa's own facts before replying — 24/7, in any language. Fast replies lift your ranking and your bookings."
+        },
+        "verified": {
+          "title": "Every task photo-verified",
+          "desc": "Cleaning, maintenance, inspections — each one logged with before-and-after photos, timestamps, and the name of whoever did it. Quality you can check, not just promises."
+        },
+        "portal": {
+          "title": "Your numbers, live",
+          "desc": "Calendar, statements, and documents in a real-time owner portal. No waiting until month-end to find out how your home performed."
+        },
+        "ownerFirst": {
+          "title": "Owner-first, no conflicts",
+          "desc": "We're not an agency selling villas on the side. We earn when your home earns — nothing else is competing for our attention."
+        },
+        "small": {
+          "title": "Small by design",
+          "desc": "Fewer homes, hotel standards. You get a named local team who know your villa — not a ticket number in a portfolio of hundreds."
+        },
+        "distribution": {
+          "title": "Seen everywhere guests book",
+          "desc": "Listed and auto-synced across Airbnb, Booking.com, Vrbo, Agoda and more — plus paid Meta and Google campaigns driving direct bookings."
+        },
+        "pricing": {
+          "title": "Pricing that moves with the market",
+          "desc": "Rates retuned continuously against demand, season, and what your neighbours are charging — not a rate card set once in January and forgotten."
+        },
+        "compliance": {
+          "title": "Thai paperwork handled",
+          "desc": "TM30 reporting, guest screening, damage claims, and local compliance — tracked and done. The part overseas owners lose sleep over stops being your problem."
+        }
+      },
+      "moreLink": "See how it all works"
+    },
+    "form": {
+      "title": "List your property",
+      "subtitle": "A few details is all we need to start. No cost, no commitment.",
+      "labels": {
+        "fullName": "Full name",
+        "email": "Email address",
+        "phone": "Phone number",
+        "propertyType": "Property type",
+        "location": "Location",
+        "bedrooms": "Bedrooms",
+        "message": "Tell us about your property"
+      },
+      "placeholders": {
+        "fullName": "Enter your full name",
+        "email": "Enter your email",
+        "phone": "XX XXX XXXX",
+        "select": "Please select",
+        "bedrooms": "e.g. 4",
+        "message": "Where is it, how is it managed today, and what would you like to improve? A listing link is perfect too."
+      },
+      "types": {
+        "villa": "Villa",
+        "condo": "Condo",
+        "apartment": "Apartment",
+        "townhouse": "Townhouse",
+        "hotel": "Boutique hotel",
+        "other": "Other"
+      },
+      "locations": {
+        "phuket": "Phuket",
+        "pattaya": "Pattaya",
+        "bangkok": "Bangkok",
+        "samui": "Koh Samui",
+        "huahin": "Hua Hin",
+        "chiangmai": "Chiang Mai",
+        "other": "Elsewhere in Thailand"
+      },
+      "submit": "Send my details",
+      "submitting": "Sending…",
+      "disclaimer": "No cost, no commitment — we'll reply within one business day.",
+      "successMessage": "Thank you — we've got your details and will be in touch shortly.",
+      "errorMessage": "Something went wrong. Please email us at {email} and we'll pick it up from there.",
+      "validation": {
+        "invalidEmail": "Please enter a valid email address",
+        "invalidPhone": "Please enter a valid phone number"
+      },
+      "notProvided": "Not provided",
+      "noMessage": "No additional details provided"
+    },
+    "direct": {
+      "title": "Rather talk first?",
+      "description": "Call or message the team directly — we're happy to talk it through before you send anything.",
+      "email": "Owner enquiries",
+      "emailDescription": "Reply within one business day",
+      "phone": "Owner line",
+      "phoneDescription": "Speak to the team direct"
+    }
+  },
+  "contactChannels": {
+    "whatsapp": {
+      "title": "WhatsApp",
+      "description": "Chat or call — easiest from abroad"
+    },
+    "line": {
+      "title": "LINE",
+      "description": "Thailand's favourite — add us as a friend"
+    },
+    "wechat": {
+      "title": "WeChat",
+      "description": "Tap to copy our ID",
+      "copied": "Copied!"
+    },
+    "comingSoon": "ID coming soon — ask us in chat",
+    "chatCta": "Talk to us now"
+  },
+  "contactAgency": {
+    "metadata": {
+      "title": "Partner with Silqhaus | For Agencies & Partners",
+      "description": "Earn from your network without giving up your own business. Refer guests, refer owners, or grow together — your direct bookings stay 100% yours."
+    },
+    "hero": {
+      "title": "Partner with Silqhaus.",
+      "alt": "Two hospitality partners walking the grounds of a Thai villa at golden hour",
+      "description": "Earn from the network you already have — refer guests, refer owners, or simply grow alongside us. Your direct business stays 100% yours."
+    },
+    "models": {
+      "title": "Three ways to work with us.",
+      "intro": "We offer three partnership models designed to align with your internal structure.",
+      "items": {
+        "guests": {
+          "title": "You refer us guests",
+          "desc": "For travel agents, concierges, and DMCs with clients already heading to Thailand.",
+          "rows": {
+            "r1": {
+              "label": "What you do",
+              "value": "Send us the enquiry — dates, party size, and any requests — by email, LINE, or WhatsApp. No portal to learn."
+            },
+            "r2": {
+              "label": "What we do",
+              "value": "We quote, hold the dates, and look after the guest from booking through checkout. You stay copied on everything."
+            },
+            "r3": {
+              "label": "What you earn",
+              "value": "Commission on every completed stay, at a rate agreed with you before the first referral."
+            },
+            "r4": {
+              "label": "When you're paid",
+              "value": "One transfer a month, with a statement listing every booking behind it."
+            }
+          },
+          "note": "Commission rate and payout timing confirmed at signing."
+        },
+        "owners": {
+          "title": "You refer us owners",
+          "desc": "For agents and brokers who sell or lease villas and get asked \"so who manages it?\"",
+          "rows": {
+            "r1": {
+              "label": "What you do",
+              "value": "Introduce the owner — an email or a call is enough. We take the meeting from there."
+            },
+            "r2": {
+              "label": "What we do",
+              "value": "We onboard the villa and run it: pricing, distribution, guests, housekeeping, and monthly reporting."
+            },
+            "r3": {
+              "label": "What you earn",
+              "value": "10–12% of the revenue on bookings we bring in through OTAs and agencies, for as long as we manage the home."
+            },
+            "r4": {
+              "label": "What stays yours",
+              "value": "Direct walk-ins and your traditional TA sales. We take 0% on those — permanently."
+            }
+          },
+          "note": "Your existing client relationships are never touched."
+        },
+        "visibility": {
+          "title": "We exchange visibility",
+          "desc": "For agencies with an audience but no commission structure — or anyone who'd rather start informally.",
+          "rows": {
+            "r1": {
+              "label": "What you get",
+              "value": "A monthly note on new villas entering the portfolio, with photography and rates you can forward straight to clients."
+            },
+            "r2": {
+              "label": "What we share",
+              "value": "Co-marketing — features, campaigns, and content that put both names in front of the same travellers."
+            },
+            "r3": {
+              "label": "What we ask",
+              "value": "A referral back when a guest needs something we don't offer. Nothing contractual."
+            },
+            "r4": {
+              "label": "What it costs",
+              "value": "Nothing. No fees, no exclusivity, no minimum volume."
+            }
+          },
+          "note": "The easiest way to test the relationship before formalising it."
+        }
+      }
+    },
+    "economics": {
+      "title": "Transparency you can log into.",
+      "intro": "Partner with us and you get access to the Silqhaus Partner OS — the same system we run on. Every referral you send appears the moment it lands, with the full split visible.",
+      "items": {
+        "live": {
+          "title": "Live bookings, not monthly emails",
+          "desc": "Every booking you refer appears in your dashboard the moment it's confirmed — not four weeks later in a summary."
+        },
+        "split": {
+          "title": "The real split on every booking",
+          "desc": "What the guest paid, what the channel took, and exactly what you earn. The arithmetic is on screen, not asserted in an email."
+        },
+        "statement": {
+          "title": "Your statement, always current",
+          "desc": "Running totals for the month and every past statement archived, so you can reconcile whenever you like."
+        },
+        "noChasing": {
+          "title": "Nothing to chase",
+          "desc": "You never have to ask how many guests you sent, whether a stay completed, or when payment is coming. It's already there."
+        }
+      },
+      "video": {
+        "label": "Silqhaus Partner OS",
+        "hint": "A short tour — coming soon"
+      },
+      "caption": "Most partnerships ask you to trust the number you're handed. We'd rather show you where it came from."
+    },
+    "how": {
+      "title": "How it works.",
+      "steps": {
+        "s1": {
+          "title": "Reach out",
+          "desc": "Tell us about your agency and the guests or owners you work with."
+        },
+        "s2": {
+          "title": "Sign a simple agreement",
+          "desc": "One page, plain terms, no exclusivity and no lock-in period."
+        },
+        "s3": {
+          "title": "Refer guests or owners",
+          "desc": "Send them our way by whichever channel suits your team best."
+        },
+        "s4": {
+          "title": "Get paid monthly",
+          "desc": "A transparent statement each month showing every booking behind your commission."
+        }
+      }
+    },
+    "cta": {
+      "title": "Let's talk partnership.",
+      "description": "Message the partnerships team directly — we'll answer questions before you commit to anything.",
+      "phone": "Partnerships line",
+      "phoneDescription": "Speak to the team direct",
+      "email": "Partnerships email",
+      "emailDescription": "Reply within one business day"
+    }
+  },
+  "ourStory": {
+    "metadata": {
+      "title": "Our Story | Silqhaus — Thailand's First Decentralized Hotel Brand",
+      "description": "A hotel that doesn't live in one building. Beachfront villas in Phuket, sky-rise suites in Pattaya — connected by one platform and run to one standard."
+    },
+    "hero": {
+      "title": "Thailand's first decentralized hotel brand.",
+      "alt": "First light on the empty terrace of a Thai pool villa",
+      "description": "A hotel that doesn't live in one building. Silqhaus operates across Thailand's best coastlines and cities — beachfront villas in Phuket, sky-rise suites in Pattaya — all connected by one technology platform and run to one standard."
+    },
+    "statement": "Different properties. Same experience. That's the idea.",
+    "beginning": {
+      "title": "The beginning.",
+      "p1": "Silqhaus started with a question: why should a five-star experience require a five-star building?",
+      "p2": "Our roots run deep in Thai real estate and hospitality. Years of working alongside property owners in Pattaya and Phuket showed us a gap on both sides of the market — owners with exceptional properties but no professional operation behind them, and travellers who wanted the space and privacy of a private home without giving up hotel standards.",
+      "p3": "Silqhaus was built to close that gap."
+    },
+    "timeline": {
+      "title": "Twelve months, in order.",
+      "intro": "Everything below happened between July 2025 and today.",
+      "items": {
+        "founded": {
+          "date": "July 2025",
+          "title": "Silqhaus begins, in Phuket",
+          "desc": "The company is founded and the first villas come under management. One destination, a handful of homes, and a rule we've kept since: never take on more than we can run properly."
+        },
+        "pattaya": {
+          "date": "October 2025",
+          "title": "Pattaya opens",
+          "desc": "Three months in, a second coast — and the first real test of whether our standards travelled. They did."
+        },
+        "licence": {
+          "date": "December 2025",
+          "title": "Licensed by the Tourism Authority",
+          "desc": "Tourism business licence No. 31/01480, issued 3 December — the paperwork a surprising number of operators here never bother with."
+        },
+        "os": {
+          "date": "January 2026",
+          "title": "Silqhaus OS goes live",
+          "desc": "Off-the-shelf property software was never built for the way we work, so we stopped renting it. Every booking, task, and payout has run through our own system since."
+        },
+        "mali": {
+          "date": "March 2026",
+          "title": "Mali starts answering",
+          "desc": "Our AI guest manager goes live — reading the whole conversation and the property's own facts before every reply, in any language, at any hour."
+        },
+        "today": {
+          "date": "Today",
+          "title": "Eleven homes, two destinations",
+          "desc": "1,256+ nights hosted and a 4.99★ average across every platform we list on."
+        }
+      }
+    },
+    "quote": {
+      "text": "We didn't set out to build a management company. We set out to build the thing we wished existed when we were the ones handing over the keys.",
+      "attribution": "Boom Kantong",
+      "role": "Founder, Silqhaus"
+    },
+    "decentralized": {
+      "title": "A hotel, decentralized.",
+      "p1": "A traditional hotel puts 200 identical rooms under one roof. We put ours where you actually want to stay.",
+      "p2": "Every Silqhaus property is different — that's the point. What never changes is the standard behind it. The same check-in experience. The same linen and cleanliness protocols. The same response time when you message us at midnight. Whether you're steps from the sand or thirty floors above the bay, you're staying at Silqhaus."
+    },
+    "technology": {
+      "title": "Technology connects everything.",
+      "p1": "Behind every stay runs a single operating system. Dynamic pricing calibrated daily to the market. Guest communication answered around the clock. Housekeeping, maintenance, and quality checks tracked in real time across every property.",
+      "p2": "What a front desk does for one building, our technology does for an entire portfolio. That's how a decentralized brand keeps a centralized standard — and how our owners earn more while doing less."
+    },
+    "philosophy": {
+      "title": "Our philosophy",
+      "text": "A place to stay should be the foundation of the memory, not just the backdrop. Every property in our portfolio is personally inspected and must meet our standards for quality, location, and guest experience. If we wouldn't stay there ourselves, it doesn't carry the Silqhaus name."
+    },
+    "local": {
+      "title": "Local expertise",
+      "text": "We don't manage Thailand from somewhere else — we live here. Hidden beach coves, the restaurants locals actually eat at, the right driver, the right tailor, the right time to visit the temple. Our team helps guests find the Thailand that exists beyond the tourist trail."
+    },
+    "forward": {
+      "title": "Looking forward.",
+      "p1": "We believe travel is moving toward exactly what we've built: distributed, tech-enabled, locally rooted hospitality. More cities. More coastlines. One standard.",
+      "p2": "We're not just in the business of vacation rentals — we're building the hotel brand of the next decade, one property at a time."
+    },
+    "cta": {
+      "title": "Come and see what we've built.",
+      "description": "Stay in one of our homes, or bring us yours.",
+      "villas": "Browse our villas",
+      "partner": "Partner with us"
     }
   },
   "experiences": {
@@ -1401,7 +1779,7 @@
         "heroAlt": "Aerial view of Pattaya's crescent bay at dusk, city lights along the beach",
         "stayLine": "Staying in Pattaya? Our villas are here.",
         "highlightsTitle": "The Pattaya hit list.",
-        "highlightsIntro": "The places our guests ask about most — beaches, islands, and the icons. Guides on the blog where you see the arrow.",
+        "highlightsIntro": "The places our guests ask about most — where to base yourself, where to swim, and the icons. Guides on the blog where you see the arrow.",
         "intro": "Pattaya gets typecast, and it shouldn't be. Two hours from Bangkok, our second home is a bay of quiet northern sands, a temple carved entirely from teak, islands you can reach by longtail — and one of Thailand's best city sunsets from Pratumnak Hill. Here's the Pattaya we actually live in.",
         "categories": {
           "culture": {
@@ -2078,7 +2456,6 @@
       }
     }
   },
-
   "ourProperty": {
     "metadata": {
       "title": "Our Properties | Silqhaus - Browse Luxury Rentals",
@@ -2350,6 +2727,24 @@
       "tabEntertainment": "Entertainment",
       "tabMarkets": "Markets",
       "attractions": {
+        "wongamat": {
+          "name": "Wongamat Beach"
+        },
+        "walkingStreet": {
+          "name": "Walking Street"
+        },
+        "pratumnakHill": {
+          "name": "Pratumnak Hill"
+        },
+        "naJomtien": {
+          "name": "Na Jomtien"
+        },
+        "bangsaray": {
+          "name": "Bangsaray"
+        },
+        "lakeMabprachan": {
+          "name": "Lake Mabprachan"
+        },
         "jomtienBeach": {
           "name": "Jomtien Beach",
           "description": "A family-friendly beach stretching 6 kilometers south of Pattaya, Jomtien offers a more relaxed atmosphere than the main beach. The calm waters are perfect for swimming, jet skiing, parasailing, and beach volleyball. Palm-lined shores provide natural shade, and the beachfront promenade is dotted with seafood restaurants and massage pavilions."
@@ -2782,7 +3177,6 @@
     "lastUpdated": "This Privacy Policy was last updated on February 17, 2026.",
     "copyright": "© 2026 Better Home & Better Living Co., Ltd. All rights reserved."
   },
-
   "pmsListingCard": {
     "perMonth": "/ mo",
     "areaUnit": "m²",
@@ -2918,7 +3312,6 @@
     "rentPriceMonthly": "Monthly (1–2 months)",
     "rentalRatesHeading": "Rental rates"
   },
-
   "pmsPropertyInquiry": {
     "form": {
       "title": "Inquire about this property",
@@ -2975,7 +3368,6 @@
       "close": "Close"
     }
   },
-
   "propertyDetail": {
     "metadata": {
       "notFoundTitle": "Property Not Found | Silqhaus",

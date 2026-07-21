@@ -1,8 +1,7 @@
 "use client";
 import { useState, useEffect, type FormEvent } from "react";
+import Image from "next/image";
 import emailjs from "@emailjs/browser";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
@@ -13,7 +12,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Phone, Mail, Users, Send, Loader2 } from "lucide-react";
+import { Send, Loader2 } from "lucide-react";
+import ContactChannels from "@/components/contact-channels";
 import {
   COUNTRY_CODES,
   getCodeFromValue,
@@ -23,13 +23,15 @@ import { useTranslations } from "next-intl";
 
 const SUPPORT_EMAIL =
   process.env.NEXT_PUBLIC_CONTACT_EMAIL || "info@silqhaus.com";
-const SUPPORT_PHONE =
-  process.env.NEXT_PUBLIC_CONTACT_PHONE || "+66 (0) 929490211";
 
 const EMAILJS_SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID_SDR || "";
 const EMAILJS_TEMPLATE_ID =
   process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID_SDR || "";
 const EMAILJS_PUBLIC_KEY = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY_SDR || "";
+
+/** Shared input skin — the site's ink/hairline language. */
+const FIELD =
+  "h-11 rounded-lg bg-white/[0.04] border-line text-white placeholder:text-white/50 focus:border-white/40 focus-visible:ring-1 focus-visible:ring-white/25 transition-colors";
 
 export default function ContactUs() {
   const t = useTranslations("contactUs");
@@ -126,287 +128,262 @@ export default function ContactUs() {
   const MAX_MESSAGE_CHARS = 800;
 
   return (
-    <main className="min-h-screen bg-[#0a0a0a]">
-      <section className="relative bg-gradient-to-br from-[#ffffff] to-[#a3894a] text-[#0a0a0a] pt-32 pb-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <div className="w-16 h-16 mx-auto mb-6 bg-[#0a0a0a]/20 rounded-full flex items-center justify-center">
-              <Users className="w-8 h-8 text-[#0a0a0a]" />
-            </div>
-            <p className="text-[#0a0a0a] text-sm font-poppins font-light tracking-[0.3em] uppercase mb-4">
-              {t("hero.subtitle")}
-            </p>
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-gilroy font-bold mb-6 leading-tight tracking-wide">
-              {t("hero.title")}
-            </h1>
-            <p className="text-[#0a0a0a]/90 max-w-3xl mx-auto font-poppins font-light text-lg sm:text-xl leading-snug mb-8">
-              {t("hero.description")}
-            </p>
-          </div>
+    <main className="min-h-screen bg-ink">
+      {/* ── Hero — full-bleed photo, same grammar as the region guides ── */}
+      <section className="relative h-[52vh] min-h-[420px] flex items-end overflow-hidden">
+        <Image
+          src="/photos/contact-us-hero.jpg"
+          alt={t("hero.title")}
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-center"
+        />
+        <div
+          className="absolute inset-0 bg-gradient-to-t from-ink via-black/25 to-black/10"
+          aria-hidden="true"
+        />
+        <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-14 sm:pb-16">
+          <h1 className="font-display text-white text-4xl sm:text-5xl md:text-6xl font-light leading-[1.05] tracking-tight normal-case text-balance">
+            {t("hero.title")}
+          </h1>
+          <p className="text-white/80 mt-4 text-lg sm:text-xl leading-relaxed max-w-2xl">
+            {t("hero.description")}
+          </p>
         </div>
       </section>
 
-      <section className="py-24 bg-[#0a0a0a]">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Card
+      {/* ── Inquiry form + direct lines ── */}
+      <section className="py-14 sm:py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-5 gap-10 lg:gap-14">
+          {/* The form */}
+          <div
             id="inquiry-form"
-            className="bg-[#141414] border border-white/10 shadow-lg"
+            className="lg:col-span-3 rounded-2xl sm:rounded-3xl border border-line bg-white/[0.02] p-6 sm:p-9"
           >
-            <CardHeader>
-              <div className="flex items-center gap-4 mb-4">
-                <div className="w-12 h-12 bg-[#ffffff] rounded-full flex items-center justify-center">
-                  <Users className="w-6 h-6 text-[#0a0a0a]" />
-                </div>
-                <div>
-                  <CardTitle className="text-white font-gilroy font-bold text-2xl">
-                    {t("form.title")}
-                  </CardTitle>
-                  <p className="text-white/70 font-poppins">
-                    {t("form.subtitle")}
-                  </p>
-                </div>
-              </div>
-            </CardHeader>
-            <CardContent>
-              <form onSubmit={handleGuestSubmit} className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div className="space-y-2">
-                    <Label
-                      htmlFor="guest-name"
-                      className="font-poppins font-medium text-white"
-                    >
-                      {t("form.labels.fullName")}
-                    </Label>
-                    <Input
-                      id="guest-name"
-                      type="text"
-                      value={guestForm.name}
-                      onChange={(e) =>
-                        setGuestForm({ ...guestForm, name: e.target.value })
-                      }
-                      required
-                      className="font-poppins bg-[#1a1a1a] border-white/20 focus:border-[#ffffff] text-white placeholder:text-white/40"
-                      placeholder={t("form.placeholders.fullName")}
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <Label
-                      htmlFor="guest-email"
-                      className="font-poppins font-medium text-white"
-                    >
-                      {t("form.labels.email")}
-                    </Label>
-                    <Input
-                      id="guest-email"
-                      type="email"
-                      value={guestForm.email}
-                      onChange={(e) => {
-                        const value = e.target.value;
-                        setGuestForm({ ...guestForm, email: value });
-                        if (value && !validateEmail(value)) {
-                          setErrors((prev) => ({
-                            ...prev,
-                            email: t("form.validation.invalidEmail"),
-                          }));
-                        } else {
-                          setErrors((prev) => ({ ...prev, email: undefined }));
-                        }
-                      }}
-                      onBlur={(e) => {
-                        const value = e.target.value;
-                        if (value && !validateEmail(value)) {
-                          setErrors((prev) => ({
-                            ...prev,
-                            email: t("form.validation.invalidEmail"),
-                          }));
-                        }
-                      }}
-                      required
-                      className={`font-poppins bg-[#1a1a1a] border-white/20 focus:border-[#ffffff] text-white placeholder:text-white/40 ${errors.email ? "border-red-500" : ""}`}
-                      placeholder={t("form.placeholders.email")}
-                    />
-                    {errors.email && (
-                      <p className="text-red-400 text-xs mt-1 font-poppins">
-                        {errors.email}
-                      </p>
-                    )}
-                  </div>
-                </div>
+            <h2 className="font-display text-white text-2xl sm:text-3xl font-light leading-[1.1] tracking-tight normal-case">
+              {t("form.title")}
+            </h2>
+            <p className="text-white/60 mt-2 text-[15px] leading-relaxed">
+              {t("form.subtitle")}
+            </p>
 
+            <form onSubmit={handleGuestSubmit} className="mt-8 space-y-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <Label
-                    htmlFor="guest-phone"
-                    className="font-poppins font-medium text-white"
+                    htmlFor="guest-name"
+                    className="text-white/85 text-sm font-medium"
                   >
-                    {t("form.labels.phone")}
+                    {t("form.labels.fullName")}
                   </Label>
-                  <div className="flex gap-2">
-                    <Select
-                      value={guestForm.countryCode}
-                      onValueChange={(value) =>
-                        setGuestForm({ ...guestForm, countryCode: value })
+                  <Input
+                    id="guest-name"
+                    type="text"
+                    value={guestForm.name}
+                    onChange={(e) =>
+                      setGuestForm({ ...guestForm, name: e.target.value })
+                    }
+                    required
+                    autoComplete="name"
+                    className={FIELD}
+                    placeholder={t("form.placeholders.fullName")}
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label
+                    htmlFor="guest-email"
+                    className="text-white/85 text-sm font-medium"
+                  >
+                    {t("form.labels.email")}
+                  </Label>
+                  <Input
+                    id="guest-email"
+                    type="email"
+                    value={guestForm.email}
+                    onChange={(e) => {
+                      const value = e.target.value;
+                      setGuestForm({ ...guestForm, email: value });
+                      if (value && !validateEmail(value)) {
+                        setErrors((prev) => ({
+                          ...prev,
+                          email: t("form.validation.invalidEmail"),
+                        }));
+                      } else {
+                        setErrors((prev) => ({ ...prev, email: undefined }));
                       }
-                    >
-                      <SelectTrigger className="w-[140px] font-poppins bg-[#1a1a1a] border-white/20 text-white">
-                        <SelectValue placeholder="+66" />
-                      </SelectTrigger>
-                      <SelectContent className="bg-[#1a1a1a] border-white/20">
-                        {COUNTRY_CODES.map((cc) => (
-                          <SelectItem
-                            key={cc.value}
-                            value={cc.value}
-                            className="text-white hover:bg-[#ffffff]/20"
-                          >
-                            {cc.code} {cc.country}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                    <Input
-                      id="guest-phone"
-                      type="tel"
-                      value={guestForm.phone}
-                      onChange={(e) => {
-                        const value = e.target.value;
-                        setGuestForm({ ...guestForm, phone: value });
-                        if (value && !validatePhone(value)) {
-                          setErrors((prev) => ({
-                            ...prev,
-                            phone: t("form.validation.invalidPhone"),
-                          }));
-                        } else {
-                          setErrors((prev) => ({ ...prev, phone: undefined }));
-                        }
-                      }}
-                      onBlur={(e) => {
-                        const value = e.target.value;
-                        if (value && !validatePhone(value)) {
-                          setErrors((prev) => ({
-                            ...prev,
-                            phone: t("form.validation.invalidPhone"),
-                          }));
-                        }
-                      }}
-                      className={`flex-1 font-poppins bg-[#1a1a1a] border-white/20 focus:border-[#ffffff] text-white placeholder:text-white/40 ${errors.phone ? "border-red-500" : ""}`}
-                      placeholder={t("form.placeholders.phone")}
-                    />
-                  </div>
-                  {errors.phone && (
-                    <p className="text-red-400 text-xs mt-1 font-poppins">
-                      {errors.phone}
-                    </p>
+                    }}
+                    onBlur={(e) => {
+                      const value = e.target.value;
+                      if (value && !validateEmail(value)) {
+                        setErrors((prev) => ({
+                          ...prev,
+                          email: t("form.validation.invalidEmail"),
+                        }));
+                      }
+                    }}
+                    required
+                    autoComplete="email"
+                    className={`${FIELD} ${errors.email ? "border-red-400/70" : ""}`}
+                    placeholder={t("form.placeholders.email")}
+                  />
+                  {errors.email && (
+                    <p className="text-red-400 text-xs mt-1">{errors.email}</p>
                   )}
                 </div>
+              </div>
 
-                <div className="space-y-2">
+              <div className="space-y-2">
+                <Label
+                  htmlFor="guest-phone"
+                  className="text-white/85 text-sm font-medium"
+                >
+                  {t("form.labels.phone")}
+                </Label>
+                <div className="flex gap-2">
+                  <Select
+                    value={guestForm.countryCode}
+                    onValueChange={(value) =>
+                      setGuestForm({ ...guestForm, countryCode: value })
+                    }
+                  >
+                    <SelectTrigger className={`w-[132px] shrink-0 ${FIELD}`}>
+                      <SelectValue placeholder="+66" />
+                    </SelectTrigger>
+                    <SelectContent className="bg-[#161616] border-line text-white">
+                      {COUNTRY_CODES.map((cc) => (
+                        <SelectItem
+                          key={cc.value}
+                          value={cc.value}
+                          className="text-white focus:bg-white/10 focus:text-white"
+                        >
+                          {cc.code} {cc.country}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                  <Input
+                    id="guest-phone"
+                    type="tel"
+                    value={guestForm.phone}
+                    onChange={(e) => {
+                      const value = e.target.value;
+                      setGuestForm({ ...guestForm, phone: value });
+                      if (value && !validatePhone(value)) {
+                        setErrors((prev) => ({
+                          ...prev,
+                          phone: t("form.validation.invalidPhone"),
+                        }));
+                      } else {
+                        setErrors((prev) => ({ ...prev, phone: undefined }));
+                      }
+                    }}
+                    onBlur={(e) => {
+                      const value = e.target.value;
+                      if (value && !validatePhone(value)) {
+                        setErrors((prev) => ({
+                          ...prev,
+                          phone: t("form.validation.invalidPhone"),
+                        }));
+                      }
+                    }}
+                    autoComplete="tel-national"
+                    className={`flex-1 ${FIELD} ${errors.phone ? "border-red-400/70" : ""}`}
+                    placeholder={t("form.placeholders.phone")}
+                  />
+                </div>
+                {errors.phone && (
+                  <p className="text-red-400 text-xs mt-1">{errors.phone}</p>
+                )}
+              </div>
+
+              <div className="space-y-2">
+                <div className="flex items-baseline justify-between gap-4">
                   <Label
                     htmlFor="guest-message"
-                    className="font-poppins font-medium text-white"
+                    className="text-white/85 text-sm font-medium"
                   >
                     {t("form.labels.message")}
                   </Label>
-                  <Textarea
-                    id="guest-message"
-                    value={guestForm.message}
-                    onChange={(e) =>
-                      setGuestForm({ ...guestForm, message: e.target.value })
-                    }
-                    required
-                    maxLength={MAX_MESSAGE_CHARS}
-                    placeholder={t("form.placeholders.message")}
-                    className="min-h-[120px] font-poppins bg-[#1a1a1a] border-white/20 focus:border-[#ffffff] text-white placeholder:text-white/40"
-                  />
+                  <span className="text-white/40 text-xs tabular-nums">
+                    {guestForm.message.length}/{MAX_MESSAGE_CHARS}
+                  </span>
                 </div>
-                <div className="text-right text-white/60 text-xs font-poppins">
-                  {guestForm.message.length}/{MAX_MESSAGE_CHARS}
-                </div>
+                <Textarea
+                  id="guest-message"
+                  value={guestForm.message}
+                  onChange={(e) =>
+                    setGuestForm({ ...guestForm, message: e.target.value })
+                  }
+                  required
+                  maxLength={MAX_MESSAGE_CHARS}
+                  placeholder={t("form.placeholders.message")}
+                  className={`min-h-[140px] ${FIELD} h-auto`}
+                />
+              </div>
 
-                {submitStatus === "success" && (
-                  <div className="bg-green-500/10 border border-green-500/30 rounded-lg p-4 text-center">
-                    <p className="text-green-400 font-poppins text-sm">
-                      {t("form.successMessage")}
-                    </p>
-                  </div>
+              {submitStatus === "success" && (
+                <div
+                  role="status"
+                  className="rounded-xl border border-green-400/25 bg-green-400/10 p-4 text-center"
+                >
+                  <p className="text-green-300 text-sm">
+                    {t("form.successMessage")}
+                  </p>
+                </div>
+              )}
+
+              {submitStatus === "error" && (
+                <div
+                  role="alert"
+                  className="rounded-xl border border-red-400/25 bg-red-400/10 p-4 text-center"
+                >
+                  <p className="text-red-300 text-sm">
+                    {t("form.errorMessage", { email: SUPPORT_EMAIL })}
+                  </p>
+                </div>
+              )}
+
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className="inline-flex w-full sm:w-auto items-center justify-center gap-2 rounded-full bg-white text-ink px-8 py-3.5 text-sm font-semibold transition-colors hover:bg-neutral-200 disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {isSubmitting ? (
+                  <>
+                    <Loader2
+                      className="w-4 h-4 animate-spin motion-reduce:hidden"
+                      aria-hidden="true"
+                    />
+                    {t("form.submitting")}
+                  </>
+                ) : (
+                  <>
+                    <Send className="w-4 h-4" aria-hidden="true" />
+                    {t("form.submit")}
+                  </>
                 )}
+              </button>
+            </form>
+          </div>
 
-                {submitStatus === "error" && (
-                  <div className="bg-red-500/10 border border-red-500/30 rounded-lg p-4 text-center">
-                    <p className="text-red-400 font-poppins text-sm">
-                      {t("form.errorMessage", { email: SUPPORT_EMAIL })}
-                    </p>
-                  </div>
-                )}
-
-                <div className="text-center">
-                  <Button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="w-full sm:w-auto bg-[#ffffff] text-white hover:bg-[#6d5820] px-8 py-4 rounded-md text-base font-poppins font-medium tracking-wide transition-all duration-300 hover:scale-105 transform disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
-                  >
-                    {isSubmitting ? (
-                      <>
-                        <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                        {t("form.submitting")}
-                      </>
-                    ) : (
-                      <>
-                        <Send className="w-4 h-4 mr-2" />
-                        {t("form.submit")}
-                      </>
-                    )}
-                  </Button>
-                </div>
-              </form>
-            </CardContent>
-          </Card>
-        </div>
-      </section>
-
-      <section className="py-24 bg-[#141414]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl text-white mb-6 tracking-wide font-gilroy font-bold leading-tight">
+          {/* Direct lines — for the guests who'd rather not fill a form */}
+          <aside className="lg:col-span-2 flex flex-col">
+            <h2 className="font-display text-white text-2xl sm:text-3xl font-light leading-[1.1] tracking-tight normal-case">
               {t("guestServices.title")}
             </h2>
-            <p className="text-white/70 max-w-3xl mx-auto font-poppins font-light text-lg leading-snug">
+            <p className="text-white/60 mt-2 text-[15px] leading-relaxed">
               {t("guestServices.description")}
             </p>
-          </div>
 
-          <div className="flex flex-col sm:flex-row sm:justify-center sm:space-x-24 gap-12">
-            <div className="text-center">
-              <div className="w-16 h-16 mx-auto mb-6 bg-[#ffffff] rounded-full flex items-center justify-center">
-                <Phone className="w-8 h-8 text-[#0a0a0a]" />
-              </div>
-              <h3 className="font-poppins font-semibold text-white text-lg mb-2">
-                {t("guestServices.hotline.title")}
-              </h3>
-              <p className="text-white/70 font-poppins font-light text-sm mb-4">
-                {t("guestServices.hotline.description")}
-              </p>
-              <div className="text-white font-poppins font-medium">
-                <div>{SUPPORT_PHONE}</div>
-              </div>
-            </div>
-
-            <div className="text-center">
-              <div className="w-16 h-16 mx-auto mb-6 bg-[#ffffff] rounded-full flex items-center justify-center">
-                <Mail className="w-8 h-8 text-[#0a0a0a]" />
-              </div>
-              <h3 className="font-poppins font-semibold text-white text-lg mb-2">
-                {t("guestServices.email.title")}
-              </h3>
-              <p className="text-white/70 font-poppins font-light text-sm mb-4">
-                {t("guestServices.email.description")}
-              </p>
-              <div className="text-white font-poppins font-medium">
-                <div>{SUPPORT_EMAIL}</div>
-                <div className="text-sm text-white/60 mt-1">
-                  {t("guestServices.email.note")}
-                </div>
-              </div>
-            </div>
-          </div>
+            <ContactChannels
+              phoneTitle={t("guestServices.hotline.title")}
+              phoneDescription={t("guestServices.hotline.description")}
+              emailTitle={t("guestServices.email.title")}
+              emailDescription={`${t("guestServices.email.description")} · ${t("guestServices.email.note")}`}
+              className="mt-6"
+            />
+          </aside>
         </div>
       </section>
     </main>

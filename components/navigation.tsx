@@ -30,6 +30,7 @@ export default function Navigation() {
     { label: t("vacationRentals"), href: "/our-property" },
     { label: t("experiences"), href: "/experiences" },
     { label: t("propertyManagement"), href: "/property-management" },
+    { label: t("forAgencies"), href: "/contact-agency" },
   ];
 
   // Guides + Contact Us removed from the nav bar to keep it short (pages still exist,

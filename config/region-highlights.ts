@@ -26,10 +26,18 @@ export const REGION_HIGHLIGHTS: Record<string, RegionHighlight[]> = {
     { key: "naiYangBeach", img: "/photos/featured-destinations/phuket/nai-yang-beach-longtail-boats.webp", link: "/guides/nai-yang-beach" },
     { key: "naiThonBeach", img: "/photos/featured-destinations/phuket/naithon-beach-phuket.webp", link: "/guides/naithon-beach-phuket" },
   ],
+  // Pattaya folds its stay-areas into the hit list — the six area shots are
+  // AI-generated placeholders until a real shoot replaces them.
   pattaya: [
+    { key: "wongamat", img: "/pattaya/wongamat-beach-pattaya.jpg" },
     { key: "pattayaBeach", img: "/pattaya/pattaya-beach.webp" },
+    { key: "walkingStreet", img: "/pattaya/walking-street-pattaya.jpg" },
+    { key: "pratumnakHill", img: "/pattaya/pratumnak-hill-pattaya.jpg" },
     { key: "jomtienBeach", img: "/pattaya/jomtien-beach.webp" },
+    { key: "naJomtien", img: "/pattaya/na-jomtien-marina-pattaya.jpg" },
+    { key: "bangsaray", img: "/pattaya/bangsaray-fishing-village.jpg" },
     { key: "kohLarn", img: "/pattaya/koh-larn-pattaya.webp" },
+    { key: "lakeMabprachan", img: "/pattaya/lake-mabprachan-east-pattaya.jpg" },
     { key: "sanctuaryOfTruth", img: "/pattaya/sanctuary_of_truth.avif", link: "/guides/sanctuary-of-truth-pattaya-complete-guide" },
     { key: "bigBuddha", img: "/pattaya/wat-phra-yai-pattaya.avif" },
     { key: "nongNooch", img: "/pattaya/nong-nooch-pattaya.jpg" },
@@ -71,17 +79,6 @@ export const REGION_AREAS: Record<string, string[]> = {
     "chatuchakArea",
     "ratchada",
     "bangKrachao",
-  ],
-  pattaya: [
-    "naklua",
-    "central",
-    "walkingStreet",
-    "pratumnak",
-    "jomtien",
-    "naJomtien",
-    "bangsaray",
-    "eastPattaya",
-    "kohLarn",
   ],
 };
 
