@@ -299,11 +299,11 @@ export default async function RegionGuide({
         </section>
       )}
 
-      {/* ── Footer nav ── */}
-      <section className="py-16 sm:py-20 border-t border-line bg-ink-2">
+      {/* ── Footer nav — night-to-sunset gradient, dark end under the text ── */}
+      <section className="py-16 sm:py-20 border-t border-line bg-[linear-gradient(90deg,#09081F_0%,#382124_30%,#673929_52%,#95522E_70%,#C46A33_85%,#F38338_100%)]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-wrap items-center justify-between gap-6">
           <div>
-            <p className="text-white/50 text-sm">{t("guides.moreComing")}</p>
+            <p className="text-white/70 text-sm">{t("guides.moreComing")}</p>
             <p className="text-white font-semibold text-lg mt-1">
               {g("stayLine")}
             </p>
@@ -311,7 +311,7 @@ export default async function RegionGuide({
           <div className="flex flex-wrap gap-3.5">
             <Link
               href="/experiences"
-              className="inline-flex items-center gap-2 rounded-full border border-line text-white/80 px-6 py-3 text-sm font-medium transition-colors hover:border-white/40 hover:text-white"
+              className="inline-flex items-center gap-2 rounded-full border border-white/50 text-white px-6 py-3 text-sm font-medium transition-colors hover:border-white hover:bg-white/10"
             >
               <ArrowLeft className="w-4 h-4" />
               {t("guides.allRegions")}
