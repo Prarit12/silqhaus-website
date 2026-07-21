@@ -26,8 +26,10 @@ const TRANSPORT_ICONS: Record<string, LucideIcon> = {
   river: Ship,
   ferry: Ship,
   car: Car,
+  fromBangkok: Car,
   ride: CarTaxiFront,
   bus: Bus,
+  bahtBus: Bus,
   moto: Bike,
 };
 

@@ -1512,6 +1512,200 @@
               }
             }
           }
+        },
+        "areas": {
+          "title": "Know your stretch of the coast.",
+          "intro": "One bay, many personalities — Pattaya changes completely every couple of kilometres down the coast road, so pick your stretch first.",
+          "hint": "Hover an area to find it on the map",
+          "items": {
+            "naklua": {
+              "name": "Naklua & Wongamat",
+              "desc": "The quiet money end — the best in-town sand, sunset beach clubs, and the Sanctuary of Truth on the headland. Our home beach."
+            },
+            "central": {
+              "name": "Central Pattaya & Beach Road",
+              "desc": "The promenade heart — malls, the new beach clubs, and every baht-bus route. Locals stroll the sand here and swim elsewhere."
+            },
+            "walkingStreet": {
+              "name": "South Pattaya & Walking Street",
+              "desc": "The neon legend, pedestrian-only after seven — louder than ever, more pan-Asian than its reputation, and the pier for Koh Larn boats."
+            },
+            "pratumnak": {
+              "name": "Pratumnak Hill & Cozy Beach",
+              "desc": "The green hill between the bays — viewpoints, the Big Buddha, and a village-quiet feel ten minutes from everything."
+            },
+            "jomtien": {
+              "name": "Jomtien & Dongtan",
+              "desc": "The long family beach with a freshly rebuilt promenade — and tree-shaded, jet-ski-free Dongtan at its calmest end."
+            },
+            "naJomtien": {
+              "name": "Na Jomtien & Ocean Marina",
+              "desc": "Pattaya's quiet-luxury strip — genuinely swimmable water, Southeast Asia's largest marina, and the newest five-star flags."
+            },
+            "bangsaray": {
+              "name": "Bangsaray",
+              "desc": "A real fishing village twenty-five minutes south — near-empty weekday sand and stilted seafood restaurants over the water."
+            },
+            "eastPattaya": {
+              "name": "East Pattaya & Lake Mabprachan",
+              "desc": "Pool-villa country inland — the lake loop, the golf courses, and the space families actually live in."
+            },
+            "kohLarn": {
+              "name": "Koh Larn",
+              "desc": "The island escape, forty baht and forty minutes away — busy Tawaen, quieter Samae, and clear water the mainland can't match."
+            }
+          }
+        },
+        "practical": {
+          "title": "Getting around, shopping & good to know.",
+          "lead": "The practical side of the bay, in three parts — open a section to dive in."
+        },
+        "transport": {
+          "title": "Getting there & around.",
+          "lead": "No trains and no meters — Pattaya runs on the motorway, the baht bus, and the boats from Bali Hai Pier.",
+          "items": {
+            "fromBangkok": {
+              "name": "From Bangkok by road",
+              "desc": "Two hours down Motorway 7 — a private transfer for ease, or the Ekkamai bus every half hour for 148 baht. The fast train remains a rumour."
+            },
+            "airport": {
+              "name": "U-Tapao, the small airport",
+              "desc": "Forty-five minutes south with a thin flight list — most guests fly into Bangkok and drive down. Its big expansion won't change that before 2030."
+            },
+            "bahtBus": {
+              "name": "The baht bus",
+              "desc": "Pattaya's icon — hop on the back, ride the loop, press the buzzer, pay 15 baht as you step off. Board silently, or you may accidentally charter one."
+            },
+            "ride": {
+              "name": "Grab, Bolt & friends",
+              "desc": "All the apps work here — 60–150 baht across town, honest prices at night, and cards settle in-app."
+            },
+            "moto": {
+              "name": "Motorcycle taxis",
+              "desc": "Orange vests at every soi mouth — agree the fare first near the tourist strips, or just book a GrabBike."
+            },
+            "ferry": {
+              "name": "Boats to Koh Larn",
+              "desc": "The 40-baht public ferry from Bali Hai's new floating piers, forty minutes each way — last boats back run five to six depending on the pier, or it's a speedboat fare home."
+            }
+          }
+        },
+        "shopping": {
+          "title": "Shopping — malls by day, markets by night.",
+          "lead": "Pattaya shops in three registers: a flagship mall row, seafood-and-produce markets, and night bazaars that just keep opening.",
+          "groups": {
+            "malls": {
+              "title": "The malls",
+              "s1": {
+                "name": "Terminal 21",
+                "desc": "The airport-themed flagship — 500 shops across six themed floors, and the famously cheap Pier 21 food court."
+              },
+              "s2": {
+                "name": "Central Pattaya",
+                "desc": "The beachfront giant under the Hilton — everyone still calls it Central Festival, and everyone still meets there."
+              },
+              "s3": {
+                "name": "Central Marina Outlet",
+                "desc": "North Pattaya's day-to-night outlet mall — brand discounts inside, a night market out front until late."
+              }
+            },
+            "markets": {
+              "title": "The markets",
+              "s1": {
+                "name": "Thepprasit Night Market",
+                "desc": "The big one on the Jomtien side — open nightly now, but Friday to Sunday brings the full food-and-everything sprawl."
+              },
+              "s2": {
+                "name": "Lan Pho Naklua",
+                "desc": "Naklua's seafood market, rebuilt in 2025 — fresh off the boats, minutes from Wongamat."
+              },
+              "s3": {
+                "name": "Tree Town",
+                "desc": "Soi Buakhao's produce market by day, open-air bar-and-grill sprawl by night — where the town's regulars end their evenings."
+              }
+            },
+            "night": {
+              "title": "Night & new",
+              "s1": {
+                "name": "Yai Mak Market",
+                "desc": "Jomtien's newest and now largest night market — food stalls, courtyard bars, and live-music stages."
+              },
+              "s2": {
+                "name": "Runway Street Food",
+                "desc": "Street food under a full-size jumbo jet on Second Road — as photogenic as dinner gets."
+              },
+              "s3": {
+                "name": "Jomtien Night Market",
+                "desc": "The nightly food-court-and-dance-floor institution — family crowds, and pelmeni next to the pad thai."
+              }
+            }
+          }
+        },
+        "good": {
+          "title": "Good to know",
+          "lead": "The small things that make Pattaya easier.",
+          "items": {
+            "sim": {
+              "name": "Get a Thai eSIM on arrival",
+              "desc": "Data the moment you land — you'll want it for Grab, maps, and checking which day the water parks close."
+            },
+            "cash": {
+              "name": "Cash for the baht bus, cards for the malls",
+              "desc": "Baht buses, ferries, markets, and beach vendors want small notes; malls, resorts, and Grab take cards. Thai ATMs charge 220 baht a withdrawal — take out plenty."
+            },
+            "temple": {
+              "name": "Cover shoulders and knees",
+              "desc": "The Sanctuary of Truth lends sarongs and the Big Buddha expects respect — carry a light layer, shoes off where the signs ask."
+            },
+            "jetski": {
+              "name": "Skip the beachfront jet-skis",
+              "desc": "The damage-claim scam is Pattaya's oldest trick. If you must, video the machine with the operator in frame first — and the Tourist Police answer on 1155."
+            },
+            "wednesday": {
+              "name": "Beware the Wednesday rule",
+              "desc": "Both big water parks close on Wednesdays, and the city's chair-free beach-cleaning days tend to land on one too — check before you plan the day around either."
+            },
+            "season": {
+              "name": "Know your season",
+              "desc": "November to February is the postcard; May to October brings short, hard afternoon bursts — though this coast stays drier than the Andaman in the same months."
+            }
+          }
+        },
+        "things": {
+          "title": "Thirty things to do in Pattaya.",
+          "lead": "The bay checklist — tick them off across a weekend, a season, or the years this coast keeps pulling you back.",
+          "items": {
+            "i1": "Put on a hard hat and watch the carvers at work inside the Sanctuary of Truth — all teak, no nails",
+            "i2": "Take an early boat to Koh Larn and claim Samae Beach before the speedboats land",
+            "i3": "Climb the naga staircase to the Big Buddha on Pratumnak Hill",
+            "i4": "Stand beneath Khao Chi Chan's 109-metre laser-carved Buddha",
+            "i5": "Toast the sunset at a Wongamat beach club, ten minutes from the villa",
+            "i6": "Pick your dinner from the boats at the rebuilt Lan Pho Naklua seafood market",
+            "i7": "Ride a baht bus around the full Beach Road loop for 15 baht",
+            "i8": "Walk Walking Street once, for the neon anthropology",
+            "i9": "Pick a side in the great cabaret debate: Tiffany's or Alcazar",
+            "i10": "Take a ringside seat at Max Muay Thai — fights every night of the year",
+            "i11": "Lose a day on Ramayana's 26 slides — Thailand's biggest water park",
+            "i12": "Do the movie-lot version at Columbia Pictures Aquaverse",
+            "i13": "Watch the whole bay curve below Khao Pattaya Viewpoint at dusk",
+            "i14": "Wander the French parterre and the dinosaur valley at Nong Nooch",
+            "i15": "Say hello to the hippos of Khao Kheow Open Zoo — Moo Deng's home turf",
+            "i16": "Drive the Route 331 loop: Buddha Mountain, Silverlake Vineyard, Wat Yan",
+            "i17": "Sit a quiet hour at Wat Yansangwararam, the royal monastery in a garden",
+            "i18": "Feed rescued elephants at a saddle-off sanctuary — no riding, no shows",
+            "i19": "Graze your way through Thepprasit Night Market on a Friday or Saturday",
+            "i20": "Find the street-food market under a full-size jumbo jet at Runway",
+            "i21": "Book the cliff-edge table at Rimpa Lapin above Bangsaray",
+            "i22": "Spend a slow morning on Bangsaray's fishing-village sand",
+            "i23": "Eat at one of Pattaya's Michelin Bib Gourmand kitchens",
+            "i24": "Go full Ibiza — pool, DJs, and sunset at Café del Mar Na Jomtien",
+            "i25": "Walk Jomtien's brand-new promenade as the lights come on",
+            "i26": "Claim a tree-shaded, jet-ski-free stretch of Dongtan Beach",
+            "i27": "Time a November trip to the International Fireworks Festival",
+            "i28": "Join the Wan Lai water fight when Songkran reaches Pattaya (18–19 April)",
+            "i29": "Go bohemian at Wonderfruit in December — music, art, and open fields",
+            "i30": "Stay on Koh Larn past the last ferry, when the island exhales"
+          }
         }
       },
       "bangkok": {

@@ -72,24 +72,38 @@ export const REGION_AREAS: Record<string, string[]> = {
     "ratchada",
     "bangKrachao",
   ],
+  pattaya: [
+    "naklua",
+    "central",
+    "walkingStreet",
+    "pratumnak",
+    "jomtien",
+    "naJomtien",
+    "bangsaray",
+    "eastPattaya",
+    "kohLarn",
+  ],
 };
 
 /** Shopping group keys per region — content in `guides.<region>.shopping.groups.*`. */
 export const REGION_SHOPPING: Record<string, string[]> = {
   phuket: ["malls", "markets", "night"],
   bangkok: ["malls", "markets", "night"],
+  pattaya: ["malls", "markets", "night"],
 };
 
 /** Transport item keys per region — content in `guides.<region>.transport.items.*`. */
 export const REGION_TRANSPORT: Record<string, string[]> = {
   phuket: ["airport", "car", "ride", "moto", "bus", "ferry"],
   bangkok: ["airports", "airportRail", "rail", "river", "ride", "moto"],
+  pattaya: ["fromBangkok", "airport", "bahtBus", "ride", "moto", "ferry"],
 };
 
 /** Good-to-know tip keys per region — content in `guides.<region>.good.items.*`. */
 export const REGION_GOOD: Record<string, string[]> = {
   phuket: ["sim", "cash", "temple", "riptide", "scooter", "season"],
   bangkok: ["sim", "cash", "temple", "tuktuk", "water"],
+  pattaya: ["sim", "cash", "temple", "jetski", "wednesday", "season"],
 };
 
 /** Spots per category when a region goes deeper than the default three. */
@@ -101,6 +115,7 @@ export const REGION_SPOT_COUNTS: Record<string, Record<string, number>> = {
 export const REGION_THINGS_COUNT: Record<string, number> = {
   phuket: 30,
   bangkok: 30,
+  pattaya: 30,
 };
 
 /** Blog guides backing specific spots inside the six category sections. */
