@@ -62,9 +62,17 @@ export default async function Home({
   return (
     <>
       <div className="min-h-screen bg-[#0d0d0d00]">
-        <HeroSection />
-        <BookDirectBanner />
-        <GuestFavorites />
+        {/* First screen: the hero flexes to absorb whatever height the
+         * book-direct band leaves, so the two exactly fill the fold on any
+         * monitor — no white sliver of the section below. */}
+        <div className="flex flex-col min-h-screen">
+          <HeroSection />
+          <BookDirectBanner />
+        </div>
+        {/* Target for the hero's scroll cue; offset clears the fixed nav */}
+        <div id="homes" className="scroll-mt-24">
+          <GuestFavorites />
+        </div>
         <DestinationCovers />
         <WhySilqhaus />
         {/* <NewsletterSection /> */}

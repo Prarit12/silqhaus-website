@@ -1,82 +1,37 @@
 "use client";
-import Image, { type StaticImageData } from "next/image";
+import Image from "next/image";
 import { Link } from "@/i18n/navigation";
 import { useTranslations } from "next-intl";
-import phuket from "@/assets/destination-carousel/phuket.webp";
-import pattaya from "@/assets/destination-carousel/pattaya.webp";
+import { EXPERIENCE_REGIONS } from "@/config/experience-regions";
 
 interface DestinationCoversProps {
   className?: string;
 }
 
-type Href =
-  | string
-  | { pathname: string; query: Record<string, string> }
-  | null;
+/**
+ * Homepage order leads with the regions we actually manage villas in; the
+ * photo and guide availability for each come straight from the config the
+ * Destinations page reads, so the two surfaces can't drift apart.
+ */
+const ORDER = [
+  "phuket",
+  "pattaya",
+  "bangkok",
+  "samui",
+  "huahin",
+  "chiangmai",
+] as const;
 
-interface Destination {
-  id: string;
-  name: string;
-  href: Href;
-  image: string | StaticImageData;
-  alt: string;
-  comingSoon?: boolean;
-}
+const DESTINATIONS = ORDER.map((key) => {
+  const region = EXPERIENCE_REGIONS.find((r) => r.key === key);
+  if (!region) throw new Error(`destination-covers: unknown region "${key}"`);
+  return { key, img: region.img, hasGuide: region.hasGuide };
+});
 
 export default function DestinationCovers({
   className = "",
 }: DestinationCoversProps) {
   const t = useTranslations("home.destinations");
-
-  /** One clean grid — flagship destinations link to their listings, guide-only
-   * cities to their guide, and the rest are teased as coming soon. */
-  const DESTINATIONS: Destination[] = [
-    {
-      id: "phuket",
-      name: t("phuket"),
-      href: { pathname: "/our-property", query: { location: "Phuket" } },
-      image: phuket,
-      alt: "Aerial view of a luxury villa with infinity pool overlooking turquoise waters in Phuket",
-    },
-    {
-      id: "pattaya",
-      name: t("pattaya"),
-      href: { pathname: "/our-property", query: { location: "Pattaya" } },
-      image: pattaya,
-      alt: "Coastal cityscape of Pattaya with high-rise buildings and a beach promenade",
-    },
-    {
-      id: "bangkok",
-      name: t("bangkok"),
-      href: "/experiences/bangkok",
-      image: "/experiences/regions/bangkok.jpg",
-      alt: "Wat Arun temple glowing at blue hour in Bangkok",
-    },
-    {
-      id: "samui",
-      name: t("samui"),
-      href: null,
-      image: "/experiences/regions/samui.jpg",
-      alt: "Palm-fringed beach with a longtail boat on Koh Samui",
-      comingSoon: true,
-    },
-    {
-      id: "huahin",
-      name: t("huahin"),
-      href: null,
-      image: "/experiences/regions/huahin.jpg",
-      alt: "Hua Hin beach at sunrise with a wooden pier",
-      comingSoon: true,
-    },
-    {
-      id: "chiangmai",
-      name: t("chiangmai"),
-      href: null,
-      image: "/experiences/regions/chiangmai.jpg",
-      alt: "Doi Suthep's golden chedi above the mist in Chiang Mai",
-      comingSoon: true,
-    },
-  ];
 
   return (
     <section className={`py-16 sm:py-20 md:py-28 bg-ink ${className}`}>
@@ -93,11 +48,12 @@ export default function DestinationCovers({
 
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 sm:gap-5">
           {DESTINATIONS.map((d) => {
+            const name = t(d.key);
             const inner = (
               <>
                 <Image
-                  src={d.image}
-                  alt={d.alt}
+                  src={d.img}
+                  alt={name}
                   fill
                   sizes="(max-width: 640px) 50vw, 33vw"
                   quality={80}
@@ -106,10 +62,10 @@ export default function DestinationCovers({
                 {/* Top-left name notch — the clean signature label */}
                 <div className="absolute top-0 left-0 bg-white rounded-br-2xl pl-3.5 pr-5 py-2.5 shadow-sm">
                   <p className="text-ink font-semibold text-[15px] sm:text-base tracking-tight">
-                    {d.name}
+                    {name}
                   </p>
                 </div>
-                {d.comingSoon && (
+                {!d.hasGuide && (
                   <span className="absolute bottom-3 left-3 rounded-full bg-black/45 px-3 py-1 text-[11px] font-medium text-white/90 backdrop-blur-sm">
                     {t("comingSoon")}
                   </span>
@@ -118,12 +74,16 @@ export default function DestinationCovers({
             );
             const classes =
               "group relative aspect-[4/3] rounded-2xl overflow-hidden ring-1 ring-line transition-all duration-500 hover:ring-white/30";
-            return d.href ? (
-              <Link key={d.id} href={d.href} className={classes}>
+            return d.hasGuide ? (
+              <Link
+                key={d.key}
+                href={`/experiences/${d.key}`}
+                className={classes}
+              >
                 {inner}
               </Link>
             ) : (
-              <div key={d.id} className={classes}>
+              <div key={d.key} className={classes}>
                 {inner}
               </div>
             );

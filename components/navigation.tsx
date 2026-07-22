@@ -4,10 +4,19 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import { Link, usePathname } from "@/i18n/navigation";
 import { Menu, X, ChevronDown, Heart } from "lucide-react";
+import { SiWhatsapp } from "react-icons/si";
 import { useTranslations } from "next-intl";
 import LanguageSwitcher from "./language-switcher";
+import PartnerModal from "./partner-modal";
 import { NavFavoritesLink } from "./nav-favorites-link";
 import { usePMSFavorites } from "@/hooks/use-pms-saved";
+
+/** Same source + digit-stripping the contact channels use. */
+const CONTACT_WHATSAPP =
+  process.env.NEXT_PUBLIC_CONTACT_WHATSAPP || "+66 92 949 0211";
+const WHATSAPP_HREF = `https://wa.me/${CONTACT_WHATSAPP.replace(/[^0-9]/g, "")}`;
+const PHONE_DISPLAY =
+  process.env.NEXT_PUBLIC_CONTACT_PHONE_TEL || "+66929490211";
 
 export default function Navigation() {
   const pathname = usePathname();
@@ -17,6 +26,7 @@ export default function Navigation() {
 
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isPartnerOpen, setIsPartnerOpen] = useState(false);
   const [isContactDropdownOpen, setIsContactDropdownOpen] = useState(false);
   const [isUtilityMenuOpen, setIsUtilityMenuOpen] = useState(false);
 
@@ -29,19 +39,42 @@ export default function Navigation() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const navItems = [
-    { label: t("vacationRentals"), href: "/our-property" },
-    { label: t("experiences"), href: "/experiences" },
-    { label: t("propertyManagement"), href: "/property-management" },
-  ];
+  // The bar is deliberately down to a single item: "Partner with us" opens the
+  // owner / agency chooser. Vacation Rentals, Destinations, Guides and Contact
+  // all still ship — reached from the hero search, the homepage sections and
+  // the footer.
 
-  // Guides + Contact Us removed from the nav bar to keep it short (pages still exist,
-  // reachable via the footer).
-  const navItemsAfterDropdown: { label: string; href: string }[] = [];
+  /** Scrolled = white bar, so every control on it flips to ink. NB: the custom
+   * `ink` colour has no alpha variant (text-ink/70 silently renders white), so
+   * the muted states use the neutral scale. */
+  const navLinkClass = (isActive: boolean) =>
+    // No bottom border: the underline shifted items off the header's
+    // centreline on hover. Colour alone carries hover + active state.
+    `cursor-pointer transition-colors duration-300 font-poppins font-medium text-xs md:text-sm leading-none ${
+      isActive
+        ? isScrolled
+          ? "text-ink"
+          : "text-white"
+        : isScrolled
+          ? "text-neutral-600 hover:text-ink"
+          : "text-white/80 hover:text-white"
+    }`;
+
+  const iconBtnClass = `flex items-center rounded-full p-1.5 transition-colors duration-200 ${
+    isScrolled
+      ? "bg-neutral-100 hover:bg-neutral-200"
+      : "bg-white/5 hover:bg-white/10"
+  }`;
+  const iconColor = isScrolled ? "text-ink" : "text-white";
 
   // Rental-type selector: the trigger shows whichever type the current
   // route belongs to, defaulting to Monthly.
   const rentalItems = [
+    {
+      label: t("vacationRentals"),
+      href: "/our-property",
+      description: t("vacationRentalsDescription"),
+    },
     {
       label: t("monthlyRental"),
       href: "/monthly-inquiry",
@@ -151,20 +184,16 @@ export default function Navigation() {
   return (
     <>
       <nav
-        className={`fixed left-0 w-full z-[60] transition-all duration-500 ease-in-out ${
-          isScrolled ? "top-3" : "top-6"
+        className={`fixed top-0 left-0 w-full z-[60] transition-all duration-500 ease-in-out ${
+          isScrolled
+            ? "bg-white border-b border-neutral-200 shadow-[0_4px_20px_rgba(0,0,0,0.08)]"
+            : "bg-transparent"
         }`}
         role="navigation"
         aria-label="Main"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div
-            className={`flex items-center justify-between rounded-full h-12 md:h-14 px-2.5 md:px-3 transition-all duration-500 ${
-              isScrolled
-                ? "bg-ink/95 border border-line backdrop-blur-sm shadow-[0_10px_30px_rgba(0,0,0,0.45)]"
-                : "bg-black/20 border border-white/15 backdrop-blur-sm shadow-[0_8px_24px_rgba(0,0,0,0.15)]"
-            }`}
-          >
+          <div className="flex items-center justify-between h-14 md:h-16 px-2.5 md:px-3 transition-all duration-500">
             {/* Logo */}
             <Link href="/" aria-label="Silqhaus home">
               <Image
@@ -173,48 +202,27 @@ export default function Navigation() {
                 width={767}
                 height={291}
                 priority
-                className="h-6 sm:h-7 md:h-8 w-auto transition-opacity duration-300 hover:opacity-80"
+                className={`h-6 sm:h-7 md:h-8 w-auto transition-all duration-300 hover:opacity-80 ${
+                  isScrolled ? "invert" : ""
+                }`}
               />
             </Link>
 
             {/* Desktop Navigation */}
             <div className="hidden xl:flex items-center gap-4 md:gap-5">
-              {navItems.map((item) => {
-                const isActive =
-                  pathname === item.href || pathname.startsWith(item.href);
-
-                return (
-                  <Link key={item.href} href={item.href}>
-                    <span
-                      className={`cursor-pointer transition-colors duration-300 font-poppins font-medium text-xs md:text-sm ${
-                        isActive
-                          ? "text-white border-b-2 border-[#ffffff]"
-                          : "text-white/80 hover:text-white hover:border-b-2 hover:border-[#ffffff]"
-                      } pb-1`}
-                    >
-                      {item.label}
-                    </span>
-                  </Link>
-                );
-              })}
-
-              {navItemsAfterDropdown.map((item) => {
-                const isActive =
-                  pathname === item.href || pathname.startsWith(item.href);
-                return (
-                  <Link key={item.href} href={item.href}>
-                    <span
-                      className={`cursor-pointer transition-colors duration-300 font-poppins font-medium text-xs md:text-sm ${
-                        isActive
-                          ? "text-white border-b-2 border-[#ffffff]"
-                          : "text-white/80 hover:text-white hover:border-b-2 hover:border-[#ffffff]"
-                      } pb-1`}
-                    >
-                      {item.label}
-                    </span>
-                  </Link>
-                );
-              })}
+              {/* Partner with us — opens the owner / agency chooser */}
+              <button
+                type="button"
+                onClick={() => setIsPartnerOpen(true)}
+                aria-haspopup="dialog"
+                aria-expanded={isPartnerOpen}
+                className={navLinkClass(
+                  pathname.startsWith("/property-management") ||
+                    pathname.startsWith("/contact-agency"),
+                )}
+              >
+                {t("partnerWithUs")}
+              </button>
 
               {/* Contact Dropdown */}
               {/* <div className="relative">
@@ -264,9 +272,9 @@ export default function Navigation() {
                   aria-haspopup="menu"
                   aria-expanded={isUtilityMenuOpen}
                   aria-label={t("account")}
-                  className="flex items-center rounded-full bg-white/5 hover:bg-white/10 p-1.5 transition-colors duration-200"
+                  className={iconBtnClass}
                 >
-                  <Menu className="w-5 h-5 text-white" />
+                  <Menu className={`w-5 h-5 ${iconColor}`} />
                 </button>
 
                 {isUtilityMenuOpen && (
@@ -318,16 +326,16 @@ export default function Navigation() {
               <LanguageSwitcher />
               <button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="rounded-full bg-white/5 hover:bg-white/10 p-1.5 transition-colors duration-200"
+                className={iconBtnClass}
                 data-testid="button-mobile-menu"
                 aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
                 aria-expanded={isMobileMenuOpen}
                 aria-controls="mobile-menu-panel"
               >
                 {isMobileMenuOpen ? (
-                  <X className="w-6 h-6 text-white" />
+                  <X className={`w-6 h-6 ${iconColor}`} />
                 ) : (
-                  <Menu className="w-6 h-6 text-white" />
+                  <Menu className={`w-6 h-6 ${iconColor}`} />
                 )}
               </button>
             </div>
@@ -380,27 +388,21 @@ export default function Navigation() {
           </div>
 
           <div className="p-6 pt-4 space-y-2">
-            {/* Navigation Items */}
-            {navItems.map((item) => {
-              const isActive =
-                pathname === item.href || pathname.startsWith(item.href);
-              return (
-                <Link key={item.href} href={item.href}>
-                  <div
-                    className={`block py-3 px-4 rounded-xl transition-all duration-200 ${
-                      isActive
-                        ? "bg-[#ffffff]/20 text-white border-l-2 border-[#ffffff]"
-                        : "text-white/80 hover:bg-white/5 hover:text-white"
-                    }`}
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    <span className="font-poppins font-medium text-sm tracking-wide">
-                      {item.label}
-                    </span>
-                  </div>
-                </Link>
-              );
-            })}
+
+            {/* Partner with us — same chooser, opened from the drawer */}
+            <button
+              type="button"
+              onClick={() => {
+                setIsMobileMenuOpen(false);
+                setIsPartnerOpen(true);
+              }}
+              aria-haspopup="dialog"
+              className="block w-full text-left py-3 px-4 rounded-xl transition-all duration-200 text-white/80 hover:bg-white/5 hover:text-white"
+            >
+              <span className="font-poppins font-medium text-sm tracking-wide">
+                {t("partnerWithUs")}
+              </span>
+            </button>
 
             {/* Rentals Section */}
             <div className="pt-2">
@@ -431,27 +433,6 @@ export default function Navigation() {
                 );
               })}
             </div>
-
-            {navItemsAfterDropdown.map((item) => {
-              const isActive =
-                pathname === item.href || pathname.startsWith(item.href);
-              return (
-                <Link key={item.href} href={item.href}>
-                  <div
-                    className={`block py-3 px-4 rounded-xl transition-all duration-200 ${
-                      isActive
-                        ? "bg-[#ffffff]/20 text-white border-l-2 border-[#ffffff]"
-                        : "text-white/80 hover:bg-white/5 hover:text-white"
-                    }`}
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    <span className="font-poppins font-medium text-sm tracking-wide">
-                      {item.label}
-                    </span>
-                  </div>
-                </Link>
-              );
-            })}
 
             {/* Our Property Section */}
             {/* <div className="pt-2">
@@ -553,6 +534,18 @@ export default function Navigation() {
             {/* Contact Info */}
             <div className="px-4 py-3 space-y-3">
               <a
+                href={WHATSAPP_HREF}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="flex items-center gap-3 text-white/70 hover:text-[#ffffff] transition-colors"
+              >
+                <SiWhatsapp className="w-4 h-4 shrink-0" aria-hidden="true" />
+                <span className="font-poppins text-sm">
+                  {t("bookAStay")} {PHONE_DISPLAY}
+                </span>
+              </a>
+              <a
                 href={`mailto:${process.env.NEXT_PUBLIC_CONTACT_EMAIL}`}
                 className="flex items-center gap-3 text-white/70 hover:text-[#ffffff] transition-colors"
               >
@@ -598,6 +591,11 @@ export default function Navigation() {
           </div>
         </div>
       </div>
+
+      <PartnerModal
+        open={isPartnerOpen}
+        onClose={() => setIsPartnerOpen(false)}
+      />
     </>
   );
 }

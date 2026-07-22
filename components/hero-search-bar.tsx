@@ -104,9 +104,13 @@ export default function HeroSearchBar() {
   if (guests.pets > 0) whoParts.push(t("petCount", { n: guests.pets }));
   const whoLabel = whoParts.length ? whoParts.join(", ") : `${t("who")}?`;
 
+  /** Icon-only until the guest has actually picked something, then the
+   * button widens to spell out "Search". */
+  const hasSelection = Boolean(selected || checkIn || guestTotal > 0);
+
   return (
-    <div ref={wrapRef} className="relative w-full max-w-2xl">
-      <div className="flex items-center rounded-full bg-white shadow-2xl shadow-black/25 h-14 sm:h-16 pl-5 pr-1.5">
+    <div ref={wrapRef} className="relative w-full max-w-xl">
+      <div className="flex items-center rounded-full bg-white shadow-2xl shadow-black/25 h-[52px] sm:h-14 pl-4 pr-1.5">
         {/* Where — opens the region picker */}
         <button
           type="button"
@@ -115,10 +119,6 @@ export default function HeroSearchBar() {
           aria-expanded={panel === "where"}
           className="flex items-center justify-center gap-2.5 flex-1 min-w-0 text-center"
         >
-          <Search
-            className="w-4 h-4 text-neutral-500 shrink-0"
-            aria-hidden="true"
-          />
           <span
             className={`truncate text-sm sm:text-[15px] ${
               selectedRegion ? "text-ink font-medium" : "text-neutral-600"
@@ -162,13 +162,17 @@ export default function HeroSearchBar() {
           {whoLabel}
         </button>
 
-        {/* Search */}
+        {/* Search — a compact circle until there's something to search for */}
         <button
           type="button"
           onClick={goSearch}
-          className="ml-2 shrink-0 inline-flex items-center justify-center rounded-full bg-ink text-white px-6 sm:px-7 h-11 sm:h-[52px] text-sm font-semibold transition-colors hover:bg-neutral-800"
+          aria-label={t("search")}
+          className={`ml-2 shrink-0 inline-flex items-center justify-center gap-2 rounded-full bg-ink text-white h-11 text-sm font-semibold transition-all duration-300 ease-out hover:bg-neutral-800 ${
+            hasSelection ? "px-4 sm:px-5" : "w-11"
+          }`}
         >
-          {t("search")}
+          <Search className="w-4 h-4 shrink-0" aria-hidden="true" />
+          {hasSelection && <span>{t("search")}</span>}
         </button>
       </div>
 

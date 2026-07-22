@@ -1,11 +1,21 @@
 {
   "navigation": {
     "buy_rent": "FOR SALE & RENT",
-    "experiences": "DESTINATIONS",
-    "propertyManagement": "PROPERTY MANAGEMENT",
+    "experiences": "Destinations",
+    "propertyManagement": "Property Management",
+    "partnerWithUs": "Partner with us",
+    "bookAStay": "Book a stay",
+    "partnerTitle": "Partner with Silqhaus",
+    "partnerSubtitle": "Tell us which one you are and we'll take it from there.",
+    "partnerOwnerTitle": "I'm an owner",
+    "partnerOwnerDesc": "Have us run your property end to end.",
+    "partnerAgencyTitle": "I'm a partner or agency",
+    "partnerAgencyDesc": "Place your clients in our villas.",
+    "partnerClose": "Close",
     "forAgencies": "FOR AGENCIES",
     "ourProperty": "OUR PROPERTY",
-    "vacationRentals": "VACATION RENTALS",
+    "vacationRentals": "Vacation Rentals",
+    "vacationRentalsDescription": "Nightly stays in our villas",
     "properties": "FOR RENT & SALE",
     "rentals": "RENTALS",
     "monthlyRental": "Monthly Rental (30 Days+)",
@@ -39,6 +49,7 @@
       "headlineLead": "Exceptional Stays,",
       "headlineSub": "Extraordinary Experiences",
       "cta": "Book Your Stay",
+      "scrollCue": "See our properties",
       "search": {
         "locationLabel": "Location",
         "dateLabel": "Date",
@@ -85,11 +96,13 @@
     },
     "bookDirect": {
       "title": "Best rate guarantee when you book direct with us.",
-      "subtitle": "Guaranteed 10% off every stay when you book direct.",
+      "reason1": "10% below any OTA price",
+      "reason2": "Secure payment via Stripe",
+      "reason3": "Direct line to your host, 24/7",
       "inquiryHint": "Prefer we get back to you?",
       "inquiryCta": "Send us an inquiry",
       "ctaHint": "Can't wait?",
-      "cta": "Talk to our staff"
+      "onlineStatus": "We're online · replies in ~3 min"
     },
     "guestFavorites": {
       "eyebrow": "Handpicked",
@@ -137,7 +150,6 @@
       "eyebrow": "WHY SILQHAUS",
       "title": "Different by design",
       "description": "We're a hospitality company, a property manager, and a partner platform at once — built so guests, owners, and the agencies between them all come out ahead. Nine reasons that set us apart.",
-      "imageAlt": "Infinity-edge pool villa on a Phuket clifftop overlooking the Andaman Sea at golden hour",
       "guests": {
         "label": "For guests",
         "r1Title": "Book direct, pay less",

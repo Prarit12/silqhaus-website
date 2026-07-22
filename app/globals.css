@@ -252,6 +252,17 @@
     font-family: var(--font-manrope), "Manrope", sans-serif;
   }
 
+  /* Hero headline only — signature script for Latin. Script faces carry no
+     Thai glyphs, so Thai keeps the Trirong serif rather than falling back to
+     an unrelated system font. */
+  .font-hero {
+    font-family: var(--font-sacramento), "Sacramento", cursive;
+  }
+
+  html[lang="th"] .font-hero {
+    font-family: var(--font-trirong), "Trirong", Georgia, serif;
+  }
+
   .eyebrow {
     font-family: var(--font-manrope), "Manrope", sans-serif;
     text-transform: uppercase;

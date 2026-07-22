@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { getTranslations } from "next-intl/server";
 import { Sparkles, TrendingUp, Handshake, type LucideIcon } from "lucide-react";
 
@@ -34,22 +33,6 @@ export default async function WhySilqhaus() {
           <p className="text-white/65 text-base sm:text-lg leading-relaxed mt-5">
             {t("description")}
           </p>
-        </div>
-
-        {/* Cinematic anchor image */}
-        <div className="relative mt-10 sm:mt-12 aspect-[21/9] rounded-2xl sm:rounded-3xl overflow-hidden ring-1 ring-line">
-          <Image
-            src="/photos/why-silqhaus.jpg"
-            alt={t("imageAlt")}
-            fill
-            sizes="(max-width: 1280px) 100vw, 1216px"
-            quality={82}
-            className="object-cover object-center"
-          />
-          <div
-            className="absolute inset-0 bg-gradient-to-t from-ink/55 via-transparent to-transparent"
-            aria-hidden="true"
-          />
         </div>
 
         {/* Three audiences, three reasons each */}

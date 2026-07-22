@@ -1,7 +1,7 @@
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages, setRequestLocale } from "next-intl/server";
 import { routing } from "@/i18n/routing";
-import { Manrope } from "next/font/google";
+import { Manrope, Trirong, Sacramento } from "next/font/google";
 import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
 import Providers from "@/components/providers";
@@ -14,6 +14,24 @@ const manrope = Manrope({
   weight: ["300", "400", "500", "600", "700", "800"],
   display: "swap",
   variable: "--font-manrope",
+});
+
+/** Hero display face — a serif against Manrope's geometric sans, and one of
+ * the few elegant display families that also carries Thai glyphs. Still the
+ * hero face for Thai, which no Latin script font covers. */
+const trirong = Trirong({
+  subsets: ["latin", "thai"],
+  weight: ["300", "400", "600"],
+  display: "swap",
+  variable: "--font-trirong",
+});
+
+/** Signature script for the Latin hero headline only. */
+const sacramento = Sacramento({
+  subsets: ["latin"],
+  weight: "400",
+  display: "swap",
+  variable: "--font-sacramento",
 });
 
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://www.silqhaus.com";
@@ -111,7 +129,10 @@ export default async function LocaleLayout({
   };
 
   return (
-    <html lang={locale} className={manrope.variable}>
+    <html
+      lang={locale}
+      className={`${manrope.variable} ${trirong.variable} ${sacramento.variable}`}
+    >
       <head>
         <link
           rel="preconnect"
