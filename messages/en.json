@@ -1,12 +1,17 @@
 {
   "navigation": {
     "buy_rent": "FOR SALE & RENT",
-    "experiences": "EXPERIENCES",
+    "experiences": "DESTINATIONS",
     "propertyManagement": "PROPERTY MANAGEMENT",
     "forAgencies": "FOR AGENCIES",
     "ourProperty": "OUR PROPERTY",
     "vacationRentals": "VACATION RENTALS",
     "properties": "FOR RENT & SALE",
+    "rentals": "RENTALS",
+    "monthlyRental": "Monthly Rental (30 Days+)",
+    "monthlyRentalDescription": "Stays of 30 days or more",
+    "yearlyRental": "Yearly Rental (12 Months+)",
+    "yearlyRentalDescription": "Leases of 12 months or more",
     "forRent": "FOR RENT",
     "forRentDescription": "Long-term rental properties",
     "forSale": "FOR SALE",
@@ -18,7 +23,9 @@
     "contactUsDescription": "For booking inquiries and support",
     "whyOwners": "WHY OWNERS CHOOSE US",
     "menu": "Menu",
-    "language": "Language"
+    "language": "Language",
+    "guestLogin": "Guest Login",
+    "account": "Account"
   },
   "home": {
     "metadata": {
@@ -35,10 +42,44 @@
       "search": {
         "locationLabel": "Location",
         "dateLabel": "Date",
+        "checkInLabel": "Check In",
+        "checkOutLabel": "Check Out",
         "guestsLabel": "Guests",
-        "whereTo": "Where to?",
+        "whereTo": "Type the destination",
         "anytime": "Anytime",
-        "guests": "Any group size",
+        "addDate": "Add date",
+        "guests": "Add guests",
+        "where": "Where",
+        "when": "When",
+        "who": "Who",
+        "whereTitle": "Where do you want to stay?",
+        "anywhere": "Anywhere in Thailand",
+        "datesTab": "Dates",
+        "flexibleTab": "Flexible",
+        "clearDates": "Clear dates",
+        "exactDates": "Exact dates",
+        "plusMinus": "± {n, plural, one {# day} other {# days}}",
+        "flexDurationTitle": "How long would you like to stay?",
+        "anyDays": "Any days",
+        "weekend": "Weekend",
+        "weekLabel": "Week",
+        "flexWhenTitle": "When do you want to go?",
+        "adults": "Adults",
+        "adultsAge": "Ages 13 or above",
+        "children": "Children",
+        "childrenAge": "Ages 2 – 12",
+        "infants": "Infants",
+        "infantsAge": "Under 2",
+        "pets": "Pets",
+        "petPolicyLink": "Additional fee applies — view pet policy",
+        "petPolicyTitle": "Pet policy & house rules",
+        "petPolicyRule1": "Pets are welcome at pet-friendly properties with prior approval.",
+        "petPolicyRule2": "An additional pet fee applies and is confirmed at booking.",
+        "petPolicyRule3": "Please keep pets off beds and furniture, and never leave them unattended.",
+        "petPolicyRule4": "Guests are responsible for any pet-related damage or extra cleaning.",
+        "guestCount": "{n, plural, one {# guest} other {# guests}}",
+        "infantCount": "{n, plural, one {# infant} other {# infants}}",
+        "petCount": "{n, plural, one {# pet} other {# pets}}",
         "search": "Search"
       }
     },
@@ -53,6 +94,7 @@
     "guestFavorites": {
       "eyebrow": "Handpicked",
       "title": "Homes our guests love",
+      "seeMore": "See more listings",
       "badge": "Luxury",
       "bedrooms": "bedrooms",
       "baths": "baths",
@@ -65,10 +107,10 @@
       "title": "Our Destinations",
       "eyebrow": "Where to Stay",
       "explore": "Explore",
-      "browseVillas": "Browse villas",
+      "browseProperties": "Browse properties",
       "guide": "Travel guide",
       "comingSoon": "Guide coming soon",
-      "description": "Explore our curated selection of luxury properties across Thailand's most sought-after locations",
+      "description": "Luxury villas and vacation rentals across Thailand — Phuket, Pattaya, Bangkok, Koh Samui, Hua Hin, and Chiang Mai.",
       "phuket": "Phuket",
       "pattaya": "Pattaya",
       "bangkok": "Bangkok",
@@ -90,6 +132,39 @@
       "error": "Failed to load listings",
       "bedrooms": "bedrooms",
       "perNight": "/ night"
+    },
+    "whyDifferent": {
+      "eyebrow": "WHY SILQHAUS",
+      "title": "Different by design",
+      "description": "We're a hospitality company, a property manager, and a partner platform at once — built so guests, owners, and the agencies between them all come out ahead. Nine reasons that set us apart.",
+      "imageAlt": "Infinity-edge pool villa on a Phuket clifftop overlooking the Andaman Sea at golden hour",
+      "guests": {
+        "label": "For guests",
+        "r1Title": "Book direct, pay less",
+        "r1Body": "Our best-rate guarantee puts you 10% below the OTAs on every stay — the middleman's margin becomes your saving.",
+        "r2Title": "A real host, around the clock",
+        "r2Body": "Message a person on WhatsApp any hour and get real answers — concierge care, never a ticket queue.",
+        "r3Title": "Homes we'd stay in ourselves",
+        "r3Body": "Every villa is inspected and run by our own team — which is why guests rate us 4.99 on Airbnb and near-perfect everywhere else."
+      },
+      "owners": {
+        "label": "For owners",
+        "r1Title": "Hospitality and management, one team",
+        "r1Body": "Not a listing service — a full operator handling guests, cleaning, pricing, and payouts end to end.",
+        "r2Title": "Every number in the open",
+        "r2Body": "A live dashboard shows bookings, revenue, and costs in real time — no black box, no month-end surprises.",
+        "r3Title": "Boutique by design",
+        "r3Body": "We stay deliberately small, so your property earns senior attention and a stronger yield — never lost in a portfolio of thousands."
+      },
+      "partners": {
+        "label": "For partners",
+        "r1Title": "Your own Partner OS",
+        "r1Body": "Real-time availability, reporting, and dashboards — the same transparency we give owners, extended to your agency.",
+        "r2Title": "Aligned, not extractive",
+        "r2Body": "Clear commissions and shared upside — we grow when you do, and the terms are never hidden.",
+        "r3Title": "On the ground across Thailand",
+        "r3Body": "A local team from Phuket to Pattaya and beyond — a decentralized network that still behaves like one brand."
+      }
     },
     "cta": {
       "subtitle": "EXCEPTIONAL HOSPITALITY",
@@ -856,15 +931,15 @@
     "explore": "Explore",
     "properties": "Properties",
     "destinations": "Destinations",
-    "experiences": "Experiences",
+    "experiences": "Destinations",
     "contact": "Contact",
     "contactUs": "Contact Us",
     "followUs": "Follow Us",
     "stay": "Stay",
     "vacationRentals": "Vacation Rentals",
-    "forRent": "Properties for Rent",
+    "forRent": "Yearly Rental (12 Months+)",
     "forSale": "Properties for Sale",
-    "monthlyStays": "Monthly Stays",
+    "monthlyStays": "Monthly Rental (30 Days+)",
     "guestLogin": "Guest Login",
     "guidesCol": "Guides",
     "regionGuide": "{region} Guide",
@@ -987,12 +1062,22 @@
       "notProvided": "Not provided",
       "noMessage": "No message provided"
     },
+    "contactHero": {
+      "title": "Come say hello.",
+      "description": "Questions about a stay, your property, or a partnership? Reach us any way you like — or stop by our office in Cherng Talay."
+    },
+    "office": {
+      "eyebrow": "OUR OFFICE",
+      "title": "Visit our office",
+      "description": "Find us at Boat Plaza in Cherng Talay — a short drive from Bangtao and Layan beaches.",
+      "directions": "Get directions"
+    },
     "guestServices": {
-      "title": "24/7 Guest Services",
-      "description": "Our dedicated guest services team is available around the clock to ensure your stay is perfect.",
+      "title": "Get in touch",
+      "description": "Prefer to reach us directly? Our team is one message away.",
       "hotline": {
         "title": "Guest Hotline",
-        "description": "24/7 guest support"
+        "description": "Call or WhatsApp us"
       },
       "email": {
         "title": "Guest Email",

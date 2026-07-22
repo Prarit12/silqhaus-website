@@ -6,7 +6,7 @@ export function OTASection() {
   const t = useTranslations("home.ota");
 
   return (
-    <section className="relative py-20 sm:py-24 bg-ink-2 overflow-hidden">
+    <section className="relative py-14 sm:py-16 bg-ink-2 overflow-hidden">
       {/* Faint starfield texture, vignetted toward the edges */}
       <div
         className="pointer-events-none absolute inset-0"
@@ -24,12 +24,12 @@ export function OTASection() {
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Statement */}
-        <h2 className="font-display text-center text-4xl sm:text-5xl md:text-[3.4rem] font-light text-white leading-[1.08] tracking-tight normal-case text-balance">
+        <h2 className="font-display text-center text-3xl sm:text-4xl md:text-5xl font-light text-white leading-[1.08] tracking-tight normal-case text-balance">
           {t("headlineB")}
         </h2>
 
         {/* Platform trust strip */}
-        <div className="mt-12 sm:mt-14">
+        <div className="mt-9 sm:mt-11">
           <OtaRatingsRow />
         </div>
 

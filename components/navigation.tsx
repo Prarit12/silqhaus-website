@@ -3,19 +3,22 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import { Link, usePathname } from "@/i18n/navigation";
-import { Menu, X, ChevronDown } from "lucide-react";
+import { Menu, X, ChevronDown, Heart } from "lucide-react";
 import { useTranslations } from "next-intl";
 import LanguageSwitcher from "./language-switcher";
 import { NavFavoritesLink } from "./nav-favorites-link";
+import { usePMSFavorites } from "@/hooks/use-pms-saved";
 
 export default function Navigation() {
   const pathname = usePathname();
   const t = useTranslations("navigation");
+  const tFav = useTranslations("pmsFavorites");
+  const { count: favoritesCount } = usePMSFavorites();
 
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isContactDropdownOpen, setIsContactDropdownOpen] = useState(false);
-  const [isPropertyDropdownOpen, setIsPropertyDropdownOpen] = useState(false);
+  const [isUtilityMenuOpen, setIsUtilityMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -30,23 +33,24 @@ export default function Navigation() {
     { label: t("vacationRentals"), href: "/our-property" },
     { label: t("experiences"), href: "/experiences" },
     { label: t("propertyManagement"), href: "/property-management" },
-    { label: t("forAgencies"), href: "/contact-agency" },
   ];
 
   // Guides + Contact Us removed from the nav bar to keep it short (pages still exist,
   // reachable via the footer).
   const navItemsAfterDropdown: { label: string; href: string }[] = [];
 
-  const propertyItems = [
+  // Rental-type selector: the trigger shows whichever type the current
+  // route belongs to, defaulting to Monthly.
+  const rentalItems = [
     {
-      label: t("forRent"),
-      href: "/properties-for-rent",
-      description: t("forRentDescription"),
+      label: t("monthlyRental"),
+      href: "/monthly-inquiry",
+      description: t("monthlyRentalDescription"),
     },
     {
-      label: t("forSale"),
-      href: "/properties-for-sale",
-      description: t("forSaleDescription"),
+      label: t("yearlyRental"),
+      href: "/properties-for-rent",
+      description: t("yearlyRentalDescription"),
     },
   ];
 
@@ -125,17 +129,24 @@ export default function Navigation() {
     };
   }, [isMobileMenuOpen]);
 
-  // Prevent body scroll when mobile menu is open
+  // Close the desktop account menu on outside click or Escape.
   useEffect(() => {
-    if (isMobileMenuOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
-    return () => {
-      document.body.style.overflow = "";
+    if (!isUtilityMenuOpen) return;
+    const onClick = (event: MouseEvent) => {
+      if (!(event.target as Element).closest("[data-utility-menu]")) {
+        setIsUtilityMenuOpen(false);
+      }
     };
-  }, [isMobileMenuOpen]);
+    const onEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setIsUtilityMenuOpen(false);
+    };
+    document.addEventListener("mousedown", onClick);
+    document.addEventListener("keydown", onEscape);
+    return () => {
+      document.removeEventListener("mousedown", onClick);
+      document.removeEventListener("keydown", onEscape);
+    };
+  }, [isUtilityMenuOpen]);
 
   return (
     <>
@@ -186,63 +197,6 @@ export default function Navigation() {
                   </Link>
                 );
               })}
-
-              {/* Properties Dropdown */}
-              <div
-                className="relative"
-                onMouseEnter={() => setIsPropertyDropdownOpen(true)}
-                onMouseLeave={() => setIsPropertyDropdownOpen(false)}
-              >
-                <button
-                  type="button"
-                  onClick={() =>
-                    setIsPropertyDropdownOpen(!isPropertyDropdownOpen)
-                  }
-                  data-testid="button-properties-dropdown"
-                  aria-haspopup="menu"
-                  aria-expanded={isPropertyDropdownOpen}
-                  className={`cursor-pointer transition-colors duration-300 font-poppins font-medium text-xs md:text-sm flex items-center gap-1 ${
-                    pathname.startsWith("/properties-for-rent") ||
-                    pathname.startsWith("/properties-for-sale")
-                      ? "text-white"
-                      : "text-white/80 hover:text-white hover:border-b-2 hover:border-[#ffffff]"
-                  }`}
-                >
-                  {t("properties")}
-                  <ChevronDown
-                    className={`w-3 h-3 transition-transform duration-200 ${
-                      isPropertyDropdownOpen ? "rotate-180" : ""
-                    }`}
-                  />
-                </button>
-
-                {isPropertyDropdownOpen && (
-                  <div
-                    role="menu"
-                    className="absolute top-full left-0 pt-2 w-64 z-50"
-                  >
-                    <div className="bg-[#0a0a0a] rounded-lg shadow-lg border border-line animate-in fade-in-0 slide-in-from-top-2 duration-200">
-                      {propertyItems.map((item) => (
-                        <Link key={item.href} href={item.href}>
-                          <div
-                            role="menuitem"
-                            className="block px-4 py-3 hover:bg-[#ffffff]/10 focus:bg-[#ffffff]/10 transition-colors cursor-pointer border-b border-line last:border-b-0 first:rounded-t-lg last:rounded-b-lg"
-                            onClick={() => setIsPropertyDropdownOpen(false)}
-                            data-testid={`link-properties-${item.href.replace("/", "")}`}
-                          >
-                            <div className="font-poppins font-medium text-snow text-sm">
-                              {item.label}
-                            </div>
-                            <div className="font-poppins text-mist text-xs mt-0.5">
-                              {item.description}
-                            </div>
-                          </div>
-                        </Link>
-                      ))}
-                    </div>
-                  </div>
-                )}
-              </div>
 
               {navItemsAfterDropdown.map((item) => {
                 const isActive =
@@ -298,15 +252,69 @@ export default function Navigation() {
                   </div>
                 )}
               </div> */}
-              <NavFavoritesLink />
-
               {/* Language Switcher */}
               <LanguageSwitcher />
+
+              {/* Account / utility menu — holds wishlists + guest login */}
+              <div className="relative" data-utility-menu>
+                <button
+                  type="button"
+                  onClick={() => setIsUtilityMenuOpen(!isUtilityMenuOpen)}
+                  data-testid="button-account-menu"
+                  aria-haspopup="menu"
+                  aria-expanded={isUtilityMenuOpen}
+                  aria-label={t("account")}
+                  className="flex items-center rounded-full bg-white/5 hover:bg-white/10 p-1.5 transition-colors duration-200"
+                >
+                  <Menu className="w-5 h-5 text-white" />
+                </button>
+
+                {isUtilityMenuOpen && (
+                  <div
+                    role="menu"
+                    className="absolute top-full right-0 pt-2 w-56 z-50"
+                  >
+                    <div className="bg-[#0a0a0a] rounded-lg shadow-lg border border-line overflow-hidden animate-in fade-in-0 slide-in-from-top-2 duration-200 divide-y divide-line">
+                      {rentalItems.map((item) => (
+                        <Link key={item.href} href={item.href}>
+                          <div
+                            role="menuitem"
+                            onClick={() => setIsUtilityMenuOpen(false)}
+                            className="block px-4 py-3 hover:bg-[#ffffff]/10 transition-colors cursor-pointer"
+                            data-testid={`link-rental-${item.href.replace("/", "")}`}
+                          >
+                            <div className="font-poppins font-medium text-snow text-sm">
+                              {item.label}
+                            </div>
+                            <div className="font-poppins text-mist text-xs mt-0.5">
+                              {item.description}
+                            </div>
+                          </div>
+                        </Link>
+                      ))}
+                      <NavFavoritesLink
+                        variant="mobile"
+                        onNavigate={() => setIsUtilityMenuOpen(false)}
+                      />
+                      <Link href="/guest-login">
+                        <div
+                          role="menuitem"
+                          onClick={() => setIsUtilityMenuOpen(false)}
+                          className="block px-4 py-3 hover:bg-[#ffffff]/10 transition-colors cursor-pointer"
+                        >
+                          <span className="font-poppins font-medium text-snow text-sm">
+                            {t("guestLogin")}
+                          </span>
+                        </div>
+                      </Link>
+                    </div>
+                  </div>
+                )}
+              </div>
             </div>
 
             {/* Mobile: Language Switcher + Menu Button */}
             <div className="xl:hidden flex items-center gap-1.5">
-              <NavFavoritesLink />
               <LanguageSwitcher />
               <button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -394,12 +402,12 @@ export default function Navigation() {
               );
             })}
 
-            {/* Properties Section */}
+            {/* Rentals Section */}
             <div className="pt-2">
               <div className="py-2 px-4 text-[#ffffff] font-poppins font-semibold text-xs uppercase tracking-widest">
-                {t("properties")}
+                {t("rentals")}
               </div>
-              {propertyItems.map((item) => {
+              {rentalItems.map((item) => {
                 const isActive =
                   pathname === item.href || pathname.startsWith(item.href);
                 return (
@@ -495,6 +503,47 @@ export default function Navigation() {
                 </Link>
               ))}
             </div> */}
+
+            {/* Account: wishlists + guest login */}
+            <div className="pt-2">
+              <div className="py-2 px-4 text-[#ffffff] font-poppins font-semibold text-xs uppercase tracking-widest">
+                {t("account")}
+              </div>
+              <Link href="/favorites">
+                <div
+                  className={`flex items-center justify-between gap-3 py-3 px-4 rounded-xl transition-all duration-200 ${
+                    pathname.startsWith("/favorites")
+                      ? "bg-[#ffffff]/20 text-white border-l-2 border-[#ffffff]"
+                      : "text-white/80 hover:bg-white/5 hover:text-white"
+                  }`}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  <span className="flex items-center gap-2 font-poppins font-medium text-sm tracking-wide">
+                    <Heart className="w-4 h-4" />
+                    {tFav("navLabel")}
+                  </span>
+                  {favoritesCount > 0 && (
+                    <span className="inline-flex items-center justify-center min-w-[20px] h-5 px-1.5 rounded-full bg-white text-ink text-[10px] font-bold leading-none">
+                      {favoritesCount}
+                    </span>
+                  )}
+                </div>
+              </Link>
+              <Link href="/guest-login">
+                <div
+                  className={`block py-3 px-4 rounded-xl transition-all duration-200 ${
+                    pathname.startsWith("/guest-login")
+                      ? "bg-[#ffffff]/20 text-white border-l-2 border-[#ffffff]"
+                      : "text-white/80 hover:bg-white/5 hover:text-white"
+                  }`}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  <span className="font-poppins font-medium text-sm tracking-wide">
+                    {t("guestLogin")}
+                  </span>
+                </div>
+              </Link>
+            </div>
 
             {/* Divider */}
             <div className="pt-4 pb-2">

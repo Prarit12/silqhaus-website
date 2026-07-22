@@ -5,7 +5,7 @@ import HeroSection from "@/components/hero-section";
 import BookDirectBanner from "@/components/book-direct-banner";
 import GuestFavorites from "@/components/guest-favorites";
 import DestinationCovers from "@/components/destination-covers";
-import { OTASection } from "@/components/ota-section";
+import WhySilqhaus from "@/components/why-silqhaus";
 // import newsletter from "@/components/newsletter";
 // import Newsletter from "@/components/newsletter";
 // import NewsletterSection from "@/components/newsletter";
@@ -65,8 +65,8 @@ export default async function Home({
         <HeroSection />
         <BookDirectBanner />
         <GuestFavorites />
-        <OTASection />
         <DestinationCovers />
+        <WhySilqhaus />
         {/* <NewsletterSection /> */}
         {/* CTA Banner */}
         <section className="relative py-16 sm:py-20 md:py-24 overflow-hidden">

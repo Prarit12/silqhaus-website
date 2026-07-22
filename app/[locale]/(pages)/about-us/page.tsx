@@ -4,6 +4,7 @@ import { Phone, Compass, Eye } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { useTranslations } from "next-intl";
 import OtaRatingsRow from "@/components/ota-ratings-row";
+import { OTAReviews } from "@/components/ota-reviews";
 
 /** Leadership — names are proper nouns, roles come from i18n. */
 const LEADERS: {
@@ -206,6 +207,9 @@ export default function AboutUs() {
               <OtaRatingsRow />
             </div>
           </div>
+
+          {/* What guests say — live reviews across platforms */}
+          <OTAReviews />
         </div>
       </section>
 

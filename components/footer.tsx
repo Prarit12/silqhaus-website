@@ -13,10 +13,9 @@ const SUNSET =
 
 const STAY: { key: string; href: string }[] = [
   { key: "vacationRentals", href: "/our-property" },
+  { key: "monthlyStays", href: "/monthly-inquiry" },
   { key: "forRent", href: "/properties-for-rent" },
   { key: "forSale", href: "/properties-for-sale" },
-  { key: "monthlyStays", href: "/monthly-inquiry" },
-  { key: "guestLogin", href: "/guest-login" },
 ];
 
 const COMPANY: { key: string; href: string }[] = [
@@ -27,7 +26,7 @@ const COMPANY: { key: string; href: string }[] = [
 
 const CONTACT: { key: string; href: string }[] = [
   { key: "contactUs", href: "/contact-us" },
-  { key: "forGuests", href: "/contact-us" },
+  { key: "forGuests", href: "/contact-guest" },
   { key: "forOwners", href: "/contact-owner" },
   { key: "forAgencies", href: "/contact-agency" },
 ];

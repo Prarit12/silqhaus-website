@@ -9,9 +9,19 @@ const SUPPORT_EMAIL =
   process.env.NEXT_PUBLIC_CONTACT_EMAIL || "info@silqhaus.com";
 const SUPPORT_PHONE =
   process.env.NEXT_PUBLIC_CONTACT_PHONE || "+66 (0) 929490211";
-const CONTACT_WHATSAPP = process.env.NEXT_PUBLIC_CONTACT_WHATSAPP || "";
-const CONTACT_LINE = process.env.NEXT_PUBLIC_CONTACT_LINE || "";
-const CONTACT_WECHAT = process.env.NEXT_PUBLIC_CONTACT_WECHAT || "";
+const CONTACT_WHATSAPP =
+  process.env.NEXT_PUBLIC_CONTACT_WHATSAPP || "+66 92 949 0211";
+const CONTACT_LINE = process.env.NEXT_PUBLIC_CONTACT_LINE || "@Silqhaus";
+const CONTACT_WECHAT = process.env.NEXT_PUBLIC_CONTACT_WECHAT || "silqhaus";
+
+/** Add-friend link for a LINE id. Official Account handles (starting with "@")
+ * use the OA path; a personal LINE id uses the `~` search path. */
+const lineHref = (id: string) =>
+  id.startsWith("http")
+    ? id
+    : id.startsWith("@")
+      ? `https://line.me/R/ti/p/${encodeURIComponent(id)}`
+      : `https://line.me/ti/p/~${id}`;
 
 type Channel = {
   key: string;
@@ -94,9 +104,7 @@ export default function ContactChannels({
     CONTACT_LINE
       ? {
           key: "line",
-          href: CONTACT_LINE.startsWith("http")
-            ? CONTACT_LINE
-            : `https://line.me/ti/p/~${CONTACT_LINE}`,
+          href: lineHref(CONTACT_LINE),
           external: true,
           title: t("line.title"),
           description: t("line.description"),

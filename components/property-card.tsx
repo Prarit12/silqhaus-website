@@ -14,6 +14,8 @@ export interface PropertyCardProps {
   searchDates?: { checkIn?: Date | null; checkOut?: Date | null };
   fromPrice?: number;
   t: any;
+  /** "dark" (default) for the ink listing page, "light" for white sections. */
+  theme?: "dark" | "light";
 }
 
 function buildPropertyHref(
@@ -42,7 +44,13 @@ export function PropertyCard({
   searchDates,
   fromPrice,
   t,
+  theme = "dark",
 }: PropertyCardProps) {
+  const light = theme === "light";
+  const nameCls = light ? "text-ink" : "text-white";
+  const strongCls = light ? "text-ink" : "text-white";
+  const mutedCls = light ? "text-neutral-500" : "text-[#aaa]";
+  const iconCls = light ? "text-ink" : "text-[#ffffff]";
   const isUnavailable =
     hasDates &&
     pricing &&
@@ -112,12 +120,16 @@ export function PropertyCard({
       {/* Text Section - Directly under image */}
       <div className="mt-3 flex-grow flex flex-col">
         {/* Location */}
-        <p className="text-[#aaa] text-[10px] font-poppins uppercase tracking-wide mb-1">
+        <p
+          className={`${mutedCls} text-[10px] font-poppins uppercase tracking-wide mb-1`}
+        >
           {property.city}, {property.state}
         </p>
 
         {/* Property Name */}
-        <h3 className="text-white font-poppins font-bold text-[13px] leading-tight mb-1 line-clamp-2">
+        <h3
+          className={`${nameCls} font-poppins font-bold text-[13px] leading-tight mb-1 line-clamp-2`}
+        >
           {property.name}
         </h3>
 
@@ -126,31 +138,35 @@ export function PropertyCard({
           <div>
             {hasDates ? (
               isLoadingPrices ? (
-                <span className="text-[#aaa] font-poppins text-[11px]">
+                <span className={`${mutedCls} font-poppins text-[11px]`}>
                   {t("loadingPrices")}
                 </span>
               ) : avgPrice > 0 ? (
                 <>
-                  <span className="text-[#aaa] font-poppins text-[10px] mr-1">
+                  <span className={`${mutedCls} font-poppins text-[10px] mr-1`}>
                     {t("avgLabel")}
                   </span>
-                  <span className="text-white font-poppins font-bold text-[13px]">
+                  <span
+                    className={`${strongCls} font-poppins font-bold text-[13px]`}
+                  >
                     ฿{avgPrice.toLocaleString()}
                   </span>
-                  <span className="text-[#aaa] font-poppins text-[10px] ml-1">
+                  <span className={`${mutedCls} font-poppins text-[10px] ml-1`}>
                     {t("perNight")}
                   </span>
                 </>
               ) : null
             ) : fromPrice && fromPrice > 0 ? (
               <>
-                <span className="text-[#aaa] font-poppins text-[10px] mr-1">
+                <span className={`${mutedCls} font-poppins text-[10px] mr-1`}>
                   {t("fromLabel")}
                 </span>
-                <span className="text-white font-poppins font-bold text-[13px]">
+                <span
+                  className={`${strongCls} font-poppins font-bold text-[13px]`}
+                >
                   ฿{fromPrice.toLocaleString()}
                 </span>
-                <span className="text-[#aaa] font-poppins text-[10px] ml-1">
+                <span className={`${mutedCls} font-poppins text-[10px] ml-1`}>
                   {t("perNight")}
                 </span>
               </>
@@ -158,21 +174,21 @@ export function PropertyCard({
           </div>
 
           {/* Property Features Icons */}
-          <div className="flex items-center gap-2 text-[#aaa]">
+          <div className={`flex items-center gap-2 ${mutedCls}`}>
             <div className="flex items-center gap-0.5">
-              <Bed size={10} className="text-[#ffffff]" />
+              <Bed size={10} className={iconCls} />
               <span className="font-poppins font-normal text-[12px]">
                 {property.bedroomsNumber}
               </span>
             </div>
             <div className="flex items-center gap-0.5">
-              <Users size={10} className="text-[#ffffff]" />
+              <Users size={10} className={iconCls} />
               <span className="font-poppins text-[12px]">
                 {property.personCapacity}
               </span>
             </div>
             <div className="flex items-center gap-0.5">
-              <Bath size={10} className="text-[#ffffff]" />
+              <Bath size={10} className={iconCls} />
               <span className="font-poppins text-[12px]">
                 {property.bathroomsNumber}
               </span>

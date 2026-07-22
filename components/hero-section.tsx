@@ -1,13 +1,12 @@
 import { getTranslations } from "next-intl/server";
 import { ChevronDown } from "lucide-react";
 import HeroSearchBar from "./hero-search-bar";
-import HeroConnector from "./hero-connector";
 
 export default async function HeroSection() {
   const t = await getTranslations("home.hero");
 
   return (
-    <section className="relative h-screen flex items-center overflow-hidden">
+    <section className="relative h-[45vh] min-h-[440px] flex items-center pt-20">
       {/* HomeToGo-style gradient background — monochrome graphite -> black */}
       <div
         className="absolute inset-0"
@@ -26,31 +25,22 @@ export default async function HeroSection() {
         }}
       />
 
-      {/* Headline top-left, search panel right — joined by a dotted elbow connector */}
-      <div className="relative z-30 w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-10">
-        <HeroConnector
-          headline={
-            <h1
-              className="tracking-tight reveal-up"
-              style={{ animationDelay: "0.1s" }}
-            >
-              <span className="block font-normal text-white text-4xl sm:text-5xl lg:text-[3.25rem] leading-[1.05]">
-                {t("headlineLead")}
-              </span>
-              <span className="block whitespace-nowrap font-light text-white/90 text-xl sm:text-2xl lg:text-[1.7rem] leading-[1.15] mt-1.5">
-                {t("headlineSub")}
-              </span>
-            </h1>
-          }
-          search={
-            <div
-              className="reveal-up w-full max-w-3xl lg:max-w-2xl"
-              style={{ animationDelay: "0.25s" }}
-            >
-              <HeroSearchBar />
-            </div>
-          }
-        />
+      {/* Centered headline over the search panel */}
+      <div className="relative z-30 w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center text-center">
+        <h1
+          className="reveal-up font-normal text-white tracking-tight text-2xl sm:text-4xl lg:text-5xl leading-[1.1] text-balance"
+          style={{ animationDelay: "0.1s" }}
+        >
+          {t("headlineLead")}{" "}
+          <span className="font-light text-white/90">{t("headlineSub")}</span>
+        </h1>
+
+        <div
+          className="reveal-up w-full mt-8 sm:mt-10 flex justify-center"
+          style={{ animationDelay: "0.25s" }}
+        >
+          <HeroSearchBar />
+        </div>
       </div>
 
       <div

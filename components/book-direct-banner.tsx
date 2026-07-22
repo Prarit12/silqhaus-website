@@ -24,14 +24,14 @@ export default function BookDirectBanner() {
   };
 
   return (
-    <section className="relative overflow-hidden bg-white">
+    <section className="relative overflow-hidden bg-ink bg-[linear-gradient(90deg,#09081F_0%,#382124_30%,#673929_52%,#95522E_70%,#C46A33_85%,#F38338_100%)]">
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-9 sm:py-12">
         <div className="flex flex-col lg:flex-row lg:items-center gap-6 lg:gap-10">
           <div className="lg:flex-1">
-            <h2 className="text-ink font-bold text-xl sm:text-2xl lg:text-[1.65rem] leading-[1.15] tracking-tight normal-case xl:whitespace-nowrap">
+            <h2 className="text-white font-bold text-xl sm:text-2xl lg:text-[1.65rem] leading-[1.15] tracking-tight normal-case xl:whitespace-nowrap">
               {t("title")}
             </h2>
-            <p className="text-neutral-600 font-poppins text-sm sm:text-base mt-2.5 max-w-2xl leading-relaxed">
+            <p className="text-white/70 font-poppins text-sm sm:text-base mt-2.5 max-w-2xl leading-relaxed">
               {t("subtitle")}
             </p>
           </div>
@@ -40,10 +40,10 @@ export default function BookDirectBanner() {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-3 lg:shrink-0">
             {/* Path one — inquiry form, we follow up */}
             <div className="flex flex-col gap-1.5">
-              <p className="text-neutral-500 text-xs pl-2">{t("inquiryHint")}</p>
+              <p className="text-white/70 text-xs pl-2">{t("inquiryHint")}</p>
               <Link
                 href="/contact-us"
-                className="inline-flex w-full sm:min-w-56 items-center justify-center gap-2.5 rounded-full border border-neutral-300 bg-neutral-100 text-ink px-6 py-3 font-poppins font-semibold text-[15px] whitespace-nowrap hover:border-neutral-400 hover:bg-neutral-200 transition-colors"
+                className="inline-flex w-full sm:min-w-56 items-center justify-center gap-2.5 rounded-full border border-transparent bg-white text-ink px-6 py-3 font-poppins font-semibold text-[15px] whitespace-nowrap hover:bg-neutral-200 transition-colors"
               >
                 <Mail className="w-4 h-4 shrink-0" aria-hidden="true" />
                 {t("inquiryCta")}
@@ -52,11 +52,11 @@ export default function BookDirectBanner() {
 
             {/* Path two — no waiting, straight to live chat */}
             <div className="flex flex-col gap-1.5">
-              <p className="text-neutral-500 text-xs pl-2">{t("ctaHint")}</p>
+              <p className="text-white/70 text-xs pl-2">{t("ctaHint")}</p>
               <button
                 type="button"
                 onClick={talkToStaff}
-                className="inline-flex w-full sm:min-w-56 items-center justify-center gap-2.5 rounded-full border border-transparent bg-ink text-white px-6 py-3 font-poppins font-semibold text-[15px] whitespace-nowrap hover:bg-neutral-800 transition-colors"
+                className="inline-flex w-full sm:min-w-56 items-center justify-center gap-2.5 rounded-full border border-transparent bg-white text-ink px-6 py-3 font-poppins font-semibold text-[15px] whitespace-nowrap hover:bg-neutral-200 transition-colors"
               >
                 <MessageCircle className="w-4 h-4 shrink-0" aria-hidden="true" />
                 {t("cta")}

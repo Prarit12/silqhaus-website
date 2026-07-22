@@ -1,8 +1,7 @@
 "use client";
-import Image from "next/image";
+import Image, { type StaticImageData } from "next/image";
 import { Link } from "@/i18n/navigation";
 import { useTranslations } from "next-intl";
-import { ArrowRight, BookOpen } from "lucide-react";
 import phuket from "@/assets/destination-carousel/phuket.webp";
 import pattaya from "@/assets/destination-carousel/pattaya.webp";
 
@@ -10,67 +9,74 @@ interface DestinationCoversProps {
   className?: string;
 }
 
+type Href =
+  | string
+  | { pathname: string; query: Record<string, string> }
+  | null;
+
+interface Destination {
+  id: string;
+  name: string;
+  href: Href;
+  image: string | StaticImageData;
+  alt: string;
+  comingSoon?: boolean;
+}
+
 export default function DestinationCovers({
   className = "",
 }: DestinationCoversProps) {
   const t = useTranslations("home.destinations");
 
-  const DESTINATIONS = [
+  /** One clean grid — flagship destinations link to their listings, guide-only
+   * cities to their guide, and the rest are teased as coming soon. */
+  const DESTINATIONS: Destination[] = [
     {
       id: "phuket",
-      province: t("phuket"),
-      region: t("andaman"),
-      staysHref: { pathname: "/our-property", query: { location: "Phuket" } },
-      guideHref: "/experiences/phuket",
+      name: t("phuket"),
+      href: { pathname: "/our-property", query: { location: "Phuket" } },
       image: phuket,
-      alt: "Aerial view of a luxury villa with infinity pool overlooking turquoise waters and limestone islands in Phuket",
+      alt: "Aerial view of a luxury villa with infinity pool overlooking turquoise waters in Phuket",
     },
     {
       id: "pattaya",
-      province: t("pattaya"),
-      region: t("eastern"),
-      staysHref: { pathname: "/our-property", query: { location: "Pattaya" } },
-      guideHref: "/experiences/pattaya",
+      name: t("pattaya"),
+      href: { pathname: "/our-property", query: { location: "Pattaya" } },
       image: pattaya,
-      alt: "Dynamic coastal cityscape of Pattaya with high-rise buildings, beach promenade and busy waterfront activities",
+      alt: "Coastal cityscape of Pattaya with high-rise buildings and a beach promenade",
     },
-  ] as const;
-
-  /** Guide-only destinations — no villas (yet), so the guide is the story. */
-  const GUIDE_DESTINATIONS = [
     {
       id: "bangkok",
-      province: t("bangkok"),
-      region: t("central"),
-      guideHref: "/experiences/bangkok" as const,
+      name: t("bangkok"),
+      href: "/experiences/bangkok",
       image: "/experiences/regions/bangkok.jpg",
       alt: "Wat Arun temple glowing at blue hour in Bangkok",
     },
     {
       id: "samui",
-      province: t("samui"),
-      region: t("gulf"),
-      guideHref: null,
+      name: t("samui"),
+      href: null,
       image: "/experiences/regions/samui.jpg",
       alt: "Palm-fringed beach with a longtail boat on Koh Samui",
+      comingSoon: true,
     },
     {
       id: "huahin",
-      province: t("huahin"),
-      region: t("royalCoast"),
-      guideHref: null,
+      name: t("huahin"),
+      href: null,
       image: "/experiences/regions/huahin.jpg",
       alt: "Hua Hin beach at sunrise with a wooden pier",
+      comingSoon: true,
     },
     {
       id: "chiangmai",
-      province: t("chiangmai"),
-      region: t("north"),
-      guideHref: null,
+      name: t("chiangmai"),
+      href: null,
       image: "/experiences/regions/chiangmai.jpg",
       alt: "Doi Suthep's golden chedi above the mist in Chiang Mai",
+      comingSoon: true,
     },
-  ] as const;
+  ];
 
   return (
     <section className={`py-16 sm:py-20 md:py-28 bg-ink ${className}`}>
@@ -85,95 +91,40 @@ export default function DestinationCovers({
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6 md:gap-8">
-          {DESTINATIONS.map((destination) => (
-            <div
-              key={destination.id}
-              className="group relative aspect-[4/3] sm:aspect-[3/2] rounded-2xl overflow-hidden ring-1 ring-line transition-all duration-500 hover:ring-white/30"
-            >
-              <Image
-                src={destination.image}
-                alt={destination.alt}
-                fill
-                sizes="(max-width: 640px) 100vw, 50vw"
-                quality={80}
-                className="object-cover object-center transition-transform duration-[900ms] ease-out group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent transition-colors duration-500 group-hover:from-black/90" />
-              <div className="absolute bottom-6 sm:bottom-8 left-6 sm:left-8 right-6 sm:right-8 text-white">
-                <p className="text-[0.7rem] sm:text-xs text-white/60 mb-2 uppercase tracking-[0.28em]">
-                  {destination.region}
-                </p>
-                <h3 className="font-display text-3xl sm:text-4xl md:text-5xl font-light tracking-wide">
-                  {destination.province}
-                </h3>
-                <div className="mt-4 flex flex-wrap items-center gap-2.5">
-                  {/* Stretched link — the whole card browses villas here */}
-                  <Link
-                    href={destination.staysHref}
-                    className="inline-flex items-center gap-2 rounded-full bg-white text-ink px-4 py-2 text-sm font-semibold transition-colors hover:bg-neutral-200 after:absolute after:inset-0 after:content-['']"
-                  >
-                    {t("browseVillas")}
-                    <ArrowRight className="w-4 h-4" />
-                  </Link>
-                  <Link
-                    href={destination.guideHref}
-                    className="relative z-10 inline-flex items-center gap-2 rounded-full border border-white/30 bg-black/30 px-4 py-2 text-sm font-medium text-white/85 backdrop-blur-sm transition-colors hover:border-white/60 hover:text-white"
-                  >
-                    <BookOpen className="w-3.5 h-3.5" />
-                    {t("guide")}
-                  </Link>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Guide destinations — Bangkok live, the rest teased */}
-        <div className="mt-5 sm:mt-6 md:mt-8 grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
-          {GUIDE_DESTINATIONS.map((d) => {
-            const card = (
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 sm:gap-5">
+          {DESTINATIONS.map((d) => {
+            const inner = (
               <>
                 <Image
                   src={d.image}
                   alt={d.alt}
                   fill
-                  sizes="(max-width: 1024px) 50vw, 25vw"
+                  sizes="(max-width: 640px) 50vw, 33vw"
                   quality={80}
                   className="object-cover object-center transition-transform duration-[900ms] ease-out group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent transition-colors duration-500 group-hover:from-black/90" />
-                <div className="absolute bottom-4 sm:bottom-5 left-4 sm:left-5 right-4 sm:right-5 text-white">
-                  <p className="text-[0.62rem] sm:text-[0.7rem] text-white/60 mb-1.5 uppercase tracking-[0.24em]">
-                    {d.region}
+                {/* Top-left name notch — the clean signature label */}
+                <div className="absolute top-0 left-0 bg-white rounded-br-2xl pl-3.5 pr-5 py-2.5 shadow-sm">
+                  <p className="text-ink font-semibold text-[15px] sm:text-base tracking-tight">
+                    {d.name}
                   </p>
-                  <h3 className="font-display text-2xl sm:text-3xl font-light tracking-wide">
-                    {d.province}
-                  </h3>
-                  <div className="mt-3">
-                    {d.guideHref ? (
-                      <span className="inline-flex items-center gap-2 rounded-full bg-white text-ink px-3.5 py-1.5 text-xs font-semibold">
-                        <BookOpen className="w-3 h-3" />
-                        {t("guide")}
-                      </span>
-                    ) : (
-                      <span className="inline-flex items-center rounded-full border border-white/25 bg-black/35 px-3.5 py-1.5 text-xs font-medium text-white/70 backdrop-blur-sm">
-                        {t("comingSoon")}
-                      </span>
-                    )}
-                  </div>
                 </div>
+                {d.comingSoon && (
+                  <span className="absolute bottom-3 left-3 rounded-full bg-black/45 px-3 py-1 text-[11px] font-medium text-white/90 backdrop-blur-sm">
+                    {t("comingSoon")}
+                  </span>
+                )}
               </>
             );
             const classes =
-              "group relative aspect-[4/5] sm:aspect-[3/4] rounded-2xl overflow-hidden ring-1 ring-line transition-all duration-500 hover:ring-white/30";
-            return d.guideHref ? (
-              <Link key={d.id} href={d.guideHref} className={classes}>
-                {card}
+              "group relative aspect-[4/3] rounded-2xl overflow-hidden ring-1 ring-line transition-all duration-500 hover:ring-white/30";
+            return d.href ? (
+              <Link key={d.id} href={d.href} className={classes}>
+                {inner}
               </Link>
             ) : (
               <div key={d.id} className={classes}>
-                {card}
+                {inner}
               </div>
             );
           })}
