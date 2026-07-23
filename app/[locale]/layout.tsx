@@ -5,7 +5,6 @@ import { Manrope, Trirong, Sacramento } from "next/font/google";
 import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
 import Providers from "@/components/providers";
-import ChatwootWidget from "@/components/chatwoot-widget";
 import { GoogleTagManager } from "@next/third-parties/google";
 import Script from "next/script";
 
@@ -166,7 +165,6 @@ export default async function LocaleLayout({
             <Footer />
           </NextIntlClientProvider>
         </Providers>
-        <ChatwootWidget />
       </body>
     </html>
   );

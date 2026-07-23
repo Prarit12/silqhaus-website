@@ -196,15 +196,19 @@ export default function Navigation() {
           <div className="flex items-center justify-between h-14 md:h-16 px-2.5 md:px-3 transition-all duration-500">
             {/* Logo */}
             <Link href="/" aria-label="Silqhaus home">
+              {/* Real ink artwork on the white bar rather than a CSS invert,
+               * so the wordmark lands on brand #0d0d0d instead of pure black. */}
               <Image
-                src="/logos/silqhaus-wordmark.png"
+                src={
+                  isScrolled
+                    ? "/logos/silqhaus-wordmark-dark.png"
+                    : "/logos/silqhaus-wordmark.png"
+                }
                 alt="Silqhaus"
                 width={767}
                 height={291}
                 priority
-                className={`h-6 sm:h-7 md:h-8 w-auto transition-all duration-300 hover:opacity-80 ${
-                  isScrolled ? "invert" : ""
-                }`}
+                className="h-6 sm:h-7 md:h-8 w-auto transition-opacity duration-300 hover:opacity-80"
               />
             </Link>
 

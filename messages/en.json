@@ -102,7 +102,7 @@
       "inquiryHint": "Prefer we get back to you?",
       "inquiryCta": "Send us an inquiry",
       "ctaHint": "Can't wait?",
-      "onlineStatus": "We're online · replies in ~3 min"
+      "onlineStatus": "Usually replies in minutes"
     },
     "guestFavorites": {
       "eyebrow": "Handpicked",
@@ -1222,8 +1222,7 @@
       "description": "Tap to copy our ID",
       "copied": "Copied!"
     },
-    "comingSoon": "ID coming soon — ask us in chat",
-    "chatCta": "Talk to us now"
+    "comingSoon": "ID coming soon — message us on WhatsApp"
   },
   "contactAgency": {
     "metadata": {

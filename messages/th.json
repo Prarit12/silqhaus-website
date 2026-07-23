@@ -102,7 +102,7 @@
       "inquiryHint": "อยากให้เราติดต่อกลับ?",
       "inquiryCta": "ฝากข้อความถึงเรา",
       "ctaHint": "รอไม่ไหว?",
-      "onlineStatus": "เราออนไลน์อยู่ · ตอบกลับใน ~3 นาที"
+      "onlineStatus": "ปกติตอบกลับภายในไม่กี่นาที"
     },
     "guestFavorites": {
       "eyebrow": "คัดสรรพิเศษ",
@@ -1222,8 +1222,7 @@
       "description": "แตะเพื่อคัดลอกไอดีของเรา",
       "copied": "คัดลอกแล้ว!"
     },
-    "comingSoon": "ไอดีเร็ว ๆ นี้ — ทักแชตหาเราได้เลย",
-    "chatCta": "คุยกับเราได้ทันที"
+    "comingSoon": "ไอดีเร็ว ๆ นี้ — ทักหาเราทาง WhatsApp"
   },
   "contactAgency": {
     "metadata": {

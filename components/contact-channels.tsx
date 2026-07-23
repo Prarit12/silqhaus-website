@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useTranslations } from "next-intl";
-import { Phone, Mail, MessageCircle } from "lucide-react";
+import { Phone, Mail } from "lucide-react";
 import { SiWhatsapp, SiWechat, SiLine } from "react-icons/si";
 
 const SUPPORT_EMAIL =
@@ -35,8 +35,8 @@ type Channel = {
 };
 
 /**
- * The shared "reach us" list — phone, WhatsApp, LINE, WeChat, email, plus the
- * live-chat button. Channel labels come from the `contactChannels` namespace;
+ * The shared "reach us" list — phone, WhatsApp, LINE, WeChat and email.
+ * Channel labels come from the `contactChannels` namespace;
  * the phone and email rows are labelled by the calling page so the same list
  * can address guests or owners. LINE and WeChat show as "coming soon" until
  * their NEXT_PUBLIC_CONTACT_* ids are set.
@@ -64,15 +64,6 @@ export default function ContactChannels({
       setTimeout(() => setWechatCopied(false), 2500);
     } catch (err) {
       console.error("WeChat copy failed:", err);
-    }
-  };
-
-  const talkToStaff = () => {
-    const cw = (window as any).$chatwoot;
-    if (cw && typeof cw.toggle === "function") {
-      cw.toggle("open");
-    } else {
-      window.location.href = `mailto:${SUPPORT_EMAIL}`;
     }
   };
 
@@ -221,17 +212,6 @@ export default function ContactChannels({
         );
       })}
 
-      {/* mt-auto pins this to the bottom, level with the form panel */}
-      <div className="border-t border-line pt-5 mt-auto">
-        <button
-          type="button"
-          onClick={talkToStaff}
-          className="inline-flex w-full sm:w-auto items-center justify-center gap-2 rounded-full border border-white/40 text-white px-7 py-3 text-sm font-medium transition-colors hover:border-white hover:bg-white/10"
-        >
-          <MessageCircle className="w-4 h-4" aria-hidden="true" />
-          {t("chatCta")}
-        </button>
-      </div>
     </div>
   );
 }
