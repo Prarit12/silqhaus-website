@@ -162,9 +162,10 @@
     transition: color 0.3s ease;
   }
 
-  a:hover {
-    color: var(--gold);
-  }
+  /* No `a:hover` colour here. --gold and --snow are both #ffffff since the
+     palette went monochrome, so setting it repainted every link white on
+     hover — invisible on any light section — while changing nothing on the
+     dark ones. Links that want a hover colour set it themselves. */
 
   .border-line {
     border-color: var(--line);

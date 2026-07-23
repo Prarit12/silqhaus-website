@@ -65,6 +65,10 @@ export function PropertyCard({
   const light = theme === "light";
   const nameCls = light ? "text-ink" : "text-white";
   const mutedCls = light ? "text-neutral-500" : "text-[#aaa]";
+  // globals.css sets `a:hover { color: var(--gold) }` and --gold is #fff, so a
+  // link title would go white-on-white here. Pin the hover colour and let the
+  // underline carry the hover affordance instead.
+  const nameHoverCls = light ? "hover:text-ink" : "hover:text-white";
 
   const photos: string[] = (property.listingImages ?? [])
     .map((img: any) => img?.url)
@@ -264,7 +268,7 @@ export function PropertyCard({
           <Link
             href={href as any}
             prefetch={false}
-            className={`${nameCls} after:absolute after:inset-0 after:z-10`}
+            className={`${nameCls} ${nameHoverCls} group-hover:underline underline-offset-2 after:absolute after:inset-0 after:z-10`}
           >
             {title}
           </Link>
