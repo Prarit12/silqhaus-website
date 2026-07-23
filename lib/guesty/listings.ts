@@ -34,6 +34,7 @@ interface GuestyPicture {
 interface GuestyPrices {
   cleaningFee?: number | string | null;
   currency?: string | null;
+  basePrice?: number | string | null;
   [key: string]: unknown;
 }
 
@@ -53,6 +54,7 @@ export interface GuestyRawListing {
   picture?: GuestyPicture | string;
   pictures?: GuestyPicture[];
   prices?: GuestyPrices;
+  terms?: { minNights?: number | string | null; [key: string]: unknown };
   integrations?: Array<{
     platform?: string;
     externalUrl?: string;
@@ -83,6 +85,10 @@ export interface NormalizedGuestyListing {
   address?: string;
   cleaningFee: number | null;
   feeCurrency: string | null;
+  /** Named to match Hostaway so cards read one shape across both sources. */
+  price: number | null;
+  minNights: number | null;
+  currencyCode: string | null;
   airbnbListingUrl?: string;
   bookingcomListingUrl?: string;
   vrboListingUrl?: string;
@@ -129,6 +135,10 @@ export function normalizeGuestyListing(
     typeof raw.prices?.currency === "string" && raw.prices.currency
       ? raw.prices.currency
       : null;
+  // Guesty already returns prices/terms; they were being dropped here, which
+  // left 8 of 10 listings with no rate to show on a card.
+  const basePrice = toNumberOrNull(raw.prices?.basePrice);
+  const minNights = toNumberOrNull(raw.terms?.minNights);
 
   // Map Open API integrations[] → per-channel listing URLs, mirroring the
   // field names Hostaway already exposes so the detail-page column
@@ -185,6 +195,9 @@ export function normalizeGuestyListing(
     address: addr.full,
     cleaningFee,
     feeCurrency,
+    price: basePrice,
+    minNights,
+    currencyCode: feeCurrency,
     airbnbListingUrl,
     bookingcomListingUrl,
     vrboListingUrl,

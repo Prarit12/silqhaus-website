@@ -40,6 +40,18 @@ export default function GuestFavorites() {
     },
   });
 
+  // Real calendar prices for each property's minimum stay. Cards render
+  // without it, so a slow or failed quote never holds up the grid.
+  const pricingQuery = useQuery<Record<string, any>>({
+    queryKey: ["home-pricing"],
+    queryFn: async () => {
+      const res = await fetch("/api/home-pricing");
+      if (!res.ok) throw new Error("Failed to fetch pricing");
+      return res.json();
+    },
+    staleTime: 60 * 60 * 1000,
+  });
+
   const villas = useMemo(() => {
     const ha = (hostawayQuery.data ?? []).map((l: any) => ({
       ...l,
@@ -97,6 +109,7 @@ export default function GuestFavorites() {
               pricing={null}
               hasDates={false}
               isLoadingPrices={false}
+              fromQuote={pricingQuery.data?.[`${v.source}:${v.id}`] ?? null}
               t={cardT}
               theme="light"
             />

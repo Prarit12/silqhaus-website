@@ -2607,7 +2607,14 @@
     "fromLabel": "เริ่มต้น",
     "notAvailable": "ไม่ว่างในวันที่เลือก",
     "loadingPrices": "กำลังโหลดราคา…",
-    "selectDatesToSeePrices": "เลือกวันที่เพื่อดูราคา"
+    "selectDatesToSeePrices": "เลือกวันที่เพื่อดูราคา",
+    "forNights": "สำหรับ {count} คืน",
+    "bedroomsCount": "{count} ห้องนอน",
+    "bathroomsCount": "{count} ห้องน้ำ",
+    "guestsCount": "{count} ผู้เข้าพัก",
+    "photoNext": "รูปถัดไป",
+    "photoPrev": "รูปก่อนหน้า",
+    "photoPosition": "รูปที่ {current} จาก {total}"
   },
   "guidesPage": {
     "chip": "บล็อก",

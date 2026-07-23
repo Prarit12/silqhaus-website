@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import { useQuery } from "@tanstack/react-query";
 import { OTASection } from "@/components/ota-section";
 import BookingSearchBar from "@/components/booking-search-bar";
 import { PropertyCard } from "@/components/property-card";
@@ -9,6 +10,17 @@ import { calculateSilqhausPrice } from "@/config/ota-markups";
 
 export default function OurProperty() {
   const t = useTranslations("ourProperty");
+
+  // "From" prices for the minimum stay, shown until the guest picks dates.
+  const fromQuotes = useQuery<Record<string, any>>({
+    queryKey: ["home-pricing"],
+    queryFn: async () => {
+      const res = await fetch("/api/home-pricing");
+      if (!res.ok) throw new Error("Failed to fetch pricing");
+      return res.json();
+    },
+    staleTime: 60 * 60 * 1000,
+  });
 
   const {
     filters,
@@ -144,15 +156,44 @@ export default function OurProperty() {
                         property.cleaningFee > 0
                           ? property.cleaningFee
                           : 0;
+                      const silqhausTotal = calculateSilqhausPrice(
+                        pricing.pricedTotalPrice,
+                        0,
+                        fee,
+                        "guesty",
+                      );
                       cardPricing = {
                         ...pricing,
+                        // The card shows a total, so mark that up too — not
+                        // just the nightly average.
+                        totalPrice: silqhausTotal,
+                        nights: pricing.pricedNights,
                         averageNightlyRate: Math.round(
-                          calculateSilqhausPrice(
-                            pricing.pricedTotalPrice,
-                            0,
-                            fee,
-                            "guesty",
-                          ) / pricing.pricedNights,
+                          silqhausTotal / pricing.pricedNights,
+                        ),
+                      };
+                    } else if (
+                      property.source !== "guesty" &&
+                      pricing &&
+                      pricing.nights > 0 &&
+                      pricing.totalPrice > 0
+                    ) {
+                      const fee =
+                        typeof property.cleaningFee === "number" &&
+                        property.cleaningFee > 0
+                          ? property.cleaningFee
+                          : 0;
+                      const silqhausTotal = calculateSilqhausPrice(
+                        pricing.totalPrice,
+                        0,
+                        fee,
+                        "hostaway",
+                      );
+                      cardPricing = {
+                        ...pricing,
+                        totalPrice: silqhausTotal,
+                        averageNightlyRate: Math.round(
+                          silqhausTotal / pricing.nights,
                         ),
                       };
                     }
@@ -164,6 +205,11 @@ export default function OurProperty() {
                         hasDates={hasDates}
                         isLoadingPrices={isLoadingPrices}
                         searchDates={searchDates}
+                        fromQuote={
+                          fromQuotes.data?.[
+                            `${property.source ?? "hostaway"}:${property.id}`
+                          ] ?? null
+                        }
                         t={t}
                       />
                     );

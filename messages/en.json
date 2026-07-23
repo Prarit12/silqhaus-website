@@ -2607,7 +2607,14 @@
     "fromLabel": "from",
     "notAvailable": "Not available on selected dates",
     "loadingPrices": "Loading prices…",
-    "selectDatesToSeePrices": "Select dates to see prices"
+    "selectDatesToSeePrices": "Select dates to see prices",
+    "forNights": "for {count, plural, one {# night} other {# nights}}",
+    "bedroomsCount": "{count, plural, one {# bedroom} other {# bedrooms}}",
+    "bathroomsCount": "{count, plural, one {# bath} other {# baths}}",
+    "guestsCount": "{count, plural, one {# guest} other {# guests}}",
+    "photoNext": "Next photo",
+    "photoPrev": "Previous photo",
+    "photoPosition": "Photo {current} of {total}"
   },
   "guidesPage": {
     "chip": "Blog",
