@@ -72,6 +72,9 @@ export interface NormalizedGuestyListing {
   id: string;
   source: "guesty";
   name: string;
+  /** Guesty's internal short name — usually the real property name, where
+   *  `title` is the OTA-facing marketing headline. */
+  nickname?: string;
   description?: string;
   city?: string;
   state?: string;
@@ -183,6 +186,7 @@ export function normalizeGuestyListing(
     id: String(raw._id),
     source: "guesty",
     name: raw.title || raw.nickname || "Untitled",
+    nickname: raw.nickname,
     description: raw.publicDescription?.summary || raw.publicDescription?.space,
     city: addr.city,
     state: addr.state,

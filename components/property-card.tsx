@@ -4,6 +4,7 @@ import Image from "next/image";
 import { ChevronLeft, ChevronRight, Star } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { createPropertySlug } from "@/lib/slugify";
+import { displayPropertyName } from "@/config/property-names";
 import { PMSFavoriteButton } from "@/components/pms-favorite-button";
 import { useHoverPrefetch } from "@/hooks/use-hover-prefetch";
 
@@ -82,6 +83,9 @@ export function PropertyCard({
 
   const href = buildPropertyHref(property, searchDates);
   const prefetchHandlers = useHoverPrefetch()(href);
+
+  // The guest-facing name. Slugs stay on property.name so URLs don't move.
+  const title = displayPropertyName(property);
 
   // Hostaway scores reviews out of 10; guests read stars out of 5.
   const rawRating = Number(property.averageReviewRating);
@@ -173,7 +177,7 @@ export function PropertyCard({
               {Math.abs(i - index) <= 1 && (
                 <Image
                   src={url}
-                  alt={i === 0 ? property.name : ""}
+                  alt={i === 0 ? title : ""}
                   fill
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 500px"
                   className="object-cover"
@@ -240,7 +244,7 @@ export function PropertyCard({
           snapshot={{
             kind: "vacation",
             id: String(property.id),
-            name: property.name,
+            name: title,
             slug: createPropertySlug(property.name, property.id),
             city: property.city ?? null,
             state: property.state ?? null,
@@ -262,7 +266,7 @@ export function PropertyCard({
             prefetch={false}
             className={`${nameCls} after:absolute after:inset-0 after:z-10`}
           >
-            {property.name}
+            {title}
           </Link>
         </h3>
 
