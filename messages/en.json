@@ -2614,7 +2614,26 @@
     "guestsCount": "{count, plural, one {# guest} other {# guests}}",
     "photoNext": "Next photo",
     "photoPrev": "Previous photo",
-    "photoPosition": "Photo {current} of {total}"
+    "photoPosition": "Photo {current} of {total}",
+    "search": {
+      "placeholder": "Search your property",
+      "addDates": "Add dates"
+    },
+    "chips": {
+      "all": "All",
+      "phuket": "Phuket",
+      "pattaya": "Pattaya"
+    },
+    "map": {
+      "ariaLabel": "Map of properties",
+      "showMap": "Map",
+      "showList": "List",
+      "zoomIn": "Zoom in",
+      "zoomOut": "Zoom out"
+    },
+    "mapCard": {
+      "close": "Close"
+    }
   },
   "guidesPage": {
     "chip": "Blog",

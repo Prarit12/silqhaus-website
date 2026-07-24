@@ -6,6 +6,7 @@ import { useTranslations } from "next-intl";
 import { PMSListingCard } from "@/components/pms-listing-card";
 import { PMSFilterBar } from "@/components/pms-filter-bar";
 import { usePMSFilters } from "@/hooks/use-pms-filters";
+import { useIsLargeScreen } from "@/hooks/use-is-large-screen";
 import { fetchPMSListings } from "@/lib/api/silqhaus-pms";
 import type {
   PMSListing,
@@ -27,19 +28,6 @@ interface PMSListingsWithMapProps {
 }
 
 const DEACTIVATE_DELAY_MS = 120;
-
-function useIsLargeScreen(): boolean {
-  const [isLg, setIsLg] = useState(false);
-  useEffect(() => {
-    if (typeof window === "undefined" || !window.matchMedia) return;
-    const mq = window.matchMedia("(min-width: 768px)");
-    const handler = () => setIsLg(mq.matches);
-    handler();
-    mq.addEventListener("change", handler);
-    return () => mq.removeEventListener("change", handler);
-  }, []);
-  return isLg;
-}
 
 export function PMSListingsWithMap({
   listingType,

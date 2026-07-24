@@ -13,6 +13,10 @@ export interface PropertyListItem {
   bathroomsNumber?: number;
   price?: number;
   currencyCode?: string;
+  /** Present on both sources at runtime (Guesty normalizes them, Hostaway
+   *  passes them through raw) — declared so the map can read them typed. */
+  lat?: number;
+  lng?: number;
   listingImages?: Array<{ url: string; caption?: string | null }>;
   [key: string]: unknown;
 }

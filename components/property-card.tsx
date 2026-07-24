@@ -27,6 +27,9 @@ export interface PropertyCardProps {
   t: any;
   /** "dark" (default) for the ink listing page, "light" for white sections. */
   theme?: "dark" | "light";
+  /** Search-page variant: adds a location line and guest count, and moves the
+   *  rating up into a "★4.9 · N bedrooms · N baths · N guests" stats line. */
+  detailed?: boolean;
 }
 
 /** Carrying every photo would mount 80+ images per card; a handful is plenty. */
@@ -34,7 +37,7 @@ const MAX_PHOTOS = 8;
 /** Airbnb-style dot strip: at most five, sliding to follow the active photo. */
 const MAX_DOTS = 5;
 
-function buildPropertyHref(
+export function buildPropertyHref(
   property: any,
   searchDates?: { checkIn?: Date | null; checkOut?: Date | null },
 ): string {
@@ -61,6 +64,7 @@ export function PropertyCard({
   fromQuote,
   t,
   theme = "dark",
+  detailed = false,
 }: PropertyCardProps) {
   const light = theme === "light";
   const nameCls = light ? "text-ink" : "text-white";
@@ -126,9 +130,15 @@ export function PropertyCard({
     property.bathroomsNumber
       ? t("bathroomsCount", { count: property.bathroomsNumber })
       : null,
+    // The detailed (search-page) variant also names the guest capacity.
+    detailed && property.personCapacity
+      ? t("guestsCount", { count: property.personCapacity })
+      : null,
   ]
     .filter(Boolean)
     .join(" · ");
+
+  const location = [property.city, property.state].filter(Boolean).join(", ");
 
   /** "฿135,000 for 3 nights" — a total a guest could actually book. */
   const renderPrice = () => {
@@ -274,28 +284,66 @@ export function PropertyCard({
           </Link>
         </h3>
 
-        {summary && (
-          <p className={`${mutedCls} text-[14px] leading-snug mt-0.5`}>
-            {summary}
-          </p>
-        )}
-
-        {price && (
-          <p className={`${mutedCls} text-[14px] leading-snug mt-1`}>
-            {price}
-            {rating && (
-              <>
-                {" · "}
-                <span className={`${nameCls} inline-flex items-baseline gap-0.5`}>
-                  <Star
-                    className="w-3 h-3 self-center fill-current"
-                    aria-hidden="true"
-                  />
-                  {rating}
-                </span>
-              </>
+        {detailed ? (
+          <>
+            {location && (
+              <p className={`${mutedCls} text-[14px] leading-snug mt-0.5`}>
+                {location}
+              </p>
             )}
-          </p>
+            {(rating || summary) && (
+              <p
+                className={`${mutedCls} text-[14px] leading-snug mt-0.5 flex flex-wrap items-baseline gap-x-1`}
+              >
+                {rating && (
+                  <span
+                    className={`${nameCls} inline-flex items-baseline gap-0.5`}
+                  >
+                    <Star
+                      className="w-3 h-3 self-center fill-current"
+                      aria-hidden="true"
+                    />
+                    {rating}
+                  </span>
+                )}
+                {rating && summary && <span aria-hidden="true">·</span>}
+                {summary && <span>{summary}</span>}
+              </p>
+            )}
+            {price && (
+              <p className={`${mutedCls} text-[14px] leading-snug mt-1`}>
+                {price}
+              </p>
+            )}
+          </>
+        ) : (
+          <>
+            {summary && (
+              <p className={`${mutedCls} text-[14px] leading-snug mt-0.5`}>
+                {summary}
+              </p>
+            )}
+
+            {price && (
+              <p className={`${mutedCls} text-[14px] leading-snug mt-1`}>
+                {price}
+                {rating && (
+                  <>
+                    {" · "}
+                    <span
+                      className={`${nameCls} inline-flex items-baseline gap-0.5`}
+                    >
+                      <Star
+                        className="w-3 h-3 self-center fill-current"
+                        aria-hidden="true"
+                      />
+                      {rating}
+                    </span>
+                  </>
+                )}
+              </p>
+            )}
+          </>
         )}
       </div>
     </div>

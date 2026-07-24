@@ -2614,7 +2614,26 @@
     "guestsCount": "{count} ผู้เข้าพัก",
     "photoNext": "รูปถัดไป",
     "photoPrev": "รูปก่อนหน้า",
-    "photoPosition": "รูปที่ {current} จาก {total}"
+    "photoPosition": "รูปที่ {current} จาก {total}",
+    "search": {
+      "placeholder": "ค้นหาที่พักของคุณ",
+      "addDates": "เพิ่มวันที่"
+    },
+    "chips": {
+      "all": "ทั้งหมด",
+      "phuket": "ภูเก็ต",
+      "pattaya": "พัทยา"
+    },
+    "map": {
+      "ariaLabel": "แผนที่ที่พัก",
+      "showMap": "แผนที่",
+      "showList": "รายการ",
+      "zoomIn": "ซูมเข้า",
+      "zoomOut": "ซูมออก"
+    },
+    "mapCard": {
+      "close": "ปิด"
+    }
   },
   "guidesPage": {
     "chip": "บล็อก",
