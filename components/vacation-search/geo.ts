@@ -16,11 +16,19 @@ export interface LatLng {
   lng: number;
 }
 
+/** Coerce only real numbers and non-blank numeric strings; blank/null/space
+ *  must become NaN, not 0 — Number("") === 0 would drop a pin off West Africa. */
+function toCoord(v: unknown): number {
+  if (typeof v === "number") return v;
+  if (typeof v === "string" && v.trim() !== "") return Number(v);
+  return NaN;
+}
+
 /** Finite coordinates or nothing — a property without them stays in the grid
  *  but gets no map pill. */
 export function getLatLng(p: PropertyListItem): LatLng | null {
-  const lat = typeof p.lat === "number" ? p.lat : Number(p.lat);
-  const lng = typeof p.lng === "number" ? p.lng : Number(p.lng);
+  const lat = toCoord(p.lat);
+  const lng = toCoord(p.lng);
   if (!Number.isFinite(lat) || !Number.isFinite(lng)) return null;
   return { lat, lng };
 }

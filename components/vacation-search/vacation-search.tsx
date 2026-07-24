@@ -21,6 +21,8 @@ const VacationMap = dynamic(() => import("./vacation-map"), {
 });
 
 const DEACTIVATE_DELAY_MS = 120;
+/** Slider ceiling that means "no upper limit". */
+const PRICE_MAX = 100000;
 type Region = "all" | "phuket" | "pattaya";
 
 export function VacationSearch() {
@@ -29,9 +31,6 @@ export function VacationSearch() {
 
   const {
     searchDates,
-    priceRange,
-    setPriceRange,
-    setPriceFilterActive,
     minBedrooms,
     setMinBedrooms,
     setBedroomsFilterActive,
@@ -65,6 +64,8 @@ export function VacationSearch() {
   const [searchText, setSearchText] = useState("");
   const [debouncedText, setDebouncedText] = useState("");
   const [region, setRegion] = useState<Region>("all");
+  // Price ceiling applied to the displayed nightly, in the items memo below.
+  const [priceCeiling, setPriceCeiling] = useState(PRICE_MAX);
   const [hoveredId, setHoveredId] = useState<string | null>(null);
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [filtersOpen, setFiltersOpen] = useState(false);
@@ -197,7 +198,19 @@ export function VacationSearch() {
         if (a.isUnavailable !== b.isUnavailable) return a.isUnavailable ? 1 : -1;
         return 0;
       })
-      .filter((it) => !showAvailableOnly || !it.isUnavailable);
+      .filter((it) => {
+        if (showAvailableOnly && it.isUnavailable) return false;
+        // Filter on the DISPLAYED nightly (marked-up, always present via the
+        // from-quote) rather than the raw calendar price the hook would use —
+        // and it works without dates, unlike the hook's price filter.
+        if (
+          priceCeiling < PRICE_MAX &&
+          it.nightly != null &&
+          it.nightly > priceCeiling
+        )
+          return false;
+        return true;
+      });
   }, [
     filteredProperties,
     debouncedText,
@@ -206,6 +219,7 @@ export function VacationSearch() {
     fromQuotes.data,
     hasDates,
     showAvailableOnly,
+    priceCeiling,
   ]);
 
   // Drop a stale selection/hover when it leaves the visible set.
@@ -217,6 +231,15 @@ export function VacationSearch() {
 
   const handleSelect = useCallback((key: string) => setSelectedId(key), []);
   const clearSelection = useCallback(() => setSelectedId(null), []);
+
+  // Reset every filter surface — the hook's (dates/guests/bedrooms) and the
+  // orchestrator-local ones (region chip, search text, price ceiling).
+  const clearAll = useCallback(() => {
+    setPriceCeiling(PRICE_MAX);
+    setRegion("all");
+    setSearchText("");
+    handleClearAllFilters();
+  }, [handleClearAllFilters]);
 
   const selectedItem = selectedId
     ? (items.find((i) => i.key === selectedId) ?? null)
@@ -277,7 +300,7 @@ export function VacationSearch() {
                   initialDates={searchDates}
                   initialGuests={minGuests}
                   initialBedrooms={minBedrooms}
-                  initialPrice={priceRange}
+                  initialPrice={[0, priceCeiling]}
                   initialAvailableOnly={showAvailableOnly}
                   maxBedrooms={maxBedrooms}
                   onApply={(v) => {
@@ -290,11 +313,12 @@ export function VacationSearch() {
                     setMinGuests(v.guests);
                     setMinBedrooms(v.bedrooms);
                     setBedroomsFilterActive(v.bedrooms > 1);
-                    setPriceRange(v.price);
-                    setPriceFilterActive(v.price[1] < 100000);
+                    // Price is filtered here (on the displayed nightly), not in
+                    // the hook — leave the hook's raw-price filter off.
+                    setPriceCeiling(v.price[1]);
                     setShowAvailableOnly(v.availableOnly);
                   }}
-                  onClear={handleClearAllFilters}
+                  onClear={clearAll}
                   onClose={() => setFiltersOpen(false)}
                   t={t}
                 />
@@ -339,7 +363,7 @@ export function VacationSearch() {
             selectedId={selectedId}
             onHover={handleHover}
             onHoverEnd={handleHoverEnd}
-            onClearFilters={handleClearAllFilters}
+            onClearFilters={clearAll}
             t={t}
           />
         </div>
@@ -374,6 +398,7 @@ export function VacationSearch() {
             onSelect={handleSelect}
             onClearSelection={clearSelection}
             searchDates={searchDates}
+            showSelectedCard={false}
             t={t}
           />
           {/* Mobile selected → bottom sheet */}

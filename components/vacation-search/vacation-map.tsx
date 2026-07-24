@@ -17,6 +17,9 @@ interface VacationMapProps {
   onSelect: (key: string) => void;
   onClearSelection: () => void;
   searchDates?: { checkIn?: Date | null; checkOut?: Date | null };
+  /** The floating popup card over the pin. Off on mobile, where the parent
+   *  renders the selected property as a bottom sheet instead. */
+  showSelectedCard?: boolean;
   t: any;
 }
 
@@ -65,6 +68,7 @@ export default function VacationMap({
   onSelect,
   onClearSelection,
   searchDates,
+  showSelectedCard = true,
   t,
 }: VacationMapProps) {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -163,9 +167,12 @@ export default function VacationMap({
         });
         marker.on("click", (e) => {
           L.DomEvent.stopPropagation(e);
+          // maxZoom 19 (the tile ceiling) so even members sharing near-identical
+          // coordinates — the spread ZcapeX2 pair — split apart instead of
+          // re-merging into the same badge at a shallow fit zoom.
           map.flyToBounds(L.latLngBounds(memberLatLngs), {
             padding: [80, 80],
-            maxZoom: 16,
+            maxZoom: 19,
           });
         });
         marker.addTo(map);
@@ -272,8 +279,11 @@ export default function VacationMap({
     return () => ro.disconnect();
   }, []);
 
+  // Read from the `display` memo, not displayRef (which a post-render effect
+  // updates a render late) — otherwise the open popup shows the previous
+  // render's price/availability after a data change.
   const selectedItem = selectedId
-    ? (displayRef.current.get(selectedId)?.item ?? null)
+    ? (display.find((d) => d.key === selectedId)?.item ?? null)
     : null;
 
   const zoomBtn =
@@ -309,7 +319,7 @@ export default function VacationMap({
       </div>
 
       {/* Click popup card, anchored above the selected pill */}
-      {selectedItem && selectedPos && (
+      {showSelectedCard && selectedItem && selectedPos && (
         <div
           className="absolute z-[1100]"
           style={{ left: selectedPos.x, top: selectedPos.y }}

@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { ChevronLeft, ChevronRight, Minus, Plus, X } from "lucide-react";
 
 type DateRange = { checkIn: Date | null; checkOut: Date | null };
@@ -111,8 +111,16 @@ export function VacationFilterPopover({
   const [bedrooms, setBedrooms] = useState(initialBedrooms);
   const [maxPrice, setMaxPrice] = useState(initialPrice[1] || PRICE_MAX);
   const [availableOnly, setAvailableOnly] = useState(initialAvailableOnly);
+  // Midnight today, and the month the calendar opens on.
+  const today = useMemo(() => {
+    const d = new Date();
+    d.setHours(0, 0, 0, 0);
+    return d;
+  }, []);
   const [month, setMonth] = useState(
-    () => initialDates.checkIn ?? new Date(2026, 6, 1),
+    () =>
+      initialDates.checkIn ??
+      new Date(today.getFullYear(), today.getMonth(), 1),
   );
 
   useEffect(() => {
@@ -228,7 +236,6 @@ export function VacationFilterPopover({
         <div className="grid grid-cols-7 gap-y-1">
           {monthDays(month).map((d, i) => {
             const outside = d.getMonth() !== month.getMonth();
-            const today = new Date(2026, 6, 24);
             const past = d < today && !sameDay(d, today);
             const end = isEnd(d);
             const mid = inRange(d) && !end;
