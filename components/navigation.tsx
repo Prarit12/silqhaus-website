@@ -26,6 +26,11 @@ export default function Navigation() {
   const { count: favoritesCount } = usePMSFavorites();
 
   const [isScrolled, setIsScrolled] = useState(false);
+
+  // Pages with a full-bleed hero want the transparent nav at the top; the
+  // search results page has no hero, so keep the nav solid there so the search
+  // pill reads as a clean header bar above the filter row.
+  const solidHeader = isScrolled || pathname === "/our-property";
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isPartnerOpen, setIsPartnerOpen] = useState(false);
   const [isContactDropdownOpen, setIsContactDropdownOpen] = useState(false);
@@ -53,20 +58,20 @@ export default function Navigation() {
     // centreline on hover. Colour alone carries hover + active state.
     `cursor-pointer transition-colors duration-300 font-poppins font-medium text-xs md:text-sm leading-none ${
       isActive
-        ? isScrolled
+        ? solidHeader
           ? "text-ink"
           : "text-white"
-        : isScrolled
+        : solidHeader
           ? "text-neutral-600 hover:text-ink"
           : "text-white/80 hover:text-white"
     }`;
 
   const iconBtnClass = `flex items-center rounded-full p-1.5 transition-colors duration-200 ${
-    isScrolled
+    solidHeader
       ? "bg-neutral-100 hover:bg-neutral-200"
       : "bg-white/5 hover:bg-white/10"
   }`;
-  const iconColor = isScrolled ? "text-ink" : "text-white";
+  const iconColor = solidHeader ? "text-ink" : "text-white";
 
   // Rental-type selector: the trigger shows whichever type the current
   // route belongs to, defaulting to Monthly.
@@ -186,7 +191,7 @@ export default function Navigation() {
     <>
       <nav
         className={`fixed top-0 left-0 w-full z-[60] transition-all duration-500 ease-in-out ${
-          isScrolled
+          solidHeader
             ? "bg-white border-b border-neutral-200 shadow-[0_4px_20px_rgba(0,0,0,0.08)]"
             : "bg-transparent"
         }`}
@@ -205,7 +210,7 @@ export default function Navigation() {
                * so the wordmark lands on brand #0d0d0d instead of pure black. */}
               <Image
                 src={
-                  isScrolled
+                  solidHeader
                     ? "/logos/silqhaus-wordmark-dark.png"
                     : "/logos/silqhaus-wordmark.png"
                 }

@@ -3,11 +3,10 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import dynamic from "next/dynamic";
 import { useQuery } from "@tanstack/react-query";
 import { useTranslations } from "next-intl";
-import { Search, SlidersHorizontal, Map as MapIcon, List } from "lucide-react";
+import { SlidersHorizontal, Map as MapIcon, List } from "lucide-react";
 import { usePropertyFilters } from "@/hooks/use-property-filters";
 import { useIsLargeScreen } from "@/hooks/use-is-large-screen";
 import { calculateSilqhausPrice } from "@/config/ota-markups";
-import { displayPropertyName } from "@/config/property-names";
 import type { FromQuote } from "@/components/property-card";
 import { VacationListPanel } from "./vacation-list-panel";
 import { VacationFilterPopover } from "./vacation-filter-popover";
@@ -45,7 +44,6 @@ export function VacationSearch() {
     isLoadingPrices,
     maxBedrooms,
     filteredProperties,
-    updateFilter,
     handleSearchDates,
     handleClearAllFilters,
   } = usePropertyFilters();
@@ -61,8 +59,6 @@ export function VacationSearch() {
   });
 
   // UI state
-  const [searchText, setSearchText] = useState("");
-  const [debouncedText, setDebouncedText] = useState("");
   const [region, setRegion] = useState<Region>("all");
   // Price ceiling applied to the displayed nightly, in the items memo below.
   const [priceCeiling, setPriceCeiling] = useState(PRICE_MAX);
@@ -70,12 +66,6 @@ export function VacationSearch() {
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [filtersOpen, setFiltersOpen] = useState(false);
   const [mobileView, setMobileView] = useState<"list" | "map">("list");
-
-  // Debounce the free-text search (matches name + city + state below).
-  useEffect(() => {
-    const id = setTimeout(() => setDebouncedText(searchText.trim()), 250);
-    return () => clearTimeout(id);
-  }, [searchText]);
 
   // Hover sync with a short deactivate delay (marker ↔ card).
   const clearTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -106,15 +96,8 @@ export function VacationSearch() {
   // The single source of truth for every price on the page: markup applied
   // once, here, so grid / pill / popup can never disagree.
   const items = useMemo<SearchItem[]>(() => {
-    const text = debouncedText.toLowerCase();
     return (filteredProperties ?? [])
       .filter((property: any) => {
-        if (text) {
-          const name = displayPropertyName(property).toLowerCase();
-          const hay = `${name} ${property.city ?? ""} ${property.state ?? ""}`
-            .toLowerCase();
-          if (!hay.includes(text)) return false;
-        }
         if (region !== "all" && regionOf(property) !== region) return false;
         return true;
       })
@@ -213,7 +196,6 @@ export function VacationSearch() {
       });
   }, [
     filteredProperties,
-    debouncedText,
     region,
     calendarData,
     fromQuotes.data,
@@ -233,11 +215,10 @@ export function VacationSearch() {
   const clearSelection = useCallback(() => setSelectedId(null), []);
 
   // Reset every filter surface — the hook's (dates/guests/bedrooms) and the
-  // orchestrator-local ones (region chip, search text, price ceiling).
+  // orchestrator-local ones (region chip, price ceiling).
   const clearAll = useCallback(() => {
     setPriceCeiling(PRICE_MAX);
     setRegion("all");
-    setSearchText("");
     handleClearAllFilters();
   }, [handleClearAllFilters]);
 
@@ -266,24 +247,28 @@ export function VacationSearch() {
 
   return (
     <div className="mt-14 md:mt-16 bg-white md:h-[calc(100dvh-4rem)] md:flex md:flex-col md:overflow-hidden">
-      {/* Top bar */}
+      {/* Filter bar — the header pill owns search; this only refines results. */}
       <div className="shrink-0 border-b border-neutral-200 bg-white px-4 sm:px-6 py-3">
         <div className="flex flex-wrap items-center gap-3">
-          <div className="relative flex-1 min-w-[200px] max-w-md">
-            <Search
-              className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-neutral-400"
-              aria-hidden="true"
-            />
-            <input
-              type="text"
-              value={searchText}
-              onChange={(e) => setSearchText(e.target.value)}
-              placeholder={t("search.placeholder")}
-              className="w-full h-11 rounded-full border border-neutral-200 bg-white pl-10 pr-4 text-[14px] text-ink placeholder:text-neutral-400 focus:outline-none focus:border-ink"
-            />
+          {/* Region chips */}
+          <div className="flex items-center gap-2">
+            {chips.map((c) => (
+              <button
+                key={c.id}
+                type="button"
+                onClick={() => setRegion(c.id)}
+                className={`rounded-full px-4 h-9 text-[13px] font-medium border transition-colors ${
+                  region === c.id
+                    ? "bg-ink text-white border-ink"
+                    : "bg-white text-ink border-neutral-200 hover:border-ink"
+                }`}
+              >
+                {c.label}
+              </button>
+            ))}
           </div>
 
-          <div className="relative">
+          <div className="relative ml-auto">
             <button
               type="button"
               onClick={() => setFiltersOpen((v) => !v)}
@@ -324,24 +309,6 @@ export function VacationSearch() {
                 />
               </div>
             )}
-          </div>
-
-          {/* Region chips */}
-          <div className="flex items-center gap-2">
-            {chips.map((c) => (
-              <button
-                key={c.id}
-                type="button"
-                onClick={() => setRegion(c.id)}
-                className={`rounded-full px-4 h-9 text-[13px] font-medium border transition-colors ${
-                  region === c.id
-                    ? "bg-ink text-white border-ink"
-                    : "bg-white text-ink border-neutral-200 hover:border-ink"
-                }`}
-              >
-                {c.label}
-              </button>
-            ))}
           </div>
         </div>
       </div>
