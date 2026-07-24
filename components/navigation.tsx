@@ -25,10 +25,6 @@ export default function Navigation() {
   const tFav = useTranslations("pmsFavorites");
   const { count: favoritesCount } = usePMSFavorites();
 
-  // The compact header search shows everywhere except the vacation-rentals
-  // search page, which already leads with its own search bar.
-  const showSearch = pathname !== "/our-property";
-
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isPartnerOpen, setIsPartnerOpen] = useState(false);
@@ -222,9 +218,10 @@ export default function Navigation() {
             </Link>
 
             {/* Centered search — its own grid column, so it lands on the true
-                page centre regardless of the logo / actions widths. */}
+                page centre regardless of the logo / actions widths. Shown on
+                every page. */}
             <div className="justify-self-center w-full max-w-md min-w-0 px-2 sm:px-4">
-              {showSearch && <HeroSearchBar variant="compact" />}
+              <HeroSearchBar variant="compact" />
             </div>
 
             {/* Right cluster: desktop nav + mobile controls share one grid cell */}
