@@ -7,6 +7,7 @@ import { Menu, X, ChevronDown, Heart } from "lucide-react";
 import { SiWhatsapp } from "react-icons/si";
 import { useTranslations } from "next-intl";
 import LanguageSwitcher from "./language-switcher";
+import HeroSearchBar from "./hero-search-bar";
 import PartnerModal from "./partner-modal";
 import { NavFavoritesLink } from "./nav-favorites-link";
 import { usePMSFavorites } from "@/hooks/use-pms-saved";
@@ -23,6 +24,10 @@ export default function Navigation() {
   const t = useTranslations("navigation");
   const tFav = useTranslations("pmsFavorites");
   const { count: favoritesCount } = usePMSFavorites();
+
+  // The compact header search shows everywhere except the vacation-rentals
+  // search page, which already leads with its own search bar.
+  const showSearch = pathname !== "/our-property";
 
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -193,9 +198,13 @@ export default function Navigation() {
         aria-label="Main"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-14 md:h-16 px-2.5 md:px-3 transition-all duration-500">
+          <div className="grid grid-cols-[auto_1fr_auto] md:grid-cols-[1fr_minmax(0,22rem)_1fr] items-center gap-2 h-14 md:h-16 px-2.5 md:px-3 transition-all duration-500">
             {/* Logo */}
-            <Link href="/" aria-label="Silqhaus home">
+            <Link
+              href="/"
+              aria-label="Silqhaus home"
+              className="justify-self-start"
+            >
               {/* Real ink artwork on the white bar rather than a CSS invert,
                * so the wordmark lands on brand #0d0d0d instead of pure black. */}
               <Image
@@ -212,8 +221,16 @@ export default function Navigation() {
               />
             </Link>
 
+            {/* Centered search — its own grid column, so it lands on the true
+                page centre regardless of the logo / actions widths. */}
+            <div className="justify-self-center w-full max-w-md min-w-0 px-2 sm:px-4">
+              {showSearch && <HeroSearchBar variant="compact" />}
+            </div>
+
+            {/* Right cluster: desktop nav + mobile controls share one grid cell */}
+            <div className="justify-self-end flex items-center">
             {/* Desktop Navigation */}
-            <div className="hidden xl:flex items-center gap-4 md:gap-5">
+            <div className="hidden xl:flex items-center gap-4 md:gap-5 shrink-0">
               {/* Partner with us — opens the owner / agency chooser */}
               <button
                 type="button"
@@ -326,7 +343,7 @@ export default function Navigation() {
             </div>
 
             {/* Mobile: Language Switcher + Menu Button */}
-            <div className="xl:hidden flex items-center gap-1.5">
+            <div className="xl:hidden flex items-center gap-1.5 shrink-0">
               <LanguageSwitcher />
               <button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -342,6 +359,7 @@ export default function Navigation() {
                   <Menu className={`w-6 h-6 ${iconColor}`} />
                 )}
               </button>
+            </div>
             </div>
           </div>
         </div>

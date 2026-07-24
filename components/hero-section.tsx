@@ -1,7 +1,6 @@
 import Image from "next/image";
 import { getLocale, getTranslations } from "next-intl/server";
 import { ChevronDown } from "lucide-react";
-import HeroSearchBar from "./hero-search-bar";
 
 export default async function HeroSection() {
   const t = await getTranslations("home.hero");
@@ -69,12 +68,6 @@ export default async function HeroSection() {
           </h1>
         )}
 
-        <div
-          className="reveal-up w-full mt-12 sm:mt-16 flex justify-center"
-          style={{ animationDelay: "0.25s" }}
-        >
-          <HeroSearchBar />
-        </div>
       </div>
 
       {/* Scroll cue — the fold is filled edge to edge, so say there's more

@@ -25,11 +25,19 @@ const REGIONS = [
 type Panel = "where" | "when" | "who" | null;
 
 /**
- * Airbnb-style single-pill hero search. "Where" opens a region picker (photos
- * we already ship); "When" opens a two-month calendar / flexible picker. A
- * search routes into /our-property with location + check-in/out as filters.
+ * Airbnb-style single-pill search. "Where" opens a region picker (photos we
+ * already ship); "When" opens a two-month calendar / flexible picker. A search
+ * routes into /our-property with location + check-in/out as filters.
+ *
+ * `variant`: "hero" is the large landing-page pill; "compact" is the smaller,
+ * bordered pill that lives centered in the header.
  */
-export default function HeroSearchBar() {
+export default function HeroSearchBar({
+  variant = "hero",
+}: {
+  variant?: "hero" | "compact";
+}) {
+  const compact = variant === "compact";
   const t = useTranslations("home.hero.search");
   const tDest = useTranslations("home.destinations");
   const locale = useLocale();
@@ -109,8 +117,17 @@ export default function HeroSearchBar() {
   const hasSelection = Boolean(selected || checkIn || guestTotal > 0);
 
   return (
-    <div ref={wrapRef} className="relative w-full max-w-xl">
-      <div className="flex items-center rounded-full bg-white shadow-2xl shadow-black/25 h-[52px] sm:h-14 pl-4 pr-1.5">
+    <div
+      ref={wrapRef}
+      className={`relative w-full ${compact ? "max-w-md" : "max-w-xl"}`}
+    >
+      <div
+        className={`flex items-center rounded-full bg-white ${
+          compact
+            ? "h-10 pl-4 pr-1 border border-neutral-200 shadow-md"
+            : "shadow-2xl shadow-black/25 h-[52px] sm:h-14 pl-4 pr-1.5"
+        }`}
+      >
         {/* Where — opens the region picker */}
         <button
           type="button"
@@ -120,7 +137,7 @@ export default function HeroSearchBar() {
           className="flex items-center justify-center gap-2.5 flex-1 min-w-0 text-center"
         >
           <span
-            className={`truncate text-sm sm:text-[15px] ${
+            className={`truncate ${compact ? "text-[13px]" : "text-sm sm:text-[15px]"} ${
               selectedRegion ? "text-ink font-medium" : "text-neutral-600"
             }`}
           >
@@ -130,7 +147,7 @@ export default function HeroSearchBar() {
 
         {/* When — opens the calendar / flexible picker */}
         <span
-          className="hidden sm:block h-6 w-px bg-neutral-200 mx-1 shrink-0"
+          className={`hidden sm:block w-px bg-neutral-200 mx-1 shrink-0 ${compact ? "h-5" : "h-6"}`}
           aria-hidden="true"
         />
         <button
@@ -138,14 +155,16 @@ export default function HeroSearchBar() {
           onClick={() => setPanel((p) => (p === "when" ? null : "when"))}
           aria-haspopup="dialog"
           aria-expanded={panel === "when"}
-          className={`hidden sm:block flex-1 px-4 text-center text-[15px] transition-colors ${
+          className={`hidden sm:block flex-1 px-4 text-center transition-colors ${
+            compact ? "text-[13px]" : "text-[15px]"
+          } ${
             checkIn ? "text-ink font-medium" : "text-neutral-600 hover:text-ink"
           }`}
         >
           {whenLabel}
         </button>
         <span
-          className="hidden sm:block h-6 w-px bg-neutral-200 mx-1 shrink-0"
+          className={`hidden sm:block w-px bg-neutral-200 mx-1 shrink-0 ${compact ? "h-5" : "h-6"}`}
           aria-hidden="true"
         />
         <button
@@ -153,7 +172,9 @@ export default function HeroSearchBar() {
           onClick={() => setPanel((p) => (p === "who" ? null : "who"))}
           aria-haspopup="dialog"
           aria-expanded={panel === "who"}
-          className={`hidden sm:block flex-1 px-4 text-center text-[15px] transition-colors ${
+          className={`hidden sm:block flex-1 px-4 text-center transition-colors ${
+            compact ? "text-[13px]" : "text-[15px]"
+          } ${
             whoParts.length
               ? "text-ink font-medium"
               : "text-neutral-600 hover:text-ink"
@@ -167,12 +188,17 @@ export default function HeroSearchBar() {
           type="button"
           onClick={goSearch}
           aria-label={t("search")}
-          className={`ml-2 shrink-0 inline-flex items-center justify-center gap-2 rounded-full bg-ink text-white h-11 text-sm font-semibold transition-all duration-300 ease-out hover:bg-neutral-800 ${
-            hasSelection ? "px-4 sm:px-5" : "w-11"
+          className={`ml-2 shrink-0 inline-flex items-center justify-center gap-2 rounded-full bg-ink text-white text-sm font-semibold transition-all duration-300 ease-out hover:bg-neutral-800 ${
+            compact
+              ? "h-8 w-8"
+              : `h-11 ${hasSelection ? "px-4 sm:px-5" : "w-11"}`
           }`}
         >
-          <Search className="w-4 h-4 shrink-0" aria-hidden="true" />
-          {hasSelection && <span>{t("search")}</span>}
+          <Search
+            className={`shrink-0 ${compact ? "w-3.5 h-3.5" : "w-4 h-4"}`}
+            aria-hidden="true"
+          />
+          {!compact && hasSelection && <span>{t("search")}</span>}
         </button>
       </div>
 
@@ -181,7 +207,9 @@ export default function HeroSearchBar() {
         <div
           role="dialog"
           aria-label={t("whereTitle")}
-          className="absolute top-full left-0 mt-3 w-full max-w-xl rounded-2xl sm:rounded-3xl bg-white shadow-2xl shadow-black/30 p-5 sm:p-6 z-50 animate-in fade-in-0 slide-in-from-top-2 duration-200 text-left"
+          className={`absolute top-full mt-3 w-[calc(100vw-2rem)] max-w-xl rounded-2xl sm:rounded-3xl bg-white shadow-2xl shadow-black/30 p-5 sm:p-6 z-50 text-left ${
+            compact ? "left-1/2 -translate-x-1/2" : "left-0"
+          }`}
         >
           <h3 className="text-ink font-semibold text-lg tracking-tight">
             {t("whereTitle")}
@@ -232,7 +260,7 @@ export default function HeroSearchBar() {
         <div
           role="dialog"
           aria-label={t("when")}
-          className="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-[calc(100vw-2rem)] max-w-2xl rounded-2xl sm:rounded-3xl bg-white shadow-2xl shadow-black/30 p-5 sm:p-7 z-50 animate-in fade-in-0 slide-in-from-top-2 duration-200"
+          className="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-[calc(100vw-2rem)] max-w-2xl rounded-2xl sm:rounded-3xl bg-white shadow-2xl shadow-black/30 p-5 sm:p-7 z-50"
         >
           <HeroWhenPicker
             checkIn={checkIn}
@@ -254,7 +282,9 @@ export default function HeroSearchBar() {
         <div
           role="dialog"
           aria-label={t("who")}
-          className="absolute top-full right-0 mt-3 w-[calc(100vw-2rem)] max-w-md rounded-2xl sm:rounded-3xl bg-white shadow-2xl shadow-black/30 p-5 sm:p-6 z-50 animate-in fade-in-0 slide-in-from-top-2 duration-200"
+          className={`absolute top-full mt-3 w-[calc(100vw-2rem)] max-w-md rounded-2xl sm:rounded-3xl bg-white shadow-2xl shadow-black/30 p-5 sm:p-6 z-50 ${
+            compact ? "left-1/2 -translate-x-1/2" : "right-0"
+          }`}
         >
           <HeroWhoPicker value={guests} onChange={setGuests} />
         </div>
