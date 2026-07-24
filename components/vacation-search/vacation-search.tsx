@@ -368,9 +368,11 @@ export function VacationSearch() {
           />
         </div>
 
-        {/* Map — desktop pane */}
+        {/* Map — desktop pane. `isolate` keeps Leaflet's internal panes
+            (tiles z-200, markers z-600) from leaking to the root stacking
+            context and painting over app overlays like the Partner modal. */}
         {isLargeScreen && (
-          <div className="hidden md:block md:w-1/2 md:h-full">
+          <div className="isolate hidden md:block md:w-1/2 md:h-full">
             <VacationMap
               items={items}
               hoveredId={hoveredId}
