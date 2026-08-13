@@ -3,10 +3,13 @@
 import {
   CalendarCheck,
   CalendarClock,
+  Check,
   CigaretteOff,
   PartyPopper,
   PawPrint,
+  Percent,
   Users,
+  X,
   Zap,
 } from "lucide-react";
 import { useTranslations, useLocale } from "next-intl";
@@ -29,6 +32,58 @@ const KNOWN_POLICIES = new Set([
   "firm",
   "strict",
 ]);
+
+/** Each policy as scannable refund tiers instead of a paragraph. Rows mirror
+ *  the House-rules grammar: bold outcome left, condition right. */
+type TierKind = "full" | "half" | "none";
+const POLICY_TIERS: Record<string, Array<{ kind: TierKind; cond: string }>> = {
+  standard: [
+    { kind: "full", cond: "standardShort" },
+    { kind: "full", cond: "standardLong" },
+    { kind: "none", cond: "standardNone" },
+  ],
+  flexible: [
+    { kind: "full", cond: "flexibleFull" },
+    { kind: "none", cond: "flexibleNone" },
+  ],
+  moderate: [
+    { kind: "full", cond: "moderateFull" },
+    { kind: "none", cond: "moderateNone" },
+  ],
+  firm: [
+    { kind: "full", cond: "firmFull" },
+    { kind: "half", cond: "firmHalf" },
+    { kind: "none", cond: "firmNone" },
+  ],
+  strict: [
+    { kind: "half", cond: "strictHalf" },
+    { kind: "none", cond: "strictNone" },
+  ],
+};
+
+const TIER_ICON: Record<TierKind, React.ReactNode> = {
+  full: (
+    <Check
+      className="w-4 h-4 text-neutral-700 shrink-0"
+      strokeWidth={2}
+      aria-hidden="true"
+    />
+  ),
+  half: (
+    <Percent
+      className="w-4 h-4 text-neutral-700 shrink-0"
+      strokeWidth={2}
+      aria-hidden="true"
+    />
+  ),
+  none: (
+    <X
+      className="w-4 h-4 text-neutral-400 shrink-0"
+      strokeWidth={2}
+      aria-hidden="true"
+    />
+  ),
+};
 
 interface BookingConditionsProps {
   /** "15:00" (Guesty) or "15" (Hostaway hour). */
@@ -203,35 +258,49 @@ export function BookingConditions({
       <div className={`grid gap-4 ${policy ? "md:grid-cols-2" : ""}`}>
         {policy && (
           <div className="rounded-2xl border border-neutral-200 p-5">
-            <h3 className="text-base font-semibold text-ink">
-              {t("cancellationTitle")}
-            </h3>
-            <p className="mt-2.5 text-[13px] font-semibold text-ink">
-              {t("policyLabel", { name: t(`policyName.${policy}`) })}
-            </p>
-            <p className="mt-1 text-[13px] leading-relaxed text-neutral-600">
-              {t(`policyBody.${policy}`)}
-            </p>
-            <p className="mt-1 text-xs leading-relaxed text-neutral-500">
-              {t("comfortNote")}
-            </p>
-
-            {/* Non-refundable rate option */}
-            <div className="mt-3 rounded-xl bg-neutral-50 border border-neutral-200 px-3.5 py-3">
-              <p className="text-[13px] font-semibold text-ink flex items-center gap-2">
-                {t("nonRefundableTitle")}
-                <span className="inline-flex items-center rounded-full bg-ink text-white text-[11px] font-bold px-2 py-0.5">
-                  −10%
-                </span>
-              </p>
-              <p className="mt-1 text-xs leading-relaxed text-neutral-600">
-                {t("nonRefundableBody")}
-              </p>
+            <div className="flex items-center justify-between gap-3">
+              <h3 className="text-base font-semibold text-ink">
+                {t("cancellationTitle")}
+              </h3>
+              <span className="shrink-0 rounded-full bg-neutral-100 px-2.5 py-1 text-[11px] font-medium text-ink">
+                {t("policyLabel", { name: t(`policyName.${policy}`) })}
+              </span>
             </div>
+
+            <ul className="mt-1.5">
+              {(POLICY_TIERS[policy] ?? []).map((tier, i) => (
+                <li
+                  key={tier.cond}
+                  className={`flex items-start justify-between gap-4 py-2.5 ${
+                    i > 0 ? "border-t border-neutral-100" : ""
+                  }`}
+                >
+                  <span className="flex items-center gap-2.5 text-[13px] font-semibold text-ink shrink-0">
+                    {TIER_ICON[tier.kind]}
+                    {t(`tier.${tier.kind}`)}
+                  </span>
+                  <span className="text-[13px] text-neutral-600 text-right leading-snug">
+                    {t(`cond.${tier.cond}`)}
+                  </span>
+                </li>
+              ))}
+              {/* Non-refundable rate option, same row grammar */}
+              <li className="flex items-start justify-between gap-4 py-2.5 border-t border-neutral-100">
+                <span className="flex items-center gap-2.5 text-[13px] font-semibold text-ink shrink-0">
+                  <span className="inline-flex items-center rounded-full bg-ink text-white text-[11px] font-bold px-2 py-0.5">
+                    −10%
+                  </span>
+                  {t("nonRefundableTitle")}
+                </span>
+                <span className="text-[13px] text-neutral-600 text-right leading-snug">
+                  {t("nonRefundableShort")}
+                </span>
+              </li>
+            </ul>
 
             {deadline && stayStart ? (
               /* Real dates: today → free-cancellation deadline → check-in */
-              <div className="mt-6">
+              <div className="mt-4">
                 <div className="flex justify-between text-[11px] font-medium text-ink mb-1.5">
                   <span>{t("timelineToday")}</span>
                   <span>
@@ -279,7 +348,7 @@ export function BookingConditions({
               </div>
             ) : (
               /* No dates yet: schematic bar + nudge to pick dates */
-              <div className="mt-6">
+              <div className="mt-4">
                 <div
                   className="flex justify-between text-[11px] font-medium text-ink mb-1.5"
                   aria-hidden="true"

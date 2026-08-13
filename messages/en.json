@@ -3572,16 +3572,27 @@
         "firm": "Firm",
         "strict": "Strict"
       },
-      "policyBody": {
-        "standard": "For bookings of up to 30 nights, full refund for cancellations made at least 5 days before check-in. For bookings of 30+ nights, full refund for cancellations made at least 15 days before check-in.",
-        "flexible": "Full refund for cancellations made at least 24 hours before check-in.",
-        "moderate": "Full refund for cancellations made at least 5 days before check-in.",
-        "firm": "Full refund for cancellations made at least 30 days before check-in. 50% refund for cancellations made 7–30 days before check-in.",
-        "strict": "50% refund for cancellations made within 48 hours of booking and at least 14 days before check-in."
+      "tier": {
+        "full": "Full refund",
+        "half": "50% refund",
+        "none": "No refund"
       },
-      "comfortNote": "Make sure you're comfortable with this property's policy before booking.",
+      "cond": {
+        "standardShort": "Until 5 days before check-in · under 30 nights",
+        "standardLong": "Until 15 days before check-in · 30+ nights",
+        "standardNone": "After the deadline",
+        "flexibleFull": "Until 24 hours before check-in",
+        "flexibleNone": "Within 24 hours of check-in",
+        "moderateFull": "Until 5 days before check-in",
+        "moderateNone": "Within 5 days of check-in",
+        "firmFull": "Until 30 days before check-in",
+        "firmHalf": "7–30 days before check-in",
+        "firmNone": "Within 7 days of check-in",
+        "strictHalf": "Within 48h of booking · 14+ days before check-in",
+        "strictNone": "Otherwise"
+      },
       "nonRefundableTitle": "Non-refundable option",
-      "nonRefundableBody": "Prefer a lower rate? Book the non-refundable option and pay 10% less — no refund if you cancel.",
+      "nonRefundableShort": "No refund if cancelled",
       "timelineBooking": "Booking",
       "timelineWindow": "Cancellation window",
       "timelineCheckIn": "Check-in",
