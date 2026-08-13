@@ -706,7 +706,7 @@ function MonthlyStays() {
                   <span className="h-px flex-1 bg-neutral-200" />
                 </div>
 
-                <div id="wizard-moveout" className="mt-4 max-w-md">
+                <div id="wizard-moveout" className="mt-4">
                   <span className="block text-xs font-bold uppercase tracking-wide mb-2 text-ink">
                     {t("quote.checkOutLabel")}
                   </span>
