@@ -847,11 +847,12 @@ export default function PropertyDetails({
     !isGuesty || calendarData.isLoading || calendarData.calendar.length > 0;
 
   /** Monthly-stay promo — its own pill below the booking card, not buried
-   *  inside it. */
+   *  inside it. Wears the book-direct banner's signature ink→orange gradient,
+   *  weighted dark so the white label stays legible; orange lands on the tail. */
   const monthlyPromoPill = (
     <Link
       href={`/monthly-inquiry?property=${encodeURIComponent(property.name || "")}`}
-      className="mt-3 flex flex-wrap items-center justify-center gap-x-2 gap-y-0.5 min-h-11 rounded-full border border-ink bg-white px-5 py-2.5 text-center text-[13px] font-semibold text-ink hover:text-ink hover:bg-neutral-50 transition-colors"
+      className="mt-3 flex flex-wrap items-center justify-center gap-x-2 gap-y-0.5 min-h-11 rounded-full bg-ink bg-[linear-gradient(90deg,#09081F_0%,#382124_45%,#673929_65%,#95522E_80%,#C46A33_92%,#F38338_100%)] px-5 py-2.5 text-center text-[13px] font-semibold text-white hover:text-white hover:opacity-90 transition-opacity"
     >
       <CalendarDays className="w-4 h-4 shrink-0" aria-hidden="true" />
       <span>
