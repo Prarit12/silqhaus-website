@@ -1248,38 +1248,34 @@ export default function PropertyDetails({
         <div className="mt-8 lg:grid lg:grid-cols-[minmax(0,1fr)_400px] lg:gap-14 lg:items-start">
           {/* Left column */}
           <div className="min-w-0">
-            {/* Quick facts — stat strip. Hairlines come from each cell's
-                left/top border; the -1px shift hides the outer ring under
-                the container border at every breakpoint. */}
+            {/* Quick facts — editorial fact band: the values carry the line,
+                icons live small inside the labels, thin column rules only
+                when the row is complete on large screens. */}
             {factCells.length > 0 && (
-              <section className="pb-7 border-b border-neutral-200">
-                <div className="rounded-2xl border border-neutral-200 bg-white overflow-hidden">
-                  <div
-                    className={`grid grid-cols-2 sm:grid-cols-3 ${
-                      FACT_COLS[factCells.length] ?? "lg:grid-cols-5"
-                    } -ml-px -mt-px`}
-                  >
-                    {factCells.map((cell) => (
-                      <div
-                        key={cell.key}
-                        className="flex items-center gap-3 border-l border-t border-neutral-100 px-4 py-3.5"
-                      >
+              <section className="pb-8 border-b border-neutral-200">
+                <div
+                  className={`grid grid-cols-2 sm:grid-cols-3 ${
+                    FACT_COLS[factCells.length] ?? "lg:grid-cols-5"
+                  } gap-y-7`}
+                >
+                  {factCells.map((cell) => (
+                    <div
+                      key={cell.key}
+                      className="pr-4 lg:[&:not(:first-child)]:border-l lg:[&:not(:first-child)]:border-neutral-200 lg:[&:not(:first-child)]:pl-6"
+                    >
+                      <div className="text-[22px] font-semibold tracking-tight text-ink leading-none">
+                        {cell.value}
+                      </div>
+                      <div className="mt-2 flex items-center gap-1.5 text-[13px] text-neutral-500">
                         <cell.icon
-                          className="w-5 h-5 text-neutral-700 shrink-0"
+                          className="w-3.5 h-3.5 shrink-0"
                           strokeWidth={1.5}
                           aria-hidden="true"
                         />
-                        <span className="min-w-0">
-                          <span className="block text-[15px] font-semibold text-ink leading-tight truncate">
-                            {cell.value}
-                          </span>
-                          <span className="block text-xs text-neutral-500 mt-0.5">
-                            {cell.label}
-                          </span>
-                        </span>
+                        {cell.label}
                       </div>
-                    ))}
-                  </div>
+                    </div>
+                  ))}
                 </div>
               </section>
             )}
