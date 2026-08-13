@@ -37,6 +37,11 @@ import {
 import { MonthlyJourney } from "@/components/monthly-journey";
 import { MonthlyHeroArt } from "@/components/monthly-hero-art";
 import { SingleDatePicker } from "@/components/single-date-picker";
+import {
+  CURRENCY_OPTIONS,
+  CurrencySelect,
+  type CurrencyCode,
+} from "@/components/currency-select";
 import { displayPropertyName } from "@/config/property-names";
 import { monthlyDiscountFor } from "@/config/monthly";
 import { getSilqhausMarkupPercentage } from "@/config/ota-markups";
@@ -78,15 +83,6 @@ interface CalendarDay {
 }
 
 const MONTH_OPTIONS = [1, 2, 3, 6, 12] as const;
-
-const CURRENCY_OPTIONS = [
-  { code: "THB", symbol: "฿" },
-  { code: "USD", symbol: "$" },
-  { code: "EUR", symbol: "€" },
-  { code: "CNY", symbol: "¥" },
-  { code: "RUB", symbol: "₽" },
-] as const;
-type CurrencyCode = (typeof CURRENCY_OPTIONS)[number]["code"];
 
 function pad(n: number): string {
   return String(n).padStart(2, "0");
@@ -813,26 +809,11 @@ function MonthlyStays() {
                 {quote ? (
                   <div className="mt-4 text-sm">
                     {fxQuery.data && (
-                      <div
-                        className="mb-3 flex flex-wrap justify-end gap-1.5"
-                        role="group"
-                        aria-label={t("quote.currencyLabel")}
-                      >
-                        {CURRENCY_OPTIONS.map((c) => (
-                          <button
-                            key={c.code}
-                            type="button"
-                            onClick={() => setCurrency(c.code)}
-                            aria-pressed={currency === c.code}
-                            className={`h-7 px-2.5 rounded-full border text-xs font-semibold transition-colors ${
-                              currency === c.code
-                                ? "bg-ink text-white border-ink"
-                                : "bg-white text-neutral-600 border-neutral-300 hover:border-ink hover:text-ink"
-                            }`}
-                          >
-                            {c.code}
-                          </button>
-                        ))}
+                      <div className="mb-3 flex justify-end">
+                        <CurrencySelect
+                          value={currency}
+                          onChange={setCurrency}
+                        />
                       </div>
                     )}
                     <div className="flex justify-between text-neutral-600">
