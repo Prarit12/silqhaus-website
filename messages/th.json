@@ -3546,8 +3546,6 @@
     "monthlyPromoText": "รับราคาพิเศษสำหรับการพักรายเดือน (30+ คืนขึ้นไป)",
     "monthlyPromoLink": "กรอกแบบฟอร์มสอบถามนี้ →",
     "guests": "ผู้เข้าพัก",
-    "nonRefundableRate": "อัตราแบบไม่คืนเงิน",
-    "nonRefundableTeaser": "มีอัตราแบบไม่คืนเงิน ลดเพิ่ม 10%",
     "showMore": "แสดงเพิ่มเติม",
     "showLess": "แสดงน้อยลง",
     "showAllAmenities": "ดูสิ่งอำนวยความสะดวกทั้งหมด {count} รายการ",
@@ -3590,10 +3588,11 @@
         "firmHalf": "ยกเลิก 7–30 วันก่อนเช็คอิน",
         "firmNone": "ภายใน 7 วันก่อนเช็คอิน",
         "strictHalf": "ภายใน 48 ชม.หลังจอง · ก่อนเช็คอิน 14 วันขึ้นไป",
-        "strictNone": "กรณีอื่น ๆ"
+        "strictNone": "กรณีอื่น ๆ",
+        "untilDate": "ถึงวันที่ {date}",
+        "betweenDates": "{from} – {to}",
+        "afterDate": "หลังวันที่ {date}"
       },
-      "nonRefundableTitle": "ตัวเลือกแบบไม่คืนเงิน",
-      "nonRefundableShort": "ลด 10% · ยกเลิกแล้วไม่ได้รับเงินคืน",
       "timelineBooking": "จอง",
       "timelineWindow": "ช่วงยกเลิกได้",
       "timelineCheckIn": "เช็คอิน",

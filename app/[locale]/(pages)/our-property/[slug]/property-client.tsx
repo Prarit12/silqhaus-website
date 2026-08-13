@@ -878,14 +878,9 @@ export default function PropertyDetails({
             </span>
           </p>
         ) : (
-          <>
-            <p className="text-[15px] font-medium text-ink">
-              {t("addDatesForPrices")}
-            </p>
-            <p className="mt-1 text-xs text-neutral-500">
-              {t("nonRefundableTeaser")}
-            </p>
-          </>
+          <p className="text-[15px] font-medium text-ink">
+            {t("addDatesForPrices")}
+          </p>
         )}
       </div>
 
@@ -985,15 +980,6 @@ export default function PropertyDetails({
             <div className="flex justify-between font-semibold text-ink mt-2">
               <span>{t("total")}</span>
               <span>{formatPriceForDisplay(silqhausTotal, "THB")}</span>
-            </div>
-            <div className="flex justify-between items-baseline gap-3 text-xs text-neutral-600 mt-2">
-              <span>
-                {t("nonRefundableRate")}{" "}
-                <span className="font-semibold text-ink">−10%</span>
-              </span>
-              <span className="text-right">
-                {formatPriceForDisplay(Math.round(silqhausTotal * 0.9), "THB")}
-              </span>
             </div>
           </div>
 

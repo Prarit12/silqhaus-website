@@ -8,7 +8,6 @@ import {
   PartyPopper,
   PawPrint,
   Percent,
-  Tag,
   Users,
   X,
   Zap,
@@ -209,6 +208,33 @@ export function BookingConditions({
     windowOpen = deadline.getTime() >= today.getTime();
   }
 
+  // With a stay selected, tier conditions become concrete dates: the day a
+  // full refund runs until, and the day after which nothing is refunded.
+  const datesKnown = !!(policy && hasDates && stayStart);
+  const dateAtLead = (daysBefore: number) => {
+    const d = new Date(stayStart as Date);
+    d.setDate(d.getDate() - daysBefore);
+    return formatShortDate(d, locale);
+  };
+  const tierCondText = (tier: { kind: TierKind; cond: string }): string => {
+    if (!datesKnown || !policy) return t(`cond.${tier.cond}`);
+    const lead = fullRefundLeadDays(policy, nights);
+    switch (tier.kind) {
+      case "full":
+        return t("cond.untilDate", { date: dateAtLead(lead) });
+      case "half":
+        // Firm: 50% between the full-refund cutoff and 7 days out. Strict's
+        // 50% also depends on booking time; the date is the hard boundary.
+        return policy === "firm"
+          ? t("cond.betweenDates", { from: dateAtLead(30), to: dateAtLead(7) })
+          : t("cond.untilDate", { date: dateAtLead(lead) });
+      case "none":
+        return t("cond.afterDate", {
+          date: dateAtLead(policy === "firm" ? 7 : lead),
+        });
+    }
+  };
+
   const rules: Array<{
     key: string;
     icon: React.ReactNode;
@@ -296,24 +322,10 @@ export function BookingConditions({
                     {t(`tier.${tier.kind}`)}
                   </span>
                   <span className="text-[13px] text-neutral-600 text-right leading-snug">
-                    {t(`cond.${tier.cond}`)}
+                    {tierCondText(tier)}
                   </span>
                 </li>
               ))}
-              {/* Non-refundable rate option, same row grammar */}
-              <li className="flex items-start justify-between gap-4 py-2.5 border-t border-neutral-100">
-                <span className="flex items-center gap-2.5 text-[13px] font-semibold text-ink shrink-0">
-                  <Tag
-                    className="w-4 h-4 text-neutral-700 shrink-0"
-                    strokeWidth={2}
-                    aria-hidden="true"
-                  />
-                  {t("nonRefundableTitle")}
-                </span>
-                <span className="text-[13px] text-neutral-600 text-right leading-snug">
-                  {t("nonRefundableShort")}
-                </span>
-              </li>
             </ul>
 
             {deadline && stayStart ? (

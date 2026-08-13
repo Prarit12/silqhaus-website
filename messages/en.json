@@ -3546,8 +3546,6 @@
     "monthlyPromoText": "Staying 30+ days? Get",
     "monthlyPromoLink": "Exclusive Monthly Rates →",
     "guests": "Guests",
-    "nonRefundableRate": "Non-refundable rate",
-    "nonRefundableTeaser": "Non-refundable rate available — save 10%",
     "showMore": "Show more",
     "showLess": "Show less",
     "showAllAmenities": "Show all {count} amenities",
@@ -3590,10 +3588,11 @@
         "firmHalf": "7–30 days before check-in",
         "firmNone": "Within 7 days of check-in",
         "strictHalf": "Within 48h of booking · 14+ days before check-in",
-        "strictNone": "Otherwise"
+        "strictNone": "Otherwise",
+        "untilDate": "Until {date}",
+        "betweenDates": "{from} – {to}",
+        "afterDate": "After {date}"
       },
-      "nonRefundableTitle": "Non-refundable option",
-      "nonRefundableShort": "Save 10% · no refund if cancelled",
       "timelineBooking": "Booking",
       "timelineWindow": "Cancellation window",
       "timelineCheckIn": "Check-in",
