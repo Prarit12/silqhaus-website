@@ -13,16 +13,25 @@ export const DEFAULT_MONTHLY_DISCOUNT = 0.22;
 /** Keyed by `${source}:${id}` — discount as a fraction (0.2 = 20% off). */
 export const MONTHLY_DISCOUNT_OVERRIDES: Record<string, number> = {};
 
-export function monthlyDiscountFor(property: {
-  id: string | number;
-  source?: string;
-  /** PMS pay-fraction factor (Hostaway monthlyDiscount / Guesty monthlyPriceFactor). */
-  monthlyFactor?: number | null;
-}): number {
+export function monthlyDiscountFor(
+  property: {
+    id: string | number;
+    source?: string;
+    /** PMS pay-fraction factor (Hostaway monthlyDiscount / Guesty monthlyPriceFactor). */
+    monthlyFactor?: number | null;
+  },
+  opts?: {
+    /** Skip the PMS factor so the default applies (the monthly-inquiry
+     *  page quotes a flat default; overrides still win). */
+    ignorePmsFactor?: boolean;
+  },
+): number {
   const key = `${property.source ?? "hostaway"}:${property.id}`;
   const override = MONTHLY_DISCOUNT_OVERRIDES[key];
   if (override != null && override > 0 && override < 1) return override;
-  const factor = Number(property.monthlyFactor);
-  if (Number.isFinite(factor) && factor > 0 && factor < 1) return 1 - factor;
+  if (!opts?.ignorePmsFactor) {
+    const factor = Number(property.monthlyFactor);
+    if (Number.isFinite(factor) && factor > 0 && factor < 1) return 1 - factor;
+  }
   return DEFAULT_MONTHLY_DISCOUNT;
 }

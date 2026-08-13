@@ -287,14 +287,12 @@ function MonthlyStays() {
     const missing = nights - priced;
     const nightlyTotal = Math.round(sum + avg * missing);
 
-    const discount = monthlyDiscountFor({
-      id: selected.id,
-      source: selected.source,
-      monthlyFactor:
-        selected.source === "hostaway"
-          ? selected.monthlyDiscount
-          : selected.monthlyPriceFactor,
-    });
+    // This page quotes the flat default (22%) for every property;
+    // PMS factors still apply to monthly pricing elsewhere.
+    const discount = monthlyDiscountFor(
+      { id: selected.id, source: selected.source },
+      { ignorePmsFactor: true },
+    );
     const monthlyTotal = Math.round(nightlyTotal * (1 - discount));
     return {
       nights,
