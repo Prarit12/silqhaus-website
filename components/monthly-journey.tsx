@@ -350,14 +350,14 @@ export function MonthlyJourneyStepper({
 export function MonthlyBenefits({ className = "" }: { className?: string }) {
   const t = useTranslations("monthlyInquiry.quote");
   return (
-    <div className={`flex flex-wrap gap-2 ${className}`}>
+    <div className={`flex flex-wrap gap-1.5 ${className}`}>
       {BENEFITS.map(({ key, icon: Icon }) => (
         <span
           key={key}
-          className="inline-flex items-center gap-1.5 h-9 px-3.5 rounded-full bg-white/70 border border-neutral-200/80 text-[13px] font-medium text-ink"
+          className="inline-flex items-center gap-1.5 h-8 px-3 rounded-full bg-white/70 border border-neutral-200/80 text-xs font-medium text-ink whitespace-nowrap"
         >
           <Icon
-            className="w-4 h-4 text-ink"
+            className="w-3.5 h-3.5 text-ink"
             strokeWidth={1.8}
             aria-hidden="true"
           />
