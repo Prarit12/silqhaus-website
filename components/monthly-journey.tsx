@@ -1,7 +1,7 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { Check } from "lucide-react";
+import { Headphones, ShieldCheck, Sparkles, Wifi, Zap } from "lucide-react";
 
 /**
  * "Your monthly journey" — the how-it-works strip as line-art cartoons:
@@ -180,6 +180,14 @@ function Arrow() {
   );
 }
 
+const BENEFITS = [
+  { key: "incUtilities", icon: Zap },
+  { key: "incWifi", icon: Wifi },
+  { key: "incCleaning", icon: Sparkles },
+  { key: "incService", icon: Headphones },
+  { key: "incTaxes", icon: ShieldCheck },
+] as const;
+
 const STEPS = [
   { key: "journey1", art: PickHome },
   { key: "journey2", art: MonthlyRate },
@@ -208,29 +216,26 @@ export function MonthlyJourney() {
         ))}
       </div>
 
-      {/* What every monthly stay includes */}
-      <div className="mt-6 flex flex-wrap items-center gap-x-8 gap-y-2.5 lg:justify-between border-t border-neutral-200/80 pt-5">
-        {(
-          [
-            "incUtilities",
-            "incWifi",
-            "incCleaning",
-            "incService",
-            "incTaxes",
-          ] as const
-        ).map((key) => (
-          <span
-            key={key}
-            className="flex items-center gap-2 text-sm font-medium text-ink"
-          >
-            <Check
-              className="w-4 h-4 text-green-700 shrink-0"
-              strokeWidth={2.5}
-              aria-hidden="true"
-            />
-            {t(key)}
-          </span>
-        ))}
+      {/* Benefits — why book monthly with Silqhaus */}
+      <div className="mt-8 rounded-2xl bg-white border border-neutral-200/70 shadow-[0_2px_12px_rgba(0,0,0,0.04)] px-5 sm:px-7 py-5 sm:py-6">
+        <p className="text-[17px] font-bold text-ink">{t("benefitsTitle")}</p>
+        <div className="mt-4 flex flex-wrap gap-x-8 gap-y-4 lg:justify-between">
+          {BENEFITS.map(({ key, icon: Icon }) => (
+            <span
+              key={key}
+              className="flex items-center gap-2.5 text-sm font-semibold text-ink"
+            >
+              <span className="w-9 h-9 rounded-full bg-[#F5F4F0] grid place-items-center shrink-0">
+                <Icon
+                  className="w-[18px] h-[18px] text-ink"
+                  strokeWidth={1.8}
+                  aria-hidden="true"
+                />
+              </span>
+              {t(key)}
+            </span>
+          ))}
+        </div>
       </div>
     </div>
   );
