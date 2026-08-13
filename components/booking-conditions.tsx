@@ -7,6 +7,7 @@ import {
   PartyPopper,
   PawPrint,
   Users,
+  Zap,
 } from "lucide-react";
 import { useTranslations, useLocale } from "next-intl";
 
@@ -37,6 +38,41 @@ interface BookingConditionsProps {
   petsAllowed: boolean;
   /** Hostaway slug (flexible/moderate/firm/strict) or "standard" (Guesty). */
   cancellationPolicy?: string | null;
+  /** Selected stay dates ("YYYY-MM-DD") — turn the timeline into real dates. */
+  checkInDate?: string;
+  checkOutDate?: string;
+}
+
+/** Days before check-in that a full refund is still available. The standard
+ *  (Guesty) policy widens from 5 to 15 days for month-plus stays. */
+function fullRefundLeadDays(policy: string, nights: number | null): number {
+  switch (policy) {
+    case "flexible":
+      return 1;
+    case "moderate":
+      return 5;
+    case "firm":
+      return 30;
+    case "strict":
+      return 14;
+    case "standard":
+    default:
+      return nights != null && nights >= 30 ? 15 : 5;
+  }
+}
+
+function parseLocalDate(dateString: string | undefined): Date | null {
+  if (!dateString) return null;
+  const m = dateString.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+  if (!m) return null;
+  return new Date(Number(m[1]), Number(m[2]) - 1, Number(m[3]));
+}
+
+function formatShortDate(date: Date, locale: string): string {
+  return date.toLocaleDateString(locale === "th" ? "th-TH" : "en-US", {
+    day: "numeric",
+    month: "short",
+  });
 }
 
 function formatTime(raw: string | null | undefined, locale: string): string | null {
@@ -60,6 +96,8 @@ export function BookingConditions({
   maxGuests,
   petsAllowed,
   cancellationPolicy,
+  checkInDate,
+  checkOutDate,
 }: BookingConditionsProps) {
   const t = useTranslations("propertyDetail.bookingConditions");
   const locale = useLocale();
@@ -71,6 +109,34 @@ export function BookingConditions({
 
   const checkIn = formatTime(checkInTime, locale);
   const checkOut = formatTime(checkOutTime, locale);
+
+  // With real stay dates the timeline stops being a schematic: compute the
+  // last day the policy still gives a full refund, and place the boundary
+  // proportionally between today and check-in.
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  const stayStart = parseLocalDate(checkInDate);
+  const stayEnd = parseLocalDate(checkOutDate);
+  const nights =
+    stayStart && stayEnd
+      ? Math.round((stayEnd.getTime() - stayStart.getTime()) / 86_400_000)
+      : null;
+
+  let deadline: Date | null = null;
+  let fraction = 0.6;
+  let windowOpen = false;
+  const hasDates = !!stayStart && stayStart.getTime() > today.getTime();
+  if (policy && hasDates && stayStart) {
+    const lead = fullRefundLeadDays(policy, nights);
+    deadline = new Date(stayStart);
+    deadline.setDate(deadline.getDate() - lead);
+    const total = stayStart.getTime() - today.getTime();
+    fraction = Math.min(
+      1,
+      Math.max(0, (deadline.getTime() - today.getTime()) / total),
+    );
+    windowOpen = deadline.getTime() >= today.getTime();
+  }
 
   const rules: Array<{
     key: string;
@@ -104,6 +170,12 @@ export function BookingConditions({
     });
   }
   rules.push({
+    key: "utilities",
+    icon: <Zap className={iconCls} strokeWidth={1.5} aria-hidden="true" />,
+    label: t("utilities"),
+    value: t("allInclusive"),
+  });
+  rules.push({
     key: "pets",
     icon: <PawPrint className={iconCls} strokeWidth={1.5} aria-hidden="true" />,
     label: t("pets"),
@@ -127,33 +199,93 @@ export function BookingConditions({
       <h2 className="text-xl font-semibold normal-case tracking-normal text-ink mb-5">
         {t("title")}
       </h2>
-      <div
-        className={`grid gap-4 ${policy ? "md:grid-cols-2" : ""} items-start`}
-      >
+      {/* No items-start: both cards stretch to the taller one's height. */}
+      <div className={`grid gap-4 ${policy ? "md:grid-cols-2" : ""}`}>
         {policy && (
           <div className="rounded-2xl border border-neutral-200 p-5 sm:p-6">
             <h3 className="text-[17px] font-semibold text-ink">
               {t("cancellationTitle")}
             </h3>
-            <p className="mt-3 text-[15px] font-semibold text-ink">
+            <p className="mt-3 text-sm font-semibold text-ink">
               {t("policyLabel", { name: t(`policyName.${policy}`) })}
             </p>
-            <p className="mt-2 text-[15px] leading-relaxed text-neutral-600">
+            <p className="mt-1.5 text-sm leading-relaxed text-neutral-600">
               {t(`policyBody.${policy}`)}
             </p>
-            <p className="mt-2 text-sm text-neutral-500">{t("comfortNote")}</p>
+            <p className="mt-1.5 text-[13px] leading-relaxed text-neutral-500">
+              {t("comfortNote")}
+            </p>
 
-            {/* Booking → cancellation window → check-in */}
-            <div className="mt-6" aria-hidden="true">
-              <div className="flex justify-between text-xs font-medium text-ink mb-2">
-                <span>↓ {t("timelineBooking")}</span>
-                <span>↓ {t("timelineWindow")}</span>
-                <span>{t("timelineCheckIn")} ↓</span>
+            {deadline && stayStart ? (
+              /* Real dates: today → free-cancellation deadline → check-in */
+              <div className="mt-6">
+                <div className="flex justify-between text-[11px] font-medium text-ink mb-1.5">
+                  <span>{t("timelineToday")}</span>
+                  <span>
+                    {t("timelineCheckInDate", {
+                      date: formatShortDate(stayStart, locale),
+                    })}
+                  </span>
+                </div>
+                <div className="relative h-2 rounded-full bg-neutral-200">
+                  <div
+                    className="absolute inset-y-0 left-0 rounded-full bg-ink transition-all duration-300"
+                    style={{ width: `${Math.round(fraction * 100)}%` }}
+                  />
+                  {windowOpen && (
+                    <span
+                      className="absolute -top-1 h-4 w-0.5 rounded-full bg-ink"
+                      style={{ left: `${Math.round(fraction * 100)}%` }}
+                      aria-hidden="true"
+                    />
+                  )}
+                </div>
+                <p
+                  className={`mt-2 text-[13px] font-medium ${
+                    windowOpen ? "text-ink" : "text-neutral-600"
+                  }`}
+                  style={
+                    windowOpen
+                      ? {
+                          textAlign:
+                            fraction < 0.25
+                              ? "left"
+                              : fraction > 0.75
+                                ? "right"
+                                : "center",
+                        }
+                      : undefined
+                  }
+                >
+                  {windowOpen
+                    ? t("freeCancellationUntil", {
+                        date: formatShortDate(deadline, locale),
+                      })
+                    : t("noFreeCancellation")}
+                </p>
               </div>
-              <div className="h-2 rounded-full bg-neutral-200 overflow-hidden">
-                <div className="h-full w-3/5 rounded-full bg-ink" />
+            ) : (
+              /* No dates yet: schematic bar + nudge to pick dates */
+              <div className="mt-6">
+                <div
+                  className="flex justify-between text-[11px] font-medium text-ink mb-1.5"
+                  aria-hidden="true"
+                >
+                  <span>↓ {t("timelineBooking")}</span>
+                  <span>↓ {t("timelineWindow")}</span>
+                  <span>{t("timelineCheckIn")} ↓</span>
+                </div>
+                <div
+                  className="h-2 rounded-full bg-neutral-200 overflow-hidden"
+                  aria-hidden="true"
+                >
+                  <div className="h-full w-3/5 rounded-full bg-ink" />
+                </div>
+                <p className="mt-2 text-[13px] text-neutral-500">
+                  {t("selectDatesHint")}
+                </p>
               </div>
-            </div>
+            )}
           </div>
         )}
 

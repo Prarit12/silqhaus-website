@@ -1236,6 +1236,8 @@ export default function PropertyDetails({
               cancellationPolicy={
                 property.cancellationPolicy || (isGuesty ? "standard" : null)
               }
+              checkInDate={checkInDate}
+              checkOutDate={checkOutDate}
             />
 
             {/* Amenities */}
