@@ -281,6 +281,8 @@ function MonthlyStays() {
     return {
       nights,
       nightlyTotal,
+      adrGross: Math.round(nightlyTotal / nights),
+      adrNet: Math.round(monthlyTotal / nights),
       discount,
       monthlyTotal,
       perMonth: Math.round(monthlyTotal / (months ?? Math.max(1, nights / 30.44))),
@@ -784,8 +786,13 @@ function MonthlyStays() {
                       <span>
                         {t("quote.nightlyTotal", { count: quote.nights })}
                       </span>
-                      <span className="line-through">
-                        {fmt(quote.nightlyTotal)}
+                      <span className="text-right">
+                        <span className="block line-through">
+                          {fmt(quote.nightlyTotal)}
+                        </span>
+                        <span className="block text-xs text-neutral-500">
+                          {t("quote.adrGross", { rate: fmt(quote.adrGross) })}
+                        </span>
                       </span>
                     </div>
                     <div className="flex justify-between mt-2 text-green-700 font-medium">
@@ -820,6 +827,9 @@ function MonthlyStays() {
                                 })}
                           </span>
                         )}
+                        <span className="block text-xs text-neutral-500">
+                          {t("quote.adrNet", { rate: fmt(quote.adrNet) })}
+                        </span>
                       </span>
                     </div>
                     {quote.estimated && (

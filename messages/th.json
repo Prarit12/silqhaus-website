@@ -3797,6 +3797,8 @@
       "perMonth": "/เดือน",
       "termTotal": "{months} เดือน · รวม {total}",
       "termTotalNights": "{nights} คืน · รวม {total}",
+      "adrGross": "เฉลี่ย {rate}/คืน",
+      "adrNet": "สุทธิเฉลี่ย {rate}/คืน",
       "estimatedNote": "รวมการประมาณการสำหรับวันที่เกินปฏิทินราคาที่เผยแพร่",
       "conflictNote": "มี {count} คืนในช่วงนี้ถูกจองแล้ว ทักแชทเพื่อหาตัวเลือกอื่น",
       "benefitsTitle": "ข้อดีของการจองรายเดือนกับ Silqhaus",
