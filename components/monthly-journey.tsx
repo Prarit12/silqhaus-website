@@ -1,6 +1,7 @@
 "use client";
 
 import { useTranslations } from "next-intl";
+import { Check } from "lucide-react";
 
 /**
  * "Your monthly journey" — the how-it-works strip as line-art cartoons:
@@ -204,6 +205,23 @@ export function MonthlyJourney() {
               <p className="mt-2 text-sm text-neutral-500">{t(key)}</p>
             </div>
           </div>
+        ))}
+      </div>
+
+      {/* What every monthly stay includes */}
+      <div className="mt-6 flex flex-wrap items-center gap-x-8 gap-y-2.5 border-t border-neutral-100 pt-5">
+        {(["incUtilities", "incWifi", "incTaxes"] as const).map((key) => (
+          <span
+            key={key}
+            className="flex items-center gap-2 text-sm font-medium text-ink"
+          >
+            <Check
+              className="w-4 h-4 text-green-700 shrink-0"
+              strokeWidth={2.5}
+              aria-hidden="true"
+            />
+            {t(key)}
+          </span>
         ))}
       </div>
     </div>

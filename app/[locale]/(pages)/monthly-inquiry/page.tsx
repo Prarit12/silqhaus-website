@@ -803,23 +803,6 @@ function MonthlyStays() {
                       </p>
                     )}
 
-                    <ul className="mt-4 grid grid-cols-1 sm:grid-cols-3 gap-2">
-                      {(["incUtilities", "incWifi", "incTaxes"] as const).map(
-                        (key) => (
-                          <li
-                            key={key}
-                            className="flex items-center gap-2 text-[13px] text-neutral-700"
-                          >
-                            <Check
-                              className="w-4 h-4 text-green-700 shrink-0"
-                              strokeWidth={2}
-                              aria-hidden="true"
-                            />
-                            {t(`quote.${key}`)}
-                          </li>
-                        ),
-                      )}
-                    </ul>
 
                     <div className="mt-5 flex flex-col sm:flex-row gap-2.5">
                       <button
