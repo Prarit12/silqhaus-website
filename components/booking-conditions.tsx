@@ -311,11 +311,14 @@ export function BookingConditions({
               </span>
             </div>
 
-            <ul className="mt-1.5 flex-1 flex flex-col justify-center">
+            {/* Each tier is a flex-1 stripe: together they consume the card's
+                full height, so a 2-tier policy fills the box as fully as a
+                3-tier one. */}
+            <ul className="mt-1.5 flex-1 flex flex-col">
               {tiersFor(policy, nights).map((tier, i) => (
                 <li
                   key={tier.cond}
-                  className={`flex items-start justify-between gap-4 py-3 ${
+                  className={`flex-1 flex items-center justify-between gap-4 py-3 ${
                     i > 0 ? "border-t border-neutral-100" : ""
                   }`}
                 >
@@ -329,7 +332,7 @@ export function BookingConditions({
                       {t(`tierDesc.${tier.kind}`)}
                     </span>
                   </span>
-                  <span className="text-sm text-neutral-600 text-right leading-snug pt-px">
+                  <span className="text-sm text-neutral-600 text-right leading-snug">
                     {tierCondText(tier)}
                   </span>
                 </li>
