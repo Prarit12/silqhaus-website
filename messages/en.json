@@ -3799,6 +3799,8 @@
       "termTotalNights": "{nights} nights · {total} total",
       "adrGross": "avg {rate}/night",
       "adrNet": "net avg {rate}/night",
+      "currencyLabel": "Display currency",
+      "currencyNote": "Converted at today's rate for reference — final pricing is in Thai Baht (฿).",
       "estimatedNote": "Includes an estimate for dates beyond the published calendar.",
       "conflictNote": "{count} nights in this range are already booked — chat with us for alternatives.",
       "benefitsTitle": "Benefits of booking monthly with Silqhaus",

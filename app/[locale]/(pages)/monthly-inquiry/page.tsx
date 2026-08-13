@@ -79,6 +79,15 @@ interface CalendarDay {
 
 const MONTH_OPTIONS = [1, 2, 3, 6, 12] as const;
 
+const CURRENCY_OPTIONS = [
+  { code: "THB", symbol: "฿" },
+  { code: "USD", symbol: "$" },
+  { code: "EUR", symbol: "€" },
+  { code: "CNY", symbol: "¥" },
+  { code: "RUB", symbol: "₽" },
+] as const;
+type CurrencyCode = (typeof CURRENCY_OPTIONS)[number]["code"];
+
 function pad(n: number): string {
   return String(n).padStart(2, "0");
 }
@@ -235,6 +244,19 @@ function MonthlyStays() {
   const [months, setMonths] = useState<number | null>(null);
   const [customEnd, setCustomEnd] = useState<string | null>(null);
   const [step, setStep] = useState(1);
+  const [currency, setCurrency] = useState<CurrencyCode>("THB");
+  const fxQuery = useQuery<Record<string, number>>({
+    queryKey: ["fx", "THB"],
+    queryFn: async () => {
+      const res = await fetch("https://open.er-api.com/v6/latest/THB");
+      if (!res.ok) throw new Error("fx failed");
+      const data = await res.json();
+      if (data?.result !== "success" || !data?.rates) throw new Error("fx failed");
+      return data.rates as Record<string, number>;
+    },
+    staleTime: 1000 * 60 * 60 * 6,
+    retry: 1,
+  });
   const hasTerm = months != null || !!customEnd;
 
   const moveOut = useMemo(
@@ -293,6 +315,14 @@ function MonthlyStays() {
   }, [selected, moveIn, moveOut, months, calendarQuery.data]);
 
   const fmt = (n: number) => `฿${n.toLocaleString()}`;
+
+  const fxRate = currency === "THB" ? 1 : fxQuery.data?.[currency];
+  const activeCurrency: CurrencyCode = fxRate ? currency : "THB";
+  const fmtQ = (thb: number) => {
+    const cur = CURRENCY_OPTIONS.find((c) => c.code === activeCurrency)!;
+    const v = activeCurrency === "THB" ? thb : thb * (fxRate ?? 1);
+    return `${cur.symbol}${Math.round(v).toLocaleString()}`;
+  };
 
   // The message that travels to the form, WhatsApp and LINE.
   const quoteMessage = useMemo(() => {
@@ -782,16 +812,39 @@ function MonthlyStays() {
 
                 {quote ? (
                   <div className="mt-4 text-sm">
+                    {fxQuery.data && (
+                      <div
+                        className="mb-3 flex flex-wrap justify-end gap-1.5"
+                        role="group"
+                        aria-label={t("quote.currencyLabel")}
+                      >
+                        {CURRENCY_OPTIONS.map((c) => (
+                          <button
+                            key={c.code}
+                            type="button"
+                            onClick={() => setCurrency(c.code)}
+                            aria-pressed={currency === c.code}
+                            className={`h-7 px-2.5 rounded-full border text-xs font-semibold transition-colors ${
+                              currency === c.code
+                                ? "bg-ink text-white border-ink"
+                                : "bg-white text-neutral-600 border-neutral-300 hover:border-ink hover:text-ink"
+                            }`}
+                          >
+                            {c.code}
+                          </button>
+                        ))}
+                      </div>
+                    )}
                     <div className="flex justify-between text-neutral-600">
                       <span>
                         {t("quote.nightlyTotal", { count: quote.nights })}
                       </span>
                       <span className="text-right">
                         <span className="block line-through">
-                          {fmt(quote.nightlyTotal)}
+                          {fmtQ(quote.nightlyTotal)}
                         </span>
                         <span className="block text-xs text-neutral-500">
-                          {t("quote.adrGross", { rate: fmt(quote.adrGross) })}
+                          {t("quote.adrGross", { rate: fmtQ(quote.adrGross) })}
                         </span>
                       </span>
                     </div>
@@ -801,7 +854,7 @@ function MonthlyStays() {
                           percent: Math.round(quote.discount * 100),
                         })}
                       </span>
-                      <span>−{fmt(quote.savings)}</span>
+                      <span>−{fmtQ(quote.savings)}</span>
                     </div>
                     <div className="flex justify-between items-baseline mt-3 pt-3 border-t border-neutral-200">
                       <span className="font-semibold text-ink">
@@ -809,7 +862,7 @@ function MonthlyStays() {
                       </span>
                       <span className="text-right">
                         <span className="block text-xl font-semibold text-ink">
-                          {fmt(quote.perMonth)}
+                          {fmtQ(quote.perMonth)}
                           <span className="text-sm font-normal text-neutral-600">
                             {t("quote.perMonth")}
                           </span>
@@ -819,19 +872,24 @@ function MonthlyStays() {
                             {months != null
                               ? t("quote.termTotal", {
                                   months,
-                                  total: fmt(quote.monthlyTotal),
+                                  total: fmtQ(quote.monthlyTotal),
                                 })
                               : t("quote.termTotalNights", {
                                   nights: quote.nights,
-                                  total: fmt(quote.monthlyTotal),
+                                  total: fmtQ(quote.monthlyTotal),
                                 })}
                           </span>
                         )}
                         <span className="block text-xs text-neutral-500">
-                          {t("quote.adrNet", { rate: fmt(quote.adrNet) })}
+                          {t("quote.adrNet", { rate: fmtQ(quote.adrNet) })}
                         </span>
                       </span>
                     </div>
+                    {activeCurrency !== "THB" && (
+                      <p className="mt-2 text-xs text-neutral-500">
+                        {t("quote.currencyNote")}
+                      </p>
+                    )}
                     {quote.estimated && (
                       <p className="mt-2 text-xs text-neutral-500">
                         {t("quote.estimatedNote")}
