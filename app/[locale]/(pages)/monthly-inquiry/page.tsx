@@ -13,7 +13,6 @@ import { useSearchParams } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
 import emailjs from "@emailjs/browser";
 import {
-  ArrowDown,
   Calendar,
   ChevronLeft,
   ChevronRight,
@@ -513,23 +512,6 @@ function MonthlyStays() {
               <p className="mt-4 text-[15px] md:text-base leading-relaxed text-neutral-600 max-w-[58ch]">
                 {t("quote.pageSubtitle")}
               </p>
-              <button
-                type="button"
-                onClick={() => {
-                  const el = document.getElementById("monthly-booking");
-                  const reduce = window.matchMedia(
-                    "(prefers-reduced-motion: reduce)",
-                  ).matches;
-                  el?.scrollIntoView({
-                    behavior: reduce ? "auto" : "smooth",
-                    block: "start",
-                  });
-                }}
-                className="mt-7 inline-flex items-center justify-center gap-2 h-12 px-7 rounded-full bg-ink bg-[linear-gradient(90deg,#09081F_0%,#382124_45%,#673929_65%,#95522E_80%,#C46A33_92%,#F38338_100%)] text-white text-[15px] font-semibold hover:opacity-90 transition-opacity"
-              >
-                {t("quote.heroCta")}
-                <ArrowDown className="w-4 h-4" aria-hidden="true" />
-              </button>
             </div>
             <div className="hidden lg:block">
               <MonthlyHeroArt />
