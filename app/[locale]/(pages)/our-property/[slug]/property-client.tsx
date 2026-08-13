@@ -1282,6 +1282,16 @@ export default function PropertyDetails({
               </section>
             )}
 
+            {/* Location */}
+            <section className="py-8 border-b border-neutral-200">
+              <PropertyMap
+                theme="light"
+                lat={property.lat || 7.8804}
+                lng={property.lng || 98.3923}
+                propertyName={title}
+              />
+            </section>
+
             {/* Reviews — Hostaway's own feed, or Guesty's synced channel
                 reviews. Renders nothing when a listing has no reviews yet. */}
             <PropertyReviews
@@ -1290,16 +1300,6 @@ export default function PropertyDetails({
               property={property}
               averageReviewRating={property.averageReviewRating}
             />
-
-            {/* Location */}
-            <section className="py-8">
-              <PropertyMap
-                theme="light"
-                lat={property.lat || 7.8804}
-                lng={property.lng || 98.3923}
-                propertyName={title}
-              />
-            </section>
 
             {/* Nearby */}
             {property.city && (
