@@ -158,7 +158,7 @@ function Arrow() {
   return (
     <svg
       viewBox="0 0 64 28"
-      className="hidden lg:block w-14 h-auto shrink-0 mt-8"
+      className="hidden lg:block w-16 h-auto shrink-0 mt-8"
       aria-hidden="true"
     >
       <path
@@ -198,8 +198,8 @@ export function MonthlyJourney() {
         {STEPS.map(({ key, art: Art }, i) => (
           <div key={key} className="contents lg:contents">
             {i > 0 && <Arrow />}
-            <div className="flex flex-col items-center text-center lg:flex-1 lg:max-w-[200px]">
-              <div className="w-full max-w-[150px]">
+            <div className="flex flex-col items-center text-center lg:flex-1">
+              <div className="w-full max-w-[170px]">
                 <Art />
               </div>
               <p className="mt-2 text-sm text-neutral-500">{t(key)}</p>
@@ -209,7 +209,7 @@ export function MonthlyJourney() {
       </div>
 
       {/* What every monthly stay includes */}
-      <div className="mt-6 flex flex-wrap items-center gap-x-8 gap-y-2.5 border-t border-neutral-200/80 pt-5">
+      <div className="mt-6 flex flex-wrap items-center gap-x-8 gap-y-2.5 lg:justify-between border-t border-neutral-200/80 pt-5">
         {(
           [
             "incUtilities",
