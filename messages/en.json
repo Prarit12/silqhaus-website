@@ -3876,7 +3876,7 @@
       },
       "datesNote": "Minimum stay for monthly rates is 30 nights.",
       "propertyNote": "Property will be pre-filled when you arrive from a property page.",
-      "submit": "Send Inquiry",
+      "submit": "Request this rate",
       "submitting": "Sending...",
       "successMessage": "Thank you! Your inquiry has been received. Our team will be in touch within 24 hours.",
       "errorMessage": "Something went wrong. Please email us directly at {email}."

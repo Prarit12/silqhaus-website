@@ -18,9 +18,7 @@ import {
   ChevronLeft,
   ChevronRight,
   Loader2,
-  Mail,
   MessageCircle,
-  Phone,
   Send,
   Star,
 } from "lucide-react";
@@ -55,8 +53,6 @@ const SUPPORT_EMAIL =
   process.env.NEXT_PUBLIC_CONTACT_EMAIL || "info@silqhaus.com";
 const CONTACT_WHATSAPP = process.env.NEXT_PUBLIC_CONTACT_WHATSAPP || "";
 const CONTACT_LINE = process.env.NEXT_PUBLIC_CONTACT_LINE || "";
-const CONTACT_PHONE = process.env.NEXT_PUBLIC_CONTACT_PHONE || "";
-const CONTACT_PHONE_TEL = process.env.NEXT_PUBLIC_CONTACT_PHONE_TEL || "";
 
 interface MonthlyListing {
   id: number | string;
@@ -860,14 +856,7 @@ function MonthlyStays() {
                     )}
 
 
-                    <button
-                      type="button"
-                      onClick={scrollToForm}
-                      className="mt-5 w-full inline-flex items-center justify-center gap-2 h-12 rounded-full bg-ink bg-[linear-gradient(90deg,#09081F_0%,#382124_45%,#673929_65%,#95522E_80%,#C46A33_92%,#F38338_100%)] text-white text-[15px] font-semibold hover:opacity-90 transition-opacity"
-                    >
-                      <Calendar className="w-4 h-4" aria-hidden="true" />
-                      {t("quote.requestRate")}
-                    </button>
+
                   </div>
                 ) : (
                   <p className="mt-4 text-sm text-neutral-600">
@@ -1210,7 +1199,7 @@ function MonthlyStays() {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 h-12 px-8 rounded-full bg-ink text-white text-[15px] font-semibold hover:bg-neutral-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full inline-flex items-center justify-center gap-2 h-12 rounded-full bg-ink bg-[linear-gradient(90deg,#09081F_0%,#382124_45%,#673929_65%,#95522E_80%,#C46A33_92%,#F38338_100%)] text-white text-[15px] font-semibold hover:opacity-90 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {isSubmitting ? (
                 <>
@@ -1270,73 +1259,6 @@ function MonthlyStays() {
           </p>
           </div>
           )}
-
-          {/* Contact details — always visible under either tab */}
-          <div className="mt-6 pt-5 border-t border-neutral-100">
-            <p className="text-[15px] font-bold text-ink">
-              {t("form.anyQuestions")}
-            </p>
-            <div className="mt-4 grid grid-cols-[24px_minmax(0,1fr)] gap-x-3.5 gap-y-4 items-center">
-              {CONTACT_PHONE && (
-                <>
-                  <Phone
-                    className="w-5 h-5 text-ink justify-self-center"
-                    strokeWidth={1.5}
-                    aria-hidden="true"
-                  />
-                  <a
-                    href={`tel:${CONTACT_PHONE_TEL || CONTACT_PHONE.replace(/[^+\d]/g, "")}`}
-                    className="justify-self-start text-[15px] font-semibold text-ink underline underline-offset-4 decoration-1 hover:decoration-2"
-                  >
-                    {CONTACT_PHONE}
-                  </a>
-                </>
-              )}
-              {CONTACT_WHATSAPP && (
-                <>
-                  <SiWhatsapp
-                    className="w-5 h-5 text-ink justify-self-center"
-                    aria-hidden="true"
-                  />
-                  <a
-                    href={`https://wa.me/${CONTACT_WHATSAPP.replace(/[^0-9]/g, "")}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="justify-self-start text-[15px] font-semibold text-ink underline underline-offset-4 decoration-1 hover:decoration-2"
-                  >
-                    {CONTACT_WHATSAPP} (WhatsApp)
-                  </a>
-                </>
-              )}
-              {CONTACT_LINE && (
-                <>
-                  <SiLine
-                    className="w-5 h-5 text-ink justify-self-center"
-                    aria-hidden="true"
-                  />
-                  <a
-                    href={`https://line.me/R/ti/p/${encodeURIComponent(CONTACT_LINE)}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="justify-self-start text-[15px] font-semibold text-ink underline underline-offset-4 decoration-1 hover:decoration-2"
-                  >
-                    {CONTACT_LINE} (LINE)
-                  </a>
-                </>
-              )}
-              <Mail
-                className="w-5 h-5 text-ink justify-self-center"
-                strokeWidth={1.5}
-                aria-hidden="true"
-              />
-              <a
-                href={`mailto:${SUPPORT_EMAIL}`}
-                className="justify-self-start text-[15px] font-semibold text-ink underline underline-offset-4 decoration-1 hover:decoration-2 break-all"
-              >
-                {SUPPORT_EMAIL}
-              </a>
-            </div>
-          </div>
         </div>
         </div>
       </div>
