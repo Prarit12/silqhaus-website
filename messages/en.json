@@ -3578,8 +3578,9 @@
         "none": "No refund"
       },
       "cond": {
-        "standardShort": "Until 5 days before check-in · under 30 nights",
-        "standardLong": "Until 15 days before check-in · 30+ nights",
+        "standardShort": "Until 5 days before check-in",
+        "standardLong": "Until 15 days before check-in",
+        "standardCombined": "Until 5 days before check-in · 15 days for 30+ nights",
         "standardNone": "After the deadline",
         "flexibleFull": "Until 24 hours before check-in",
         "flexibleNone": "Within 24 hours of check-in",
@@ -3592,7 +3593,7 @@
         "strictNone": "Otherwise"
       },
       "nonRefundableTitle": "Non-refundable option",
-      "nonRefundableShort": "No refund if cancelled",
+      "nonRefundableShort": "Save 10% · no refund if cancelled",
       "timelineBooking": "Booking",
       "timelineWindow": "Cancellation window",
       "timelineCheckIn": "Check-in",

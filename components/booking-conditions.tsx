@@ -8,6 +8,7 @@ import {
   PartyPopper,
   PawPrint,
   Percent,
+  Tag,
   Users,
   X,
   Zap,
@@ -37,11 +38,6 @@ const KNOWN_POLICIES = new Set([
  *  the House-rules grammar: bold outcome left, condition right. */
 type TierKind = "full" | "half" | "none";
 const POLICY_TIERS: Record<string, Array<{ kind: TierKind; cond: string }>> = {
-  standard: [
-    { kind: "full", cond: "standardShort" },
-    { kind: "full", cond: "standardLong" },
-    { kind: "none", cond: "standardNone" },
-  ],
   flexible: [
     { kind: "full", cond: "flexibleFull" },
     { kind: "none", cond: "flexibleNone" },
@@ -60,6 +56,26 @@ const POLICY_TIERS: Record<string, Array<{ kind: TierKind; cond: string }>> = {
     { kind: "none", cond: "strictNone" },
   ],
 };
+
+/** The standard policy's full-refund deadline depends on stay length, so its
+ *  tier row adapts: the applicable deadline once nights are known, a combined
+ *  one-liner before dates are picked. Never two "Full refund" rows. */
+function tiersFor(
+  policy: string,
+  nights: number | null,
+): Array<{ kind: TierKind; cond: string }> {
+  if (policy !== "standard") return POLICY_TIERS[policy] ?? [];
+  const fullCond =
+    nights == null
+      ? "standardCombined"
+      : nights >= 30
+        ? "standardLong"
+        : "standardShort";
+  return [
+    { kind: "full", cond: fullCond },
+    { kind: "none", cond: "standardNone" },
+  ];
+}
 
 const TIER_ICON: Record<TierKind, React.ReactNode> = {
   full: (
@@ -268,7 +284,7 @@ export function BookingConditions({
             </div>
 
             <ul className="mt-1.5">
-              {(POLICY_TIERS[policy] ?? []).map((tier, i) => (
+              {tiersFor(policy, nights).map((tier, i) => (
                 <li
                   key={tier.cond}
                   className={`flex items-start justify-between gap-4 py-2.5 ${
@@ -287,9 +303,11 @@ export function BookingConditions({
               {/* Non-refundable rate option, same row grammar */}
               <li className="flex items-start justify-between gap-4 py-2.5 border-t border-neutral-100">
                 <span className="flex items-center gap-2.5 text-[13px] font-semibold text-ink shrink-0">
-                  <span className="inline-flex items-center rounded-full bg-ink text-white text-[11px] font-bold px-2 py-0.5">
-                    −10%
-                  </span>
+                  <Tag
+                    className="w-4 h-4 text-neutral-700 shrink-0"
+                    strokeWidth={2}
+                    aria-hidden="true"
+                  />
                   {t("nonRefundableTitle")}
                 </span>
                 <span className="text-[13px] text-neutral-600 text-right leading-snug">
