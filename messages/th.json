@@ -3543,8 +3543,10 @@
     "bookOnTripcom": "จองผ่าน Trip.com",
     "bookOnVrbo": "จองผ่าน Vrbo",
     "bookOnExpedia": "จองผ่าน Expedia",
-    "monthlyPromoText": "รับราคาพิเศษสำหรับการพักรายเดือน (30+ คืนขึ้นไป)",
-    "monthlyPromoLink": "กรอกแบบฟอร์มสอบถามนี้ →",
+    "monthlyQuestion": "เข้าพัก 30 คืนขึ้นไป?",
+    "monthlyAction": "ดูราคารายเดือน",
+    "contactQuestion": "มีคำถามไหม?",
+    "contactAction": "ติดต่อเรา",
     "guests": "ผู้เข้าพัก",
     "availability": {
       "title": "ปฏิทินห้องว่าง",

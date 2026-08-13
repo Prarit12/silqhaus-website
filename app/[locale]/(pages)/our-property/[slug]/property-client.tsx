@@ -12,6 +12,7 @@ import {
   Building2,
   CalendarDays,
   Check,
+  MessageCircle,
   Minus,
   Plus,
   Ruler,
@@ -924,19 +925,52 @@ export default function PropertyDetails({
     5: "lg:grid-cols-5",
   };
 
-  /** Monthly-stay promo — its own pill below the booking card, not buried
-   *  inside it. Wears the book-direct banner's signature ink→orange gradient,
-   *  weighted dark so the white label stays legible; orange lands on the tail. */
-  const monthlyPromoPill = (
+  /** Quiet help rows below the booking card: monthly stays and contact.
+   *  Whole row is the link; the underlined action carries the affordance. */
+  const supportLinkRow = (
+    href: string,
+    icon: React.ReactNode,
+    question: string,
+    action: string,
+  ) => (
     <Link
-      href={`/monthly-inquiry?property=${encodeURIComponent(property.name || "")}`}
-      className="mt-3 flex flex-wrap items-center justify-center gap-x-2 gap-y-0.5 min-h-11 rounded-full bg-ink bg-[linear-gradient(90deg,#09081F_0%,#382124_45%,#673929_65%,#95522E_80%,#C46A33_92%,#F38338_100%)] px-5 py-2.5 text-center text-[13px] font-semibold text-white hover:text-white hover:opacity-90 transition-opacity"
+      href={href as any}
+      className="flex items-center gap-3 rounded-2xl border border-neutral-200 bg-white px-4 py-3.5 hover:bg-neutral-50 transition-colors"
     >
-      <CalendarDays className="w-4 h-4 shrink-0" aria-hidden="true" />
-      <span>
-        {t("monthlyPromoText")} {t("monthlyPromoLink")}
+      <span className="w-9 h-9 rounded-full bg-neutral-100 grid place-items-center shrink-0">
+        {icon}
+      </span>
+      <span className="flex-1 min-w-0 text-[15px] font-semibold text-ink">
+        {question}
+      </span>
+      <span className="shrink-0 text-[15px] font-bold text-ink underline underline-offset-4">
+        {action}
       </span>
     </Link>
+  );
+  const supportLinks = (
+    <div className="mt-3 space-y-3">
+      {supportLinkRow(
+        `/monthly-inquiry?property=${encodeURIComponent(property.name || "")}`,
+        <CalendarDays
+          className="w-[18px] h-[18px] text-ink"
+          strokeWidth={1.5}
+          aria-hidden="true"
+        />,
+        t("monthlyQuestion"),
+        t("monthlyAction"),
+      )}
+      {supportLinkRow(
+        "/contact-us",
+        <MessageCircle
+          className="w-[18px] h-[18px] text-ink"
+          strokeWidth={1.5}
+          aria-hidden="true"
+        />,
+        t("contactQuestion"),
+        t("contactAction"),
+      )}
+    </div>
   );
 
   /** The booking panel, rendered twice: desktop sticky card and mobile sheet.
@@ -1371,7 +1405,7 @@ export default function PropertyDetails({
               <section className="rounded-2xl border border-neutral-200 bg-white shadow-[0_6px_24px_rgba(0,0,0,0.08)] p-5">
                 {renderBookingPanel()}
               </section>
-              {monthlyPromoPill}
+              {supportLinks}
             </div>
           )}
         </div>
@@ -1467,7 +1501,7 @@ export default function PropertyDetails({
               </button>
             </div>
             {renderBookingPanel({ inlineCalendar: true })}
-            {monthlyPromoPill}
+            {supportLinks}
           </div>
         </div>
       )}
