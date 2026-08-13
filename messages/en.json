@@ -3767,6 +3767,13 @@
     "quote": {
       "pageTitle": "Monthly stays",
       "pageSubtitle": "Stay 30 nights or more and pay less than the nightly rate — pick your dates and see your monthly price instantly.",
+      "stepLabel": "Step {n}",
+      "step1Title": "Choose your property",
+      "step2Title": "Your move-in date",
+      "step3Title": "For how long",
+      "step4Title": "Summary",
+      "continue": "Continue",
+      "back": "Back",
       "partnerTitle": "Looking beyond Phuket & Pattaya?",
       "partnerBody": "Our partner site MonthlyFinder lists monthly rentals all over Thailand.",
       "journeyTitle": "Your monthly journey",

@@ -156,7 +156,6 @@ function MonthlyStays() {
   }, [hostawayQuery.data, guestyQuery.data]);
 
   const [selectedKey, setSelectedKey] = useState<string | null>(null);
-  const [pickerOpen, setPickerOpen] = useState(false);
 
   // Resolve the arriving property once inventory is in: pid first, then the
   // legacy ?property= name.
@@ -166,6 +165,7 @@ function MonthlyStays() {
       const hit = listings.find((l) => `${l.source}:${l.id}` === pidParam);
       if (hit) {
         setSelectedKey(pidParam);
+        setStep(2);
         return;
       }
     }
@@ -223,10 +223,11 @@ function MonthlyStays() {
   const defaultMoveIn =
     checkInParam && checkInParam > today ? checkInParam : addDaysStr(today, 14);
   const [moveIn, setMoveIn] = useState(defaultMoveIn);
-  const [months, setMonths] = useState<number>(1);
+  const [months, setMonths] = useState<number | null>(null);
+  const [step, setStep] = useState(1);
 
   const moveOut = useMemo(
-    () => (moveIn ? addMonthsClamped(moveIn, months) : ""),
+    () => (moveIn && months ? addMonthsClamped(moveIn, months) : ""),
     [moveIn, months],
   );
 
@@ -270,7 +271,7 @@ function MonthlyStays() {
       nightlyTotal,
       discount,
       monthlyTotal,
-      perMonth: Math.round(monthlyTotal / months),
+      perMonth: Math.round(monthlyTotal / (months || 1)),
       savings: nightlyTotal - monthlyTotal,
       estimated: missing > 0,
       conflicts,
@@ -285,7 +286,7 @@ function MonthlyStays() {
     return t("quote.chatMessage", {
       property: selectedTitle,
       moveIn: formatDateForDisplay(moveIn),
-      months,
+      months: months ?? 0,
       rate: fmt(quote.perMonth),
     });
   }, [selected, quote, selectedTitle, moveIn, months, t]);
@@ -412,264 +413,374 @@ function MonthlyStays() {
 
         <div className="mt-8 lg:grid lg:grid-cols-[minmax(0,1fr)_440px] lg:gap-12 lg:items-start">
           <div className="min-w-0">
-        {/* Property context */}
+        {/* Step wizard */}
         <div>
-          {selected ? (
-            <div className="flex items-center gap-4 rounded-2xl border border-neutral-200 p-4">
-              <div className="relative w-24 h-20 rounded-xl overflow-hidden bg-neutral-100 shrink-0">
-                {selected.listingImages?.[0]?.url && (
-                  <Image
-                    src={selected.listingImages[0].url}
-                    alt={selectedTitle}
-                    fill
-                    sizes="96px"
-                    className="object-cover"
-                  />
+          {/* Progress header */}
+          <ol className="flex items-center gap-1.5 sm:gap-2" aria-label="Steps">
+            {[1, 2, 3, 4].map((n) => {
+              const complete =
+                (n === 1 && !!selected) ||
+                (n === 2 && !!moveIn && step > 2) ||
+                (n === 3 && months != null);
+              const reachable =
+                n === 1 ||
+                (n === 2 && !!selected) ||
+                (n === 3 && !!selected && !!moveIn) ||
+                (n === 4 && !!selected && !!moveIn && months != null);
+              const active = step === n;
+              return (
+                <li
+                  key={n}
+                  className="flex items-center gap-1.5 sm:gap-2 flex-1 last:flex-none"
+                >
+                  <button
+                    type="button"
+                    onClick={() => reachable && setStep(n)}
+                    disabled={!reachable}
+                    aria-current={active ? "step" : undefined}
+                    className="flex items-center gap-2 disabled:cursor-not-allowed"
+                  >
+                    <span
+                      className={`w-8 h-8 rounded-full grid place-items-center text-sm font-semibold border transition-colors ${
+                        active
+                          ? "bg-ink text-white border-ink"
+                          : complete
+                            ? "bg-white text-ink border-ink"
+                            : "bg-white text-neutral-400 border-neutral-200"
+                      }`}
+                    >
+                      {complete && !active ? (
+                        <Check className="w-4 h-4" strokeWidth={2.5} aria-hidden="true" />
+                      ) : (
+                        n
+                      )}
+                    </span>
+                    <span
+                      className={`hidden md:block text-[13px] font-medium whitespace-nowrap ${
+                        active
+                          ? "text-ink"
+                          : complete
+                            ? "text-neutral-600"
+                            : "text-neutral-400"
+                      }`}
+                    >
+                      {t(`quote.step${n}Title`)}
+                    </span>
+                  </button>
+                  {n < 4 && (
+                    <span className="h-px flex-1 bg-neutral-200" aria-hidden="true" />
+                  )}
+                </li>
+              );
+            })}
+          </ol>
+
+          {/* Step panel */}
+          <div className="mt-4 rounded-2xl border border-neutral-200 p-5 sm:p-6">
+            <p className="text-xs font-semibold uppercase tracking-wide text-neutral-500">
+              {t("quote.stepLabel", { n: step })}
+            </p>
+            <h2 className="mt-0.5 text-lg font-semibold normal-case tracking-normal text-ink">
+              {t(`quote.step${step}Title`)}
+            </h2>
+
+            {/* Step 1 — property */}
+            {step === 1 && (
+              <div className="mt-4">
+                {isLoadingInventory ? (
+                  <p className="text-sm text-neutral-600">
+                    {t("quote.loadingProperties")}
+                  </p>
+                ) : (
+                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                    {listings.map((l) => {
+                      const key = `${l.source}:${l.id}`;
+                      const title = displayPropertyName(l);
+                      return (
+                        <button
+                          key={key}
+                          type="button"
+                          onClick={() => {
+                            setSelectedKey(key);
+                            setStep(2);
+                          }}
+                          className={`text-left rounded-xl border p-2 transition-colors ${
+                            key === selectedKey
+                              ? "border-ink"
+                              : "border-neutral-200 hover:border-neutral-300"
+                          }`}
+                        >
+                          <div className="relative w-full aspect-[4/3] rounded-lg overflow-hidden bg-neutral-100">
+                            {l.listingImages?.[0]?.url && (
+                              <Image
+                                src={l.listingImages[0].url}
+                                alt={title}
+                                fill
+                                sizes="(max-width: 640px) 50vw, 200px"
+                                className="object-cover"
+                              />
+                            )}
+                          </div>
+                          <p className="mt-1.5 text-[13px] font-semibold text-ink truncate">
+                            {title}
+                          </p>
+                          <p className="text-xs text-neutral-500 truncate">
+                            {[l.city, l.state].filter(Boolean).join(", ")}
+                          </p>
+                        </button>
+                      );
+                    })}
+                  </div>
                 )}
               </div>
-              <div className="min-w-0 flex-1">
-                <p className="text-[15px] font-semibold text-ink truncate">
-                  {selectedTitle}
-                </p>
-                <p className="mt-0.5 text-[13px] text-neutral-600 flex flex-wrap items-center gap-x-1.5">
-                  {selected.averageReviewRating ? (
-                    <span className="inline-flex items-center gap-1 font-medium text-ink">
-                      <Star
-                        className="w-3 h-3 fill-current"
-                        aria-hidden="true"
-                      />
-                      {(selected.averageReviewRating > 5
-                        ? selected.averageReviewRating / 2
-                        : selected.averageReviewRating
-                      ).toFixed(1)}
-                    </span>
-                  ) : null}
-                  {selected.averageReviewRating ? (
-                    <span aria-hidden="true">·</span>
-                  ) : null}
-                  <span className="truncate">
-                    {[selected.city, selected.state]
-                      .filter(Boolean)
-                      .join(", ")}
-                  </span>
-                </p>
-              </div>
-              <button
-                type="button"
-                onClick={() => setPickerOpen((v) => !v)}
-                className="shrink-0 text-sm font-semibold text-ink underline underline-offset-4"
-              >
-                {t("quote.change")}
-              </button>
-            </div>
-          ) : (
-            <p className="text-[15px] font-medium text-ink">
-              {isLoadingInventory
-                ? t("quote.loadingProperties")
-                : t("quote.pickProperty")}
-            </p>
-          )}
+            )}
 
-          {/* Picker strip */}
-          {(pickerOpen || (!selected && !isLoadingInventory)) && (
-            <div className="mt-3 grid grid-cols-2 sm:grid-cols-3 gap-3">
-              {listings.map((l) => {
-                const key = `${l.source}:${l.id}`;
-                const title = displayPropertyName(l);
-                return (
-                  <button
-                    key={key}
-                    type="button"
-                    onClick={() => {
-                      setSelectedKey(key);
-                      setPickerOpen(false);
-                    }}
-                    className={`text-left rounded-xl border p-2 transition-colors ${
-                      key === selectedKey
-                        ? "border-ink"
-                        : "border-neutral-200 hover:border-neutral-300"
-                    }`}
-                  >
-                    <div className="relative w-full aspect-[4/3] rounded-lg overflow-hidden bg-neutral-100">
-                      {l.listingImages?.[0]?.url && (
+            {/* Step 2 — move-in date */}
+            {step === 2 && (
+              <div className="mt-4 max-w-sm">
+                {selected && (
+                  <div className="mb-4 flex items-center gap-3">
+                    <div className="relative w-14 h-12 rounded-lg overflow-hidden bg-neutral-100 shrink-0">
+                      {selected.listingImages?.[0]?.url && (
                         <Image
-                          src={l.listingImages[0].url}
-                          alt={title}
+                          src={selected.listingImages[0].url}
+                          alt={selectedTitle}
                           fill
-                          sizes="(max-width: 640px) 50vw, 200px"
+                          sizes="56px"
                           className="object-cover"
                         />
                       )}
                     </div>
-                    <p className="mt-1.5 text-[13px] font-semibold text-ink truncate">
-                      {title}
+                    <p className="text-sm font-medium text-ink">
+                      {selectedTitle}
                     </p>
-                    <p className="text-xs text-neutral-500 truncate">
-                      {[l.city, l.state].filter(Boolean).join(", ")}
-                    </p>
-                  </button>
-                );
-              })}
-            </div>
-          )}
-        </div>
-
-        {/* Quote */}
-        {selected && (
-          <div className="mt-6 rounded-2xl border border-neutral-200 p-5 sm:p-6">
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div>
-                <label className="block text-xs font-bold uppercase tracking-wide mb-1 text-ink">
-                  {t("form.labels.moveIn")}
-                </label>
+                  </div>
+                )}
                 <input
                   type="date"
                   min={today}
                   value={moveIn}
                   onChange={(e) => setMoveIn(e.target.value)}
                   className={inputCls}
+                  aria-label={t("form.labels.moveIn")}
                 />
               </div>
-              <div>
-                <label className="block text-xs font-bold uppercase tracking-wide mb-1 text-ink">
-                  {t("quote.lengthLabel")}
-                </label>
-                <div className="flex flex-wrap gap-1.5">
-                  {MONTH_OPTIONS.map((m) => (
-                    <button
-                      key={m}
-                      type="button"
-                      onClick={() => setMonths(m)}
-                      aria-pressed={months === m}
-                      className={`h-10 px-3.5 rounded-lg border text-sm font-semibold transition-colors ${
-                        months === m
-                          ? "bg-ink text-white border-ink"
-                          : "bg-white text-ink border-neutral-300 hover:border-ink"
-                      }`}
-                    >
-                      {t("quote.monthsShort", { count: m })}
-                    </button>
-                  ))}
-                </div>
-              </div>
-            </div>
+            )}
 
-            {quote ? (
-              <div className="mt-5 pt-4 border-t border-neutral-200 text-sm">
-                <div className="flex justify-between text-neutral-600">
-                  <span>
-                    {t("quote.nightlyTotal", { count: quote.nights })}
-                  </span>
-                  <span className="line-through">
-                    {fmt(quote.nightlyTotal)}
-                  </span>
-                </div>
-                <div className="flex justify-between mt-2 text-green-700 font-medium">
-                  <span>
-                    {t("quote.monthlyDiscount", {
-                      percent: Math.round(quote.discount * 100),
-                    })}
-                  </span>
-                  <span>−{fmt(quote.savings)}</span>
-                </div>
-                <div className="flex justify-between items-baseline mt-3 pt-3 border-t border-neutral-100">
-                  <span className="font-semibold text-ink">
-                    {t("quote.yourRate")}
-                  </span>
-                  <span className="text-right">
-                    <span className="block text-xl font-semibold text-ink">
-                      {fmt(quote.perMonth)}
-                      <span className="text-sm font-normal text-neutral-600">
-                        {t("quote.perMonth")}
+            {/* Step 3 — length */}
+            {step === 3 && (
+              <div className="mt-4 flex flex-wrap gap-2">
+                {MONTH_OPTIONS.map((m) => (
+                  <button
+                    key={m}
+                    type="button"
+                    onClick={() => {
+                      setMonths(m);
+                      setStep(4);
+                    }}
+                    aria-pressed={months === m}
+                    className={`h-11 px-4 rounded-lg border text-sm font-semibold transition-colors ${
+                      months === m
+                        ? "bg-ink text-white border-ink"
+                        : "bg-white text-ink border-neutral-300 hover:border-ink"
+                    }`}
+                  >
+                    {t("quote.monthsShort", { count: m })}
+                  </button>
+                ))}
+              </div>
+            )}
+
+            {/* Step 4 — summary */}
+            {step === 4 && selected && (
+              <div className="mt-4">
+                <dl className="text-sm">
+                  {[
+                    {
+                      label: t("quote.step1Title"),
+                      value: `${selectedTitle} · ${[selected.city, selected.state].filter(Boolean).join(", ")}`,
+                      goto: 1,
+                    },
+                    {
+                      label: t("quote.step2Title"),
+                      value: formatDateForDisplay(moveIn),
+                      goto: 2,
+                    },
+                    {
+                      label: t("quote.step3Title"),
+                      value: `${t("quote.monthsShort", { count: months ?? 0 })} · ${formatDateForDisplay(moveIn)} → ${formatDateForDisplay(moveOut)}`,
+                      goto: 3,
+                    },
+                  ].map((row) => (
+                    <div
+                      key={row.goto}
+                      className="flex items-center justify-between gap-4 py-2.5 border-b border-neutral-100"
+                    >
+                      <div className="min-w-0">
+                        <dt className="text-xs text-neutral-500">
+                          {row.label}
+                        </dt>
+                        <dd className="text-sm font-medium text-ink truncate">
+                          {row.value}
+                        </dd>
+                      </div>
+                      <button
+                        type="button"
+                        onClick={() => setStep(row.goto)}
+                        className="shrink-0 text-[13px] font-semibold text-ink underline underline-offset-4"
+                      >
+                        {t("quote.change")}
+                      </button>
+                    </div>
+                  ))}
+                </dl>
+
+                {quote ? (
+                  <div className="mt-4 text-sm">
+                    <div className="flex justify-between text-neutral-600">
+                      <span>
+                        {t("quote.nightlyTotal", { count: quote.nights })}
                       </span>
-                    </span>
-                    {months > 1 && (
-                      <span className="block text-xs text-neutral-500">
-                        {t("quote.termTotal", {
-                          months,
-                          total: fmt(quote.monthlyTotal),
+                      <span className="line-through">
+                        {fmt(quote.nightlyTotal)}
+                      </span>
+                    </div>
+                    <div className="flex justify-between mt-2 text-green-700 font-medium">
+                      <span>
+                        {t("quote.monthlyDiscount", {
+                          percent: Math.round(quote.discount * 100),
                         })}
                       </span>
+                      <span>−{fmt(quote.savings)}</span>
+                    </div>
+                    <div className="flex justify-between items-baseline mt-3 pt-3 border-t border-neutral-200">
+                      <span className="font-semibold text-ink">
+                        {t("quote.yourRate")}
+                      </span>
+                      <span className="text-right">
+                        <span className="block text-xl font-semibold text-ink">
+                          {fmt(quote.perMonth)}
+                          <span className="text-sm font-normal text-neutral-600">
+                            {t("quote.perMonth")}
+                          </span>
+                        </span>
+                        {(months ?? 0) > 1 && (
+                          <span className="block text-xs text-neutral-500">
+                            {t("quote.termTotal", {
+                              months: months ?? 0,
+                              total: fmt(quote.monthlyTotal),
+                            })}
+                          </span>
+                        )}
+                      </span>
+                    </div>
+                    {quote.estimated && (
+                      <p className="mt-2 text-xs text-neutral-500">
+                        {t("quote.estimatedNote")}
+                      </p>
                     )}
-                  </span>
-                </div>
-                {quote.estimated && (
-                  <p className="mt-2 text-xs text-neutral-500">
-                    {t("quote.estimatedNote")}
-                  </p>
-                )}
-                {quote.conflicts > 0 && (
-                  <p className="mt-2 text-xs text-amber-700">
-                    {t("quote.conflictNote", { count: quote.conflicts })}
-                  </p>
-                )}
+                    {quote.conflicts > 0 && (
+                      <p className="mt-2 text-xs text-amber-700">
+                        {t("quote.conflictNote", { count: quote.conflicts })}
+                      </p>
+                    )}
 
-                {/* Included */}
-                <ul className="mt-4 grid grid-cols-1 sm:grid-cols-3 gap-2">
-                  {(["incUtilities", "incWifi", "incTaxes"] as const).map(
-                    (key) => (
-                      <li
-                        key={key}
-                        className="flex items-center gap-2 text-[13px] text-neutral-700"
+                    <ul className="mt-4 grid grid-cols-1 sm:grid-cols-3 gap-2">
+                      {(["incUtilities", "incWifi", "incTaxes"] as const).map(
+                        (key) => (
+                          <li
+                            key={key}
+                            className="flex items-center gap-2 text-[13px] text-neutral-700"
+                          >
+                            <Check
+                              className="w-4 h-4 text-green-700 shrink-0"
+                              strokeWidth={2}
+                              aria-hidden="true"
+                            />
+                            {t(`quote.${key}`)}
+                          </li>
+                        ),
+                      )}
+                    </ul>
+
+                    <div className="mt-5 flex flex-col sm:flex-row gap-2.5">
+                      <button
+                        type="button"
+                        onClick={scrollToForm}
+                        className="flex-1 inline-flex items-center justify-center gap-2 h-12 rounded-full bg-ink bg-[linear-gradient(90deg,#09081F_0%,#382124_45%,#673929_65%,#95522E_80%,#C46A33_92%,#F38338_100%)] text-white text-[15px] font-semibold hover:opacity-90 transition-opacity"
                       >
-                        <Check
-                          className="w-4 h-4 text-green-700 shrink-0"
-                          strokeWidth={2}
-                          aria-hidden="true"
-                        />
-                        {t(`quote.${key}`)}
-                      </li>
-                    ),
-                  )}
-                </ul>
+                        <Calendar className="w-4 h-4" aria-hidden="true" />
+                        {t("quote.requestRate")}
+                      </button>
+                      {whatsappHref && (
+                        <a
+                          href={whatsappHref}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center justify-center gap-2 h-12 px-5 rounded-full border border-neutral-300 text-[15px] font-semibold text-ink hover:text-ink hover:border-ink transition-colors"
+                        >
+                          <SiWhatsapp className="w-4 h-4 text-[#25D366]" aria-hidden="true" />
+                          WhatsApp
+                        </a>
+                      )}
+                      {lineHref && (
+                        <a
+                          href={lineHref}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center justify-center gap-2 h-12 px-5 rounded-full border border-neutral-300 text-[15px] font-semibold text-ink hover:text-ink hover:border-ink transition-colors"
+                        >
+                          <SiLine className="w-4 h-4 text-[#06C755]" aria-hidden="true" />
+                          LINE
+                        </a>
+                      )}
+                    </div>
+                    <p className="mt-3 text-xs text-neutral-500 flex items-center gap-1.5">
+                      <MessageCircle className="w-3.5 h-3.5" aria-hidden="true" />
+                      {t("quote.negotiateNote")}
+                    </p>
+                  </div>
+                ) : (
+                  <p className="mt-4 text-sm text-neutral-600">
+                    {calendarQuery.isLoading
+                      ? t("quote.loadingRates")
+                      : t("quote.noRates")}
+                  </p>
+                )}
+              </div>
+            )}
 
-                {/* CTAs */}
-                <div className="mt-5 flex flex-col sm:flex-row gap-2.5">
+            {/* Step navigation */}
+            {step < 4 && (
+              <div className="mt-6 flex items-center justify-between">
+                {step > 1 ? (
                   <button
                     type="button"
-                    onClick={scrollToForm}
-                    className="flex-1 inline-flex items-center justify-center gap-2 h-12 rounded-full bg-ink bg-[linear-gradient(90deg,#09081F_0%,#382124_45%,#673929_65%,#95522E_80%,#C46A33_92%,#F38338_100%)] text-white text-[15px] font-semibold hover:opacity-90 transition-opacity"
+                    onClick={() => setStep(step - 1)}
+                    className="text-sm font-semibold text-neutral-600 hover:text-ink underline underline-offset-4"
                   >
-                    <Calendar className="w-4 h-4" aria-hidden="true" />
-                    {t("quote.requestRate")}
+                    {t("quote.back")}
                   </button>
-                  {whatsappHref && (
-                    <a
-                      href={whatsappHref}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center gap-2 h-12 px-5 rounded-full border border-neutral-300 text-[15px] font-semibold text-ink hover:text-ink hover:border-ink transition-colors"
-                    >
-                      <SiWhatsapp className="w-4 h-4 text-[#25D366]" aria-hidden="true" />
-                      WhatsApp
-                    </a>
-                  )}
-                  {lineHref && (
-                    <a
-                      href={lineHref}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center gap-2 h-12 px-5 rounded-full border border-neutral-300 text-[15px] font-semibold text-ink hover:text-ink hover:border-ink transition-colors"
-                    >
-                      <SiLine className="w-4 h-4 text-[#06C755]" aria-hidden="true" />
-                      LINE
-                    </a>
-                  )}
-                </div>
-                <p className="mt-3 text-xs text-neutral-500 flex items-center gap-1.5">
-                  <MessageCircle className="w-3.5 h-3.5" aria-hidden="true" />
-                  {t("quote.negotiateNote")}
-                </p>
+                ) : (
+                  <span />
+                )}
+                <button
+                  type="button"
+                  onClick={() => setStep(step + 1)}
+                  disabled={
+                    (step === 1 && !selected) ||
+                    (step === 2 && !moveIn) ||
+                    (step === 3 && months == null)
+                  }
+                  className="inline-flex items-center justify-center h-11 px-6 rounded-full bg-ink text-white text-sm font-semibold hover:bg-neutral-800 transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+                >
+                  {t("quote.continue")}
+                </button>
               </div>
-            ) : (
-              <p className="mt-5 pt-4 border-t border-neutral-200 text-sm text-neutral-600">
-                {calendarQuery.isLoading
-                  ? t("quote.loadingRates")
-                  : t("quote.noRates")}
-              </p>
             )}
           </div>
-        )}
+        </div>
+
 
         {/* Partner site — monthly rentals across the rest of Thailand */}
         <a
