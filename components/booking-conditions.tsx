@@ -332,7 +332,9 @@ export function BookingConditions({
                       {t(`tierDesc.${tier.kind}`)}
                     </span>
                   </span>
-                  <span className="text-[13px] text-neutral-600 text-right leading-snug">
+                  {/* Cap the condition column so a long undated condition
+                      wraps instead of crushing the label column. */}
+                  <span className="min-w-0 max-w-[52%] text-[13px] text-neutral-600 text-right leading-snug">
                     {tierCondText(tier)}
                   </span>
                 </li>
