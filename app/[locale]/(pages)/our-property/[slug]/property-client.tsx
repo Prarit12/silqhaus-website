@@ -23,6 +23,7 @@ import Lightbox from "@/components/lightbox";
 import FullScreenGallery from "@/components/full-screen-gallery";
 import { GalleryCarousel } from "@/components/gallery-carousel";
 import { DateRangePicker } from "@/components/date-range-picker";
+import { BookingConditions } from "@/components/booking-conditions";
 import { useTranslations, useLocale } from "next-intl";
 import { PropertyReviews } from "@/components/property-reviews";
 
@@ -93,6 +94,11 @@ interface Property {
   guestsIncluded?: number;
   priceForExtraPerson?: number;
   averageReviewRating?: number;
+  /** "15:00" (Guesty) or "15" (Hostaway hour). */
+  checkInTime?: string;
+  checkOutTime?: string;
+  /** Hostaway policy slug (flexible/moderate/firm/strict). */
+  cancellationPolicy?: string;
 }
 
 interface PropertyApiResult {
@@ -125,6 +131,12 @@ interface PropertyApiResult {
   guestsIncluded?: number;
   priceForExtraPerson?: number;
   averageReviewRating?: number;
+  /** Hostaway: check-in hour as a number (15). */
+  checkInTimeStart?: number | string;
+  /** Guesty normalized "15:00"; Hostaway raw hour number. */
+  checkInTime?: string;
+  checkOutTime?: number | string;
+  cancellationPolicy?: string;
 }
 
 interface HostawayApiResponse {
@@ -168,6 +180,11 @@ function normalizeProperty(data: HostawayApiResponse): Property {
     guestsIncluded: r.guestsIncluded || 1,
     priceForExtraPerson: r.priceForExtraPerson || 0,
     averageReviewRating: r.averageReviewRating,
+    checkInTime:
+      r.checkInTime ??
+      (r.checkInTimeStart != null ? String(r.checkInTimeStart) : undefined),
+    checkOutTime: r.checkOutTime != null ? String(r.checkOutTime) : undefined,
+    cancellationPolicy: r.cancellationPolicy,
     roomType:
       r.roomType
         ?.replaceAll("_", " ")
@@ -1207,6 +1224,19 @@ export default function PropertyDetails({
                 />
               </section>
             )}
+
+            {/* Booking conditions — cancellation policy + house rules */}
+            <BookingConditions
+              checkInTime={property.checkInTime}
+              checkOutTime={property.checkOutTime}
+              maxGuests={property.personCapacity}
+              petsAllowed={(property.listingAmenities || []).some((a) =>
+                /pets?\s+allowed/i.test(a.amenityName),
+              )}
+              cancellationPolicy={
+                property.cancellationPolicy || (isGuesty ? "standard" : null)
+              }
+            />
 
             {/* Amenities */}
             {amenities.length > 0 && (

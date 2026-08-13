@@ -54,6 +54,8 @@ export interface GuestyRawListing {
   bedrooms?: number;
   active?: boolean;
   listed?: boolean;
+  defaultCheckInTime?: string;
+  defaultCheckOutTime?: string;
   address?: GuestyAddress;
   picture?: GuestyPicture | string;
   pictures?: GuestyPicture[];
@@ -108,6 +110,9 @@ export interface NormalizedGuestyListing {
    *  Hostaway so cards read one shape across both sources. */
   averageReviewRating?: number;
   reviewsCount?: number;
+  /** "15:00" / "12:00" — Guesty's defaultCheckIn/OutTime. */
+  checkInTime?: string;
+  checkOutTime?: string;
 }
 
 /** Attach the review summary, when one exists, to a normalized listing. */
@@ -235,6 +240,8 @@ export function normalizeGuestyListing(
           .toLowerCase()
           .replace(/\b\w/g, (c) => c.toUpperCase())
       : raw.propertyType,
+    checkInTime: raw.defaultCheckInTime || undefined,
+    checkOutTime: raw.defaultCheckOutTime || undefined,
     listingImages: images,
     images,
     listingAmenities: (raw.amenities || []).map((a, i) => ({
@@ -283,6 +290,8 @@ const LISTING_FIELDS = [
   "terms",
   "publicDescription",
   "integrations",
+  "defaultCheckInTime",
+  "defaultCheckOutTime",
 ].join(" ");
 
 // Hard block-list of Guesty listing IDs that should never appear on the site,
@@ -311,9 +320,10 @@ function isPublic(raw: GuestyRawListing): boolean {
 
 const LISTINGS_CACHE_TTL_MS = 10 * 60 * 1000;
 const LISTINGS_CACHE_TTL_SECONDS = LISTINGS_CACHE_TTL_MS / 1000;
-// v3: normalized listings now carry averageReviewRating/reviewsCount.
-const LISTINGS_KV_PREFIX = "guesty:listings:v3:";
-const LISTING_KV_PREFIX = "guesty:listing:v3:";
+// v4: normalized listings now carry checkInTime/checkOutTime
+// (v3 added averageReviewRating/reviewsCount).
+const LISTINGS_KV_PREFIX = "guesty:listings:v4:";
+const LISTING_KV_PREFIX = "guesty:listing:v4:";
 
 interface ListingsCacheEntry {
   data: NormalizedGuestyListing[];

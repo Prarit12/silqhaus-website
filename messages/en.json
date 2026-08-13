@@ -3558,7 +3558,43 @@
     "guestReviews": "Guest Reviews ({count})",
     "averageGuestRating": "Average Guest Rating",
     "previousReview": "Previous review",
-    "nextReview": "Next review"
+    "nextReview": "Next review",
+    "bookingConditions": {
+      "title": "Booking conditions",
+      "cancellationTitle": "Cancellation",
+      "policyLabel": "Policy: {name}",
+      "policyName": {
+        "standard": "Standard",
+        "flexible": "Flexible",
+        "moderate": "Moderate",
+        "firm": "Firm",
+        "strict": "Strict"
+      },
+      "policyBody": {
+        "standard": "For bookings of up to 30 nights, full refund for cancellations made at least 5 days before check-in. For bookings of 30+ nights, full refund for cancellations made at least 15 days before check-in.",
+        "flexible": "Full refund for cancellations made at least 24 hours before check-in.",
+        "moderate": "Full refund for cancellations made at least 5 days before check-in.",
+        "firm": "Full refund for cancellations made at least 30 days before check-in. 50% refund for cancellations made 7–30 days before check-in.",
+        "strict": "50% refund for cancellations made within 48 hours of booking and at least 14 days before check-in."
+      },
+      "comfortNote": "Make sure you're comfortable with this property's policy before booking.",
+      "timelineBooking": "Booking",
+      "timelineWindow": "Cancellation window",
+      "timelineCheckIn": "Check-in",
+      "rulesTitle": "House rules",
+      "checkIn": "Check-in",
+      "checkOut": "Check-out",
+      "fromTime": "from {time}",
+      "byTime": "by {time}",
+      "guests": "Guests",
+      "guestsMax": "{count} guests maximum",
+      "pets": "Pets",
+      "partiesEvents": "Parties and events",
+      "smoking": "Smoking",
+      "allowed": "Allowed",
+      "notAllowed": "Not allowed",
+      "onRequest": "On request only"
+    }
   },
   "dateRangePicker": {
     "months": {
