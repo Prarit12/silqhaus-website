@@ -97,28 +97,28 @@ export function ReviewCard({
 
   if (isProperty) {
     return (
-      <div className="bg-[#1a1a1a] border border-white/10 rounded-xl p-5 flex flex-col justify-between w-full h-[300px] sm:h-[280px]">
+      <div className="bg-white border border-neutral-200 rounded-2xl p-5 flex flex-col justify-between w-full h-[300px] sm:h-[280px]">
         <div className="flex flex-col justify-between h-full">
-          <p className="text-snow/80 text-md font-poppins leading-relaxed flex-1 overflow-hidden">
+          <p className="text-ink/90 text-md font-poppins leading-relaxed flex-1 overflow-hidden">
             &ldquo;{truncateText(review.publicReview, charLimit)}&rdquo;
           </p>
-          <div className="flex items-center gap-3 text-md">
-            <p className="text-snow font-medium font-poppins">
+          <div className="flex items-center gap-3 text-md text-neutral-500">
+            <p className="text-ink font-medium font-poppins">
               {review.reviewerName}
             </p>
-            <span>&middot;</span>
-            <p className="text-snow/40 font-poppins">
+            <span aria-hidden="true">&middot;</span>
+            <p className="text-neutral-500 font-poppins">
               {formatDate(review.insertedOn)}
             </p>
           </div>
         </div>
-        <div className="pt-3 mt-2 border-t border-white/5">
+        <div className="pt-3 mt-2 border-t border-neutral-100">
           {otaUrl && (
             <a
               href={otaUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-snow/60 text-md font-poppins hover:text-snow/80 transition-colors"
+              className="inline-flex items-center gap-2 text-neutral-600 text-md font-poppins hover:text-ink transition-colors"
             >
               <OTAIcon channelId={review.channelId} />
               <span>View on {channelName}</span>

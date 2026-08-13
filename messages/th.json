@@ -3544,7 +3544,21 @@
     "bookOnVrbo": "จองผ่าน Vrbo",
     "bookOnExpedia": "จองผ่าน Expedia",
     "monthlyPromoText": "รับราคาพิเศษสำหรับการพักรายเดือน (30+ คืนขึ้นไป)",
-    "monthlyPromoLink": "กรอกแบบฟอร์มสอบถามนี้ →"
+    "monthlyPromoLink": "กรอกแบบฟอร์มสอบถามนี้ →",
+    "guests": "ผู้เข้าพัก",
+    "showMore": "แสดงเพิ่มเติม",
+    "showLess": "แสดงน้อยลง",
+    "showAllAmenities": "ดูสิ่งอำนวยความสะดวกทั้งหมด {count} รายการ",
+    "showLessAmenities": "แสดงน้อยลง",
+    "addDatesForPrices": "เลือกวันที่เพื่อดูราคา",
+    "checkAvailability": "เช็กห้องว่าง",
+    "forNights": "สำหรับ {count} คืน",
+    "bookYourStay": "จองที่พักของคุณ",
+    "close": "ปิด",
+    "guestReviews": "รีวิวจากผู้เข้าพัก ({count})",
+    "averageGuestRating": "คะแนนเฉลี่ยจากผู้เข้าพัก",
+    "previousReview": "รีวิวก่อนหน้า",
+    "nextReview": "รีวิวถัดไป"
   },
   "dateRangePicker": {
     "months": {
@@ -3615,7 +3629,8 @@
     "nextImages": "รูปถัดไป"
   },
   "propertyMap": {
-    "locationAndMap": "แผนที่ตั้ง"
+    "locationAndMap": "แผนที่ตั้ง",
+    "getDirections": "นำทาง"
   },
   "nearbyListings": {
     "moreProperties": "ที่พักใกล้เคียงใน {city}",

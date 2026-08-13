@@ -3544,7 +3544,21 @@
     "bookOnExpedia": "Book on Expedia",
     "bookOnTripcom": "Book on Trip.com",
     "monthlyPromoText": "Staying 30+ days? Get",
-    "monthlyPromoLink": "EXCLUSIVE MONTHLY RATES →"
+    "monthlyPromoLink": "EXCLUSIVE MONTHLY RATES →",
+    "guests": "Guests",
+    "showMore": "Show more",
+    "showLess": "Show less",
+    "showAllAmenities": "Show all {count} amenities",
+    "showLessAmenities": "Show fewer amenities",
+    "addDatesForPrices": "Add dates for prices",
+    "checkAvailability": "Check availability",
+    "forNights": "for {count} nights",
+    "bookYourStay": "Book your stay",
+    "close": "Close",
+    "guestReviews": "Guest Reviews ({count})",
+    "averageGuestRating": "Average Guest Rating",
+    "previousReview": "Previous review",
+    "nextReview": "Next review"
   },
   "dateRangePicker": {
     "months": {
@@ -3615,7 +3629,8 @@
     "nextImages": "Next images"
   },
   "propertyMap": {
-    "locationAndMap": "Location & Map"
+    "locationAndMap": "Location & Map",
+    "getDirections": "Get Directions"
   },
   "nearbyListings": {
     "moreProperties": "More Properties in {city}",

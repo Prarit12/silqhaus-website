@@ -8,6 +8,7 @@ import {
   createPropertySlug,
   detectListingSource,
 } from "@/lib/slugify";
+import { displayPropertyName } from "@/config/property-names";
 import { Suspense, cache } from "react";
 import PropertyDetails from "./property-client";
 
@@ -19,6 +20,7 @@ interface PageProps {
 export interface PropertyLike {
   id: number | string;
   name: string;
+  nickname?: string;
   description?: string;
   city?: string;
   state?: string;
@@ -101,7 +103,15 @@ export async function generateMetadata({
   const { listing } = data;
   const canonicalSlug = createPropertySlug(listing.name, listing.id);
 
-  const propertyName = listing.name || t("fallbackName");
+  // Guest-facing name (Guesty's `name` is a marketing headline; the real
+  // property name lives in `nickname`). Slugs stay on `name` so URLs hold.
+  const propertyName =
+    displayPropertyName({
+      id: listing.id,
+      source: data.source,
+      name: listing.name,
+      nickname: listing.nickname,
+    }) || t("fallbackName");
   const location = [listing.city, listing.state].filter(Boolean).join(", ");
   const locationText = location ? t("inLocation", { location }) : "";
 
@@ -191,6 +201,13 @@ export default async function PropertyPage({
 
   const { id, listing, source } = data;
   const canonicalSlug = createPropertySlug(listing.name, listing.id);
+  const guestFacingName =
+    displayPropertyName({
+      id: listing.id,
+      source,
+      name: listing.name,
+      nickname: listing.nickname,
+    }) || t("fallbackName");
 
   if (slug !== canonicalSlug) {
     const qs = new URLSearchParams();
@@ -211,7 +228,7 @@ export default async function PropertyPage({
   const propertyImages = (listing.listingImages || [])
     .slice(0, 5)
     .map((img) => img.url);
-  const propertyName = listing.name || t("fallbackName");
+  const propertyName = guestFacingName;
   const location = [listing.city, listing.state].filter(Boolean).join(", ");
   const locationText = location ? t("inLocation", { location }) : "";
   const features: string[] = [];
@@ -240,7 +257,7 @@ export default async function PropertyPage({
   const propertySchema = {
     "@context": "https://schema.org",
     "@type": "LodgingBusiness",
-    name: listing.name || t("fallbackName"),
+    name: guestFacingName,
     description: jsonLdDescription,
     url: `${baseUrl}/${locale}/our-property/${canonicalSlug}`,
     image: propertyImages,
@@ -289,7 +306,7 @@ export default async function PropertyPage({
       {
         "@type": "ListItem",
         position: 3,
-        name: listing.name || t("fallbackName"),
+        name: guestFacingName,
       },
     ],
   };

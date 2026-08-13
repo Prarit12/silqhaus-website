@@ -22,6 +22,8 @@ interface PropertyMapProps {
   className?: string;
   overlayText?: string;
   showHeading?: boolean;
+  /** "dark" (default) for the ink PMS page, "light" for white pages. */
+  theme?: "dark" | "light";
 }
 
 export default function PropertyMap({
@@ -31,8 +33,10 @@ export default function PropertyMap({
   className = "",
   overlayText,
   showHeading = true,
+  theme = "dark",
 }: PropertyMapProps) {
   const t = useTranslations("propertyMap");
+  const light = theme === "light";
   const mapRef = useRef<HTMLDivElement>(null);
   const mapInstanceRef = useRef<L.Map | null>(null);
 
@@ -57,7 +61,7 @@ export default function PropertyMap({
       // Create custom icon
       const customIcon = L.divIcon({
         html: `
-          <div class="flex items-center justify-center w-8 h-8 bg-[#ffffff] text-white rounded-full shadow-lg border-2 border-white">
+          <div class="flex items-center justify-center w-8 h-8 bg-[#0d0d0d] text-white rounded-full shadow-lg border-2 border-white">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
               <circle cx="12" cy="10" r="3"></circle>
@@ -96,14 +100,22 @@ export default function PropertyMap({
     <section className={`relative z-0 ${className}`}>
       {showHeading && (
         <div className="mb-6">
-          <h2 className="font-bold text-white mb-4 font-gilroy text-xl flex items-center gap-2">
-            <MapPin className="w-5 h-5 text-[#ffffff]" />
+          <h2
+            className={`font-bold mb-4 font-gilroy text-xl flex items-center gap-2 ${
+              light ? "text-ink normal-case tracking-normal font-semibold" : "text-white"
+            }`}
+          >
+            <MapPin className="w-5 h-5" aria-hidden="true" />
             {t("locationAndMap")}
           </h2>
         </div>
       )}
 
-      <div className="relative rounded-2xl overflow-hidden border border-white/10 shadow-lg">
+      <div
+        className={`relative rounded-2xl overflow-hidden border shadow-lg ${
+          light ? "border-neutral-200" : "border-white/10"
+        }`}
+      >
         <div
           ref={mapRef}
           className="w-full h-64 md:h-80 lg:h-96"
@@ -126,10 +138,10 @@ export default function PropertyMap({
             href={`https://www.google.com/maps/search/?api=1&query=${lat},${lng}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-[#ffffff] hover:bg-[#6b5a20] text-white px-4 py-2 rounded-lg text-sm font-poppins transition-colors duration-200 shadow-lg"
+            className="bg-white hover:bg-neutral-100 text-ink hover:text-ink px-4 py-2 rounded-lg text-sm font-medium font-poppins transition-colors duration-200 shadow-lg border border-neutral-200"
             data-testid="directions-link"
           >
-            Get Directions
+            {t("getDirections")}
           </a>
         </div>
       </div>

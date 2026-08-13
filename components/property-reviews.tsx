@@ -5,6 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
 import { ChevronLeft, ChevronRight, Star } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { fetchReviewsWithCount } from "@/lib/api/hostaway";
 import { ReviewCard } from "@/components/review-card";
 import { getOTAListingUrl } from "@/config/ota-channels";
@@ -27,6 +28,7 @@ export function PropertyReviews({
   property,
   averageReviewRating,
 }: PropertyReviewsProps) {
+  const t = useTranslations("propertyDetail");
   const { data, isLoading } = useQuery({
     queryKey: ["/api/hostaway/reviews", propertyId, "withCount"],
     queryFn: () => fetchReviewsWithCount(propertyId),
@@ -73,7 +75,7 @@ export function PropertyReviews({
     return (
       <section className="py-4">
         <div className="flex justify-center py-8">
-          <div className="w-6 h-6 border-2 border-white border-t-transparent rounded-full animate-spin" />
+          <div className="w-6 h-6 border-2 border-ink border-t-transparent rounded-full animate-spin" />
         </div>
       </section>
     );
@@ -99,22 +101,23 @@ export function PropertyReviews({
 
   return (
     <section className="py-4">
-      <h2 className="text-[#e3e1d8] mb-6 font-gilroy text-2xl font-bold">
-        Guest Reviews ({totalCount})
+      <h2 className="text-ink mb-6 text-xl font-semibold normal-case tracking-normal">
+        {t("guestReviews", { count: totalCount })}
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-[auto_1fr] gap-6 md:gap-8">
         {formattedRating && (
-          <div className="flex flex-col items-center justify-center bg-[#6e5d41] border border-white/10 rounded-xl p-6 md:p-8 md:min-w-[200px]">
-            <div className="flex gap-2">
-              <div className="flex items-center gap-2">
-                <Star className="w-8 h-8 text-yellow-400 fill-yellow-400" />
-              </div>
-              <span className="text-5xl md:text-6xl font-bold text-white font-gilroy leading-none">
+          <div className="flex flex-col items-center justify-center border border-neutral-200 rounded-2xl p-6 md:p-8 md:min-w-[200px]">
+            <div className="flex items-center gap-2">
+              <Star
+                className="w-8 h-8 text-ink fill-ink"
+                aria-hidden="true"
+              />
+              <span className="text-5xl md:text-6xl font-bold text-ink leading-none">
                 {formattedRating}
               </span>
             </div>
-            <span className="text-white text-sm font-poppins mt-2 text-center">
-              Average Guest Rating
+            <span className="text-neutral-600 text-sm mt-3 text-center">
+              {t("averageGuestRating")}
             </span>
           </div>
         )}
@@ -142,8 +145,8 @@ export function PropertyReviews({
             {canScrollPrev && (
               <button
                 onClick={() => emblaApi?.scrollPrev()}
-                className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-3 w-8 h-8 bg-black/80 border border-white/20 rounded-full flex items-center justify-center text-white hover:bg-black transition-colors z-10"
-                aria-label="Previous review"
+                className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-3 w-8 h-8 bg-white border border-neutral-200 rounded-full flex items-center justify-center text-ink shadow-md hover:bg-neutral-100 transition-colors z-10"
+                aria-label={t("previousReview")}
               >
                 <ChevronLeft className="w-4 h-4" />
               </button>
@@ -151,8 +154,8 @@ export function PropertyReviews({
             {canScrollNext && (
               <button
                 onClick={() => emblaApi?.scrollNext()}
-                className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-3 w-8 h-8 bg-black/80 border border-white/20 rounded-full flex items-center justify-center text-white hover:bg-black transition-colors z-10"
-                aria-label="Next review"
+                className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-3 w-8 h-8 bg-white border border-neutral-200 rounded-full flex items-center justify-center text-ink shadow-md hover:bg-neutral-100 transition-colors z-10"
+                aria-label={t("nextReview")}
               >
                 <ChevronRight className="w-4 h-4" />
               </button>

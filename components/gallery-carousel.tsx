@@ -16,6 +16,8 @@ interface GalleryCarouselProps {
   propertyTitle: string;
   onImageClick: (index: number) => void;
   onViewAll: () => void;
+  /** "dark" (default) for the ink PMS page, "light" for white pages. */
+  theme?: "dark" | "light";
 }
 
 const placeholderImages: Photo[] = [
@@ -44,8 +46,10 @@ export function GalleryCarousel({
   propertyTitle,
   onImageClick,
   onViewAll,
+  theme = "dark",
 }: GalleryCarouselProps) {
   const t = useTranslations("galleryCarousel");
+  const light = theme === "light";
   const [currentSet, setCurrentSet] = useState(0);
   const touchStartX = useRef<number | null>(null);
   const touchEndX = useRef<number | null>(null);
@@ -277,8 +281,12 @@ export function GalleryCarousel({
                 onClick={() => setCurrentSet(index)}
                 className={`w-2 h-2 rounded-full ${
                   index === currentSet
-                    ? "bg-[var(--cocoa)]"
-                    : "bg-white/30 hover:bg-white/50"
+                    ? light
+                      ? "bg-ink"
+                      : "bg-[var(--cocoa)]"
+                    : light
+                      ? "bg-neutral-300 hover:bg-neutral-400"
+                      : "bg-white/30 hover:bg-white/50"
                 }`}
               />
             ))}
@@ -290,14 +298,22 @@ export function GalleryCarousel({
             onClick={onViewAll}
             variant="outline"
             size="sm"
-            className="border-white/30 text-white hover:bg-white/10 ml-auto"
+            className={
+              light
+                ? "border-neutral-300 bg-white text-ink hover:bg-neutral-100 hover:text-ink ml-auto"
+                : "border-white/30 text-white hover:bg-white/10 ml-auto"
+            }
           >
             {t("viewAllPhotos", { count: photos.length })}
           </Button>
         )}
 
         {isPlaceholder && (
-          <div className="flex items-center gap-2 text-white/50 text-sm ml-auto">
+          <div
+            className={`flex items-center gap-2 text-sm ml-auto ${
+              light ? "text-neutral-500" : "text-white/50"
+            }`}
+          >
             <ImageIcon className="w-4 h-4" />
             <span>{t("sampleImages")}</span>
           </div>

@@ -1,25 +1,21 @@
 "use client";
 
-import React, { useState, useMemo, useEffect } from "react";
+import React, { useState, useMemo, useEffect, useRef } from "react";
 import Image from "next/image";
 import { useSearchParams } from "next/navigation";
 import { useRouter, Link } from "@/i18n/navigation";
 import { useQuery } from "@tanstack/react-query";
-import { Button } from "@/components/ui/button";
 import {
-  CircleCheck,
   ArrowLeft,
-  Waves,
-  Mountain,
-  Sparkles,
-  Bed,
   Bath,
-  Users,
+  Bed,
   Building2,
-  ChevronUp,
-  ChevronDown,
+  Check,
   Minus,
   Plus,
+  Star,
+  Users,
+  X,
 } from "lucide-react";
 import { SiAirbnb } from "react-icons/si";
 import dynamic from "next/dynamic";
@@ -32,7 +28,9 @@ import { PropertyReviews } from "@/components/property-reviews";
 
 const PropertyMap = dynamic(() => import("@/components/property-map"), {
   ssr: false,
-  loading: () => <div className="h-64 bg-gray-800 animate-pulse rounded-lg" />,
+  loading: () => (
+    <div className="h-64 bg-neutral-100 animate-pulse rounded-2xl" />
+  ),
 });
 
 const NearbyListingsCarousel = dynamic(
@@ -40,15 +38,15 @@ const NearbyListingsCarousel = dynamic(
   {
     ssr: false,
     loading: () => (
-      <div className="h-64 bg-gray-800 animate-pulse rounded-lg" />
+      <div className="h-64 bg-neutral-100 animate-pulse rounded-2xl" />
     ),
   },
 );
 import { fetchListingById } from "@/lib/api/hostaway";
 import { createPropertySlug } from "@/lib/slugify";
+import { displayPropertyName } from "@/config/property-names";
 import { PMSFavoriteButton } from "@/components/pms-favorite-button";
 import {
-  OTA_MARKUPS,
   GUESTY_OTA_MARKUPS,
   BOOKING_COM_URLS,
   calculateOTAPrice,
@@ -68,6 +66,7 @@ interface PropertyAmenity {
 interface Property {
   id: number | string;
   name: string;
+  nickname?: string;
   description?: string;
   city?: string;
   state?: string;
@@ -99,6 +98,7 @@ interface Property {
 interface PropertyApiResult {
   id: number | string;
   name: string;
+  nickname?: string;
   description?: string;
   city?: string;
   state?: string;
@@ -136,6 +136,7 @@ function normalizeProperty(data: HostawayApiResponse): Property {
   return {
     id: r.id,
     name: r.name,
+    nickname: r.nickname,
     description: r.description,
     city: r.city,
     state: r.state,
@@ -181,6 +182,7 @@ interface PropertyDetailsProps {
   initialListing?: {
     id: number | string;
     name: string;
+    nickname?: string;
     description?: string;
     city?: string;
     state?: string;
@@ -190,6 +192,53 @@ interface PropertyDetailsProps {
     bathroomsNumber?: number;
     listingImages?: Array<{ url: string; caption?: string | null }>;
   };
+}
+
+/** Prose that clamps itself and grows a "Show more" toggle only when needed. */
+function ExpandableText({
+  text,
+  showMoreLabel,
+  showLessLabel,
+}: {
+  text: string;
+  showMoreLabel: string;
+  showLessLabel: string;
+}) {
+  const [expanded, setExpanded] = useState(false);
+  const [overflowing, setOverflowing] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const check = () => setOverflowing(el.scrollHeight > el.clientHeight + 1);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, [text]);
+
+  return (
+    <div>
+      <div
+        ref={ref}
+        className={`text-[15px] leading-relaxed text-ink/90 whitespace-pre-line max-w-[75ch] ${
+          expanded ? "" : "line-clamp-[8]"
+        }`}
+      >
+        {text}
+      </div>
+      {(overflowing || expanded) && (
+        <button
+          type="button"
+          onClick={() => setExpanded((v) => !v)}
+          aria-expanded={expanded}
+          className="mt-3 text-[15px] font-semibold text-ink underline underline-offset-4 hover:text-ink"
+        >
+          {expanded ? showLessLabel : showMoreLabel}
+        </button>
+      )}
+    </div>
+  );
 }
 
 export default function PropertyDetails({
@@ -212,6 +261,7 @@ export default function PropertyDetails({
   const [lightboxStartIndex, setLightboxStartIndex] = useState(0);
   const [fullGalleryOpen, setFullGalleryOpen] = useState(false);
   const [mobileBookingOpen, setMobileBookingOpen] = useState(false);
+  const [amenitiesExpanded, setAmenitiesExpanded] = useState(false);
 
   const [checkInDate, setCheckInDate] = useState("");
   const [checkOutDate, setCheckOutDate] = useState("");
@@ -297,12 +347,6 @@ export default function PropertyDetails({
     const nights = pricingData.nights || 0;
     return extraGuests * pricePerExtraGuest * nights;
   }, [property, guestCount, pricingData.nights]);
-
-  useEffect(() => {
-    if (property) {
-      sessionStorage.setItem("selectedProperty", JSON.stringify(property));
-    }
-  }, [property]);
 
   // Helper to get minimumStay from the selected check-in date
   const getMinimumStayForCheckIn = (): number => {
@@ -593,14 +637,21 @@ export default function PropertyDetails({
     t,
   ]);
 
+  // Close the mobile booking sheet with Escape.
+  useEffect(() => {
+    if (!mobileBookingOpen) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setMobileBookingOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [mobileBookingOpen]);
+
   // ------------------------------------
   // Image handling (JSON only)
   // ------------------------------------
   const propertyPhotos =
     property?.images && property.images.length > 0 ? property.images : [];
-
-  const coverImage = propertyPhotos[0]?.url || "";
-  const galleryImages = propertyPhotos.slice(1);
 
   const lightboxImages = propertyPhotos.map((img) => ({
     src: img.url,
@@ -608,68 +659,6 @@ export default function PropertyDetails({
       ? `${property?.name || "Property"} - ${img.caption}`
       : property?.name || "Property",
   }));
-
-  // ------------------------------------
-  // Booking handler
-  // ------------------------------------
-  const handleBookProperty = () => {
-    if (!property) return;
-
-    // Use state variables instead of DOM lookups
-    const checkin = checkInDate;
-    const checkout = checkOutDate;
-    const guests = "1"; // Default to 1 guest
-
-    // Use pricingData if available, otherwise calculate
-    let nights = pricingData.nights;
-    let totalAmount = pricingData.totalPrice;
-
-    if (!nights && checkin && checkout) {
-      // Fallback calculation using local date parsing
-      const [inYear, inMonth, inDay] = checkin.split("-").map(Number);
-      const [outYear, outMonth, outDay] = checkout.split("-").map(Number);
-      const checkinDate = new Date(inYear, inMonth - 1, inDay);
-      const checkoutDate = new Date(outYear, outMonth - 1, outDay);
-      nights = Math.max(
-        1,
-        Math.floor(
-          (checkoutDate.getTime() - checkinDate.getTime()) /
-            (1000 * 60 * 60 * 24),
-        ),
-      );
-      totalAmount = property.price * nights;
-    } else if (!nights) {
-      nights = 1;
-      totalAmount = property.price;
-    }
-
-    // Apply Silqhaus pricing: source-based markup (Hostaway 10%, Guesty 10%) + extra guest fee + cleaning fee
-    totalAmount = calculateSilqhausPrice(
-      totalAmount,
-      extraGuestCost,
-      property.cleaningFee || 0,
-      source,
-    );
-
-    const pricePerNight = pricingData.averageNightlyRate || property.price;
-
-    sessionStorage.setItem(
-      "bookingDetails",
-      JSON.stringify({
-        propertyId: property.id,
-        propertyName: property.name,
-        checkin: checkin || "Not selected",
-        checkout: checkout || "Not selected",
-        guests: `${guests} guest${guests !== "1" ? "s" : ""}`,
-        nights,
-        pricePerNight,
-        totalAmount,
-        total: `${property.currencyCode} ${totalAmount.toLocaleString()}`,
-      }),
-    );
-
-    router.push("/checkout");
-  };
 
   // ------------------------------------
   // Helpers
@@ -691,8 +680,8 @@ export default function PropertyDetails({
   // ------------------------------------
   if (isLoading || !property) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="w-8 h-8 border-2 border-white border-t-transparent rounded-full animate-spin" />
+      <div className="min-h-screen bg-white flex items-center justify-center">
+        <div className="w-8 h-8 border-2 border-ink border-t-transparent rounded-full animate-spin" />
       </div>
     );
   }
@@ -702,160 +691,450 @@ export default function PropertyDetails({
     return null;
   }
 
+  // The guest-facing name; slugs and metadata stay on property.name.
+  const title = displayPropertyName({
+    id: property.id,
+    source,
+    name: property.name,
+    nickname: property.nickname,
+  });
+
+  const location = [property.city, property.state].filter(Boolean).join(", ");
+
+  // Hostaway scores reviews out of 10; guests read stars out of 5.
+  const rawRating = Number(property.averageReviewRating);
+  const rating =
+    Number.isFinite(rawRating) && rawRating > 0
+      ? (rawRating > 5 ? rawRating / 2 : rawRating).toFixed(1)
+      : null;
+
+  const priced = pricingData.totalPrice > 0 && !pricingData.isLoading;
+  const silqhausTotal = priced
+    ? calculateSilqhausPrice(
+        pricingData.totalPrice,
+        extraGuestCost,
+        property.cleaningFee || 0,
+        source,
+      )
+    : 0;
+  const silqhausNightly =
+    priced && pricingData.nights > 0
+      ? Math.round(silqhausTotal / pricingData.nights)
+      : 0;
+
+  const silqhausBookingUrl = isGuesty
+    ? `https://silqhaus.guestybookings.com/${locale}/properties/${property.id}?minOccupancy=${guestCount}&checkIn=${checkInDate}&checkOut=${checkOutDate}`
+    : `https://silqhaus.holidayfuture.com/listings/${property.id}?start=${checkInDate}&end=${checkOutDate}&numberOfGuests=${guestCount}`;
+
+  // Every external platform this property is bookable on, with the marked-up
+  // total a guest would pay there. Rendered as compact comparison rows.
+  const otaOffers: Array<{
+    key: string;
+    name: string;
+    markup: number;
+    href: string;
+    ariaLabel: string;
+    badge: React.ReactNode;
+  }> = [];
+  if (priced) {
+    if (property.airbnbListingUrl) {
+      otaOffers.push({
+        key: "airbnb",
+        name: "Airbnb",
+        markup: airbnbMarkup,
+        href: `${property.airbnbListingUrl}?guests=${guestCount}&adults=${guestCount}&check_in=${checkInDate}&check_out=${checkOutDate}`,
+        ariaLabel: t("bookOnAirbnb"),
+        badge: (
+          <span className="flex items-center justify-center w-9 h-9 rounded-full bg-[#FF5A5F]">
+            <SiAirbnb className="w-4 h-4 text-white" aria-hidden="true" />
+          </span>
+        ),
+      });
+    }
+    if (property.bookingcomListingUrl) {
+      let bookingHref = property.bookingcomListingUrl;
+      try {
+        const u = new URL(property.bookingcomListingUrl);
+        u.searchParams.set("checkin", checkInDate);
+        u.searchParams.set("checkout", checkOutDate);
+        u.searchParams.set("no_rooms", "1");
+        u.searchParams.set("req_adults", String(guestCount));
+        bookingHref = u.toString();
+      } catch {
+        // Malformed URL from the PMS — link to it untouched.
+      }
+      otaOffers.push({
+        key: "booking",
+        name: "Booking.com",
+        markup: bookingMarkup,
+        href: bookingHref,
+        ariaLabel: t("bookOnBookingCom"),
+        badge: (
+          <span className="flex items-center justify-center w-9 h-9 rounded-full bg-[#003580]">
+            <span className="text-white font-bold text-[9px]">B.com</span>
+          </span>
+        ),
+      });
+    }
+    if (property.vrboListingUrl) {
+      otaOffers.push({
+        key: "vrbo",
+        name: "Vrbo",
+        markup: vrboMarkup,
+        href: `${property.vrboListingUrl}?startDate=${checkInDate}&endDate=${checkOutDate}&chkin=${checkInDate}&chkout=${checkOutDate}`,
+        ariaLabel: t("bookOnVrbo"),
+        badge: (
+          <span className="flex items-center justify-center w-9 h-9 rounded-full bg-[#3B5998]">
+            <span className="text-white font-bold text-[9px]">Vrbo</span>
+          </span>
+        ),
+      });
+    }
+    if (property.expediaListingUrl) {
+      otaOffers.push({
+        key: "expedia",
+        name: "Expedia",
+        markup: expediaMarkup,
+        href: property.expediaListingUrl,
+        ariaLabel: t("bookOnExpedia"),
+        badge: (
+          <span className="flex items-center justify-center w-9 h-9 rounded-full bg-[#FFCC00]">
+            <span className="text-[#1A1A1A] font-bold text-[9px]">Exp</span>
+          </span>
+        ),
+      });
+    }
+    if (property.tripcomListingUrl) {
+      otaOffers.push({
+        key: "tripcom",
+        name: "Trip.com",
+        markup: tripcomMarkup,
+        href: `${property.tripcomListingUrl}?checkIn=${checkInDate}&checkOut=${checkOutDate}`,
+        ariaLabel: t("bookOnTripcom"),
+        badge: (
+          <span className="flex items-center justify-center w-9 h-9 rounded-full bg-[#287DFA]">
+            <span className="text-white font-bold text-[9px]">Trip</span>
+          </span>
+        ),
+      });
+    }
+  }
+
+  const amenities = property.listingAmenities || [];
+  const visibleAmenities = amenitiesExpanded ? amenities : amenities.slice(0, 10);
+
+  // Old Guesty listings without a loaded calendar can't be priced or booked;
+  // hide the whole booking surface for them (desktop card and mobile bar).
+  const bookable =
+    !isGuesty || calendarData.isLoading || calendarData.calendar.length > 0;
+
+  /** The booking panel, rendered twice: desktop sticky card and mobile sheet.
+   *  The sheet needs the calendar inline — its scroll container would clip an
+   *  absolutely-positioned popup. */
+  const renderBookingPanel = ({ inlineCalendar = false } = {}) => (
+    <div>
+      {/* Price header */}
+      <div className="mb-4">
+        {priced ? (
+          <p className="flex flex-wrap items-baseline gap-x-1.5">
+            <span className="text-xl font-semibold text-ink">
+              ฿{silqhausTotal.toLocaleString()}
+            </span>
+            <span className="text-[15px] text-neutral-600">
+              {t("forNights", { count: pricingData.nights })}
+            </span>
+          </p>
+        ) : (
+          <p className="text-[15px] font-medium text-ink">
+            {t("addDatesForPrices")}
+          </p>
+        )}
+      </div>
+
+      <DateRangePicker
+        checkInDate={checkInDate}
+        checkOutDate={checkOutDate}
+        onCheckInChange={setCheckInDate}
+        onCheckOutChange={setCheckOutDate}
+        calendarData={calendarData.calendar}
+        minimumStay={calendarData.minimumStay}
+        isLoading={calendarData.isLoading}
+        applyMarkup={!isGuesty}
+        markupSource={source}
+        onError={(error) => setPricingData((prev) => ({ ...prev, error }))}
+        inlineCalendar={inlineCalendar}
+      />
+
+      {/* Guests */}
+      <div className="mt-4 pt-4 border-t border-neutral-200">
+        <div className="flex items-center justify-between">
+          <div>
+            <span className="text-sm font-semibold text-ink">
+              {t("guests")}
+            </span>
+            <span className="text-xs text-neutral-500 ml-1.5">
+              {t("guestAgeNote")}
+            </span>
+          </div>
+          <div className="flex items-center gap-3">
+            <button
+              type="button"
+              onClick={() => setGuestCount(Math.max(1, guestCount - 1))}
+              disabled={guestCount <= 1}
+              className="w-8 h-8 rounded-full border border-neutral-300 flex items-center justify-center text-ink hover:border-ink disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:border-neutral-300 transition-colors"
+              aria-label={t("decreaseGuests")}
+            >
+              <Minus className="w-4 h-4" aria-hidden="true" />
+            </button>
+            <span className="w-6 text-center font-medium text-ink">
+              {guestCount}
+            </span>
+            <button
+              type="button"
+              onClick={() =>
+                setGuestCount(
+                  Math.min(property.personCapacity || 10, guestCount + 1),
+                )
+              }
+              disabled={guestCount >= (property.personCapacity || 10)}
+              className="w-8 h-8 rounded-full border border-neutral-300 flex items-center justify-center text-ink hover:border-ink disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:border-neutral-300 transition-colors"
+              aria-label={t("increaseGuests")}
+            >
+              <Plus className="w-4 h-4" aria-hidden="true" />
+            </button>
+          </div>
+        </div>
+        {property.personCapacity && (
+          <div className="text-xs text-neutral-500 mt-1">
+            {t("maximumGuests", { count: property.personCapacity })}
+          </div>
+        )}
+      </div>
+
+      {/* Notes */}
+      <div className="mt-3 text-xs text-neutral-600">
+        {t("minimumStay", {
+          count: checkInDate
+            ? getMinimumStayForCheckIn()
+            : calendarData.minimumStay,
+        })}
+      </div>
+      <div className="mt-1.5 text-xs text-neutral-600">
+        {t("monthlyPromoText")}{" "}
+        <Link
+          href={`/monthly-inquiry?property=${encodeURIComponent(property.name || "")}`}
+          className="text-ink hover:text-ink font-medium underline underline-offset-2"
+        >
+          {t("monthlyPromoLink")}
+        </Link>
+      </div>
+
+      {/* Status */}
+      {pricingData.isLoading && (
+        <div className="mt-3 text-xs text-neutral-600" role="status">
+          {t("calculatingPrice")}
+        </div>
+      )}
+      {pricingData.error && (
+        <div className="mt-3 text-xs text-red-600">{pricingData.error}</div>
+      )}
+
+      {/* Totals + primary CTA */}
+      {priced && (
+        <>
+          <div className="mt-4 pt-4 border-t border-neutral-200 text-sm">
+            <div className="flex justify-between text-neutral-600">
+              <span>
+                {pricingData.nights === 1
+                  ? t("nightCount", { count: pricingData.nights })
+                  : t("nightCountPlural", { count: pricingData.nights })}
+              </span>
+              <span>
+                {t("avg")} {formatPriceForDisplay(silqhausNightly, "THB")}
+                {t("perNight")}
+              </span>
+            </div>
+            <div className="flex justify-between font-semibold text-ink mt-2">
+              <span>{t("total")}</span>
+              <span>{formatPriceForDisplay(silqhausTotal, "THB")}</span>
+            </div>
+          </div>
+
+          <a
+            href={silqhausBookingUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-4 flex items-center justify-center w-full h-12 rounded-full bg-ink text-white hover:text-white text-[15px] font-semibold hover:bg-ink/90 transition-colors"
+            aria-label={t("bookOnSilqhaus")}
+          >
+            {t("bookNow")}
+          </a>
+        </>
+      )}
+
+      {/* Platform comparison */}
+      {priced && otaOffers.length > 0 && (
+        <div className="mt-5 pt-4 border-t border-neutral-200">
+          <p className="text-sm font-semibold text-ink">
+            {t("priceComparison")}
+          </p>
+          <p className="mt-1 text-xs text-neutral-500">
+            {t("priceComparisonNote")}
+          </p>
+
+          <div className="mt-3">
+            {/* Silqhaus Direct — the best-price row */}
+            <div className="flex items-center gap-3 py-3 border-b border-neutral-100">
+              <span className="flex items-center justify-center w-9 h-9 rounded-full bg-ink overflow-hidden relative shrink-0">
+                <Image
+                  src="/logos/silqhaus-logo-navigation.png"
+                  alt=""
+                  width={26}
+                  height={26}
+                  className="object-contain"
+                />
+              </span>
+              <div className="flex-1 min-w-0">
+                <span className="block text-sm font-medium text-ink">
+                  {t("silqhausDirect")}
+                </span>
+                <span className="block text-[11px] font-semibold uppercase tracking-wide text-green-700">
+                  {t("bestPrice")}
+                </span>
+              </div>
+              <div className="text-right shrink-0">
+                <span className="block text-sm font-semibold text-ink">
+                  {formatPriceForDisplay(silqhausTotal, "THB")}
+                </span>
+                {pricingData.nights > 0 && (
+                  <span className="block text-[11px] text-neutral-500">
+                    {formatPriceForDisplay(silqhausNightly, "THB")}
+                    {t("perNight")}
+                  </span>
+                )}
+              </div>
+            </div>
+
+            {otaOffers.map((offer) => {
+              const otaTotal = calculateOTAPrice(
+                pricingData.totalPrice,
+                offer.markup,
+                extraGuestCost,
+                property.cleaningFee || 0,
+              );
+              const diff = otaTotal - silqhausTotal;
+              const otaNightly =
+                pricingData.nights > 0
+                  ? Math.round(otaTotal / pricingData.nights)
+                  : 0;
+              return (
+                <a
+                  key={offer.key}
+                  href={offer.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={offer.ariaLabel}
+                  className="flex items-center gap-3 py-3 border-b border-neutral-100 last:border-0 hover:bg-neutral-50 -mx-2 px-2 rounded-lg transition-colors"
+                >
+                  <span className="shrink-0">{offer.badge}</span>
+                  <div className="flex-1 min-w-0">
+                    <span className="block text-sm font-medium text-ink">
+                      {offer.name}
+                    </span>
+                    {diff > 0 && (
+                      <span className="block text-[11px] font-medium text-red-600">
+                        {t("moreExpensive", {
+                          amount: `฿${diff.toLocaleString()}`,
+                        })}
+                      </span>
+                    )}
+                  </div>
+                  <div className="text-right shrink-0">
+                    <span className="block text-sm font-semibold text-ink">
+                      {formatPriceForDisplay(otaTotal, "THB")}
+                    </span>
+                    {pricingData.nights > 0 && (
+                      <span className="block text-[11px] text-neutral-500">
+                        {formatPriceForDisplay(otaNightly, "THB")}
+                        {t("perNight")}
+                      </span>
+                    )}
+                  </div>
+                </a>
+              );
+            })}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+
   return (
     <div
-      className={`min-h-screen font-poppins text-white bg-[#000000] ${
+      className={`min-h-screen bg-white text-ink font-sans pt-14 md:pt-16 ${
         fullGalleryOpen ? "pointer-events-none" : ""
       }`}
     >
-      {/* Navigation with dark theme */}
-      <div className="bg-[var(--ink-detail)]"></div>
-      <main className="max-w-6xl mx-auto px-4 py-6">
-        {/* Back Button */}
-        <Button
-          onClick={() => router.push("/our-property")}
-          variant="outline"
-          className="border-[var(--cocoa)] text-[var(--cocoa)] hover:bg-[var(--cocoa)] hover:text-white flex items-center gap-2 mb-6 focus:ring-[var(--cocoa)]"
+      <main className="max-w-6xl mx-auto px-4 sm:px-6 pt-5 pb-28 lg:pb-16">
+        {/* Back */}
+        <Link
+          href="/our-property"
+          className="inline-flex items-center gap-1.5 text-sm text-neutral-600 hover:text-ink hover:underline underline-offset-2"
           data-testid="button-back-to-explore"
         >
-          <ArrowLeft size={16} />
+          <ArrowLeft className="w-4 h-4" aria-hidden="true" />
           {t("backToExplore")}
-        </Button>
+        </Link>
 
-        {/* Property Details */}
-        <section className="mt-20">
-          <div className="flex flex-wrap items-start justify-between gap-4 mb-2">
-            <h1 className="text-3xl lg:text-4xl font-bold text-white font-gilroy">
-              {property.name}
+        {/* Title */}
+        <div className="mt-3 flex flex-wrap items-start justify-between gap-x-4 gap-y-2">
+          <div className="min-w-0">
+            <h1 className="text-2xl md:text-[28px] font-semibold leading-snug text-ink">
+              {title}
             </h1>
-            <PMSFavoriteButton
-              listingId={String(property.id)}
-              side="vacation"
-              variant="detail"
-              snapshot={{
-                kind: "vacation",
-                id: String(property.id),
-                name: property.name,
-                slug: createPropertySlug(property.name, property.id),
-                city: property.city ?? null,
-                state: property.state ?? null,
-                imageUrl: property.images?.[0]?.url ?? null,
-                bedroomsNumber: property.bedroomsNumber ?? null,
-                bathroomsNumber: property.bathroomsNumber ?? null,
-                personCapacity: property.personCapacity ?? null,
-              }}
-            />
-          </div>
-
-          <div className="text-white/80 mb-4 flex items-center gap-2 flex-wrap">
-            <span>
-              {property.city}, {property.state}
-            </span>
-          </div>
-
-          <div className="border-t border-[var(--stone)] pt-4">
-            <div className="flex flex-wrap items-center gap-3 sm:gap-4 text-sm font-poppins font-medium text-white/90">
-              {/* Accommodates */}
-              <span
-                className="flex items-center gap-1.5 hover:text-[#6e5d41] focus:text-[#6e5d41] transition-colors duration-200"
-                aria-label="Accommodates 12 guests"
-              >
-                <Users
-                  className="w-4 h-4 text-current flex-shrink-0"
-                  strokeWidth={1.5}
-                />
-                <span>
-                  {t("maxGuests", { count: property.personCapacity ?? 0 })}
+            <p className="mt-1 text-[15px] text-neutral-600 flex flex-wrap items-center gap-x-1.5">
+              {rating && (
+                <span className="inline-flex items-center gap-1 font-medium text-ink">
+                  <Star
+                    className="w-3.5 h-3.5 fill-current"
+                    aria-hidden="true"
+                  />
+                  {rating}
                 </span>
-              </span>
-
-              <span className="text-white/40 select-none">•</span>
-
-              {/* Bathrooms */}
-              <span
-                className="flex items-center gap-1.5 hover:text-[#6e5d41] focus:text-[#6e5d41] transition-colors duration-200"
-                aria-label="5 Private Bathrooms"
-              >
-                <Bath
-                  className="w-4 h-4 text-current flex-shrink-0"
-                  strokeWidth={1.5}
-                />
-                <span>
-                  {t("bathrooms", { count: property.bathroomsNumber ?? 0 })}
-                </span>
-              </span>
-
-              <span className="text-white/40 select-none">•</span>
-
-              {/* Bedrooms */}
-              <span
-                className="flex items-center gap-1.5 hover:text-[#6e5d41] focus:text-[#6e5d41] transition-colors duration-200"
-                aria-label="6 Bedrooms"
-              >
-                <Bed
-                  className="w-4 h-4 text-current flex-shrink-0"
-                  strokeWidth={1.5}
-                />
-                <span>
-                  {t("bedrooms", { count: property.bedroomsNumber ?? 0 })}
-                </span>
-              </span>
-
-              <span className="text-white/40 select-none">•</span>
-
-              {/* Beds */}
-              {/* <span
-                    className="flex items-center gap-1.5 hover:text-[#6e5d41] focus:text-[#6e5d41] transition-colors duration-200"
-                    aria-label="7 Beds"
-                  >
-                    <Sofa
-                      className="w-4 h-4 text-current flex-shrink-0"
-                      strokeWidth={1.5}
-                    />
-                    <span>7 Beds</span>
-                  </span> */}
-
-              {/* <span className="text-white/40 select-none">•</span> */}
-
-              {/* Property Type */}
-              <span
-                className="flex items-center gap-1.5 hover:text-[#6e5d41] focus:text-[#6e5d41] transition-colors duration-200"
-                aria-label="Villa Property Type"
-              >
-                <Building2
-                  className="w-4 h-4 text-current flex-shrink-0"
-                  strokeWidth={1.5}
-                />
-                <span>{property.roomType}</span>
-              </span>
-
-              {/* <span className="text-white/40 select-none">•</span> */}
-
-              {/* Room Type */}
-              {/* <span
-                    className="flex items-center gap-1.5 hover:text-[#6e5d41] focus:text-[#6e5d41] transition-colors duration-200"
-                    aria-label="Entire Home"
-                  >
-                    <Home
-                      className="w-4 h-4 text-current flex-shrink-0"
-                      strokeWidth={1.5}
-                    />
-                    <span>Entire Home</span>
-                  </span> */}
-            </div>
+              )}
+              {rating && location && <span aria-hidden="true">·</span>}
+              {location && <span>{location}</span>}
+            </p>
           </div>
-        </section>
+          <PMSFavoriteButton
+            listingId={String(property.id)}
+            side="vacation"
+            variant="detail"
+            snapshot={{
+              kind: "vacation",
+              id: String(property.id),
+              name: title,
+              slug: createPropertySlug(property.name, property.id),
+              city: property.city ?? null,
+              state: property.state ?? null,
+              imageUrl: property.images?.[0]?.url ?? null,
+              bedroomsNumber: property.bedroomsNumber ?? null,
+              bathroomsNumber: property.bathroomsNumber ?? null,
+              personCapacity: property.personCapacity ?? null,
+            }}
+          />
+        </div>
 
-        {/* Property Image Gallery - Hero Section with Carousel */}
+        {/* Gallery */}
         {propertyPhotos.length > 0 && (
-          <section className="my-8">
-            {/* Carousel state for navigating through image sets */}
+          <section className="mt-4">
             <GalleryCarousel
+              theme="light"
               photos={propertyPhotos.map((p) => ({
                 url: p.url,
                 caption: p.caption ?? undefined,
               }))}
-              propertyTitle={property.name}
+              propertyTitle={title}
               onImageClick={(index) => {
                 setLightboxStartIndex(index);
                 setLightboxOpen(true);
@@ -865,1666 +1144,208 @@ export default function PropertyDetails({
           </section>
         )}
 
-        {/* Main Content Layout - Two Column */}
-        <div className="grid grid-cols-1 lg:grid-cols-[65%_35%] gap-8">
-          {/* Left Column - Property Details */}
-          <div className="space-y-8">
-            {/* Description & Amenities */}
-            <section>
-              <h2 className="font-bold text-white mb-4 font-gilroy">
-                {t("aboutThisProperty")}
-              </h2>
-              <div className="text-white/90 leading-snug space-y-4 whitespace-pre-line">
-                <p>{property.description}</p>
+        {/* Body */}
+        <div className="mt-8 lg:grid lg:grid-cols-[minmax(0,1fr)_400px] lg:gap-14 lg:items-start">
+          {/* Left column */}
+          <div className="min-w-0">
+            {/* Quick facts */}
+            <section className="pb-7 border-b border-neutral-200">
+              <div className="flex flex-wrap items-center gap-x-6 gap-y-2.5 text-[15px] text-ink">
+                {property.personCapacity ? (
+                  <span className="inline-flex items-center gap-2">
+                    <Users
+                      className="w-5 h-5 text-neutral-700"
+                      strokeWidth={1.5}
+                      aria-hidden="true"
+                    />
+                    {t("maxGuests", { count: property.personCapacity })}
+                  </span>
+                ) : null}
+                {property.bedroomsNumber ? (
+                  <span className="inline-flex items-center gap-2">
+                    <Bed
+                      className="w-5 h-5 text-neutral-700"
+                      strokeWidth={1.5}
+                      aria-hidden="true"
+                    />
+                    {t("bedrooms", { count: property.bedroomsNumber })}
+                  </span>
+                ) : null}
+                {property.bathroomsNumber ? (
+                  <span className="inline-flex items-center gap-2">
+                    <Bath
+                      className="w-5 h-5 text-neutral-700"
+                      strokeWidth={1.5}
+                      aria-hidden="true"
+                    />
+                    {t("bathrooms", { count: property.bathroomsNumber })}
+                  </span>
+                ) : null}
+                {property.roomType ? (
+                  <span className="inline-flex items-center gap-2">
+                    <Building2
+                      className="w-5 h-5 text-neutral-700"
+                      strokeWidth={1.5}
+                      aria-hidden="true"
+                    />
+                    {property.roomType}
+                  </span>
+                ) : null}
               </div>
             </section>
 
-            {/* Amenities & Features */}
-            <section>
-              <h2 className="text-[#e3e1d8] mb-8 font-gilroy text-2xl font-bold">
-                {t("amenitiesAndFeatures")}
-              </h2>
-
-              {/* Compact Amenities Grid */}
-              <div className="mb-8">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                  {(property.listingAmenities || [])
-                    .slice(0, 20)
-                    .map((amenity) => {
-                      const name = amenity.amenityName;
-
-                      return (
-                        <div
-                          key={amenity.id}
-                          className="flex items-center gap-3"
-                        >
-                          <div className="w-8 h-8 bg-[#6e5d41] rounded-lg flex items-center justify-center flex-shrink-0">
-                            <CircleCheck
-                              className="w-4 h-4 text-white"
-                              strokeWidth={1.5}
-                            />
-                          </div>
-
-                          <span className="font-poppins text-white text-sm font-medium">
-                            {name}
-                          </span>
-                        </div>
-                      );
-                    })}
-                </div>
-              </div>
-
-              {/* Property Highlights - COMMENTED OUT
-              <div className="mt-8 p-6 bg-gradient-to-r from-[#ffffff]/20 to-[#6b5a20]/20 backdrop-blur-sm border border-[#ffffff]/30 rounded-2xl">
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
-                  <div className="space-y-2">
-                    <div className="w-12 h-12 bg-[#ffffff] rounded-full flex items-center justify-center mx-auto">
-                      <Mountain
-                        className="w-6 h-6 text-white"
-                        strokeWidth={1.5}
-                      />
-                    </div>
-                    <h4 className="text-white font-semibold font-poppins">
-                      1,298 sqm
-                    </h4>
-                    <p className="text-white/70 text-sm font-poppins">
-                      Expansive Land Size
-                    </p>
-                  </div>
-
-                  <div className="space-y-2">
-                    <div className="w-12 h-12 bg-[#ffffff] rounded-full flex items-center justify-center mx-auto">
-                      <Sparkles
-                        className="w-6 h-6 text-white"
-                        strokeWidth={1.5}
-                      />
-                    </div>
-                    <h4 className="text-white font-semibold font-poppins">
-                      Premium
-                    </h4>
-                    <p className="text-white/70 text-sm font-poppins">
-                      Hardwood Furniture
-                    </p>
-                  </div>
-
-                  <div className="space-y-2">
-                    <div className="w-12 h-12 bg-[#ffffff] rounded-full flex items-center justify-center mx-auto">
-                      <Waves className="w-6 h-6 text-white" strokeWidth={1.5} />
-                    </div>
-                    <h4 className="text-white font-semibold font-poppins">
-                      Pool Access
-                    </h4>
-                    <p className="text-white/70 text-sm font-poppins">
-                      From Master Bedroom
-                    </p>
-                  </div>
-                </div>
-              </div>
-              */}
-            </section>
-
-            {!isGuesty && (
-              <PropertyReviews
-                propertyId={propertyId}
-                property={property}
-                averageReviewRating={property.averageReviewRating}
-              />
+            {/* About */}
+            {property.description && (
+              <section className="py-8 border-b border-neutral-200">
+                <h2 className="text-xl font-semibold normal-case tracking-normal text-ink mb-4">
+                  {t("aboutThisProperty")}
+                </h2>
+                <ExpandableText
+                  text={property.description}
+                  showMoreLabel={t("showMore")}
+                  showLessLabel={t("showLess")}
+                />
+              </section>
             )}
 
-            {/* Location & Map Section */}
-            <PropertyMap
-              lat={property.lat || 7.8804}
-              lng={property.lng || 98.3923}
-              propertyName={property.name}
-              className="mb-8"
-              overlayText="5 min to Layan Beach | Family Friendly Pool Villa"
-            />
+            {/* Amenities */}
+            {amenities.length > 0 && (
+              <section className="py-8 border-b border-neutral-200">
+                <h2 className="text-xl font-semibold normal-case tracking-normal text-ink mb-5">
+                  {t("amenitiesAndFeatures")}
+                </h2>
+                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-3.5">
+                  {visibleAmenities.map((amenity) => (
+                    <li
+                      key={amenity.id}
+                      className="flex items-center gap-3 text-[15px] text-ink"
+                    >
+                      <Check
+                        className="w-5 h-5 text-neutral-700 shrink-0"
+                        strokeWidth={1.5}
+                        aria-hidden="true"
+                      />
+                      {amenity.amenityName}
+                    </li>
+                  ))}
+                </ul>
+                {amenities.length > 10 && (
+                  <button
+                    type="button"
+                    onClick={() => setAmenitiesExpanded((v) => !v)}
+                    aria-expanded={amenitiesExpanded}
+                    className="mt-6 inline-flex items-center justify-center h-11 px-5 rounded-lg border border-ink text-[15px] font-semibold text-ink hover:bg-neutral-50 transition-colors"
+                  >
+                    {amenitiesExpanded
+                      ? t("showLessAmenities")
+                      : t("showAllAmenities", { count: amenities.length })}
+                  </button>
+                )}
+              </section>
+            )}
 
-            {/* Nearby Listings Carousel */}
+            {/* Reviews (Hostaway only — Guesty has no review feed) */}
+            {!isGuesty && (
+              <div className="py-4 border-b border-neutral-200">
+                <PropertyReviews
+                  propertyId={propertyId}
+                  property={property}
+                  averageReviewRating={property.averageReviewRating}
+                />
+              </div>
+            )}
+
+            {/* Location */}
+            <section className="py-8">
+              <PropertyMap
+                theme="light"
+                lat={property.lat || 7.8804}
+                lng={property.lng || 98.3923}
+                propertyName={title}
+              />
+            </section>
+
+            {/* Nearby */}
             {property.city && (
               <NearbyListingsCarousel
+                theme="light"
                 city={property.city}
                 currentPropertyId={property.id}
                 currentSource={isGuesty ? "guesty" : "hostaway"}
-                className="mb-8"
               />
             )}
           </div>
 
-          {/* Right Column - Booking Calendar & OTA Platforms (Tablet/Desktop Only - md: and above) */}
-          {(!isGuesty ||
-            calendarData.isLoading ||
-            calendarData.calendar.length > 0) && (
-            <div className="hidden md:block md:sticky md:top-6 md:h-fit">
-              <section className="bg-ink-2 rounded-2xl border border-line shadow-2xl shadow-black/40 overflow-hidden">
-                <div className="bg-ink-2 p-5 border-b border-line">
-                  <DateRangePicker
-                    checkInDate={checkInDate}
-                    checkOutDate={checkOutDate}
-                    onCheckInChange={setCheckInDate}
-                    onCheckOutChange={setCheckOutDate}
-                    calendarData={calendarData.calendar}
-                    minimumStay={calendarData.minimumStay}
-                    isLoading={calendarData.isLoading}
-                    applyMarkup={!isGuesty}
-                    markupSource={source}
-                    onError={(error) =>
-                      setPricingData((prev) => ({ ...prev, error }))
-                    }
-                  />
-
-                  <div className="mt-2 text-xs text-gray-400 text-left">
-                    {t("minimumStay", {
-                      count: checkInDate
-                        ? getMinimumStayForCheckIn()
-                        : calendarData.minimumStay,
-                    })}
-                  </div>
-
-                  <div className="mt-2 text-xs text-left text-white">
-                    {t("monthlyPromoText")}{" "}
-                    <Link
-                      href={`/monthly-inquiry?property=${encodeURIComponent(property?.name || "")}`}
-                      className="text-[#ffffff] hover:text-[#a3894a] underline transition-colors"
-                    >
-                      {t("monthlyPromoLink")}
-                    </Link>
-                  </div>
-
-                  <div className="mt-4 pt-4 border-t border-white/10">
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <span className="text-sm font-bold text-white uppercase tracking-wide">
-                          {t("guest")}
-                        </span>
-                        <span className="text-xs text-gray-400 ml-1">
-                          {t("guestAgeNote")}
-                        </span>
-                      </div>
-                      <div className="flex items-center gap-3">
-                        <button
-                          type="button"
-                          onClick={() =>
-                            setGuestCount(Math.max(1, guestCount - 1))
-                          }
-                          disabled={guestCount <= 1}
-                          className="w-8 h-8 rounded-full border border-white/20 flex items-center justify-center text-gray-300 hover:border-[#ffffff] disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
-                          aria-label={t("decreaseGuests")}
-                        >
-                          <Minus className="w-4 h-4" />
-                        </button>
-                        <span className="w-6 text-center font-medium text-white">
-                          {guestCount}
-                        </span>
-                        <button
-                          type="button"
-                          onClick={() =>
-                            setGuestCount(
-                              Math.min(
-                                property?.personCapacity || 10,
-                                guestCount + 1,
-                              ),
-                            )
-                          }
-                          disabled={
-                            guestCount >= (property?.personCapacity || 10)
-                          }
-                          className="w-8 h-8 rounded-full border border-white/20 flex items-center justify-center text-gray-300 hover:border-[#ffffff] disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
-                          aria-label={t("increaseGuests")}
-                        >
-                          <Plus className="w-4 h-4" />
-                        </button>
-                      </div>
-                    </div>
-                    {property?.personCapacity && (
-                      <div className="text-xs text-gray-400 mt-1">
-                        {t("maximumGuests", {
-                          count: property.personCapacity ?? 0,
-                        })}
-                      </div>
-                    )}
-                  </div>
-
-                  {pricingData.isLoading && (
-                    <div className="mt-3 text-center text-xs text-gray-400">
-                      {t("calculatingPrice")}
-                    </div>
-                  )}
-                  {pricingData.error && (
-                    <div className="mt-3 text-center text-xs text-red-400">
-                      {pricingData.error}
-                    </div>
-                  )}
-                  {pricingData.totalPrice > 0 && !pricingData.isLoading && (
-                    <div className="mt-3 pt-3 border-t border-white/10">
-                      <div className="flex justify-between text-xs text-gray-400">
-                        <span>
-                          {pricingData.nights === 1
-                            ? t("nightCount", { count: pricingData.nights })
-                            : t("nightCountPlural", {
-                                count: pricingData.nights,
-                              })}
-                        </span>
-                        <span>
-                          {t("avg")}{" "}
-                          {formatPriceForDisplay(
-                            Math.round(
-                              calculateSilqhausPrice(
-                                pricingData.totalPrice,
-                                extraGuestCost,
-                                property?.cleaningFee || 0,
-                                source,
-                              ) / pricingData.nights,
-                            ),
-                            "THB",
-                          )}
-                          {t("perNight")}
-                        </span>
-                      </div>
-                      {/*
-                    {isGuesty &&
-                      property?.cleaningFee != null &&
-                      property.cleaningFee > 0 && (
-                        <div className="flex justify-between text-xs text-gray-400 mt-1">
-                          <span>{t("cleaningFee")}</span>
-                          <span>
-                            {formatPriceForDisplay(
-                              property.cleaningFee,
-                              "THB",
-                            )}
-                          </span>
-                        </div>
-                      )}
-                    */}
-                      <div className="flex justify-between text-sm font-bold mt-1">
-                        <span className="text-white">{t("total")}</span>
-                        <span className="text-[#ffffff]">
-                          {formatPriceForDisplay(
-                            calculateSilqhausPrice(
-                              pricingData.totalPrice,
-                              extraGuestCost,
-                              property?.cleaningFee || 0,
-                              source,
-                            ),
-                            "THB",
-                          )}
-                        </span>
-                      </div>
-                    </div>
-                  )}
-                </div>
-
-                <div className="p-4">
-                  <p className="text-sm font-medium mb-3 text-white">
-                    {t("priceComparison")}
-                  </p>
-                  <div className="relative mb-3 rounded-lg border border-[#ffffff] bg-[#ffffff]/10 px-3 py-2.5">
-                    <div className="flex items-center gap-3">
-                      <span className="relative flex h-2.5 w-2.5 shrink-0">
-                        <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#ffffff] opacity-60"></span>
-                        <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-[#ffffff]"></span>
-                      </span>
-                      <p className="text-xs font-semibold text-[#ffffff]">
-                        {t("priceComparisonNote")}
-                      </p>
-                    </div>
-                  </div>
-                  <div className="flex flex-col gap-2">
-                    {/* Silqhaus Direct */}
-                    <div className="flex flex-col gap-2 p-3.5 rounded-xl border border-line">
-                      <div className="flex items-center gap-3">
-                        <div className="flex items-center justify-center w-10 h-10 rounded-full bg-black overflow-hidden relative">
-                          <Image
-                            src="/logos/silqhaus-logo-navigation.png"
-                            alt="Silqhaus"
-                            width={32}
-                            height={32}
-                            className="object-contain"
-                          />
-                        </div>
-                        <div className="flex-1">
-                          <span className="text-sm font-medium text-white">
-                            {t("silqhausDirect")}
-                          </span>
-                          {pricingData.totalPrice > 0 && (
-                            <div className="text-[10px] text-green-600 uppercase tracking-wide font-semibold">
-                              {t("bestPrice")}
-                            </div>
-                          )}
-                        </div>
-                        {pricingData.totalPrice > 0 && (
-                          <div className="text-right">
-                            <span className="text-sm font-bold text-[#ffffff]">
-                              {formatPriceForDisplay(
-                                calculateSilqhausPrice(
-                                  pricingData.totalPrice,
-                                  extraGuestCost,
-                                  property?.cleaningFee || 0,
-                                  source,
-                                ),
-                                "THB",
-                              )}
-                            </span>
-                            {pricingData.nights > 0 && (
-                              <div className="text-[10px] text-white/50">
-                                {formatPriceForDisplay(
-                                  Math.round(
-                                    calculateSilqhausPrice(
-                                      pricingData.totalPrice,
-                                      extraGuestCost,
-                                      property?.cleaningFee || 0,
-                                      source,
-                                    ) / pricingData.nights,
-                                  ),
-                                  "THB",
-                                )}
-                                {t("perNight")}
-                              </div>
-                            )}
-                          </div>
-                        )}
-                      </div>
-                      {pricingData.totalPrice > 0 && (
-                        <a
-                          href={
-                            isGuesty
-                              ? `https://silqhaus.guestybookings.com/${locale}/properties/${property.id}?minOccupancy=${guestCount}&checkIn=${checkInDate}&checkOut=${checkOutDate}`
-                              : `https://silqhaus.holidayfuture.com/listings/${property.id}?start=${checkInDate}&end=${checkOutDate}&numberOfGuests=${guestCount}`
-                          }
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="w-full py-2 bg-white text-ink text-xs font-semibold rounded-md text-center hover:bg-white/90 transition-colors block"
-                          aria-label={t("bookOnSilqhaus")}
-                        >
-                          {t("bookNow")}
-                        </a>
-                      )}
-                    </div>
-
-                    {property.airbnbListingUrl && (
-                      <div className="flex flex-col gap-2 p-3.5 rounded-xl border border-line">
-                        <div className="flex items-center gap-3">
-                          <div className="flex items-center justify-center w-10 h-10 rounded-full bg-[#FF5A5F]">
-                            <SiAirbnb className="w-5 h-5 text-white" />
-                          </div>
-                          <div className="flex-1">
-                            <span className="text-sm font-medium text-white">
-                              Airbnb
-                            </span>
-                            {pricingData.totalPrice > 0 &&
-                              (() => {
-                                const silqhausTotal = calculateSilqhausPrice(
-                                  pricingData.totalPrice,
-                                  extraGuestCost,
-                                  property?.cleaningFee || 0,
-                                  source,
-                                );
-                                const otaTotal = calculateOTAPrice(
-                                  pricingData.totalPrice,
-                                  airbnbMarkup,
-                                  extraGuestCost,
-                                  property?.cleaningFee || 0,
-                                );
-                                const diff = otaTotal - silqhausTotal;
-                                return diff > 0 ? (
-                                  <div className="text-[10px] text-red-500 uppercase tracking-wide font-medium">
-                                    {t("moreExpensive", {
-                                      amount: formatPriceForDisplay(
-                                        diff,
-                                        "THB",
-                                      ),
-                                    })}
-                                  </div>
-                                ) : null;
-                              })()}
-                          </div>
-                          {pricingData.totalPrice > 0 && (
-                            <div className="text-right">
-                              <span className="text-sm font-bold text-[#ffffff]">
-                                {formatPriceForDisplay(
-                                  calculateOTAPrice(
-                                    pricingData.totalPrice,
-                                    airbnbMarkup,
-                                    extraGuestCost,
-                                    property?.cleaningFee || 0,
-                                  ),
-                                  "THB",
-                                )}
-                              </span>
-                              {pricingData.nights > 0 && (
-                                <div className="text-[10px] text-white/50">
-                                  {formatPriceForDisplay(
-                                    Math.round(
-                                      calculateOTAPrice(
-                                        pricingData.totalPrice,
-                                        airbnbMarkup,
-                                        extraGuestCost,
-                                        property?.cleaningFee || 0,
-                                      ) / pricingData.nights,
-                                    ),
-                                    "THB",
-                                  )}
-                                  {t("perNight")}
-                                </div>
-                              )}
-                            </div>
-                          )}
-                        </div>
-                        {pricingData.totalPrice > 0 && (
-                          <a
-                            href={
-                              isGuesty
-                                ? `${property.airbnbListingUrl}?guests=${guestCount}&adults=${guestCount}&check_in=${checkInDate}&check_out=${checkOutDate}`
-                                : `${property.airbnbListingUrl}?guests=${guestCount}&adults=${guestCount}&check_in=${checkInDate}&check_out=${checkOutDate}`
-                            }
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="w-full py-2 bg-[#FF5A5F] text-white text-xs font-medium rounded-md text-center hover:bg-[#e04e52] transition-colors block"
-                            aria-label={t("bookOnAirbnb")}
-                          >
-                            {t("bookNow")}
-                          </a>
-                        )}
-                      </div>
-                    )}
-
-                    {property.bookingcomListingUrl && (
-                      <div className="flex flex-col gap-2 p-3.5 rounded-xl border border-line">
-                        <div className="flex items-center gap-3">
-                          <div className="flex items-center justify-center w-10 h-10 rounded-full bg-[#003580]">
-                            <span className="text-white font-bold text-[9px]">
-                              B.com
-                            </span>
-                          </div>
-                          <div className="flex-1">
-                            <span className="text-sm font-medium text-white">
-                              Booking.com
-                            </span>
-                            {pricingData.totalPrice > 0 &&
-                              (() => {
-                                const silqhausTotal = calculateSilqhausPrice(
-                                  pricingData.totalPrice,
-                                  extraGuestCost,
-                                  property?.cleaningFee || 0,
-                                  source,
-                                );
-                                const otaTotal = calculateOTAPrice(
-                                  pricingData.totalPrice,
-                                  bookingMarkup,
-                                  extraGuestCost,
-                                  property?.cleaningFee || 0,
-                                );
-                                const diff = otaTotal - silqhausTotal;
-                                return diff > 0 ? (
-                                  <div className="text-[10px] text-red-500 uppercase tracking-wide font-medium">
-                                    {t("moreExpensive", {
-                                      amount: formatPriceForDisplay(
-                                        diff,
-                                        "THB",
-                                      ),
-                                    })}
-                                  </div>
-                                ) : null;
-                              })()}
-                          </div>
-                          {pricingData.totalPrice > 0 && (
-                            <div className="text-right">
-                              <span className="text-sm font-bold text-[#ffffff]">
-                                {formatPriceForDisplay(
-                                  calculateOTAPrice(
-                                    pricingData.totalPrice,
-                                    bookingMarkup,
-                                    extraGuestCost,
-                                    property?.cleaningFee || 0,
-                                  ),
-                                  "THB",
-                                )}
-                              </span>
-                              {pricingData.nights > 0 && (
-                                <div className="text-[10px] text-white/50">
-                                  {formatPriceForDisplay(
-                                    Math.round(
-                                      calculateOTAPrice(
-                                        pricingData.totalPrice,
-                                        bookingMarkup,
-                                        extraGuestCost,
-                                        property?.cleaningFee || 0,
-                                      ) / pricingData.nights,
-                                    ),
-                                    "THB",
-                                  )}
-                                  {t("perNight")}
-                                </div>
-                              )}
-                            </div>
-                          )}
-                        </div>
-                        {pricingData.totalPrice > 0 && (
-                          <a
-                            href={(() => {
-                              const u = new URL(property.bookingcomListingUrl);
-                              u.searchParams.set("checkin", checkInDate);
-                              u.searchParams.set("checkout", checkOutDate);
-                              u.searchParams.set("no_rooms", "1");
-                              u.searchParams.set(
-                                "req_adults",
-                                String(guestCount),
-                              );
-                              return u.toString();
-                            })()}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="w-full py-2 bg-[#003580] text-white text-xs font-medium rounded-md text-center hover:bg-[#00296b] transition-colors block"
-                            aria-label={t("bookOnBookingCom")}
-                          >
-                            {t("bookNow")}
-                          </a>
-                        )}
-                      </div>
-                    )}
-
-                    {property.vrboListingUrl && (
-                      <div className="flex flex-col gap-2 p-3.5 rounded-xl border border-line">
-                        <div className="flex items-center gap-3">
-                          <div className="flex items-center justify-center w-10 h-10 rounded-full bg-[#3B5998]">
-                            <span className="text-white font-bold text-xs">
-                              Vrbo
-                            </span>
-                          </div>
-                          <div className="flex-1">
-                            <span className="text-sm font-medium text-white">
-                              Vrbo
-                            </span>
-                            {pricingData.totalPrice > 0 &&
-                              (() => {
-                                const silqhausTotal = calculateSilqhausPrice(
-                                  pricingData.totalPrice,
-                                  extraGuestCost,
-                                  property?.cleaningFee || 0,
-                                  source,
-                                );
-                                const otaTotal = calculateOTAPrice(
-                                  pricingData.totalPrice,
-                                  vrboMarkup,
-                                  extraGuestCost,
-                                  property?.cleaningFee || 0,
-                                );
-                                const diff = otaTotal - silqhausTotal;
-                                return diff > 0 ? (
-                                  <div className="text-[10px] text-red-500 uppercase tracking-wide font-medium">
-                                    {t("moreExpensive", {
-                                      amount: formatPriceForDisplay(
-                                        diff,
-                                        "THB",
-                                      ),
-                                    })}
-                                  </div>
-                                ) : null;
-                              })()}
-                          </div>
-                          {pricingData.totalPrice > 0 && (
-                            <div className="text-right">
-                              <span className="text-sm font-bold text-[#ffffff]">
-                                {formatPriceForDisplay(
-                                  calculateOTAPrice(
-                                    pricingData.totalPrice,
-                                    vrboMarkup,
-                                    extraGuestCost,
-                                    property?.cleaningFee || 0,
-                                  ),
-                                  "THB",
-                                )}
-                              </span>
-                              {pricingData.nights > 0 && (
-                                <div className="text-[10px] text-white/50">
-                                  {formatPriceForDisplay(
-                                    Math.round(
-                                      calculateOTAPrice(
-                                        pricingData.totalPrice,
-                                        vrboMarkup,
-                                        extraGuestCost,
-                                        property?.cleaningFee || 0,
-                                      ) / pricingData.nights,
-                                    ),
-                                    "THB",
-                                  )}
-                                  {t("perNight")}
-                                </div>
-                              )}
-                            </div>
-                          )}
-                        </div>
-                        {pricingData.totalPrice > 0 && (
-                          <a
-                            href={`${
-                              property.vrboListingUrl
-                            }?startDate=${checkInDate}&endDate=${checkOutDate}&chkin=${checkInDate}&chkout=${checkOutDate}`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="w-full py-2 bg-[#3B5998] text-white text-xs font-medium rounded-md text-center hover:bg-[#2d4373] transition-colors block"
-                            aria-label={t("bookOnVrbo")}
-                          >
-                            {t("bookNow")}
-                          </a>
-                        )}
-                      </div>
-                    )}
-
-                    {property.expediaListingUrl && (
-                      <div className="flex flex-col gap-2 p-3.5 rounded-xl border border-line">
-                        <div className="flex items-center gap-3">
-                          <div className="flex items-center justify-center w-10 h-10 rounded-full bg-[#FFCC00]">
-                            <span className="text-[#1A1A1A] font-bold text-xs">
-                              Exp
-                            </span>
-                          </div>
-                          <div className="flex-1">
-                            <span className="text-sm font-medium text-white">
-                              Expedia
-                            </span>
-                            {pricingData.totalPrice > 0 &&
-                              (() => {
-                                const silqhausTotal = calculateSilqhausPrice(
-                                  pricingData.totalPrice,
-                                  extraGuestCost,
-                                  property?.cleaningFee || 0,
-                                  source,
-                                );
-                                const otaTotal = calculateOTAPrice(
-                                  pricingData.totalPrice,
-                                  expediaMarkup,
-                                  extraGuestCost,
-                                  property?.cleaningFee || 0,
-                                );
-                                const diff = otaTotal - silqhausTotal;
-                                return diff > 0 ? (
-                                  <div className="text-[10px] text-red-500 uppercase tracking-wide font-medium">
-                                    {t("moreExpensive", {
-                                      amount: formatPriceForDisplay(
-                                        diff,
-                                        "THB",
-                                      ),
-                                    })}
-                                  </div>
-                                ) : null;
-                              })()}
-                          </div>
-                          {pricingData.totalPrice > 0 && (
-                            <div className="text-right">
-                              <span className="text-sm font-bold text-[#ffffff]">
-                                {formatPriceForDisplay(
-                                  calculateOTAPrice(
-                                    pricingData.totalPrice,
-                                    expediaMarkup,
-                                    extraGuestCost,
-                                    property?.cleaningFee || 0,
-                                  ),
-                                  "THB",
-                                )}
-                              </span>
-                              {pricingData.nights > 0 && (
-                                <div className="text-[10px] text-white/50">
-                                  {formatPriceForDisplay(
-                                    Math.round(
-                                      calculateOTAPrice(
-                                        pricingData.totalPrice,
-                                        expediaMarkup,
-                                        extraGuestCost,
-                                        property?.cleaningFee || 0,
-                                      ) / pricingData.nights,
-                                    ),
-                                    "THB",
-                                  )}
-                                  {t("perNight")}
-                                </div>
-                              )}
-                            </div>
-                          )}
-                        </div>
-                        {pricingData.totalPrice > 0 && (
-                          <a
-                            href={property.expediaListingUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="w-full py-2 bg-[#FFCC00] text-[#1A1A1A] text-xs font-medium rounded-md text-center hover:bg-[#e6b800] transition-colors block"
-                            aria-label={t("bookOnExpedia")}
-                          >
-                            {t("bookNow")}
-                          </a>
-                        )}
-                      </div>
-                    )}
-
-                    {property.tripcomListingUrl && (
-                      <div className="flex flex-col gap-2 p-3.5 rounded-xl border border-line">
-                        <div className="flex items-center gap-3">
-                          <div className="flex items-center justify-center w-10 h-10 rounded-full bg-[#287DFA]">
-                            <span className="text-white font-bold text-[10px]">
-                              Trip
-                            </span>
-                          </div>
-                          <div className="flex-1">
-                            <span className="text-sm font-medium text-white">
-                              Trip.com
-                            </span>
-                            {pricingData.totalPrice > 0 &&
-                              (() => {
-                                const silqhausTotal = calculateSilqhausPrice(
-                                  pricingData.totalPrice,
-                                  extraGuestCost,
-                                  property?.cleaningFee || 0,
-                                  source,
-                                );
-                                const otaTotal = calculateOTAPrice(
-                                  pricingData.totalPrice,
-                                  tripcomMarkup,
-                                  extraGuestCost,
-                                  property?.cleaningFee || 0,
-                                );
-                                const diff = otaTotal - silqhausTotal;
-                                return diff > 0 ? (
-                                  <div className="text-[10px] text-red-500 uppercase tracking-wide font-medium">
-                                    {t("moreExpensive", {
-                                      amount: formatPriceForDisplay(
-                                        diff,
-                                        "THB",
-                                      ),
-                                    })}
-                                  </div>
-                                ) : null;
-                              })()}
-                          </div>
-                          {pricingData.totalPrice > 0 && (
-                            <div className="text-right">
-                              <span className="text-sm font-bold text-[#ffffff]">
-                                {formatPriceForDisplay(
-                                  calculateOTAPrice(
-                                    pricingData.totalPrice,
-                                    tripcomMarkup,
-                                    extraGuestCost,
-                                    property?.cleaningFee || 0,
-                                  ),
-                                  "THB",
-                                )}
-                              </span>
-                              {pricingData.nights > 0 && (
-                                <div className="text-[10px] text-white/50">
-                                  {formatPriceForDisplay(
-                                    Math.round(
-                                      calculateOTAPrice(
-                                        pricingData.totalPrice,
-                                        tripcomMarkup,
-                                        extraGuestCost,
-                                        property?.cleaningFee || 0,
-                                      ) / pricingData.nights,
-                                    ),
-                                    "THB",
-                                  )}
-                                  {t("perNight")}
-                                </div>
-                              )}
-                            </div>
-                          )}
-                        </div>
-                        {pricingData.totalPrice > 0 && (
-                          <a
-                            href={`${property.tripcomListingUrl}?checkIn=${checkInDate}&checkOut=${checkOutDate}`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="w-full py-2 bg-[#287DFA] text-white text-xs font-medium rounded-md text-center hover:bg-[#1f6ad8] transition-colors block"
-                            aria-label={t("bookOnTripcom")}
-                          >
-                            {t("bookNow")}
-                          </a>
-                        )}
-                      </div>
-                    )}
-                  </div>
-                </div>
+          {/* Right column — desktop booking card */}
+          {bookable && (
+            <div className="hidden lg:block lg:sticky lg:top-24">
+              <section className="rounded-2xl border border-neutral-200 bg-white shadow-[0_6px_24px_rgba(0,0,0,0.08)] p-5">
+                {renderBookingPanel()}
               </section>
             </div>
           )}
-
-          {/* COMMENTED OUT: Original Reservation Form
-          <div className="lg:sticky lg:top-6 lg:h-fit">
-            <section className="bg-white text-[var(--ink-detail)] rounded-lg p-3 border border-[var(--ink-detail)] shadow-lg">
-              <div className="mb-3">
-                <p className="text-base font-bold">
-                  {formatPriceForDisplay(property.priceBase || 0, "THB")}
-                  <span className="text-xs font-normal ml-1">per night</span>
-                </p>
-              </div>
-
-              <div className="space-y-2 mb-3">
-                <div className="grid grid-cols-2 gap-1.5">
-                  <div>
-                    <label
-                      htmlFor="checkin"
-                      className="block text-xs font-medium mb-0.5"
-                    >
-                      Check-in
-                    </label>
-                    <input
-                      id="checkin"
-                      type="date"
-                      className="w-full p-1.5 text-xs border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-[var(--cocoa)]"
-                      data-testid="input-checkin"
-                    />
-                  </div>
-                  <div>
-                    <label
-                      htmlFor="checkout"
-                      className="block text-xs font-medium mb-0.5"
-                    >
-                      Check-out
-                    </label>
-                    <input
-                      id="checkout"
-                      type="date"
-                      className="w-full p-1.5 text-xs border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-[var(--cocoa)]"
-                      data-testid="input-checkout"
-                    />
-                  </div>
-                </div>
-                <div>
-                  <label
-                    htmlFor="guests"
-                    className="block text-xs font-medium mb-0.5"
-                  >
-                    Guests
-                  </label>
-                  <select
-                    id="guests"
-                    className="w-full p-1.5 text-xs border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-[var(--cocoa)]"
-                    data-testid="select-guests"
-                  >
-                    <option value="1">1 guest</option>
-                    <option value="2">2 guests</option>
-                    <option value="3">3 guests</option>
-                    <option value="4">4 guests</option>
-                    <option value="5">5 guests</option>
-                    <option value="6">6 guests</option>
-                    <option value="7">7 guests</option>
-                    <option value="8">8 guests</option>
-                  </select>
-                </div>
-              </div>
-
-              <div className="space-y-1 mb-3 text-xs">
-                <div className="flex justify-between">
-                  <span>
-                    {formatPriceForDisplay(property.priceBase || 0, "THB")} × 3
-                    nights
-                  </span>
-                  <span>
-                    {formatPriceForDisplay(
-                      (property.priceBase || 0) * 3,
-                      "THB",
-                    )}
-                  </span>
-                </div>
-                <div className="border-t border-gray-200 pt-2 font-bold text-xs">
-                  <div className="flex justify-between">
-                    <span>Total</span>
-                    <span>
-                      {formatPriceForDisplay(
-                        (property.priceBase || 0) * 3,
-                        "THB",
-                      )}
-                    </span>
-                  </div>
-                </div>
-              </div>
-
-              <Button
-                onClick={handleBookProperty}
-                className="w-full bg-black text-white border border-black hover:bg-white hover:text-black hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 py-2 text-xs rounded font-medium"
-                data-testid="button-reserve"
-              >
-                Check Availability
-              </Button>
-            </section>
-          </div>
-          */}
         </div>
       </main>
 
-      {/* Mobile Sticky Bottom Booking Panel (phones only, < 768px) */}
-      {/* The entire panel slides up/down together with the tab at the top */}
-      {(!isGuesty ||
-        calendarData.isLoading ||
-        calendarData.calendar.length > 0) && (
-        <div
-          className={`md:hidden fixed left-0 right-0 bottom-0 z-50 h-[90vh] transition-all duration-300 ease-in-out`}
-          style={{
-            transform: mobileBookingOpen
-              ? "translateY(0)"
-              : "translateY(calc(100% - 56px))",
-          }}
-        >
-          {/* Slide-up Panel Container - Tab at top, content below */}
-          <div
-            className="bg-[#000000] border-t border-[#ffffff] h-full flex flex-col"
-            id="mobile-booking-panel"
-          >
-            {/* Toggle Tab - At top of panel, slides with content */}
-            <button
-              onClick={() => setMobileBookingOpen(!mobileBookingOpen)}
-              className="shrink-0 w-full bg-[#ffffff] text-white py-4 flex items-center justify-center gap-2 font-medium text-[14px] shadow-lg"
-              aria-expanded={mobileBookingOpen}
-              aria-controls="mobile-booking-content"
-              aria-label={
-                mobileBookingOpen
-                  ? t("hideBookingOptions")
-                  : t("checkPriceAndBookingOptions")
-              }
-            >
-              {mobileBookingOpen ? (
+      {/* Mobile booking bar */}
+      {bookable && !mobileBookingOpen && (
+        <div className="lg:hidden fixed inset-x-0 bottom-0 z-50 border-t border-neutral-200 bg-white px-4 py-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))]">
+          <div className="flex items-center justify-between gap-3">
+            <div className="min-w-0">
+              {priced ? (
                 <>
-                  <ChevronDown className="w-5 h-5" />
-                  {t("hide")}
+                  <span className="block text-[15px] font-semibold text-ink truncate">
+                    ฿{silqhausTotal.toLocaleString()}
+                  </span>
+                  <span className="block text-xs text-neutral-600">
+                    {t("forNights", { count: pricingData.nights })}
+                  </span>
                 </>
               ) : (
-                <>
-                  <ChevronUp className="w-5 h-5" />
-                  {t("checkPriceComparison")}
-                </>
+                <span className="text-sm text-neutral-600">
+                  {t("addDatesForPrices")}
+                </span>
               )}
-            </button>
-
-            {/* Scrollable Content Area */}
-            <div
-              className="flex-1 overflow-y-auto p-4"
-              id="mobile-booking-content"
-              aria-hidden={!mobileBookingOpen}
-            >
-              <section className="bg-ink-2 rounded-2xl border border-line shadow-2xl shadow-black/40 overflow-hidden">
-                <div className="bg-ink-2 p-5 border-b border-line">
-                  <DateRangePicker
-                    checkInDate={checkInDate}
-                    checkOutDate={checkOutDate}
-                    onCheckInChange={setCheckInDate}
-                    onCheckOutChange={setCheckOutDate}
-                    calendarData={calendarData.calendar}
-                    minimumStay={calendarData.minimumStay}
-                    isLoading={calendarData.isLoading}
-                    applyMarkup={!isGuesty}
-                    markupSource={source}
-                    onError={(error) =>
-                      setPricingData((prev) => ({ ...prev, error }))
-                    }
-                  />
-
-                  <div className="mt-2 text-xs text-gray-400 text-left">
-                    {t("minimumStay", {
-                      count: checkInDate
-                        ? getMinimumStayForCheckIn()
-                        : calendarData.minimumStay,
-                    })}
-                  </div>
-
-                  <div className="mt-2 text-xs text-left text-white">
-                    {t("monthlyPromoText")}{" "}
-                    <Link
-                      href={`/monthly-inquiry?property=${encodeURIComponent(property?.name || "")}`}
-                      className="text-[#ffffff] hover:text-[#a3894a] underline transition-colors"
-                    >
-                      {t("monthlyPromoLink")}
-                    </Link>
-                  </div>
-
-                  <div className="mt-4 pt-4 border-t border-white/10">
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <span className="text-sm font-bold text-white uppercase tracking-wide">
-                          {t("guest")}
-                        </span>
-                        <span className="text-xs text-gray-400 ml-1">
-                          {t("guestAgeNote")}
-                        </span>
-                      </div>
-                      <div className="flex items-center gap-3">
-                        <button
-                          type="button"
-                          onClick={() =>
-                            setGuestCount(Math.max(1, guestCount - 1))
-                          }
-                          disabled={guestCount <= 1}
-                          className="w-8 h-8 rounded-full border border-white/20 flex items-center justify-center text-gray-300 hover:border-[#ffffff] disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
-                          aria-label={t("decreaseGuests")}
-                        >
-                          <Minus className="w-4 h-4" />
-                        </button>
-                        <span className="w-6 text-center font-medium text-white">
-                          {guestCount}
-                        </span>
-                        <button
-                          type="button"
-                          onClick={() =>
-                            setGuestCount(
-                              Math.min(
-                                property?.personCapacity || 10,
-                                guestCount + 1,
-                              ),
-                            )
-                          }
-                          disabled={
-                            guestCount >= (property?.personCapacity || 10)
-                          }
-                          className="w-8 h-8 rounded-full border border-white/20 flex items-center justify-center text-gray-300 hover:border-[#ffffff] disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
-                          aria-label={t("increaseGuests")}
-                        >
-                          <Plus className="w-4 h-4" />
-                        </button>
-                      </div>
-                    </div>
-                    {property?.personCapacity && (
-                      <div className="text-xs text-gray-400 mt-1">
-                        {t("maximumGuests", {
-                          count: property.personCapacity ?? 0,
-                        })}
-                      </div>
-                    )}
-                  </div>
-
-                  {pricingData.isLoading && (
-                    <div className="mt-3 text-center text-xs text-gray-400">
-                      {t("calculatingPrice")}
-                    </div>
-                  )}
-                  {pricingData.error && (
-                    <div className="mt-3 text-center text-xs text-red-400">
-                      {pricingData.error}
-                    </div>
-                  )}
-                  {pricingData.totalPrice > 0 && !pricingData.isLoading && (
-                    <div className="mt-3 pt-3 border-t border-white/10">
-                      <div className="flex justify-between text-xs text-gray-400">
-                        <span>
-                          {pricingData.nights === 1
-                            ? t("nightCount", { count: pricingData.nights })
-                            : t("nightCountPlural", {
-                                count: pricingData.nights,
-                              })}
-                        </span>
-                        <span>
-                          {t("avg")}{" "}
-                          {formatPriceForDisplay(
-                            Math.round(
-                              calculateSilqhausPrice(
-                                pricingData.totalPrice,
-                                extraGuestCost,
-                                property?.cleaningFee || 0,
-                                source,
-                              ) / pricingData.nights,
-                            ),
-                            "THB",
-                          )}
-                          {t("perNight")}
-                        </span>
-                      </div>
-                      {/*
-                    {isGuesty &&
-                      property?.cleaningFee != null &&
-                      property.cleaningFee > 0 && (
-                        <div className="flex justify-between text-xs text-gray-400 mt-1">
-                          <span>{t("cleaningFee")}</span>
-                          <span>
-                            {formatPriceForDisplay(
-                              property.cleaningFee,
-                              "THB",
-                            )}
-                          </span>
-                        </div>
-                      )}
-                    */}
-                      <div className="flex justify-between text-sm font-bold mt-1">
-                        <span className="text-white">{t("total")}</span>
-                        <span className="text-[#ffffff]">
-                          {formatPriceForDisplay(
-                            calculateSilqhausPrice(
-                              pricingData.totalPrice,
-                              extraGuestCost,
-                              property?.cleaningFee || 0,
-                              source,
-                            ),
-                            "THB",
-                          )}
-                        </span>
-                      </div>
-                    </div>
-                  )}
-                </div>
-
-                <div className="p-4">
-                  <p className="text-sm font-medium mb-3 text-white">
-                    {t("priceComparison")}
-                  </p>
-                  <div className="relative mb-3 rounded-lg border border-[#ffffff] bg-[#ffffff]/10 px-3 py-2.5">
-                    <div className="flex items-center gap-3">
-                      <span className="relative flex h-2.5 w-2.5 shrink-0">
-                        <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#ffffff] opacity-60"></span>
-                        <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-[#ffffff]"></span>
-                      </span>
-                      <p className="text-xs font-semibold text-[#ffffff]">
-                        {t("priceComparisonNote")}
-                      </p>
-                    </div>
-                  </div>
-                  <div className="flex flex-col gap-2">
-                    {/* Silqhaus Direct */}
-                    <div className="flex flex-col gap-2 p-3.5 rounded-xl border border-line">
-                      <div className="flex items-center gap-3">
-                        <div className="flex items-center justify-center w-10 h-10 rounded-full bg-black overflow-hidden relative">
-                          <Image
-                            src="/logos/silqhaus-logo-navigation.png"
-                            alt="Silqhaus"
-                            width={32}
-                            height={32}
-                            className="object-contain"
-                          />
-                        </div>
-                        <div className="flex-1">
-                          <span className="text-sm font-medium text-white">
-                            {t("silqhausDirect")}
-                          </span>
-                          {pricingData.totalPrice > 0 && (
-                            <div className="text-[10px] text-green-600 uppercase tracking-wide font-semibold">
-                              {t("bestPrice")}
-                            </div>
-                          )}
-                        </div>
-                        {pricingData.totalPrice > 0 && (
-                          <div className="text-right">
-                            <span className="text-sm font-bold text-[#ffffff]">
-                              {formatPriceForDisplay(
-                                calculateSilqhausPrice(
-                                  pricingData.totalPrice,
-                                  extraGuestCost,
-                                  property?.cleaningFee || 0,
-                                  source,
-                                ),
-                                "THB",
-                              )}
-                            </span>
-                            {pricingData.nights > 0 && (
-                              <div className="text-[10px] text-white/50">
-                                {formatPriceForDisplay(
-                                  Math.round(
-                                    calculateSilqhausPrice(
-                                      pricingData.totalPrice,
-                                      extraGuestCost,
-                                      property?.cleaningFee || 0,
-                                      source,
-                                    ) / pricingData.nights,
-                                  ),
-                                  "THB",
-                                )}
-                                {t("perNight")}
-                              </div>
-                            )}
-                          </div>
-                        )}
-                      </div>
-                      {pricingData.totalPrice > 0 && (
-                        <a
-                          href={
-                            isGuesty
-                              ? `https://silqhaus.guestybookings.com/${locale}/properties/${property.id}?minOccupancy=${guestCount}&checkIn=${checkInDate}&checkOut=${checkOutDate}`
-                              : `https://silqhaus.holidayfuture.com/listings/${property.id}?start=${checkInDate}&end=${checkOutDate}&numberOfGuests=${guestCount}`
-                          }
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="w-full py-2 bg-white text-ink text-xs font-semibold rounded-md text-center hover:bg-white/90 transition-colors block"
-                          aria-label={t("bookOnSilqhaus")}
-                        >
-                          {t("bookNow")}
-                        </a>
-                      )}
-                    </div>
-
-                    {property.airbnbListingUrl && (
-                      <div className="flex flex-col gap-2 p-3.5 rounded-xl border border-line">
-                        <div className="flex items-center gap-3">
-                          <div className="flex items-center justify-center w-10 h-10 rounded-full bg-[#FF5A5F]">
-                            <SiAirbnb className="w-5 h-5 text-white" />
-                          </div>
-                          <div className="flex-1">
-                            <span className="text-sm font-medium text-white">
-                              Airbnb
-                            </span>
-                            {pricingData.totalPrice > 0 &&
-                              (() => {
-                                const silqhausTotal = calculateSilqhausPrice(
-                                  pricingData.totalPrice,
-                                  extraGuestCost,
-                                  property?.cleaningFee || 0,
-                                  source,
-                                );
-                                const otaTotal = calculateOTAPrice(
-                                  pricingData.totalPrice,
-                                  airbnbMarkup,
-                                  extraGuestCost,
-                                  property?.cleaningFee || 0,
-                                );
-                                const diff = otaTotal - silqhausTotal;
-                                return diff > 0 ? (
-                                  <div className="text-[10px] text-red-500 uppercase tracking-wide font-medium">
-                                    {t("moreExpensive", {
-                                      amount: formatPriceForDisplay(
-                                        diff,
-                                        "THB",
-                                      ),
-                                    })}
-                                  </div>
-                                ) : null;
-                              })()}
-                          </div>
-                          {pricingData.totalPrice > 0 && (
-                            <div className="text-right">
-                              <span className="text-sm font-bold text-[#ffffff]">
-                                {formatPriceForDisplay(
-                                  calculateOTAPrice(
-                                    pricingData.totalPrice,
-                                    airbnbMarkup,
-                                    extraGuestCost,
-                                    property?.cleaningFee || 0,
-                                  ),
-                                  "THB",
-                                )}
-                              </span>
-                              {pricingData.nights > 0 && (
-                                <div className="text-[10px] text-white/50">
-                                  {formatPriceForDisplay(
-                                    Math.round(
-                                      calculateOTAPrice(
-                                        pricingData.totalPrice,
-                                        airbnbMarkup,
-                                        extraGuestCost,
-                                        property?.cleaningFee || 0,
-                                      ) / pricingData.nights,
-                                    ),
-                                    "THB",
-                                  )}
-                                  {t("perNight")}
-                                </div>
-                              )}
-                            </div>
-                          )}
-                        </div>
-                        {pricingData.totalPrice > 0 && (
-                          <a
-                            href={
-                              isGuesty
-                                ? `${property.airbnbListingUrl}?guests=${guestCount}&adults=${guestCount}&check_in=${checkInDate}&check_out=${checkOutDate}`
-                                : `${property.airbnbListingUrl}?guests=${guestCount}&adults=${guestCount}&check_in=${checkInDate}&check_out=${checkOutDate}`
-                            }
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="w-full py-2 bg-[#FF5A5F] text-white text-xs font-medium rounded-md text-center hover:bg-[#e04e52] transition-colors block"
-                            aria-label={t("bookOnAirbnb")}
-                          >
-                            {t("bookNow")}
-                          </a>
-                        )}
-                      </div>
-                    )}
-
-                    {property.bookingcomListingUrl && (
-                      <div className="flex flex-col gap-2 p-3.5 rounded-xl border border-line">
-                        <div className="flex items-center gap-3">
-                          <div className="flex items-center justify-center w-10 h-10 rounded-full bg-[#003580]">
-                            <span className="text-white font-bold text-[9px]">
-                              B.com
-                            </span>
-                          </div>
-                          <div className="flex-1">
-                            <span className="text-sm font-medium text-white">
-                              Booking.com
-                            </span>
-                            {pricingData.totalPrice > 0 &&
-                              (() => {
-                                const silqhausTotal = calculateSilqhausPrice(
-                                  pricingData.totalPrice,
-                                  extraGuestCost,
-                                  property?.cleaningFee || 0,
-                                  source,
-                                );
-                                const otaTotal = calculateOTAPrice(
-                                  pricingData.totalPrice,
-                                  bookingMarkup,
-                                  extraGuestCost,
-                                  property?.cleaningFee || 0,
-                                );
-                                const diff = otaTotal - silqhausTotal;
-                                return diff > 0 ? (
-                                  <div className="text-[10px] text-red-500 uppercase tracking-wide font-medium">
-                                    {t("moreExpensive", {
-                                      amount: formatPriceForDisplay(
-                                        diff,
-                                        "THB",
-                                      ),
-                                    })}
-                                  </div>
-                                ) : null;
-                              })()}
-                          </div>
-                          {pricingData.totalPrice > 0 && (
-                            <div className="text-right">
-                              <span className="text-sm font-bold text-[#ffffff]">
-                                {formatPriceForDisplay(
-                                  calculateOTAPrice(
-                                    pricingData.totalPrice,
-                                    bookingMarkup,
-                                    extraGuestCost,
-                                    property?.cleaningFee || 0,
-                                  ),
-                                  "THB",
-                                )}
-                              </span>
-                              {pricingData.nights > 0 && (
-                                <div className="text-[10px] text-white/50">
-                                  {formatPriceForDisplay(
-                                    Math.round(
-                                      calculateOTAPrice(
-                                        pricingData.totalPrice,
-                                        bookingMarkup,
-                                        extraGuestCost,
-                                        property?.cleaningFee || 0,
-                                      ) / pricingData.nights,
-                                    ),
-                                    "THB",
-                                  )}
-                                  {t("perNight")}
-                                </div>
-                              )}
-                            </div>
-                          )}
-                        </div>
-                        {pricingData.totalPrice > 0 && (
-                          <a
-                            href={(() => {
-                              const u = new URL(property.bookingcomListingUrl);
-                              u.searchParams.set("checkin", checkInDate);
-                              u.searchParams.set("checkout", checkOutDate);
-                              u.searchParams.set("no_rooms", "1");
-                              u.searchParams.set(
-                                "req_adults",
-                                String(guestCount),
-                              );
-                              return u.toString();
-                            })()}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="w-full py-2 bg-[#003580] text-white text-xs font-medium rounded-md text-center hover:bg-[#00296b] transition-colors block"
-                            aria-label={t("bookOnBookingCom")}
-                          >
-                            {t("bookNow")}
-                          </a>
-                        )}
-                      </div>
-                    )}
-
-                    {property.vrboListingUrl && (
-                      <div className="flex flex-col gap-2 p-3.5 rounded-xl border border-line">
-                        <div className="flex items-center gap-3">
-                          <div className="flex items-center justify-center w-10 h-10 rounded-full bg-[#3B5998]">
-                            <span className="text-white font-bold text-xs">
-                              Vrbo
-                            </span>
-                          </div>
-                          <div className="flex-1">
-                            <span className="text-sm font-medium text-white">
-                              Vrbo
-                            </span>
-                            {pricingData.totalPrice > 0 &&
-                              (() => {
-                                const silqhausTotal = calculateSilqhausPrice(
-                                  pricingData.totalPrice,
-                                  extraGuestCost,
-                                  property?.cleaningFee || 0,
-                                  source,
-                                );
-                                const otaTotal = calculateOTAPrice(
-                                  pricingData.totalPrice,
-                                  vrboMarkup,
-                                  extraGuestCost,
-                                  property?.cleaningFee || 0,
-                                );
-                                const diff = otaTotal - silqhausTotal;
-                                return diff > 0 ? (
-                                  <div className="text-[10px] text-red-500 uppercase tracking-wide font-medium">
-                                    {t("moreExpensive", {
-                                      amount: formatPriceForDisplay(
-                                        diff,
-                                        "THB",
-                                      ),
-                                    })}
-                                  </div>
-                                ) : null;
-                              })()}
-                          </div>
-                          {pricingData.totalPrice > 0 && (
-                            <div className="text-right">
-                              <span className="text-sm font-bold text-[#ffffff]">
-                                {formatPriceForDisplay(
-                                  calculateOTAPrice(
-                                    pricingData.totalPrice,
-                                    vrboMarkup,
-                                    extraGuestCost,
-                                    property?.cleaningFee || 0,
-                                  ),
-                                  "THB",
-                                )}
-                              </span>
-                              {pricingData.nights > 0 && (
-                                <div className="text-[10px] text-white/50">
-                                  {formatPriceForDisplay(
-                                    Math.round(
-                                      calculateOTAPrice(
-                                        pricingData.totalPrice,
-                                        vrboMarkup,
-                                        extraGuestCost,
-                                        property?.cleaningFee || 0,
-                                      ) / pricingData.nights,
-                                    ),
-                                    "THB",
-                                  )}
-                                  {t("perNight")}
-                                </div>
-                              )}
-                            </div>
-                          )}
-                        </div>
-                        {pricingData.totalPrice > 0 && (
-                          <a
-                            href={`${
-                              property.vrboListingUrl
-                            }?startDate=${checkInDate}&endDate=${checkOutDate}&chkin=${checkInDate}&chkout=${checkOutDate}`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="w-full py-2 bg-[#3B5998] text-white text-xs font-medium rounded-md text-center hover:bg-[#2d4373] transition-colors block"
-                            aria-label={t("bookOnVrbo")}
-                          >
-                            {t("bookNow")}
-                          </a>
-                        )}
-                      </div>
-                    )}
-
-                    {property.expediaListingUrl && (
-                      <div className="flex flex-col gap-2 p-3.5 rounded-xl border border-line">
-                        <div className="flex items-center gap-3">
-                          <div className="flex items-center justify-center w-10 h-10 rounded-full bg-[#FFCC00]">
-                            <span className="text-[#1A1A1A] font-bold text-xs">
-                              Exp
-                            </span>
-                          </div>
-                          <div className="flex-1">
-                            <span className="text-sm font-medium text-white">
-                              Expedia
-                            </span>
-                            {pricingData.totalPrice > 0 &&
-                              (() => {
-                                const silqhausTotal = calculateSilqhausPrice(
-                                  pricingData.totalPrice,
-                                  extraGuestCost,
-                                  property?.cleaningFee || 0,
-                                  source,
-                                );
-                                const otaTotal = calculateOTAPrice(
-                                  pricingData.totalPrice,
-                                  expediaMarkup,
-                                  extraGuestCost,
-                                  property?.cleaningFee || 0,
-                                );
-                                const diff = otaTotal - silqhausTotal;
-                                return diff > 0 ? (
-                                  <div className="text-[10px] text-red-500 uppercase tracking-wide font-medium">
-                                    {t("moreExpensive", {
-                                      amount: formatPriceForDisplay(
-                                        diff,
-                                        "THB",
-                                      ),
-                                    })}
-                                  </div>
-                                ) : null;
-                              })()}
-                          </div>
-                          {pricingData.totalPrice > 0 && (
-                            <div className="text-right">
-                              <span className="text-sm font-bold text-[#ffffff]">
-                                {formatPriceForDisplay(
-                                  calculateOTAPrice(
-                                    pricingData.totalPrice,
-                                    expediaMarkup,
-                                    extraGuestCost,
-                                    property?.cleaningFee || 0,
-                                  ),
-                                  "THB",
-                                )}
-                              </span>
-                              {pricingData.nights > 0 && (
-                                <div className="text-[10px] text-white/50">
-                                  {formatPriceForDisplay(
-                                    Math.round(
-                                      calculateOTAPrice(
-                                        pricingData.totalPrice,
-                                        expediaMarkup,
-                                        extraGuestCost,
-                                        property?.cleaningFee || 0,
-                                      ) / pricingData.nights,
-                                    ),
-                                    "THB",
-                                  )}
-                                  {t("perNight")}
-                                </div>
-                              )}
-                            </div>
-                          )}
-                        </div>
-                        {pricingData.totalPrice > 0 && (
-                          <a
-                            href={property.expediaListingUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="w-full py-2 bg-[#FFCC00] text-[#1A1A1A] text-xs font-medium rounded-md text-center hover:bg-[#e6b800] transition-colors block"
-                            aria-label={t("bookOnExpedia")}
-                          >
-                            {t("bookNow")}
-                          </a>
-                        )}
-                      </div>
-                    )}
-
-                    {property.tripcomListingUrl && (
-                      <div className="flex flex-col gap-2 p-3.5 rounded-xl border border-line">
-                        <div className="flex items-center gap-3">
-                          <div className="flex items-center justify-center w-10 h-10 rounded-full bg-[#287DFA]">
-                            <span className="text-white font-bold text-[10px]">
-                              Trip
-                            </span>
-                          </div>
-                          <div className="flex-1">
-                            <span className="text-sm font-medium text-white">
-                              Trip.com
-                            </span>
-                            {pricingData.totalPrice > 0 &&
-                              (() => {
-                                const silqhausTotal = calculateSilqhausPrice(
-                                  pricingData.totalPrice,
-                                  extraGuestCost,
-                                  property?.cleaningFee || 0,
-                                  source,
-                                );
-                                const otaTotal = calculateOTAPrice(
-                                  pricingData.totalPrice,
-                                  tripcomMarkup,
-                                  extraGuestCost,
-                                  property?.cleaningFee || 0,
-                                );
-                                const diff = otaTotal - silqhausTotal;
-                                return diff > 0 ? (
-                                  <div className="text-[10px] text-red-500 uppercase tracking-wide font-medium">
-                                    {t("moreExpensive", {
-                                      amount: formatPriceForDisplay(
-                                        diff,
-                                        "THB",
-                                      ),
-                                    })}
-                                  </div>
-                                ) : null;
-                              })()}
-                          </div>
-                          {pricingData.totalPrice > 0 && (
-                            <div className="text-right">
-                              <span className="text-sm font-bold text-[#ffffff]">
-                                {formatPriceForDisplay(
-                                  calculateOTAPrice(
-                                    pricingData.totalPrice,
-                                    tripcomMarkup,
-                                    extraGuestCost,
-                                    property?.cleaningFee || 0,
-                                  ),
-                                  "THB",
-                                )}
-                              </span>
-                              {pricingData.nights > 0 && (
-                                <div className="text-[10px] text-white/50">
-                                  {formatPriceForDisplay(
-                                    Math.round(
-                                      calculateOTAPrice(
-                                        pricingData.totalPrice,
-                                        tripcomMarkup,
-                                        extraGuestCost,
-                                        property?.cleaningFee || 0,
-                                      ) / pricingData.nights,
-                                    ),
-                                    "THB",
-                                  )}
-                                  {t("perNight")}
-                                </div>
-                              )}
-                            </div>
-                          )}
-                        </div>
-                        {pricingData.totalPrice > 0 && (
-                          <a
-                            href={property.tripcomListingUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="w-full py-2 bg-[#287DFA] text-white text-xs font-medium rounded-md text-center hover:bg-[#1f6ad8] transition-colors block"
-                            aria-label={t("bookOnTripcom")}
-                          >
-                            {t("bookNow")}
-                          </a>
-                        )}
-                      </div>
-                    )}
-                  </div>
-                </div>
-              </section>
             </div>
+            <button
+              type="button"
+              onClick={() => setMobileBookingOpen(true)}
+              className="shrink-0 inline-flex items-center justify-center h-12 px-6 rounded-full bg-ink text-white text-[15px] font-semibold"
+            >
+              {priced ? t("bookNow") : t("checkAvailability")}
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* Mobile booking sheet */}
+      {bookable && mobileBookingOpen && (
+        <div className="lg:hidden fixed inset-0 z-[75]">
+          <div
+            className="absolute inset-0 bg-black/40"
+            onClick={() => setMobileBookingOpen(false)}
+            aria-hidden="true"
+          />
+          <div
+            role="dialog"
+            aria-modal="true"
+            aria-label={t("bookYourStay")}
+            className="absolute inset-x-0 bottom-0 max-h-[88dvh] overflow-y-auto rounded-t-2xl bg-white p-5 pb-[calc(1.25rem+env(safe-area-inset-bottom))] animate-in slide-in-from-bottom-4 fade-in-0 duration-200 motion-reduce:animate-none"
+          >
+            <div className="flex items-center justify-between mb-4">
+              <h2 className="text-lg font-semibold normal-case tracking-normal text-ink">
+                {t("bookYourStay")}
+              </h2>
+              <button
+                type="button"
+                onClick={() => setMobileBookingOpen(false)}
+                className="w-9 h-9 rounded-full grid place-items-center text-ink hover:bg-neutral-100"
+                aria-label={t("close")}
+              >
+                <X className="w-5 h-5" aria-hidden="true" />
+              </button>
+            </div>
+            {renderBookingPanel({ inlineCalendar: true })}
           </div>
         </div>
       )}
@@ -2536,7 +1357,7 @@ export default function PropertyDetails({
           startIndex={lightboxStartIndex}
           isOpen={lightboxOpen}
           onClose={() => setLightboxOpen(false)}
-          propertyName={property.name}
+          propertyName={title}
         />
       )}
 
@@ -2551,7 +1372,7 @@ export default function PropertyDetails({
             setLightboxStartIndex(index);
             setLightboxOpen(true);
           }}
-          propertyName={property.name}
+          propertyName={title}
         />
       )}
     </div>

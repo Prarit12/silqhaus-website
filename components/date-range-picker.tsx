@@ -27,6 +27,9 @@ interface DateRangePickerProps {
   onError?: (error: string | null) => void;
   applyMarkup?: boolean;
   markupSource: SilqhausMarkupSource;
+  /** Render the calendar in normal flow (for scrollable sheets) instead of
+   *  as an absolute popup, which a scroll container would clip. */
+  inlineCalendar?: boolean;
 }
 
 function formatAbbreviatedPrice(price: number): string {
@@ -63,6 +66,7 @@ export function DateRangePicker({
   onError,
   applyMarkup = true,
   markupSource,
+  inlineCalendar = false,
 }: DateRangePickerProps) {
   const t = useTranslations("dateRangePicker");
   const locale = useLocale();
@@ -245,7 +249,13 @@ export function DateRangePicker({
     }
 
     return (
-      <div className="absolute top-full left-0 right-0 z-50 mt-1 bg-white text-gray-900 rounded-lg shadow-xl border border-gray-200 p-3">
+      <div
+        className={`${
+          inlineCalendar
+            ? "relative mt-2"
+            : "absolute top-full left-0 right-0 z-50 mt-1"
+        } bg-white text-gray-900 rounded-lg shadow-xl border border-gray-200 p-3`}
+      >
         <div className="flex items-center justify-between mb-3">
           <button
             type="button"
@@ -348,9 +358,9 @@ export function DateRangePicker({
                   disabled={disabled || noPrice}
                   className={`
                     w-12 h-14 text-xs rounded-md relative flex flex-col items-center justify-center gap-0
-                    ${disabled || noPrice ? "cursor-not-allowed" : "cursor-pointer hover:bg-[#ffffff]/20"}
-                    ${isSelected ? "bg-[#ffffff] text-white" : ""}
-                    ${isInRange ? "bg-[#ffffff]/10" : ""}
+                    ${disabled || noPrice ? "cursor-not-allowed" : "cursor-pointer hover:bg-neutral-100"}
+                    ${isSelected ? "bg-ink text-white" : ""}
+                    ${isInRange ? "bg-neutral-100" : ""}
                     ${isPast || reserved || noPrice ? "text-gray-400" : ""}
                     ${isMinStayBlocked && !isPast && !reserved && !noPrice ? "text-orange-400 bg-orange-50" : ""}
                     ${spansUnavailable ? "text-red-500 bg-red-50 ring-1 ring-red-300" : ""}
@@ -389,7 +399,7 @@ export function DateRangePicker({
           <button
             type="button"
             onClick={() => setShowCalendar(null)}
-            className="text-[#ffffff] font-medium hover:underline"
+            className="text-ink font-medium hover:underline"
           >
             {t("close")}
           </button>
@@ -412,7 +422,7 @@ export function DateRangePicker({
     <div className="relative">
       <div className="grid grid-cols-2 gap-1.5">
         <div className="relative">
-          <label className="block text-xs font-bold uppercase tracking-wide mb-0.5 text-white">
+          <label className="block text-xs font-bold uppercase tracking-wide mb-0.5 text-ink">
             {t("checkIn")}
           </label>
           <button
@@ -421,9 +431,9 @@ export function DateRangePicker({
               setShowCalendar(showCalendar === "checkin" ? null : "checkin")
             }
             className={`
-              w-full p-1.5 text-xs border rounded text-left bg-white
-              ${showCalendar === "checkin" ? "border-[#ffffff] ring-1 ring-[#ffffff]" : "border-white/60"}
-              ${checkInDate ? "text-gray-900" : "text-gray-400"}
+              w-full p-2 text-xs border rounded-lg text-left bg-white
+              ${showCalendar === "checkin" ? "border-ink ring-1 ring-ink" : "border-neutral-300"}
+              ${checkInDate ? "text-gray-900" : "text-neutral-500"}
             `}
           >
             {checkInDate ? formatDisplayDate(checkInDate) : t("selectDate")}
@@ -444,7 +454,7 @@ export function DateRangePicker({
           )}
         </div>
         <div className="relative">
-          <label className="block text-xs font-bold uppercase tracking-wide mb-0.5 text-white">
+          <label className="block text-xs font-bold uppercase tracking-wide mb-0.5 text-ink">
             {t("checkOut")}
           </label>
           <button
@@ -454,9 +464,9 @@ export function DateRangePicker({
             }
             disabled={!checkInDate}
             className={`
-              w-full p-1.5 text-xs border rounded text-left bg-white
-              ${showCalendar === "checkout" ? "border-[#ffffff] ring-1 ring-[#ffffff]" : "border-white/60"}
-              ${checkOutDate ? "text-gray-900" : "text-gray-400"}
+              w-full p-2 text-xs border rounded-lg text-left bg-white
+              ${showCalendar === "checkout" ? "border-ink ring-1 ring-ink" : "border-neutral-300"}
+              ${checkOutDate ? "text-gray-900" : "text-neutral-500"}
               ${!checkInDate ? "opacity-50 cursor-not-allowed" : ""}
             `}
           >
@@ -481,7 +491,7 @@ export function DateRangePicker({
       {showCalendar && renderCalendar()}
 
       {isLoading && (
-        <div className="mt-2 text-center text-xs text-gray-400">
+        <div className="mt-2 text-center text-xs text-neutral-600">
           {t("loadingAvailability")}
         </div>
       )}
