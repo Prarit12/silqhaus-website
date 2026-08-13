@@ -3800,6 +3800,8 @@
       "termTotalNights": "{nights} nights · {total} total",
       "adrGross": "avg {rate}/night",
       "adrNet": "net avg {rate}/night",
+      "partnerCta": "Visit MonthlyFinder",
+      "partnerLater": "Maybe later",
       "financialTitle": "Financial Summary",
       "currencyLabel": "Display currency",
       "currencyNote": "Converted at today's rate for reference — final pricing is in Thai Baht (฿).",

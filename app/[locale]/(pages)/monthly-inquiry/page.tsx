@@ -26,6 +26,7 @@ import {
   Phone,
   Send,
   Star,
+  X,
 } from "lucide-react";
 import { SiLine, SiWhatsapp } from "react-icons/si";
 import { useTranslations, useLocale } from "next-intl";
@@ -360,6 +361,22 @@ function MonthlyStays() {
     message: "",
   });
   const [panelTab, setPanelTab] = useState<"details" | "viewing">("details");
+  const [partnerOpen, setPartnerOpen] = useState(false);
+
+  // Partner pop-up greets every arrival, after the page has painted.
+  useEffect(() => {
+    const id = setTimeout(() => setPartnerOpen(true), 1200);
+    return () => clearTimeout(id);
+  }, []);
+
+  useEffect(() => {
+    if (!partnerOpen) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setPartnerOpen(false);
+    };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [partnerOpen]);
   const [viewDate, setViewDate] = useState<string | null>(null);
   const [viewOffset, setViewOffset] = useState(0);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -969,34 +986,6 @@ function MonthlyStays() {
           </div>
         </div>
 
-
-        {/* Partner site — monthly rentals across the rest of Thailand */}
-        <a
-          href="https://www.monthlyfinder.com"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="mt-6 flex flex-wrap items-center gap-3 rounded-2xl border border-neutral-200 px-4 py-3.5 hover:bg-neutral-50 transition-colors"
-        >
-          <span className="w-9 h-9 rounded-full bg-neutral-100 grid place-items-center shrink-0">
-            <Globe
-              className="w-[18px] h-[18px] text-ink"
-              strokeWidth={1.5}
-              aria-hidden="true"
-            />
-          </span>
-          <span className="flex-1 min-w-0 basis-52">
-            <span className="block text-[15px] font-semibold text-ink">
-              {t("quote.partnerTitle")}
-            </span>
-            <span className="block text-[13px] text-neutral-600">
-              {t("quote.partnerBody")}
-            </span>
-          </span>
-          <span className="shrink-0 inline-flex items-center gap-1.5 text-[15px] font-bold text-ink underline underline-offset-4">
-            monthlyfinder.com
-            <ExternalLink className="w-4 h-4" strokeWidth={2} aria-hidden="true" />
-          </span>
-        </a>
           </div>
 
         {/* Contact card — Request Details / Schedule Viewing tabs */}
@@ -1387,6 +1376,69 @@ function MonthlyStays() {
         </div>
         </div>
       </div>
+
+      {/* Partner pop-up — monthly rentals across the rest of Thailand */}
+      {partnerOpen && (
+        <div
+          className="fixed inset-0 z-[100] flex items-center justify-center p-4"
+          role="dialog"
+          aria-modal="true"
+          aria-label={t("quote.partnerTitle")}
+        >
+          <button
+            type="button"
+            className="absolute inset-0 bg-black/40"
+            aria-label={t("quote.partnerLater")}
+            onClick={() => setPartnerOpen(false)}
+          />
+          <div className="relative w-full max-w-md rounded-2xl bg-white p-6 sm:p-7 shadow-2xl">
+            <button
+              type="button"
+              onClick={() => setPartnerOpen(false)}
+              aria-label={t("quote.partnerLater")}
+              className="absolute top-4 right-4 w-9 h-9 rounded-full grid place-items-center text-neutral-500 hover:text-ink hover:bg-neutral-100 transition-colors"
+            >
+              <X className="w-5 h-5" aria-hidden="true" />
+            </button>
+            <span className="w-11 h-11 rounded-full bg-[#F5F4F0] grid place-items-center">
+              <Globe
+                className="w-5 h-5 text-ink"
+                strokeWidth={1.5}
+                aria-hidden="true"
+              />
+            </span>
+            <h2 className="mt-4 text-xl font-bold normal-case tracking-normal text-ink text-balance">
+              {t("quote.partnerTitle")}
+            </h2>
+            <p className="mt-2 text-sm leading-relaxed text-neutral-600">
+              {t("quote.partnerBody")}
+            </p>
+            <div className="mt-5 flex flex-col sm:flex-row gap-2.5">
+              <a
+                href="https://www.monthlyfinder.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setPartnerOpen(false)}
+                className="flex-1 inline-flex items-center justify-center gap-2 h-11 rounded-full bg-ink text-white hover:text-white text-sm font-semibold hover:bg-neutral-800 transition-colors"
+              >
+                {t("quote.partnerCta")}
+                <ExternalLink
+                  className="w-4 h-4"
+                  strokeWidth={2}
+                  aria-hidden="true"
+                />
+              </a>
+              <button
+                type="button"
+                onClick={() => setPartnerOpen(false)}
+                className="h-11 px-5 rounded-full border border-neutral-300 text-sm font-semibold text-ink hover:border-ink transition-colors"
+              >
+                {t("quote.partnerLater")}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </main>
   );
 }
