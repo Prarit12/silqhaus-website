@@ -15,6 +15,8 @@ import emailjs from "@emailjs/browser";
 import {
   Calendar,
   Check,
+  ChevronLeft,
+  ChevronRight,
   ExternalLink,
   Globe,
   Loader2,
@@ -328,12 +330,38 @@ function MonthlyStays() {
     tenants: "",
     message: "",
   });
-  const [formOpen, setFormOpen] = useState(false);
+  const [panelTab, setPanelTab] = useState<"details" | "viewing">("details");
+  const [viewDate, setViewDate] = useState<string | null>(null);
+  const [viewOffset, setViewOffset] = useState(0);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<
     "idle" | "success" | "error"
   >("idle");
   const [errors, setErrors] = useState<{ email?: string; phone?: string }>({});
+
+  // Days a guest can visit: future dates the live calendar marks free.
+  const viewableDays = useMemo(() => {
+    const cutoff = addDaysStr(today, 1);
+    return (calendarQuery.data ?? [])
+      .filter(
+        (d) =>
+          d.date >= cutoff && d.isAvailable === 1 && d.status !== "reserved",
+      )
+      .map((d) => d.date)
+      .sort();
+  }, [calendarQuery.data, today]);
+
+  useEffect(() => {
+    if (viewableDays.length === 0) {
+      setViewDate(null);
+      setViewOffset(0);
+      return;
+    }
+    if (!viewDate || !viewableDays.includes(viewDate)) {
+      setViewDate(viewableDays[0]);
+      setViewOffset(0);
+    }
+  }, [viewableDays, viewDate]);
 
   useEffect(() => {
     if (submitStatus === "success" || submitStatus === "error") {
@@ -348,10 +376,23 @@ function MonthlyStays() {
     phone === "" || /^[0-9\s\-]{6,15}$/.test(phone);
 
   const scrollToForm = () => {
-    setFormOpen(true);
+    setPanelTab("details");
     setForm((prev) => ({
       ...prev,
       message: prev.message || quoteMessage,
+    }));
+    formRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+
+  const scheduleViewing = () => {
+    if (!viewDate) return;
+    setPanelTab("details");
+    setForm((prev) => ({
+      ...prev,
+      message: t("viewing.message", {
+        property: selectedTitle,
+        date: formatDateForDisplay(viewDate),
+      }),
     }));
     formRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
@@ -888,97 +929,145 @@ function MonthlyStays() {
         </a>
           </div>
 
-        {/* Contact card — details up front, quote form behind "Message us" */}
+        {/* Contact card — Request Details / Schedule Viewing tabs */}
         <div
           ref={formRef}
           className="mt-10 lg:mt-0 scroll-mt-24 lg:sticky lg:top-24 rounded-2xl border border-neutral-200 p-5 sm:p-6"
         >
-          <div className="grid grid-cols-[32px_minmax(0,1fr)] gap-x-4 gap-y-6 items-center">
-            <MessageCircle
-              className="w-7 h-7 text-ink justify-self-center"
-              strokeWidth={1.5}
-              aria-hidden="true"
-            />
-            <h2 className="text-xl font-bold normal-case tracking-normal text-ink">
-              {t("form.anyQuestions")}
-            </h2>
-
-            <span aria-hidden="true" />
-            <div>
+          <div
+            role="tablist"
+            aria-label={t("form.anyQuestions")}
+            className="grid grid-cols-2 border-b border-neutral-200"
+          >
+            {(
+              [
+                ["details", t("viewing.tabRequest")],
+                ["viewing", t("viewing.tabViewing")],
+              ] as const
+            ).map(([key, label]) => (
               <button
+                key={key}
                 type="button"
-                onClick={() => setFormOpen((v) => !v)}
-                aria-expanded={formOpen}
-                className="inline-flex items-center justify-center h-11 px-6 rounded-full border-[1.5px] border-ink text-[15px] font-semibold text-ink hover:bg-neutral-50 transition-colors"
+                role="tab"
+                aria-selected={panelTab === key}
+                onClick={() => setPanelTab(key)}
+                className={`h-11 -mb-px border-b-2 text-[15px] font-semibold transition-colors ${
+                  panelTab === key
+                    ? "text-ink border-ink"
+                    : "text-neutral-500 border-transparent hover:text-ink"
+                }`}
               >
-                {t("form.messageUs")}
+                {label}
               </button>
-            </div>
-
-            {CONTACT_PHONE && (
-              <>
-                <Phone
-                  className="w-6 h-6 text-ink justify-self-center"
-                  strokeWidth={1.5}
-                  aria-hidden="true"
-                />
-                <a
-                  href={`tel:${CONTACT_PHONE_TEL || CONTACT_PHONE.replace(/[^+\d]/g, "")}`}
-                  className="justify-self-start text-base font-semibold text-ink underline underline-offset-4 decoration-1 hover:decoration-2"
-                >
-                  {CONTACT_PHONE}
-                </a>
-              </>
-            )}
-            {CONTACT_WHATSAPP && (
-              <>
-                <SiWhatsapp
-                  className="w-6 h-6 text-ink justify-self-center"
-                  aria-hidden="true"
-                />
-                <a
-                  href={`https://wa.me/${CONTACT_WHATSAPP.replace(/[^0-9]/g, "")}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="justify-self-start text-base font-semibold text-ink underline underline-offset-4 decoration-1 hover:decoration-2"
-                >
-                  {CONTACT_WHATSAPP} (WhatsApp)
-                </a>
-              </>
-            )}
-            {CONTACT_LINE && (
-              <>
-                <SiLine
-                  className="w-6 h-6 text-ink justify-self-center"
-                  aria-hidden="true"
-                />
-                <a
-                  href={`https://line.me/R/ti/p/${encodeURIComponent(CONTACT_LINE)}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="justify-self-start text-base font-semibold text-ink underline underline-offset-4 decoration-1 hover:decoration-2"
-                >
-                  {CONTACT_LINE} (LINE)
-                </a>
-              </>
-            )}
-            <Mail
-              className="w-6 h-6 text-ink justify-self-center"
-              strokeWidth={1.5}
-              aria-hidden="true"
-            />
-            <a
-              href={`mailto:${SUPPORT_EMAIL}`}
-              className="justify-self-start text-base font-semibold text-ink underline underline-offset-4 decoration-1 hover:decoration-2 break-all"
-            >
-              {SUPPORT_EMAIL}
-            </a>
+            ))}
           </div>
 
-          {formOpen && (
-          <div className="mt-6 pt-6 border-t border-neutral-100">
-          <h3 className="text-base font-semibold text-ink">{t("form.title")}</h3>
-          <p className="mt-1 text-sm text-neutral-600">{t("form.subtitle")}</p>
+          {/* Schedule viewing — only dates the calendar marks free */}
+          {panelTab === "viewing" && (
+            <div className="mt-5">
+              {!selected ? (
+                <p className="text-sm text-neutral-600">
+                  {t("viewing.pickPropertyFirst")}
+                </p>
+              ) : calendarQuery.isLoading ? (
+                <p className="text-sm text-neutral-600">
+                  {t("viewing.loadingDates")}
+                </p>
+              ) : viewableDays.length === 0 ? (
+                <p className="text-sm text-neutral-600">
+                  {t("viewing.noDates")}
+                </p>
+              ) : (
+                <>
+                  <div className="flex items-center gap-2">
+                    <button
+                      type="button"
+                      onClick={() => setViewOffset((o) => Math.max(0, o - 3))}
+                      disabled={viewOffset === 0}
+                      aria-label={t("viewing.prevDates")}
+                      className="w-9 h-9 rounded-full border border-neutral-300 grid place-items-center shrink-0 text-ink hover:border-ink transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+                    >
+                      <ChevronLeft className="w-4 h-4" aria-hidden="true" />
+                    </button>
+                    <div className="grid grid-cols-3 gap-2 flex-1 min-w-0">
+                      {viewableDays
+                        .slice(viewOffset, viewOffset + 3)
+                        .map((d) => {
+                          const dt = new Date(`${d}T00:00:00`);
+                          const sel = d === viewDate;
+                          return (
+                            <button
+                              key={d}
+                              type="button"
+                              onClick={() => setViewDate(d)}
+                              aria-pressed={sel}
+                              className={`rounded-xl border px-1 py-3 text-center transition-colors ${
+                                sel
+                                  ? "bg-ink text-white border-ink"
+                                  : "bg-white text-ink border-neutral-300 hover:border-ink"
+                              }`}
+                            >
+                              <span
+                                className={`block text-[10px] font-semibold uppercase tracking-wide truncate ${
+                                  sel ? "text-white/70" : "text-neutral-500"
+                                }`}
+                              >
+                                {dt.toLocaleDateString(
+                                  locale === "th" ? "th-TH" : "en-GB",
+                                  { weekday: "long" },
+                                )}
+                              </span>
+                              <span className="block text-2xl font-bold leading-8">
+                                {dt.getDate()}
+                              </span>
+                              <span
+                                className={`block text-[11px] font-semibold uppercase tracking-wide ${
+                                  sel ? "text-white/70" : "text-neutral-500"
+                                }`}
+                              >
+                                {dt.toLocaleDateString(
+                                  locale === "th" ? "th-TH" : "en-GB",
+                                  { month: "short" },
+                                )}
+                              </span>
+                            </button>
+                          );
+                        })}
+                    </div>
+                    <button
+                      type="button"
+                      onClick={() =>
+                        setViewOffset((o) =>
+                          Math.min(o + 3, Math.max(0, viewableDays.length - 3)),
+                        )
+                      }
+                      disabled={viewOffset + 3 >= viewableDays.length}
+                      aria-label={t("viewing.nextDates")}
+                      className="w-9 h-9 rounded-full border border-neutral-300 grid place-items-center shrink-0 text-ink hover:border-ink transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+                    >
+                      <ChevronRight className="w-4 h-4" aria-hidden="true" />
+                    </button>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={scheduleViewing}
+                    disabled={!viewDate}
+                    className="mt-4 w-full inline-flex items-center justify-center gap-2 h-12 rounded-full bg-ink bg-[linear-gradient(90deg,#09081F_0%,#382124_45%,#673929_65%,#95522E_80%,#C46A33_92%,#F38338_100%)] text-white text-[15px] font-semibold hover:opacity-90 transition-opacity disabled:opacity-40 disabled:cursor-not-allowed"
+                  >
+                    <Calendar className="w-4 h-4" aria-hidden="true" />
+                    {t("viewing.cta")}
+                  </button>
+                  <p className="mt-2.5 text-center text-xs text-neutral-500">
+                    {t("viewing.freeNote")}
+                  </p>
+                </>
+              )}
+            </div>
+          )}
+
+          {panelTab === "details" && (
+          <div className="mt-5">
+          <p className="text-sm text-neutral-600">{t("form.subtitle")}</p>
 
           <form onSubmit={handleSubmit} className="mt-5 space-y-5">
             <div className="grid grid-cols-1 gap-4">
@@ -1158,6 +1247,73 @@ function MonthlyStays() {
           </form>
           </div>
           )}
+
+          {/* Contact details — always visible under either tab */}
+          <div className="mt-6 pt-5 border-t border-neutral-100">
+            <p className="text-[15px] font-bold text-ink">
+              {t("form.anyQuestions")}
+            </p>
+            <div className="mt-4 grid grid-cols-[24px_minmax(0,1fr)] gap-x-3.5 gap-y-4 items-center">
+              {CONTACT_PHONE && (
+                <>
+                  <Phone
+                    className="w-5 h-5 text-ink justify-self-center"
+                    strokeWidth={1.5}
+                    aria-hidden="true"
+                  />
+                  <a
+                    href={`tel:${CONTACT_PHONE_TEL || CONTACT_PHONE.replace(/[^+\d]/g, "")}`}
+                    className="justify-self-start text-[15px] font-semibold text-ink underline underline-offset-4 decoration-1 hover:decoration-2"
+                  >
+                    {CONTACT_PHONE}
+                  </a>
+                </>
+              )}
+              {CONTACT_WHATSAPP && (
+                <>
+                  <SiWhatsapp
+                    className="w-5 h-5 text-ink justify-self-center"
+                    aria-hidden="true"
+                  />
+                  <a
+                    href={`https://wa.me/${CONTACT_WHATSAPP.replace(/[^0-9]/g, "")}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="justify-self-start text-[15px] font-semibold text-ink underline underline-offset-4 decoration-1 hover:decoration-2"
+                  >
+                    {CONTACT_WHATSAPP} (WhatsApp)
+                  </a>
+                </>
+              )}
+              {CONTACT_LINE && (
+                <>
+                  <SiLine
+                    className="w-5 h-5 text-ink justify-self-center"
+                    aria-hidden="true"
+                  />
+                  <a
+                    href={`https://line.me/R/ti/p/${encodeURIComponent(CONTACT_LINE)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="justify-self-start text-[15px] font-semibold text-ink underline underline-offset-4 decoration-1 hover:decoration-2"
+                  >
+                    {CONTACT_LINE} (LINE)
+                  </a>
+                </>
+              )}
+              <Mail
+                className="w-5 h-5 text-ink justify-self-center"
+                strokeWidth={1.5}
+                aria-hidden="true"
+              />
+              <a
+                href={`mailto:${SUPPORT_EMAIL}`}
+                className="justify-self-start text-[15px] font-semibold text-ink underline underline-offset-4 decoration-1 hover:decoration-2 break-all"
+              >
+                {SUPPORT_EMAIL}
+              </a>
+            </div>
+          </div>
         </div>
         </div>
       </div>
