@@ -18,7 +18,13 @@ export const CURRENCY_OPTIONS = [
 ] as const;
 export type CurrencyCode = (typeof CURRENCY_OPTIONS)[number]["code"];
 
-function Flag({ code }: { code: CurrencyCode }) {
+function Flag({
+  code,
+  className = "w-6 h-[18px]",
+}: {
+  code: CurrencyCode;
+  className?: string;
+}) {
   const svg = (() => {
     switch (code) {
       case "THB":
@@ -102,7 +108,9 @@ function Flag({ code }: { code: CurrencyCode }) {
     }
   })();
   return (
-    <span className="inline-flex w-6 h-[18px] rounded-[3px] overflow-hidden ring-1 ring-black/10 shrink-0">
+    <span
+      className={`inline-flex ${className} rounded-[3px] overflow-hidden ring-1 ring-black/10 shrink-0`}
+    >
       {svg}
     </span>
   );
@@ -142,12 +150,12 @@ export function CurrencySelect({ value, onChange }: CurrencySelectProps) {
         aria-expanded={open}
         aria-haspopup="listbox"
         aria-label={t("currencyLabel")}
-        className="inline-flex items-center gap-2 h-9 pl-2.5 pr-3 rounded-full border border-neutral-300 bg-white text-[13px] font-semibold text-ink hover:border-ink transition-colors"
+        className="inline-flex items-center gap-2 h-10 pl-3 pr-3.5 rounded-full border border-neutral-300 bg-white text-[15px] font-bold text-ink hover:border-ink transition-colors"
       >
-        <Flag code={value} />
+        <Flag code={value} className="w-7 h-5" />
         {value}
         <ChevronDown
-          className={`w-3.5 h-3.5 text-neutral-500 transition-transform ${open ? "rotate-180" : ""}`}
+          className={`w-4 h-4 text-neutral-500 transition-transform ${open ? "rotate-180" : ""}`}
           aria-hidden="true"
         />
       </button>

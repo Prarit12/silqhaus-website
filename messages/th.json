@@ -3799,6 +3799,7 @@
       "termTotalNights": "{nights} คืน · รวม {total}",
       "adrGross": "เฉลี่ย {rate}/คืน",
       "adrNet": "สุทธิเฉลี่ย {rate}/คืน",
+      "financialTitle": "สรุปค่าใช้จ่าย",
       "currencyLabel": "สกุลเงินที่แสดง",
       "currencyNote": "แปลงตามอัตราวันนี้เพื่ออ้างอิง — ราคาจริงคิดเป็นเงินบาท (฿)",
       "currencies": {

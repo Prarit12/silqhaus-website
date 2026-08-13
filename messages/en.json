@@ -3771,7 +3771,7 @@
       "step1Title": "Choose your property",
       "step2Title": "Your move-in date",
       "step3Title": "For how long",
-      "step4Title": "Summary",
+      "step4Title": "Booking Summary",
       "continue": "Continue",
       "back": "Back",
       "partnerTitle": "Looking beyond Phuket & Pattaya?",
@@ -3799,6 +3799,7 @@
       "termTotalNights": "{nights} nights · {total} total",
       "adrGross": "avg {rate}/night",
       "adrNet": "net avg {rate}/night",
+      "financialTitle": "Financial Summary",
       "currencyLabel": "Display currency",
       "currencyNote": "Converted at today's rate for reference — final pricing is in Thai Baht (฿).",
       "currencies": {

@@ -808,14 +808,17 @@ function MonthlyStays() {
 
                 {quote ? (
                   <div className="mt-4 text-sm">
-                    {fxQuery.data && (
-                      <div className="mb-3 flex justify-end">
+                    <div className="mb-3 flex items-center justify-between gap-3">
+                      <p className="text-[15px] font-bold text-ink">
+                        {t("quote.financialTitle")}
+                      </p>
+                      {fxQuery.data && (
                         <CurrencySelect
                           value={currency}
                           onChange={setCurrency}
                         />
-                      </div>
-                    )}
+                      )}
+                    </div>
                     <div className="flex justify-between text-neutral-600">
                       <span>
                         {t("quote.nightlyTotal", { count: quote.nights })}
