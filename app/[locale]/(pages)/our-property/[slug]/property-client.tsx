@@ -10,6 +10,7 @@ import {
   Bath,
   Bed,
   Building2,
+  CalendarDays,
   Check,
   Minus,
   Plus,
@@ -845,6 +846,20 @@ export default function PropertyDetails({
   const bookable =
     !isGuesty || calendarData.isLoading || calendarData.calendar.length > 0;
 
+  /** Monthly-stay promo — its own pill below the booking card, not buried
+   *  inside it. */
+  const monthlyPromoPill = (
+    <Link
+      href={`/monthly-inquiry?property=${encodeURIComponent(property.name || "")}`}
+      className="mt-3 flex flex-wrap items-center justify-center gap-x-2 gap-y-0.5 min-h-11 rounded-full border border-ink bg-white px-5 py-2.5 text-center text-[13px] font-semibold text-ink hover:text-ink hover:bg-neutral-50 transition-colors"
+    >
+      <CalendarDays className="w-4 h-4 shrink-0" aria-hidden="true" />
+      <span>
+        {t("monthlyPromoText")} {t("monthlyPromoLink")}
+      </span>
+    </Link>
+  );
+
   /** The booking panel, rendered twice: desktop sticky card and mobile sheet.
    *  The sheet needs the calendar inline — its scroll container would clip an
    *  absolutely-positioned popup. */
@@ -936,16 +951,6 @@ export default function PropertyDetails({
             : calendarData.minimumStay,
         })}
       </div>
-      <div className="mt-1.5 text-xs text-neutral-600">
-        {t("monthlyPromoText")}{" "}
-        <Link
-          href={`/monthly-inquiry?property=${encodeURIComponent(property.name || "")}`}
-          className="text-ink hover:text-ink font-medium underline underline-offset-2"
-        >
-          {t("monthlyPromoLink")}
-        </Link>
-      </div>
-
       {/* Status */}
       {pricingData.isLoading && (
         <div className="mt-3 text-xs text-neutral-600" role="status">
@@ -1312,6 +1317,7 @@ export default function PropertyDetails({
               <section className="rounded-2xl border border-neutral-200 bg-white shadow-[0_6px_24px_rgba(0,0,0,0.08)] p-5">
                 {renderBookingPanel()}
               </section>
+              {monthlyPromoPill}
             </div>
           )}
         </div>
@@ -1376,6 +1382,7 @@ export default function PropertyDetails({
               </button>
             </div>
             {renderBookingPanel({ inlineCalendar: true })}
+            {monthlyPromoPill}
           </div>
         </div>
       )}
