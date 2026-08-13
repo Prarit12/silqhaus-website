@@ -17,6 +17,7 @@ import {
   Minus,
   Plus,
   Ruler,
+  Share,
   Star,
   Users,
   X,
@@ -283,6 +284,56 @@ function ExpandableText({
         </button>
       )}
     </div>
+  );
+}
+
+/** Share pill: native share sheet where available, copy-link elsewhere. */
+function ShareButton({
+  title,
+  shareLabel,
+  copiedLabel,
+  ariaLabel,
+}: {
+  title: string;
+  shareLabel: string;
+  copiedLabel: string;
+  ariaLabel: string;
+}) {
+  const [copied, setCopied] = useState(false);
+
+  const onShare = async () => {
+    const url = window.location.href;
+    if (typeof navigator.share === "function") {
+      try {
+        await navigator.share({ title, url });
+      } catch {
+        // Guest closed the share sheet.
+      }
+      return;
+    }
+    try {
+      await navigator.clipboard.writeText(url);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      // Clipboard unavailable — nothing sensible to do.
+    }
+  };
+
+  return (
+    <button
+      type="button"
+      onClick={onShare}
+      aria-label={ariaLabel}
+      className="inline-flex items-center gap-2 rounded-full border border-neutral-300 bg-white text-ink hover:text-ink text-sm px-4 py-2 hover:border-ink transition-colors"
+    >
+      {copied ? (
+        <Check className="w-4 h-4" strokeWidth={2} aria-hidden="true" />
+      ) : (
+        <Share className="w-4 h-4" strokeWidth={2} aria-hidden="true" />
+      )}
+      {copied ? copiedLabel : shareLabel}
+    </button>
   );
 }
 
@@ -1253,7 +1304,14 @@ export default function PropertyDetails({
               {location && <span>{location}</span>}
             </p>
           </div>
-          <PMSFavoriteButton
+          <div className="flex items-center gap-2 shrink-0">
+            <ShareButton
+              title={title}
+              shareLabel={t("share")}
+              copiedLabel={t("linkCopied")}
+              ariaLabel={t("shareProperty")}
+            />
+            <PMSFavoriteButton
             listingId={String(property.id)}
             side="vacation"
             variant="detail"
@@ -1270,6 +1328,7 @@ export default function PropertyDetails({
               personCapacity: property.personCapacity ?? null,
             }}
           />
+          </div>
         </div>
 
         {/* Gallery */}
