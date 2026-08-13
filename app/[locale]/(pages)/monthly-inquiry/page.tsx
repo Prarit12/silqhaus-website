@@ -224,11 +224,14 @@ function MonthlyStays() {
     checkInParam && checkInParam > today ? checkInParam : addDaysStr(today, 14);
   const [moveIn, setMoveIn] = useState(defaultMoveIn);
   const [months, setMonths] = useState<number | null>(null);
+  const [customEnd, setCustomEnd] = useState<string | null>(null);
   const [step, setStep] = useState(1);
+  const hasTerm = months != null || !!customEnd;
 
   const moveOut = useMemo(
-    () => (moveIn && months ? addMonthsClamped(moveIn, months) : ""),
-    [moveIn, months],
+    () =>
+      customEnd || (moveIn && months ? addMonthsClamped(moveIn, months) : ""),
+    [moveIn, months, customEnd],
   );
 
   const quote = useMemo(() => {
@@ -271,7 +274,7 @@ function MonthlyStays() {
       nightlyTotal,
       discount,
       monthlyTotal,
-      perMonth: Math.round(monthlyTotal / (months || 1)),
+      perMonth: Math.round(monthlyTotal / (months ?? Math.max(1, nights / 30.44))),
       savings: nightlyTotal - monthlyTotal,
       estimated: missing > 0,
       conflicts,
@@ -283,13 +286,20 @@ function MonthlyStays() {
   // The message that travels to the form, WhatsApp and LINE.
   const quoteMessage = useMemo(() => {
     if (!selected || !quote) return "";
-    return t("quote.chatMessage", {
-      property: selectedTitle,
-      moveIn: formatDateForDisplay(moveIn),
-      months: months ?? 0,
-      rate: fmt(quote.perMonth),
-    });
-  }, [selected, quote, selectedTitle, moveIn, months, t]);
+    return months != null
+      ? t("quote.chatMessage", {
+          property: selectedTitle,
+          moveIn: formatDateForDisplay(moveIn),
+          months,
+          rate: fmt(quote.perMonth),
+        })
+      : t("quote.chatMessageDates", {
+          property: selectedTitle,
+          moveIn: formatDateForDisplay(moveIn),
+          moveOut: formatDateForDisplay(moveOut),
+          rate: fmt(quote.perMonth),
+        });
+  }, [selected, quote, selectedTitle, moveIn, moveOut, months, t]);
 
   const whatsappHref = CONTACT_WHATSAPP
     ? `https://wa.me/${CONTACT_WHATSAPP.replace(/[^0-9]/g, "")}${
@@ -421,12 +431,12 @@ function MonthlyStays() {
               const complete =
                 (n === 1 && !!selected) ||
                 (n === 2 && !!moveIn && step > 2) ||
-                (n === 3 && months != null);
+                (n === 3 && hasTerm);
               const reachable =
                 n === 1 ||
                 (n === 2 && !!selected) ||
                 (n === 3 && !!selected && !!moveIn) ||
-                (n === 4 && !!selected && !!moveIn && months != null);
+                (n === 4 && !!selected && !!moveIn && hasTerm);
               const active = step === n;
               return (
                 <li
@@ -535,59 +545,109 @@ function MonthlyStays() {
               </div>
             )}
 
-            {/* Step 2 — move-in date */}
+            {/* Step 2 — property beside a big, unmissable date field */}
             {step === 2 && (
-              <div className="mt-4 max-w-sm">
+              <div className="mt-5 grid grid-cols-1 sm:grid-cols-[auto_minmax(0,1fr)] gap-5 sm:gap-8 items-center">
                 {selected && (
-                  <div className="mb-4 flex items-center gap-3">
-                    <div className="relative w-14 h-12 rounded-lg overflow-hidden bg-neutral-100 shrink-0">
+                  <div className="flex items-center gap-3 sm:pr-8 sm:border-r sm:border-neutral-100">
+                    <div className="relative w-24 h-20 rounded-xl overflow-hidden bg-neutral-100 shrink-0">
                       {selected.listingImages?.[0]?.url && (
                         <Image
                           src={selected.listingImages[0].url}
                           alt={selectedTitle}
                           fill
-                          sizes="56px"
+                          sizes="96px"
                           className="object-cover"
                         />
                       )}
                     </div>
-                    <p className="text-sm font-medium text-ink">
-                      {selectedTitle}
-                    </p>
+                    <div className="min-w-0">
+                      <p className="text-[15px] font-semibold text-ink truncate">
+                        {selectedTitle}
+                      </p>
+                      <p className="text-[13px] text-neutral-500 truncate">
+                        {[selected.city, selected.state]
+                          .filter(Boolean)
+                          .join(", ")}
+                      </p>
+                    </div>
                   </div>
                 )}
-                <input
-                  type="date"
-                  min={today}
-                  value={moveIn}
-                  onChange={(e) => setMoveIn(e.target.value)}
-                  className={inputCls}
-                  aria-label={t("form.labels.moveIn")}
-                />
+                <div>
+                  <label
+                    htmlFor="wizard-movein"
+                    className="block text-xs font-bold uppercase tracking-wide mb-2 text-ink"
+                  >
+                    {t("form.labels.moveIn")}
+                  </label>
+                  <input
+                    id="wizard-movein"
+                    type="date"
+                    min={today}
+                    value={moveIn}
+                    onChange={(e) => setMoveIn(e.target.value)}
+                    className="w-full h-16 rounded-xl border-2 border-ink bg-white px-5 text-xl font-semibold text-ink shadow-[0_4px_16px_rgba(0,0,0,0.08)] focus:outline-none focus:ring-2 focus:ring-ink/20 [color-scheme:light]"
+                  />
+                </div>
               </div>
             )}
 
-            {/* Step 3 — length */}
+            {/* Step 3 — length via pills, or an exact check-out date */}
             {step === 3 && (
-              <div className="mt-4 flex flex-wrap gap-2">
-                {MONTH_OPTIONS.map((m) => (
-                  <button
-                    key={m}
-                    type="button"
-                    onClick={() => {
-                      setMonths(m);
-                      setStep(4);
-                    }}
-                    aria-pressed={months === m}
-                    className={`h-11 px-4 rounded-lg border text-sm font-semibold transition-colors ${
-                      months === m
-                        ? "bg-ink text-white border-ink"
-                        : "bg-white text-ink border-neutral-300 hover:border-ink"
-                    }`}
+              <div className="mt-4">
+                <div className="flex flex-wrap gap-2">
+                  {MONTH_OPTIONS.map((m) => (
+                    <button
+                      key={m}
+                      type="button"
+                      onClick={() => {
+                        setMonths(m);
+                        setCustomEnd(null);
+                        setStep(4);
+                      }}
+                      aria-pressed={months === m}
+                      className={`h-11 px-4 rounded-lg border text-sm font-semibold transition-colors ${
+                        months === m
+                          ? "bg-ink text-white border-ink"
+                          : "bg-white text-ink border-neutral-300 hover:border-ink"
+                      }`}
+                    >
+                      {t("quote.monthsShort", { count: m })}
+                    </button>
+                  ))}
+                </div>
+
+                <div className="mt-5 flex items-center gap-3" aria-hidden="true">
+                  <span className="h-px flex-1 bg-neutral-200" />
+                  <span className="text-xs font-semibold uppercase tracking-wide text-neutral-400">
+                    {t("quote.orDivider")}
+                  </span>
+                  <span className="h-px flex-1 bg-neutral-200" />
+                </div>
+
+                <div className="mt-4 max-w-md">
+                  <label
+                    htmlFor="wizard-moveout"
+                    className="block text-xs font-bold uppercase tracking-wide mb-2 text-ink"
                   >
-                    {t("quote.monthsShort", { count: m })}
-                  </button>
-                ))}
+                    {t("quote.checkOutLabel")}
+                  </label>
+                  <input
+                    id="wizard-moveout"
+                    type="date"
+                    min={addDaysStr(moveIn, 28)}
+                    value={customEnd ?? ""}
+                    onChange={(e) => {
+                      const v = e.target.value;
+                      setCustomEnd(v || null);
+                      if (v) setMonths(null);
+                    }}
+                    className="w-full h-14 rounded-xl border-2 border-ink bg-white px-5 text-lg font-semibold text-ink shadow-[0_4px_16px_rgba(0,0,0,0.08)] focus:outline-none focus:ring-2 focus:ring-ink/20 [color-scheme:light]"
+                  />
+                  <p className="mt-2 text-xs text-neutral-500">
+                    {t("quote.checkOutHint")}
+                  </p>
+                </div>
               </div>
             )}
 
@@ -608,7 +668,13 @@ function MonthlyStays() {
                     },
                     {
                       label: t("quote.step3Title"),
-                      value: `${t("quote.monthsShort", { count: months ?? 0 })} · ${formatDateForDisplay(moveIn)} → ${formatDateForDisplay(moveOut)}`,
+                      value: `${
+                        months != null
+                          ? t("quote.monthsShort", { count: months })
+                          : t("quote.nightsCount", {
+                              count: nightsBetween(moveIn, moveOut),
+                            })
+                      } · ${formatDateForDisplay(moveIn)} → ${formatDateForDisplay(moveOut)}`,
                       goto: 3,
                     },
                   ].map((row) => (
@@ -664,12 +730,17 @@ function MonthlyStays() {
                             {t("quote.perMonth")}
                           </span>
                         </span>
-                        {(months ?? 0) > 1 && (
+                        {(months != null ? months > 1 : quote.nights > 31) && (
                           <span className="block text-xs text-neutral-500">
-                            {t("quote.termTotal", {
-                              months: months ?? 0,
-                              total: fmt(quote.monthlyTotal),
-                            })}
+                            {months != null
+                              ? t("quote.termTotal", {
+                                  months,
+                                  total: fmt(quote.monthlyTotal),
+                                })
+                              : t("quote.termTotalNights", {
+                                  nights: quote.nights,
+                                  total: fmt(quote.monthlyTotal),
+                                })}
                           </span>
                         )}
                       </span>
@@ -770,7 +841,7 @@ function MonthlyStays() {
                   disabled={
                     (step === 1 && !selected) ||
                     (step === 2 && !moveIn) ||
-                    (step === 3 && months == null)
+                    (step === 3 && !hasTerm)
                   }
                   className="inline-flex items-center justify-center h-11 px-6 rounded-full bg-ink text-white text-sm font-semibold hover:bg-neutral-800 transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
                 >
