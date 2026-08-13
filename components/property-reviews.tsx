@@ -1,16 +1,16 @@
 "use client";
 
+import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Star } from "lucide-react";
 import { useTranslations, useLocale } from "next-intl";
 import { fetchReviewsWithCount } from "@/lib/api/hostaway";
-import { getOTAListingUrl } from "@/config/ota-channels";
 
 /**
  * Guest reviews, distilled: heading with the rating inline, the three most
- * recent quotes in a row, one link out to the full set. The
- * giant rating box and the one-at-a-time carousel are gone — the page's
- * title meta already carries the star.
+ * recent quotes in a row, and the full set expanding in place — guests
+ * never leave the site to read reviews. The giant rating box and the
+ * one-at-a-time carousel are gone; the title meta already carries the star.
  */
 
 interface PropertyReviewsProps {
@@ -45,6 +45,7 @@ export function PropertyReviews({
 }: PropertyReviewsProps) {
   const t = useTranslations("propertyDetail");
   const locale = useLocale();
+  const [expanded, setExpanded] = useState(false);
   const { data, isLoading } = useQuery<{
     reviews: DisplayableReview[];
     totalCount: number;
@@ -77,13 +78,15 @@ export function PropertyReviews({
 
   const { reviews: allReviews, totalCount } = data;
 
-  const displayReviews = allReviews
+  const textReviews = allReviews
     .filter((r) => r.publicReview && r.publicReview.trim() !== "")
     .sort(
       (a, b) =>
         new Date(b.insertedOn).getTime() - new Date(a.insertedOn).getTime(),
-    )
-    .slice(0, MAX_REVIEWS);
+    );
+  const displayReviews = expanded
+    ? textReviews
+    : textReviews.slice(0, MAX_REVIEWS);
 
   if (displayReviews.length === 0 && totalCount === 0) return null;
 
@@ -104,9 +107,6 @@ export function PropertyReviews({
       year: "numeric",
     });
   };
-
-  // Most of the feed syncs from Airbnb; one link out covers the full set.
-  const airbnbUrl = getOTAListingUrl(2018, property as Record<string, unknown>);
 
   return (
     <section className="py-8 border-b border-neutral-200">
@@ -146,7 +146,11 @@ export function PropertyReviews({
                   {formatMonthYear(review.insertedOn)}
                 </span>
               </p>
-              <p className="mt-1 text-sm leading-relaxed text-neutral-700 line-clamp-3">
+              <p
+                className={`mt-1 text-sm leading-relaxed text-neutral-700 ${
+                  expanded ? "" : "line-clamp-3"
+                }`}
+              >
                 {review.publicReview}
               </p>
             </div>
@@ -154,15 +158,17 @@ export function PropertyReviews({
         </div>
       )}
 
-      {airbnbUrl && (
-        <a
-          href={airbnbUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="mt-5 inline-block text-sm font-semibold text-ink underline underline-offset-4 hover:text-ink"
+      {textReviews.length > MAX_REVIEWS && (
+        <button
+          type="button"
+          onClick={() => setExpanded((v) => !v)}
+          aria-expanded={expanded}
+          className="mt-6 inline-flex items-center justify-center h-11 px-5 rounded-lg border border-ink text-[15px] font-semibold text-ink hover:bg-neutral-50 transition-colors"
         >
-          {t("readAllReviews", { count: totalCount })}
-        </a>
+          {expanded
+            ? t("showFewerReviews")
+            : t("showAllReviews", { count: textReviews.length })}
+        </button>
       )}
     </section>
   );

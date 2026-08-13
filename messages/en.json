@@ -3615,7 +3615,8 @@
     "close": "Close",
     "reviewsTitle": "Guest reviews",
     "reviewsCountShort": "{count} reviews",
-    "readAllReviews": "Read all {count} reviews on Airbnb",
+    "showAllReviews": "Show all {count} reviews",
+    "showFewerReviews": "Show fewer reviews",
     "bookingConditions": {
       "title": "Booking conditions",
       "cancellationTitle": "Cancellation",

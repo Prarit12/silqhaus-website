@@ -3615,7 +3615,8 @@
     "close": "ปิด",
     "reviewsTitle": "รีวิวจากผู้เข้าพัก",
     "reviewsCountShort": "{count} รีวิว",
-    "readAllReviews": "อ่านรีวิวทั้งหมด {count} รายการบน Airbnb",
+    "showAllReviews": "ดูรีวิวทั้งหมด {count} รายการ",
+    "showFewerReviews": "แสดงน้อยลง",
     "bookingConditions": {
       "title": "เงื่อนไขการจอง",
       "cancellationTitle": "การยกเลิก",
