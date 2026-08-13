@@ -216,6 +216,19 @@ export function BookingConditions({
               {t("comfortNote")}
             </p>
 
+            {/* Non-refundable rate option */}
+            <div className="mt-3 rounded-xl bg-neutral-50 border border-neutral-200 px-3.5 py-3">
+              <p className="text-[13px] font-semibold text-ink flex items-center gap-2">
+                {t("nonRefundableTitle")}
+                <span className="inline-flex items-center rounded-full bg-ink text-white text-[11px] font-bold px-2 py-0.5">
+                  −10%
+                </span>
+              </p>
+              <p className="mt-1 text-xs leading-relaxed text-neutral-600">
+                {t("nonRefundableBody")}
+              </p>
+            </div>
+
             {deadline && stayStart ? (
               /* Real dates: today → free-cancellation deadline → check-in */
               <div className="mt-6">
