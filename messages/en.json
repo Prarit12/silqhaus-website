@@ -3785,7 +3785,7 @@
       "loadingProperties": "Loading properties…",
       "pickProperty": "Which home would you like to stay in?",
       "lengthLabel": "Length of stay",
-      "monthsShort": "{count} mo",
+      "monthsShort": "{count, plural, one {# month} other {# months}}",
       "heroCta": "See your monthly rate",
       "orDivider": "or",
       "checkOutLabel": "Pick your exact check-out date",

@@ -676,7 +676,7 @@ function MonthlyStays() {
             {/* Step 3 — length via pills, or an exact check-out date */}
             {step === 3 && (
               <div className="mt-4">
-                <div className="flex flex-wrap gap-2">
+                <div className="grid grid-cols-2 sm:grid-cols-5 gap-2">
                   {MONTH_OPTIONS.map((m) => (
                     <button
                       key={m}
@@ -687,7 +687,7 @@ function MonthlyStays() {
                         setStep(4);
                       }}
                       aria-pressed={months === m}
-                      className={`h-11 px-4 rounded-lg border text-sm font-semibold transition-colors ${
+                      className={`h-12 w-full rounded-lg border text-sm font-semibold transition-colors ${
                         months === m
                           ? "bg-ink text-white border-ink"
                           : "bg-white text-ink border-neutral-300 hover:border-ink"
