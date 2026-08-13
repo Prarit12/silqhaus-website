@@ -15,6 +15,8 @@ import emailjs from "@emailjs/browser";
 import {
   Calendar,
   Check,
+  ExternalLink,
+  Globe,
   Loader2,
   MessageCircle,
   Send,
@@ -27,6 +29,7 @@ import {
   getCodeFromValue,
   DEFAULT_COUNTRY_VALUE,
 } from "@/lib/country-codes";
+import { MonthlyJourney } from "@/components/monthly-journey";
 import { displayPropertyName } from "@/config/property-names";
 import { monthlyDiscountFor } from "@/config/monthly";
 import { getSilqhausMarkupPercentage } from "@/config/ota-markups";
@@ -404,21 +407,8 @@ function MonthlyStays() {
           {t("quote.pageSubtitle")}
         </p>
 
-        {/* How it works */}
-        <div className="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-3 max-w-4xl">
-          {(["stepDates", "stepRate", "stepConfirm"] as const).map(
-            (key, i) => (
-              <div key={key} className="rounded-2xl border border-neutral-200 px-3.5 py-3">
-                <p className="text-xs font-semibold text-neutral-500">
-                  {i + 1}
-                </p>
-                <p className="mt-0.5 text-[13px] font-medium text-ink leading-snug">
-                  {t(`quote.${key}`)}
-                </p>
-              </div>
-            ),
-          )}
-        </div>
+        {/* How it works — illustrated journey */}
+        <MonthlyJourney />
 
         <div className="mt-8 lg:grid lg:grid-cols-[minmax(0,1fr)_440px] lg:gap-12 lg:items-start">
           <div className="min-w-0">
@@ -681,6 +671,33 @@ function MonthlyStays() {
           </div>
         )}
 
+        {/* Partner site — monthly rentals across the rest of Thailand */}
+        <a
+          href="https://www.monthlyfinder.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-6 flex flex-wrap items-center gap-3 rounded-2xl border border-neutral-200 px-4 py-3.5 hover:bg-neutral-50 transition-colors"
+        >
+          <span className="w-9 h-9 rounded-full bg-neutral-100 grid place-items-center shrink-0">
+            <Globe
+              className="w-[18px] h-[18px] text-ink"
+              strokeWidth={1.5}
+              aria-hidden="true"
+            />
+          </span>
+          <span className="flex-1 min-w-0 basis-52">
+            <span className="block text-[15px] font-semibold text-ink">
+              {t("quote.partnerTitle")}
+            </span>
+            <span className="block text-[13px] text-neutral-600">
+              {t("quote.partnerBody")}
+            </span>
+          </span>
+          <span className="shrink-0 inline-flex items-center gap-1.5 text-[15px] font-bold text-ink underline underline-offset-4">
+            monthlyfinder.com
+            <ExternalLink className="w-4 h-4" strokeWidth={2} aria-hidden="true" />
+          </span>
+        </a>
           </div>
 
         {/* Inquiry form — card column on desktop, in flow on mobile */}
