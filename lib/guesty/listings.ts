@@ -56,6 +56,7 @@ export interface GuestyRawListing {
   listed?: boolean;
   defaultCheckInTime?: string;
   defaultCheckOutTime?: string;
+  areaSquareFeet?: number;
   address?: GuestyAddress;
   picture?: GuestyPicture | string;
   pictures?: GuestyPicture[];
@@ -113,6 +114,10 @@ export interface NormalizedGuestyListing {
   /** "15:00" / "12:00" — Guesty's defaultCheckIn/OutTime. */
   checkInTime?: string;
   checkOutTime?: string;
+  /** Guesty propertyType ("House", "Condominium", ...). */
+  propertyType?: string;
+  /** Guesty's areaSquareFeet — entered as m² on this account. */
+  areaSqm?: number;
 }
 
 /** Attach the review summary, when one exists, to a normalized listing. */
@@ -242,6 +247,11 @@ export function normalizeGuestyListing(
       : raw.propertyType,
     checkInTime: raw.defaultCheckInTime || undefined,
     checkOutTime: raw.defaultCheckOutTime || undefined,
+    propertyType: raw.propertyType || undefined,
+    areaSqm:
+      typeof raw.areaSquareFeet === "number" && raw.areaSquareFeet > 0
+        ? raw.areaSquareFeet
+        : undefined,
     listingImages: images,
     images,
     listingAmenities: (raw.amenities || []).map((a, i) => ({
@@ -292,6 +302,7 @@ const LISTING_FIELDS = [
   "integrations",
   "defaultCheckInTime",
   "defaultCheckOutTime",
+  "areaSquareFeet",
 ].join(" ");
 
 // Hard block-list of Guesty listing IDs that should never appear on the site,
@@ -320,10 +331,9 @@ function isPublic(raw: GuestyRawListing): boolean {
 
 const LISTINGS_CACHE_TTL_MS = 10 * 60 * 1000;
 const LISTINGS_CACHE_TTL_SECONDS = LISTINGS_CACHE_TTL_MS / 1000;
-// v4: normalized listings now carry checkInTime/checkOutTime
-// (v3 added averageReviewRating/reviewsCount).
-const LISTINGS_KV_PREFIX = "guesty:listings:v4:";
-const LISTING_KV_PREFIX = "guesty:listing:v4:";
+// v5: adds propertyType/areaSqm (v4 check-in/out times, v3 review data).
+const LISTINGS_KV_PREFIX = "guesty:listings:v5:";
+const LISTING_KV_PREFIX = "guesty:listing:v5:";
 
 interface ListingsCacheEntry {
   data: NormalizedGuestyListing[];

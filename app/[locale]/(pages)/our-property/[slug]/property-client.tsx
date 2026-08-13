@@ -14,9 +14,11 @@ import {
   Check,
   Minus,
   Plus,
+  Ruler,
   Star,
   Users,
   X,
+  type LucideIcon,
 } from "lucide-react";
 import { SiAirbnb } from "react-icons/si";
 import dynamic from "next/dynamic";
@@ -47,6 +49,7 @@ const NearbyListingsCarousel = dynamic(
 import { fetchListingById } from "@/lib/api/hostaway";
 import { createPropertySlug } from "@/lib/slugify";
 import { displayPropertyName } from "@/config/property-names";
+import { propertySizeSqm, propertyTypeKey } from "@/config/property-facts";
 import { PMSFavoriteButton } from "@/components/pms-favorite-button";
 import {
   GUESTY_OTA_MARKUPS,
@@ -100,6 +103,9 @@ interface Property {
   checkOutTime?: string;
   /** Hostaway policy slug (flexible/moderate/firm/strict). */
   cancellationPolicy?: string;
+  propertyType?: string;
+  propertyTypeId?: number;
+  areaSqm?: number;
 }
 
 interface PropertyApiResult {
@@ -138,6 +144,9 @@ interface PropertyApiResult {
   checkInTime?: string;
   checkOutTime?: number | string;
   cancellationPolicy?: string;
+  propertyType?: string;
+  propertyTypeId?: number;
+  areaSqm?: number;
 }
 
 interface HostawayApiResponse {
@@ -186,6 +195,10 @@ function normalizeProperty(data: HostawayApiResponse): Property {
       (r.checkInTimeStart != null ? String(r.checkInTimeStart) : undefined),
     checkOutTime: r.checkOutTime != null ? String(r.checkOutTime) : undefined,
     cancellationPolicy: r.cancellationPolicy,
+    propertyType: r.propertyType,
+    propertyTypeId:
+      typeof r.propertyTypeId === "number" ? r.propertyTypeId : undefined,
+    areaSqm: typeof r.areaSqm === "number" ? r.areaSqm : undefined,
     roomType:
       r.roomType
         ?.replaceAll("_", " ")
@@ -846,6 +859,70 @@ export default function PropertyDetails({
   const bookable =
     !isGuesty || calendarData.isLoading || calendarData.calendar.length > 0;
 
+  // Stat strip under the gallery: type → bedrooms → bathrooms → size → guests.
+  // Cells render only when the fact exists (size is config + PMS driven).
+  const typeKey = propertyTypeKey({
+    propertyType: property.propertyType,
+    propertyTypeId: property.propertyTypeId,
+  });
+  const sizeSqm = propertySizeSqm({
+    id: property.id,
+    source,
+    areaSqm: property.areaSqm,
+  });
+  const factCells: Array<{
+    key: string;
+    icon: LucideIcon;
+    value: string;
+    label: string;
+  }> = [];
+  if (typeKey || property.roomType) {
+    factCells.push({
+      key: "type",
+      icon: Building2,
+      value: typeKey ? t(`facts.typeNames.${typeKey}`) : property.roomType!,
+      label: t("facts.type"),
+    });
+  }
+  if (property.bedroomsNumber) {
+    factCells.push({
+      key: "bedrooms",
+      icon: Bed,
+      value: String(property.bedroomsNumber),
+      label: t("facts.bedrooms"),
+    });
+  }
+  if (property.bathroomsNumber) {
+    factCells.push({
+      key: "bathrooms",
+      icon: Bath,
+      value: String(property.bathroomsNumber),
+      label: t("facts.bathrooms"),
+    });
+  }
+  if (sizeSqm) {
+    factCells.push({
+      key: "size",
+      icon: Ruler,
+      value: `${sizeSqm.toLocaleString()} m²`,
+      label: t("facts.size"),
+    });
+  }
+  if (property.personCapacity) {
+    factCells.push({
+      key: "guests",
+      icon: Users,
+      value: String(property.personCapacity),
+      label: t("facts.maxGuests"),
+    });
+  }
+  const FACT_COLS: Record<number, string> = {
+    2: "lg:grid-cols-2",
+    3: "lg:grid-cols-3",
+    4: "lg:grid-cols-4",
+    5: "lg:grid-cols-5",
+  };
+
   /** Monthly-stay promo — its own pill below the booking card, not buried
    *  inside it. Wears the book-direct banner's signature ink→orange gradient,
    *  weighted dark so the white label stays legible; orange lands on the tail. */
@@ -1171,51 +1248,41 @@ export default function PropertyDetails({
         <div className="mt-8 lg:grid lg:grid-cols-[minmax(0,1fr)_400px] lg:gap-14 lg:items-start">
           {/* Left column */}
           <div className="min-w-0">
-            {/* Quick facts */}
-            <section className="pb-7 border-b border-neutral-200">
-              <div className="flex flex-wrap items-center gap-x-6 gap-y-2.5 text-[15px] text-ink">
-                {property.personCapacity ? (
-                  <span className="inline-flex items-center gap-2">
-                    <Users
-                      className="w-5 h-5 text-neutral-700"
-                      strokeWidth={1.5}
-                      aria-hidden="true"
-                    />
-                    {t("maxGuests", { count: property.personCapacity })}
-                  </span>
-                ) : null}
-                {property.bedroomsNumber ? (
-                  <span className="inline-flex items-center gap-2">
-                    <Bed
-                      className="w-5 h-5 text-neutral-700"
-                      strokeWidth={1.5}
-                      aria-hidden="true"
-                    />
-                    {t("bedrooms", { count: property.bedroomsNumber })}
-                  </span>
-                ) : null}
-                {property.bathroomsNumber ? (
-                  <span className="inline-flex items-center gap-2">
-                    <Bath
-                      className="w-5 h-5 text-neutral-700"
-                      strokeWidth={1.5}
-                      aria-hidden="true"
-                    />
-                    {t("bathrooms", { count: property.bathroomsNumber })}
-                  </span>
-                ) : null}
-                {property.roomType ? (
-                  <span className="inline-flex items-center gap-2">
-                    <Building2
-                      className="w-5 h-5 text-neutral-700"
-                      strokeWidth={1.5}
-                      aria-hidden="true"
-                    />
-                    {property.roomType}
-                  </span>
-                ) : null}
-              </div>
-            </section>
+            {/* Quick facts — stat strip. Hairlines come from each cell's
+                left/top border; the -1px shift hides the outer ring under
+                the container border at every breakpoint. */}
+            {factCells.length > 0 && (
+              <section className="pb-7 border-b border-neutral-200">
+                <div className="rounded-2xl border border-neutral-200 bg-white overflow-hidden">
+                  <div
+                    className={`grid grid-cols-2 sm:grid-cols-3 ${
+                      FACT_COLS[factCells.length] ?? "lg:grid-cols-5"
+                    } -ml-px -mt-px`}
+                  >
+                    {factCells.map((cell) => (
+                      <div
+                        key={cell.key}
+                        className="flex items-center gap-3 border-l border-t border-neutral-100 px-4 py-3.5"
+                      >
+                        <cell.icon
+                          className="w-5 h-5 text-neutral-700 shrink-0"
+                          strokeWidth={1.5}
+                          aria-hidden="true"
+                        />
+                        <span className="min-w-0">
+                          <span className="block text-[15px] font-semibold text-ink leading-tight truncate">
+                            {cell.value}
+                          </span>
+                          <span className="block text-xs text-neutral-500 mt-0.5">
+                            {cell.label}
+                          </span>
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </section>
+            )}
 
             {/* About */}
             {property.description && (

@@ -3546,6 +3546,18 @@
     "monthlyPromoText": "Staying 30+ days? Get",
     "monthlyPromoLink": "Exclusive Monthly Rates →",
     "guests": "Guests",
+    "facts": {
+      "type": "Property type",
+      "bedrooms": "Bedrooms",
+      "bathrooms": "Bathrooms",
+      "size": "Size",
+      "maxGuests": "Max guests",
+      "typeNames": {
+        "villa": "Villa",
+        "apartment": "Apartment",
+        "townhouse": "Townhouse"
+      }
+    },
     "showMore": "Show more",
     "showLess": "Show less",
     "showAllAmenities": "Show all {count} amenities",
