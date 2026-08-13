@@ -1,26 +1,28 @@
 import { getTranslations } from "next-intl/server";
-import WhyDifferentGallery, {
-  type WhyDifferentReason,
-} from "@/components/why-different-gallery";
+import { Sparkles, TrendingUp, Handshake, type LucideIcon } from "lucide-react";
 
-/** The "why we're different" recap — nine reasons across three audiences,
- * presented as cards on a scroll-rotated wheel over the ink surface. */
+/** The "why we're different" recap — three audiences, three reasons each,
+ * as open editorial columns (not a nine-card grid) on the ink surface. */
 export default async function WhySilqhaus() {
   const t = await getTranslations("home.whyDifferent");
 
-  const reasons: WhyDifferentReason[] = (
-    ["guests", "owners", "partners"] as const
-  ).flatMap((audience) =>
-    [1, 2, 3].map((n) => ({
-      audience,
-      label: t(`${audience}.label`),
-      title: t(`${audience}.r${n}Title`),
-      body: t(`${audience}.r${n}Body`),
+  const AUDIENCES: {
+    key: "guests" | "owners" | "partners";
+    label: string;
+    Icon: LucideIcon;
+    reasons: { title: string; body: string }[];
+  }[] = (["guests", "owners", "partners"] as const).map((key) => ({
+    key,
+    label: t(`${key}.label`),
+    Icon: { guests: Sparkles, owners: TrendingUp, partners: Handshake }[key],
+    reasons: [1, 2, 3].map((n) => ({
+      title: t(`${key}.r${n}Title`),
+      body: t(`${key}.r${n}Body`),
     })),
-  );
+  }));
 
   return (
-    <section className="bg-ink-2 border-t border-line py-16 sm:py-20 md:pt-28 md:pb-0">
+    <section className="bg-ink-2 border-t border-line py-16 sm:py-20 md:py-28">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section header */}
         <div className="max-w-2xl">
@@ -32,10 +34,41 @@ export default async function WhySilqhaus() {
             {t("description")}
           </p>
         </div>
-      </div>
 
-      {/* Nine reasons on the wheel */}
-      <WhyDifferentGallery reasons={reasons} scrollHint={t("scrollHint")} />
+        {/* Three audiences, three reasons each */}
+        <div className="mt-12 sm:mt-16 grid grid-cols-1 md:grid-cols-3 gap-x-8 gap-y-12">
+          {AUDIENCES.map((a, i) => (
+            <div
+              key={a.key}
+              className={i > 0 ? "md:border-l md:border-line md:pl-8" : ""}
+            >
+              {/* Audience header */}
+              <div className="flex items-center gap-3 pb-6 border-b border-line">
+                <span className="inline-flex w-9 h-9 shrink-0 items-center justify-center rounded-full border border-line text-white/80">
+                  <a.Icon className="w-4 h-4" aria-hidden="true" />
+                </span>
+                <h3 className="font-display text-white text-xl font-light tracking-tight">
+                  {a.label}
+                </h3>
+              </div>
+
+              {/* Reasons */}
+              <ul className="divide-y divide-line">
+                {a.reasons.map((r) => (
+                  <li key={r.title} className="py-5">
+                    <p className="text-white font-medium text-[15px] leading-snug">
+                      {r.title}
+                    </p>
+                    <p className="text-white/60 text-sm leading-relaxed mt-1.5 text-pretty">
+                      {r.body}
+                    </p>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </div>
     </section>
   );
 }
