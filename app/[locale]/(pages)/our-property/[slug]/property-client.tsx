@@ -10,11 +10,13 @@ import {
   CurrencySelect,
   type CurrencyCode,
 } from "@/components/currency-select";
+import { DEFAULT_MONTHLY_DISCOUNT } from "@/config/monthly";
 import {
   ArrowLeft,
   Bath,
   Bed,
   Building2,
+  BadgePercent,
   CalendarDays,
   Check,
   MapPin,
@@ -835,6 +837,8 @@ export default function PropertyDetails({
       ? Math.round(silqhausTotal / pricingData.nights)
       : 0;
 
+  const monthlySavePct = Math.round(DEFAULT_MONTHLY_DISCOUNT * 100);
+  const monthlyInquiryUrl = `/monthly-inquiry?pid=${source}:${property.id}&checkIn=${checkInDate}&checkOut=${checkOutDate}`;
   const silqhausBookingUrl = isGuesty
     ? `https://silqhaus.guestybookings.com/${locale}/properties/${property.id}?minOccupancy=${guestCount}&checkIn=${checkInDate}&checkOut=${checkOutDate}`
     : `https://silqhaus.holidayfuture.com/listings/${property.id}?start=${checkInDate}&end=${checkOutDate}&numberOfGuests=${guestCount}`;
@@ -1038,7 +1042,7 @@ export default function PropertyDetails({
           aria-hidden="true"
         />,
         t("monthlyQuestion"),
-        t("monthlyAction"),
+        t("monthlyAction", { percent: monthlySavePct }),
       )}
       {supportLinkRow(
         "/contact-us",
@@ -1185,15 +1189,45 @@ export default function PropertyDetails({
             )}
           </div>
 
-          <a
-            href={silqhausBookingUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-4 flex items-center justify-center w-full h-12 rounded-full bg-ink bg-[linear-gradient(90deg,#09081F_0%,#382124_45%,#673929_65%,#95522E_80%,#C46A33_92%,#F38338_100%)] text-white hover:text-white text-[15px] font-semibold hover:opacity-90 transition-opacity"
-            aria-label={t("bookOnSilqhaus")}
-          >
-            {t("bookNow")}
-          </a>
+          {pricingData.nights >= 28 ? (
+            <>
+              <div className="mt-4 flex items-start gap-2.5 rounded-xl bg-[#F5F4F0] px-3.5 py-3">
+                <BadgePercent
+                  className="w-4 h-4 text-ink shrink-0 mt-0.5"
+                  strokeWidth={1.8}
+                  aria-hidden="true"
+                />
+                <p className="text-[13px] leading-snug text-neutral-700">
+                  {t("monthlyBanner", { percent: monthlySavePct })}
+                </p>
+              </div>
+              <Link
+                href={monthlyInquiryUrl}
+                className="mt-3 flex items-center justify-center w-full h-12 rounded-full bg-ink bg-[linear-gradient(90deg,#09081F_0%,#382124_45%,#673929_65%,#95522E_80%,#C46A33_92%,#F38338_100%)] text-white hover:text-white text-[15px] font-semibold hover:opacity-90 transition-opacity"
+              >
+                {t("requestMonthlyRate")}
+              </Link>
+              <a
+                href={silqhausBookingUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-2.5 flex items-center justify-center w-full h-11 rounded-full border border-neutral-300 text-[15px] font-semibold text-ink hover:text-ink hover:border-ink transition-colors"
+                aria-label={t("bookOnSilqhaus")}
+              >
+                {t("bookNow")}
+              </a>
+            </>
+          ) : (
+            <a
+              href={silqhausBookingUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-4 flex items-center justify-center w-full h-12 rounded-full bg-ink bg-[linear-gradient(90deg,#09081F_0%,#382124_45%,#673929_65%,#95522E_80%,#C46A33_92%,#F38338_100%)] text-white hover:text-white text-[15px] font-semibold hover:opacity-90 transition-opacity"
+              aria-label={t("bookOnSilqhaus")}
+            >
+              {t("bookNow")}
+            </a>
+          )}
         </>
       )}
 

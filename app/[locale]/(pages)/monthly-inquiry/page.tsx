@@ -131,6 +131,7 @@ function MonthlyStays() {
   const pidParam = searchParams.get("pid") || "";
   const legacyName = searchParams.get("property") || "";
   const checkInParam = searchParams.get("checkIn") || "";
+  const checkOutParam = searchParams.get("checkOut") || "";
 
   // ------------------------------------------------------------------
   // Inventory
@@ -176,7 +177,18 @@ function MonthlyStays() {
       const hit = listings.find((l) => `${l.source}:${l.id}` === pidParam);
       if (hit) {
         setSelectedKey(pidParam);
-        setStep(2);
+        // Arriving with a full 28+ night range: land on the summary quote.
+        if (
+          checkInParam &&
+          checkOutParam &&
+          nightsBetween(checkInParam, checkOutParam) >= 28
+        ) {
+          setCustomEnd(checkOutParam);
+          setMonths(null);
+          setStep(4);
+        } else {
+          setStep(2);
+        }
         return;
       }
     }
@@ -187,7 +199,7 @@ function MonthlyStays() {
       );
       if (hit) setSelectedKey(`${hit.source}:${hit.id}`);
     }
-  }, [listings, pidParam, legacyName, selectedKey]);
+  }, [listings, pidParam, legacyName, selectedKey, checkInParam, checkOutParam]);
 
   const selected =
     listings.find((l) => `${l.source}:${l.id}` === selectedKey) ?? null;
