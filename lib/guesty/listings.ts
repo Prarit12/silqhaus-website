@@ -6,6 +6,10 @@ import {
   GuestyOpenApiRateLimitError,
 } from "./open-api-auth";
 import { getJson, setJson } from "./cache";
+import {
+  getGuestyReviewSummariesSafe,
+  type GuestyReviewSummary,
+} from "./reviews";
 
 // Re-export under the legacy names used across the proxies so route
 // handlers can keep their existing imports.
@@ -100,6 +104,24 @@ export interface NormalizedGuestyListing {
   listingImages: Array<{ url: string; caption: string | null }>;
   images: Array<{ url: string; caption: string | null }>;
   listingAmenities: Array<{ id: number; amenityName: string }>;
+  /** 5-star average from Guesty-synced channel reviews. Named to match
+   *  Hostaway so cards read one shape across both sources. */
+  averageReviewRating?: number;
+  reviewsCount?: number;
+}
+
+/** Attach the review summary, when one exists, to a normalized listing. */
+function withReviewSummary(
+  listing: NormalizedGuestyListing,
+  summaries: Record<string, GuestyReviewSummary>,
+): NormalizedGuestyListing {
+  const summary = summaries[listing.id];
+  if (!summary || summary.count === 0) return listing;
+  return {
+    ...listing,
+    averageReviewRating: summary.avg,
+    reviewsCount: summary.count,
+  };
 }
 
 function pictureUrl(p: GuestyPicture | string | undefined): string | null {
@@ -289,8 +311,9 @@ function isPublic(raw: GuestyRawListing): boolean {
 
 const LISTINGS_CACHE_TTL_MS = 10 * 60 * 1000;
 const LISTINGS_CACHE_TTL_SECONDS = LISTINGS_CACHE_TTL_MS / 1000;
-const LISTINGS_KV_PREFIX = "guesty:listings:v2:";
-const LISTING_KV_PREFIX = "guesty:listing:v2:";
+// v3: normalized listings now carry averageReviewRating/reviewsCount.
+const LISTINGS_KV_PREFIX = "guesty:listings:v3:";
+const LISTING_KV_PREFIX = "guesty:listing:v3:";
 
 interface ListingsCacheEntry {
   data: NormalizedGuestyListing[];
@@ -361,6 +384,9 @@ export async function getGuestyListings(
         `[guesty-listings] Asking Guesty for listings... (key: "${cacheKey}")`,
       );
       const t0 = Date.now();
+      // Review summaries load in parallel; on failure listings simply
+      // render without ratings.
+      const summariesPromise = getGuestyReviewSummariesSafe();
       const qs = new URLSearchParams(params?.toString() || "");
       if (!qs.has("fields")) qs.set("fields", LISTING_FIELDS);
       const res = await openApiFetch(`/listings?${qs.toString()}`);
@@ -378,7 +404,11 @@ export async function getGuestyListings(
       const json = await res.json();
       const results: GuestyRawListing[] =
         json.results || json.data || (Array.isArray(json) ? json : []);
-      const normalized = results.filter(isPublic).map(normalizeGuestyListing);
+      const summaries = await summariesPromise;
+      const normalized = results
+        .filter(isPublic)
+        .map(normalizeGuestyListing)
+        .map((l) => withReviewSummary(l, summaries));
       const dur = Date.now() - t0;
       console.log(
         `[guesty-listings] Got ${normalized.length} listings from Guesty. (key: "${cacheKey}", took ${dur}ms)`,
@@ -450,6 +480,7 @@ export async function getGuestyListingById(
         `[guesty-listings] Asking Guesty for listing... (key: "${id}")`,
       );
       const t0 = Date.now();
+      const summariesPromise = getGuestyReviewSummariesSafe();
       const qs = new URLSearchParams({ fields: LISTING_FIELDS });
       const res = await openApiFetch(
         `/listings/${encodeURIComponent(id)}?${qs.toString()}`,
@@ -479,7 +510,10 @@ export async function getGuestyListingById(
       const raw: GuestyRawListing = json.result || json.data || json;
       if (!raw || !raw._id) return null;
       if (!isPublic(raw)) return null;
-      const normalized = normalizeGuestyListing(raw);
+      const normalized = withReviewSummary(
+        normalizeGuestyListing(raw),
+        await summariesPromise,
+      );
       const dur = Date.now() - t0;
       console.log(
         `[guesty-listings] Got the listing from Guesty. (key: "${id}", took ${dur}ms)`,
