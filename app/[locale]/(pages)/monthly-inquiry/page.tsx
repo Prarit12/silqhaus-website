@@ -962,7 +962,8 @@ function MonthlyStays() {
 
             {/* Step 5 — confirm with us: send the details or chat */}
             {step === 5 && (
-              <div className="mt-5 max-w-2xl">
+              <div className="mt-5 lg:grid lg:grid-cols-[minmax(0,1fr)_320px] lg:gap-10 lg:items-start">
+              <div className="max-w-2xl">
           <div
             role="tablist"
             aria-label={t("form.anyQuestions")}
@@ -1316,6 +1317,97 @@ function MonthlyStays() {
           </p>
           </div>
           )}
+              </div>
+
+              {/* Booking recap — what they're confirming */}
+              <aside className="hidden lg:block rounded-xl bg-[#F5F4F0] p-5">
+                <p className="text-[15px] font-bold text-ink">
+                  {t("quote.recapTitle")}
+                </p>
+                {selected && (
+                  <div className="mt-3 flex items-center gap-3">
+                    <div className="relative w-16 h-12 rounded-lg overflow-hidden bg-neutral-200 shrink-0">
+                      {selected.listingImages?.[0]?.url && (
+                        <Image
+                          src={selected.listingImages[0].url}
+                          alt={selectedTitle}
+                          fill
+                          sizes="64px"
+                          className="object-cover"
+                        />
+                      )}
+                    </div>
+                    <div className="min-w-0">
+                      <p className="text-sm font-semibold text-ink truncate">
+                        {selectedTitle}
+                      </p>
+                      <p className="text-xs text-neutral-500 truncate">
+                        {[selected.city, selected.state]
+                          .filter(Boolean)
+                          .join(", ")}
+                      </p>
+                    </div>
+                  </div>
+                )}
+                <dl className="mt-4 pt-3 border-t border-neutral-200/80 space-y-2 text-[13px]">
+                  <div className="flex justify-between gap-3">
+                    <dt className="text-neutral-500">
+                      {t("quote.recapMoveIn")}
+                    </dt>
+                    <dd className="font-medium text-ink">
+                      {formatDateForDisplay(moveIn)}
+                    </dd>
+                  </div>
+                  <div className="flex justify-between gap-3">
+                    <dt className="text-neutral-500">
+                      {t("quote.recapCheckOut")}
+                    </dt>
+                    <dd className="font-medium text-ink">
+                      {formatDateForDisplay(moveOut)}
+                    </dd>
+                  </div>
+                  <div className="flex justify-between gap-3">
+                    <dt className="text-neutral-500">
+                      {t("quote.recapLength")}
+                    </dt>
+                    <dd className="font-medium text-ink">
+                      {months != null
+                        ? t("quote.monthsShort", { count: months })
+                        : quote
+                          ? t("quote.nightsCount", { count: quote.nights })
+                          : ""}
+                    </dd>
+                  </div>
+                </dl>
+                {quote && (
+                  <div className="mt-3 pt-3 border-t border-neutral-200/80">
+                    <div className="flex justify-between items-baseline gap-3">
+                      <span className="text-[13px] text-neutral-500">
+                        {t("quote.recapRate")}
+                      </span>
+                      <span className="text-base font-bold text-ink">
+                        {fmtQ(quote.perMonth)}
+                        <span className="text-xs font-normal text-neutral-600">
+                          {t("quote.perMonth")}
+                        </span>
+                      </span>
+                    </div>
+                    <div className="mt-1.5 flex justify-between gap-3 text-[13px]">
+                      <span className="text-neutral-500">
+                        {t("quote.recapTotal")}
+                      </span>
+                      <span className="font-medium text-ink">
+                        {fmtQ(quote.monthlyTotal)}
+                      </span>
+                    </div>
+                    <p className="mt-2 text-[11px] text-green-700">
+                      {t("quote.monthlyDiscount", {
+                        percent: Math.round(quote.discount * 100),
+                      })}
+                    </p>
+                  </div>
+                )}
+              </aside>
               </div>
             )}
 
