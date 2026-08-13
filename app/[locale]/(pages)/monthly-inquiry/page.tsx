@@ -18,15 +18,12 @@ import {
   Check,
   ChevronLeft,
   ChevronRight,
-  ExternalLink,
-  Globe,
   Loader2,
   Mail,
   MessageCircle,
   Phone,
   Send,
   Star,
-  X,
 } from "lucide-react";
 import { SiLine, SiWhatsapp } from "react-icons/si";
 import { useTranslations, useLocale } from "next-intl";
@@ -37,6 +34,7 @@ import {
 } from "@/lib/country-codes";
 import { MonthlyJourney } from "@/components/monthly-journey";
 import { MonthlyHeroArt } from "@/components/monthly-hero-art";
+import { MonthlyPartnerPopup } from "@/components/monthly-partner-popup";
 import { SingleDatePicker } from "@/components/single-date-picker";
 import {
   CURRENCY_OPTIONS,
@@ -369,14 +367,6 @@ function MonthlyStays() {
     return () => clearTimeout(id);
   }, []);
 
-  useEffect(() => {
-    if (!partnerOpen) return;
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setPartnerOpen(false);
-    };
-    document.addEventListener("keydown", onKey);
-    return () => document.removeEventListener("keydown", onKey);
-  }, [partnerOpen]);
   const [viewDate, setViewDate] = useState<string | null>(null);
   const [viewOffset, setViewOffset] = useState(0);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -1377,68 +1367,10 @@ function MonthlyStays() {
         </div>
       </div>
 
-      {/* Partner pop-up — monthly rentals across the rest of Thailand */}
-      {partnerOpen && (
-        <div
-          className="fixed inset-0 z-[100] flex items-center justify-center p-4"
-          role="dialog"
-          aria-modal="true"
-          aria-label={t("quote.partnerTitle")}
-        >
-          <button
-            type="button"
-            className="absolute inset-0 bg-black/40"
-            aria-label={t("quote.partnerLater")}
-            onClick={() => setPartnerOpen(false)}
-          />
-          <div className="relative w-full max-w-md rounded-2xl bg-white p-6 sm:p-7 shadow-2xl">
-            <button
-              type="button"
-              onClick={() => setPartnerOpen(false)}
-              aria-label={t("quote.partnerLater")}
-              className="absolute top-4 right-4 w-9 h-9 rounded-full grid place-items-center text-neutral-500 hover:text-ink hover:bg-neutral-100 transition-colors"
-            >
-              <X className="w-5 h-5" aria-hidden="true" />
-            </button>
-            <span className="w-11 h-11 rounded-full bg-[#F5F4F0] grid place-items-center">
-              <Globe
-                className="w-5 h-5 text-ink"
-                strokeWidth={1.5}
-                aria-hidden="true"
-              />
-            </span>
-            <h2 className="mt-4 text-xl font-bold normal-case tracking-normal text-ink text-balance">
-              {t("quote.partnerTitle")}
-            </h2>
-            <p className="mt-2 text-sm leading-relaxed text-neutral-600">
-              {t("quote.partnerBody")}
-            </p>
-            <div className="mt-5 flex flex-col sm:flex-row gap-2.5">
-              <a
-                href="https://www.monthlyfinder.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => setPartnerOpen(false)}
-                className="flex-1 inline-flex items-center justify-center gap-2 h-11 rounded-full bg-ink text-white hover:text-white text-sm font-semibold hover:bg-neutral-800 transition-colors"
-              >
-                {t("quote.partnerCta")}
-                <ExternalLink
-                  className="w-4 h-4"
-                  strokeWidth={2}
-                  aria-hidden="true"
-                />
-              </a>
-              <button
-                type="button"
-                onClick={() => setPartnerOpen(false)}
-                className="h-11 px-5 rounded-full border border-neutral-300 text-sm font-semibold text-ink hover:border-ink transition-colors"
-              >
-                {t("quote.partnerLater")}
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
+      <MonthlyPartnerPopup
+        open={partnerOpen}
+        onClose={() => setPartnerOpen(false)}
+      />
     </main>
   );
 }
