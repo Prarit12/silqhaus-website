@@ -8,7 +8,7 @@
  * everything for quick tuning without touching the PMS.
  */
 
-export const DEFAULT_MONTHLY_DISCOUNT = 0.15;
+export const DEFAULT_MONTHLY_DISCOUNT = 0.22;
 
 /** Keyed by `${source}:${id}` — discount as a fraction (0.2 = 20% off). */
 export const MONTHLY_DISCOUNT_OVERRIDES: Record<string, number> = {};
