@@ -118,6 +118,37 @@ function MonthlyRate() {
   );
 }
 
+function SummaryDoc() {
+  return (
+    <svg viewBox="0 0 140 110" className="w-full h-auto" aria-hidden="true">
+      <ellipse cx="70" cy="90" rx="50" ry="12" fill={BLOB} />
+      <circle cx="30" cy="38" r="13" fill={BLOB} />
+      {/* the quote sheet */}
+      <rect x="42" y="20" width="58" height="72" rx="7" {...stroke} fill="#fff" />
+      <path {...stroke} strokeWidth={2.2} d="M52 36h28M52 46h36M52 56h22" />
+      <path {...stroke} strokeWidth={2.2} d="M50 68h42" />
+      {/* total row: orange price chip + line */}
+      <rect x="52" y="75" width="18" height="10" rx="3" fill={ORANGE} />
+      <path {...stroke} strokeWidth={2.2} d="M76 80h14" />
+      {/* ฿ badge */}
+      <circle cx="104" cy="30" r="12" fill={ORANGE} />
+      <text
+        x="104"
+        y="35.5"
+        textAnchor="middle"
+        fontSize="14"
+        fontWeight="700"
+        fill="#fff"
+      >
+        ฿
+      </text>
+      {/* sparkles */}
+      <path {...stroke} d="M26 68l2 5M20 78l4 3" />
+      <path d="M118 62l2 4 4 2-4 2-2 4-2-4-4-2 4-2 2-4Z" fill={ORANGE_DEEP} />
+    </svg>
+  );
+}
+
 function ConfirmChat() {
   return (
     <svg viewBox="0 0 140 110" className="w-full h-auto" aria-hidden="true">
@@ -228,6 +259,7 @@ const WIZARD_STEPS = [
   { art: PickHome },
   { art: PickDate },
   { art: MonthlyRate },
+  { art: SummaryDoc },
   { art: ConfirmChat },
 ] as const;
 

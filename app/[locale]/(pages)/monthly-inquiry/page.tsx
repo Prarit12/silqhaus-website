@@ -545,14 +545,28 @@ function MonthlyStays() {
           {/* Progress header — the illustrated journey IS the stepper */}
           <MonthlyJourneyStepper
             step={step}
-            complete={[!!selected, !!moveIn && step > 2, hasTerm, false]}
+            complete={[
+              !!selected,
+              !!moveIn && step > 2,
+              hasTerm,
+              false,
+              submitStatus === "success",
+            ]}
             reachable={[
               true,
               !!selected,
               !!selected && !!moveIn,
               !!selected && !!moveIn && hasTerm,
+              !!selected && !!moveIn && hasTerm,
             ]}
-            onSelect={setStep}
+            onSelect={(n) => {
+              if (n === 5) {
+                setStep(4);
+                scrollToForm();
+              } else {
+                setStep(n);
+              }
+            }}
           />
 
           {/* Step panel */}
@@ -846,42 +860,14 @@ function MonthlyStays() {
                     )}
 
 
-                    <div className="mt-5 flex flex-col sm:flex-row gap-2.5">
-                      <button
-                        type="button"
-                        onClick={scrollToForm}
-                        className="flex-1 inline-flex items-center justify-center gap-2 h-12 rounded-full bg-ink bg-[linear-gradient(90deg,#09081F_0%,#382124_45%,#673929_65%,#95522E_80%,#C46A33_92%,#F38338_100%)] text-white text-[15px] font-semibold hover:opacity-90 transition-opacity"
-                      >
-                        <Calendar className="w-4 h-4" aria-hidden="true" />
-                        {t("quote.requestRate")}
-                      </button>
-                      {whatsappHref && (
-                        <a
-                          href={whatsappHref}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center justify-center gap-2 h-12 px-5 rounded-full border border-neutral-300 text-[15px] font-semibold text-ink hover:text-ink hover:border-ink transition-colors"
-                        >
-                          <SiWhatsapp className="w-4 h-4 text-[#25D366]" aria-hidden="true" />
-                          WhatsApp
-                        </a>
-                      )}
-                      {lineHref && (
-                        <a
-                          href={lineHref}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center justify-center gap-2 h-12 px-5 rounded-full border border-neutral-300 text-[15px] font-semibold text-ink hover:text-ink hover:border-ink transition-colors"
-                        >
-                          <SiLine className="w-4 h-4 text-[#06C755]" aria-hidden="true" />
-                          LINE
-                        </a>
-                      )}
-                    </div>
-                    <p className="mt-3 text-xs text-neutral-500 flex items-center gap-1.5">
-                      <MessageCircle className="w-3.5 h-3.5" aria-hidden="true" />
-                      {t("quote.negotiateNote")}
-                    </p>
+                    <button
+                      type="button"
+                      onClick={scrollToForm}
+                      className="mt-5 w-full inline-flex items-center justify-center gap-2 h-12 rounded-full bg-ink bg-[linear-gradient(90deg,#09081F_0%,#382124_45%,#673929_65%,#95522E_80%,#C46A33_92%,#F38338_100%)] text-white text-[15px] font-semibold hover:opacity-90 transition-opacity"
+                    >
+                      <Calendar className="w-4 h-4" aria-hidden="true" />
+                      {t("quote.requestRate")}
+                    </button>
                   </div>
                 ) : (
                   <p className="mt-4 text-sm text-neutral-600">
@@ -1242,6 +1228,46 @@ function MonthlyStays() {
               )}
             </button>
           </form>
+
+          <div className="mt-5 flex items-center gap-3" aria-hidden="true">
+            <span className="h-px flex-1 bg-neutral-200" />
+            <span className="text-xs font-semibold uppercase tracking-wide text-neutral-400">
+              {t("quote.orDivider")}
+            </span>
+            <span className="h-px flex-1 bg-neutral-200" />
+          </div>
+
+          <div className="mt-4 grid grid-cols-2 gap-2.5">
+            {whatsappHref && (
+              <a
+                href={whatsappHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 h-11 rounded-full border border-neutral-300 text-sm font-semibold text-ink hover:text-ink hover:border-ink transition-colors"
+              >
+                <SiWhatsapp className="w-4 h-4 text-[#25D366]" aria-hidden="true" />
+                WhatsApp
+              </a>
+            )}
+            {lineHref && (
+              <a
+                href={lineHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 h-11 rounded-full border border-neutral-300 text-sm font-semibold text-ink hover:text-ink hover:border-ink transition-colors"
+              >
+                <SiLine className="w-4 h-4 text-[#06C755]" aria-hidden="true" />
+                LINE
+              </a>
+            )}
+          </div>
+          <p className="mt-3 text-xs text-neutral-500 flex items-center gap-1.5">
+            <MessageCircle
+              className="w-3.5 h-3.5 shrink-0"
+              aria-hidden="true"
+            />
+            {t("quote.negotiateNote")}
+          </p>
           </div>
           )}
 
