@@ -3609,6 +3609,7 @@
     "showAllAmenities": "ดูสิ่งอำนวยความสะดวกทั้งหมด {count} รายการ",
     "showLessAmenities": "แสดงน้อยลง",
     "addDatesForPrices": "เลือกวันที่เพื่อดูราคา",
+    "currencyNote": "แปลงตามอัตราวันนี้เพื่ออ้างอิง — การชำระเงินจริงเป็นเงินบาท (฿)",
     "checkAvailability": "เช็กห้องว่าง",
     "forNights": "สำหรับ {count} คืน",
     "bookYourStay": "จองที่พักของคุณ",

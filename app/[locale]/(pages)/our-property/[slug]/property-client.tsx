@@ -6,6 +6,11 @@ import { useSearchParams } from "next/navigation";
 import { useRouter, Link } from "@/i18n/navigation";
 import { useQuery } from "@tanstack/react-query";
 import {
+  CURRENCY_OPTIONS,
+  CurrencySelect,
+  type CurrencyCode,
+} from "@/components/currency-select";
+import {
   ArrowLeft,
   Bath,
   Bed,
@@ -361,6 +366,19 @@ export default function PropertyDetails({
 
   const [checkInDate, setCheckInDate] = useState("");
   const [checkOutDate, setCheckOutDate] = useState("");
+  const [currency, setCurrency] = useState<CurrencyCode>("THB");
+  const fxQuery = useQuery<Record<string, number>>({
+    queryKey: ["fx", "THB"],
+    queryFn: async () => {
+      const res = await fetch("https://open.er-api.com/v6/latest/THB");
+      if (!res.ok) throw new Error("fx failed");
+      const data = await res.json();
+      if (data?.result !== "success" || !data?.rates) throw new Error("fx failed");
+      return data.rates as Record<string, number>;
+    },
+    staleTime: 1000 * 60 * 60 * 6,
+    retry: 1,
+  });
 
   useEffect(() => {
     const ci = searchParams.get("checkIn");
@@ -759,17 +777,16 @@ export default function PropertyDetails({
   // ------------------------------------
   // Helpers
   // ------------------------------------
-  // Approximate THB→USD rate for a secondary display. Fixed (not a live FX call)
-  // so it introduces no new connection; override via env when the rate moves.
-  const THB_PER_USD = Number(process.env.NEXT_PUBLIC_THB_PER_USD) || 36;
-  const formatPriceForDisplay = (price: number, currency: string) => {
-    const base = `${currency} ${price.toLocaleString()}`;
-    if (currency === "THB") {
-      const usd = Math.round(price / THB_PER_USD);
-      return `${base} · ~$${usd.toLocaleString()}`;
-    }
-    return base;
-  };
+  // Prices are quoted in THB; the card can display them converted at the
+  // daily rate. Falls back to THB when the rate feed is unavailable.
+  const fxRate = currency === "THB" ? 1 : fxQuery.data?.[currency];
+  const activeCurrency: CurrencyCode = fxRate ? currency : "THB";
+  const fxSymbol = CURRENCY_OPTIONS.find((c) => c.code === activeCurrency)!
+    .symbol;
+  const fmtFx = (thb: number) =>
+    `${fxSymbol}${Math.round(
+      activeCurrency === "THB" ? thb : thb * (fxRate ?? 1),
+    ).toLocaleString()}`;
 
   // ------------------------------------
   // States
@@ -1042,20 +1059,25 @@ export default function PropertyDetails({
   const renderBookingPanel = ({ inlineCalendar = false } = {}) => (
     <div>
       {/* Price header */}
-      <div className="mb-4">
-        {priced ? (
-          <p className="flex flex-wrap items-baseline gap-x-1.5">
-            <span className="text-xl font-semibold text-ink">
-              ฿{silqhausTotal.toLocaleString()}
-            </span>
-            <span className="text-[15px] text-neutral-600">
-              {t("forNights", { count: pricingData.nights })}
-            </span>
-          </p>
-        ) : (
-          <p className="text-[15px] font-medium text-ink">
-            {t("addDatesForPrices")}
-          </p>
+      <div className="mb-4 flex items-center justify-between gap-3">
+        <div className="min-w-0">
+          {priced ? (
+            <p className="flex flex-wrap items-baseline gap-x-1.5">
+              <span className="text-xl font-semibold text-ink">
+                {fmtFx(silqhausTotal)}
+              </span>
+              <span className="text-[15px] text-neutral-600">
+                {t("forNights", { count: pricingData.nights })}
+              </span>
+            </p>
+          ) : (
+            <p className="text-[15px] font-medium text-ink">
+              {t("addDatesForPrices")}
+            </p>
+          )}
+        </div>
+        {fxQuery.data && (
+          <CurrencySelect size="sm" value={currency} onChange={setCurrency} />
         )}
       </div>
 
@@ -1148,14 +1170,19 @@ export default function PropertyDetails({
                   : t("nightCountPlural", { count: pricingData.nights })}
               </span>
               <span>
-                {t("avg")} {formatPriceForDisplay(silqhausNightly, "THB")}
+                {t("avg")} {fmtFx(silqhausNightly)}
                 {t("perNight")}
               </span>
             </div>
             <div className="flex justify-between font-semibold text-ink mt-2">
               <span>{t("total")}</span>
-              <span>{formatPriceForDisplay(silqhausTotal, "THB")}</span>
+              <span>{fmtFx(silqhausTotal)}</span>
             </div>
+            {activeCurrency !== "THB" && (
+              <p className="mt-2 text-xs text-neutral-500">
+                {t("currencyNote")}
+              </p>
+            )}
           </div>
 
           <a
@@ -1202,11 +1229,11 @@ export default function PropertyDetails({
               </div>
               <div className="text-right shrink-0">
                 <span className="block text-sm font-semibold text-ink">
-                  {formatPriceForDisplay(silqhausTotal, "THB")}
+                  {fmtFx(silqhausTotal)}
                 </span>
                 {pricingData.nights > 0 && (
                   <span className="block text-[11px] text-neutral-500">
-                    {formatPriceForDisplay(silqhausNightly, "THB")}
+                    {fmtFx(silqhausNightly)}
                     {t("perNight")}
                   </span>
                 )}
@@ -1242,18 +1269,18 @@ export default function PropertyDetails({
                     {diff > 0 && (
                       <span className="block text-[11px] font-medium text-red-600">
                         {t("moreExpensive", {
-                          amount: `฿${diff.toLocaleString()}`,
+                          amount: fmtFx(diff),
                         })}
                       </span>
                     )}
                   </div>
                   <div className="text-right shrink-0">
                     <span className="block text-sm font-semibold text-ink">
-                      {formatPriceForDisplay(otaTotal, "THB")}
+                      {fmtFx(otaTotal)}
                     </span>
                     {pricingData.nights > 0 && (
                       <span className="block text-[11px] text-neutral-500">
-                        {formatPriceForDisplay(otaNightly, "THB")}
+                        {fmtFx(otaNightly)}
                         {t("perNight")}
                       </span>
                     )}
@@ -1575,7 +1602,7 @@ export default function PropertyDetails({
               {priced ? (
                 <>
                   <span className="block text-[15px] font-semibold text-ink truncate">
-                    ฿{silqhausTotal.toLocaleString()}
+                    {fmtFx(silqhausTotal)}
                   </span>
                   <span className="block text-xs text-neutral-600">
                     {t("forNights", { count: pricingData.nights })}

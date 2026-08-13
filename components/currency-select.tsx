@@ -119,9 +119,15 @@ function Flag({
 interface CurrencySelectProps {
   value: CurrencyCode;
   onChange: (code: CurrencyCode) => void;
+  /** md matches a 15px-bold heading; sm fits compact cards. */
+  size?: "md" | "sm";
 }
 
-export function CurrencySelect({ value, onChange }: CurrencySelectProps) {
+export function CurrencySelect({
+  value,
+  onChange,
+  size = "md",
+}: CurrencySelectProps) {
   const t = useTranslations("monthlyInquiry.quote");
   const [open, setOpen] = useState(false);
   const rootRef = useRef<HTMLDivElement>(null);
@@ -150,12 +156,19 @@ export function CurrencySelect({ value, onChange }: CurrencySelectProps) {
         aria-expanded={open}
         aria-haspopup="listbox"
         aria-label={t("currencyLabel")}
-        className="inline-flex items-center gap-2 h-10 pl-3 pr-3.5 rounded-full border border-neutral-300 bg-white text-[15px] font-bold text-ink hover:border-ink transition-colors"
+        className={`inline-flex items-center rounded-full border border-neutral-300 bg-white text-ink hover:border-ink transition-colors ${
+          size === "sm"
+            ? "gap-1.5 h-9 pl-2.5 pr-3 text-[13px] font-semibold"
+            : "gap-2 h-10 pl-3 pr-3.5 text-[15px] font-bold"
+        }`}
       >
-        <Flag code={value} className="w-7 h-5" />
+        <Flag
+          code={value}
+          className={size === "sm" ? "w-6 h-[18px]" : "w-7 h-5"}
+        />
         {value}
         <ChevronDown
-          className={`w-4 h-4 text-neutral-500 transition-transform ${open ? "rotate-180" : ""}`}
+          className={`${size === "sm" ? "w-3.5 h-3.5" : "w-4 h-4"} text-neutral-500 transition-transform ${open ? "rotate-180" : ""}`}
           aria-hidden="true"
         />
       </button>

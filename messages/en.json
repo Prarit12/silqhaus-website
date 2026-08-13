@@ -3609,6 +3609,7 @@
     "showAllAmenities": "Show all {count} amenities",
     "showLessAmenities": "Show fewer amenities",
     "addDatesForPrices": "Add dates for prices",
+    "currencyNote": "Converted at today's rate for reference — you'll be charged in Thai Baht (฿).",
     "checkAvailability": "Check availability",
     "forNights": "for {count} nights",
     "bookYourStay": "Book your stay",
