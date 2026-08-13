@@ -456,19 +456,24 @@ function MonthlyStays() {
 
   return (
     <main className="min-h-screen bg-white text-ink pt-14 md:pt-16">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-20">
-        {/* Header */}
-        <h1 className="text-2xl md:text-[28px] font-semibold text-ink">
-          {t("quote.pageTitle")}
-        </h1>
-        <p className="mt-2 text-[15px] leading-relaxed text-neutral-600 max-w-[65ch]">
-          {t("quote.pageSubtitle")}
-        </p>
+      {/* Hero — its own warm band, clearly split from the booking flow */}
+      <div className="bg-[#F5F4F0] border-b border-neutral-200/70">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-10">
+          <h1 className="text-2xl md:text-[28px] font-semibold text-ink">
+            {t("quote.pageTitle")}
+          </h1>
+          <p className="mt-2 text-[15px] leading-relaxed text-neutral-600 max-w-[65ch]">
+            {t("quote.pageSubtitle")}
+          </p>
 
-        {/* How it works — illustrated journey */}
-        <MonthlyJourney />
+          {/* How it works — illustrated journey */}
+          <MonthlyJourney />
+        </div>
+      </div>
 
-        <div className="mt-8 lg:grid lg:grid-cols-[minmax(0,1fr)_440px] lg:gap-12 lg:items-start">
+      {/* Booking flow */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-20">
+        <div className="lg:grid lg:grid-cols-[minmax(0,1fr)_440px] lg:gap-12 lg:items-start">
           <div className="min-w-0">
         {/* Step wizard */}
         <div>

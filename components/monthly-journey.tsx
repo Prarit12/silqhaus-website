@@ -12,7 +12,7 @@ import { Check } from "lucide-react";
 const INK = "#171717";
 const ORANGE = "#F38338";
 const ORANGE_DEEP = "#C46A33";
-const BLOB = "#F5F4F0";
+const BLOB = "#ECEAE4";
 
 const stroke = {
   stroke: INK,
@@ -209,8 +209,16 @@ export function MonthlyJourney() {
       </div>
 
       {/* What every monthly stay includes */}
-      <div className="mt-6 flex flex-wrap items-center gap-x-8 gap-y-2.5 border-t border-neutral-100 pt-5">
-        {(["incUtilities", "incWifi", "incTaxes"] as const).map((key) => (
+      <div className="mt-6 flex flex-wrap items-center gap-x-8 gap-y-2.5 border-t border-neutral-200/80 pt-5">
+        {(
+          [
+            "incUtilities",
+            "incWifi",
+            "incCleaning",
+            "incService",
+            "incTaxes",
+          ] as const
+        ).map((key) => (
           <span
             key={key}
             className="flex items-center gap-2 text-sm font-medium text-ink"
