@@ -241,7 +241,7 @@ export function BookingConditions({
     label: string;
     value: string;
   }> = [];
-  const iconCls = "w-[18px] h-[18px] text-neutral-700 shrink-0";
+  const iconCls = "w-4 h-4 text-neutral-700 shrink-0";
   if (checkIn) {
     rules.push({
       key: "checkIn",
@@ -318,21 +318,21 @@ export function BookingConditions({
               {tiersFor(policy, nights).map((tier, i) => (
                 <li
                   key={tier.cond}
-                  className={`flex-1 flex items-center justify-between gap-4 py-3 ${
+                  className={`flex-1 flex items-center justify-between gap-4 py-2 ${
                     i > 0 ? "border-t border-neutral-100" : ""
                   }`}
                 >
                   <span className="flex-1 min-w-0">
-                    <span className="flex items-center gap-2.5 text-sm font-semibold text-ink">
+                    <span className="flex items-center gap-2.5 text-[13px] font-semibold text-ink">
                       {TIER_ICON[tier.kind]}
                       {t(`tier.${tier.kind}`)}
                     </span>
                     {/* Indent lines up with the label text past the icon. */}
-                    <span className="block mt-0.5 pl-[26px] text-[13px] leading-snug text-neutral-500">
+                    <span className="block mt-0.5 pl-[26px] text-xs leading-snug text-neutral-500">
                       {t(`tierDesc.${tier.kind}`)}
                     </span>
                   </span>
-                  <span className="text-sm text-neutral-600 text-right leading-snug">
+                  <span className="text-[13px] text-neutral-600 text-right leading-snug">
                     {tierCondText(tier)}
                   </span>
                 </li>
@@ -420,15 +420,15 @@ export function BookingConditions({
             {rules.map((rule, i) => (
               <li
                 key={rule.key}
-                className={`flex items-center justify-between gap-4 py-2.5 ${
+                className={`flex items-center justify-between gap-4 py-2 ${
                   i > 0 ? "border-t border-neutral-100" : ""
                 }`}
               >
-                <span className="flex items-center gap-2.5 text-sm font-medium text-ink">
+                <span className="flex items-center gap-2.5 text-[13px] font-medium text-ink">
                   {rule.icon}
                   {rule.label}
                 </span>
-                <span className="text-sm text-neutral-600 text-right">
+                <span className="text-[13px] text-neutral-600 text-right">
                   {rule.value}
                 </span>
               </li>
