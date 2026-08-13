@@ -3613,10 +3613,9 @@
     "forNights": "สำหรับ {count} คืน",
     "bookYourStay": "จองที่พักของคุณ",
     "close": "ปิด",
-    "guestReviews": "รีวิวจากผู้เข้าพัก ({count})",
-    "averageGuestRating": "คะแนนเฉลี่ยจากผู้เข้าพัก",
-    "previousReview": "รีวิวก่อนหน้า",
-    "nextReview": "รีวิวถัดไป",
+    "reviewsTitle": "รีวิวจากผู้เข้าพัก",
+    "reviewsCountShort": "{count} รีวิว",
+    "readAllReviews": "อ่านรีวิวทั้งหมด {count} รายการบน Airbnb",
     "bookingConditions": {
       "title": "เงื่อนไขการจอง",
       "cancellationTitle": "การยกเลิก",

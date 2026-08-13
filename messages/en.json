@@ -3613,10 +3613,9 @@
     "forNights": "for {count} nights",
     "bookYourStay": "Book your stay",
     "close": "Close",
-    "guestReviews": "Guest Reviews ({count})",
-    "averageGuestRating": "Average Guest Rating",
-    "previousReview": "Previous review",
-    "nextReview": "Next review",
+    "reviewsTitle": "Guest reviews",
+    "reviewsCountShort": "{count} reviews",
+    "readAllReviews": "Read all {count} reviews on Airbnb",
     "bookingConditions": {
       "title": "Booking conditions",
       "cancellationTitle": "Cancellation",
