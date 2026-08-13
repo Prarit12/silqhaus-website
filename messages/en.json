@@ -3764,6 +3764,33 @@
     "goToSlide": "Go to slide {index}"
   },
   "monthlyInquiry": {
+    "quote": {
+      "pageTitle": "Monthly stays",
+      "pageSubtitle": "Stay 30 nights or more and pay less than the nightly rate — pick your dates and see your monthly price instantly.",
+      "stepDates": "Pick your move-in date",
+      "stepRate": "See your monthly rate instantly",
+      "stepConfirm": "Confirm the details with us in chat",
+      "change": "Change",
+      "loadingProperties": "Loading properties…",
+      "pickProperty": "Which home would you like to stay in?",
+      "lengthLabel": "Length of stay",
+      "monthsShort": "{count} mo",
+      "nightlyTotal": "Nightly rate · {count} nights",
+      "monthlyDiscount": "Monthly discount −{percent}%",
+      "yourRate": "Your monthly rate",
+      "perMonth": "/month",
+      "termTotal": "{months} months · {total} total",
+      "estimatedNote": "Includes an estimate for dates beyond the published calendar.",
+      "conflictNote": "{count} nights in this range are already booked — chat with us for alternatives.",
+      "incUtilities": "Utilities all inclusive",
+      "incWifi": "High-speed wifi & linen",
+      "incTaxes": "No hidden fees",
+      "requestRate": "Request this rate",
+      "negotiateNote": "Questions, or want to talk the price over? The chat buttons reach our team directly.",
+      "chatMessage": "Hi! I'm interested in a monthly stay at {property} from {moveIn} for {months} month(s) — I saw a rate of about {rate}/month on your site.",
+      "loadingRates": "Loading rates…",
+      "noRates": "We couldn't load live rates for these dates — send the request and we'll quote you directly."
+    },
     "hero": {
       "subtitle": "Extended Stay Rates",
       "title": "Monthly Stay Inquiry",

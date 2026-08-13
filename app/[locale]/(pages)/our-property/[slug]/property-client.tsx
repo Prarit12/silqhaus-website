@@ -1014,7 +1014,7 @@ export default function PropertyDetails({
   const supportLinks = (
     <div className="mt-3 space-y-3">
       {supportLinkRow(
-        `/monthly-inquiry?property=${encodeURIComponent(property.name || "")}`,
+        `/monthly-inquiry?pid=${source}:${property.id}&property=${encodeURIComponent(property.name || "")}${checkInDate ? `&checkIn=${checkInDate}` : ""}`,
         <CalendarDays
           className="w-[18px] h-[18px] text-ink"
           strokeWidth={1.5}

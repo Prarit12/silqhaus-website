@@ -39,6 +39,7 @@ interface GuestyPrices {
   cleaningFee?: number | string | null;
   currency?: string | null;
   basePrice?: number | string | null;
+  monthlyPriceFactor?: number | null;
   [key: string]: unknown;
 }
 
@@ -121,6 +122,8 @@ export interface NormalizedGuestyListing {
   areaSqm?: number;
   /** publicDescription.neighborhood — the host-written area text. */
   neighborhoodOverview?: string;
+  /** prices.monthlyPriceFactor — <1 means a configured monthly discount. */
+  monthlyPriceFactor?: number;
 }
 
 /** Attach the review summary, when one exists, to a normalized listing. */
@@ -253,6 +256,10 @@ export function normalizeGuestyListing(
     propertyType: raw.propertyType || undefined,
     neighborhoodOverview:
       (raw.publicDescription?.neighborhood || "").trim() || undefined,
+    monthlyPriceFactor:
+      typeof raw.prices?.monthlyPriceFactor === "number"
+        ? raw.prices.monthlyPriceFactor
+        : undefined,
     areaSqm:
       typeof raw.areaSquareFeet === "number" && raw.areaSquareFeet > 0
         ? raw.areaSquareFeet
@@ -336,9 +343,9 @@ function isPublic(raw: GuestyRawListing): boolean {
 
 const LISTINGS_CACHE_TTL_MS = 10 * 60 * 1000;
 const LISTINGS_CACHE_TTL_SECONDS = LISTINGS_CACHE_TTL_MS / 1000;
-// v6: adds neighborhoodOverview (v5 propertyType/areaSqm, v4 times).
-const LISTINGS_KV_PREFIX = "guesty:listings:v6:";
-const LISTING_KV_PREFIX = "guesty:listing:v6:";
+// v7: adds monthlyPriceFactor (v6 neighborhood, v5 type/size).
+const LISTINGS_KV_PREFIX = "guesty:listings:v7:";
+const LISTING_KV_PREFIX = "guesty:listing:v7:";
 
 interface ListingsCacheEntry {
   data: NormalizedGuestyListing[];
