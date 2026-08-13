@@ -318,6 +318,49 @@ function MonthlyStays() {
 
   const fmt = (n: number) => `฿${n.toLocaleString()}`;
 
+  // When the chosen range collides with bookings, offer the nearest
+  // fully-open windows of the same length from the loaded calendar.
+  const alternativeStarts = useMemo(() => {
+    if (!selected || !quote || quote.conflicts === 0) return [];
+    const days = calendarQuery.data ?? [];
+    if (days.length === 0) return [];
+    const byDate = new Map(days.map((d) => [d.date, d]));
+    const dates = days.map((d) => d.date).sort();
+    const nights = quote.nights;
+    const firstStart =
+      dates[0] > today ? dates[0] : addDaysStr(today, 1);
+    const lastStart = dates[dates.length - 1];
+    const candidates: { start: string; distance: number }[] = [];
+    for (let d = firstStart; d <= lastStart; d = addDaysStr(d, 1)) {
+      let ok = true;
+      let x = d;
+      for (let i = 0; i < nights; i++) {
+        const day = byDate.get(x);
+        if (!day || day.isAvailable !== 1 || day.status === "reserved") {
+          ok = false;
+          break;
+        }
+        x = addDaysStr(x, 1);
+      }
+      if (ok) {
+        candidates.push({
+          start: d,
+          distance: Math.abs(nightsBetween(moveIn, d)),
+        });
+      }
+    }
+    candidates.sort((a, b) => a.distance - b.distance);
+    return candidates.slice(0, 3).map((c) => c.start);
+  }, [selected, quote, calendarQuery.data, moveIn, today]);
+
+  // Re-date the stay onto a suggested window, keeping the exact length.
+  const applyAlternative = (start: string) => {
+    if (!quote) return;
+    setMoveIn(start);
+    setCustomEnd(addDaysStr(start, quote.nights));
+    setMonths(null);
+  };
+
   const fxRate = currency === "THB" ? 1 : fxQuery.data?.[currency];
   const activeCurrency: CurrencyCode = fxRate ? currency : "THB";
   const fmtQ = (thb: number) => {
@@ -422,6 +465,7 @@ function MonthlyStays() {
 
   const scrollToForm = () => {
     setPanelTab("details");
+    setStep(5);
     setForm((prev) => ({
       ...prev,
       message: prev.message || quoteMessage,
@@ -527,8 +571,6 @@ function MonthlyStays() {
         id="monthly-booking"
         className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-20 scroll-mt-20"
       >
-        <div className="lg:grid lg:grid-cols-[minmax(0,1fr)_440px] lg:gap-12 lg:items-start">
-          <div className="min-w-0">
         {/* Step wizard */}
         <div>
           {/* Progress header — the illustrated journey IS the stepper */}
@@ -538,7 +580,7 @@ function MonthlyStays() {
               !!selected,
               !!moveIn && step > 2,
               hasTerm,
-              false,
+              step > 4,
               submitStatus === "success",
             ]}
             reachable={[
@@ -546,20 +588,23 @@ function MonthlyStays() {
               !!selected,
               !!selected && !!moveIn,
               !!selected && !!moveIn && hasTerm,
-              !!selected && !!moveIn && hasTerm,
+              !!selected &&
+                !!moveIn &&
+                hasTerm &&
+                !!quote &&
+                quote.conflicts === 0,
             ]}
             onSelect={(n) => {
-              if (n === 5) {
-                setStep(4);
-                scrollToForm();
-              } else {
-                setStep(n);
-              }
+              if (n === 5) setPanelTab("details");
+              setStep(n);
             }}
           />
 
           {/* Step panel */}
-          <div className="mt-4 rounded-2xl border border-neutral-200 p-5 sm:p-6">
+          <div
+            ref={formRef}
+            className="mt-4 scroll-mt-24 rounded-2xl border border-neutral-200 p-5 sm:p-6"
+          >
             <p className="text-xs font-semibold uppercase tracking-wide text-neutral-500">
               {t("quote.stepLabel", { n: step })}
             </p>
@@ -843,13 +888,67 @@ function MonthlyStays() {
                       </p>
                     )}
                     {quote.conflicts > 0 && (
-                      <p className="mt-2 text-xs text-amber-700">
-                        {t("quote.conflictNote", { count: quote.conflicts })}
-                      </p>
+                      <div className="mt-4 rounded-xl border border-amber-200 bg-amber-50 p-4">
+                        <p className="text-[13px] font-semibold text-amber-800">
+                          {t("quote.conflictNote", { count: quote.conflicts })}
+                        </p>
+                        {alternativeStarts.length > 0 && (
+                          <>
+                            <p className="mt-2.5 text-xs text-neutral-700">
+                              {t("quote.altDatesTitle", { nights: quote.nights })}
+                            </p>
+                            <div className="mt-2 flex flex-wrap gap-2">
+                              {alternativeStarts.map((startD) => (
+                                <button
+                                  key={startD}
+                                  type="button"
+                                  onClick={() => applyAlternative(startD)}
+                                  className="h-9 px-3.5 rounded-full bg-white border border-neutral-300 text-[13px] font-semibold text-ink hover:border-ink transition-colors"
+                                >
+                                  {formatDateForDisplay(startD)} → {formatDateForDisplay(addDaysStr(startD, quote.nights))}
+                                </button>
+                              ))}
+                            </div>
+                          </>
+                        )}
+                        <div className="mt-3 flex flex-wrap items-center gap-2">
+                          <span className="text-xs text-neutral-600">
+                            {t("quote.altChatLabel")}
+                          </span>
+                          {whatsappHref && (
+                            <a
+                              href={whatsappHref}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center gap-1.5 h-8 px-3 rounded-full bg-white border border-neutral-300 text-xs font-semibold text-ink hover:text-ink hover:border-ink transition-colors"
+                            >
+                              <SiWhatsapp className="w-3.5 h-3.5 text-[#25D366]" aria-hidden="true" />
+                              WhatsApp
+                            </a>
+                          )}
+                          {lineHref && (
+                            <a
+                              href={lineHref}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center gap-1.5 h-8 px-3 rounded-full bg-white border border-neutral-300 text-xs font-semibold text-ink hover:text-ink hover:border-ink transition-colors"
+                            >
+                              <SiLine className="w-3.5 h-3.5 text-[#06C755]" aria-hidden="true" />
+                              LINE
+                            </a>
+                          )}
+                        </div>
+                      </div>
                     )}
-
-
-
+                    <button
+                      type="button"
+                      onClick={scrollToForm}
+                      disabled={quote.conflicts > 0}
+                      className="mt-5 w-full inline-flex items-center justify-center gap-2 h-12 rounded-full bg-ink bg-[linear-gradient(90deg,#09081F_0%,#382124_45%,#673929_65%,#95522E_80%,#C46A33_92%,#F38338_100%)] text-white text-[15px] font-semibold hover:opacity-90 transition-opacity disabled:opacity-40 disabled:cursor-not-allowed"
+                    >
+                      <Calendar className="w-4 h-4" aria-hidden="true" />
+                      {t("quote.requestRate")}
+                    </button>
                   </div>
                 ) : (
                   <p className="mt-4 text-sm text-neutral-600">
@@ -861,44 +960,9 @@ function MonthlyStays() {
               </div>
             )}
 
-            {/* Step navigation */}
-            {step < 4 && (
-              <div className="mt-6 flex items-center justify-between">
-                {step > 1 ? (
-                  <button
-                    type="button"
-                    onClick={() => setStep(step - 1)}
-                    className="text-sm font-semibold text-neutral-600 hover:text-ink underline underline-offset-4"
-                  >
-                    {t("quote.back")}
-                  </button>
-                ) : (
-                  <span />
-                )}
-                <button
-                  type="button"
-                  onClick={() => setStep(step + 1)}
-                  disabled={
-                    (step === 1 && !selected) ||
-                    (step === 2 && !moveIn) ||
-                    (step === 3 && !hasTerm)
-                  }
-                  className="inline-flex items-center justify-center h-11 px-6 rounded-full bg-ink text-white text-sm font-semibold hover:bg-neutral-800 transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
-                >
-                  {t("quote.continue")}
-                </button>
-              </div>
-            )}
-          </div>
-        </div>
-
-          </div>
-
-        {/* Contact card — Request Details / Schedule Viewing tabs */}
-        <div
-          ref={formRef}
-          className="mt-10 lg:mt-0 scroll-mt-24 lg:sticky lg:top-24 rounded-2xl border border-neutral-200 p-5 sm:p-6"
-        >
+            {/* Step 5 — confirm with us: send the details or chat */}
+            {step === 5 && (
+              <div className="mt-5 max-w-2xl">
           <div
             role="tablist"
             aria-label={t("form.anyQuestions")}
@@ -1252,8 +1316,52 @@ function MonthlyStays() {
           </p>
           </div>
           )}
+              </div>
+            )}
+
+            {/* Step navigation */}
+            {step < 4 && (
+              <div className="mt-6 flex items-center justify-between">
+                {step > 1 ? (
+                  <button
+                    type="button"
+                    onClick={() => setStep(step - 1)}
+                    className="text-sm font-semibold text-neutral-600 hover:text-ink underline underline-offset-4"
+                  >
+                    {t("quote.back")}
+                  </button>
+                ) : (
+                  <span />
+                )}
+                <button
+                  type="button"
+                  onClick={() => setStep(step + 1)}
+                  disabled={
+                    (step === 1 && !selected) ||
+                    (step === 2 && !moveIn) ||
+                    (step === 3 && !hasTerm)
+                  }
+                  className="inline-flex items-center justify-center h-11 px-6 rounded-full bg-ink text-white text-sm font-semibold hover:bg-neutral-800 transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+                >
+                  {t("quote.continue")}
+                </button>
+              </div>
+            )}
+
+            {step === 5 && (
+              <div className="mt-6">
+                <button
+                  type="button"
+                  onClick={() => setStep(4)}
+                  className="text-sm font-semibold text-neutral-600 hover:text-ink underline underline-offset-4"
+                >
+                  {t("quote.back")}
+                </button>
+              </div>
+            )}
+          </div>
         </div>
-        </div>
+
       </div>
 
       <MonthlyPartnerPopup

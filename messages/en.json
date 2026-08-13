@@ -3822,7 +3822,9 @@
         "RUB": "Russian Ruble"
       },
       "estimatedNote": "Includes an estimate for dates beyond the published calendar.",
-      "conflictNote": "{count} nights in this range are already booked — chat with us for alternatives.",
+      "conflictNote": "{count} nights in this range are already booked — pick nearby dates below or chat with us.",
+      "altDatesTitle": "Closest available dates for your {nights}-night stay:",
+      "altChatLabel": "Prefer your original dates? Chat with us:",
       "benefitsTitle": "Benefits of booking monthly with Silqhaus",
       "benefitsSubtitle": "Everything a long stay needs, wrapped into one monthly price — no surprises when you check out.",
       "incUtilitiesPill": "All inclusive",
