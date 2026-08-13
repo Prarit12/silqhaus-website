@@ -28,9 +28,10 @@ export default function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
 
   // Pages with a full-bleed hero want the transparent nav at the top; the
-  // search results page has no hero, so keep the nav solid there so the search
-  // pill reads as a clean header bar above the filter row.
-  const solidHeader = isScrolled || pathname === "/our-property";
+  // search results page and the white property detail pages have no hero, so
+  // keep the nav solid there — transparent would paint the logo and menu
+  // white-on-white.
+  const solidHeader = isScrolled || pathname.startsWith("/our-property");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isPartnerOpen, setIsPartnerOpen] = useState(false);
   const [isContactDropdownOpen, setIsContactDropdownOpen] = useState(false);
