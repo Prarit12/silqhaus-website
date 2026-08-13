@@ -1320,7 +1320,7 @@ function MonthlyStays() {
               </div>
 
               {/* Booking recap — what they're confirming */}
-              <aside className="hidden lg:block rounded-2xl bg-[#F5F4F0] p-6 xl:p-8">
+              <aside className="hidden lg:block lg:sticky lg:top-24 rounded-2xl bg-[#F5F4F0] p-6 xl:p-8">
                 <p className="text-lg font-bold text-ink">
                   {t("quote.recapTitle")}
                 </p>
