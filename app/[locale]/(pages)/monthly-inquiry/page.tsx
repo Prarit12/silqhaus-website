@@ -962,7 +962,7 @@ function MonthlyStays() {
 
             {/* Step 5 — confirm with us: send the details or chat */}
             {step === 5 && (
-              <div className="mt-5 lg:grid lg:grid-cols-[minmax(0,1fr)_320px] lg:gap-10 lg:items-start">
+              <div className="mt-5 lg:grid lg:grid-cols-2 lg:gap-10 lg:items-start">
               <div className="max-w-2xl">
           <div
             role="tablist"
@@ -1320,28 +1320,28 @@ function MonthlyStays() {
               </div>
 
               {/* Booking recap — what they're confirming */}
-              <aside className="hidden lg:block rounded-xl bg-[#F5F4F0] p-5">
-                <p className="text-[15px] font-bold text-ink">
+              <aside className="hidden lg:block rounded-2xl bg-[#F5F4F0] p-6 xl:p-8">
+                <p className="text-lg font-bold text-ink">
                   {t("quote.recapTitle")}
                 </p>
                 {selected && (
-                  <div className="mt-3 flex items-center gap-3">
-                    <div className="relative w-16 h-12 rounded-lg overflow-hidden bg-neutral-200 shrink-0">
+                  <div className="mt-4 flex items-center gap-4">
+                    <div className="relative w-24 h-20 rounded-xl overflow-hidden bg-neutral-200 shrink-0">
                       {selected.listingImages?.[0]?.url && (
                         <Image
                           src={selected.listingImages[0].url}
                           alt={selectedTitle}
                           fill
-                          sizes="64px"
+                          sizes="96px"
                           className="object-cover"
                         />
                       )}
                     </div>
                     <div className="min-w-0">
-                      <p className="text-sm font-semibold text-ink truncate">
+                      <p className="text-[17px] font-semibold text-ink truncate">
                         {selectedTitle}
                       </p>
-                      <p className="text-xs text-neutral-500 truncate">
+                      <p className="text-sm text-neutral-500 truncate">
                         {[selected.city, selected.state]
                           .filter(Boolean)
                           .join(", ")}
@@ -1349,7 +1349,7 @@ function MonthlyStays() {
                     </div>
                   </div>
                 )}
-                <dl className="mt-4 pt-3 border-t border-neutral-200/80 space-y-2 text-[13px]">
+                <dl className="mt-5 pt-4 border-t border-neutral-200/80 space-y-3 text-[15px]">
                   <div className="flex justify-between gap-3">
                     <dt className="text-neutral-500">
                       {t("quote.recapMoveIn")}
@@ -1380,19 +1380,19 @@ function MonthlyStays() {
                   </div>
                 </dl>
                 {quote && (
-                  <div className="mt-3 pt-3 border-t border-neutral-200/80">
+                  <div className="mt-4 pt-4 border-t border-neutral-200/80">
                     <div className="flex justify-between items-baseline gap-3">
-                      <span className="text-[13px] text-neutral-500">
+                      <span className="text-[15px] text-neutral-500">
                         {t("quote.recapRate")}
                       </span>
-                      <span className="text-base font-bold text-ink">
+                      <span className="text-2xl font-bold text-ink">
                         {fmtQ(quote.perMonth)}
-                        <span className="text-xs font-normal text-neutral-600">
+                        <span className="text-sm font-normal text-neutral-600">
                           {t("quote.perMonth")}
                         </span>
                       </span>
                     </div>
-                    <div className="mt-1.5 flex justify-between gap-3 text-[13px]">
+                    <div className="mt-2 flex justify-between gap-3 text-[15px]">
                       <span className="text-neutral-500">
                         {t("quote.recapTotal")}
                       </span>
@@ -1400,7 +1400,7 @@ function MonthlyStays() {
                         {fmtQ(quote.monthlyTotal)}
                       </span>
                     </div>
-                    <p className="mt-2 text-[11px] text-green-700">
+                    <p className="mt-2.5 text-[13px] text-green-700">
                       {t("quote.monthlyDiscount", {
                         percent: Math.round(quote.discount * 100),
                       })}
