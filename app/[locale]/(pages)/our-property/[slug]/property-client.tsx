@@ -1065,7 +1065,7 @@ export default function PropertyDetails({
             href={silqhausBookingUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-4 flex items-center justify-center w-full h-12 rounded-full bg-ink text-white hover:text-white text-[15px] font-semibold hover:bg-ink/90 transition-colors"
+            className="mt-4 flex items-center justify-center w-full h-12 rounded-full bg-ink bg-[linear-gradient(90deg,#09081F_0%,#382124_45%,#673929_65%,#95522E_80%,#C46A33_92%,#F38338_100%)] text-white hover:text-white text-[15px] font-semibold hover:opacity-90 transition-opacity"
             aria-label={t("bookOnSilqhaus")}
           >
             {t("bookNow")}
@@ -1431,7 +1431,7 @@ export default function PropertyDetails({
             <button
               type="button"
               onClick={() => setMobileBookingOpen(true)}
-              className="shrink-0 inline-flex items-center justify-center h-12 px-6 rounded-full bg-ink text-white text-[15px] font-semibold"
+              className="shrink-0 inline-flex items-center justify-center h-12 px-6 rounded-full bg-ink bg-[linear-gradient(90deg,#09081F_0%,#382124_45%,#673929_65%,#95522E_80%,#C46A33_92%,#F38338_100%)] text-white text-[15px] font-semibold hover:opacity-90 transition-opacity"
             >
               {priced ? t("bookNow") : t("checkAvailability")}
             </button>
