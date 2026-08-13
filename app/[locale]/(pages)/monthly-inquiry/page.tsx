@@ -36,6 +36,7 @@ import {
 } from "@/lib/country-codes";
 import { MonthlyJourney } from "@/components/monthly-journey";
 import { MonthlyHeroArt } from "@/components/monthly-hero-art";
+import { SingleDatePicker } from "@/components/single-date-picker";
 import { displayPropertyName } from "@/config/property-names";
 import { monthlyDiscountFor } from "@/config/monthly";
 import { getSilqhausMarkupPercentage } from "@/config/ota-markups";
@@ -654,20 +655,19 @@ function MonthlyStays() {
                     </div>
                   </div>
                 )}
-                <div>
-                  <label
-                    htmlFor="wizard-movein"
-                    className="block text-xs font-bold uppercase tracking-wide mb-2 text-ink"
-                  >
+                <div id="wizard-movein">
+                  <span className="block text-xs font-bold uppercase tracking-wide mb-2 text-ink">
                     {t("form.labels.moveIn")}
-                  </label>
-                  <input
-                    id="wizard-movein"
-                    type="date"
-                    min={today}
+                  </span>
+                  <SingleDatePicker
                     value={moveIn}
-                    onChange={(e) => setMoveIn(e.target.value)}
-                    className="w-full h-16 rounded-xl border-2 border-ink bg-white px-5 text-xl font-semibold text-ink shadow-[0_4px_16px_rgba(0,0,0,0.08)] focus:outline-none focus:ring-2 focus:ring-ink/20 [color-scheme:light]"
+                    onChange={setMoveIn}
+                    calendarData={calendarQuery.data ?? []}
+                    minDate={today}
+                    disableReserved
+                    markupSource={selected?.source ?? "hostaway"}
+                    ariaLabel={t("form.labels.moveIn")}
+                    size="xl"
                   />
                 </div>
               </div>
@@ -706,24 +706,20 @@ function MonthlyStays() {
                   <span className="h-px flex-1 bg-neutral-200" />
                 </div>
 
-                <div className="mt-4 max-w-md">
-                  <label
-                    htmlFor="wizard-moveout"
-                    className="block text-xs font-bold uppercase tracking-wide mb-2 text-ink"
-                  >
+                <div id="wizard-moveout" className="mt-4 max-w-md">
+                  <span className="block text-xs font-bold uppercase tracking-wide mb-2 text-ink">
                     {t("quote.checkOutLabel")}
-                  </label>
-                  <input
-                    id="wizard-moveout"
-                    type="date"
-                    min={addDaysStr(moveIn, 28)}
+                  </span>
+                  <SingleDatePicker
                     value={customEnd ?? ""}
-                    onChange={(e) => {
-                      const v = e.target.value;
-                      setCustomEnd(v || null);
-                      if (v) setMonths(null);
+                    onChange={(v) => {
+                      setCustomEnd(v);
+                      setMonths(null);
                     }}
-                    className="w-full h-14 rounded-xl border-2 border-ink bg-white px-5 text-lg font-semibold text-ink shadow-[0_4px_16px_rgba(0,0,0,0.08)] focus:outline-none focus:ring-2 focus:ring-ink/20 [color-scheme:light]"
+                    calendarData={calendarQuery.data ?? []}
+                    minDate={addDaysStr(moveIn, 28)}
+                    markupSource={selected?.source ?? "hostaway"}
+                    ariaLabel={t("quote.checkOutLabel")}
                   />
                   <p className="mt-2 text-xs text-neutral-500">
                     {t("quote.checkOutHint")}
