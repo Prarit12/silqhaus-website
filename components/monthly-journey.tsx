@@ -1,7 +1,7 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { Check, Headphones, ShieldCheck, Sparkles, Wifi, Zap } from "lucide-react";
+import { Check } from "lucide-react";
 
 /**
  * "Your monthly journey" — the how-it-works strip as line-art cartoons:
@@ -221,6 +221,164 @@ function MoveIn() {
   );
 }
 
+function UtilitiesArt() {
+  return (
+    <svg viewBox="0 0 220 170" className="w-full h-auto" aria-hidden="true">
+      <ellipse cx="110" cy="146" rx="85" ry="14" fill={BLOB} />
+      <circle cx="38" cy="52" r="16" fill={BLOB} />
+      <circle cx="186" cy="66" r="20" fill={BLOB} />
+      {/* home */}
+      <path {...stroke} d="M70 132V84l40-32 40 32v48" fill="#fff" />
+      <path {...stroke} d="M62 132h96" />
+      <rect x="78" y="96" width="16" height="14" rx="2" {...stroke} />
+      <path d="M100 132v-25c0-2 1.6-3 3.5-3h13c1.9 0 3.5 1 3.5 3v25Z" fill={ORANGE} />
+      {/* power, water, cooling — all in the price */}
+      <circle cx="162" cy="40" r="14" fill={ORANGE} />
+      <path
+        d="M164 31l-7 11h5l-3 9 8-12h-5l4-8Z"
+        fill="#fff"
+      />
+      <path {...stroke} d="M50 80c5.5 7.5 8.5 11.5 8.5 16a8.5 8.5 0 1 1-17 0c0-4.5 3-8.5 8.5-16Z" fill="#fff" />
+      <path {...stroke} strokeWidth={2.2} d="M182 100v18M174 104l16 10M190 104l-16 10" />
+      <path {...stroke} d="M42 26l2 5M50 20l1 5" />
+    </svg>
+  );
+}
+
+function WifiArt() {
+  return (
+    <svg viewBox="0 0 220 170" className="w-full h-auto" aria-hidden="true">
+      <ellipse cx="110" cy="148" rx="80" ry="13" fill={BLOB} />
+      <circle cx="46" cy="60" r="18" fill={BLOB} />
+      <circle cx="180" cy="88" r="16" fill={BLOB} />
+      {/* signal rising from the laptop */}
+      <path {...stroke} d="M82 48a40 40 0 0 1 56 0" />
+      <path
+        d="M92 58a26 26 0 0 1 36 0"
+        stroke={ORANGE}
+        strokeWidth="2.4"
+        strokeLinecap="round"
+        fill="none"
+      />
+      <circle cx="110" cy="68" r="3.2" fill={ORANGE} />
+      {/* open laptop */}
+      <rect x="84" y="80" width="52" height="38" rx="5" {...stroke} fill="#fff" />
+      <path
+        d="M96 104c4-5 10-5 14 0"
+        stroke={ORANGE}
+        strokeWidth="2.4"
+        strokeLinecap="round"
+        fill="none"
+      />
+      <circle cx="103" cy="110" r="2" fill={ORANGE} />
+      <path {...stroke} strokeWidth={2.2} d="M116 96h12M116 104h8" />
+      <path {...stroke} d="M76 130l8-12h52l8 12H76Z" fill="#fff" />
+      <path {...stroke} strokeWidth={2.2} d="M100 124h20" />
+      <path d="M158 40l2.5 6 6 2.5-6 2.5-2.5 6-2.5-6-6-2.5 6-2.5 2.5-6Z" fill={ORANGE} />
+      <path {...stroke} d="M62 104l2 5M56 114l4 3" />
+    </svg>
+  );
+}
+
+function CleaningArt() {
+  return (
+    <svg viewBox="0 0 220 170" className="w-full h-auto" aria-hidden="true">
+      <ellipse cx="110" cy="146" rx="85" ry="14" fill={BLOB} />
+      <circle cx="182" cy="52" r="17" fill={BLOB} />
+      {/* freshly made bed */}
+      <rect x="52" y="72" width="12" height="48" rx="4" {...stroke} fill="#fff" />
+      <path {...stroke} d="M64 98h100c4 0 7 3 7 7v15H64Z" fill="#fff" />
+      <path {...stroke} d="M68 120v10M165 120v10" />
+      <rect x="72" y="86" width="28" height="12" rx="6" {...stroke} fill="#fff" />
+      <path
+        d="M64 106h107"
+        stroke={ORANGE}
+        strokeWidth="2.4"
+        strokeLinecap="round"
+      />
+      {/* folded linen stack */}
+      <rect x="178" y="112" width="26" height="8" rx="3" {...stroke} fill="#fff" />
+      <rect x="180" y="102" width="22" height="8" rx="3" {...stroke} fill="#fff" />
+      {/* sparkle clean */}
+      <path d="M118 48l3 7 7 3-7 3-3 7-3-7-7-3 7-3 3-7Z" fill={ORANGE} />
+      <path d="M148 34l2 4 4 2-4 2-2 4-2-4-4-2 4-2 2-4Z" fill={ORANGE_DEEP} />
+      <path {...stroke} d="M88 52l2 5M96 46l1 5" />
+    </svg>
+  );
+}
+
+function ServiceArt() {
+  return (
+    <svg viewBox="0 0 220 170" className="w-full h-auto" aria-hidden="true">
+      <ellipse cx="110" cy="148" rx="78" ry="13" fill={BLOB} />
+      <circle cx="52" cy="46" r="16" fill={BLOB} />
+      {/* phone */}
+      <rect x="92" y="34" width="40" height="74" rx="9" {...stroke} fill="#fff" />
+      <path {...stroke} strokeWidth={2.2} d="M104 42h16" />
+      <path {...stroke} strokeWidth={2.2} d="M100 56h24M100 66h16" />
+      {/* chat both ways */}
+      <path
+        {...stroke}
+        d="M46 76c0-4.4 3.6-8 8-8h20c4.4 0 8 3.6 8 8v6c0 4.4-3.6 8-8 8h-13l-8 7v-7c-4 0-7-3.6-7-8Z"
+        fill="#fff"
+      />
+      <circle cx="59" cy="79" r="1.7" fill={INK} />
+      <circle cx="67" cy="79" r="1.7" fill={INK} />
+      <g>
+        <rect x="142" y="54" width="40" height="24" rx="9" fill={ORANGE} />
+        <circle cx="154" cy="66" r="1.9" fill="#fff" />
+        <circle cx="162" cy="66" r="1.9" fill="#fff" />
+        <circle cx="170" cy="66" r="1.9" fill="#fff" />
+      </g>
+      {/* around the clock */}
+      <circle cx="156" cy="104" r="15" fill={ORANGE} />
+      <text
+        x="156"
+        y="108.5"
+        textAnchor="middle"
+        fontSize="10"
+        fontWeight="700"
+        fill="#fff"
+      >
+        24/7
+      </text>
+      <path {...stroke} d="M74 116l2 5M66 124l4 3" />
+      <path d="M186 30l2.5 6 6 2.5-6 2.5-2.5 6-2.5-6-6-2.5 6-2.5 2.5-6Z" fill={ORANGE} />
+    </svg>
+  );
+}
+
+function FeesArt() {
+  return (
+    <svg viewBox="0 0 220 170" className="w-full h-auto" aria-hidden="true">
+      <ellipse cx="110" cy="148" rx="80" ry="13" fill={BLOB} />
+      <circle cx="176" cy="42" r="16" fill={BLOB} />
+      {/* the quote sheet */}
+      <rect x="72" y="30" width="60" height="88" rx="7" {...stroke} fill="#fff" />
+      <path {...stroke} strokeWidth={2.2} d="M84 48h30M84 60h38M84 72h26" />
+      <path {...stroke} strokeWidth={2.2} d="M82 90h42" />
+      <rect x="84" y="98" width="18" height="10" rx="3" fill={ORANGE} />
+      <path {...stroke} strokeWidth={2.2} d="M108 103h14" />
+      {/* shield: what you see is what you pay */}
+      <path
+        {...stroke}
+        d="M158 76l22 9v15c0 14-10 23-22 28-12-5-22-14-22-28V85l22-9Z"
+        fill="#fff"
+      />
+      <path
+        d="M148 100l7 7 14-14"
+        stroke={ORANGE}
+        strokeWidth="3"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        fill="none"
+      />
+      <path {...stroke} d="M52 60l2 5M44 70l4 3" />
+      <path d="M56 116l2 4 4 2-4 2-2 4-2-4-4-2 4-2 2-4Z" fill={ORANGE_DEEP} />
+    </svg>
+  );
+}
+
 function Arrow() {
   return (
     <svg
@@ -248,11 +406,11 @@ function Arrow() {
 }
 
 const BENEFITS = [
-  { key: "incUtilities", icon: Zap },
-  { key: "incWifi", icon: Wifi },
-  { key: "incCleaning", icon: Sparkles },
-  { key: "incService", icon: Headphones },
-  { key: "incTaxes", icon: ShieldCheck },
+  { key: "incUtilities", art: UtilitiesArt },
+  { key: "incWifi", art: WifiArt },
+  { key: "incCleaning", art: CleaningArt },
+  { key: "incService", art: ServiceArt },
+  { key: "incTaxes", art: FeesArt },
 ] as const;
 
 const WIZARD_STEPS = [
@@ -346,35 +504,28 @@ export function MonthlyJourneyStepper({
   );
 }
 
-/** The "Benefits of booking monthly" panel — sits on the hero's warm band. */
+/** The "Benefits of booking monthly" showcase — big illustrated scenes with
+ *  caption cards, straight on the hero's warm band. */
 export function MonthlyBenefits({ className = "" }: { className?: string }) {
   const t = useTranslations("monthlyInquiry.quote");
   return (
-    <div
-      className={`rounded-2xl bg-white border border-neutral-200/70 shadow-[0_2px_12px_rgba(0,0,0,0.04)] px-6 sm:px-8 py-6 sm:py-8 ${className}`}
-    >
-      <h2 className="text-xl md:text-[22px] font-bold normal-case tracking-normal text-ink text-balance">
+    <div className={className}>
+      <h2 className="text-center text-2xl md:text-[28px] font-bold normal-case tracking-normal text-ink text-balance">
         {t("benefitsTitle")}
       </h2>
-      <p className="mt-1.5 text-sm text-neutral-600 max-w-[60ch]">
+      <p className="mt-2 text-center text-sm md:text-[15px] text-neutral-600 max-w-[60ch] mx-auto">
         {t("benefitsSubtitle")}
       </p>
-      <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-x-8 gap-y-6">
-        {BENEFITS.map(({ key, icon: Icon }) => (
-          <div key={key}>
-            <span className="w-12 h-12 rounded-full bg-[#F5F4F0] grid place-items-center">
-              <Icon
-                className="w-[22px] h-[22px] text-ink"
-                strokeWidth={1.8}
-                aria-hidden="true"
-              />
-            </span>
-            <p className="mt-3 text-[15px] font-semibold text-ink">
-              {t(key)}
-            </p>
-            <p className="mt-1 text-[13px] leading-snug text-neutral-600">
-              {t(`${key}Desc`)}
-            </p>
+      <div className="mt-10 flex flex-wrap justify-center gap-x-12 gap-y-10">
+        {BENEFITS.map(({ key, art: Art }) => (
+          <div key={key} className="w-full max-w-[300px] sm:w-[280px] lg:w-[300px]">
+            <Art />
+            <div className="relative -mt-4 mx-auto w-fit max-w-[270px] rounded-xl bg-white border border-neutral-200/70 shadow-[0_2px_12px_rgba(0,0,0,0.06)] px-4 py-3 text-center">
+              <p className="text-sm font-bold text-ink">{t(key)}</p>
+              <p className="mt-1 text-[12.5px] leading-snug text-neutral-600">
+                {t(`${key}Desc`)}
+              </p>
+            </div>
           </div>
         ))}
       </div>

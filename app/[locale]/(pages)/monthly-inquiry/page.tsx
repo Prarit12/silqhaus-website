@@ -504,7 +504,7 @@ function MonthlyStays() {
     <main className="min-h-screen bg-white text-ink pt-14 md:pt-16">
       {/* Hero — its own warm band, clearly split from the booking flow */}
       <div className="bg-[#F5F4F0] border-b border-neutral-200/70">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-14 pb-16">
           <div className="lg:grid lg:grid-cols-[minmax(0,1fr)_440px] lg:gap-16 lg:items-center">
             <div>
               <h1 className="text-[34px] leading-[1.1] md:text-5xl font-bold tracking-tight text-ink text-balance">
@@ -537,7 +537,7 @@ function MonthlyStays() {
           </div>
 
           {/* What every monthly stay includes */}
-          <MonthlyBenefits className="mt-8" />
+          <MonthlyBenefits className="mt-14" />
         </div>
       </div>
 
