@@ -3575,6 +3575,11 @@
         "half": "50% refund",
         "none": "No refund"
       },
+      "tierDesc": {
+        "full": "You get back everything you paid.",
+        "half": "You get back half of what you paid.",
+        "none": "Cancellations at this point are not refunded."
+      },
       "cond": {
         "standardShort": "Until 5 days before check-in",
         "standardLong": "Until 15 days before check-in",

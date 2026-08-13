@@ -315,15 +315,21 @@ export function BookingConditions({
               {tiersFor(policy, nights).map((tier, i) => (
                 <li
                   key={tier.cond}
-                  className={`flex items-center justify-between gap-4 py-3.5 ${
+                  className={`flex items-start justify-between gap-4 py-3 ${
                     i > 0 ? "border-t border-neutral-100" : ""
                   }`}
                 >
-                  <span className="flex items-center gap-2.5 text-sm font-semibold text-ink shrink-0">
-                    {TIER_ICON[tier.kind]}
-                    {t(`tier.${tier.kind}`)}
+                  <span className="flex-1 min-w-0">
+                    <span className="flex items-center gap-2.5 text-sm font-semibold text-ink">
+                      {TIER_ICON[tier.kind]}
+                      {t(`tier.${tier.kind}`)}
+                    </span>
+                    {/* Indent lines up with the label text past the icon. */}
+                    <span className="block mt-0.5 pl-[26px] text-[13px] leading-snug text-neutral-500">
+                      {t(`tierDesc.${tier.kind}`)}
+                    </span>
                   </span>
-                  <span className="text-sm text-neutral-600 text-right leading-snug">
+                  <span className="text-sm text-neutral-600 text-right leading-snug pt-px">
                     {tierCondText(tier)}
                   </span>
                 </li>
