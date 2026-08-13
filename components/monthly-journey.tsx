@@ -346,31 +346,24 @@ export function MonthlyJourneyStepper({
   );
 }
 
-/** The "Benefits of booking monthly" panel — one line on the hero band. */
+/** Compact benefit pills — a single wrapping row under the hero subtitle. */
 export function MonthlyBenefits({ className = "" }: { className?: string }) {
   const t = useTranslations("monthlyInquiry.quote");
   return (
-    <div
-      className={`rounded-2xl bg-white border border-neutral-200/70 shadow-[0_2px_12px_rgba(0,0,0,0.04)] px-5 sm:px-7 py-5 sm:py-6 ${className}`}
-    >
-      <p className="text-[17px] font-bold text-ink">{t("benefitsTitle")}</p>
-      <div className="mt-4 flex flex-wrap gap-x-8 gap-y-4 lg:justify-between">
-        {BENEFITS.map(({ key, icon: Icon }) => (
-          <span
-            key={key}
-            className="flex items-center gap-2.5 text-sm font-semibold text-ink"
-          >
-            <span className="w-9 h-9 rounded-full bg-[#F5F4F0] grid place-items-center shrink-0">
-              <Icon
-                className="w-[18px] h-[18px] text-ink"
-                strokeWidth={1.8}
-                aria-hidden="true"
-              />
-            </span>
-            {t(key)}
-          </span>
-        ))}
-      </div>
+    <div className={`flex flex-wrap gap-2 ${className}`}>
+      {BENEFITS.map(({ key, icon: Icon }) => (
+        <span
+          key={key}
+          className="inline-flex items-center gap-1.5 h-9 px-3.5 rounded-full bg-white/70 border border-neutral-200/80 text-[13px] font-medium text-ink"
+        >
+          <Icon
+            className="w-4 h-4 text-ink"
+            strokeWidth={1.8}
+            aria-hidden="true"
+          />
+          {t(`${key}Pill`)}
+        </span>
+      ))}
     </div>
   );
 }

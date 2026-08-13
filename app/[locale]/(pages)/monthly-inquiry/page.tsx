@@ -505,20 +505,20 @@ function MonthlyStays() {
       <div className="bg-[#F5F4F0] border-b border-neutral-200/70">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-10">
           <div className="lg:grid lg:grid-cols-[minmax(0,1fr)_440px] lg:gap-16 lg:items-center">
-            <div className="lg:pt-14">
+            <div className="lg:pt-6">
               <h1 className="text-[34px] leading-[1.1] md:text-5xl font-bold tracking-tight text-ink text-balance">
                 {t("quote.pageTitle")}
               </h1>
               <p className="mt-4 text-[15px] md:text-base leading-relaxed text-neutral-600 max-w-[58ch]">
                 {t("quote.pageSubtitle")}
               </p>
+              <MonthlyBenefits className="mt-6" />
             </div>
             <div className="hidden lg:block">
               <MonthlyHeroArt />
             </div>
           </div>
 
-          <MonthlyBenefits className="mt-10" />
         </div>
       </div>
 
