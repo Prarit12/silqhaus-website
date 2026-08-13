@@ -12,6 +12,7 @@ import {
   Building2,
   CalendarDays,
   Check,
+  MapPin,
   MessageCircle,
   Minus,
   Plus,
@@ -1436,18 +1437,53 @@ export default function PropertyDetails({
             const areaText =
               property.neighborhoodOverview ||
               (areaKey ? t(`neighborhoods.${areaKey}`) : null);
-            if (!areaText) return null;
+            if (!areaText && !areaKey) return null;
             return (
-              <div className="mt-5 max-w-[75ch]">
-                {location && (
-                  <p className="text-[15px] font-semibold text-ink">
-                    {location}
-                  </p>
+              <>
+                {areaText && (
+                  <div className="mt-5 max-w-[75ch]">
+                    {location && (
+                      <p className="text-[15px] font-semibold text-ink">
+                        {location}
+                      </p>
+                    )}
+                    <p className="mt-1.5 text-[15px] leading-relaxed text-ink/90 whitespace-pre-line">
+                      {areaText}
+                    </p>
+                  </div>
                 )}
-                <p className="mt-1.5 text-[15px] leading-relaxed text-ink/90 whitespace-pre-line">
-                  {areaText}
-                </p>
-              </div>
+                {areaKey && (
+                  <div className="mt-6">
+                    <p className="text-[15px] font-semibold text-ink">
+                      {t("attractionsTitle")}
+                    </p>
+                    <div className="mt-3 grid grid-cols-1 sm:grid-cols-3 gap-3">
+                      {(["one", "two", "three"] as const).map((slot) => (
+                        <div
+                          key={slot}
+                          className="flex items-center gap-3 rounded-2xl border border-neutral-200 px-4 py-3"
+                        >
+                          <span className="w-9 h-9 rounded-full bg-neutral-100 grid place-items-center shrink-0">
+                            <MapPin
+                              className="w-[18px] h-[18px] text-ink"
+                              strokeWidth={1.5}
+                              aria-hidden="true"
+                            />
+                          </span>
+                          <span className="min-w-0">
+                            <span className="block text-sm font-semibold text-ink leading-snug">
+                              {t(`attractions.${areaKey}.${slot}.name`)}
+                            </span>
+                            <span className="block text-xs text-neutral-500 mt-0.5">
+                              {t(`attractions.${areaKey}.${slot}.desc`)}
+                            </span>
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </>
             );
           })()}
         </section>

@@ -3555,6 +3555,34 @@
       "patong": "Patong is Phuket's liveliest resort town — a three-kilometre beach, endless dining, Jungceylon mall, and the island's biggest nightlife around Bangla Road. Hillside stays here keep you above the buzz while remaining minutes from the beach and the action.",
       "pattaya": "Central Pattaya puts everything within easy reach — Central Festival mall, the beachfront promenade, markets, restaurants, and nightlife — while Wong Amat's quieter sands and the Sanctuary of Truth sit just to the north."
     },
+    "attractionsTitle": "Top attractions nearby",
+    "attractions": {
+      "choengThale": {
+        "one": { "name": "Bangtao Beach", "desc": "Six kilometres of golden sand" },
+        "two": { "name": "Boat Avenue & Porto de Phuket", "desc": "Cafés, shopping & weekend market" },
+        "three": { "name": "Catch Beach Club", "desc": "Beachfront dining & sunset scene" }
+      },
+      "rawai": {
+        "one": { "name": "Nai Harn Beach", "desc": "One of Phuket's finest beaches" },
+        "two": { "name": "Promthep Cape", "desc": "The island's famous sunset viewpoint" },
+        "three": { "name": "Rawai Seafood Market", "desc": "Pick-and-grill fresh seafood" }
+      },
+      "koKaeo": {
+        "one": { "name": "Old Phuket Town", "desc": "Sino-Portuguese streets & cafés" },
+        "two": { "name": "Boat Lagoon Marina", "desc": "Yachting hub with waterside dining" },
+        "three": { "name": "Central Phuket", "desc": "The island's biggest mall & aquarium" }
+      },
+      "patong": {
+        "one": { "name": "Patong Beach", "desc": "Three kilometres of sand & watersports" },
+        "two": { "name": "Bangla Road", "desc": "Phuket's liveliest nightlife strip" },
+        "three": { "name": "Jungceylon", "desc": "Shopping & dining complex" }
+      },
+      "pattaya": {
+        "one": { "name": "Sanctuary of Truth", "desc": "Hand-carved teak landmark" },
+        "two": { "name": "Wong Amat Beach", "desc": "Calm sands in North Pattaya" },
+        "three": { "name": "Terminal 21 Pattaya", "desc": "Themed mall & food court" }
+      }
+    },
     "availability": {
       "title": "Availability",
       "selectPrompt": "Select your dates",
