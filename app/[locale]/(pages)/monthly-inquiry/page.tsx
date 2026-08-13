@@ -15,7 +15,6 @@ import emailjs from "@emailjs/browser";
 import {
   ArrowDown,
   Calendar,
-  Check,
   ChevronLeft,
   ChevronRight,
   Loader2,
@@ -34,7 +33,7 @@ import {
 } from "@/lib/country-codes";
 import {
   MonthlyBenefits,
-  MonthlyJourney,
+  MonthlyJourneyStepper,
 } from "@/components/monthly-journey";
 import { MonthlyHeroArt } from "@/components/monthly-hero-art";
 import { MonthlyPartnerPopup } from "@/components/monthly-partner-popup";
@@ -541,77 +540,20 @@ function MonthlyStays() {
       >
         <div className="lg:grid lg:grid-cols-[minmax(0,1fr)_440px] lg:gap-12 lg:items-start">
           <div className="min-w-0">
-        {/* How it works — illustrated journey */}
-        <MonthlyJourney className="mb-10" />
-
         {/* Step wizard */}
         <div>
-          {/* Progress header */}
-          <ol className="flex items-start" aria-label="Steps">
-            {[1, 2, 3, 4].map((n) => {
-              const complete =
-                (n === 1 && !!selected) ||
-                (n === 2 && !!moveIn && step > 2) ||
-                (n === 3 && hasTerm);
-              const reachable =
-                n === 1 ||
-                (n === 2 && !!selected) ||
-                (n === 3 && !!selected && !!moveIn) ||
-                (n === 4 && !!selected && !!moveIn && hasTerm);
-              const active = step === n;
-              return (
-                <li key={n} className="relative flex-1 min-w-0">
-                  {n < 4 && (
-                    <span
-                      className="absolute top-4 left-[calc(50%+24px)] right-[calc(-50%+24px)] h-px bg-neutral-200"
-                      aria-hidden="true"
-                    />
-                  )}
-                  <button
-                    type="button"
-                    onClick={() => reachable && setStep(n)}
-                    disabled={!reachable}
-                    aria-current={active ? "step" : undefined}
-                    className="relative w-full flex flex-col items-center disabled:cursor-not-allowed"
-                  >
-                    <span
-                      className={`w-8 h-8 rounded-full grid place-items-center text-sm font-semibold border transition-colors ${
-                        active
-                          ? "bg-ink text-white border-ink"
-                          : complete
-                            ? "bg-white text-ink border-ink"
-                            : "bg-white text-neutral-400 border-neutral-200"
-                      }`}
-                    >
-                      {complete && !active ? (
-                        <Check className="w-4 h-4" strokeWidth={2.5} aria-hidden="true" />
-                      ) : (
-                        n
-                      )}
-                    </span>
-                    <span
-                      className={`mt-2 text-[10px] sm:text-[11px] font-bold uppercase tracking-wide ${
-                        active ? "text-ink" : "text-neutral-400"
-                      }`}
-                    >
-                      {t("quote.stepLabel", { n })}
-                    </span>
-                    <span
-                      className={`mt-0.5 px-1 text-[11px] sm:text-[13px] font-medium text-center leading-snug ${
-                        active
-                          ? "text-ink"
-                          : complete
-                            ? "text-neutral-600"
-                            : "text-neutral-400"
-                      }`}
-                    >
-                      {t(`quote.step${n}Title`)}
-                    </span>
-                  </button>
-                </li>
-              );
-            })}
-          </ol>
+          {/* Progress header — the illustrated journey IS the stepper */}
+          <MonthlyJourneyStepper
+            step={step}
+            complete={[!!selected, !!moveIn && step > 2, hasTerm, false]}
+            reachable={[
+              true,
+              !!selected,
+              !!selected && !!moveIn,
+              !!selected && !!moveIn && hasTerm,
+            ]}
+            onSelect={setStep}
+          />
 
           {/* Step panel */}
           <div className="mt-4 rounded-2xl border border-neutral-200 p-5 sm:p-6">

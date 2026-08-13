@@ -1,7 +1,7 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { Headphones, ShieldCheck, Sparkles, Wifi, Zap } from "lucide-react";
+import { Check, Headphones, ShieldCheck, Sparkles, Wifi, Zap } from "lucide-react";
 
 /**
  * "Your monthly journey" — the how-it-works strip as line-art cartoons:
@@ -45,6 +45,42 @@ function PickHome() {
       <path {...stroke} d="M67 58v-8h6v8" />
       {/* sparkle ticks */}
       <path {...stroke} d="M42 18l2 5M50 14l1 5M35 26l4 3" />
+    </svg>
+  );
+}
+
+function PickDate() {
+  return (
+    <svg viewBox="0 0 140 110" className="w-full h-auto" aria-hidden="true">
+      <ellipse cx="70" cy="90" rx="52" ry="12" fill={BLOB} />
+      <circle cx="116" cy="40" r="14" fill={BLOB} />
+      {/* calendar card */}
+      <rect x="32" y="28" width="76" height="60" rx="9" {...stroke} fill="#fff" />
+      <path {...stroke} d="M50 28v-9M90 28v-9" />
+      <path {...stroke} strokeWidth={2.2} d="M32 44h76" />
+      {/* day dots */}
+      <g fill={INK} opacity="0.35">
+        <circle cx="46" cy="56" r="2.4" />
+        <circle cx="60" cy="56" r="2.4" />
+        <circle cx="74" cy="56" r="2.4" />
+        <circle cx="88" cy="56" r="2.4" />
+        <circle cx="46" cy="68" r="2.4" />
+        <circle cx="60" cy="68" r="2.4" />
+        <circle cx="46" cy="80" r="2.4" />
+      </g>
+      {/* the chosen move-in day */}
+      <rect x="80" y="62" width="16" height="14" rx="4" fill={ORANGE} />
+      <path
+        d="M84 69l2.5 2.5 5-5"
+        stroke="#fff"
+        strokeWidth="2.2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        fill="none"
+      />
+      {/* sparkle ticks */}
+      <path {...stroke} d="M22 34l2 5M30 28l1 5M118 74l4 3" />
+      <path d="M120 18l2.5 6 6 2.5-6 2.5-2.5 6-2.5-6-6-2.5 6-2.5 2.5-6Z" fill={ORANGE} />
     </svg>
   );
 }
@@ -188,33 +224,92 @@ const BENEFITS = [
   { key: "incTaxes", icon: ShieldCheck },
 ] as const;
 
-const STEPS = [
-  { key: "journey1", art: PickHome },
-  { key: "journey2", art: MonthlyRate },
-  { key: "journey3", art: ConfirmChat },
-  { key: "journey4", art: MoveIn },
+const WIZARD_STEPS = [
+  { art: PickHome },
+  { art: PickDate },
+  { art: MonthlyRate },
+  { art: ConfirmChat },
 ] as const;
 
-export function MonthlyJourney({ className = "" }: { className?: string }) {
+/**
+ * The journey strip IS the wizard stepper: each cartoon is a clickable
+ * step with its STEP label and title, dimmed until reachable.
+ */
+export function MonthlyJourneyStepper({
+  step,
+  complete,
+  reachable,
+  onSelect,
+  className = "",
+}: {
+  step: number;
+  complete: boolean[];
+  reachable: boolean[];
+  onSelect: (n: number) => void;
+  className?: string;
+}) {
   const t = useTranslations("monthlyInquiry.quote");
   return (
     <div className={className}>
       <p className="text-[15px] font-semibold text-ink">
         {t("journeyTitle")}
       </p>
-      <div className="mt-4 grid grid-cols-2 gap-x-4 gap-y-6 lg:flex lg:items-start lg:gap-2">
-        {STEPS.map(({ key, art: Art }, i) => (
-          <div key={key} className="contents lg:contents">
-            {i > 0 && <Arrow />}
-            <div className="flex flex-col items-center text-center lg:flex-1">
-              <div className="w-full max-w-[170px]">
-                <Art />
-              </div>
-              <p className="mt-2 text-sm text-neutral-500">{t(key)}</p>
-            </div>
-          </div>
-        ))}
-      </div>
+      <ol
+        className="mt-4 grid grid-cols-2 gap-x-4 gap-y-6 lg:flex lg:items-start lg:gap-2"
+        aria-label="Steps"
+      >
+        {WIZARD_STEPS.map(({ art: Art }, i) => {
+          const n = i + 1;
+          const active = step === n;
+          const isComplete = complete[i];
+          const isReachable = reachable[i];
+          return (
+            <li key={n} className="contents lg:contents">
+              {i > 0 && <Arrow />}
+              <button
+                type="button"
+                onClick={() => isReachable && onSelect(n)}
+                disabled={!isReachable}
+                aria-current={active ? "step" : undefined}
+                className={`flex flex-col items-center text-center lg:flex-1 transition-opacity disabled:cursor-not-allowed ${
+                  active
+                    ? "opacity-100"
+                    : isComplete
+                      ? "opacity-80 hover:opacity-100"
+                      : isReachable
+                        ? "opacity-60 hover:opacity-100"
+                        : "opacity-35"
+                }`}
+              >
+                <div className="w-full max-w-[150px]">
+                  <Art />
+                </div>
+                <p
+                  className={`mt-2 flex items-center gap-1 text-[11px] font-bold uppercase tracking-wide ${
+                    active ? "text-ink" : "text-neutral-500"
+                  }`}
+                >
+                  {isComplete && !active && (
+                    <Check
+                      className="w-3.5 h-3.5 text-green-700"
+                      strokeWidth={3}
+                      aria-hidden="true"
+                    />
+                  )}
+                  {t("stepLabel", { n })}
+                </p>
+                <p
+                  className={`mt-0.5 text-sm font-medium ${
+                    active ? "text-ink" : "text-neutral-500"
+                  }`}
+                >
+                  {t(`step${n}Title`)}
+                </p>
+              </button>
+            </li>
+          );
+        })}
+      </ol>
     </div>
   );
 }
