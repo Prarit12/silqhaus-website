@@ -31,7 +31,13 @@ export default function Navigation() {
   // search results page and the white property detail pages have no hero, so
   // keep the nav solid there — transparent would paint the logo and menu
   // white-on-white.
-  const solidHeader = isScrolled || pathname.startsWith("/our-property");
+  const solidHeader =
+    isScrolled ||
+    pathname.startsWith("/our-property") ||
+    pathname.startsWith("/monthly-inquiry");
+  // The monthly funnel hides the nightly search — it would pull guests out
+  // of the quote flow; the wizard is the search there.
+  const hideSearch = pathname.startsWith("/monthly-inquiry");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isPartnerOpen, setIsPartnerOpen] = useState(false);
   const [isContactDropdownOpen, setIsContactDropdownOpen] = useState(false);
@@ -225,9 +231,9 @@ export default function Navigation() {
 
             {/* Centered search — its own grid column, so it lands on the true
                 page centre regardless of the logo / actions widths. Shown on
-                every page. */}
+                every page except the monthly funnel. */}
             <div className="justify-self-center w-full max-w-md min-w-0 px-2 sm:px-4">
-              <HeroSearchBar variant="compact" />
+              {!hideSearch && <HeroSearchBar variant="compact" />}
             </div>
 
             {/* Right cluster: desktop nav + mobile controls share one grid cell */}
