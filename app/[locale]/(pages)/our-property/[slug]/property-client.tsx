@@ -27,6 +27,7 @@ import FullScreenGallery from "@/components/full-screen-gallery";
 import { GalleryCarousel } from "@/components/gallery-carousel";
 import { DateRangePicker } from "@/components/date-range-picker";
 import { BookingConditions } from "@/components/booking-conditions";
+import { AvailabilityCalendar } from "@/components/availability-calendar";
 import { useTranslations, useLocale } from "next-intl";
 import { PropertyReviews } from "@/components/property-reviews";
 
@@ -1343,6 +1344,23 @@ export default function PropertyDetails({
                   </button>
                 )}
               </section>
+            )}
+
+            {/* Availability — the booking picker's calendar, browsable at
+                full size. Shares the page's dates, so a range chosen here
+                re-prices the booking card. */}
+            {(calendarData.isLoading || calendarData.calendar.length > 0) && (
+              <AvailabilityCalendar
+                calendarData={calendarData.calendar}
+                minimumStay={calendarData.minimumStay}
+                checkInDate={checkInDate}
+                checkOutDate={checkOutDate}
+                onCheckInChange={setCheckInDate}
+                onCheckOutChange={setCheckOutDate}
+                applyMarkup={!isGuesty}
+                markupSource={source}
+                isLoading={calendarData.isLoading}
+              />
             )}
 
             {/* Location */}

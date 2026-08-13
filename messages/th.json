@@ -3546,6 +3546,15 @@
     "monthlyPromoText": "รับราคาพิเศษสำหรับการพักรายเดือน (30+ คืนขึ้นไป)",
     "monthlyPromoLink": "กรอกแบบฟอร์มสอบถามนี้ →",
     "guests": "ผู้เข้าพัก",
+    "availability": {
+      "title": "ปฏิทินห้องว่าง",
+      "selectPrompt": "เลือกวันที่เข้าพัก",
+      "clear": "ล้างวันที่",
+      "nightsOne": "1 คืน",
+      "nightsMany": "{count} คืน",
+      "legendAvailable": "ว่าง",
+      "legendUnavailable": "ไม่ว่าง"
+    },
     "facts": {
       "type": "ประเภทที่พัก",
       "bedrooms": "ห้องนอน",

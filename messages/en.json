@@ -3546,6 +3546,15 @@
     "monthlyPromoText": "Staying 30+ days? Get",
     "monthlyPromoLink": "Exclusive Monthly Rates →",
     "guests": "Guests",
+    "availability": {
+      "title": "Availability",
+      "selectPrompt": "Select your dates",
+      "clear": "Clear dates",
+      "nightsOne": "1 night",
+      "nightsMany": "{count} nights",
+      "legendAvailable": "Available",
+      "legendUnavailable": "Unavailable"
+    },
     "facts": {
       "type": "Property type",
       "bedrooms": "Bedrooms",
