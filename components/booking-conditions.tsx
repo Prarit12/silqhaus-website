@@ -144,7 +144,7 @@ export function BookingConditions({
     label: string;
     value: string;
   }> = [];
-  const iconCls = "w-5 h-5 text-neutral-700 shrink-0";
+  const iconCls = "w-[18px] h-[18px] text-neutral-700 shrink-0";
   if (checkIn) {
     rules.push({
       key: "checkIn",
@@ -202,17 +202,17 @@ export function BookingConditions({
       {/* No items-start: both cards stretch to the taller one's height. */}
       <div className={`grid gap-4 ${policy ? "md:grid-cols-2" : ""}`}>
         {policy && (
-          <div className="rounded-2xl border border-neutral-200 p-5 sm:p-6">
-            <h3 className="text-[17px] font-semibold text-ink">
+          <div className="rounded-2xl border border-neutral-200 p-5">
+            <h3 className="text-base font-semibold text-ink">
               {t("cancellationTitle")}
             </h3>
-            <p className="mt-3 text-sm font-semibold text-ink">
+            <p className="mt-2.5 text-[13px] font-semibold text-ink">
               {t("policyLabel", { name: t(`policyName.${policy}`) })}
             </p>
-            <p className="mt-1.5 text-sm leading-relaxed text-neutral-600">
+            <p className="mt-1 text-[13px] leading-relaxed text-neutral-600">
               {t(`policyBody.${policy}`)}
             </p>
-            <p className="mt-1.5 text-[13px] leading-relaxed text-neutral-500">
+            <p className="mt-1 text-xs leading-relaxed text-neutral-500">
               {t("comfortNote")}
             </p>
 
@@ -241,7 +241,7 @@ export function BookingConditions({
                   )}
                 </div>
                 <p
-                  className={`mt-2 text-[13px] font-medium ${
+                  className={`mt-2 text-xs font-medium ${
                     windowOpen ? "text-ink" : "text-neutral-600"
                   }`}
                   style={
@@ -281,7 +281,7 @@ export function BookingConditions({
                 >
                   <div className="h-full w-3/5 rounded-full bg-ink" />
                 </div>
-                <p className="mt-2 text-[13px] text-neutral-500">
+                <p className="mt-2 text-xs text-neutral-500">
                   {t("selectDatesHint")}
                 </p>
               </div>
@@ -289,23 +289,23 @@ export function BookingConditions({
           </div>
         )}
 
-        <div className="rounded-2xl border border-neutral-200 p-5 sm:p-6">
-          <h3 className="text-[17px] font-semibold text-ink">
+        <div className="rounded-2xl border border-neutral-200 p-5">
+          <h3 className="text-base font-semibold text-ink">
             {t("rulesTitle")}
           </h3>
           <ul className="mt-2">
             {rules.map((rule, i) => (
               <li
                 key={rule.key}
-                className={`flex items-center justify-between gap-4 py-3 ${
+                className={`flex items-center justify-between gap-4 py-2.5 ${
                   i > 0 ? "border-t border-neutral-100" : ""
                 }`}
               >
-                <span className="flex items-center gap-3 text-[15px] font-medium text-ink">
+                <span className="flex items-center gap-2.5 text-sm font-medium text-ink">
                   {rule.icon}
                   {rule.label}
                 </span>
-                <span className="text-[15px] text-neutral-600 text-right">
+                <span className="text-sm text-neutral-600 text-right">
                   {rule.value}
                 </span>
               </li>
