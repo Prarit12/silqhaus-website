@@ -299,7 +299,9 @@ export function BookingConditions({
       {/* No items-start: both cards stretch to the taller one's height. */}
       <div className={`grid gap-4 ${policy ? "md:grid-cols-2" : ""}`}>
         {policy && (
-          <div className="rounded-2xl border border-neutral-200 p-5">
+          /* Flex column: tiers center in the space the equal-height stretch
+             grants, the timeline pins to the bottom — no trailing void. */
+          <div className="rounded-2xl border border-neutral-200 p-5 flex flex-col">
             <div className="flex items-center justify-between gap-3">
               <h3 className="text-base font-semibold text-ink">
                 {t("cancellationTitle")}
@@ -309,19 +311,19 @@ export function BookingConditions({
               </span>
             </div>
 
-            <ul className="mt-1.5">
+            <ul className="mt-1.5 flex-1 flex flex-col justify-center">
               {tiersFor(policy, nights).map((tier, i) => (
                 <li
                   key={tier.cond}
-                  className={`flex items-start justify-between gap-4 py-2.5 ${
+                  className={`flex items-center justify-between gap-4 py-3.5 ${
                     i > 0 ? "border-t border-neutral-100" : ""
                   }`}
                 >
-                  <span className="flex items-center gap-2.5 text-[13px] font-semibold text-ink shrink-0">
+                  <span className="flex items-center gap-2.5 text-sm font-semibold text-ink shrink-0">
                     {TIER_ICON[tier.kind]}
                     {t(`tier.${tier.kind}`)}
                   </span>
-                  <span className="text-[13px] text-neutral-600 text-right leading-snug">
+                  <span className="text-sm text-neutral-600 text-right leading-snug">
                     {tierCondText(tier)}
                   </span>
                 </li>
@@ -330,7 +332,7 @@ export function BookingConditions({
 
             {deadline && stayStart ? (
               /* Real dates: today → free-cancellation deadline → check-in */
-              <div className="mt-4">
+              <div className="mt-auto pt-4">
                 <div className="flex justify-between text-[11px] font-medium text-ink mb-1.5">
                   <span>{t("timelineToday")}</span>
                   <span>
@@ -378,7 +380,7 @@ export function BookingConditions({
               </div>
             ) : (
               /* No dates yet: schematic bar + nudge to pick dates */
-              <div className="mt-4">
+              <div className="mt-auto pt-4">
                 <div
                   className="flex justify-between text-[11px] font-medium text-ink mb-1.5"
                   aria-hidden="true"
