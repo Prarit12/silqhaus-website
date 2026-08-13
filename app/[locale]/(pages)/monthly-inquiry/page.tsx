@@ -13,6 +13,7 @@ import { useSearchParams } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
 import emailjs from "@emailjs/browser";
 import {
+  ArrowDown,
   Calendar,
   Check,
   ChevronLeft,
@@ -34,6 +35,7 @@ import {
   DEFAULT_COUNTRY_VALUE,
 } from "@/lib/country-codes";
 import { MonthlyJourney } from "@/components/monthly-journey";
+import { MonthlyHeroArt } from "@/components/monthly-hero-art";
 import { displayPropertyName } from "@/config/property-names";
 import { monthlyDiscountFor } from "@/config/monthly";
 import { getSilqhausMarkupPercentage } from "@/config/ota-markups";
@@ -458,13 +460,37 @@ function MonthlyStays() {
     <main className="min-h-screen bg-white text-ink pt-14 md:pt-16">
       {/* Hero — its own warm band, clearly split from the booking flow */}
       <div className="bg-[#F5F4F0] border-b border-neutral-200/70">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-10">
-          <h1 className="text-2xl md:text-[28px] font-semibold text-ink">
-            {t("quote.pageTitle")}
-          </h1>
-          <p className="mt-2 text-[15px] leading-relaxed text-neutral-600 max-w-[65ch]">
-            {t("quote.pageSubtitle")}
-          </p>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-10">
+          <div className="lg:grid lg:grid-cols-[minmax(0,1fr)_440px] lg:gap-16 lg:items-center">
+            <div>
+              <h1 className="text-[34px] leading-[1.1] md:text-5xl font-bold tracking-tight text-ink text-balance">
+                {t("quote.pageTitle")}
+              </h1>
+              <p className="mt-4 text-[15px] md:text-base leading-relaxed text-neutral-600 max-w-[58ch]">
+                {t("quote.pageSubtitle")}
+              </p>
+              <button
+                type="button"
+                onClick={() => {
+                  const el = document.getElementById("monthly-booking");
+                  const reduce = window.matchMedia(
+                    "(prefers-reduced-motion: reduce)",
+                  ).matches;
+                  el?.scrollIntoView({
+                    behavior: reduce ? "auto" : "smooth",
+                    block: "start",
+                  });
+                }}
+                className="mt-7 inline-flex items-center justify-center gap-2 h-12 px-7 rounded-full bg-ink bg-[linear-gradient(90deg,#09081F_0%,#382124_45%,#673929_65%,#95522E_80%,#C46A33_92%,#F38338_100%)] text-white text-[15px] font-semibold hover:opacity-90 transition-opacity"
+              >
+                {t("quote.heroCta")}
+                <ArrowDown className="w-4 h-4" aria-hidden="true" />
+              </button>
+            </div>
+            <div className="hidden lg:block">
+              <MonthlyHeroArt />
+            </div>
+          </div>
 
           {/* How it works — illustrated journey */}
           <MonthlyJourney />
@@ -472,7 +498,10 @@ function MonthlyStays() {
       </div>
 
       {/* Booking flow */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-20">
+      <div
+        id="monthly-booking"
+        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-20 scroll-mt-20"
+      >
         <div className="lg:grid lg:grid-cols-[minmax(0,1fr)_440px] lg:gap-12 lg:items-start">
           <div className="min-w-0">
         {/* Step wizard */}
