@@ -53,3 +53,23 @@ export function propertyTypeKey(property: {
   if (property.propertyTypeId === 8) return "villa";
   return null;
 }
+
+/**
+ * City → area-guide key for the Location & Neighborhood section's fallback
+ * text (propertyDetail.neighborhoods.* in the messages files). Host-written
+ * PMS neighborhood text always wins over these.
+ */
+const AREA_KEY_BY_CITY: Record<string, string> = {
+  "choeng thale": "choengThale",
+  rawai: "rawai",
+  "ko kaeo": "koKaeo",
+  "tambon patong": "patong",
+  patong: "patong",
+  "pattaya city": "pattaya",
+  pattaya: "pattaya",
+};
+
+export function areaKeyForCity(city?: string | null): string | null {
+  if (!city) return null;
+  return AREA_KEY_BY_CITY[city.trim().toLowerCase()] ?? null;
+}

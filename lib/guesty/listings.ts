@@ -70,6 +70,7 @@ export interface GuestyRawListing {
   publicDescription?: {
     summary?: string;
     space?: string;
+    neighborhood?: string;
     [key: string]: unknown;
   };
   [key: string]: unknown;
@@ -118,6 +119,8 @@ export interface NormalizedGuestyListing {
   propertyType?: string;
   /** Guesty's areaSquareFeet — entered as m² on this account. */
   areaSqm?: number;
+  /** publicDescription.neighborhood — the host-written area text. */
+  neighborhoodOverview?: string;
 }
 
 /** Attach the review summary, when one exists, to a normalized listing. */
@@ -248,6 +251,8 @@ export function normalizeGuestyListing(
     checkInTime: raw.defaultCheckInTime || undefined,
     checkOutTime: raw.defaultCheckOutTime || undefined,
     propertyType: raw.propertyType || undefined,
+    neighborhoodOverview:
+      (raw.publicDescription?.neighborhood || "").trim() || undefined,
     areaSqm:
       typeof raw.areaSquareFeet === "number" && raw.areaSquareFeet > 0
         ? raw.areaSquareFeet
@@ -331,9 +336,9 @@ function isPublic(raw: GuestyRawListing): boolean {
 
 const LISTINGS_CACHE_TTL_MS = 10 * 60 * 1000;
 const LISTINGS_CACHE_TTL_SECONDS = LISTINGS_CACHE_TTL_MS / 1000;
-// v5: adds propertyType/areaSqm (v4 check-in/out times, v3 review data).
-const LISTINGS_KV_PREFIX = "guesty:listings:v5:";
-const LISTING_KV_PREFIX = "guesty:listing:v5:";
+// v6: adds neighborhoodOverview (v5 propertyType/areaSqm, v4 times).
+const LISTINGS_KV_PREFIX = "guesty:listings:v6:";
+const LISTING_KV_PREFIX = "guesty:listing:v6:";
 
 interface ListingsCacheEntry {
   data: NormalizedGuestyListing[];

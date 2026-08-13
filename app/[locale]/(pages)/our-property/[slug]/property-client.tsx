@@ -51,7 +51,11 @@ const NearbyListingsCarousel = dynamic(
 import { fetchListingById } from "@/lib/api/hostaway";
 import { createPropertySlug } from "@/lib/slugify";
 import { displayPropertyName } from "@/config/property-names";
-import { propertySizeSqm, propertyTypeKey } from "@/config/property-facts";
+import {
+  areaKeyForCity,
+  propertySizeSqm,
+  propertyTypeKey,
+} from "@/config/property-facts";
 import { PMSFavoriteButton } from "@/components/pms-favorite-button";
 import {
   GUESTY_OTA_MARKUPS,
@@ -108,6 +112,7 @@ interface Property {
   propertyType?: string;
   propertyTypeId?: number;
   areaSqm?: number;
+  neighborhoodOverview?: string;
 }
 
 interface PropertyApiResult {
@@ -149,6 +154,9 @@ interface PropertyApiResult {
   propertyType?: string;
   propertyTypeId?: number;
   areaSqm?: number;
+  /** Guesty normalized; Hostaway raw Airbnb field below. */
+  neighborhoodOverview?: string;
+  airbnbNeighborhoodOverview?: string;
 }
 
 interface HostawayApiResponse {
@@ -201,6 +209,9 @@ function normalizeProperty(data: HostawayApiResponse): Property {
     propertyTypeId:
       typeof r.propertyTypeId === "number" ? r.propertyTypeId : undefined,
     areaSqm: typeof r.areaSqm === "number" ? r.areaSqm : undefined,
+    neighborhoodOverview:
+      (r.neighborhoodOverview || r.airbnbNeighborhoodOverview || "").trim() ||
+      undefined,
     roomType:
       r.roomType
         ?.replaceAll("_", " ")
@@ -1412,7 +1423,7 @@ export default function PropertyDetails({
 
         {/* Below the two-column grid the booking card stops following:
             these sections span the full content width. */}
-        {/* Location */}
+        {/* Location & neighborhood */}
         <section className="py-8 border-b border-neutral-200">
           <PropertyMap
             theme="light"
@@ -1420,6 +1431,25 @@ export default function PropertyDetails({
             lng={property.lng || 98.3923}
             propertyName={title}
           />
+          {(() => {
+            const areaKey = areaKeyForCity(property.city);
+            const areaText =
+              property.neighborhoodOverview ||
+              (areaKey ? t(`neighborhoods.${areaKey}`) : null);
+            if (!areaText) return null;
+            return (
+              <div className="mt-5 max-w-[75ch]">
+                {location && (
+                  <p className="text-[15px] font-semibold text-ink">
+                    {location}
+                  </p>
+                )}
+                <p className="mt-1.5 text-[15px] leading-relaxed text-ink/90 whitespace-pre-line">
+                  {areaText}
+                </p>
+              </div>
+            );
+          })()}
         </section>
 
         {/* Reviews — Hostaway's own feed, or Guesty's synced channel

@@ -3548,6 +3548,13 @@
     "contactQuestion": "Any questions?",
     "contactAction": "Contact us",
     "guests": "Guests",
+    "neighborhoods": {
+      "choengThale": "Choeng Thale is home to Bangtao Beach — one of Phuket's longest stretches of sand — and the Laguna resort area. Boat Avenue and Porto de Phuket fill the neighborhood with cafés, weekend markets, and shopping, while beach clubs line the shore. Phuket airport is around 25 minutes away.",
+      "rawai": "Rawai, on Phuket's southern tip, is a relaxed seaside neighborhood known for its seafood market, long waterfront promenade, and easy access to Nai Harn — one of the island's best beaches. Local cafés, viewpoints like Promthep Cape, and a laid-back pace make it a favorite for longer stays.",
+      "koKaeo": "Ko Kaeo sits on Phuket's quiet east side, just north of Phuket Town — a convenient residential base near the marinas, international schools, and everyday shopping, with IKEA and Central only minutes away. Old Town's cafés, street art, and Sunday walking street are a short drive.",
+      "patong": "Patong is Phuket's liveliest resort town — a three-kilometre beach, endless dining, Jungceylon mall, and the island's biggest nightlife around Bangla Road. Hillside stays here keep you above the buzz while remaining minutes from the beach and the action.",
+      "pattaya": "Central Pattaya puts everything within easy reach — Central Festival mall, the beachfront promenade, markets, restaurants, and nightlife — while Wong Amat's quieter sands and the Sanctuary of Truth sit just to the north."
+    },
     "availability": {
       "title": "Availability",
       "selectPrompt": "Select your dates",
@@ -3715,7 +3722,7 @@
     "nextImages": "Next images"
   },
   "propertyMap": {
-    "locationAndMap": "Location & Map",
+    "locationAndMap": "Location & Neighborhood",
     "getDirections": "Get Directions"
   },
   "nearbyListings": {
