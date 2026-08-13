@@ -91,7 +91,6 @@ export function VacationListPanel({
         >
           {items.map((item) => {
             const isSelected = item.key === selectedId;
-            const isHovered = item.key === hoveredId;
             return (
               <div
                 key={item.key}
@@ -101,11 +100,7 @@ export function VacationListPanel({
                 onFocus={() => onHover(item.key)}
                 onBlur={onHoverEnd}
                 className={`rounded-2xl transition-shadow ${
-                  isSelected
-                    ? "ring-2 ring-ink ring-offset-2"
-                    : isHovered
-                      ? "ring-1 ring-neutral-300"
-                      : ""
+                  isSelected ? "ring-2 ring-ink ring-offset-2" : ""
                 }`}
               >
                 <PropertyCard
