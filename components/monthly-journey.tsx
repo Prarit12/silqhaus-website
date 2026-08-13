@@ -351,24 +351,31 @@ export function MonthlyBenefits({ className = "" }: { className?: string }) {
   const t = useTranslations("monthlyInquiry.quote");
   return (
     <div
-      className={`rounded-2xl bg-white border border-neutral-200/70 shadow-[0_2px_12px_rgba(0,0,0,0.04)] px-5 sm:px-7 py-5 sm:py-6 ${className}`}
+      className={`rounded-2xl bg-white border border-neutral-200/70 shadow-[0_2px_12px_rgba(0,0,0,0.04)] px-6 sm:px-8 py-6 sm:py-8 ${className}`}
     >
-      <p className="text-[17px] font-bold text-ink">{t("benefitsTitle")}</p>
-      <div className="mt-4 flex flex-wrap gap-x-8 gap-y-4 lg:justify-between">
+      <h2 className="text-xl md:text-[22px] font-bold normal-case tracking-normal text-ink text-balance">
+        {t("benefitsTitle")}
+      </h2>
+      <p className="mt-1.5 text-sm text-neutral-600 max-w-[60ch]">
+        {t("benefitsSubtitle")}
+      </p>
+      <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-x-8 gap-y-6">
         {BENEFITS.map(({ key, icon: Icon }) => (
-          <span
-            key={key}
-            className="flex items-center gap-2.5 text-sm font-semibold text-ink"
-          >
-            <span className="w-9 h-9 rounded-full bg-[#F5F4F0] grid place-items-center shrink-0">
+          <div key={key}>
+            <span className="w-12 h-12 rounded-full bg-[#F5F4F0] grid place-items-center">
               <Icon
-                className="w-[18px] h-[18px] text-ink"
+                className="w-[22px] h-[22px] text-ink"
                 strokeWidth={1.8}
                 aria-hidden="true"
               />
             </span>
-            {t(key)}
-          </span>
+            <p className="mt-3 text-[15px] font-semibold text-ink">
+              {t(key)}
+            </p>
+            <p className="mt-1 text-[13px] leading-snug text-neutral-600">
+              {t(`${key}Desc`)}
+            </p>
+          </div>
         ))}
       </div>
     </div>
