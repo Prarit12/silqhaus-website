@@ -3816,6 +3816,8 @@
     "form": {
       "title": "Request Monthly Rate",
       "subtitle": "We'll prepare a custom quote for your long-term stay.",
+      "anyQuestions": "Any questions?",
+      "messageUs": "Message us",
       "labels": {
         "fullName": "Full Name",
         "email": "Email Address",

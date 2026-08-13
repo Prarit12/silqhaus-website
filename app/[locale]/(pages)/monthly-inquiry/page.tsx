@@ -18,7 +18,9 @@ import {
   ExternalLink,
   Globe,
   Loader2,
+  Mail,
   MessageCircle,
+  Phone,
   Send,
   Star,
 } from "lucide-react";
@@ -42,6 +44,8 @@ const SUPPORT_EMAIL =
   process.env.NEXT_PUBLIC_CONTACT_EMAIL || "info@silqhaus.com";
 const CONTACT_WHATSAPP = process.env.NEXT_PUBLIC_CONTACT_WHATSAPP || "";
 const CONTACT_LINE = process.env.NEXT_PUBLIC_CONTACT_LINE || "";
+const CONTACT_PHONE = process.env.NEXT_PUBLIC_CONTACT_PHONE || "";
+const CONTACT_PHONE_TEL = process.env.NEXT_PUBLIC_CONTACT_PHONE_TEL || "";
 
 interface MonthlyListing {
   id: number | string;
@@ -324,6 +328,7 @@ function MonthlyStays() {
     tenants: "",
     message: "",
   });
+  const [formOpen, setFormOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<
     "idle" | "success" | "error"
@@ -343,6 +348,7 @@ function MonthlyStays() {
     phone === "" || /^[0-9\s\-]{6,15}$/.test(phone);
 
   const scrollToForm = () => {
+    setFormOpen(true);
     setForm((prev) => ({
       ...prev,
       message: prev.message || quoteMessage,
@@ -882,14 +888,96 @@ function MonthlyStays() {
         </a>
           </div>
 
-        {/* Inquiry form — card column on desktop, in flow on mobile */}
+        {/* Contact card — details up front, quote form behind "Message us" */}
         <div
           ref={formRef}
           className="mt-10 lg:mt-0 scroll-mt-24 lg:sticky lg:top-24 rounded-2xl border border-neutral-200 p-5 sm:p-6"
         >
-          <h2 className="text-xl font-semibold normal-case tracking-normal text-ink">
-            {t("form.title")}
-          </h2>
+          <div className="grid grid-cols-[32px_minmax(0,1fr)] gap-x-4 gap-y-6 items-center">
+            <MessageCircle
+              className="w-7 h-7 text-ink justify-self-center"
+              strokeWidth={1.5}
+              aria-hidden="true"
+            />
+            <h2 className="text-xl font-bold normal-case tracking-normal text-ink">
+              {t("form.anyQuestions")}
+            </h2>
+
+            <span aria-hidden="true" />
+            <div>
+              <button
+                type="button"
+                onClick={() => setFormOpen((v) => !v)}
+                aria-expanded={formOpen}
+                className="inline-flex items-center justify-center h-11 px-6 rounded-full border-[1.5px] border-ink text-[15px] font-semibold text-ink hover:bg-neutral-50 transition-colors"
+              >
+                {t("form.messageUs")}
+              </button>
+            </div>
+
+            {CONTACT_PHONE && (
+              <>
+                <Phone
+                  className="w-6 h-6 text-ink justify-self-center"
+                  strokeWidth={1.5}
+                  aria-hidden="true"
+                />
+                <a
+                  href={`tel:${CONTACT_PHONE_TEL || CONTACT_PHONE.replace(/[^+\d]/g, "")}`}
+                  className="justify-self-start text-base font-semibold text-ink underline underline-offset-4 decoration-1 hover:decoration-2"
+                >
+                  {CONTACT_PHONE}
+                </a>
+              </>
+            )}
+            {CONTACT_WHATSAPP && (
+              <>
+                <SiWhatsapp
+                  className="w-6 h-6 text-ink justify-self-center"
+                  aria-hidden="true"
+                />
+                <a
+                  href={`https://wa.me/${CONTACT_WHATSAPP.replace(/[^0-9]/g, "")}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="justify-self-start text-base font-semibold text-ink underline underline-offset-4 decoration-1 hover:decoration-2"
+                >
+                  {CONTACT_WHATSAPP} (WhatsApp)
+                </a>
+              </>
+            )}
+            {CONTACT_LINE && (
+              <>
+                <SiLine
+                  className="w-6 h-6 text-ink justify-self-center"
+                  aria-hidden="true"
+                />
+                <a
+                  href={`https://line.me/R/ti/p/${encodeURIComponent(CONTACT_LINE)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="justify-self-start text-base font-semibold text-ink underline underline-offset-4 decoration-1 hover:decoration-2"
+                >
+                  {CONTACT_LINE} (LINE)
+                </a>
+              </>
+            )}
+            <Mail
+              className="w-6 h-6 text-ink justify-self-center"
+              strokeWidth={1.5}
+              aria-hidden="true"
+            />
+            <a
+              href={`mailto:${SUPPORT_EMAIL}`}
+              className="justify-self-start text-base font-semibold text-ink underline underline-offset-4 decoration-1 hover:decoration-2 break-all"
+            >
+              {SUPPORT_EMAIL}
+            </a>
+          </div>
+
+          {formOpen && (
+          <div className="mt-6 pt-6 border-t border-neutral-100">
+          <h3 className="text-base font-semibold text-ink">{t("form.title")}</h3>
           <p className="mt-1 text-sm text-neutral-600">{t("form.subtitle")}</p>
 
           <form onSubmit={handleSubmit} className="mt-5 space-y-5">
@@ -1068,6 +1156,8 @@ function MonthlyStays() {
               )}
             </button>
           </form>
+          </div>
+          )}
         </div>
         </div>
       </div>
