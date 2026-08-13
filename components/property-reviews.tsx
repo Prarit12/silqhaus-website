@@ -21,17 +21,41 @@ interface PropertyReviewsProps {
     expediaListingUrl?: string;
   };
   averageReviewRating?: number;
+  source?: "hostaway" | "guesty";
+}
+
+/** The fields the carousel below actually renders, shared by both sources. */
+interface DisplayableReview {
+  publicReview?: string;
+  reviewerName?: string | null;
+  insertedOn: string;
+  channelId: number;
+  rating?: number;
+  listingMapId?: number;
 }
 
 export function PropertyReviews({
   propertyId,
   property,
   averageReviewRating,
+  source = "hostaway",
 }: PropertyReviewsProps) {
   const t = useTranslations("propertyDetail");
-  const { data, isLoading } = useQuery({
-    queryKey: ["/api/hostaway/reviews", propertyId, "withCount"],
-    queryFn: () => fetchReviewsWithCount(propertyId),
+  const { data, isLoading } = useQuery<{
+    reviews: DisplayableReview[];
+    totalCount: number;
+  }>({
+    queryKey: ["property-reviews", source, propertyId],
+    queryFn: async () => {
+      if (source === "guesty") {
+        const res = await fetch(
+          `/api/guesty/reviews/${encodeURIComponent(propertyId)}`,
+        );
+        if (!res.ok) throw new Error("Failed to fetch Guesty reviews");
+        return res.json();
+      }
+      return fetchReviewsWithCount(propertyId);
+    },
     enabled: !!propertyId,
   });
 
@@ -73,7 +97,7 @@ export function PropertyReviews({
 
   if (isLoading) {
     return (
-      <section className="py-4">
+      <section className="py-8">
         <div className="flex justify-center py-8">
           <div className="w-6 h-6 border-2 border-ink border-t-transparent rounded-full animate-spin" />
         </div>
@@ -96,11 +120,18 @@ export function PropertyReviews({
 
   if (displayReviews.length === 0 && totalCount === 0) return null;
 
+  // One convention everywhere: Hostaway's 10-scale becomes the same 5-star
+  // number the title meta line shows (9.8 → 4.9); Guesty is 5-scale already.
   const formattedRating =
-    averageReviewRating != null ? averageReviewRating.toFixed(1) : null;
+    averageReviewRating != null && averageReviewRating > 0
+      ? (averageReviewRating > 5
+          ? averageReviewRating / 2
+          : averageReviewRating
+        ).toFixed(1)
+      : null;
 
   return (
-    <section className="py-4">
+    <section className="py-8 border-b border-neutral-200">
       <h2 className="text-ink mb-6 text-xl font-semibold normal-case tracking-normal">
         {t("guestReviews", { count: totalCount })}
       </h2>
@@ -131,7 +162,14 @@ export function PropertyReviews({
                     className="flex-shrink-0 basis-full px-1"
                   >
                     <ReviewCard
-                      review={{ ...review, listingName: property.name }}
+                      review={{
+                        ...review,
+                        reviewerName: review.reviewerName ?? "",
+                        publicReview: review.publicReview ?? "",
+                        rating: review.rating ?? 0,
+                        listingMapId: review.listingMapId ?? 0,
+                        listingName: property.name,
+                      }}
                       variant="property"
                       otaUrl={getOTAListingUrl(
                         review.channelId,

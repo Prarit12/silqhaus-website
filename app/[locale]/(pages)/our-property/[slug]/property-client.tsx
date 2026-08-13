@@ -1244,16 +1244,14 @@ export default function PropertyDetails({
               </section>
             )}
 
-            {/* Reviews (Hostaway only — Guesty has no review feed) */}
-            {!isGuesty && (
-              <div className="py-4 border-b border-neutral-200">
-                <PropertyReviews
-                  propertyId={propertyId}
-                  property={property}
-                  averageReviewRating={property.averageReviewRating}
-                />
-              </div>
-            )}
+            {/* Reviews — Hostaway's own feed, or Guesty's synced channel
+                reviews. Renders nothing when a listing has no reviews yet. */}
+            <PropertyReviews
+              propertyId={propertyId}
+              source={source}
+              property={property}
+              averageReviewRating={property.averageReviewRating}
+            />
 
             {/* Location */}
             <section className="py-8">
