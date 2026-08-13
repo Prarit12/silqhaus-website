@@ -395,7 +395,7 @@ function MonthlyStays() {
 
   return (
     <main className="min-h-screen bg-white text-ink pt-14 md:pt-16">
-      <div className="max-w-3xl mx-auto px-4 sm:px-6 pt-8 pb-20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-20">
         {/* Header */}
         <h1 className="text-2xl md:text-[28px] font-semibold text-ink">
           {t("quote.pageTitle")}
@@ -405,7 +405,7 @@ function MonthlyStays() {
         </p>
 
         {/* How it works */}
-        <div className="mt-6 grid grid-cols-3 gap-3">
+        <div className="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-3 max-w-4xl">
           {(["stepDates", "stepRate", "stepConfirm"] as const).map(
             (key, i) => (
               <div key={key} className="rounded-2xl border border-neutral-200 px-3.5 py-3">
@@ -420,8 +420,10 @@ function MonthlyStays() {
           )}
         </div>
 
+        <div className="mt-8 lg:grid lg:grid-cols-[minmax(0,1fr)_440px] lg:gap-12 lg:items-start">
+          <div className="min-w-0">
         {/* Property context */}
-        <div className="mt-8">
+        <div>
           {selected ? (
             <div className="flex items-center gap-4 rounded-2xl border border-neutral-200 p-4">
               <div className="relative w-24 h-20 rounded-xl overflow-hidden bg-neutral-100 shrink-0">
@@ -679,15 +681,20 @@ function MonthlyStays() {
           </div>
         )}
 
-        {/* Inquiry form */}
-        <div ref={formRef} className="mt-10 scroll-mt-24">
+          </div>
+
+        {/* Inquiry form — card column on desktop, in flow on mobile */}
+        <div
+          ref={formRef}
+          className="mt-10 lg:mt-0 scroll-mt-24 lg:sticky lg:top-24 rounded-2xl border border-neutral-200 p-5 sm:p-6"
+        >
           <h2 className="text-xl font-semibold normal-case tracking-normal text-ink">
             {t("form.title")}
           </h2>
           <p className="mt-1 text-sm text-neutral-600">{t("form.subtitle")}</p>
 
           <form onSubmit={handleSubmit} className="mt-5 space-y-5">
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 gap-4">
               <div>
                 <label
                   htmlFor="inq-name"
@@ -739,7 +746,7 @@ function MonthlyStays() {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 gap-4">
               <div>
                 <label
                   htmlFor="inq-phone"
@@ -862,6 +869,7 @@ function MonthlyStays() {
               )}
             </button>
           </form>
+        </div>
         </div>
       </div>
     </main>
