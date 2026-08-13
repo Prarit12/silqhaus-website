@@ -536,7 +536,7 @@ function MonthlyStays() {
         {/* Step wizard */}
         <div>
           {/* Progress header */}
-          <ol className="flex items-center gap-1.5 sm:gap-2" aria-label="Steps">
+          <ol className="flex items-start" aria-label="Steps">
             {[1, 2, 3, 4].map((n) => {
               const complete =
                 (n === 1 && !!selected) ||
@@ -549,16 +549,19 @@ function MonthlyStays() {
                 (n === 4 && !!selected && !!moveIn && hasTerm);
               const active = step === n;
               return (
-                <li
-                  key={n}
-                  className="flex items-center gap-1.5 sm:gap-2 flex-1 last:flex-none"
-                >
+                <li key={n} className="relative flex-1 min-w-0">
+                  {n < 4 && (
+                    <span
+                      className="absolute top-4 left-[calc(50%+24px)] right-[calc(-50%+24px)] h-px bg-neutral-200"
+                      aria-hidden="true"
+                    />
+                  )}
                   <button
                     type="button"
                     onClick={() => reachable && setStep(n)}
                     disabled={!reachable}
                     aria-current={active ? "step" : undefined}
-                    className="flex items-center gap-2 disabled:cursor-not-allowed"
+                    className="relative w-full flex flex-col items-center disabled:cursor-not-allowed"
                   >
                     <span
                       className={`w-8 h-8 rounded-full grid place-items-center text-sm font-semibold border transition-colors ${
@@ -576,7 +579,14 @@ function MonthlyStays() {
                       )}
                     </span>
                     <span
-                      className={`hidden md:block text-[13px] font-medium whitespace-nowrap ${
+                      className={`mt-2 text-[10px] sm:text-[11px] font-bold uppercase tracking-wide ${
+                        active ? "text-ink" : "text-neutral-400"
+                      }`}
+                    >
+                      {t("quote.stepLabel", { n })}
+                    </span>
+                    <span
+                      className={`mt-0.5 px-1 text-[11px] sm:text-[13px] font-medium text-center leading-snug ${
                         active
                           ? "text-ink"
                           : complete
@@ -587,9 +597,6 @@ function MonthlyStays() {
                       {t(`quote.step${n}Title`)}
                     </span>
                   </button>
-                  {n < 4 && (
-                    <span className="h-px flex-1 bg-neutral-200" aria-hidden="true" />
-                  )}
                 </li>
               );
             })}
