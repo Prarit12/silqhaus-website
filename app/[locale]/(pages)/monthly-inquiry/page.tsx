@@ -32,7 +32,10 @@ import {
   getCodeFromValue,
   DEFAULT_COUNTRY_VALUE,
 } from "@/lib/country-codes";
-import { MonthlyJourney } from "@/components/monthly-journey";
+import {
+  MonthlyBenefits,
+  MonthlyJourney,
+} from "@/components/monthly-journey";
 import { MonthlyHeroArt } from "@/components/monthly-hero-art";
 import { MonthlyPartnerPopup } from "@/components/monthly-partner-popup";
 import { SingleDatePicker } from "@/components/single-date-picker";
@@ -526,8 +529,8 @@ function MonthlyStays() {
             </div>
           </div>
 
-          {/* How it works — illustrated journey */}
-          <MonthlyJourney />
+          {/* What every monthly stay includes */}
+          <MonthlyBenefits className="mt-8" />
         </div>
       </div>
 
@@ -538,6 +541,9 @@ function MonthlyStays() {
       >
         <div className="lg:grid lg:grid-cols-[minmax(0,1fr)_440px] lg:gap-12 lg:items-start">
           <div className="min-w-0">
+        {/* How it works — illustrated journey */}
+        <MonthlyJourney className="mb-10" />
+
         {/* Step wizard */}
         <div>
           {/* Progress header */}
