@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { getTranslations } from "next-intl/server";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Bath, BedDouble, Star, Users } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { DESTINATION_REGIONS } from "@/config/destination-regions";
 import {
@@ -83,35 +83,106 @@ export default async function HomeDestinations() {
           })}
         </div>
 
-        {/* Crawlable home links, by destination */}
-        <div className="mt-12 sm:mt-14 grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-10">
+        {/* Homes by destination — swipeable card rows, one per region.
+            Every card is a plain server-rendered link, so the whole
+            portfolio stays crawlable as it grows. */}
+        <div className="mt-12 sm:mt-16 space-y-12">
           {withHomes.map(({ region, homes }) => {
             const name = tRegions(`${region.key}.name`);
             return (
               <div key={region.key}>
-                <Link
-                  href={`/destination/${region.key}`}
-                  className="group inline-flex items-center gap-2 text-white text-lg font-medium hover:underline underline-offset-4"
-                >
-                  {t("title", { region: name })}
-                  <ArrowRight
-                    className="w-4 h-4 opacity-60 group-hover:opacity-100 transition-opacity"
-                    aria-hidden="true"
-                  />
-                </Link>
-                <ul className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-2.5">
-                  {homes.map((home) => (
-                    <li key={`${home.source}:${home.id}`}>
+                <div className="flex items-baseline justify-between gap-3">
+                  <Link
+                    href={`/destination/${region.key}`}
+                    className="group inline-flex items-center gap-2 text-white text-lg sm:text-xl font-medium hover:underline underline-offset-4"
+                  >
+                    {t("title", { region: name })}
+                    <ArrowRight
+                      className="w-4 h-4 opacity-60 group-hover:opacity-100 transition-opacity"
+                      aria-hidden="true"
+                    />
+                  </Link>
+                  <span className="shrink-0 text-[13px] text-white/45">
+                    {t("homesCount", { count: homes.length })}
+                  </span>
+                </div>
+                <div className="mt-4 flex gap-4 overflow-x-auto snap-x snap-mandatory pb-2 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
+                  {homes.map((home) => {
+                    const title = displayPropertyName(home);
+                    return (
                       <Link
+                        key={`${home.source}:${home.id}`}
                         href={`/our-property/${createPropertySlug(home.name, home.id)}`}
-                        className="text-sm text-white/65 hover:text-white transition-colors"
+                        className="group snap-start shrink-0 w-[240px] sm:w-[272px]"
                       >
-                        {displayPropertyName(home)}
-                        {home.city ? ` · ${home.city}` : ""}
+                        <div className="relative aspect-[4/3] rounded-xl overflow-hidden bg-white/5 ring-1 ring-line">
+                          {home.imageUrl && (
+                            <Image
+                              src={home.imageUrl}
+                              alt={title}
+                              fill
+                              sizes="272px"
+                              className="object-cover group-hover:scale-[1.04] transition-transform duration-500"
+                            />
+                          )}
+                        </div>
+                        <div className="mt-2.5 flex items-start justify-between gap-2">
+                          <div className="min-w-0">
+                            <p className="text-[15px] font-medium text-white truncate group-hover:underline underline-offset-2">
+                              {title}
+                            </p>
+                            <p className="mt-0.5 text-[13px] text-white/55 truncate">
+                              {[home.city, home.state]
+                                .filter(Boolean)
+                                .join(", ")}
+                            </p>
+                            <p className="mt-1 text-[12px] text-white/55 flex flex-wrap items-center gap-x-2.5 gap-y-0.5">
+                              {home.bedroomsNumber ? (
+                                <span className="inline-flex items-center gap-1">
+                                  <BedDouble
+                                    className="w-3.5 h-3.5"
+                                    aria-hidden="true"
+                                  />
+                                  {home.bedroomsNumber}
+                                </span>
+                              ) : null}
+                              {home.bathroomsNumber ? (
+                                <span className="inline-flex items-center gap-1">
+                                  <Bath
+                                    className="w-3.5 h-3.5"
+                                    aria-hidden="true"
+                                  />
+                                  {home.bathroomsNumber}
+                                </span>
+                              ) : null}
+                              {home.personCapacity ? (
+                                <span className="inline-flex items-center gap-1">
+                                  <Users
+                                    className="w-3.5 h-3.5"
+                                    aria-hidden="true"
+                                  />
+                                  {home.personCapacity}
+                                </span>
+                              ) : null}
+                            </p>
+                          </div>
+                          {home.averageReviewRating ? (
+                            <span className="shrink-0 inline-flex items-center gap-1 text-[13px] text-white/85">
+                              <Star
+                                className="w-3.5 h-3.5 fill-white/85"
+                                aria-hidden="true"
+                              />
+                              {(home.averageReviewRating > 5
+                                ? home.averageReviewRating / 2
+                                : home.averageReviewRating
+                              ).toFixed(1)}
+                            </span>
+                          ) : null}
+                        </div>
                       </Link>
-                    </li>
-                  ))}
-                </ul>
+                    );
+                  })}
+                </div>
               </div>
             );
           })}
