@@ -280,7 +280,7 @@ export function VacationSearch() {
               {t("filters.filter")}
             </button>
             {filtersOpen && (
-              <div className="absolute left-0 top-full mt-2 z-[1200]">
+              <div className="absolute right-0 top-full mt-2 z-[1200]">
                 <VacationFilterPopover
                   initialDates={searchDates}
                   initialGuests={minGuests}
