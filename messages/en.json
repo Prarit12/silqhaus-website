@@ -125,6 +125,7 @@
       "guide": "Travel guide",
       "comingSoon": "Guide coming soon",
       "description": "Luxury villas and vacation rentals across Thailand — Phuket, Pattaya, Bangkok, Koh Samui, Hua Hin, and Chiang Mai.",
+      "guideLink": "Getting to know Thailand",
       "phuket": "Phuket",
       "pattaya": "Pattaya",
       "bangkok": "Bangkok",
@@ -3808,6 +3809,28 @@
       "samui": "Koh Samui villas are on the way — palm-fringed beaches, private pools, and the same Silqhaus standard: our own team, direct-booking prices, 24/7 care.",
       "huahin": "Hua Hin's royal-coast calm is next on our map — serviced vacation homes run by our own team, with the same all-inclusive comfort and direct-booking savings.",
       "chiangmai": "Chiang Mai stays are coming — northern-Thailand calm with the Silqhaus standard: inspected homes, real local hosts, and prices that beat the OTAs when you book direct."
+    },
+    "guide": {
+      "title": "Getting to know Thailand",
+      "intro": "Six regions, six personalities — island coasts, royal seaside towns, northern calm and the capital's buzz. Here's how they differ, and where our homes fit in.",
+      "regions": {
+        "phuket": "Thailand's largest island balances two coasts: the west's long resort beaches — Bangtao, Surin, Kamala — and the quieter south around Rawai and Nai Harn, where longtail boats still head out at dawn. In between sit night markets, Old Town's Sino-Portuguese shophouses, and some of the country's best beach clubs.",
+        "pattaya": "Two hours from Bangkok, Pattaya pairs a lively city beachfront with the calmer sands of Wongamat and Jomtien. It's the capital's weekend escape — seafood piers, water sports, island hops to Koh Larn, and a skyline that lights up after dark.",
+        "bangkok": "Temples beside skyscrapers, street food beside rooftop bars — Bangkok is Thailand at full volume. Chao Phraya river boats, weekend markets and world-class dining make it far more than a stopover.",
+        "samui": "Koh Samui trades highways for palm groves — Chaweng's energy, Bophut's Fisherman's Village charm, and a quiet south where the island still feels like an island. Waterfalls and boat trips to Ang Thong Marine Park fill the days.",
+        "huahin": "Hua Hin is Thailand's original seaside retreat, favoured by Thai royalty for a century. Expect long, walkable beaches, golf courses, busy night markets and a gentler pace than the islands.",
+        "chiangmai": "The northern capital swaps beaches for mountains: moated Old City temples, café culture, hill-tribe crafts and cool-season mornings that feel almost alpine. It's the base for Doi Suthep, ethical elephant sanctuaries and slow travel."
+      },
+      "goodToKnow": {
+        "phuket": "Good to know: fly into Phuket (HKT) — most of our villas are 25–45 minutes away. High season runs November to April.",
+        "pattaya": "Good to know: about a two-hour drive from Bangkok, no flight needed. Enjoyable year-round; November to February is coolest.",
+        "bangkok": "Good to know: two airports (BKK & DMK) and the BTS Skytrain make it Thailand's easiest hub. November to February brings the friendliest weather.",
+        "samui": "Good to know: fly direct to Samui (USM) or ferry from Surat Thani. Best January to September — its seasons run opposite to Phuket's.",
+        "huahin": "Good to know: around three hours' drive south of Bangkok. Pleasant nearly year-round, driest November to February.",
+        "chiangmai": "Good to know: fly into Chiang Mai (CNX). November to February is cool and clear; June onward turns the rice terraces green."
+      },
+      "monthlyTitle": "Staying a month or more?",
+      "monthlyBody": "Every region welcomes long stays — monthly rates include utilities, wifi and weekly cleaning, quoted instantly."
     },
     "moreDestinations": "More destinations:",
     "homeSectionTitle": "Homes & destinations",

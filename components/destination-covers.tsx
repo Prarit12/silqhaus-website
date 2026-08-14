@@ -44,6 +44,13 @@ export default function DestinationCovers({
           <p className="text-white/60 text-base sm:text-lg leading-relaxed mt-5">
             {t("description")}
           </p>
+          <Link
+            href="/destination"
+            className="mt-5 inline-flex items-center gap-1.5 text-[15px] font-semibold text-white underline underline-offset-4 decoration-white/40 hover:decoration-white transition-colors"
+          >
+            {t("guideLink")}
+            <span aria-hidden="true">→</span>
+          </Link>
         </div>
 
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 sm:gap-5">
