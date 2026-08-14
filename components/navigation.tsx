@@ -206,7 +206,7 @@ export default function Navigation() {
         aria-label="Main"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-[auto_1fr_auto] md:grid-cols-[1fr_minmax(0,22rem)_1fr] items-center gap-2 h-14 md:h-16 px-2.5 md:px-3 transition-all duration-500">
+          <div className="grid grid-cols-[auto_1fr_auto] md:grid-cols-[1fr_minmax(0,26rem)_1fr] items-center gap-2 h-14 md:h-16 px-2.5 md:px-3 transition-all duration-500">
             {/* Logo */}
             <Link
               href="/"
@@ -232,7 +232,7 @@ export default function Navigation() {
             {/* Centered search — its own grid column, so it lands on the true
                 page centre regardless of the logo / actions widths. Shown on
                 every page except the monthly funnel. */}
-            <div className="justify-self-center w-full max-w-md min-w-0 px-2 sm:px-4">
+            <div className="justify-self-center w-full max-w-lg min-w-0 px-2 sm:px-4">
               {!hideSearch && <HeroSearchBar variant="compact" />}
             </div>
 

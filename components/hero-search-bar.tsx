@@ -119,7 +119,7 @@ export default function HeroSearchBar({
   return (
     <div
       ref={wrapRef}
-      className={`relative w-full ${compact ? "max-w-md" : "max-w-xl"}`}
+      className={`relative w-full ${compact ? "max-w-lg" : "max-w-xl"}`}
     >
       <div
         className={`flex items-center rounded-full bg-white ${
@@ -155,7 +155,7 @@ export default function HeroSearchBar({
           onClick={() => setPanel((p) => (p === "when" ? null : "when"))}
           aria-haspopup="dialog"
           aria-expanded={panel === "when"}
-          className={`hidden sm:block flex-1 px-4 text-center transition-colors ${
+          className={`hidden sm:block flex-1 px-4 text-center whitespace-nowrap transition-colors ${
             compact ? "text-[13px]" : "text-[15px]"
           } ${
             checkIn ? "text-ink font-medium" : "text-neutral-600 hover:text-ink"
