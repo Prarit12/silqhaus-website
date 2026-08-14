@@ -49,35 +49,38 @@ export default async function HomeDestinations() {
           </Link>
         </div>
 
-        {/* Region covers — every card is a destination page */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 sm:gap-5">
+        {/* Region covers — one slim row, every card a destination page */}
+        <div className="flex gap-3 overflow-x-auto snap-x snap-mandatory pb-2 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden md:grid md:grid-cols-6 md:gap-4 md:overflow-visible md:pb-0">
           {regions.map(({ region, homes }) => {
             const name = tRegions(`${region.key}.name`);
             return (
               <Link
                 key={region.key}
                 href={`/destination/${region.key}`}
-                className="group relative aspect-[4/3] rounded-2xl overflow-hidden ring-1 ring-line transition-all duration-500 hover:ring-white/30"
+                className="group relative w-[150px] shrink-0 snap-start md:w-auto md:shrink aspect-[4/5] rounded-xl overflow-hidden ring-1 ring-line transition-all duration-500 hover:ring-white/30"
               >
                 <Image
                   src={region.img}
                   alt={name}
                   fill
-                  sizes="(max-width: 640px) 50vw, 33vw"
+                  sizes="(max-width: 768px) 150px, 220px"
                   quality={80}
                   className="object-cover object-center transition-transform duration-[900ms] ease-out group-hover:scale-105"
                 />
-                {/* Top-left name notch — the clean signature label */}
-                <div className="absolute top-0 left-0 bg-white rounded-br-2xl pl-3.5 pr-5 py-2.5 shadow-sm">
-                  <p className="text-ink font-semibold text-[15px] sm:text-base tracking-tight">
+                <div
+                  className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-black/80 via-black/25 to-transparent"
+                  aria-hidden="true"
+                />
+                <div className="absolute inset-x-0 bottom-0 p-3">
+                  <p className="text-white text-[15px] font-semibold tracking-tight">
                     {name}
                   </p>
+                  <p className="mt-0.5 text-[11px] font-medium text-white/70">
+                    {homes.length > 0
+                      ? t("homesCount", { count: homes.length })
+                      : t("comingSoonShort")}
+                  </p>
                 </div>
-                <span className="absolute bottom-3 left-3 rounded-full bg-black/45 px-3 py-1 text-[11px] font-medium text-white/90 backdrop-blur-sm">
-                  {homes.length > 0
-                    ? t("homesCount", { count: homes.length })
-                    : t("comingSoonShort")}
-                </span>
               </Link>
             );
           })}
