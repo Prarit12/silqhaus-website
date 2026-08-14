@@ -18,7 +18,12 @@ export interface DestinationListing {
   personCapacity?: number;
   averageReviewRating?: number;
   imageUrl?: string;
+  /** First few photos, enough for PropertyCard's swipe carousel. */
+  listingImages?: Array<{ url: string }>;
 }
+
+/** PropertyCard mounts at most 8 photos; carrying more just bloats the SSR payload. */
+const MAX_CARD_PHOTOS = 8;
 
 function slim(l: any, source: "hostaway" | "guesty"): DestinationListing {
   return {
@@ -36,6 +41,10 @@ function slim(l: any, source: "hostaway" | "guesty"): DestinationListing {
         ? Number(l.averageReviewRating)
         : undefined,
     imageUrl: l.listingImages?.[0]?.url ?? undefined,
+    listingImages: (l.listingImages ?? [])
+      .slice(0, MAX_CARD_PHOTOS)
+      .map((img: any) => ({ url: img?.url }))
+      .filter((img: { url?: string }) => Boolean(img.url)),
   };
 }
 
