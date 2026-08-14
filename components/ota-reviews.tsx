@@ -22,12 +22,26 @@ export function OTAReviews() {
     queryFn: () => fetchReviews(),
   });
 
-  const displayReviews = (reviews || [])
+  // The other nine homes live in Guesty — without this feed the carousel
+  // only ever showed the one Hostaway property's reviews.
+  const { data: guestyReviews } = useQuery<ReviewData[]>({
+    queryKey: ["/api/guesty/reviews"],
+    queryFn: async () => {
+      const res = await fetch("/api/guesty/reviews");
+      if (!res.ok) throw new Error("Failed to fetch Guesty reviews");
+      return res.json();
+    },
+  });
+
+  // Both PMS feeds, newest first. Guesty reviews arrive with their
+  // listingName already resolved; Hostaway ones resolve from the map.
+  const displayReviews = [...(reviews || []), ...(guestyReviews || [])]
     .filter((r) => r.publicReview && r.publicReview.trim() !== "")
+    .sort((a, b) => (String(a.insertedOn) < String(b.insertedOn) ? 1 : -1))
     .slice(0, 90)
     .map((r) => ({
       ...r,
-      listingName: listingNames[r.listingMapId] || undefined,
+      listingName: listingNames[r.listingMapId] || r.listingName || undefined,
     }));
 
   const [emblaRef, emblaApi] = useEmblaCarousel(
@@ -84,7 +98,7 @@ export function OTAReviews() {
           {displayReviews.map((review, i) => (
             <div
               key={`${review.listingMapId}-${review.channelId}-${i}`}
-              className={`flex-shrink-0 px-2.5 basis-[86%] sm:basis-[58%] lg:basis-[42%] flex transition-[opacity,transform] duration-500 ease-out motion-reduce:transition-none ${
+              className={`flex-shrink-0 px-2.5 basis-[78%] sm:basis-[46%] lg:basis-[31%] flex transition-[opacity,transform] duration-500 ease-out motion-reduce:transition-none ${
                 i === selectedIndex
                   ? "opacity-100 scale-100"
                   : "opacity-35 scale-[0.94]"

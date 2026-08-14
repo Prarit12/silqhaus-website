@@ -237,6 +237,16 @@ async function getReviewsIndex(): Promise<ReviewsIndex> {
   return promise;
 }
 
+/** Every public review across the whole account, newest first. */
+export async function getAllGuestyReviews(): Promise<
+  NormalizedGuestyReview[]
+> {
+  const index = await getReviewsIndex();
+  return Object.values(index)
+    .flat()
+    .sort((a, b) => (a.insertedOn < b.insertedOn ? 1 : -1));
+}
+
 /** All public reviews for one listing, newest first. */
 export async function getGuestyListingReviews(listingId: string): Promise<{
   reviews: NormalizedGuestyReview[];
