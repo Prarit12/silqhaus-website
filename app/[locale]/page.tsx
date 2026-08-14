@@ -111,6 +111,9 @@ export default async function Home({
               <Link href="/our-property" className="btn-lux-solid">
                 {t("button")}
               </Link>
+              <Link href="/destination" className="btn-lux-ghost">
+                {t("guideButton")}
+              </Link>
             </div>
           </div>
         </section>
