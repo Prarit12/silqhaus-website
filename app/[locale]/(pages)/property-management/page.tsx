@@ -376,7 +376,7 @@ export default function PropertyManagement() {
     <main className="min-h-screen bg-[#0a0a0a]">
       {/* Hero Section */}
       <section className="relative flex items-center bg-[#0a0a0a] min-h-[90vh] py-28 lg:py-32">
-        <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="relative z-10 w-full max-w-site mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-[1fr_minmax(0,460px)] gap-10 lg:gap-16 items-center">
             {/* Pitch */}
             <div className="max-w-xl">

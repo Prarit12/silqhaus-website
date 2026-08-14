@@ -50,7 +50,7 @@ export default function WhatWeOfferSection() {
         ></div>
       </div>
       {/* Desktop and Tablet - Text + Image Layout */}
-      <div className="hidden md:block relative max-w-7xl mx-auto px-4 md:px-6">
+      <div className="hidden md:block relative max-w-site mx-auto px-4 md:px-6">
         <div className="flex items-center min-h-[60vh] gap-8">
           {/* Left Box - 40% Width - Text Content */}
           <div className="basis-[40%] flex flex-col justify-center space-y-6">

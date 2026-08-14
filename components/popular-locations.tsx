@@ -107,7 +107,7 @@ export default function PopularLocations() {
 
   return (
     <section className="py-16 sm:py-20 md:py-28 relative bg-ink flex items-center">
-      <div className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8">
+      <div className="max-w-site mx-auto w-full px-4 sm:px-6 lg:px-8">
         <div className="mb-10 sm:mb-14 max-w-2xl">
           <span className="eyebrow mb-5">{t("eyebrow")}</span>
           <h2 className="font-display font-light text-white text-4xl sm:text-5xl md:text-6xl leading-[1.05] tracking-tight mt-5 normal-case">

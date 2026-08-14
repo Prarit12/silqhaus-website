@@ -10,6 +10,11 @@ export default {
   ],
   theme: {
     extend: {
+      maxWidth: {
+        // The site-wide content cap ("full page" width). Sections use
+        // max-w-site; widen or narrow the whole site here.
+        site: "1600px",
+      },
       fontFamily: {
         sans: [
           "var(--font-manrope)",

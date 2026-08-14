@@ -46,7 +46,7 @@ export default function PmTestimonials() {
 
   return (
     <section className="bg-ink py-24 sm:py-28 border-t border-line">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-site mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-wrap items-end justify-between gap-x-8 gap-y-6 mb-10 sm:mb-12">
           <div className="max-w-2xl">
             <span className="eyebrow mb-5">{t("subtitle")}</span>

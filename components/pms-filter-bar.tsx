@@ -376,7 +376,7 @@ export function PMSFilterBar({ filters, side }: PMSFilterBarProps) {
 
   return (
     <div className="bg-[#000000] border-b border-white/10">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+      <div className="max-w-site mx-auto px-4 sm:px-6 lg:px-8 py-4">
         <div className="flex flex-col lg:flex-row lg:items-center gap-3">
           {options.propertyTypes.length > 0 && (
             <div

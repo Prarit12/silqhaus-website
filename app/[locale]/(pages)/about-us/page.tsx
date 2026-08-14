@@ -71,7 +71,7 @@ export default function AboutUs() {
         </div>
 
         {/* Wide team-photo slot — placeholder until the real photo is shot */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-14 sm:mt-16">
+        <div className="max-w-site mx-auto px-4 sm:px-6 lg:px-8 mt-14 sm:mt-16">
           <div className="relative aspect-[16/7] sm:aspect-[21/8] rounded-2xl sm:rounded-3xl border border-line overflow-hidden bg-white/[0.02]">
             <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.05),transparent_70%)]" />
             <div className="absolute inset-0 flex flex-col items-center justify-center gap-3">
@@ -88,7 +88,7 @@ export default function AboutUs() {
 
       {/* Mission / Vision */}
       <section className="py-16 sm:py-20 border-t border-line bg-ink-2">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-site mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16">
             <div>
               <span className="inline-flex items-center gap-2 rounded-full border border-line px-3.5 py-1.5 text-xs font-medium text-white/70">
@@ -114,7 +114,7 @@ export default function AboutUs() {
 
       {/* Leadership */}
       <section className="py-20 sm:py-24 border-t border-line">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-site mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-16 gap-y-6 items-end mb-12 sm:mb-14">
             <h2 className="font-display text-white text-4xl sm:text-5xl font-light leading-[1.05] tracking-tight normal-case text-balance">
               {t.rich("team.title", {
@@ -170,7 +170,7 @@ export default function AboutUs() {
 
       {/* Story + facts */}
       <section className="py-20 sm:py-24 border-t border-line bg-ink-2">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-site mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-16 gap-y-12 lg:items-center">
             <div>
               <h2 className="font-display text-white text-4xl sm:text-5xl font-light leading-[1.05] tracking-tight normal-case text-balance">

@@ -221,7 +221,7 @@ export default function FullScreenGallery({
 
         {/* Gallery Grid */}
         <div className="flex-1 overflow-y-auto p-4 md:p-6" ref={gridRef}>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 md:gap-4 max-w-7xl mx-auto">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 md:gap-4 max-w-site mx-auto">
             {filteredImages.map((image, index) => {
               const originalIndex = images.findIndex(
                 (img) => img.src === image.src,
@@ -314,7 +314,7 @@ export default function FullScreenGallery({
 
         {/* Footer */}
         <footer className="p-4 md:p-6 bg-[#e3e1d8] text-[#6e5d41] border-t border-[#6e5d41]/20">
-          <div className="flex items-center justify-between max-w-7xl mx-auto">
+          <div className="flex items-center justify-between max-w-site mx-auto">
             <p className="text-sm font-poppins">{t("clickToOpen")}</p>
             <div className="text-xs font-poppins opacity-75">
               {t("countOf", {

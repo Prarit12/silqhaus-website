@@ -206,7 +206,9 @@ export default function Navigation() {
         role="navigation"
         aria-label="Main"
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Full-bleed bar — the header spans the viewport while page content
+            stays capped at max-w-site. */}
+        <div className="w-full px-4 sm:px-6 lg:px-10">
           <div className="grid grid-cols-[auto_1fr_auto] md:grid-cols-[1fr_minmax(0,26rem)_1fr] items-center gap-2 h-14 md:h-16 px-2.5 md:px-3 transition-all duration-500">
             {/* Logo */}
             <Link

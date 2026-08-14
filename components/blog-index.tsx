@@ -120,7 +120,7 @@ export default function BlogIndex({ posts }: { posts: BlogPost[] }) {
 
       {/* Articles + sidebar */}
       <section className="pb-24 sm:pb-28">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-site mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_300px] gap-x-14 gap-y-16">
             {/* Main column */}
             <div>

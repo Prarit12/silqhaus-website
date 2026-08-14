@@ -31,7 +31,7 @@ export default function BookDirectBanner() {
 
   return (
     <section className="relative overflow-hidden bg-ink bg-[linear-gradient(90deg,#09081F_0%,#382124_30%,#673929_52%,#95522E_70%,#C46A33_85%,#F38338_100%)]">
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-9 sm:py-12">
+      <div className="relative max-w-site mx-auto px-4 sm:px-6 lg:px-8 py-9 sm:py-12">
         <div className="flex flex-col lg:flex-row lg:items-center gap-6 lg:gap-10">
           <div className="lg:flex-1">
             <h2 className="text-white font-bold text-xl sm:text-2xl lg:text-[1.65rem] leading-[1.15] tracking-tight normal-case xl:whitespace-nowrap">

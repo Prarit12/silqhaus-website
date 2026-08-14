@@ -51,7 +51,7 @@ export default function RegionNeighborhoods({
 
   return (
     <section className="pb-20 sm:pb-24">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-site mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-wrap items-end justify-between gap-x-10 gap-y-4 mb-9 sm:mb-11">
           <h2 className="font-display text-white text-3xl sm:text-4xl font-light leading-[1.08] tracking-tight normal-case text-balance">
             {g("areas.title")}

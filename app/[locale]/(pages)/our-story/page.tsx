@@ -34,7 +34,7 @@ export default function OurStory() {
           className="absolute inset-0 bg-gradient-to-t from-ink via-black/25 to-black/10"
           aria-hidden="true"
         />
-        <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-14 sm:pb-16">
+        <div className="relative z-10 w-full max-w-site mx-auto px-4 sm:px-6 lg:px-8 pb-14 sm:pb-16">
           <h1 className="font-display text-white text-4xl sm:text-5xl md:text-6xl font-light leading-[1.05] tracking-tight normal-case text-balance">
             {t("hero.title")}
           </h1>
@@ -73,7 +73,7 @@ export default function OurStory() {
 
       {/* ── Timeline — a genuine sequence, so the dates carry the story ── */}
       <section className="py-16 sm:py-24 border-t border-line bg-ink-2">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-site mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-wrap items-end justify-between gap-x-10 gap-y-4 mb-10 sm:mb-14">
             <h2 className="font-display text-white text-3xl sm:text-4xl font-light leading-[1.08] tracking-tight normal-case text-balance">
               {t("timeline.title")}
@@ -140,7 +140,7 @@ export default function OurStory() {
 
       {/* ── A hotel, decentralized ── */}
       <section className="py-16 sm:py-24 border-t border-line bg-ink-2">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-3 gap-x-14 gap-y-6">
+        <div className="max-w-site mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-3 gap-x-14 gap-y-6">
           <h2 className="lg:col-span-1 font-display text-white text-3xl sm:text-4xl font-light leading-[1.08] tracking-tight normal-case text-balance">
             {t("decentralized.title")}
           </h2>
@@ -157,7 +157,7 @@ export default function OurStory() {
 
       {/* ── The system behind it ── */}
       <section className="py-16 sm:py-24 border-t border-line">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-3 gap-x-14 gap-y-6">
+        <div className="max-w-site mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-3 gap-x-14 gap-y-6">
           <h2 className="lg:col-span-1 font-display text-white text-3xl sm:text-4xl font-light leading-[1.08] tracking-tight normal-case text-balance">
             {t("technology.title")}
           </h2>
@@ -174,7 +174,7 @@ export default function OurStory() {
 
       {/* ── Philosophy & local knowledge — paired to vary the rhythm ── */}
       <section className="py-16 sm:py-24 border-t border-line bg-ink-2">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 gap-x-14 gap-y-10">
+        <div className="max-w-site mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 gap-x-14 gap-y-10">
           {(["philosophy", "local"] as const).map((k) => (
             <div key={k} className="border-t border-line pt-6">
               <h2 className="font-display text-white text-2xl sm:text-3xl font-light leading-[1.1] tracking-tight normal-case text-balance">
@@ -190,7 +190,7 @@ export default function OurStory() {
 
       {/* ── Looking forward ── */}
       <section className="py-16 sm:py-24 border-t border-line">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-3 gap-x-14 gap-y-6">
+        <div className="max-w-site mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-3 gap-x-14 gap-y-6">
           <h2 className="lg:col-span-1 font-display text-white text-3xl sm:text-4xl font-light leading-[1.08] tracking-tight normal-case text-balance">
             {t("forward.title")}
           </h2>
@@ -207,7 +207,7 @@ export default function OurStory() {
 
       {/* ── Close ── */}
       <section className="py-16 sm:py-20 border-t border-line bg-ink-2">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-wrap items-center justify-between gap-6">
+        <div className="max-w-site mx-auto px-4 sm:px-6 lg:px-8 flex flex-wrap items-center justify-between gap-6">
           <div>
             <p className="font-display text-white text-2xl sm:text-3xl font-light leading-[1.1] tracking-tight normal-case text-balance">
               {t("cta.title")}

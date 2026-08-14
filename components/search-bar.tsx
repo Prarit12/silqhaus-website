@@ -157,7 +157,7 @@ export default function SearchBar({ className = '', variant = 'hero', listingId 
 
   // Hero variant - Clean Button-Based Search with design matching the reference image
   return (
-    <div className={`w-full max-w-7xl mx-auto ${className}`}>
+    <div className={`w-full max-w-site mx-auto ${className}`}>
       
       {/* Hostaway Widget (Hidden but still loaded for functionality) */}
       <div id="hostaway-booking-widget" className="hidden"></div>

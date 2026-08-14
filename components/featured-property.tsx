@@ -26,7 +26,7 @@ export default function FeaturedProperty() {
 
   return (
     <section className="py-20 bg-cream">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-site mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-16">
           <div className="w-16 h-16 mx-auto mb-6 bg-bronze rounded-full flex items-center justify-center">

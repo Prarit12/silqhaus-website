@@ -22,7 +22,7 @@ export function OTASection() {
         }}
       />
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="relative max-w-site mx-auto px-4 sm:px-6 lg:px-8">
         {/* Statement */}
         <h2 className="font-display text-center text-3xl sm:text-4xl md:text-5xl font-light text-white leading-[1.08] tracking-tight normal-case text-balance">
           {t("headlineB")}

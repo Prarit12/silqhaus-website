@@ -76,7 +76,7 @@ export default function GuestFavorites() {
   if (isLoading) {
     return (
       <section className="bg-white py-14 sm:py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-site mx-auto px-4 sm:px-6 lg:px-8">
           <p className="text-neutral-500 font-poppins">{t("loading")}</p>
         </div>
       </section>
@@ -86,7 +86,7 @@ export default function GuestFavorites() {
 
   return (
     <section className="bg-white py-14 sm:py-16 md:py-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-site mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-8 sm:mb-10">
           {/* Eyebrow — dark variant for the white background */}
           <span className="inline-flex items-center gap-3 text-neutral-500 text-[0.72rem] font-medium uppercase tracking-[0.3em]">

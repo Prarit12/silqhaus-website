@@ -96,7 +96,7 @@ export function PMSListingsWithMap({
   return (
     <div className="min-h-screen">
       <section className="pt-32 pb-24 relative bg-[#000000]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div className="max-w-site mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl md:text-6xl font-gilroy font-bold mb-6 tracking-wider text-white uppercase">
             {t("hero.title")}
           </h1>
@@ -109,7 +109,7 @@ export function PMSListingsWithMap({
       {showFilterBar && <PMSFilterBar filters={filters} side={side} />}
 
       <section className="bg-[#000000] py-8 min-h-[80vh]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-site mx-auto px-4 sm:px-6 lg:px-8">
           {!isLoading && !isError && listings.length > 0 && (
             <div className="mb-6">
               <p className="text-mist/70 font-poppins text-[13px]">

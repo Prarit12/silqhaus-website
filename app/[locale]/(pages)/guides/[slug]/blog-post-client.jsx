@@ -42,7 +42,7 @@ export default function BlogPostClient({ slug, initialPost }) {
   return (
     <div className="min-h-screen bg-ivory">
       {img ? (
-        <div className="max-w-7xl mx-auto overflow-hidden">
+        <div className="max-w-site mx-auto overflow-hidden">
           <img
             src={img}
             alt={title || "Blog image"}

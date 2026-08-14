@@ -152,7 +152,7 @@ export function PMSPropertyDetail({
       }`}
     >
       <section className="pt-32 pb-6">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-site mx-auto px-4 sm:px-6 lg:px-8">
           <Link
             href={`/${basePath}`}
             className="inline-flex items-center gap-2 text-mist hover:text-gold font-poppins text-sm transition-colors"
@@ -165,7 +165,7 @@ export function PMSPropertyDetail({
 
       {/* Header (title + address only) */}
       <section className="pb-6">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-site mx-auto px-4 sm:px-6 lg:px-8">
           {listing.propertyType && (
             <span className="inline-block bg-[#ffffff]/20 text-[#bf9b3a] text-[11px] font-poppins font-medium uppercase tracking-wider px-3 py-1 rounded-full mb-3">
               {listing.propertyType}
@@ -193,7 +193,7 @@ export function PMSPropertyDetail({
       {/* Gallery */}
       {images.length > 0 && (
         <section className="pb-10">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-site mx-auto px-4 sm:px-6 lg:px-8">
             <GalleryCarousel
               photos={galleryPhotos}
               propertyTitle={listing.title}
@@ -208,7 +208,7 @@ export function PMSPropertyDetail({
       )}
 
       {/* Body grid: content on left, sticky inquiry on right */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-site mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-[65%_35%] gap-8">
           <div className="min-w-0">
             {/* Price + quick facts summary */}

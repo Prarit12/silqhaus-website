@@ -23,7 +23,7 @@ export default async function WhySilqhaus() {
 
   return (
     <section className="bg-ink-2 border-t border-line py-16 sm:py-20 md:py-28">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-site mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section header */}
         <div className="max-w-2xl">
           <span className="eyebrow mb-5">{t("eyebrow")}</span>

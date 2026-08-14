@@ -1335,6 +1335,8 @@ export default function PropertyDetails({
         fullGalleryOpen ? "pointer-events-none" : ""
       }`}
     >
+      {/* Deliberately max-w-7xl, not max-w-site: the booking layout reads
+          best at the original 1280px width (Boom's call). */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-5 pb-28 lg:pb-16">
         {/* Back */}
         <Link

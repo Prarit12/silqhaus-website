@@ -92,8 +92,12 @@ export default function Footer() {
         aria-hidden="true"
       />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-16">
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-x-8 gap-y-10 mb-12">
+      {/* Full-bleed like the header — the footer spans the viewport while
+          page content stays capped at max-w-site. */}
+      <div className="w-full px-4 sm:px-6 lg:px-10 py-14 sm:py-16">
+        {/* xl fits brand + all five link columns on one line; below that the
+            columns wrap in pairs. */}
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-7 gap-x-8 gap-y-10 mb-12">
           {/* Brand block — same wordmark as the header */}
           <div className="col-span-2 space-y-4">
             {/* Wordmark and tagline read as one lockup */}

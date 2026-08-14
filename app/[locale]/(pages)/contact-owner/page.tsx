@@ -188,7 +188,7 @@ export default function ContactOwner() {
           className="absolute inset-0 bg-gradient-to-t from-ink via-black/25 to-black/10"
           aria-hidden="true"
         />
-        <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-14 sm:pb-16">
+        <div className="relative z-10 w-full max-w-site mx-auto px-4 sm:px-6 lg:px-8 pb-14 sm:pb-16">
           <h1 className="font-display text-white text-4xl sm:text-5xl md:text-6xl font-light leading-[1.05] tracking-tight normal-case text-balance">
             {t("hero.title")}
           </h1>
@@ -200,7 +200,7 @@ export default function ContactOwner() {
 
       {/* ── Why us — the competitive case, in bullets ── */}
       <section className="py-14 sm:py-20 border-b border-line">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-site mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-wrap items-end justify-between gap-x-10 gap-y-4 mb-9 sm:mb-11">
             <h2 className="font-display text-white text-3xl sm:text-4xl font-light leading-[1.08] tracking-tight normal-case text-balance">
               {t("why.title")}
@@ -246,7 +246,7 @@ export default function ContactOwner() {
 
       {/* ── Form + direct lines ── */}
       <section className="py-14 sm:py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-5 gap-10 lg:gap-14">
+        <div className="max-w-site mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-5 gap-10 lg:gap-14">
           <div
             id="owner-form"
             className="lg:col-span-3 rounded-2xl sm:rounded-3xl border border-line bg-white/[0.02] p-6 sm:p-9"

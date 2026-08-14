@@ -37,7 +37,7 @@ const features = [
 export default function SilqhausDifference() {
   return (
     <section className="py-20 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-site mx-auto px-4 sm:px-6 lg:px-8">
         <div className="centered-section mb-16">
           <h2 className="text-5xl font-gilroy font-bold text-charcoal mb-6">IT'S A VACATION HOME, BUT BETTER</h2>
           <h3 className="text-3xl font-semibold text-charcoal mb-8">The Silqhaus Difference</h3>

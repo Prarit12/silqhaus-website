@@ -36,7 +36,7 @@ export default async function Experiences() {
           className="absolute inset-0 bg-gradient-to-t from-ink via-black/35 to-black/20"
           aria-hidden="true"
         />
-        <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20 sm:pb-24">
+        <div className="relative z-10 w-full max-w-site mx-auto px-4 sm:px-6 lg:px-8 pb-20 sm:pb-24">
           <h1 className="font-display text-white text-5xl sm:text-6xl md:text-7xl font-light leading-[1.02] tracking-tight normal-case text-balance max-w-3xl">
             {t.rich("hero.title", {
               b: (chunks) => <strong className="font-bold">{chunks}</strong>,
@@ -69,7 +69,7 @@ export default async function Experiences() {
 
       {/* ── The six regions ── */}
       <section className="pb-20 sm:pb-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-site mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-wrap items-end justify-between gap-x-10 gap-y-4 mb-10 sm:mb-12">
             <h2 className="font-display text-white text-4xl sm:text-5xl font-light leading-[1.05] tracking-tight normal-case text-balance">
               {t("regions.title")}
@@ -140,7 +140,7 @@ export default async function Experiences() {
 
       {/* ── The six lenses ── */}
       <section className="py-20 sm:py-24 border-t border-line bg-ink-2">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-site mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             <div>
               <h2 className="font-display text-white text-4xl sm:text-5xl font-light leading-[1.05] tracking-tight normal-case text-balance">
@@ -177,7 +177,7 @@ export default async function Experiences() {
 
       {/* ── When to come ── */}
       <section className="py-20 sm:py-24 border-t border-line">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-site mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="font-display text-white text-3xl sm:text-4xl font-light leading-[1.08] tracking-tight normal-case text-balance mb-10 sm:mb-12">
             {t("travelPlanning.bestTime")}
           </h2>

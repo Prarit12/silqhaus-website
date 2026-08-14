@@ -62,7 +62,7 @@ export default function PmFaq() {
 
   return (
     <section className="bg-ink-2 py-24 sm:py-28 border-t border-line">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-site mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header — heading left, direct line right */}
         <div className="flex flex-wrap items-end justify-between gap-x-10 gap-y-6">
           <div className="max-w-2xl">

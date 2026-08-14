@@ -30,7 +30,7 @@ export default async function DestinationIndex({
     <main className="min-h-screen bg-white text-ink pt-14 md:pt-16">
       {/* Hero */}
       <div className="bg-[#F5F4F0] border-b border-neutral-200/70">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-10">
+        <div className="max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-10">
           <p className="text-[13px] font-semibold uppercase tracking-[0.14em] text-neutral-500">
             {t("eyebrow")}
           </p>
@@ -44,7 +44,7 @@ export default async function DestinationIndex({
       </div>
 
       {/* Region guide rows */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div className="max-w-site mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="space-y-14 md:space-y-20">
           {DESTINATION_REGIONS.map((r, i) => {
             const name = tRegions(`${r.key}.name`);
