@@ -108,10 +108,16 @@ export default async function Home({
               {t("descriptionPart3")}
             </p>
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
-              <Link href="/our-property" className="btn-lux-solid">
+              <Link
+                href="/our-property"
+                className="btn-lux-solid w-full sm:w-[340px] text-center justify-center"
+              >
                 {t("button")}
               </Link>
-              <Link href="/destination" className="btn-lux-ghost">
+              <Link
+                href="/destination"
+                className="btn-lux-ghost w-full sm:w-[340px] text-center justify-center"
+              >
                 {t("guideButton")}
               </Link>
             </div>
