@@ -11,6 +11,7 @@ import {
   type CurrencyCode,
 } from "@/components/currency-select";
 import { DEFAULT_MONTHLY_DISCOUNT } from "@/config/monthly";
+import { amenityIcon } from "@/config/amenity-icons";
 import {
   ArrowLeft,
   Bath,
@@ -1483,19 +1484,22 @@ export default function PropertyDetails({
                   {t("amenitiesAndFeatures")}
                 </h2>
                 <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-3.5">
-                  {visibleAmenities.map((amenity) => (
-                    <li
-                      key={amenity.id}
-                      className="flex items-center gap-3 text-[15px] text-ink"
-                    >
-                      <Check
-                        className="w-5 h-5 text-neutral-700 shrink-0"
-                        strokeWidth={1.5}
-                        aria-hidden="true"
-                      />
-                      {amenity.amenityName}
-                    </li>
-                  ))}
+                  {visibleAmenities.map((amenity) => {
+                    const Icon = amenityIcon(amenity.amenityName);
+                    return (
+                      <li
+                        key={amenity.id}
+                        className="flex items-center gap-3 text-[15px] text-ink"
+                      >
+                        <Icon
+                          className="w-5 h-5 text-neutral-700 shrink-0"
+                          strokeWidth={1.5}
+                          aria-hidden="true"
+                        />
+                        {amenity.amenityName}
+                      </li>
+                    );
+                  })}
                 </ul>
                 {amenities.length > 10 && (
                   <button
