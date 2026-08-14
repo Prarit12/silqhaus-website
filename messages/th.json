@@ -91,6 +91,7 @@
         "guestCount": "{n, plural, other {# คน}}",
         "infantCount": "ทารก {n, plural, other {# คน}}",
         "petCount": "สัตว์เลี้ยง {n, plural, other {# ตัว}}",
+        "next": "ถัดไป",
         "search": "ค้นหา"
       }
     },

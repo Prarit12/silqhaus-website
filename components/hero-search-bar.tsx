@@ -274,6 +274,18 @@ export default function HeroSearchBar({
               setCheckOut(null);
             }}
           />
+          <div className="mt-4 pt-4 border-t border-neutral-100 flex items-center justify-between gap-3">
+            <span className="text-sm text-neutral-600 truncate">
+              {checkIn ? whenLabel : t("when")}
+            </span>
+            <button
+              type="button"
+              onClick={() => setPanel("who")}
+              className="shrink-0 inline-flex items-center justify-center h-10 px-6 rounded-full bg-ink text-white text-sm font-semibold hover:bg-neutral-800 transition-colors"
+            >
+              {t("next")}
+            </button>
+          </div>
         </div>
       )}
 
@@ -287,6 +299,16 @@ export default function HeroSearchBar({
           }`}
         >
           <HeroWhoPicker value={guests} onChange={setGuests} />
+          <div className="mt-4 pt-4 border-t border-neutral-100 flex justify-end">
+            <button
+              type="button"
+              onClick={goSearch}
+              className="inline-flex items-center justify-center gap-2 h-10 px-6 rounded-full bg-ink text-white text-sm font-semibold hover:bg-neutral-800 transition-colors"
+            >
+              <Search className="w-4 h-4" aria-hidden="true" />
+              {t("search")}
+            </button>
+          </div>
         </div>
       )}
     </div>

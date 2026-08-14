@@ -91,6 +91,7 @@
         "guestCount": "{n, plural, one {# guest} other {# guests}}",
         "infantCount": "{n, plural, one {# infant} other {# infants}}",
         "petCount": "{n, plural, one {# pet} other {# pets}}",
+        "next": "Next",
         "search": "Search"
       }
     },
