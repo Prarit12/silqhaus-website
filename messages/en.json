@@ -944,6 +944,7 @@
     "explore": "Explore",
     "properties": "Properties",
     "destinations": "Destinations",
+    "vacationRentalsIn": "Vacation rentals in {region}",
     "experiences": "Destinations",
     "contact": "Contact",
     "contactUs": "Contact Us",
@@ -3766,6 +3767,51 @@
     "previousListings": "Previous listings",
     "nextListings": "Next listings",
     "goToSlide": "Go to slide {index}"
+  },
+  "destinationPages": {
+    "eyebrow": "DESTINATIONS",
+    "metaTitle": "Vacation Rentals in {region} | Silqhaus",
+    "title": "Vacation rentals in {region}",
+    "indexTitle": "Our destinations",
+    "indexSubtitle": "Private pool villas and serviced homes across Thailand's most-loved coasts and cities — every one inspected and run by our own team, always cheaper booked direct.",
+    "homesCount": "{count, plural, one {# home} other {# homes}}",
+    "comingSoonShort": "Homes coming soon",
+    "homesIn": "{count, plural, one {# home} other {# homes}} in {region}",
+    "searchCta": "Search {region} with your dates",
+    "monthlyCta": "Monthly stays",
+    "guideCta": "Things to do in {region}",
+    "comingSoonTitle": "Homes in {region} are coming soon",
+    "comingSoonBody": "We're expanding to {region} — our team is selecting the first homes now. Until then, explore where we already host:",
+    "areasTitle": "Where we host in {region}",
+    "faqTitle": "Staying in {region} with Silqhaus",
+    "faq": {
+      "q1": "Why book a {region} vacation rental direct with Silqhaus?",
+      "a1": "Booking direct is guaranteed at least 10% below the OTAs for the same home and dates — the middleman's margin becomes your saving, and you message our local team directly from day one.",
+      "q2": "What is included in every Silqhaus home in {region}?",
+      "a2": "Every home is inspected and operated by our own team: hotel-grade linen, high-speed wifi, weekly-serviced cleanliness standards, and a real host on WhatsApp or LINE around the clock.",
+      "q3": "Can I stay monthly in {region}?",
+      "a3": "Yes — stays of 28 nights or more get our monthly rates with utilities, wifi and weekly cleaning included. Pick your home and dates on the Monthly Stays page for an instant quote.",
+      "q4": "How do check-in and support work?",
+      "a4": "You'll receive arrival details before check-in, and our on-the-ground team is reachable 24/7 during your stay — a real person, never a ticket queue."
+    },
+    "areaNames": {
+      "choengThale": "Choeng Thale & Bangtao",
+      "rawai": "Rawai",
+      "koKaeo": "Ko Kaeo",
+      "patong": "Patong",
+      "pattaya": "Pattaya & Wongamat"
+    },
+    "intros": {
+      "phuket": "Private pool villas across Phuket's west and south coasts — Bangtao, Choeng Thale, Rawai and beyond. Every home is run by our own local team, with best-price guarantee when you book direct.",
+      "pattaya": "Beachfront condos and serviced homes in Pattaya and Wongamat, minutes from the sand. Managed end to end by our own team, always cheaper direct than on the OTAs.",
+      "bangkok": "Serviced stays in Thailand's capital — our Bangkok collection is growing, run to the same standard as our island villas: real hosts, honest pricing, book-direct savings.",
+      "samui": "Koh Samui villas are on the way — palm-fringed beaches, private pools, and the same Silqhaus standard: our own team, direct-booking prices, 24/7 care.",
+      "huahin": "Hua Hin's royal-coast calm is next on our map — serviced vacation homes run by our own team, with the same all-inclusive comfort and direct-booking savings.",
+      "chiangmai": "Chiang Mai stays are coming — northern-Thailand calm with the Silqhaus standard: inspected homes, real local hosts, and prices that beat the OTAs when you book direct."
+    },
+    "moreDestinations": "More destinations:",
+    "homeSectionTitle": "Homes & destinations",
+    "homeSectionSubtitle": "Every Silqhaus home, by destination — book direct for our best-price guarantee, or explore each region's page."
   },
   "monthlyInquiry": {
     "quote": {

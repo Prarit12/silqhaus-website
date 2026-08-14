@@ -34,7 +34,8 @@ export default function Navigation() {
   const solidHeader =
     isScrolled ||
     pathname.startsWith("/our-property") ||
-    pathname.startsWith("/monthly-inquiry");
+    pathname.startsWith("/monthly-inquiry") ||
+    pathname.startsWith("/destination");
   // The monthly funnel hides the nightly search — it would pull guests out
   // of the quote flow; the wizard is the search there.
   const hideSearch = pathname.startsWith("/monthly-inquiry");

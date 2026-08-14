@@ -6,6 +6,7 @@ import { useTranslations } from "next-intl";
 import { Facebook, Instagram, Linkedin, Youtube } from "lucide-react";
 import { SiTiktok } from "react-icons/si";
 import { EXPERIENCE_REGIONS } from "@/config/experience-regions";
+import { DESTINATION_REGIONS } from "@/config/destination-regions";
 
 /** Night-to-sunset ramp shared with the region-guide banner. */
 const SUNSET =
@@ -53,6 +54,13 @@ export default function Footer() {
       {
         title: t("stay"),
         links: STAY.map((l) => ({ label: t(l.key), href: l.href })),
+      },
+      {
+        title: t("destinations"),
+        links: DESTINATION_REGIONS.map((r) => ({
+          label: t("vacationRentalsIn", { region: tRegions(`${r.key}.name`) }),
+          href: `/destination/${r.key}`,
+        })),
       },
       {
         title: t("guidesCol"),

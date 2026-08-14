@@ -6,6 +6,7 @@ import BookDirectBanner from "@/components/book-direct-banner";
 import GuestFavorites from "@/components/guest-favorites";
 import DestinationCovers from "@/components/destination-covers";
 import WhySilqhaus from "@/components/why-silqhaus";
+import HomeDestinations from "@/components/home-destinations";
 // import newsletter from "@/components/newsletter";
 // import Newsletter from "@/components/newsletter";
 // import NewsletterSection from "@/components/newsletter";
@@ -75,6 +76,7 @@ export default async function Home({
         </div>
         <DestinationCovers />
         <WhySilqhaus />
+        <HomeDestinations />
         {/* <NewsletterSection /> */}
         {/* CTA Banner */}
         <section className="relative py-16 sm:py-20 md:py-24 overflow-hidden">
