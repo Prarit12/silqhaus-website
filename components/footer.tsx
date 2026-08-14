@@ -108,10 +108,12 @@ export default function Footer() {
                   alt="Silqhaus"
                   width={767}
                   height={291}
-                  className="h-9 w-auto transition-opacity duration-300 hover:opacity-80"
+                  // Stacked hairline drop-shadows fatten the thin wordmark
+                  // strokes — the only artwork on hand is light-weight.
+                  className="h-12 sm:h-16 w-auto [filter:drop-shadow(0_0_.6px_#fff)_drop-shadow(0_0_.6px_#fff)_drop-shadow(0_0_.6px_#fff)] transition-opacity duration-300 hover:opacity-80"
                 />
               </Link>
-              <p className="text-white/60 font-light text-sm leading-relaxed max-w-sm mt-2.5">
+              <p className="text-white/60 font-light text-sm leading-relaxed max-w-sm mt-3">
                 {t("tagline")}
               </p>
             </div>
