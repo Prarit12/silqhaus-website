@@ -1,24 +1,48 @@
 "use client";
 
-import { useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { ArrowRight } from "lucide-react";
 import { PropertyCard } from "@/components/property-card";
 
-/** Homepage showcase caps at 20 (five columns × four rows). */
-const MAX_CARDS = 20;
+/** The homepage shows two rows; the search page carries the full catalog. */
+const ROWS = 2;
+
+/** Column count per viewport — must mirror the grid's breakpoint classes. */
+function useGridColumns(): number {
+  const [cols, setCols] = useState(5);
+  useEffect(() => {
+    const tiers: Array<[MediaQueryList, number]> = [
+      [window.matchMedia("(min-width: 1536px)"), 5],
+      [window.matchMedia("(min-width: 1280px)"), 4],
+      [window.matchMedia("(min-width: 1024px)"), 3],
+      [window.matchMedia("(min-width: 640px)"), 2],
+    ];
+    const update = () => {
+      const hit = tiers.find(([q]) => q.matches);
+      setCols(hit ? hit[1] : 1);
+    };
+    update();
+    tiers.forEach(([q]) => q.addEventListener("change", update));
+    return () =>
+      tiers.forEach(([q]) => q.removeEventListener("change", update));
+  }, []);
+  return cols;
+}
 
 /**
- * "Homes our guests love" — the same card treatment as the Vacation Rentals
- * listing page (image + dots, real save button, bed/guest/bath row).
- * Consumes the existing hostaway/guesty listing endpoints — no API changes.
+ * "All our homes across Thailand" — the complete live inventory with the
+ * same card treatment as the Vacation Rentals listing page (image + dots,
+ * real save button, bed/guest/bath row). Consumes the existing
+ * hostaway/guesty listing endpoints — no API changes.
  */
 export default function GuestFavorites() {
   const t = useTranslations("home.guestFavorites");
   // PropertyCard reads its own labels (price, availability) from ourProperty.
   const cardT = useTranslations("ourProperty");
+  const cols = useGridColumns();
 
   const hostawayQuery = useQuery<any[]>({
     queryKey: ["hostaway", "listings"],
@@ -101,29 +125,38 @@ export default function GuestFavorites() {
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-6">
-          {villas.slice(0, MAX_CARDS).map((v: any) => (
-            <PropertyCard
-              key={`${v.source}:${v.id}`}
-              property={v}
-              pricing={null}
-              hasDates={false}
-              isLoadingPrices={false}
-              fromQuote={pricingQuery.data?.[`${v.source}:${v.id}`] ?? null}
-              t={cardT}
-              theme="light"
-            />
-          ))}
-        </div>
+        <div className="relative">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-6">
+            {villas.slice(0, cols * ROWS).map((v: any) => (
+              <PropertyCard
+                key={`${v.source}:${v.id}`}
+                property={v}
+                pricing={null}
+                hasDates={false}
+                isLoadingPrices={false}
+                fromQuote={pricingQuery.data?.[`${v.source}:${v.id}`] ?? null}
+                t={cardT}
+                theme="light"
+              />
+            ))}
+          </div>
 
-        <div className="mt-10 sm:mt-12 flex justify-center">
-          <Link
-            href="/our-property"
-            className="inline-flex items-center gap-2 rounded-full bg-ink text-white px-7 py-3.5 text-sm font-semibold transition-colors hover:bg-neutral-800"
-          >
-            {t("seeMore")}
-            <ArrowRight className="w-4 h-4" />
-          </Link>
+          {/* The collection fades out over the tail of the second row and the
+              availability CTA floats on the fade — the search page carries
+              the full catalog. Clicks pass through the fade to the cards. */}
+          <div
+            className="absolute inset-x-0 -bottom-6 h-48 bg-gradient-to-t from-white via-white/85 to-transparent pointer-events-none"
+            aria-hidden="true"
+          />
+          <div className="absolute inset-x-0 bottom-2 flex justify-center pointer-events-none">
+            <Link
+              href="/our-property"
+              className="pointer-events-auto inline-flex items-center gap-2 rounded-full bg-ink text-white px-7 py-3.5 text-sm font-semibold shadow-lg transition-colors hover:bg-neutral-800"
+            >
+              {t("seeMore")}
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
         </div>
       </div>
     </section>

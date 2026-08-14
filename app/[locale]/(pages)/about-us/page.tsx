@@ -5,6 +5,7 @@ import { Link } from "@/i18n/navigation";
 import { useTranslations } from "next-intl";
 import OtaRatingsRow from "@/components/ota-ratings-row";
 import { OTAReviews } from "@/components/ota-reviews";
+import WhySilqhaus from "@/components/why-silqhaus";
 
 /** Leadership — names are proper nouns, roles come from i18n. */
 const LEADERS: {
@@ -111,6 +112,10 @@ export default function AboutUs() {
           </div>
         </div>
       </section>
+
+      {/* Why Silqhaus — the "Different by design" pillars, moved off the
+          homepage to sit with the mission and vision. */}
+      <WhySilqhaus />
 
       {/* Leadership */}
       <section className="py-20 sm:py-24 border-t border-line">

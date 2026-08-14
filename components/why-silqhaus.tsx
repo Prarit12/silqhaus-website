@@ -1,10 +1,13 @@
-import { getTranslations } from "next-intl/server";
+"use client";
+
+import { useTranslations } from "next-intl";
 import { Sparkles, TrendingUp, Handshake, type LucideIcon } from "lucide-react";
 
 /** The "why we're different" recap — three audiences, three reasons each,
- * as open editorial columns (not a nine-card grid) on the ink surface. */
-export default async function WhySilqhaus() {
-  const t = await getTranslations("home.whyDifferent");
+ * as open editorial columns (not a nine-card grid) on the ink surface.
+ * Client component so the (client) About Us page can render it. */
+export default function WhySilqhaus() {
+  const t = useTranslations("home.whyDifferent");
 
   const AUDIENCES: {
     key: "guests" | "owners" | "partners";

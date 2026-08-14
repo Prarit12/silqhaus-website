@@ -106,13 +106,25 @@
       "onlineStatus": "Usually replies in minutes"
     },
     "guestFavorites": {
-      "eyebrow": "Handpicked",
-      "title": "Homes our guests love",
-      "seeMore": "See more listings",
+      "eyebrow": "The full collection",
+      "title": "All our homes across Thailand",
+      "seeMore": "Check dates & availability",
       "badge": "Luxury",
       "bedrooms": "bedrooms",
       "baths": "baths",
       "loading": "Loading stays…"
+    },
+    "whyBook": {
+      "eyebrow": "Book with confidence",
+      "title": "Why book with Silqhaus",
+      "bestPricingTitle": "Best pricing",
+      "bestPricingText": "Book direct and pay 10% below any OTA price — guaranteed.",
+      "cancellationsTitle": "Worry-free cancellations",
+      "cancellationsText": "Clear terms before you pay, and a real person to help when plans change.",
+      "serviceTitle": "24/7 guest service",
+      "serviceText": "Message your host on WhatsApp any hour — concierge care, never a ticket queue.",
+      "cleaningTitle": "Professional cleaning",
+      "cleaningText": "Every home cleaned, inspected, and made up with fresh linens by our own team."
     },
     "ota": {
       "headlineB": "Here's what guests say."

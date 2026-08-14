@@ -4,7 +4,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import HeroSection from "@/components/hero-section";
 import BookDirectBanner from "@/components/book-direct-banner";
 import GuestFavorites from "@/components/guest-favorites";
-import WhySilqhaus from "@/components/why-silqhaus";
+import WhyBookStrip from "@/components/why-book-strip";
 import HomeDestinations from "@/components/home-destinations";
 // import newsletter from "@/components/newsletter";
 // import Newsletter from "@/components/newsletter";
@@ -71,10 +71,10 @@ export default async function Home({
         </div>
         {/* Target for the hero's scroll cue; offset clears the fixed nav */}
         <div id="homes" className="scroll-mt-24">
-          <GuestFavorites />
+          <HomeDestinations />
         </div>
-        <HomeDestinations />
-        <WhySilqhaus />
+        <GuestFavorites />
+        <WhyBookStrip />
         {/* <NewsletterSection /> */}
         {/* CTA Banner */}
         <section className="relative py-16 sm:py-20 md:py-24 overflow-hidden">
