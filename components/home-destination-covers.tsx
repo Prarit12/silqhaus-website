@@ -62,7 +62,7 @@ export default function HomeDestinationCovers({
             >
               <Link
                 href={`/destination/${cover.key}`}
-                className="group relative block aspect-[4/5] rounded-2xl overflow-hidden ring-1 ring-line transition-all duration-500 hover:ring-white/30"
+                className="group relative block aspect-[4/5] rounded-2xl overflow-hidden ring-1 ring-neutral-200 transition-all duration-500 hover:ring-neutral-400"
               >
                 <Image
                   src={cover.img}

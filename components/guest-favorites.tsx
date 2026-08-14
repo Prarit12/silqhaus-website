@@ -100,7 +100,7 @@ export default function GuestFavorites() {
   const isLoading = hostawayQuery.isLoading || guestyQuery.isLoading;
   if (isLoading) {
     return (
-      <section className="bg-white py-14 sm:py-16">
+      <section className="bg-[#F5F4F0] border-t border-neutral-200/70 py-14 sm:py-16">
         <div className="max-w-site mx-auto px-4 sm:px-6 lg:px-8">
           <p className="text-neutral-500 font-poppins">{t("loading")}</p>
         </div>
@@ -110,7 +110,9 @@ export default function GuestFavorites() {
   if (!villas.length) return null;
 
   return (
-    <section className="bg-white py-14 sm:py-16 md:py-20">
+    // The soft band (same tint as the destination-page heroes) separates
+    // this chapter from the white destinations section above it.
+    <section className="bg-[#F5F4F0] border-t border-neutral-200/70 py-14 sm:py-16 md:py-20">
       <div className="max-w-site mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-8 sm:mb-10">
           {/* Eyebrow — dark variant for the white background */}
@@ -148,7 +150,9 @@ export default function GuestFavorites() {
               Clicks pass through the fade to the cards. */}
           {!expanded && (
             <div
-              className="absolute inset-x-0 -bottom-6 h-48 bg-gradient-to-t from-white via-white/85 to-transparent pointer-events-none"
+              // Starts mid-gap after row one — the whole second row reads
+              // through the fade.
+              className="absolute inset-x-0 top-[calc(50%+0.75rem)] -bottom-6 bg-gradient-to-t from-[#F5F4F0] via-[#F5F4F0]/80 to-transparent pointer-events-none"
               aria-hidden="true"
             />
           )}

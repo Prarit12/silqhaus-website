@@ -77,14 +77,14 @@ export default function HomeDestinationRow({
   };
 
   const pagerBtnCls =
-    "grid place-items-center w-8 h-8 rounded-full border border-white/20 text-white transition-colors hover:bg-white/10 disabled:opacity-35 disabled:hover:bg-transparent";
+    "grid place-items-center w-8 h-8 rounded-full border border-neutral-300 text-ink transition-colors hover:border-ink disabled:opacity-35 disabled:hover:border-neutral-300";
 
   return (
     <div>
       <div className="flex items-center justify-between gap-3">
         <Link
           href={href as any}
-          className="group inline-flex items-center gap-2 text-white text-lg sm:text-xl font-medium hover:underline underline-offset-4"
+          className="group inline-flex items-center gap-2 text-ink hover:text-ink text-lg sm:text-xl font-medium hover:underline underline-offset-4"
         >
           {title}
           <ArrowRight
@@ -93,7 +93,7 @@ export default function HomeDestinationRow({
           />
         </Link>
         <div className="flex items-center gap-3 shrink-0">
-          <span className="text-[13px] text-white/45">{countLabel}</span>
+          <span className="text-[13px] text-neutral-500">{countLabel}</span>
           {overflows && (
             <div className="hidden sm:flex items-center gap-2">
               <button
@@ -137,7 +137,7 @@ export default function HomeDestinationRow({
               isLoadingPrices={false}
               fromQuote={pricingQuery.data?.[`${home.source}:${home.id}`] ?? null}
               t={t}
-              theme="dark"
+              theme="light"
             />
           </div>
         ))}
