@@ -4,7 +4,6 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import HeroSection from "@/components/hero-section";
 import BookDirectBanner from "@/components/book-direct-banner";
 import GuestFavorites from "@/components/guest-favorites";
-import DestinationCovers from "@/components/destination-covers";
 import WhySilqhaus from "@/components/why-silqhaus";
 import HomeDestinations from "@/components/home-destinations";
 // import newsletter from "@/components/newsletter";
@@ -74,9 +73,8 @@ export default async function Home({
         <div id="homes" className="scroll-mt-24">
           <GuestFavorites />
         </div>
-        <DestinationCovers />
-        <WhySilqhaus />
         <HomeDestinations />
+        <WhySilqhaus />
         {/* <NewsletterSection /> */}
         {/* CTA Banner */}
         <section className="relative py-16 sm:py-20 md:py-24 overflow-hidden">
