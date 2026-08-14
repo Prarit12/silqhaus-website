@@ -148,7 +148,9 @@ export default function GuestFavorites() {
             className="absolute inset-x-0 -bottom-6 h-48 bg-gradient-to-t from-white via-white/85 to-transparent pointer-events-none"
             aria-hidden="true"
           />
-          <div className="absolute inset-x-0 bottom-2 flex justify-center pointer-events-none">
+          {/* z-20 beats the cards' stretched links (z-10) — without it the
+              card under the pill swallows the click. */}
+          <div className="absolute inset-x-0 bottom-2 z-20 flex justify-center pointer-events-none">
             <Link
               href="/our-property"
               className="pointer-events-auto inline-flex items-center gap-2 rounded-full bg-ink text-white px-7 py-3.5 text-sm font-semibold shadow-lg transition-colors hover:bg-neutral-800"
