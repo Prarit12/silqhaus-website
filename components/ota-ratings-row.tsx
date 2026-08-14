@@ -15,7 +15,7 @@ const PLATFORM_RATINGS = [
   { key: "expedia", logo: ExpediaLockup, rating: "9.8", scale: "/10" },
   { key: "agoda", logo: AgodaLockup, rating: "9.7", scale: "/10" },
   { key: "vrbo", logo: VrboLockup, rating: "5.0", scale: "/5" },
-  { key: "trip", logo: TripLockup, rating: "4.9", scale: "/5" },
+  { key: "trip", logo: TripLockup, rating: "9.8", scale: "/10" },
 ] as const;
 
 /** White OTA lockups with their star ratings — shared trust strip. */

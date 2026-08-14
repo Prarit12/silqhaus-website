@@ -93,7 +93,7 @@ export function ReviewCard({
   const channelName = getChannelName(review.channelId);
   const isProperty = variant === "property";
   const charLimit = 200;
-  const charLimit2 = 150;
+  const charLimit2 = 110;
 
   if (isProperty) {
     return (
@@ -130,7 +130,7 @@ export function ReviewCard({
   }
 
   return (
-    <div className="bg-white/[0.04] ring-1 ring-line rounded-2xl p-6 flex flex-col gap-4 w-full min-h-[230px] text-left">
+    <div className="bg-white/[0.04] ring-1 ring-line rounded-2xl p-5 flex flex-col gap-3 w-full min-h-[140px] text-left">
       <div className="flex items-center justify-between gap-3">
         <span className="text-[11px] font-medium uppercase tracking-[0.16em] text-white/45">
           {channelName}
