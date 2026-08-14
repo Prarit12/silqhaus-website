@@ -241,6 +241,19 @@ export default function Navigation() {
 
             {/* Right cluster: desktop nav + mobile controls share one grid cell */}
             <div className="justify-self-end flex items-center">
+            {/* Book a stay — the header's one conversion pill; colours flip
+                with the bar so it reads on both the hero and the white bar.
+                Hover colour is pinned: the global a:hover rule paints gold. */}
+            <Link
+              href="/our-property"
+              className={`hidden sm:inline-flex items-center h-9 px-4 mr-2.5 md:mr-4 rounded-full font-poppins font-semibold text-xs md:text-sm leading-none transition-colors duration-300 ${
+                solidHeader
+                  ? "bg-ink text-white hover:text-white hover:bg-neutral-800"
+                  : "bg-white text-ink hover:text-ink hover:bg-white/90"
+              }`}
+            >
+              {t("bookAStay")}
+            </Link>
             {/* Desktop Navigation */}
             <div className="hidden xl:flex items-center gap-4 md:gap-5 shrink-0">
               {/* Partner with us — opens the owner / agency chooser */}
