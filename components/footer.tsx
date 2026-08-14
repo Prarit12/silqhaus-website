@@ -92,9 +92,9 @@ export default function Footer() {
         aria-hidden="true"
       />
 
-      {/* Full-bleed like the header — the footer spans the viewport while
-          page content stays capped at max-w-site. */}
-      <div className="w-full px-4 sm:px-6 lg:px-10 py-14 sm:py-16">
+      {/* The band and sunset hairline bleed full width; the content sits in
+          the site column so it aligns with the sections above. */}
+      <div className="max-w-site mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-16">
         {/* xl fits brand + all five link columns on one line; below that the
             columns wrap in pairs. */}
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-7 gap-x-8 gap-y-10 mb-12">
