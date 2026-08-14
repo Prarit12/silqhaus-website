@@ -44,9 +44,37 @@ export async function generateMetadata({
     namespace: "experiences.regions.items",
   });
   const name = tRegions(`${r.key}.name`);
+  const title = t("metaTitle", { region: name });
+  const description = t(`intros.${r.key}`);
+  const baseUrl =
+    process.env.NEXT_PUBLIC_SITE_URL || "https://www.silqhaus.com";
+  const path = `/destination/${r.key}`;
+  // Override the /destination layout metadata — without these, every region
+  // page inherits the index page's canonical and og:url.
   return {
-    title: t("metaTitle", { region: name }),
-    description: t(`intros.${r.key}`),
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      url: `${baseUrl}/${locale}${path}`,
+      siteName: "Silqhaus",
+      locale: locale === "th" ? "th_TH" : "en_US",
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+    },
+    alternates: {
+      canonical: `${baseUrl}/${locale}${path}`,
+      languages: {
+        en: `${baseUrl}/en${path}`,
+        th: `${baseUrl}/th${path}`,
+        "x-default": `${baseUrl}/en${path}`,
+      },
+    },
   };
 }
 
@@ -80,7 +108,7 @@ export default async function DestinationRegionPage({
     <main className="min-h-screen bg-white text-ink pt-14 md:pt-16">
       {/* Hero */}
       <div className="bg-[#F5F4F0] border-b border-neutral-200/70">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-10">
+        <div className="max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-10">
           <p className="text-[13px] font-semibold uppercase tracking-[0.14em] text-neutral-500">
             {t("eyebrow")}
           </p>
@@ -118,7 +146,7 @@ export default async function DestinationRegionPage({
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div className="max-w-site mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Homes */}
         {homes.length > 0 ? (
           <section>

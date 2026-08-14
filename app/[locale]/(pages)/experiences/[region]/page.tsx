@@ -34,9 +34,37 @@ export async function generateMetadata({
   const { locale, region } = await params;
   if (!GUIDED.includes(region as (typeof GUIDED)[number])) return {};
   const t = await getTranslations({ locale, namespace: "experiences" });
+  const title = t(`guides.${region}.metaTitle`);
+  const description = t(`guides.${region}.metaDescription`);
+  const baseUrl =
+    process.env.NEXT_PUBLIC_SITE_URL || "https://www.silqhaus.com";
+  const path = `/experiences/${region}`;
+  // Override the /experiences layout metadata — without these, every guide
+  // page inherits the index page's canonical and og:url.
   return {
-    title: t(`guides.${region}.metaTitle`),
-    description: t(`guides.${region}.metaDescription`),
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      url: `${baseUrl}/${locale}${path}`,
+      siteName: "Silqhaus",
+      locale: locale === "th" ? "th_TH" : "en_US",
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+    },
+    alternates: {
+      canonical: `${baseUrl}/${locale}${path}`,
+      languages: {
+        en: `${baseUrl}/en${path}`,
+        th: `${baseUrl}/th${path}`,
+        "x-default": `${baseUrl}/en${path}`,
+      },
+    },
   };
 }
 
@@ -74,7 +102,7 @@ export default async function RegionGuide({
           className="absolute inset-0 bg-gradient-to-t from-ink via-black/30 to-black/15"
           aria-hidden="true"
         />
-        <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 sm:pb-20">
+        <div className="relative z-10 w-full max-w-site mx-auto px-4 sm:px-6 lg:px-8 pb-16 sm:pb-20">
           <Link
             href="/experiences"
             className="inline-flex items-center gap-2 text-white/70 text-sm font-medium transition-colors hover:text-white"
@@ -103,7 +131,7 @@ export default async function RegionGuide({
       {/* ── Highlights — real photos, linked to blog guides where they exist ── */}
       {highlights.length > 0 && (
         <section className="pb-20 sm:pb-24">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-site mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex flex-wrap items-end justify-between gap-x-10 gap-y-4 mb-9 sm:mb-11">
               <h2 className="font-display text-white text-3xl sm:text-4xl font-light leading-[1.08] tracking-tight normal-case text-balance">
                 {g("highlightsTitle")}
@@ -158,7 +186,7 @@ export default async function RegionGuide({
       )}
 
       {/* ── The six lenses, in depth ── */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20 sm:pb-24 space-y-20 sm:space-y-28">
+      <div className="max-w-site mx-auto px-4 sm:px-6 lg:px-8 pb-20 sm:pb-24 space-y-20 sm:space-y-28">
         {EXPERIENCE_CATEGORIES.map((c, i) => (
           <section
             key={c}
@@ -269,7 +297,7 @@ export default async function RegionGuide({
       {/* ── The numbered checklist ── */}
       {thingsCount > 0 && (
         <section className="py-20 sm:py-24 border-t border-line bg-ink-2">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-site mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-2xl mb-10 sm:mb-12">
               <h2 className="font-display text-white text-3xl sm:text-4xl font-light leading-[1.08] tracking-tight normal-case text-balance">
                 {g("things.title")}
@@ -301,7 +329,7 @@ export default async function RegionGuide({
 
       {/* ── Footer nav — night-to-sunset gradient, dark end under the text ── */}
       <section className="py-16 sm:py-20 border-t border-line bg-[linear-gradient(90deg,#09081F_0%,#382124_30%,#673929_52%,#95522E_70%,#C46A33_85%,#F38338_100%)]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-wrap items-center justify-between gap-6">
+        <div className="max-w-site mx-auto px-4 sm:px-6 lg:px-8 flex flex-wrap items-center justify-between gap-6">
           <div>
             <p className="text-white/70 text-sm">{t("guides.moreComing")}</p>
             <p className="text-white font-semibold text-lg mt-1">
