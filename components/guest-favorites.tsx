@@ -4,7 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ChevronDown, ChevronUp } from "lucide-react";
 import { PropertyCard } from "@/components/property-card";
 
 /** The homepage shows two rows; the search page carries the full catalog. */
@@ -43,6 +43,7 @@ export default function GuestFavorites() {
   // PropertyCard reads its own labels (price, availability) from ourProperty.
   const cardT = useTranslations("ourProperty");
   const cols = useGridColumns();
+  const [expanded, setExpanded] = useState(false);
 
   const hostawayQuery = useQuery<any[]>({
     queryKey: ["hostaway", "listings"],
@@ -127,7 +128,7 @@ export default function GuestFavorites() {
 
         <div className="relative">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-6">
-            {villas.slice(0, cols * ROWS).map((v: any) => (
+            {(expanded ? villas : villas.slice(0, cols * ROWS)).map((v: any) => (
               <PropertyCard
                 key={`${v.source}:${v.id}`}
                 property={v}
@@ -141,16 +142,25 @@ export default function GuestFavorites() {
             ))}
           </div>
 
-          {/* The collection fades out over the tail of the second row and the
-              availability CTA floats on the fade — the search page carries
-              the full catalog. Clicks pass through the fade to the cards. */}
-          <div
-            className="absolute inset-x-0 -bottom-6 h-48 bg-gradient-to-t from-white via-white/85 to-transparent pointer-events-none"
-            aria-hidden="true"
-          />
+          {/* Collapsed: the collection fades out over the tail of the second
+              row and the controls float on the fade. Expanded: everything
+              shows and the controls drop into normal flow below the grid.
+              Clicks pass through the fade to the cards. */}
+          {!expanded && (
+            <div
+              className="absolute inset-x-0 -bottom-6 h-48 bg-gradient-to-t from-white via-white/85 to-transparent pointer-events-none"
+              aria-hidden="true"
+            />
+          )}
           {/* z-20 beats the cards' stretched links (z-10) — without it the
               card under the pill swallows the click. */}
-          <div className="absolute inset-x-0 bottom-2 z-20 flex justify-center pointer-events-none">
+          <div
+            className={
+              expanded
+                ? "mt-10 sm:mt-12 flex justify-center items-center gap-3"
+                : "absolute inset-x-0 bottom-2 z-20 flex justify-center items-center gap-3 pointer-events-none"
+            }
+          >
             <Link
               href="/our-property"
               className="pointer-events-auto inline-flex items-center gap-2 rounded-full bg-ink text-white px-7 py-3.5 text-sm font-semibold shadow-lg transition-colors hover:bg-neutral-800"
@@ -158,6 +168,23 @@ export default function GuestFavorites() {
               {t("seeMore")}
               <ArrowRight className="w-4 h-4" />
             </Link>
+            {/* Inline expand — only exists once the inventory outgrows the
+                two visible rows. */}
+            {(expanded || villas.length > cols * ROWS) && (
+              <button
+                type="button"
+                onClick={() => setExpanded(!expanded)}
+                aria-expanded={expanded}
+                aria-label={expanded ? t("showLess") : t("showAll")}
+                className="pointer-events-auto grid place-items-center w-11 h-11 rounded-full bg-white text-ink border border-neutral-300 shadow-lg hover:border-ink transition-colors"
+              >
+                {expanded ? (
+                  <ChevronUp className="w-5 h-5" aria-hidden="true" />
+                ) : (
+                  <ChevronDown className="w-5 h-5" aria-hidden="true" />
+                )}
+              </button>
+            )}
           </div>
         </div>
       </div>
