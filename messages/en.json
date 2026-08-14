@@ -119,14 +119,19 @@
     "whyBook": {
       "eyebrow": "Book with confidence",
       "title": "Why book with Silqhaus",
+      "bestPricingStage": "Before you book",
       "bestPricingTitle": "Best pricing",
       "bestPricingText": "Book direct and pay 10% below any OTA price — guaranteed.",
+      "cancellationsStage": "If plans change",
       "cancellationsTitle": "Worry-free cancellations",
       "cancellationsText": "Clear terms before you pay, and a real person to help when plans change.",
+      "serviceStage": "During your stay",
       "serviceTitle": "24/7 guest service",
       "serviceText": "Message your host on WhatsApp any hour — concierge care, never a ticket queue.",
+      "cleaningStage": "Between guests",
       "cleaningTitle": "Professional cleaning",
-      "cleaningText": "Every home cleaned, inspected, and made up with fresh linens by our own team."
+      "cleaningText": "Every home cleaned, inspected, and made up with fresh linens by our own team.",
+      "ratingsLead": "What that earns us, on every platform guests use"
     },
     "ota": {
       "headlineB": "Here's what guests say."
