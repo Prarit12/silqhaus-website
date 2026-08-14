@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import { useSearchParams } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
 
 export interface PropertyListItem {
@@ -35,6 +36,7 @@ function readUrlParams() {
 }
 
 export function usePropertyFilters() {
+  const searchParams = useSearchParams();
   const [filters, setFilters] = React.useState<PropertyFilters>(() => {
     const query = readUrlParams();
     if (!query)
@@ -107,6 +109,35 @@ export function usePropertyFilters() {
     const g = parseInt(query.get("guests") || "", 10);
     return !isNaN(g) && g > 1 ? g : 1;
   });
+
+  // The URL is the source of truth for arriving searches. The useState
+  // initializers read window.location, which is stale during client-side
+  // navigations (Next renders the new route before it pushes history), so
+  // re-sync whenever the router's own search params change.
+  React.useEffect(() => {
+    const location = searchParams.get("location") ?? "";
+    const guests = searchParams.get("guests") ?? "";
+    const bedrooms = searchParams.get("bedrooms") ?? "";
+    setFilters((prev) => ({ ...prev, location, guests, bedrooms }));
+
+    const g = parseInt(guests, 10);
+    setMinGuests(!isNaN(g) && g > 1 ? g : 1);
+    const b = parseInt(bedrooms, 10);
+    setMinBedrooms(!isNaN(b) && b > 1 ? b : 1);
+    setBedroomsFilterActive(!isNaN(b) && b > 1);
+
+    const checkInStr = searchParams.get("checkIn");
+    const checkOutStr = searchParams.get("checkOut");
+    if (checkInStr && checkOutStr) {
+      const checkIn = new Date(checkInStr);
+      const checkOut = new Date(checkOutStr);
+      if (!isNaN(checkIn.getTime()) && !isNaN(checkOut.getTime())) {
+        setSearchDates({ checkIn, checkOut });
+        return;
+      }
+    }
+    setSearchDates({ checkIn: null, checkOut: null });
+  }, [searchParams]);
 
   const {
     data: hostawayListings,
