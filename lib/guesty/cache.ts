@@ -26,7 +26,18 @@ function getClient(): Redis | null {
     client = null;
     return null;
   }
-  client = new Redis({ url, token });
+  // @upstash/redis defaults every request to `cache: "no-store"`, which Next
+  // treats as a declaration that the caller is dynamic: during static
+  // generation its patched fetch throws DynamicServerError instead of
+  // answering. That turned the shared cache into a hole at build time — each
+  // of the ~15 build workers missed it, went to Guesty directly, and minted
+  // its own OAuth token against a budget of 5 per window, exhausting the
+  // quota and putting the account into a multi-hour cooldown.
+  //
+  // "default" restores ordinary HTTP semantics. Nothing goes stale: every
+  // Upstash command is a POST, and Next does not cache POST responses — the
+  // only thing dropped is the marker that made prerendering impossible.
+  client = new Redis({ url, token, cache: "default" });
   console.warn("[guesty-cache] KV connected");
   return client;
 }
