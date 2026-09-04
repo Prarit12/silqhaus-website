@@ -48,9 +48,15 @@ function slim(l: any, source: "hostaway" | "guesty"): DestinationListing {
   };
 }
 
-/** Every live vacation-rental listing from both PMSes, slimmed for SSR.
- *  Either source failing degrades to the other instead of a 500. */
-export async function getAllVacationListings(): Promise<DestinationListing[]> {
+/** Every live vacation-rental listing from both PMSes, slimmed for SSR, plus
+ *  whether both sources actually answered. Either source failing degrades to
+ *  the other instead of a 500 — which is right for a page that renders what it
+ *  has, and wrong for one about to cache the result, so callers that persist
+ *  the list (prerendered pages, ISR snapshots) should check `complete` first. */
+export async function getVacationListingsWithStatus(): Promise<{
+  listings: DestinationListing[];
+  complete: boolean;
+}> {
   const [hostaway, guesty] = await Promise.allSettled([
     getHostAwayListings() as Promise<{ result: any[] }>,
     getGuestyListings(),
@@ -63,7 +69,17 @@ export async function getAllVacationListings(): Promise<DestinationListing[]> {
     guesty.status === "fulfilled"
       ? (guesty.value ?? []).map((l: any) => slim(l, "guesty"))
       : [];
-  return [...ha, ...gu];
+  return {
+    listings: [...ha, ...gu],
+    complete: hostaway.status === "fulfilled" && guesty.status === "fulfilled",
+  };
+}
+
+/** Every live vacation-rental listing from both PMSes, slimmed for SSR.
+ *  Either source failing degrades to the other instead of a 500. */
+export async function getAllVacationListings(): Promise<DestinationListing[]> {
+  const { listings } = await getVacationListingsWithStatus();
+  return listings;
 }
 
 export function listingsForRegion(

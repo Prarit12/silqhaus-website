@@ -1,6 +1,5 @@
 "use client";
 import React from "react";
-import { useSearchParams } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
 
 export interface PropertyListItem {
@@ -30,57 +29,31 @@ interface PropertyFilters {
   location: string;
 }
 
-function readUrlParams() {
-  if (typeof window === "undefined") return null;
-  return new URLSearchParams(window.location.search);
-}
-
-export function usePropertyFilters() {
-  const searchParams = useSearchParams();
-  const [filters, setFilters] = React.useState<PropertyFilters>(() => {
-    const query = readUrlParams();
-    if (!query)
-      return {
-        bedrooms: "",
-        propertyType: "",
-        guests: "",
-        amenities: [],
-        location: "",
-      };
-    const initialFilters: PropertyFilters = {
-      bedrooms: "",
-      propertyType: "",
-      guests: "",
-      amenities: [],
-      location: "",
-    };
-    for (const key of Object.keys(
-      initialFilters,
-    ) as (keyof PropertyFilters)[]) {
-      const value = query.getAll(key);
-      if (value.length === 1) (initialFilters[key] as string) = value[0];
-      else if (value.length > 1) (initialFilters[key] as string[]) = value;
-    }
-    return initialFilters;
+/**
+ * @param initialListings Listings fetched on the server, used to seed the
+ *   listing queries so the grid renders in the server HTML instead of a
+ *   skeleton. Slimmer than the API shape (no coordinates or prices), which the
+ *   consumers already tolerate: a property without coordinates keeps its card
+ *   and loses only its map pill, and prices arrive with the client refetch.
+ *
+ * Every filter starts unfiltered, including on an arriving `?location=…` URL.
+ * Seeding this state from `window.location` instead would make the first client
+ * render disagree with the server's ("5 properties found" against "10") and
+ * fail hydration. <SearchParamsSync> applies the URL a tick after mount.
+ */
+export function usePropertyFilters(initialListings: PropertyListItem[] = []) {
+  const [filters, setFilters] = React.useState<PropertyFilters>({
+    bedrooms: "",
+    propertyType: "",
+    guests: "",
+    amenities: [],
+    location: "",
   });
 
   const [searchDates, setSearchDates] = React.useState<{
     checkIn: Date | null;
     checkOut: Date | null;
-  }>(() => {
-    const query = readUrlParams();
-    if (!query) return { checkIn: null, checkOut: null };
-    const checkInStr = query.get("checkIn");
-    const checkOutStr = query.get("checkOut");
-    if (checkInStr && checkOutStr) {
-      const checkIn = new Date(checkInStr);
-      const checkOut = new Date(checkOutStr);
-      if (!isNaN(checkIn.getTime()) && !isNaN(checkOut.getTime())) {
-        return { checkIn, checkOut };
-      }
-    }
-    return { checkIn: null, checkOut: null };
-  });
+  }>({ checkIn: null, checkOut: null });
 
   const [showAvailableOnly, setShowAvailableOnly] = React.useState(false);
   const [priceRange, setPriceRange] = React.useState<[number, number]>([
@@ -88,37 +61,34 @@ export function usePropertyFilters() {
   ]);
   const [priceFilterActive, setPriceFilterActive] = React.useState(false);
 
-  const [minBedrooms, setMinBedrooms] = React.useState<number>(() => {
-    const query = readUrlParams();
-    if (!query) return 1;
-    const b = parseInt(query.get("bedrooms") || "", 10);
-    return !isNaN(b) && b > 1 ? b : 1;
-  });
+  const [minBedrooms, setMinBedrooms] = React.useState<number>(1);
 
   const [bedroomsFilterActive, setBedroomsFilterActive] =
-    React.useState<boolean>(() => {
-      const query = readUrlParams();
-      if (!query) return false;
-      const b = parseInt(query.get("bedrooms") || "", 10);
-      return !isNaN(b) && b > 1;
-    });
+    React.useState<boolean>(false);
 
-  const [minGuests, setMinGuests] = React.useState<number>(() => {
-    const query = readUrlParams();
-    if (!query) return 1;
-    const g = parseInt(query.get("guests") || "", 10);
-    return !isNaN(g) && g > 1 ? g : 1;
-  });
+  const [minGuests, setMinGuests] = React.useState<number>(1);
 
-  // The URL is the source of truth for arriving searches. The useState
-  // initializers read window.location, which is stale during client-side
-  // navigations (Next renders the new route before it pushes history), so
-  // re-sync whenever the router's own search params change.
-  React.useEffect(() => {
-    const location = searchParams.get("location") ?? "";
-    const guests = searchParams.get("guests") ?? "";
-    const bedrooms = searchParams.get("bedrooms") ?? "";
-    setFilters((prev) => ({ ...prev, location, guests, bedrooms }));
+  // The URL is the source of truth for arriving searches, applied here on mount
+  // and again on every client-side navigation. The params are handed in by
+  // <SearchParamsSync> rather than read here: `useSearchParams` would opt this
+  // whole page out of static rendering, leaving crawlers with an empty
+  // document. Stable identity — every setter below is stable.
+  const syncFromParams = React.useCallback((params: URLSearchParams) => {
+    const location = params.get("location") ?? "";
+    const guests = params.get("guests") ?? "";
+    const bedrooms = params.get("bedrooms") ?? "";
+    // propertyType/amenities aren't filtered on today, but the URL has always
+    // carried them into state — keep that contract.
+    const propertyType = params.get("propertyType") ?? "";
+    const amenities = params.getAll("amenities");
+    setFilters((prev) => ({
+      ...prev,
+      location,
+      guests,
+      bedrooms,
+      propertyType,
+      amenities,
+    }));
 
     const g = parseInt(guests, 10);
     setMinGuests(!isNaN(g) && g > 1 ? g : 1);
@@ -126,8 +96,8 @@ export function usePropertyFilters() {
     setMinBedrooms(!isNaN(b) && b > 1 ? b : 1);
     setBedroomsFilterActive(!isNaN(b) && b > 1);
 
-    const checkInStr = searchParams.get("checkIn");
-    const checkOutStr = searchParams.get("checkOut");
+    const checkInStr = params.get("checkIn");
+    const checkOutStr = params.get("checkOut");
     if (checkInStr && checkOutStr) {
       const checkIn = new Date(checkInStr);
       const checkOut = new Date(checkOutStr);
@@ -137,7 +107,21 @@ export function usePropertyFilters() {
       }
     }
     setSearchDates({ checkIn: null, checkOut: null });
-  }, [searchParams]);
+  }, []);
+
+  // Seeds keyed the same way the two endpoints are. `initialDataUpdatedAt: 0`
+  // dates the seed to the epoch so both queries count as stale and refetch on
+  // mount — the seed is there to fill the server render, not to skip the fetch.
+  const seeds = React.useMemo(() => {
+    const hostaway = initialListings.filter(
+      (l) => (l.source ?? "hostaway") === "hostaway",
+    );
+    const guesty = initialListings.filter((l) => l.source === "guesty");
+    return {
+      hostaway: hostaway.length ? hostaway : undefined,
+      guesty: guesty.length ? guesty : undefined,
+    };
+  }, [initialListings]);
 
   const {
     data: hostawayListings,
@@ -150,6 +134,8 @@ export function usePropertyFilters() {
       if (!res.ok) throw new Error("Failed to fetch listings");
       return res.json();
     },
+    initialData: seeds.hostaway,
+    initialDataUpdatedAt: 0,
   });
 
   const {
@@ -163,6 +149,8 @@ export function usePropertyFilters() {
       if (!res.ok) throw new Error("Failed to fetch listings");
       return res.json();
     },
+    initialData: seeds.guesty,
+    initialDataUpdatedAt: 0,
   });
 
   const allProperties = React.useMemo<PropertyListItem[]>(() => {
@@ -383,6 +371,7 @@ export function usePropertyFilters() {
     filteredProperties,
     handleSearchDates,
     handleClearAllFilters,
+    syncFromParams,
     updateFilter,
     formatDate,
   };
