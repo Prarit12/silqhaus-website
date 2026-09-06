@@ -1,16 +1,27 @@
 "use client";
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import {
+  Suspense,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import dynamic from "next/dynamic";
 import { useQuery } from "@tanstack/react-query";
 import { useTranslations } from "next-intl";
 import { SlidersHorizontal, Map as MapIcon, List } from "lucide-react";
-import { usePropertyFilters } from "@/hooks/use-property-filters";
+import {
+  usePropertyFilters,
+  type PropertyListItem,
+} from "@/hooks/use-property-filters";
 import { useIsLargeScreen } from "@/hooks/use-is-large-screen";
 import { calculateSilqhausPrice } from "@/config/ota-markups";
 import type { FromQuote } from "@/components/property-card";
 import { VacationListPanel } from "./vacation-list-panel";
 import { VacationFilterPopover } from "./vacation-filter-popover";
 import { VacationMapCard } from "./vacation-map-card";
+import { SearchParamsSync } from "./search-params-sync";
 import { getLatLng, keyOf, regionOf } from "./geo";
 import type { SearchItem } from "./types";
 
@@ -24,7 +35,12 @@ const DEACTIVATE_DELAY_MS = 120;
 const PRICE_MAX = 100000;
 type Region = "all" | "phuket" | "pattaya";
 
-export function VacationSearch() {
+export function VacationSearch({
+  initialListings = [],
+}: {
+  /** Server-fetched listings that seed the grid's first render. */
+  initialListings?: PropertyListItem[];
+}) {
   const t = useTranslations("ourProperty");
   const isLargeScreen = useIsLargeScreen();
 
@@ -46,7 +62,8 @@ export function VacationSearch() {
     filteredProperties,
     handleSearchDates,
     handleClearAllFilters,
-  } = usePropertyFilters();
+    syncFromParams,
+  } = usePropertyFilters(initialListings);
 
   const fromQuotes = useQuery<Record<string, any>>({
     queryKey: ["home-pricing"],
@@ -247,6 +264,12 @@ export function VacationSearch() {
 
   return (
     <div className="mt-14 md:mt-16 bg-white md:h-[calc(100dvh-4rem)] md:flex md:flex-col md:overflow-hidden">
+      {/* Renders nothing; isolates `useSearchParams` so only this leaf drops out
+          of static rendering and the grid below still reaches the server HTML. */}
+      <Suspense fallback={null}>
+        <SearchParamsSync onChange={syncFromParams} />
+      </Suspense>
+
       {/* Filter bar — the header pill owns search; this only refines results. */}
       <div className="shrink-0 border-b border-neutral-200 bg-white px-4 sm:px-6 py-3">
         <div className="flex flex-wrap items-center gap-3">
