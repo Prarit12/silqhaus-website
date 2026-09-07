@@ -194,14 +194,13 @@ export default function VacationMap({
       attributionControl: true,
     }).setView([12.5, 99.5], 6);
 
-    L.tileLayer(
-      "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
-      {
-        attribution:
-          '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> © <a href="https://carto.com/attributions">CARTO</a>',
-        maxZoom: 19,
-      },
-    ).addTo(map);
+    // OSM standard tiles — CARTO's basemaps went key-only in Aug 2026 and
+    // watermark keyless requests ("API KEY REQUIRED").
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      attribution:
+        '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+      maxZoom: 19,
+    }).addTo(map);
 
     map.on("click", () => onClearSelection());
     map.on("zoomend", () => renderMarkers.current());

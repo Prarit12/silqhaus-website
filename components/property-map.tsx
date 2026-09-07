@@ -47,16 +47,13 @@ export default function PropertyMap({
     if (!mapInstanceRef.current) {
       mapInstanceRef.current = L.map(mapRef.current).setView([lat, lng], 15);
 
-      // Add tile layer
-      //  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-      L.tileLayer(
-        "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
-        {
-          attribution:
-            '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-          maxZoom: 19,
-        },
-      ).addTo(mapInstanceRef.current);
+      // OSM standard tiles — CARTO's basemaps went key-only in Aug 2026 and
+      // watermark keyless requests ("API KEY REQUIRED").
+      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        attribution:
+          '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+        maxZoom: 19,
+      }).addTo(mapInstanceRef.current);
 
       // Create custom icon
       const customIcon = L.divIcon({
